@@ -351,7 +351,7 @@ Actor NemesisFiendBreath : MagmaBreath
   -THRUSPECIES 
   -THRUACTORS
   -SKYEXPLODE
-  +FORCERADIUSDMG
+  -PIERCEARMOR
   Species "Fiends"
   DamageType "FiendFire"
   States 

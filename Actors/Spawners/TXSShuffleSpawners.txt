@@ -89,7 +89,7 @@ DropItem "Nemesis Sawed-Off Shotgun", 256, 1
 DropItem "Nemesis Assault Shotgun", 256, 1
 DropItem "Tech Vulcan", 256, 1
 DropItem "Flak Cannon", 256, 1 //Hellsmith only
-DropItem "Legendary Behemoth Cannon", 256, 1
+DropItem "LegendaryBehemothCannon", 256, 1
 DropItem "EnragedLegendaryPowerShard", 256, 1
 DropItem "LegendaryPowerShard", 256, 1
 DropItem "LegendaryPowerSphere", 256, 1
@@ -201,7 +201,7 @@ DropItem "Legendary Plasmatic Cannon", 256, 2
 DropItem "Legendary Plasmatic Rifle", 256, 2
 DropItem "Legendary BFG 10K", 256, 1
 DropItem "Legendary BFG", 256, 1
-DropItem "Legendary Behemoth Cannon", 256, 1
+DropItem "LegendaryBehemothCannon", 256, 1
 DropItem "LegendaryInvulnerabilitySphere", 256 1
 DropItem "SkullOfPower", 256, 1
 DropItem "DemonicChalice", 256, 1
@@ -337,7 +337,7 @@ DropItem "Legendary Plasmatic Cannon", 256, 1
 DropItem "EnragedLegendaryPlasmaticCannon", 256, 1
 DropItem "EFG9000", 256, 1
 DropItem "ExplosiveRailgun", 256, 1
-DropItem "Legendary Behemoth Cannon", 256, 1
+DropItem "LegendaryBehemothCannon", 256, 1
 DropItem "Freezer Rifle", 256, 1
 DropItem "Demon Tech Rifle", 256, 1
 DropItem "LegendarySaber", 256, 1
@@ -365,7 +365,7 @@ DropItem "BlackHole Generator", 256, 1
 DropItem "Vilestaff", 256, 1
 DropItem "HackroidRifle", 256, 1
 DropItem "HackroidASG", 256, 1
-DropItem "Legendary Behemoth Cannon", 256, 1
+DropItem "LegendaryBehemothCannon", 256, 1
 DropItem "FantasyStaff", 256, 1
 DropItem "OccultSpellbook", 256, 1
 DropItem "AntimatterRepeater", 256, 1
@@ -562,7 +562,7 @@ DropItem "Legendary Plasmatic Cannon", 256, 1
 DropItem "EnragedLegendaryPlasmaticCannon", 256, 1
 DropItem "EFG9000", 256, 1
 DropItem "ExplosiveRailgun", 256, 1
-DropItem "Legendary Behemoth Cannon", 256, 1
+DropItem "LegendaryBehemothCannon", 256, 1
 DropItem "Freezer Rifle", 256, 1
 DropItem "Demon Tech Rifle", 256, 1
 DropItem "Railgun ", 256, 1
@@ -583,7 +583,7 @@ DropItem "Demon Tech Devastator", 256, 1
 DropItem "CommanderDevastator", 256, 1
 DropItem "BFG2704", 256, 1
 DropItem "Legendary BFG 10K", 256, 1
-DropItem "Legendary Behemoth Cannon", 256, 1
+DropItem "LegendaryBehemothCannon", 256, 1
 DropItem "LegendarySaber", 256, 1
 DropItem "FantasyStaff", 256, 1
 DropItem "OccultSpellbook", 256, 1
@@ -760,7 +760,7 @@ DropItem "RapidRocketlauncher", 256, 1
 DropItem "Legendary Plasmatic Cannon", 256, 1
 DropItem "EnragedLegendaryPlasmaticCannon", 256, 1
 DropItem "ExplosiveRailgun", 256, 1
-DropItem "Legendary Behemoth Cannon", 256, 1
+DropItem "LegendaryBehemothCannon", 256, 1
 DropItem "Freezer Rifle", 256, 1
 DropItem "Demon Tech Rifle", 256, 1
 DropItem "Railgun ", 256, 1
@@ -773,7 +773,7 @@ DropItem "Nemesis Rifle", 256, 1
 DropItem "Nemesis Plasmatic Cannon", 256, 1
 DropItem "Nemesis Sawed-Off Shotgun", 256, 1
 DropItem "Nemesis Assault Shotgun", 256, 1
-DropItem "Legendary Behemoth Cannon", 256, 1
+DropItem "LegendaryBehemothCannon", 256, 1
 DropItem "FantasyStaff", 256, 1
 DropItem "OccultSpellbook", 256, 1
 DropItem "CannongunSphere", 256, 2
@@ -826,7 +826,7 @@ DropItem "Tech Vulcan", 256, 3
 DropItem "DemonTechAxe", 256, 3
 DropItem "TechRipper", 256, 2
 DropItem "AntimatterRepeater", 256, 2
-DropItem "Legendary Behemoth Cannon", 256, 2
+DropItem "LegendaryBehemothCannon", 256, 2
 //DropItem "ExplosiveDTechUpgrade", 256, 1
 DropItem "HackroidRifle", 256, 1
 DropItem "HackroidASG", 256, 1

@@ -67,9 +67,7 @@ ACTOR "True Legendary Plasmatic Cannon" : Weapon 17860
   Height 20
   Weapon.PreferredSkin "BFG10K-Marine"
   Weapon.AmmoType "TrueLegendaryCell"
-  Weapon.AmmoType2 "TrueLegendaryCell"
-  Weapon.AmmoUse 0
-  Weapon.AmmoUse2 0
+  Weapon.AmmoUse 7
   Weapon.AmmoGive 225
   Inventory.PickupMessage "\c[z3]True Legendary Plasmatic Cannon\c-... From the depths of the U.A.C, you've finally recovered it..."
   Inventory.PickupSound "upgrade/pickup"
@@ -131,7 +129,7 @@ Weapon.SlotNumber 0
 	TNT1 A 0 A_PlaySound("weapons/Hbfg10kfire")
 	15LF C 0 Radius_Quake(6,3,0,1,0)
 	TNT1 A 0 A_TakeInventory("TrueLegendaryCell",7)
-	15LF D 1 Bright A_FireCustomMissile("PlayerTrueLegendaryBFG15KBall",frandom(-1.0,1-0),1,0,0,0,frandom(-1.0,1-0))
+	15LF D 1 Bright A_FireCustomMissile("PlayerTrueLegendaryBFG15KBall",frandom(-1.0,1-0),0,0,0,0,frandom(-1.0,1-0))
 	15LF E 1 A_Recoil(6)
 	15LF FGH 1
 	TNT1 A 0 A_ReFire
