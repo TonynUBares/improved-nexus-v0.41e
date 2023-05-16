@@ -972,7 +972,7 @@ ACTOR LegendaryPresentWeaponSpawner : RandomSpawner
 {
 +DROPPED
 DropItem "LegChainsawUpgrade", 256, 40
-DropItem "LegendaryAssaultShotgunGive", 256, 38
+DropItem "LegendaryAssaultShotgunGiver", 256, 38
 DropItem "LegendaryLightMachineGunGiver", 256, 36
 DropItem "LegendaryRevolverGiver", 256, 35
 DropItem "LegendaryPlasmaticRifleGiver", 256, 35

@@ -10,3 +10,10 @@ Switch  Doom 1		NMSW01A		On Pic  NMSW01B		Tics 0
 Switch	Doom 1		NMSW02A		On Pic	NMSW02B		Tics 0
 
 texture MAINSK01 range MAINSK60 tics 2
+
+//hackroid stuff
+texture HKDIST00
+pic 1 tics 3
+pic 2 tics 3
+pic 3 tics 3
+pic 4 tics 3

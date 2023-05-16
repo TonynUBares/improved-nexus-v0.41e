@@ -85,9 +85,11 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawImage "LNFXA0", -41, -66;
 	DrawNumber 3, INDEXFONT, White, Ammo LegendaryFusionCell, -49, -66;
 	DrawImage "LXELB0", -43, -73;
-	DrawNumber 3, INDEXFONT, White, Ammo HCKShell, -49, -73;
+	//DrawNumber 3, INDEXFONT, White, Ammo HCKShell, -49, -73;
+	DrawImage "HKDIST01", -59, -73, None, 9, 20,forcescale;
 	DrawImage "HXTKC0", -42, -80;
-	DrawNumber 3, INDEXFONT, White, Ammo HCKAmmo, -49, -80;
+	//DrawNumber 3, INDEXFONT, White, Ammo HCKAmmo, -49, -80;
+	DrawImage "HKDIST01", -59, -80, None, 9, 20,forcescale;
 	DrawImage "FUCCA0", -41, -87;
 	DrawNumber 3, INDEXFONT, White, Ammo FuelCore, -49, -87;
 	DrawImage "HDICA0", -42, -94;
@@ -504,13 +506,15 @@ StatusBar FullScreen, FullScreenOffsets
     {
 	DrawImage "SEWPA0", -64, -53;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
-	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
-	DrawNumber 3, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
+	//DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
+	//DrawNumber 3, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
+	DrawImage "HKDIST00", -53, -41, None, 25, 17,forcescale;
 	DrawImage AmmoIcon1, -31, -5, CenterBottom;
 	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo1, DrawShadow, -27, -22, 0;
 	DrawNumber 2, HUDFONT_DOOM, Gold, Ammo1, WhenNotZero, DrawShadow, -27, -22, 0, Red, 1, Green, 2;
-	DrawNumber 3, INDEXFONT, Red, Ammo HCKShell, -49, -73;
-	DrawNumber 3, INDEXFONT, Green, Ammo HCKShell, WhenNotZero, -49, -73;
+	//DrawNumber 3, INDEXFONT, Red, Ammo HCKShell, -49, -73;
+	//DrawNumber 3, INDEXFONT, Green, Ammo HCKShell, WhenNotZero, -49, -73;
+	DrawImage "HKDIST00", -59, -73, None, 9, 20,forcescale;
     }
 // SLOT 4
   IsSelected "Assault Rifle"
@@ -726,7 +730,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 3, INDEXFONT, Red, Ammo Missile, -16, -73;
 	DrawNumber 3, INDEXFONT, Green, Ammo Missile, WhenNotZero, -16, -73;
     }
-  IsSelected "Legendary Behemoth Cannon"
+  IsSelected "LegendaryBehemothCannon"
 	{
 	DrawImage "SEWPA0", -48, -53;
 	DrawImage "LBHCH0", -27, -4, CenterBottom;
@@ -962,13 +966,15 @@ StatusBar FullScreen, FullScreenOffsets
     {
 	DrawImage "SEWPA0", -40, -53;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
-	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
-	DrawNumber 3, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
+	//DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
+	//DrawNumber 3, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
+	DrawImage "HKDIST00", -60, -41, None, 25, 20,forcescale;
 	DrawImage AmmoIcon1, -32, -6, CenterBottom;
 	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo1, DrawShadow, -27, -22, 0;
 	DrawNumber 2, HUDFONT_DOOM, Gold, Ammo1, WhenNotZero, DrawShadow, -27, -22, 0, Red, 10, Green, 21;
-	DrawNumber 3, INDEXFONT, Red, Ammo HCKAmmo, -49, -80;
-	DrawNumber 3, INDEXFONT, Green, Ammo HCKAmmo, WhenNotZero, -49, -80;
+	//DrawNumber 3, INDEXFONT, Red, Ammo HCKAmmo, -49, -80;
+	//DrawNumber 3, INDEXFONT, Green, Ammo HCKAmmo, WhenNotZero, -49, -80;
+	DrawImage "HKDIST00", -59, -73, None, 9, 20,forcescale;
     }
 //SLOT 7
   IsSelected "BFG9500","PoweredBFG9500"
@@ -1925,8 +1931,8 @@ StatusBar normal, forcescaled
 	DrawImage "NCSTBAR", 39, 322, None, 912, 53,forcescale;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo NemesisShell, 565, 326;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo NLDemonAmmo, 565, 336;
-	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo HCKShell, 565, 346;
-	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo HCKAmmo, 565, 356;
+	DrawImage "HKDIST00", 554, 346, None, 10, 40,forcescale;
+	DrawImage "HKDIST00", 554, 356, None, 10, 40,forcescale;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo NuclearRocket, 565, 366;
     }
   IsSelected "Nemesis Sawed-Off Shotgun"
@@ -1937,8 +1943,8 @@ StatusBar normal, forcescaled
 	DrawImage "NCSTBAR", 39, 322, None, 912, 53,forcescale;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo NemesisShell, 565, 326;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo NLDemonAmmo, 565, 336;
-	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo HCKShell, 565, 346;
-	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo HCKAmmo, 565, 356;
+	DrawImage "HKDIST00", 554, 346, None, 10, 40,forcescale;
+	DrawImage "HKDIST00", 554, 356, None, 10, 40,forcescale;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo NuclearRocket, 565, 366;
     }
   IsSelected "HackroidASG"
@@ -1949,8 +1955,8 @@ StatusBar normal, forcescaled
 	DrawImage "NCSTBAR", 39, 322, None, 912, 53,forcescale;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo NemesisShell, 565, 326;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo NLDemonAmmo, 565, 336;
-	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo HCKShell, 565, 346;
-	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo HCKAmmo, 565, 356;
+	DrawImage "HKDIST00", 554, 346, None, 10, 40,forcescale;
+	DrawImage "HKDIST00", 554, 356, None, 10, 40,forcescale;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo NuclearRocket, 565, 366;
     }
 //SLOT 4
@@ -2106,7 +2112,7 @@ StatusBar normal, forcescaled
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
 	DrawNumber 3, NEWFONT, Gold, Ammo1, WhenNotZero, 110, 330, 0, Red, 2, Green, 41;
     }
-  IsSelected "Legendary Behemoth Cannon"
+  IsSelected "LegendaryBehemothCannon"
     {
 	DrawImage "SEWBB0", 211, 340;
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
@@ -2148,8 +2154,8 @@ StatusBar normal, forcescaled
 	DrawImage "NCSTBAR", 39, 322, None, 912, 53,forcescale;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo NemesisShell, 565, 326;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo NLDemonAmmo, 565, 336;
-	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo HCKShell, 565, 346;
-	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo HCKAmmo, 565, 356;
+	DrawImage "HKDIST00", 554, 346, None, 10, 40,forcescale;
+	DrawImage "HKDIST00", 554, 356, None, 10, 40,forcescale;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo NuclearRocket, 565, 366;
     }
 //SLOT 6
@@ -2279,8 +2285,8 @@ StatusBar normal, forcescaled
 	DrawImage "NCSTBAR", 39, 322, None, 912, 53,forcescale;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo NemesisShell, 565, 326;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo NLDemonAmmo, 565, 336;
-	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo HCKShell, 565, 346;
-	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo HCKAmmo, 565, 356;
+	DrawImage "HKDIST00", 554, 346, None, 10, 40,forcescale;
+	DrawImage "HKDIST00", 554, 356, None, 10, 40,forcescale;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo NuclearRocket, 565, 366;
     }
   IsSelected "HackroidRifle"
@@ -2291,8 +2297,8 @@ StatusBar normal, forcescaled
 	DrawImage "NCSTBAR", 39, 322, None, 912, 53,forcescale;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo NemesisShell, 565, 326;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo NLDemonAmmo, 565, 336;
-	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo HCKShell, 565, 346;
-	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo HCKAmmo, 565, 356;
+	DrawImage "HKDIST00", 554, 346, None, 10, 40,forcescale;
+	DrawImage "HKDIST00", 554, 356, None, 10, 40,forcescale;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo NuclearRocket, 565, 366;
     }
 //SLOT 7
@@ -2418,8 +2424,8 @@ StatusBar normal, forcescaled
 	DrawImage "NCSTBAR", 39, 322, None, 912, 53,forcescale;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo NemesisShell, 565, 326;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo NLDemonAmmo, 565, 336;
-	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo HCKShell, 565, 346;
-	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo HCKAmmo, 565, 356;
+	DrawImage "HKDIST00", 554, 346, None, 10, 40,forcescale;
+	DrawImage "HKDIST00", 554, 356, None, 10, 40,forcescale;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo NuclearRocket, 565, 366;
     }
 //Slot 8
@@ -2512,8 +2518,8 @@ StatusBar normal, forcescaled
 	DrawImage "NCSTBAR", 39, 322, None, 912, 53,forcescale;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo NemesisShell, 565, 326;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo NLDemonAmmo, 565, 336;
-	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo HCKShell, 565, 346;
-	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo HCKAmmo, 565, 356;
+	DrawImage "HKDIST00", 554, 346, None, 10, 40,forcescale;
+	DrawImage "HKDIST00", 554, 356, None, 10, 40,forcescale;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo NuclearRocket, 565, 366;
     }
   IsSelected "Armageddon Cannon"
@@ -2524,8 +2530,8 @@ StatusBar normal, forcescaled
 	DrawImage "NCSTBAR", 39, 322, None, 912, 53,forcescale;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo NemesisShell, 565, 326;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo NLDemonAmmo, 565, 336;
-	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo HCKShell, 565, 346;
-	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo HCKAmmo, 565, 356;
+	DrawImage "HKDIST00", 554, 346, None, 10, 40,forcescale;
+	DrawImage "HKDIST00", 554, 356, None, 10, 40,forcescale;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo NuclearRocket, 565, 366;
     }
 //SLOT 0
