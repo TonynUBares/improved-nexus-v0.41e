@@ -1,0 +1,15 @@
+/*SKILL 9
+{
+AmmoFactor = 1
+DamageFactor = 1.25
+MonsterHealth = 2
+SpawnFilter = Nightmare
+Name = "Hard Armageddon!"
+MustConfirm = "Monsters have double health and deal 1.25x damage. Make those bullets count. Y / N"
+TextColor = "G5"
+}*/
+
+Gameinfo
+{
+  ForceKillScripts = true
+}

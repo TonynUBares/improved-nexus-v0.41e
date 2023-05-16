@@ -1,0 +1,74 @@
+ACTOR VengefulNemesisArmor : BlueArmor
+{
+ Scale 1
+ +DONTRIP
+ +NORADIUSDMG
+ +INVENTORY.BIGPOWERUP
+ +DONTGIB
+ +NOTIMEFREEZE
+ Scale 1
+ DamageFactor "Normal", 0
+ DamageFactor 0
+ Inventory.Pickupmessage "Vengeful Nemesis Armor!"
+ Inventory.Icon "VARMA0"
+ Armor.SavePercent 57.0
+ Armor.SaveAmount 900
+ Tag "Nemesis Armor"
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,115)
+  SpawnLoop:
+	VARM ABCDEFFEDCBA 6 Bright 
+	Loop
+ }
+}
+
+ACTOR DemonicNemesisArmor : NemesisArmor Replaces NemesisArmor
+{
+ Tag "Demonic Nemesis Armor"
+ Inventory.PickupMessage "You are now protected by Demonic Nemesis Armor!"
+}	
+
+
+ACTOR SNArmorFireSpawner : BluePowerLineSpawner
+{
+ +NOTIMEFREEZE
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 1 A_SpawnItemEx("SNArmorFire",random(12,-12),random(15,-15),0,0,0,2,0,128,0) 
+	Stop
+ }
+}
+
+ACTOR SNArmorFire
+{
+ Speed 1
+ Radius 0
+ Height 0
+ Scale 0.30
+ RenderStyle Subtract
+ Alpha 0.8
+ +MISSILE
+ +NOGRAVITY
+ +NOBLOCKMAP
+ +NOINTERACTION
+ +NOTELEPORT
+ +DONTSPLASH
+ +NOTIMEFREEZE
+ -SOLID
+ States
+ {
+  Spawn:
+	FIW1 A 5 Bright
+	TNT1 A 0 A_Jump(128,"FadeOut2")
+  Normal:
+	FIW1 ABCDEFGHIJKL 1 Bright A_FadeOut(0.08)
+	Stop
+  FadeOut2:
+	FIW1 ABCDEFGHIJKL 1 Bright A_FadeOut(0.0125)
+	Stop
+ }
+}

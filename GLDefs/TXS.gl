@@ -1,0 +1,2678 @@
+//TXS
+
+OBJECT WatcherBall
+{
+Frame GZXAA { Light WatcherBall1 }
+Frame GZXAB { Light WatcherBall1 }
+Frame GZXAC { Light WatcherBallExplode1 }
+Frame GZXAD { Light WatcherBallExplode2 }
+Frame GZXAE { Light WatcherBallExplode3 }
+Frame GZXAF { Light WatcherBallExplode4 }
+Frame GZXAG { Light WatcherBallExplode5 }
+}
+
+OBJECT HackroidZombie
+{
+Frame HPOSA { Light MediumTrueLegLight }
+Frame HPOSB { Light MediumTrueLegLight }
+Frame HPOSC { Light MediumTrueLegLight }
+Frame HPOSD { Light MediumTrueLegLight }
+Frame HPOSE { Light MediumTrueLegLight }
+Frame HPOSF { Light MediumTrueLegLight }
+Frame HPOSG { Light MediumTrueLegLight }
+Frame HPOSQ { Light MediumTrueLegLight }
+}
+
+OBJECT HackroidAssaultCaptain
+{
+Frame HASGA { Light SmallELegLight }
+Frame HASGB { Light SmallELegLight }
+Frame HASGC { Light SmallELegLight }
+Frame HASGD { Light SmallELegLight }
+Frame HASGE { Light SmallELegLight }
+Frame HASGF { Light SmallELegLight }
+Frame HASGG { Light SmallELegLight }
+Frame HASGZ { Light SmallELegLight }
+}
+
+pulselight CFSlayerPower
+{
+    color 1.0 1.0 1.0
+	offset 0 30 0
+    size 52
+    secondarySize 62
+	interval 1
+}
+
+object ClusterfuckSlayerPower
+{
+Frame CFSY { light CFSlayerPower }
+}
+
+OBJECT AngelChestElectric
+{
+Frame MAIL { Light MainyuLightningVessel }
+}
+
+OBJECT PhaseCubeShot
+{
+Frame PTPR { Light PhaseDTechProjLight }
+}
+
+OBJECT Carrier
+{
+Frame CARRA { Light CarrierLight }
+Frame CARRB { Light CarrierLight }
+Frame CARRC { Light CarrierOpenMouthLight }
+Frame CARRD { Light CarrierOpenMouthLight }
+Frame CARRE { Light CarrierLight }
+Frame CARRF { Light CarrierLight }
+Frame CARRG { Light CarrierDeathLight1 }
+Frame CARRH { Light CarrierDeathLight2 }
+Frame CARRI { Light CarrierDeathLight3 }
+Frame CARRJ { Light CarrierDeathLight4 }
+Frame CARRK { Light CarrierDeathLight5 }
+Frame CARRL { Light CarrierDeathLight6 }
+Frame CARRM { Light CarrierDeathLight7 }
+Frame CARRN { Light CarrierDeathLight8 }
+}
+
+OBJECT PoweredDemonTechProjectile
+{
+Frame PDTS { Light PowerDTechProj1 }
+}
+
+OBJECT SentryGunPoweredDemonTechProjectile
+{
+Frame PDTS { Light PowerDTechProj1 }
+}
+
+OBJECT PoweredDemonTechEx
+{
+Frame SRPG { Light PowerDTechProj2 }
+}
+
+OBJECT TrueLegAmmoSphere
+{
+Frame TLAS { Light TrueLegendarySphere1 }	
+}
+
+OBJECT LegendaryBehemoth
+{
+Frame LEG2A { Light MediumLegLight }
+Frame LEG2B { Light MediumLegLight }
+Frame LEG2C { Light MediumLegLight }
+Frame LEGIC { Light MediumLegLight }
+Frame LEG2D { Light MediumLegLight }
+Frame LEG2E { Light MediumLegLight }
+Frame LEG2F { Light MediumLegLight }
+Frame LEG2G { Light MediumLegLight }
+Frame LEG2H { Light MediumLegLight }
+Frame LEG2I { Light MediumLegLight }
+Frame LEG2J { Light MediumLegLight }
+}
+
+FLICKERLIGHT TerminatorPlasmaPuff1
+{
+Color 0.8 0. 0
+Size 12
+SecondarySize 18
+Chance 0.2
+}
+
+pointlight SmallBlueLight
+{
+color 0.0 0.0 1.0
+size 28
+}
+
+//Object ShotgunPlasmaPuff{Frame PSBO { Light SmallBlueLight }}
+
+pointlight MediumRedLight
+{
+color 1.0 0.0 0.0
+size 60
+}
+
+object ErasusProj{frame TNT1 {light MediumRedLight}}
+object ZombieErasusProj{frame TNT1 {light MediumRedLight}}
+
+FLICKERLIGHT SBFG95002Ball1
+{
+Color 0 0 8
+Size 46
+SecondarySize 62
+Chance 0.2
+}
+
+POINTLIGHT SBFG95002BallExplode1
+{
+Color 0 0 8
+OffSet 0 0 0
+Size 72
+}
+
+POINTLIGHT SBFG95002BallExplode2
+{
+Color 0 0 8
+OffSet 0 0 0
+Size 80
+}
+
+POINTLIGHT SBFG95002BallExplode3
+{
+Color 0 0 8
+OffSet 0 0 0
+Size 90
+}
+
+POINTLIGHT SBFG95002BallExplode4
+{
+Color 0 0 8
+OffSet 0 0 0
+Size 70
+}
+
+POINTLIGHT SBFG95002BallExplode5
+{
+Color 0 0 8
+OffSet 0 0 0
+Size 54
+}
+
+POINTLIGHT SBFG95002BallExplode6
+{
+Color 0 0 8
+OffSet 0 0 0
+Size 32
+}
+
+Flickerlight2 FLAKHI
+{
+ Color 1.0 1.0 0.0
+ Size 50
+ SecondarySize 10
+ Interval 0.01
+}
+
+Flickerlight2 FLAKLO
+{
+ Color 1.0 1.0 0.0
+ Size 30
+ SecondarySize 5
+ Interval 0.01
+}
+
+pulselight UnBallLight1
+{
+color 1.0 0.5 0.0
+size 10
+offset 0 16 0
+subtractive 1
+dontlightself 1
+}
+
+pulselight UnBallLight2
+{
+color 1.5 0.5 0.0
+size 10
+offset 0 16 0
+subtractive 1
+dontlightself 1
+}
+
+FLICKERLIGHT LegendaryShuffleSphere1
+{
+Color 0.8 0.4 0
+OffSet 0 8 0
+Size 15
+SecondarySize 25
+Chance 0.2
+}
+
+OBJECT LegendaryShuffleSphere
+{
+Frame	LSHU { Light LegendaryShuffleSphere1 }	
+}
+
+FLICKERLIGHT EnragedLegendaryShuffleSphere1
+{
+Color 1 0 0
+OffSet 0 8 0
+Size 15
+SecondarySize 25
+Chance 0.2
+}
+
+OBJECT EnragedLegendaryShuffleSphere
+{
+Frame	ESHU { Light EnragedLegendaryShuffleSphere1 }	
+}
+
+FLICKERLIGHT TrueLegendaryShuffleSphere1
+{
+Color 0.2 0.2 1.0
+OffSet 0 8 0
+Size 35
+SecondarySize 45
+Chance 0.2
+}
+
+OBJECT TrueLegendaryShuffleSphere
+{
+Frame	TSHU { Light TrueLegendaryShuffleSphere1 }	
+}
+
+FLICKERLIGHT NemesisShuffleSphere1
+{
+Color 1.0 1.0 1.0
+Subtractive 1
+OffSet 0 8 0
+Size 15
+SecondarySize 25
+Chance 0.2
+}
+
+OBJECT NemesisShuffleSphere
+{
+Frame	NSHU { Light NemesisShuffleSphere1 }		
+}
+
+FLICKERLIGHT ShuffleSphere1
+{
+Color 1.0 1.0 1.0
+OffSet 0 8 0
+Size 15
+SecondarySize 25
+Chance 0.2
+}
+
+OBJECT ShuffleSphere
+{
+Frame	SHUF { Light ShuffleSphere1 }	
+}
+
+FLICKERLIGHT WeaponShuffleSphere1
+{
+Color 1.0 1.0 1.0
+OffSet 0 8 0
+Size 15
+SecondarySize 25
+Chance 0.2
+}
+
+OBJECT WeaponShuffleSphere
+{
+Frame	WSHU { Light WeaponShuffleSphere1 }	
+}
+
+FLICKERLIGHT ItemShuffleSphere1
+{
+Color 0.44 0.26 0.08
+OffSet 0 8 0
+Size 15
+SecondarySize 25
+Chance 0.2
+}
+
+OBJECT ItemShuffleSphere
+{
+Frame	ISHU { Light ItemShuffleSphere1 }		
+}
+
+Flickerlight2 DFLAK1
+{
+ Color 0.0 0.0 1.0
+ Size 50
+ SecondarySize 10
+ Interval 0.01
+}
+
+Flickerlight2 DFLAK2
+{
+ Color 0.0 0.0 1.0
+ Size 30
+ SecondarySize 5
+ Interval 0.01
+}
+
+OBJECT LegendaryBarrelFake
+{
+Frame LB4R { Light SmallLegLight }
+}
+
+OBJECT EnragedLegendaryBarrelFake
+{
+Frame EB4R { Light SmallELegLight }
+}
+
+FLICKERLIGHT TrueLegendaryArmor12
+{
+Color 0.2 0.2 1
+OffSet 0 8 0
+Size 15
+SecondarySize 25
+Chance 0.2
+}
+
+FLICKERLIGHT TrueLegendarySphere1
+{
+Color 0.2 0.2 1
+OffSet 0 8 0
+Size 15
+SecondarySize 25
+Chance 0.2
+}
+
+OBJECT TrueLegendarySphere
+{
+Frame TSPH { Light TrueLegendarySphere1 }	
+}
+
+OBJECT TrueLegTimeFreezeSphere
+{
+Frame TLTF { Light TrueLegendarySphere1 }	
+}
+
+FLICKERLIGHT CrystalArmor1
+{
+Color 0.0 0.8 0.8
+OffSet 0 8 0
+Size 30
+SecondarySize 42
+Chance 0.2
+}
+
+OBJECT CrystalArmor
+{
+Frame CRYS { Light CrystalArmor1 }	
+}
+
+FLICKERLIGHT ClusterfuckSlayerPower1
+{
+    Color 1.0 1.0 1.0
+	offset 0 0 0
+    size 52
+    secondarySize 62
+	Chance 0.2
+}
+
+pulselight DoomSlayerPower1
+{
+    color 1.0 0.0 0.0
+	offset 0 30 0
+    size 52
+    secondarySize 62
+	interval 1
+}
+
+object DoomSlayerPower
+{
+Frame SLYR { light DoomSlayerPower1 }
+}
+
+OBJECT LegendaryTechBarrel
+{
+Frame LTBB { Light SmallLegLight }
+}
+
+OBJECT HellFireBarrel
+{
+Frame HFBR { Light BossFire1 }
+}
+
+pulselight CrateLight
+{
+Color 0.6 0.6 0.6
+OffSet 0 0 0
+Size 36
+secondarySize 42
+interval 1
+}
+
+OBJECT WeaponCrate
+{
+Frame WPC1 { Light CrateLight }
+}
+
+OBJECT UtilityCrate
+{
+Frame UYCT { Light CrateLight }
+}
+
+OBJECT HealthCrate
+{
+Frame HLCT { Light CrateLight }
+}
+
+POINTLIGHT SuperCrateLight1
+{
+Color 1.0 0.0 0.0
+OffSet 0 0 0
+Size 42
+}
+
+POINTLIGHT SuperCrateLight2
+{
+Color 1.0 0.5 0.0
+OffSet 0 0 0
+Size 42
+}
+
+POINTLIGHT SuperCrateLight3
+{
+Color 1.0 1.0 0.0
+OffSet 0 0 0
+Size 42
+}
+
+POINTLIGHT SuperCrateLight4
+{
+Color 0.5 1.0 0.0
+OffSet 0 0 0
+Size 42
+}
+
+POINTLIGHT SuperCrateLight5
+{
+Color 0.0 1.0 0.0
+OffSet 0 0 0
+Size 42
+}
+
+POINTLIGHT SuperCrateLight6
+{
+Color 0.0 1.0 0.5
+OffSet 0 0 0
+Size 42
+}
+
+POINTLIGHT SuperCrateLight7
+{
+Color 0.0 1.0 1.0
+OffSet 0 0 0
+Size 42
+}
+
+POINTLIGHT SuperCrateLight8
+{
+Color 0.0 0.5 1.0
+OffSet 0 0 0
+Size 42
+}
+
+POINTLIGHT SuperCrateLight9
+{
+Color 0.0 0.0 1.0
+OffSet 0 0 0
+Size 42
+}
+
+POINTLIGHT SuperCrateLight10
+{
+Color 0.5 0.0 1.0
+OffSet 0 0 0
+Size 42
+}
+
+POINTLIGHT SuperCrateLight11
+{
+Color 1.0 0.0 1.0
+OffSet 0 0 0
+Size 42
+}
+
+OBJECT SuperCrate
+{
+Frame SHCTA { Light SuperCrateLight1 }
+Frame SHCTB { Light SuperCrateLight2 }
+Frame SHCTC { Light SuperCrateLight3 }
+Frame SHCTD { Light SuperCrateLight4 }
+Frame SHCTE { Light SuperCrateLight5 }
+Frame SHCTF { Light SuperCrateLight6 }
+Frame SHCTG { Light SuperCrateLight7 }
+Frame SHCTH { Light SuperCrateLight8 }
+Frame SHCTI { Light SuperCrateLight9 }
+Frame SHCTJ { Light SuperCrateLight10 }
+Frame SHCTK { Light SuperCrateLight11 }
+}
+
+OBJECT SuperCrateActive1
+{
+Frame SHCTA { Light SuperCrateLight1 }
+Frame SHCTB { Light SuperCrateLight2 }
+Frame SHCTC { Light SuperCrateLight3 }
+Frame SHCTD { Light SuperCrateLight4 }
+Frame SHCTE { Light SuperCrateLight5 }
+Frame SHCTF { Light SuperCrateLight6 }
+Frame SHCTG { Light SuperCrateLight7 }
+Frame SHCTH { Light SuperCrateLight8 }
+Frame SHCTI { Light SuperCrateLight9 }
+Frame SHCTJ { Light SuperCrateLight10 }
+Frame SHCTK { Light SuperCrateLight11 }
+}
+
+OBJECT SuperCrateActive2
+{
+Frame SHCTA { Light SuperCrateLight1 }
+Frame SHCTB { Light SuperCrateLight2 }
+Frame SHCTC { Light SuperCrateLight3 }
+Frame SHCTD { Light SuperCrateLight4 }
+Frame SHCTE { Light SuperCrateLight5 }
+Frame SHCTF { Light SuperCrateLight6 }
+Frame SHCTG { Light SuperCrateLight7 }
+Frame SHCTH { Light SuperCrateLight8 }
+Frame SHCTI { Light SuperCrateLight9 }
+Frame SHCTJ { Light SuperCrateLight10 }
+Frame SHCTK { Light SuperCrateLight11 }
+}
+
+OBJECT SuperCrateActive3
+{
+Frame SHCTA { Light SuperCrateLight1 }
+Frame SHCTB { Light SuperCrateLight2 }
+Frame SHCTC { Light SuperCrateLight3 }
+Frame SHCTD { Light SuperCrateLight4 }
+Frame SHCTE { Light SuperCrateLight5 }
+Frame SHCTF { Light SuperCrateLight6 }
+Frame SHCTG { Light SuperCrateLight7 }
+Frame SHCTH { Light SuperCrateLight8 }
+Frame SHCTI { Light SuperCrateLight9 }
+Frame SHCTJ { Light SuperCrateLight10 }
+Frame SHCTK { Light SuperCrateLight11 }
+}
+
+OBJECT SuperCrateActive4
+{
+Frame SHCTA { Light SuperCrateLight1 }
+Frame SHCTB { Light SuperCrateLight2 }
+Frame SHCTC { Light SuperCrateLight3 }
+Frame SHCTD { Light SuperCrateLight4 }
+Frame SHCTE { Light SuperCrateLight5 }
+Frame SHCTF { Light SuperCrateLight6 }
+Frame SHCTG { Light SuperCrateLight7 }
+Frame SHCTH { Light SuperCrateLight8 }
+Frame SHCTI { Light SuperCrateLight9 }
+Frame SHCTJ { Light SuperCrateLight10 }
+Frame SHCTK { Light SuperCrateLight11 }
+}
+
+OBJECT SuperCrateActiveJackpot
+{
+Frame SHCTA { Light SuperCrateLight1 }
+Frame SHCTB { Light SuperCrateLight2 }
+Frame SHCTC { Light SuperCrateLight3 }
+Frame SHCTD { Light SuperCrateLight4 }
+Frame SHCTE { Light SuperCrateLight5 }
+Frame SHCTF { Light SuperCrateLight6 }
+Frame SHCTG { Light SuperCrateLight7 }
+Frame SHCTH { Light SuperCrateLight8 }
+Frame SHCTI { Light SuperCrateLight9 }
+Frame SHCTJ { Light SuperCrateLight10 }
+Frame SHCTK { Light SuperCrateLight11 }
+}
+
+FLICKERLIGHT PlasmaRazorLight
+{
+Color 0.8 0 0
+Size 24
+SecondarySize 28
+Chance 0.2
+}
+
+FLICKERLIGHT PlasmaRazorExLight
+{
+Color 0.8 0 0
+Size 30
+SecondarySize 36
+Chance 0.2
+}
+
+FLICKERLIGHT PlasmaRazorExLight2
+{
+Color 0.8 0 0
+Size 34
+SecondarySize 40
+Chance 0.2
+}
+
+FLICKERLIGHT PlasmaRazorExLightEnd
+{
+Color 0.8 0 0
+Size 12
+SecondarySize 18
+Chance 0.2
+}
+
+FLICKERLIGHT AltPlasmaRazorExLight
+{
+Color 0.8 0 0
+Size 40
+SecondarySize 46
+Chance 0.2
+}
+
+FLICKERLIGHT AltPlasmaRazorExLightEnd
+{
+Color 0.8 0 0
+Size 28
+SecondarySize 34
+Chance 0.2
+}
+
+OBJECT PlasmaRazor
+{
+Frame RIPPA { Light PlasmaRazorLight }
+Frame RIPPF { Light PlasmaRazorExLight2 }
+Frame RIPPG { Light PlasmaRazorExLight2 }
+Frame RIPPH { Light PlasmaRazorExLight }
+Frame RIPPI { Light PlasmaRazorExLight }
+Frame RIPPJ { Light PlasmaRazorExLightEnd }
+}
+
+OBJECT PlasmaRazorAlt
+{
+Frame RIPPA { Light PlasmaRazorLight }
+Frame RIPPF { Light AltPlasmaRazorExLight }
+Frame RIPPG { Light AltPlasmaRazorExLight }
+Frame RIPPH { Light AltPlasmaRazorExLight }
+Frame RIPPI { Light AltPlasmaRazorExLight }
+Frame RIPPJ { Light AltPlasmaRazorExLightEnd }
+}
+
+FLICKERLIGHT RepeaterAntimatterLight
+{
+Color 0.8 0.3 0
+Size 46
+SecondarySize 62
+Chance 0.2
+}
+
+POINTLIGHT AntimatterExplode1
+{
+Color 0.8 0.3 0
+OffSet 0 0 0
+Size 42
+}
+
+POINTLIGHT AntimatterExplode2
+{
+Color 0.8 0.3 0
+OffSet 0 0 0
+Size 50
+}
+
+POINTLIGHT AntimatterExplode3
+{
+Color 0.8 0.3 0
+OffSet 0 0 0
+Size 60
+}
+
+POINTLIGHT AntimatterExplode4
+{
+Color 0.8 0.3 0
+OffSet 0 0 0
+Size 40
+}
+
+POINTLIGHT AntimatterExplode5
+{
+Color 0.8 0.3 0
+OffSet 0 0 0
+Size 20
+}
+
+POINTLIGHT AntimatterExplode6
+{
+Color 0.8 0.3 0
+OffSet 0 0 0
+Size 16
+}
+
+POINTLIGHT AntimatterExplode7
+{
+Color 0.8 0.3 0
+OffSet 0 0 0
+Size 10
+}
+
+OBJECT PlayerRepeaterAntimatter
+{
+Frame TRA2 { Light RepeaterAntimatterLight }
+}
+
+OBJECT ZombieRepeaterAntimatter
+{
+Frame TRA2 { Light RepeaterAntimatterLight }
+}
+
+OBJECT PlayerAntimatterRepeaterEx
+{
+Frame BLASA { Light AntimatterExplode1 }
+Frame BLASB { Light AntimatterExplode2 }
+Frame BLASC { Light AntimatterExplode3 }
+Frame BLASD { Light AntimatterExplode4 }
+Frame BLASE { Light AntimatterExplode5 }
+Frame BLASF { Light AntimatterExplode6 }
+Frame BLASG { Light AntimatterExplode7 }
+}
+
+OBJECT ZombieAntimatterRepeaterEx
+{
+Frame BLASA { Light AntimatterExplode1 }
+Frame BLASB { Light AntimatterExplode2 }
+Frame BLASC { Light AntimatterExplode3 }
+Frame BLASD { Light AntimatterExplode4 }
+Frame BLASE { Light AntimatterExplode5 }
+Frame BLASF { Light AntimatterExplode6 }
+Frame BLASG { Light AntimatterExplode7 }
+}
+
+OBJECT LGeneral10KProjectile
+{
+Frame LRAC { Light BFG9500EnergyBall1 }
+}
+
+OBJECT LGeneral10KEx
+{
+Frame LFE3 { Light BFG9500EnergyBall1 }
+}
+
+OBJECT LegBehemothCometPlayer
+{
+Frame LHTB { Light LegNobleCM1 }
+Frame BCOM { Light LegNobleCM2 }
+}
+
+OBJECT LegBehBFGBallPlayer
+{
+Frame LTB1 { Light LMissileExplode3a }
+}
+
+OBJECT BEraserSpiderRedBFGBall
+{
+Frame BFR3 { Light RBFG9500Ball1 }
+Frame BRE3A { Light RBFG9500BallExplode1 }
+Frame BRE3B { Light RBFG9500BallExplode2 }
+Frame BRE3C { Light RBFG9500BallExplode3 }
+Frame BRE3D { Light RBFG9500BallExplode4 }
+Frame BRE3E { Light RBFG9500BallExplode5 }
+Frame BRE3F { Light RBFG9500BallExplode6 }
+}
+
+OBJECT BEraserSpiderDTBFG10KBall
+{
+Frame CRS1 { Light BFG95002Ball1 }
+}
+
+object BEraserSpiderDTDBall
+{ 
+frame CRS9 { light BigRedLight }
+frame CRE9 { light BigRedLight }
+}
+
+OBJECT BEraserSpiderDTDBall2
+{
+Frame DBA2A { Light DevaBall1 }
+Frame DBA2B { Light DevaBall1 }
+Frame DBA2C { Light DevaBallExplode1 }
+Frame DBA2D { Light DevaBallExplode2 }
+Frame DBA2E { Light DevaBallExplode3 }
+}
+
+OBJECT BabyEraserMastermind
+{
+Frame DVSPG { Light EZombieBFG1 }
+Frame DVSPH { Light EZombieBFG2 }
+}
+
+OBJECT TechErasusZombie
+{
+Frame TERZE { Light EZombieBFG1 }
+Frame TERZF { Light EZombieBFG2 }
+}
+
+OBJECT RedeeComDTBFG10kBall
+{
+Frame CPS1 { Light PurpleDevaBall1 }
+}
+
+object RedeeComDevastatorBall
+{ 
+frame CPS1 { light BigPurpleLight }
+frame CPE1 { light BigPurpleLight }
+}
+
+FLICKERLIGHT PurpleBFG9500Ball1
+{
+Color 0.8 0 0.8
+Size 46
+SecondarySize 62
+Chance 0.2
+}
+
+POINTLIGHT PurpleBFG9500BallExplode1
+{
+Color 0.8 0 0.8
+OffSet 0 0 0
+Size 72
+}
+
+POINTLIGHT PurpleBFG9500BallExplode2
+{
+Color 0.8 0 0.8
+OffSet 0 0 0
+Size 80
+}
+
+POINTLIGHT PurpleBFG9500BallExplode3
+{
+Color 0.8 0 0.8
+OffSet 0 0 0
+Size 90
+}
+
+POINTLIGHT PurpleBFG9500BallExplode4
+{
+Color 0.8 0 0.8
+OffSet 0 0 0
+Size 70
+}
+
+POINTLIGHT PurpleBFG9500BallExplode5
+{
+Color 0.8 0 0.8
+OffSet 0 0 0
+Size 54
+}
+
+POINTLIGHT PurpleBFG9500BallExplode6
+{
+Color 0.8 0 0.8
+OffSet 0 0 0
+Size 32
+}
+
+OBJECT RedeeComBFGBall
+{
+Frame BPE3 { Light PurpleBFG9500Ball1 }
+Frame BPE3A { Light PurpleBFG9500BallExplode1 }
+Frame BPE3B { Light PurpleBFG9500BallExplode2 }
+Frame BPE3C { Light PurpleBFG9500BallExplode3 }
+Frame BPE3D { Light PurpleBFG9500BallExplode4 }
+Frame BPE3E { Light PurpleBFG9500BallExplode5 }
+Frame BPE3F { Light PurpleBFG9500BallExplode6 }
+}
+
+OBJECT RedeeCom10K
+{
+Frame TPA3 { Light PurpleBFG9500Ball1 }
+}
+
+OBJECT RedeeCom10KEx
+{
+Frame BPE3A { Light PurpleBFG15KBallExplode1 }
+Frame BPE3B { Light PurpleBFG15KBallExplode2 }
+Frame BPE3C { Light PurpleBFG15KBallExplode3 }
+Frame BPE3D { Light PurpleBFG15KBallExplode4 }
+Frame BPE3E { Light PurpleBFG15KBallExplode5 }
+Frame BPE3F { Light PurpleBFG15KBallExplode6 }
+}
+
+OBJECT RedeeComBFG15k
+{
+Frame PFS1 { Light PurpleBFG15KBall1 }
+Frame PFE1A { Light PurpleBFG15KBallExplode1 }
+Frame PFE1B { Light PurpleBFG15KBallExplode2 }
+Frame PFE1C { Light PurpleBFG15KBallExplode3 }
+Frame PFE1D { Light PurpleBFG15KBallExplode4 }
+Frame PFE1E { Light PurpleBFG15KBallExplode5 }
+Frame PFE1F { Light PurpleBFG15KBallExplode6 }
+}
+
+OBJECT FRZAfritBomb
+{
+Frame SHEX { Light FRZRMissile1a}
+Frame FX05 { Light FRZRMissile1a}
+}
+
+FLICKERLIGHT FRZArfitFire1
+{
+Color 0 0.5 1.0
+OffSet 0 0 0
+Size 26
+SecondarySize 30
+Chance 0.2
+}
+
+OBJECT AfritIcicle{Frame ISHR { Light FRZRMissile1a }}
+OBJECT FRZRAfritBombProj{Frame ISHR { Light FRZRMissile1a }}
+OBJECT FRZRAfritBall{Frame ICBL { Light FRZRBBFG9500Ball1 }}
+OBJECT FreezedAfritTracer{Frame FFRA { Light FRZArfitFire1 }}
+
+OBJECT FrostProjectile{Frame ISHR { Light FRZRMissile1a }}
+OBJECT FrostProjectileSilent{Frame ISHR { Light FRZRMissile1a }}
+
+FLICKERLIGHT CacolanternBall1
+{
+Color 0.8 0.8 0
+Size 32
+SecondarySize 42
+Chance 0.2
+}
+
+POINTLIGHT CacolanternTracerExplode1
+{
+Color 0.8 0.8 0
+OffSet 0 0 0
+Size 48
+}
+
+POINTLIGHT CacolanternTracerExplode2
+{
+Color 0.8 0.8 0
+OffSet 0 0 0
+Size 52
+}
+
+POINTLIGHT CacolanternTracerExplode3
+{
+Color 0.8 0.8 0
+OffSet 0 0 0
+Size 56
+}
+
+POINTLIGHT CacolanternTracerExplode4
+{
+Color 0.8 0.8 0
+OffSet 0 0 0
+Size 48
+}
+
+POINTLIGHT CacolanternTracerExplode5
+{
+Color 0.8 0.8 0
+OffSet 0 0 0
+Size 38
+}
+
+POINTLIGHT CacolanternTracerExplode6
+{
+Color 0.8 0.8 0
+OffSet 0 0 0
+Size 26
+}
+
+
+OBJECT CacolanternSeeker
+{
+Frame HEFXA { Light CacolanternBall1 }
+Frame HEFXB { Light CacolanternBall1 }
+Frame HEFXC { Light CacolanternTracerExplode1 }
+Frame HEFXD { Light CacolanternTracerExplode2 }
+Frame HEFXE { Light CacolanternTracerExplode3 }
+Frame HEFXF { Light CacolanternTracerExplode4 }
+Frame HEFXG { Light CacolanternTracerExplode5 }
+Frame HEFXH { Light CacolanternTracerExplode6 }
+}
+
+OBJECT CacolanternFire
+{
+Frame FRTMA { Light DevilBall1 }
+Frame FRTMB { Light DevilBall1 }
+Frame FRTMC { Light DevilBallExplode1 }
+Frame FRTMD { Light DevilBallExplode2 }
+Frame FRTME { Light DevilBallExplode3 }
+}
+
+OBJECT CacolanternFlamethrower
+{
+Frame FIR1 { Light BruiserBall1 }
+}
+
+OBJECT CacolanternComet
+{
+Frame COMT { Light Comet1 }
+}
+
+OBJECT LegendaryGeneral
+{
+Frame LEGEA { Light SmallLegLight }
+Frame LEGEB { Light SmallLegLight }
+Frame LEGEC { Light SmallLegLight }
+Frame LEGED { Light SmallLegLight }
+Frame LEGEE { Light SmallLegLight }
+Frame LEGEF { Light SmallLegLight }
+Frame LEGEG { Light SmallLegLight }
+Frame LEGEZ { Light SmallLegLight }
+}
+
+OBJECT LGeneral10KProjectile
+{
+Frame TRA2 { Light SBFG95002Ball1 }
+}
+
+OBJECT LGeneral10KEx
+{
+Frame BFE1A { Light SBFG95002BallExplode1 }
+Frame BFE1B { Light SBFG95002BallExplode2 }
+Frame BFE1C { Light SBFG95002BallExplode3 }
+Frame BFE1D { Light SBFG95002BallExplode4 }
+Frame BFE1E { Light SBFG95002BallExplode5 }
+Frame BFE1F { Light SBFG95002BallExplode6 }
+}
+
+OBJECT LGeneral15KProjectile
+{
+Frame SFS1A { Light SBFG95002Ball1 }
+Frame SFS1B { Light SBFG95002Ball1 }
+Frame SFE3A { Light SBFG95002BallExplode1 }
+Frame SFE3B { Light SBFG95002BallExplode2 }
+Frame SFE3C { Light SBFG95002BallExplode3 }
+Frame SFE3D { Light SBFG95002BallExplode4 }
+Frame SFE3E { Light SBFG95002BallExplode5 }
+Frame SFE3F { Light SBFG95002BallExplode6 }
+}
+
+OBJECT LegendaryCybruiser
+{
+Frame LCBRA { Light MediumLegLight }
+Frame LCBRB { Light MediumLegLight }
+Frame LCBRC { Light MediumLegLight }
+Frame LCBRD { Light MediumLegLight }
+Frame LCBRE { Light MediumLegLight }
+Frame LCBRF { Light MediumLegLight }
+Frame LCBRG { Light MediumLegLight }
+Frame LCBRH { Light MediumLegLight }
+Frame LCBRI { Light MediumLegLight }
+Frame LCBRJ { Light MediumLegLight }
+Frame LCBRK { Light MediumLegLight }
+}
+
+OBJECT LCybruiser10KProjectile
+{
+Frame TRA2 { Light SBFG95002Ball1 }
+}
+
+OBJECT LCybruiser10KEx
+{
+Frame BFE1A { Light SBFG95002BallExplode1 }
+Frame BFE1B { Light SBFG95002BallExplode2 }
+Frame BFE1C { Light SBFG95002BallExplode3 }
+Frame BFE1D { Light SBFG95002BallExplode4 }
+Frame BFE1E { Light SBFG95002BallExplode5 }
+Frame BFE1F { Light SBFG95002BallExplode6 }
+}
+
+OBJECT LCybruiser15KProjectile
+{
+Frame SFS1A { Light SBFG95002Ball1 }
+Frame SFS1B { Light SBFG95002Ball1 }
+Frame SFE3A { Light SBFG95002BallExplode1 }
+Frame SFE3B { Light SBFG95002BallExplode2 }
+Frame SFE3C { Light SBFG95002BallExplode3 }
+Frame SFE3D { Light SBFG95002BallExplode4 }
+Frame SFE3E { Light SBFG95002BallExplode5 }
+Frame SFE3F { Light SBFG95002BallExplode6 }
+}
+
+FLICKERLIGHT EDTechProj1
+{
+Color 1 0.5 0
+Size 24
+SecondarySize 28
+Chance 0.2
+}
+
+FLICKERLIGHT EDTechProj2
+{
+Color 1 0.5 0
+Size 30
+SecondarySize 36
+Chance 0.2
+}
+
+OBJECT PlayerExplosiveDemonTechProjectile
+{
+Frame EDT5 { Light EDTechProj1 }
+}
+
+OBJECT ExplosiveDemonTechEx
+{
+Frame EDT7 { Light EDTechProj2 }
+}
+
+OBJECT HellRazerExDemonTechProjectile
+{
+Frame EDT5 { Light EDTechProj1 }
+}
+
+OBJECT HRDemonTechEx
+{
+Frame EDT7 { Light EDTechProj2 }
+}
+
+OBJECT TorturedSoulComet
+{
+Frame BRTB { Light BarbComet1 }
+}
+
+OBJECT TorturedSoulCometFast
+{
+Frame BRTB { Light BarbComet1 }
+}
+
+OBJECT TorturedSoulSeeker
+{
+Frame CB4LA { Light WatcherBall1 }
+Frame CB4LB { Light WatcherBall1 }
+Frame CB4LC { Light WatcherBall1 }
+Frame CB4LD { Light WatcherTracerExplode2 }
+Frame CB4LE { Light WatcherTracerExplode3 }
+Frame CB4LF { Light WatcherTracerExplode4 }
+Frame CB4LG { Light WatcherTracerExplode5 }
+}
+
+FLICKERLIGHT CarrierLight
+{
+Color 0.06 0.8 0.8
+OffSet 0 0 0
+Size 82
+SecondarySize 102
+Chance 0.2
+}
+
+FLICKERLIGHT CarrierOpenMouthLight
+{
+Color 0.06 0.8 0.8
+OffSet 0 0 0
+Size 94
+SecondarySize 114
+Chance 0.2
+}
+
+FLICKERLIGHT CarrierDeathLight1
+{
+Color 0.06 0.8 0.8
+OffSet 0 0 0
+Size 94
+SecondarySize 114
+Chance 0.2
+}
+
+FLICKERLIGHT CarrierDeathLight2
+{
+Color 0.06 0.8 0.8
+OffSet 0 0 0
+Size 96
+SecondarySize 116
+Chance 0.2
+}
+
+FLICKERLIGHT CarrierDeathLight3
+{
+Color 0.06 0.8 0.8
+OffSet 0 0 0
+Size 100
+SecondarySize 120
+Chance 0.2
+}
+
+FLICKERLIGHT CarrierDeathLight4
+{
+Color 0.06 0.8 0.8
+OffSet 0 0 0
+Size 104
+SecondarySize 124
+Chance 0.2
+}
+
+FLICKERLIGHT CarrierDeathLight5
+{
+Color 0.06 0.8 0.8
+OffSet 0 0 0
+Size 108
+SecondarySize 128
+Chance 0.2
+}
+
+FLICKERLIGHT CarrierDeathLight6
+{
+Color 0.06 0.8 0.8
+OffSet 0 0 0
+Size 104
+SecondarySize 124
+Chance 0.2
+}
+
+FLICKERLIGHT CarrierDeathLight7
+{
+Color 0.06 0.8 0.8
+OffSet 0 0 0
+Size 74
+SecondarySize 94
+Chance 0.2
+}
+
+FLICKERLIGHT CarrierDeathLight8
+{
+Color 0.06 0.8 0.8
+OffSet 0 0 0
+Size 64
+SecondarySize 84
+Chance 0.2
+}
+
+Object CarrierFantasyStaffBeam
+{
+Frame FNBE { Light FantasyStaffBeam }
+}
+
+Object CarrierFantasySeal
+{
+Frame TNT1 { Light LegNecroLightningProjectile }
+Frame CLBB { Light LegNecroLightningProjectile }
+}
+
+OBJECT CarrierComet
+{
+Frame HPCM { Light PaladinHomer }
+}
+
+OBJECT NemesisTechBarrel
+{
+Frame NTBBA { Light SmallLegNemesisLight }
+}
+
+OBJECT VexedNemesisTechBarrel
+{
+Frame VTBB { Light SmallTrueNemesisLight }
+}
+
+OBJECT VexedNemesisTechBarrelOnline
+{
+Frame VTBB { Light SmallTrueNemesisLight }
+}
+
+FLICKERLIGHT PhaseDTechProjLight
+{
+Color 0.3 0 0.8
+Size 24
+SecondarySize 28
+Chance 0.2
+}
+
+FLICKERLIGHT PhaseDTechProjEx
+{
+Color 0.3 0 0.8
+Size 30
+SecondarySize 36
+Chance 0.2
+}
+
+OBJECT PhaseDTSentryProjectile
+{
+Frame PTPR { Light PhaseDTechProjLight }
+}
+
+OBJECT PhaseSentryDemonTechEx
+{
+Frame PTXP { Light PhaseDTechProjEx }
+}
+
+FLICKERLIGHT SuperCDTechSenProjLight
+{
+Color 0.8 0 0
+Size 24
+SecondarySize 28
+Chance 0.2
+}
+
+FLICKERLIGHT SuperCDTechSenProjEx
+{
+Color 0.8 0 0
+Size 30
+SecondarySize 36
+Chance 0.2
+}
+
+OBJECT SuperchargedSentryGunDemonTechProjectile
+{
+Frame DTNF { Light SuperCDTechSenProjLight }
+}
+
+OBJECT SuperchargedSentryGunDemonTechEx
+{
+Frame RFOG { Light SuperCDTechSenProjEx }
+}
+
+FLICKERLIGHT PaladinBall123
+{
+Color 0.8 0. 0
+Size 8
+SecondarySize 12
+Chance 0.2
+}
+
+Object PaladinBall23
+{
+Frame PAL1 { Light PaladinBall123 }
+}
+
+OBJECT PaladinRocket
+{
+Frame MIS3A { Light Missile1 }
+}
+
+OBJECT PaladinSeeker
+{
+Frame HMISA { Light Missile1 }
+}
+
+OBJECT Paladin10K
+{
+Frame TRA3 { Light BFG95002Ball1 }
+}
+
+OBJECT Paladin10KEx
+{
+Frame CFE1 { Light BFG9500EnergyBall1 }
+}
+
+OBJECT EnragedLegendaryBarrel
+{
+Frame EB4R { Light SmallELegLight }
+}
+
+OBJECT Cacobus
+{
+Frame ZFATH { Light HectebusLight1 }
+}
+
+OBJECT CacobusBall
+{
+Frame TABF { Light HectebusBall1 }
+Frame TABEC { Light HectebusBallExplode1 }
+Frame TABED { Light HectebusBallExplode2 }
+Frame TABEE { Light HectebusBallExplode3 }
+}
+
+OBJECT CacobusBall2
+{
+Frame CBALA { Light DevilBall1 }
+Frame CBALB { Light DevilBall1 }
+Frame CBALC { Light DevilBallExplode1 }
+Frame CBALD { Light DevilBallExplode2 }
+Frame CBALE { Light DevilBallExplode3 }
+Frame CBALF { Light ABBallExplode1 }
+Frame CBALG { Light ABBallExplode2 }
+}
+
+OBJECT SSUberExplosiveTracer
+{
+Frame MISLB { Light DevilBallExplode1 }
+Frame MISLC { Light DevilBallExplode2 }
+Frame MISLD { Light DevilBallExplode3 }
+}
+
+OBJECT DarkoProjectile
+{
+Frame MISLB { Light Missile1 }
+Frame MISLC { Light Missile1 }
+}
+
+OBJECT DarkoProjectile
+{
+Frame MISLB { Light Missile1 }
+Frame MISLC { Light Missile1 }
+}
+
+OBJECT EnragedRocket
+{
+Frame EROCA { Light ELegMissileMissile1 }
+Frame EROCB { Light ELegMissileMissile1 }
+Frame EROCC { Light ELegMissileExplode1 }
+Frame EROCD { Light ELegMissileExplode2 }
+Frame EROCE { Light ELegMissileExplode3 }
+}
+
+OBJECT EnragedHomingRocket
+{
+Frame EMISA { Light ELegMissileMissile1 }
+}
+
+FLICKERLIGHT ELegMissileMissile1
+{
+Color 1 0 0
+Size 36
+SecondarySize 44
+Chance 0.2
+}
+
+POINTLIGHT ELegMissileExplode1
+{
+Color 1 0 0
+OffSet 0 0 0
+Size 42
+}
+
+POINTLIGHT ELegMissileExplode2
+{
+Color 1 0 0
+OffSet 0 0 0
+Size 46
+}
+
+POINTLIGHT ELegMissileExplode3
+{
+Color 1 0 0
+OffSet 0 0 0
+Size 52
+}
+
+OBJECT ELegKriegerExplosiveTracer
+{
+Frame EISLB { Light ELlegChaingunExplode1 }
+Frame EISLC { Light ELlegChaingunExplode2 }
+Frame EISLD { Light ELlegChaingunExplode3 }
+}
+
+POINTLIGHT ELlegChaingunExplode1
+{
+Color 1 0 0
+OffSet 0 0 0
+Size 48
+}
+
+POINTLIGHT ELlegChaingunExplode2
+{
+Color 1 0 0
+OffSet 0 0 0
+Size 52
+}
+
+POINTLIGHT ELlegChaingunExplode3
+{
+Color 1 0 0
+OffSet 0 0 0
+Size 56
+}
+
+OBJECT DarkHellRazerRocket
+{
+Frame MIS3A { Light DCMissile1 }
+Frame MIS3B { Light DCMissileExplode1 }
+Frame MIS3C { Light DCMissileExplode2 }
+Frame MIS3D { Light DCMissileExplode3 }
+Frame MIS3E { Light DCMissileExplode4 }
+}
+
+OBJECT DarkHellRazerHomer
+{
+Frame HMIGA { Light DCMissile1 }
+Frame MIS3B { Light DCMissileExplode1 }
+Frame MIS3C { Light DCMissileExplode2 }
+Frame MIS3D { Light DCMissileExplode3 }
+Frame MIS3E { Light DCMissileExplode4 }
+}
+
+OBJECT DarkHellRazerDemonTechProjectile
+{
+Frame DTPR { Light DTechProj1 }
+}
+
+OBJECT CacobusBFG10K
+{
+Frame TRA3 { Light BFG95002Ball1 }
+}
+
+OBJECT CacobusBFG10KEx
+{
+Frame CFE1 { Light BFG9500EnergyBall1 }
+}
+
+FLICKERLIGHT LargeCacobusBall1
+{
+Color 1 0.6 0
+Size 52
+SecondarySize 62
+Chance 0.2
+}
+
+POINTLIGHT LargeCacobusBallEx1
+{
+Color 1 0.6 0
+OffSet 0 0 0
+Size 68
+}
+
+POINTLIGHT LargeCacobusBallEx2
+{
+Color 1 0.6 0
+OffSet 0 0 0
+Size 72
+}
+
+POINTLIGHT LargeCacobusBallEx3
+{
+Color 1 0.6 0
+OffSet 0 0 0
+Size 76
+}
+
+POINTLIGHT LargeCacobusBallEx4
+{
+Color 1 0.6 0
+OffSet 0 0 0
+Size 80
+}
+
+POINTLIGHT LargeCacobusBallEx5
+{
+Color 1 0.6 0
+OffSet 0 0 0
+Size 82
+}
+
+OBJECT CacobusLargeBall
+{
+Frame CBALA { Light LargeCacobusBall1 }
+Frame CBALB { Light LargeCacobusBall1 }
+Frame CBALC { Light LargeCacobusBallEx1 }
+Frame CBALD { Light LargeCacobusBallEx2 }
+Frame CBALE { Light LargeCacobusBallEx3 }
+Frame CBALF { Light LargeCacobusBallEx4 }
+Frame CBALG { Light LargeCacobusBallEx5 }
+}
+
+OBJECT FatsoPyroFire
+{
+Frame XXBF { Light PyroFire1 }
+}
+
+OBJECT ServantBFG15KBall
+{
+Frame BFS3 { Light BFG9500Ball1 }
+}
+
+OBJECT ServantBFG10K
+{
+Frame TRA2 { Light BFG9500Ball1 }
+}
+
+OBJECT Servant10KEx
+{
+Frame BFE1A { Light BFG15KBallExplode1 }
+Frame BFE1B { Light BFG15KBallExplode2 }
+Frame BFE1C { Light BFG15KBallExplode3 }
+Frame BFE1D { Light BFG15KBallExplode4 }
+Frame BFE1E { Light BFG15KBallExplode5 }
+Frame BFE1F { Light BFG15KBallExplode6 }
+}
+
+OBJECT ServantBFG9500Ball
+{
+Frame BFS3 { Light BFG9500Ball1 }
+Frame BFE3A { Light BFG9500BallExplode1 }
+Frame BFE3B { Light BFG9500BallExplode2 }
+Frame BFE3C { Light BFG9500BallExplode3 }
+Frame BFE3D { Light BFG9500BallExplode4 }
+Frame BFE3E { Light BFG9500BallExplode5 }
+Frame BFE3F { Light BFG9500BallExplode6 }
+}
+
+OBJECT ServantBFGSpray
+{
+Frame BFE2A { Light BFBallExplode1 }
+Frame BFE2B { Light BFBallExplode2 }
+Frame BFE2C { Light BFBallExplode3 }
+Frame BFE2D { Light BFBallExplode4 }
+}
+
+OBJECT ServantDTBFG10KBall
+{
+Frame CGS1 { Light BFG9500Ball1 }
+}
+
+OBJECT ServantPurpleDTBFG10KBall
+{
+Frame CPS1 { Light PurpleDevaBall1 }
+}
+
+OBJECT BFGMelee
+{
+Frame BFE1A { Light BFG15KBallExplode1 }
+Frame BFE1B { Light BFG15KBallExplode2 }
+Frame BFE1C { Light BFG15KBallExplode3 }
+Frame BFE1D { Light BFG15KBallExplode4 }
+Frame BFE1E { Light BFG15KBallExplode5 }
+Frame BFE1F { Light BFG15KBallExplode6 }
+}
+
+/*OBJECT WLDemonTechEx
+{
+Frame EDT7 { Light EDTechProj2 }
+}
+
+Object CorrChaosLightning
+{
+Frame CLIG { Light ChaosLightning }
+Frame NLI2 { Light ChaosLightning }
+}
+
+OBJECT CorrChaosSuperLightningProj
+{
+Frame CLIG { Light ChaosLightningProjectile }
+Frame BFE3 { Light ChaosLightningProjectile }
+}*/
+
+FLICKERLIGHT PyroSoulEnemyLight
+{
+Color 1.0 0.5 0
+OffSet 0 8 0
+Size 30
+SecondarySize 34
+Chance 0.2
+}
+
+FLICKERLIGHT CryoSoulEnemyLight
+{
+Color 0 1.0 7.0
+OffSet 0 8 0
+Size 30
+SecondarySize 34
+Chance 0.2
+}
+
+FLICKERLIGHT AtomicSoulLight
+{
+Color 1.0 0.5 0
+OffSet 0 8 0
+Size 32
+SecondarySize 36
+Chance 0.2
+}
+
+OBJECT PyroSoulEnemy
+{
+Frame PYSO { Light PyroSoulEnemyLight }
+}
+
+OBJECT CryoSoulEnemy
+{
+Frame CYSO { Light CryoSoulEnemyLight }
+}
+
+OBJECT PyroSoulSuicide
+{
+Frame PYSO { Light PyroSoulEnemyLight }
+}
+
+OBJECT LukeWarmFRZBomb
+{
+Frame SHEX { Light FRZRMissile1a}
+Frame FX05 { Light FRZRMissile1a}
+}
+
+OBJECT CryoSoulSuicide
+{
+Frame CYSO { Light CryoSoulEnemyLight }
+}
+
+OBJECT AtomicSoul
+{
+Frame ATSO { Light AtomicSoulLight }
+}
+
+OBJECT PyroSoulComet
+{
+Frame COMT { Light Comet1 }
+}
+
+OBJECT PyroSoulSeekingComet
+{
+Frame BHTB { Light Comet1 }
+}
+
+OBJECT CryoSoulFreezeBlast
+{
+Frame ISHR { Light FZBall1 }
+}
+
+FLICKERLIGHT LukeWarmFireBreathLight
+{
+Color 1.0 0.5 0
+OffSet 0 0 0
+Size 32
+SecondarySize 38
+Chance 0.2
+}
+
+OBJECT LukeWarmFireBreath
+{
+Frame FIR1 { Light LukeWarmFireBreathLight }
+}
+
+/*OBJECT BrimsumoExplosiveTracer
+{
+Frame MISLB { Light DevilBallExplode1 }
+Frame MISLC { Light DevilBallExplode2 }
+Frame MISLD { Light DevilBallExplode3 }
+}*/
+
+OBJECT LegendaryBeheadedKamikaze
+{
+Frame LKAM { Light SmallLegLight }
+}
+
+Flickerlight2 BabyCacoBallA
+{
+	 Color 0.0 0.0 1.0
+	 Offset 0 2 0
+	 Size 24
+	 SecondarySize 32
+	 Interval 0.01
+}
+
+Flickerlight2 BabyCacoBallB
+{
+	 Color 0.0 0.0 1.0
+	 Offset 0 2 0
+	 Size 30
+	 SecondarySize 40
+	 Interval 0.01
+}
+
+Flickerlight2 BabyCacoBallC
+{
+	 Color 0.0 0.0 1.0
+	 Offset 0 2 0
+	 Size 36
+	 SecondarySize 48
+	 Interval 0.01
+}
+
+Flickerlight2 BabyCacoBallD
+{
+	 Color 0.0 0.0 0.7
+	 Offset 0 2 0
+	 Size 50
+	 SecondarySize 55
+	 Interval 0.01
+}
+
+Flickerlight2 BabyCacoBallE
+{
+	 Color 0.0 0.0 0.2
+	 Offset 0 2 0
+	 Size 55
+	 SecondarySize 60
+	 Interval 0.01
+}
+
+Object BabyCacoBall
+{
+	 Frame BCABA { Light BabyCacoBallA }
+	 Frame BCABB { Light BabyCacoBallB }
+	 Frame BCABC { Light BabyCacoBallC }
+	 Frame BCABD { Light BabyCacoBallD }
+	 Frame BCABE { Light BabyCacoBallE }
+}
+
+OBJECT DeathExplosiveTracer
+{
+Frame MISLB { Light DevilBallExplode1 }
+Frame MISLC { Light DevilBallExplode2 }
+Frame MISLD { Light DevilBallExplode3 }
+}
+
+OBJECT DeathRocket
+{
+Frame MIS2A { Light Missile1 }
+}
+
+FLICKERLIGHT NPestilenceSeekerLight
+{
+Color 1 0 0
+Size 46
+SecondarySize 52
+Chance 0.2
+}
+
+OBJECT NPestilenceSeeker
+{
+Frame NPPS { Light NPestilenceSeekerLight }
+}
+
+PointLight GuardianExplode1
+{
+Color 1.0 0.6 0.2
+Size 64
+Offset 0 16 0
+}
+
+PointLight GuardianExplode2
+{
+Color 0.7 0.4 0.0
+Size 72
+Offset 0 16 0
+}
+
+PointLight GuardianExplode3
+{
+Color 0.6 0.3 0.0
+Size 72
+Offset 0 16 0
+}
+
+PointLight GuardianExplode4
+{
+Color 0.5 0.2 0.0
+Size 64
+Offset 0 16 0
+}
+
+Object GuardianCube
+{
+Frame CUBEF { Light GuardianExplode1 }
+Frame CUBEG { Light GuardianExplode2 }
+Frame CUBEH { Light GuardianExplode3 }
+Frame CUBEI { Light GuardianExplode4 }
+}
+
+PointLight CubeShot1
+{
+Color 1.0 0.2 0.0
+Size 32
+}
+
+PointLight CubeShot2
+{
+Color 1.0 0.4 0.0
+Size 48
+}
+
+PointLight CubeShot3
+{
+Color 1.0 0.4 0.0
+Size 40
+}
+
+PointLight CubeShot4
+{
+Color 0.8 0.3 0.0
+Size 32
+}
+
+PointLight CubeShot5
+{
+Color 0.6 0.2 0.0
+Size 24
+}
+
+PointLight CubeShot6
+{
+Color 0.5 0.1 0.0
+Size 16
+}
+
+Object CubeShot
+{
+Frame CBALA { Light CubeShot1 }
+Frame CBALB { Light CubeShot1 }
+Frame CBALC { Light CubeShot2 }
+Frame CBALD { Light CubeShot3 }
+Frame CBALE { Light CubeShot4 }
+Frame CBALF { Light CubeShot5 }
+Frame CBALG { Light CubeShot6 }
+}
+
+PointLight DTGuardianExplode1
+{
+Color 0.0 1.0 0.2
+Size 64
+Offset 0 16 0
+}
+
+PointLight DTGuardianExplode2
+{
+Color 0.0 0.7 0.0
+Size 72
+Offset 0 16 0
+}
+
+PointLight DTGuardianExplode3
+{
+Color 0.0 0.7 0.0
+Size 72
+Offset 0 16 0
+}
+
+PointLight DTGuardianExplode4
+{
+Color 0.0 0.5 0.0
+Size 64
+Offset 0 16 0
+}
+
+Object DTGuardianCube
+{
+Frame DTCBF { Light DTGuardianExplode1 }
+Frame DTCBG { Light DTGuardianExplode2 }
+Frame DTCBH { Light DTGuardianExplode3 }
+Frame DTCBI { Light DTGuardianExplode4 }
+}
+
+OBJECT DTCubeShot
+{
+Frame DTPR { Light DTechProj1 }
+}
+
+PointLight PhaseGuardianExplode1
+{
+Color 0.9 0.0 0.9
+Size 64
+Offset 0 16 0
+}
+
+PointLight PhaseGuardianExplode2
+{
+Color 0.7 0.0 0.7
+Size 72
+Offset 0 16 0
+}
+
+PointLight PhaseGuardianExplode3
+{
+Color 0.5 0.0 0.5
+Size 72
+Offset 0 16 0
+}
+
+PointLight PhaseGuardianExplode4
+{
+Color 0.5 0.0 0.5
+Size 64
+Offset 0 16 0
+}
+
+Object PhaseGuardianCube
+{
+Frame PHCBF { Light PhaseGuardianExplode1 }
+Frame PHCBG { Light PhaseGuardianExplode2 }
+Frame PHCBH { Light PhaseGuardianExplode3 }
+Frame PHCBI { Light PhaseGuardianExplode4 }
+}
+
+PointLight TechDroneEx1
+{
+Color 1.0 0.6 0.2
+Size 80
+Offset 0 16 0
+}
+
+PointLight TechDroneEx2
+{
+Color 0.7 0.4 0.0
+Size 88
+Offset 0 16 0
+}
+
+PointLight TechDroneEx3
+{
+Color 0.6 0.3 0.0
+Size 88
+Offset 0 16 0
+}
+
+PointLight TechDroneEx4
+{
+Color 0.5 0.2 0.0
+Size 80
+Offset 0 16 0
+}
+
+Object TechDrone
+{
+Frame DEDRK { Light TechDroneEx1 }
+Frame DEDRL { Light TechDroneEx2 }
+Frame DEDRM { Light TechDroneEx2 }
+Frame DEDRN { Light TechDroneEx3 }
+Frame DEDRO { Light TechDroneEx3 }
+Frame DEDRP { Light TechDroneEx4 }
+Frame DEDRQ { Light TechDroneEx4 }
+}
+
+OBJECT TechDroneSeeker
+{
+Frame FATB { Light ArchonBall1 }
+Frame FBXPA { Light ArchonBallExplode1 }
+Frame FBXPB { Light ArchonBallExplode2 }
+Frame FBXPC { Light ArchonBallExplode3 }
+}
+
+Object PowerStimpack
+{
+Frame STMP { light POWERSTIM }
+}
+
+Object AmmoSphere
+{
+Frame AMS2 { Light HemAmmoSphereLight }
+}
+
+Object BerserkSphere2
+{
+Frame BERS { Light UnbelieveSphere1 }
+}
+
+Object ElusiveSphere
+{
+Frame VISN { Light ModdedMegaSphere1 }
+}
+
+PULSELIGHT TXSAllMap1
+{
+Color 0 0.8 0.8
+OffSet 0 0 0
+Size 10
+SecondarySize 16
+Interval 1
+}
+
+PULSELIGHT DTAllMap1
+{
+Color 1 0.5 0
+OffSet 0 0 0
+Size 10
+SecondarySize 16
+Interval 1
+}
+
+PULSELIGHT AllMapBroken1
+{
+Color 0.8 0.8 0.8
+OffSet 0 0 0
+Size 10
+SecondarySize 16
+Interval 1
+}
+
+Object TXSAllMap
+{
+Frame MAPR { Light TXSAllMap1 }
+}
+
+Object RadarItem
+{
+Frame RADR { Light AllMap1 }
+}
+
+Object DTAllMap
+{
+Frame DMAP { Light DTAllMap1 }
+}
+
+FLICKERLIGHT HellfireArmor1
+{
+Color 1 0.5 0
+OffSet 0 0 0
+Size 40
+SecondarySize 42
+}
+
+FLICKERLIGHT PhaseArmor1
+{
+Color 0.5 0 0.8
+OffSet 0 0 0
+Size 30
+SecondarySize 42
+}
+
+Object PhaseArmor
+{
+Frame PSAR { Light PhaseArmor1 }
+}
+
+pointlight 1337ProjLight
+{
+color 0.0 1.0 0.0
+size 28
+}
+
+pointlight 1337ProjMinorLight
+{
+color 0.0 1.0 0.0
+size 18
+}
+
+OBJECT 1337DTRProjPlayer
+{
+Frame HPR7A { Light 1337ProjLight }
+Frame HPR7B { Light 1337ProjLight } 
+Frame HPR7C { Light 1337ProjLight }
+Frame HPR7D { Light 1337ProjLight }
+Frame HPR7E { Light 1337ProjLight }
+Frame HPR7F { Light 1337ProjLight }
+}
+
+OBJECT 1337ProjMinorPlayer
+{
+Frame HPR7A { Light 1337ProjMinorLight }
+Frame HPR7B { Light 1337ProjMinorLight } 
+Frame HPR7C { Light 1337ProjMinorLight }
+Frame HPR7D { Light 1337ProjMinorLight }
+Frame HPR7E { Light 1337ProjMinorLight }
+Frame HPR7F { Light 1337ProjMinorLight }
+}
+
+Object 1337SGTracer
+{
+Frame EISLB { Light ELlegChaingunExplode1 }
+Frame EISLC { Light ELlegChaingunExplode2 }
+Frame EISLD { Light ELlegChaingunExplode3 }
+}
+
+PULSELIGHT VoidCoreLight
+{
+Color 0.4 0 0.6
+OffSet 0 30 0
+Size 52
+SecondarySize 62
+Interval 1
+}
+
+OBJECT VoidCore
+{
+Frame BLKHA { Light VoidCoreLight }
+}
+
+OBJECT VoidCoreActive
+{
+Frame BLKHA { Light VoidCoreLight }
+}
+
+PULSELIGHT UraniumCoreLight
+{
+Color 0.6 1 0
+OffSet 0 30 0
+Size 52
+SecondarySize 62
+Interval 1
+}
+
+OBJECT UraniumCore
+{
+Frame URCOA { Light UraniumCoreLight }
+}
+
+OBJECT UraniumCoreActive
+{
+Frame URCOA { Light UraniumCoreLight }
+}
+
+OBJECT VoidCore
+{
+Frame BKHL { Light VoidCoreLight }
+}
+
+pulselight OBELISK
+{
+    color 1.0 0.0 0.0
+    size 92
+    secondarySize 0
+    interval 0.5
+} 
+
+flickerlight OBELISK_X1
+{
+    color 1.0 0.0 0.0
+    size 64
+    secondarySize 96
+    chance 0.3
+}
+
+flickerlight OBELISK_X2
+{
+    color 0.8 0.1 0.0
+    size 80
+    secondarySize 100
+    chance 0.3
+}
+
+flickerlight OBELISK_X3
+{
+    color 0.4 0.0 0.0
+    size 96
+    secondarySize 112
+    chance 0.3
+}
+
+pulselight MINIBELISK
+{
+    color 0.8 0.0 0.0
+    size 75
+    secondarySize 95
+    interval 2.5
+    offset 0 21 0
+}
+
+object Brimstoner
+{
+    frame YAE4 { light MINIBELISK }
+}
+
+object BrimstoneTrail
+{
+    frame YAE4A { light OBELISK }
+}
+
+object NexusBrimstoneSpawner
+{
+    frame TNT1B { light OBELISK_X1 }
+    frame TNT1C { light OBELISK_X2 }
+    frame TNT1D { light OBELISK_X3 }
+}
+
+pulselight MINIBELISKIMPACT
+{
+    color 1.0 0.0 0.0
+    size 384
+    secondarySize 4
+    interval 1
+}
+
+object BrimstoneGLDEF
+{
+    frame TNT1 { light MINIBELISKIMPACT }
+}
+
+OBJECT DAImpBFG10K
+{
+Frame TRA2 { Light BFG9500Ball1 }
+}
+
+OBJECT DAImp10KEx
+{
+Frame BFE1A { Light BFG15KBallExplode1 }
+Frame BFE1B { Light BFG15KBallExplode2 }
+Frame BFE1C { Light BFG15KBallExplode3 }
+Frame BFE1D { Light BFG15KBallExplode4 }
+Frame BFE1E { Light BFG15KBallExplode5 }
+Frame BFE1F { Light BFG15KBallExplode6 }
+}
+
+OBJECT DAImpDeathEx
+{
+Frame BFE1A { Light BFG15KBallExplode1 }
+Frame BFE1B { Light BFG15KBallExplode2 }
+Frame BFE1C { Light BFG15KBallExplode3 }
+Frame BFE1D { Light BFG15KBallExplode4 }
+Frame BFE1E { Light BFG15KBallExplode5 }
+Frame BFE1F { Light BFG15KBallExplode6 }
+}
+
+OBJECT DAImp15K
+{
+Frame BFS1 { Light BFG15KBall1 }
+Frame BFE1A { Light BFG15KBallExplode1 }
+Frame BFE1B { Light BFG15KBallExplode2 }
+Frame BFE1C { Light BFG15KBallExplode3 }
+Frame BFE1D { Light BFG15KBallExplode4 }
+Frame BFE1E { Light BFG15KBallExplode5 }
+Frame BFE1F { Light BFG15KBallExplode6 }
+}
+
+FLICKERLIGHT DAImpVulcanLight
+{
+Color 0 0.8 0
+Size 12
+SecondarySize 18
+Chance 0.2
+}
+
+Object DAImpVulcanTracer
+{
+Frame RFOG { Light DAImpVulcanLight }
+}
+
+OBJECT ThamuzProjectile
+{
+Frame THZ4A { Light DCMissile1 }
+Frame FSFXD { Light DCMissileExplode1 }
+Frame FSFXE { Light DCMissileExplode1 }
+Frame FSFXF { Light DCMissileExplode1 }
+Frame FSFXG { Light DCMissileExplode2 }
+Frame FSFXH { Light DCMissileExplode2 }
+Frame FSFXI { Light DCMissileExplode2 }
+Frame FSFXJ { Light DCMissileExplode3 }
+Frame FSFXK { Light DCMissileExplode3 }
+Frame FSFXL { Light DCMissileExplode4 }
+Frame FSFXM { Light DCMissileExplode4 }
+}
+
+OBJECT ThamuzHomer
+{
+Frame BRTB { Light BarbComet1 }
+}
+
+OBJECT Thamuz15K
+{
+Frame BFS3 { Light BFG9500Ball1 }
+}
+
+OBJECT Thamuz10K
+{
+Frame TRA2 { Light BFG9500Ball1 }
+}
+
+OBJECT Thamuz10KEx
+{
+Frame BFE1A { Light BFG15KBallExplode1 }
+Frame BFE1B { Light BFG15KBallExplode2 }
+Frame BFE1C { Light BFG15KBallExplode3 }
+Frame BFE1D { Light BFG15KBallExplode4 }
+Frame BFE1E { Light BFG15KBallExplode5 }
+Frame BFE1F { Light BFG15KBallExplode6 }
+}
+
+OBJECT ThamuzDTBFG10KBall
+{
+Frame CGS1 { Light BFG9500Ball1 }
+}
+
+Pointlight DCBMiss1
+{
+Color 0.0 1.0 0.0
+Size 40
+}
+
+Pointlight DCBMiss12
+{
+Color 0.0 1.0 0.0
+Size 48
+}
+
+Pointlight DCBMiss13
+{
+Color 0.0 0.9 0.0
+Size 44
+}
+
+Pointlight DCBMiss14
+{
+Color 0.0 0.8 0.0
+Size 40
+}
+
+Pointlight DCBMiss15
+{
+Color 0.0 0.7 0.0
+Size 36
+}
+
+Pointlight DCBMiss16
+{
+Color 0.0 0.6 0.0
+Size 32
+}
+
+Pointlight DCBMiss17
+{
+Color 0.0 0.5 0.0
+Size 28
+}
+
+Pointlight DCBMiss18
+{
+Color 0.0 0.4 0.0
+Size 24
+}
+
+Pointlight DCBMiss19
+{
+Color 0.0 0.3 0.0
+Size 20
+}
+
+Pointlight DCBMiss110
+{
+Color 0.0 0.2 0.0
+Size 16
+}
+
+Pointlight DCBMiss111
+{
+Color 0.0 0.1 0.0
+Size 12
+}
+
+Object ThamuzBall
+{
+Frame CBTSA { Light DCBMiss1 }
+Frame CBTSB { Light DCBMiss1 }
+Frame CBTSC { Light DCBMiss1 }
+Frame CBTSD { Light DCBMiss1 }
+Frame CBTSE { Light DCBMiss1 }
+Frame CBTSF { Light DCBMiss1 }
+Frame CBTSG { Light DCBMiss1 }
+Frame CBTSH { Light DCBMiss1 }
+Frame CBTSI { Light DCBMiss1 }
+Frame CBTSJ { Light DCBMiss1 }
+Frame CBTSK { Light DCBMiss12 }
+Frame CBTSL { Light DCBMiss13 }
+Frame CBTSM { Light DCBMiss14 }
+Frame CBTSN { Light DCBMiss15 }
+Frame CBTSO { Light DCBMiss16 }
+Frame CBTSP { Light DCBMiss17 }
+Frame CBTSQ { Light DCBMiss18 }
+Frame CBTSR { Light DCBMiss19 }
+Frame CBTSS { Light DCBMiss110 }
+Frame CBTST { Light DCBMiss111 }
+Frame CBTSU { Light DCBMiss111 }
+Frame CBTSV { Light DCBMiss111 }
+Frame CBTSW { Light DCBMiss111 }
+}
+
+Pointlight DCBMiss3M1
+{
+Color 0.0 1.0 0.0
+Size 20
+}
+
+Pointlight DCBMiss3M2
+{
+Color 0.0 1.0 0.0
+Size 24
+}
+
+Pointlight DCBMiss3M3
+{
+Color 0.0 1.0 0.0
+Size 20
+}
+
+Pointlight DCBMiss3M4
+{
+Color 0.0 0.9 0.0
+Size 18
+}
+
+Pointlight DCBMiss3M5
+{
+Color 0.0 0.8 0.0
+Size 16
+}
+
+Pointlight DCBMiss3M6
+{
+Color 0.0 0.7 0.0
+Size 14
+}
+
+Pointlight DCBMiss3M7
+{
+Color 0.0 0.6 0.0
+Size 12
+}
+
+Pointlight DCBMiss3M8
+{
+Color 0.0 0.5 0.0
+Size 10
+}
+
+Pointlight DCBMiss3M9
+{
+Color 0.0 0.4 0.0
+Size 8
+}
+
+Pointlight DCBMiss3M10
+{
+Color 0.0 0.3 0.0
+Size 6
+}
+
+Pointlight DCBMiss3M11
+{
+Color 0.0 0.2 0.0
+Size 4
+}
+
+Object ThamuzShitFloor2
+{
+Frame FSFXN { Light DCBMiss3M1 }
+Frame FSFXO { Light DCBMiss3M2 }
+Frame FSFXP { Light DCBMiss3M3 }
+Frame FSFXD { Light DCBMiss3M4 }
+Frame FSFXQ { Light DCBMiss3M5 }
+Frame FSFXR { Light DCBMiss3M6 }
+Frame FSFXS { Light DCBMiss3M7 }
+Frame FSFXT { Light DCBMiss3M8 }
+Frame FSFXU { Light DCBMiss3M9 }
+Frame FSFXV { Light DCBMiss3M10 }
+Frame FSFXW { Light DCBMiss3M11 }
+}
+
+Object ThamuzShitFloor3
+{
+Frame FSFXN { Light DCBMiss3M1 }
+Frame FSFXO { Light DCBMiss3M2 }
+Frame FSFXP { Light DCBMiss3M3 }
+Frame FSFXD { Light DCBMiss3M4 }
+Frame FSFXQ { Light DCBMiss3M5 }
+Frame FSFXR { Light DCBMiss3M6 }
+Frame FSFXS { Light DCBMiss3M7 }
+Frame FSFXT { Light DCBMiss3M8 }
+}
+
+OBJECT Thamuz
+{
+Frame THMZH { Light BossFire2 }
+Frame THMZI { Light BossFire2 }
+Frame THMZJ { Light BossFire2 }
+Frame THMZK { Light BossFire2 }
+Frame THMZL { Light BossFire2 }
+Frame THMZM { Light BossFire2 }
+Frame THMZN { Light BossFire2 }
+Frame THMZO { Light BossFire2 }
+Frame THMZP { Light BossFire2 }
+Frame THMZF { Light BossFire2 }
+Frame THMUA { Light BossFire2 }
+Frame THMUB { Light BossFire2 }
+}
+
+OBJECT SentryExplosiveBullet
+{
+Frame MISLB { Light Missile1 }
+Frame MISLC { Light Missile1 }
+}
+
+Object HellPaladin
+{
+Frame SATI { Light PaladinGlow }
+Frame SATGA { Light PaladinGlow }
+Frame SATGB { Light PaladinGlow }
+Frame SATGC { Light PaladinGlow }
+Frame SATGD { Light PaladinGlow }
+Frame SATGE { Light PaladinGlow }
+Frame SATGF { Light PaladinGlow }
+Frame SATGG { Light PaladinGlow }
+Frame SATGI { Light PaladinGlow }
+Frame SATGJ { Light PaladinGlow }
+Frame SATGK { Light PaladinGlow }
+Frame SATGM { Light PaladinGlow }
+Frame SATGN { Light PaladinGlow }
+Frame SATGO { Light PaladinGlow }
+Frame SATGQ { Light PaladinGlow }
+Frame SATGR { Light PaladinGlow }
+Frame SATGS { Light PaladinGlow }
+Frame SATGT { Light PaladinGlow }
+Frame SATGU { Light PaladinGlow }
+Frame SATGV { Light PaladinGlow }
+}
+
+OBJECT ObliteratorDevastatorBall
+{ 
+frame CRS9 { light BigRedLight }
+frame CRE9 { light BigRedLight }
+}
+
+OBJECT ObliteratorDevastatorBall2
+{
+Frame DBA2A { Light DevaBall1 }
+Frame DBA2B { Light DevaBall1 }
+Frame DBA2C { Light DevaBallExplode1 }
+Frame DBA2D { Light DevaBallExplode2 }
+Frame DBA2E { Light DevaBallExplode3 }
+}
+
+OBJECT ObliteratorExplosiveTracer
+{
+Frame MISLB { Light DevilBallExplode1 }
+Frame MISLC { Light DevilBallExplode2 }
+Frame MISLD { Light DevilBallExplode3 }
+}
+
+OBJECT ObliteratorExDemonTech
+{
+Frame EDT5 { Light EDTechProj1 }
+}
+
+OBJECT ObliteratorDemonTechEx
+{
+Frame EDT7 { Light EDTechProj2 }
+}
+
+OBJECT ObliteratorChaosSuperLightningProj
+{
+Frame CLIG { Light ChaosLightningProjectile }
+Frame BFE3 { Light ChaosLightningProjectile }
+}
+
+OBJECT 1337ProjZ
+{
+Frame HZP1A { Light 1337ProjLight }
+Frame HZP1B { Light 1337ProjLight } 
+Frame HZP1C { Light 1337ProjLight }
+Frame HZP1D { Light 1337ProjLight }
+Frame HZP1E { Light 1337ProjLight }
+Frame HZP1F { Light 1337ProjLight }
+}
+
+OBJECT 1337ProjZ2
+{
+Frame HZP1A { Light 1337ProjLight }
+Frame HZP1B { Light 1337ProjLight } 
+Frame HZP1C { Light 1337ProjLight }
+Frame HZP1D { Light 1337ProjLight }
+Frame HZP1E { Light 1337ProjLight }
+Frame HZP1F { Light 1337ProjLight }
+}
+
+OBJECT ArmageddonChalice
+{
+Frame DETO { Light SmallRedLight }
+}

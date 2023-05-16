@@ -1,0 +1,801 @@
+Actor PanzGrosse 20131
+{
+Monster
+Scale 1.25
+Health 2500
+Height 64
+Radius 30
+Mass 5000
+Speed 8
+MaxStepHeight 32
+MaxDropOffHeight 32
+Reactiontime 24
+PainChance 64
+PainChance "Crush", 256
+PainChance "Explosion", 100
+PainChance "Mine", 100
+PainChance "NuclearFire", 100
+MeleeRange 150
++BOSS
++BOSSDEATH
++DONTMORPH
++DONTRIP
++NORADIUSDMG
+-NOINFIGHTING
+-NOPAIN
++NoFear
++NOBLOOD
++FLOORCLIP
++NOTARGET
++LOOKALLAROUND
++ALWAYSFAST
++MISSILEMORE
++MISSILEEVENMORE
++QUICKTORETALIATE
++DONTHARMSPECIES
+Species "SS"
+Damagetype "SS"
+DamageFactor "SS", 0.0
+DamageFactor "Extreme", 0.0
+DamageFactor "Legendary", 0.2
+DamageFactor "Legendary1", 0.2
+DamageFactor "PlayerNemesisPlasma", 0.3
+DamageFactor "PDTBFG", 0.1
+DamageFactor "PDTBFGTracer", 0.1
+DamageFactor "PlayerDevBall", 0.120
+DamageFactor "PlayerDevBall2", 0.120
+DamageFactor "PlayerDTBFGRailgunSlug", 0.120
+DamageFactor "PlayerDevTracer", 0.120
+DamageFactor "LegendaryPlayer", 0.5
+DamageFactor "LegendaryGuru", 0.5
+DamageFactor "LegendaryGuruPlayer", 0.5
+DamageFactor "DBFG10K2", 0.5
+DamageFactor "PlayerDBFG10K2", 0.5
+DamageFactor "DBFG2", 0.45
+DamageFactor "PlayerDBFG2", 0.45
+DamageFactor "PlayerDTRG", 0.45
+DamageFactor 0.4
+DropItem "PortableMedkit" 256
+DropItem "PortableMedCell", 256, 1
+DropItem "PortableMedCellPack", 256, 1
+DropItem "ArmorPlate" 256
+DropItem "ArmorPlate" 256
+DropItem "ArmorPlate" 256
+DropItem "AmmoPack", 256
+DropItem "AmmoPack", 256
+DropItem "AmmoPack", 256
+DropItem "ArmorCharge", 256
+DropItem "ArmorCharge", 256
+DropItem "ArmorCharge", 256
+DropItem "PureRage", 256
+SeeSound "PanzGrosse/Sight"
+ActiveSound "PanzGrosse/Active"
+PainSound "PanzGrosse/Pain"
+DeathSound "PanzGrosse/Death"
+Tag "$NEPanzG"
+Obituary "%o was no match from the Panz Grosse's insane attacks."
+HitObituary "%o's body wasn't able to be identified after being shot by Panz Grosse."
+var int user_currenthp;
+var int user_lcounter;
+var int user_counter;
+var int user_music;
+var int user_taunt;
+var int user_lowlag;
+States
+	{
+	Spawn:
+	PANZ A 0
+	TNT1 A 0 ACS_NamedExecuteAlways("WimpyMode",0,2)
+	TNT1 A 0 ACS_NamedExecuteAlways("ModifyMonster",0,2,2)
+  SpawnLoop:
+		PANZ A 10 A_Look
+		TNT1 A 0 A_ChangeFlag(NOPAIN,0)
+		Loop
+  See:
+	TNT1 A 0 A_JumpIf(user_lowlag == 1,"MoreSee")
+	TNT1 A 0 A_JumpIfTargetInLOS("MoreSee",0,0,0,0)
+	PANZ ABCD 3 A_Chase
+	Loop
+  MoreSee:
+	TNT1 A 0 A_SetUserVar("user_lowlag",1)
+		TNT1 A 0 A_JumpIf(user_music == 1,3)
+		TNT1 A 0 ACS_NamedExecuteAlways("CFMusic",0,3015)
+		TNT1 A 0 A_SetUserVar("user_music",1)
+		TNT1 A 0 A_ChangeFlag(NOPAIN,0)
+		TNT1 A 0 A_JumpIfInventory("MarineKilled",1,"Rekt")
+		PANZ AAAA 3 A_Chase
+		PANZ BBBB 3 A_Chase
+		TNT1 A 0 A_JumpIfInTargetLOS("Avoid",360,JLOSF_DEADNOJUMP,1000)
+		TNT1 A 0 A_SpawnItemEx("DeathKnightStep",0,0,5,0,0,-20)
+		TNT1 A 0 A_JumpIf((user_currenthp - ACS_NamedExecuteWithResult("CF_GetCurrentHealth")) > 100,"PainAttack")
+		TNT1 A 0 A_JumpIf(user_currenthp > ACS_NamedExecuteWithResult("CF_GetCurrentHealth"),"Missile")
+		PANZ CCCC 3 A_Chase
+		PANZ DDDD 3 A_Chase
+		TNT1 A 0 A_JumpIfInTargetLOS("Avoid",360,JLOSF_DEADNOJUMP,1000)
+		TNT1 A 0 A_SpawnItemEx("DeathKnightStep",0,0,5,0,0,-20)
+		TNT1 A 0 A_Jump(101,"Phase")
+		TNT1 A 0 A_JumpIf((user_currenthp - ACS_NamedExecuteWithResult("CF_GetCurrentHealth")) > 100,"PainAttack")
+		TNT1 A 0 A_JumpIf(user_currenthp > ACS_NamedExecuteWithResult("CF_GetCurrentHealth"),"Missile")
+		Loop
+	Phase:
+        TNT1 A 0 A_PlaySound("phaseimp/teleport")
+        PANZ E 2 A_FaceTarget
+        PANZ E 1 A_SetTranslucent(0.75)
+        PANZ E 1 A_SetTranslucent(0.55)
+        PANZ E 1 A_SetTranslucent(0.35)
+		PANZ E 1 A_SetTranslucent(0.15)
+		PANZ E 1 A_SetTranslucent(0)
+        Goto Phased
+	UnPhase:
+        TNT1 A 0 A_PlaySound("phaseimp/teleport")
+		PANZ E 1 A_SetTranslucent(0)
+		PANZ E 1 A_SetTranslucent(0.15)
+        PANZ E 1 A_SetTranslucent(0.35)
+        PANZ E 1 A_SetTranslucent(0.55)
+        PANZ E 1 A_SetTranslucent(0.75)
+		TNT1 A 0 A_SetTranslucent(1)
+        PANZ E 2 A_FaceTarget		
+        Goto See
+	Phased:
+		PANZ AAAA 1 A_Chase
+		PANZ BBBB 1 A_Chase
+		TNT1 A 0 A_JumpIfInTargetLOS("Avoid",360,JLOSF_DEADNOJUMP,1000)
+		TNT1 A 0 A_SpawnItemEx("DeathKnightStep",0,0,5,0,0,-20)
+		TNT1 A 0 A_JumpIf((user_currenthp - ACS_NamedExecuteWithResult("CF_GetCurrentHealth")) > 100,"PainAttack")
+		TNT1 A 0 A_JumpIf(user_currenthp > ACS_NamedExecuteWithResult("CF_GetCurrentHealth"),"Missile")
+		PANZ CCCC 1 A_Chase
+		PANZ DDDD 1 A_Chase
+		TNT1 A 0 A_JumpIfInTargetLOS("Avoid",360,JLOSF_DEADNOJUMP,1000)
+		TNT1 A 0 A_SpawnItemEx("DeathKnightStep",0,0,5,0,0,-20)
+		TNT1 A 0 A_JumpIf((user_currenthp - ACS_NamedExecuteWithResult("CF_GetCurrentHealth")) > 100,"PainAttack")
+		TNT1 A 0 A_JumpIf(user_currenthp > ACS_NamedExecuteWithResult("CF_GetCurrentHealth"),"Missile")
+		TNT1 A 0 A_Jump(30,"UnPhase")
+		Loop
+	Melee:
+		TNT1 A 0
+		TNT1 A 0 A_SetTranslucent(1)
+		TNT1 A 0 A_TakeInventory("Tic",3)
+		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+		TNT1 A 0 A_Punch
+		TNT1 A 0 A_Jump(255,"DoubleHexaTaunt","GoBack")
+		Goto DoubleHexa
+	Missile:
+		TNT1 A 0
+		TNT1 A 0 A_SetTranslucent(1)
+		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+		TNT1 A 0 A_JumpIf(user_taunt == 0,"Missile2")
+		TNT1 A 0 A_PlaySound("DeathKnight/action",CHAN_VOICE,1.0,0,ATTN_NONE)
+		TNT1 A 0 A_SetUserVar("user_taunt",0)
+	Missile2:
+		TNT1 A 0
+		TNT1 A 0 A_JumpIfTargetInLOS("FireDeathKnightRailgun",90,JLOSF_CLOSENOJUMP|JLOSF_DEADNOJUMP|JLOSF_TARGETLOS,0,3000)
+		TNT1 A 0 A_JumpIfTargetInLOS("GoCloser",90,JLOSF_CLOSENOJUMP|JLOSF_DEADNOJUMP|JLOSF_TARGETLOS,0,2000)
+		TNT1 A 0 A_JumpIfTargetInLOS("FirePanz15k",90,JLOSF_CLOSENOJUMP|JLOSF_DEADNOJUMP|JLOSF_TARGETLOS,0,1500)
+		TNT1 A 0 A_JumpIfTargetInLOS("BFG10KandChainguns",90,JLOSF_CLOSENOJUMP|JLOSF_DEADNOJUMP|JLOSF_TARGETLOS,0,1000)
+		TNT1 A 0 A_JumpIfTargetInLOS("ChainAndRocketGuns",90,JLOSF_CLOSENOJUMP|JLOSF_DEADNOJUMP|JLOSF_TARGETLOS,0,500)
+		TNT1 A 0 A_JumpIfTargetInLOS("DoubleHexa",90,JLOSF_DEADNOJUMP|JLOSF_TARGETLOS,500,0)
+	GoCloser:
+		TNT1 A 0 A_Jump(67,"FireDeathKnightRailgun")
+		TNT1 A 0 A_FaceTarget
+		TNT1 A 0 A_SetTranslucent(1)
+		TNT1 A 0 A_PlaySound("DeathKnight/jump",CHAN_BODY,1.0,0)
+		PANZ E 20 A_Recoil(-40)
+		TNT1 A 0 A_JumpIfInventory("Tic",3,"See")
+		TNT1 A 0 A_GiveInventory("Tic",1)
+		TNT1 A 0 A_JumpIfTargetInLOS("Missile2",90,JLOSF_DEADNOJUMP|JLOSF_TARGETLOS)
+		Goto See
+	ChainAndRocketGuns:
+		TNT1 A 0 A_TakeInventory("Tic",1)
+		TNT1 A 0 A_SetUserVar("user_lcounter",0)
+		TNT1 A 0 A_CheckFlag(FRIENDLY,5)
+		TNT1 A 0 A_TakeInventory("ProjHitCheck",1)
+		TNT1 A 0 A_TakeInventory("ProjMissCheck",1)
+		TNT1 A 0 A_FaceTarget
+		TNT1 A 0 A_CustomMissile("ss-hit-testing",32,0,0,CMF_TRACKOWNER|CMF_CHECKTARGETDEAD)
+		PANZ EEEEEEEEEEEEEEEEEEEE 1 A_FaceTarget
+		TNT1 A 0 A_CheckFlag(FRIENDLY,"ChainAndRocketGunsLoop")
+		TNT1 A 0 A_JumpIfInventory("ProjHitCheck",1,"ChainAndRocketGunsLoop")
+		TNT1 A 0 A_JumpIfInventory("ProjMissCheck",1,"Avoid")
+		TNT1 A 0 A_Jump(256,"ChainAndRocketGunsEnd")
+	ChainAndRocketGunsLoop:
+		TNT1 A 0 Bright A_CustomMissile("MonsterTracer",Random(36,44),0,Random(5,-5),0)
+		TNT1 A 0 A_SpawnItemEx("OrangeShellCasing",10,24,40,Random(2,6),0,Random(1,3),Random(80,90),SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx("OrangeShellCasing",10,-24,40,Random(2,6),0,Random(1,3),Random(-80,-90),SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 Bright A_CustomMissile("SSUberExplosiveTracer",Random(36,44),20,Random(5,-5),0)
+		PANZ GH 2 Bright A_CustomMissile("SSUberExplosiveTracer",Random(36,44),-20,Random(5,-5),0)
+		TNT1 A 0 A_CustomMissile("SSMissile",62,-18,0,CMF_TRACKOWNER)
+		TNT1 A 0 A_CustomMissile("SSMissile",62,18,0,CMF_TRACKOWNER)
+		PANZ F 2 Bright A_PlaySound("hitler/fire",CHAN_WEAPON,1.0,0)
+		TNT1 A 0 A_FaceTarget
+		TNT1 A 0 A_JumpIfCloser(300,"DoubleHexa")
+		TNT1 A 0 A_MonsterRefire(0,"ChainAndRocketGunsEnd")
+		TNT1 A 0 A_JumpIf((user_currenthp - ACS_NamedExecuteWithResult("CF_GetCurrentHealth")) > 100,"PainAttack")
+		TNT1 A 0 Bright A_CustomMissile("MonsterTracer",Random(36,44),0,Random(5,-5),0)
+		TNT1 A 0 A_SpawnItemEx("OrangeShellCasing",10,24,40,Random(2,6),0,Random(1,3),Random(80,90),SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx("OrangeShellCasing",10,-24,40,Random(2,6),0,Random(1,3),Random(-80,-90),SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 Bright A_CustomMissile("SSUberExplosiveTracer",Random(36,44),20,Random(5,-5),0)
+		PANZ GH 2 Bright A_CustomMissile("SSUberExplosiveTracer",Random(36,44),-20,Random(5,-5),0)
+		TNT1 A 0 A_CustomMissile("SSMissile",62,-18,0,CMF_TRACKOWNER)
+		TNT1 A 0 A_CustomMissile("SSMissile",62,18,0,CMF_TRACKOWNER)
+		PANZ F 2 Bright A_PlaySound("hitler/fire",CHAN_WEAPON,1.0,0)
+		TNT1 A 0 A_FaceTarget
+		TNT1 A 0 A_JumpIfCloser(300,"DoubleHexa")
+		TNT1 A 0 A_MonsterRefire(0,"ChainAndRocketGunsEnd")
+		TNT1 A 0 A_JumpIf((user_currenthp - ACS_NamedExecuteWithResult("CF_GetCurrentHealth")) > 100,"PainAttack")
+		TNT1 A 0 Bright A_CustomMissile("MonsterTracer",Random(36,44),0,Random(5,-5),0)
+		TNT1 A 0 A_SpawnItemEx("OrangeShellCasing",10,24,40,Random(2,6),0,Random(1,3),Random(80,90),SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx("OrangeShellCasing",10,-24,40,Random(2,6),0,Random(1,3),Random(-80,-90),SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 Bright A_CustomMissile("SSUberExplosiveTracer",Random(36,44),20,Random(5,-5),0)
+		PANZ GH 2 Bright A_CustomMissile("SSUberExplosiveTracer",Random(36,44),-20,Random(5,-5),0)
+		TNT1 A 0 A_CustomMissile("SSMissile",62,-18,0,CMF_TRACKOWNER)
+		TNT1 A 0 A_CustomMissile("SSMissile",62,18,0,CMF_TRACKOWNER)
+		PANZ F 2 Bright A_PlaySound("hitler/fire",CHAN_WEAPON,1.0,0)
+		TNT1 A 0 A_FaceTarget
+		TNT1 A 0 A_JumpIfCloser(300,"DoubleHexa")
+		TNT1 A 0 A_MonsterRefire(0,"ChainAndRocketGunsEnd")
+		TNT1 A 0 A_JumpIf((user_currenthp - ACS_NamedExecuteWithResult("CF_GetCurrentHealth")) > 100,"PainAttack")
+		TNT1 A 0 Bright A_CustomMissile("MonsterTracer",Random(36,44),0,Random(5,-5),0)
+		TNT1 A 0 A_SpawnItemEx("OrangeShellCasing",10,24,40,Random(2,6),0,Random(1,3),Random(80,90),SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx("OrangeShellCasing",10,-24,40,Random(2,6),0,Random(1,3),Random(-80,-90),SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 Bright A_CustomMissile("SSUberExplosiveTracer",Random(36,44),20,Random(5,-5),0)
+		PANZ GH 2 Bright A_CustomMissile("SSUberExplosiveTracer",Random(36,44),-20,Random(5,-5),0)
+		TNT1 A 0 A_CustomMissile("SSMissile",62,-18,0,CMF_TRACKOWNER)
+		TNT1 A 0 A_CustomMissile("SSMissile",62,18,0,CMF_TRACKOWNER)
+		PANZ F 2 Bright A_PlaySound("hitler/fire",CHAN_WEAPON,1.0,0)
+		TNT1 A 0 A_FaceTarget
+		TNT1 A 0 A_JumpIfCloser(300,"DoubleHexa")
+		TNT1 A 0 A_MonsterRefire(0,"ChainAndRocketGunsEnd")
+		TNT1 A 0 A_JumpIf((user_currenthp - ACS_NamedExecuteWithResult("CF_GetCurrentHealth")) > 100,"PainAttack")
+		TNT1 A 0 A_SetUserVar("user_lcounter",user_lcounter+1)
+		TNT1 A 0 A_JumpIf(user_lcounter > 20,"ChainAndRocketGunsEnd")
+		TNT1 A 0 A_JumpIfCloser(1000,"ChainAndRocketGunsLoop")
+		Goto ChainAndRocketGunsEnd
+	ChainAndRocketGunsEnd:
+		PANZ E 15
+		TNT1 A 0 A_Jump(128,2)
+		TNT1 A 0 A_SetUserVar("user_taunt",1)
+		TNT1 A 0 A_Jump(128,"DoubleHexa2")
+		TNT1 A 0
+		Goto See
+	FirePanz15k:
+		TNT1 A 0 A_Jump(128,"FirePanz10k")
+		TNT1 A 0 A_TakeInventory("Tic",1)
+		TNT1 A 0 A_CheckFlag(FRIENDLY,6)
+		TNT1 A 0 A_TakeInventory("ProjHitCheck",1)
+		TNT1 A 0 A_TakeInventory("ProjMissCheck",1)
+		TNT1 A 0 A_FaceTarget
+		TNT1 A 0 A_CustomMissile("ss-hit-testing",40,-24,0,CMF_TRACKOWNER|CMF_CHECKTARGETDEAD)
+		TNT1 A 0 A_CustomMissile("ss-hit-testing",40,24,0,CMF_TRACKOWNER|CMF_CHECKTARGETDEAD)
+		PANZ EEEEEEEEEEEEEEEEEEEE 1 A_FaceTarget
+		TNT1 A 0 A_SetUserVar("user_lcounter",0)
+		TNT1 A 0 A_CheckFlag(FRIENDLY,"FirePanz15kLoop")
+		TNT1 A 0 A_JumpIfInventory("ProjHitCheck",1,"FirePanz15kLoop")
+		TNT1 A 0 A_JumpIfInventory("ProjMissCheck",1,"Avoid")
+		TNT1 A 0 A_Jump(256,"FirePanz15kEnd")
+	FirePanz15kLoop:
+		PANZ F 1 A_FaceTarget
+		PANZ F 1 A_PlaySound("weapons/bfg15kfire",CHAN_WEAPON,1.0,0)
+		PANZ F 1 BRIGHT A_CustomMissile("Panz15k",62,18,random(4,-8),CMF_TRACKOWNER)
+		PANZ F 1 BRIGHT A_CustomMissile("Panz15k",62,-18,random(4,-8),CMF_TRACKOWNER)
+		PANZ F 4 A_FaceTarget
+		PANZ F 1 A_MonsterRefire(0,"FirePanz15kEnd")
+		TNT1 A 0 A_JumpIfCloser(300,"DoubleHexa")
+		TNT1 A 0 A_JumpIf((user_currenthp - ACS_NamedExecuteWithResult("CF_GetCurrentHealth")) > 100,"PainAttack")
+		TNT1 A 0 A_SetUserVar("user_lcounter",user_lcounter+1)
+		TNT1 A 0 A_JumpIf(user_lcounter > 40,"FirePanz15kEnd")
+		TNT1 A 0 A_JumpIfCloser(2000,2)
+		TNT1 A 0 A_Jump(256,"FirePanz15kEnd")
+		TNT1 A 0
+		Loop
+	FirePanz15kEnd:
+		PANZ E 15 A_SetUserVar("user_lcounter",0)
+		TNT1 A 0 A_Jump(128,2)
+		TNT1 A 0 A_SetUserVar("user_taunt",1)
+		TNT1 A 0 A_Jump(128,"DoubleHexa2")
+		TNT1 A 0
+		GoTo See
+	FirePanz10k:
+		TNT1 A 0 A_PlayWeaponSound("weapons/charge15k")
+		TNT1 A 0 A_TakeInventory("Tic",1)
+		TNT1 A 0 A_CheckFlag(FRIENDLY,6)
+		TNT1 A 0 A_TakeInventory("ProjHitCheck",1)
+		TNT1 A 0 A_TakeInventory("ProjMissCheck",1)
+		TNT1 A 0 A_FaceTarget
+		TNT1 A 0 A_CustomMissile("ss-hit-testing",40,-24,0,CMF_TRACKOWNER|CMF_CHECKTARGETDEAD)
+		TNT1 A 0 A_CustomMissile("ss-hit-testing",40,24,0,CMF_TRACKOWNER|CMF_CHECKTARGETDEAD)
+		PANZ EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 1 A_FaceTarget
+		TNT1 A 0 A_SetUserVar("user_lcounter",0)
+		TNT1 A 0 A_CheckFlag(FRIENDLY,"FirePanz10kLoop")
+		TNT1 A 0 A_JumpIfInventory("ProjHitCheck",1,"FirePanz10kLoop")
+		TNT1 A 0 A_JumpIfInventory("ProjMissCheck",1,"Avoid")
+		TNT1 A 0 A_Jump(256,"FirePanz15kEnd")
+	FirePanz10kLoop:
+		PANZ F 1 A_FaceTarget
+		PANZ F 1 A_PlaySound("weapons/bfg15kfire",CHAN_WEAPON,1.0,0)
+		PANZ F 1 BRIGHT A_CustomMissile("Panz10k",62,18,random(4,-8),CMF_TRACKOWNER)
+		PANZ F 1 BRIGHT A_CustomMissile("Panz10k",62,-18,random(4,-8),CMF_TRACKOWNER)
+		PANZ F 4 A_FaceTarget
+		PANZ F 1 A_MonsterRefire(0,"FirePanz10kEnd")
+		TNT1 A 0 A_JumpIfCloser(300,"DoubleHexa")
+		TNT1 A 0 A_JumpIf((user_currenthp - ACS_NamedExecuteWithResult("CF_GetCurrentHealth")) > 100,"PainAttack")
+		TNT1 A 0 A_SetUserVar("user_lcounter",user_lcounter+1)
+		TNT1 A 0 A_JumpIf(user_lcounter > 40,"FirePanz15kEnd")
+		TNT1 A 0 A_JumpIfCloser(2000,2)
+		TNT1 A 0 A_Jump(256,"FirePanz10kEnd")
+		TNT1 A 0
+		Loop
+	FirePanz10kEnd:
+		PANZ E 15 A_SetUserVar("user_lcounter",0)
+		TNT1 A 0 A_Jump(128,2)
+		TNT1 A 0 A_SetUserVar("user_taunt",1)
+		TNT1 A 0 A_Jump(128,"DoubleHexa2")
+		TNT1 A 0
+		GoTo See
+	FireDeathKnightRailgun:
+		TNT1 A 0 A_TakeInventory("Tic",1)
+		TNT1 A 0 A_CheckFlag(FRIENDLY,6)
+		TNT1 A 0 A_TakeInventory("ProjHitCheck",1)
+		TNT1 A 0 A_TakeInventory("ProjMissCheck",1)
+		TNT1 A 0 A_FaceTarget
+		TNT1 A 0 A_CustomMissile("ss-hit-testing",40,-24,0,CMF_TRACKOWNER|CMF_CHECKTARGETDEAD)
+		TNT1 A 0 A_CustomMissile("ss-hit-testing",40,24,0,CMF_TRACKOWNER|CMF_CHECKTARGETDEAD)
+		TNT1 A 0 A_PlaySound("weapons/rgcharge")
+		PANZ EEEEEEEEEEEEEEEEEEEE 1 A_FaceTarget
+		TNT1 A 0 A_SetUserVar("user_lcounter",0)
+		TNT1 A 0 A_JumpIfInventory("ProjMissCheck",1,"Avoid")
+		PANZ F 1 A_FaceTarget
+		TNT1 A 0 A_CustomMissile("PanzRail",62,18,random(4,-8),CMF_TRACKOWNER)
+		PANZ F 1 BRIGHT A_CustomMissile("PanzRail",62,-18,random(4,-8),CMF_TRACKOWNER)
+		PANZ F 4 A_FaceTarget
+		TNT1 A 0 A_JumpIfCloser(300,"DoubleHexa")
+		TNT1 A 0 A_JumpIf((user_currenthp - ACS_NamedExecuteWithResult("CF_GetCurrentHealth")) > 100,"PainAttack")
+		TNT1 A 0 A_JumpIfCloser(2000,2)
+		TNT1 A 0
+		PANZ E 15 A_SetUserVar("user_lcounter",0)
+		TNT1 A 0 A_Jump(128,2)
+		TNT1 A 0 A_SetUserVar("user_taunt",1)
+		TNT1 A 0 A_Jump(128,"DoubleHexa2")
+		TNT1 A 0
+		GoTo See
+	BFG10KandChainguns:
+		TNT1 A 0 A_TakeInventory("Tic",1)
+		TNT1 A 0 A_PlaySound("weapons/charge15k",CHAN_WEAPON,1.0,0)
+		PANZ EEEEEEEEEEEEEEE 1 A_FaceTarget
+		TNT1 A 0 A_SetUserVar("user_lcounter",0)
+		PANZ E 8 A_FaceTarget
+	BFG10KandChaingunsLoop:
+		TNT1 A 0 Bright A_CustomMissile("MonsterTracer",Random(36,44),0,Random(5,-5),0)
+		TNT1 A 0 A_SpawnItemEx("RifleCasing",10,24,40,Random(2,6),0,Random(1,3),Random(80,90),SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx("RifleCasing",10,-24,40,Random(2,6),0,Random(1,3),Random(-80,-90),SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 Bright A_CustomMissile("SSUberExplosiveTracer",Random(36,44),20,Random(5,-5),0)
+		PANZ GH 2 Bright A_CustomMissile("SSUberExplosiveTracer",Random(36,44),-20,Random(5,-5),0)
+		TNT1 A 0 A_CustomMissile("Panz10k",62,18,random(4,-8),CMF_TRACKOWNER)
+		TNT1 A 0 A_CustomMissile("Panz10k",62,-18,random(4,-8),CMF_TRACKOWNER)
+		PANZ F 2 Bright A_PlaySound("hitler/fire",CHAN_WEAPON,1.0,0)
+		TNT1 A 0 A_PlaySound("weapons/bfg15kfire",7,1.0,0)
+		PANZ F 1 Bright A_MonsterRefire(0,"BFG10KandChaingunsEnd")
+		TNT1 A 0 A_JumpIf((user_currenthp - ACS_NamedExecuteWithResult("CF_GetCurrentHealth")) > 100,"PainAttack")
+		TNT1 A 0 Bright A_CustomMissile("MonsterTracer",Random(36,44),0,Random(5,-5),0)
+		TNT1 A 0 A_SpawnItemEx("OrangeShellCasing",10,24,40,Random(2,6),0,Random(1,3),Random(80,90),SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx("OrangeShellCasing",10,-24,40,Random(2,6),0,Random(1,3),Random(-80,-90),SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 Bright A_CustomMissile("SSUberExplosiveTracer",Random(36,44),20,Random(5,-5),0)
+		PANZ GH 2 Bright A_CustomMissile("SSUberExplosiveTracer",Random(36,44),-20,Random(5,-5),0)
+		TNT1 A 0 A_CustomMissile("Panz10k",62,18,random(4,-8),CMF_TRACKOWNER)
+		TNT1 A 0 A_CustomMissile("Panz10k",62,-18,random(4,-8),CMF_TRACKOWNER)
+		PANZ F 2 Bright A_PlaySound("hitler/fire",CHAN_WEAPON,1.0,0)
+		TNT1 A 0 A_PlaySound("weapons/bfg15kfire",7,1.0,0)
+		PANZ F 1 Bright A_MonsterRefire(0,"BFG10KandChaingunsEnd")
+		TNT1 A 0 A_JumpIf((user_currenthp - ACS_NamedExecuteWithResult("CF_GetCurrentHealth")) > 100,"PainAttack")
+		TNT1 A 0 Bright A_CustomMissile("MonsterTracer",Random(36,44),0,Random(5,-5),0)
+		TNT1 A 0 A_SpawnItemEx("OrangeShellCasing",10,24,40,Random(2,6),0,Random(1,3),Random(80,90),SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx("OrangeShellCasing",10,-24,40,Random(2,6),0,Random(1,3),Random(-80,-90),SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 Bright A_CustomMissile("SSUberExplosiveTracer",Random(36,44),20,Random(5,-5),0)
+		PANZ GH 2 Bright A_CustomMissile("SSUberExplosiveTracer",Random(36,44),-20,Random(5,-5),0)
+		TNT1 A 0 A_CustomMissile("Panz10k",62,18,random(4,-8),CMF_TRACKOWNER)
+		TNT1 A 0 A_CustomMissile("Panz10k",62,-18,random(4,-8),CMF_TRACKOWNER)
+		PANZ F 2 Bright A_PlaySound("hitler/fire",CHAN_WEAPON,1.0,0)
+		TNT1 A 0 A_PlaySound("weapons/bfg15kfire",7,1.0,0)
+		PANZ F 1 Bright A_MonsterRefire(0,"BFG10KandChaingunsEnd")
+		TNT1 A 0 A_JumpIf((user_currenthp - ACS_NamedExecuteWithResult("CF_GetCurrentHealth")) > 100,"PainAttack")
+		TNT1 A 0 Bright A_CustomMissile("MonsterTracer",Random(36,44),0,Random(5,-5),0)
+		TNT1 A 0 A_SpawnItemEx("OrangeShellCasing",10,24,40,Random(2,6),0,Random(1,3),Random(80,90),SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx("OrangeShellCasing",10,-24,40,Random(2,6),0,Random(1,3),Random(-80,-90),SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 Bright A_CustomMissile("SSUberExplosiveTracer",Random(36,44),20,Random(5,-5),0)
+		PANZ GH 2 Bright A_CustomMissile("SSUberExplosiveTracer",Random(36,44),-20,Random(5,-5),0)
+		TNT1 A 0 A_CustomMissile("Panz10k",62,18,random(4,-8),CMF_TRACKOWNER)
+		TNT1 A 0 A_CustomMissile("Panz10k",62,-18,random(4,-8),CMF_TRACKOWNER)
+		PANZ F 2 Bright A_PlaySound("hitler/fire",CHAN_WEAPON,1.0,0)
+		TNT1 A 0 A_PlaySound("weapons/bfg15kfire",7,1.0,0)
+		PANZ F 1 Bright A_MonsterRefire(0,"BFG10KandChaingunsEnd")
+		TNT1 A 0 A_JumpIf((user_currenthp - ACS_NamedExecuteWithResult("CF_GetCurrentHealth")) > 100,"PainAttack")
+		TNT1 A 0 A_SetUserVar("user_lcounter",user_lcounter+1)
+		TNT1 A 0 A_JumpIf(user_lcounter > 30,"BFG10KandChaingunsEnd")
+		TNT1 A 0 A_JumpIfCloser(1500,"BFG10KandChaingunsLoop")
+		Goto BFG10KandChaingunsEnd
+	BFG10KandChaingunsEnd:
+		PANZ E 15 A_PlaySound("weapons/bfg15kcooldown",CHAN_WEAPON,1.0,0)
+		TNT1 A 0 A_Jump(128,2)
+		TNT1 A 0 A_SetUserVar("user_taunt",1)
+		TNT1 A 0 A_Jump(128,"DoubleHexa2")
+		TNT1 A 0
+		GoTo See
+	DoubleHexa:
+		TNT1 A 0 A_Jump(64,"Railgun")
+		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+		PANZ E 5 A_FaceTarget
+		PANZ E 1 A_PlaySound("weapons/hsgfire",CHAN_WEAPON,1.0,0)
+		PANZ E 4 A_PlaySound("weapons/hsgfire",7,1.0,0)
+		TNT1 AAAAAAAAAAAA 0 Bright A_CustomMissile("MonsterTracer2",Random(36,44),24,Random(6,-6),0)
+		TNT1 AAAAAAAAAAAA 0 Bright A_CustomMissile("MonsterTracer2",Random(36,44),-24,Random(6,-6),0)
+		PANZ G 1 Bright A_CustomBulletAttack(15.4,10.6,78,Random(1,4)*3,"SSBulletPuff")
+		PANZ H 4 Bright A_CustomBulletAttack(15.4,10.6,78,Random(1,4)*3,"SSBulletPuff")
+		PANZ E 10 A_FaceTarget
+		TNT1 AAAAAA 0 A_SpawnItemEx("SSGShellCasing",10,24,40,Random(2,4),Random(-3,-6),Random(3,6),0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		TNT1 AAAAAA 0 A_SpawnItemEx("SSGShellCasing",10,-24,40,Random(2,4),Random(-3,-6),Random(3,6),0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		PANZ E 5
+		TNT1 A 0 A_Jump(192,3)
+		TNT1 A 0 A_PlaySound("PansGrosse/taunt",CHAN_VOICE,1.0,0)
+		TNT1 A 0 A_PlaySoundEx("PansGrosse/taunt", "Voice", 0, 2)
+		TNT1 A 0 A_SetUserVar("user_taunt",0)
+		TNT1 A 0
+		Goto See
+	DoubleHexa2:
+		TNT1 A 0 A_Jump(64,"Railgun2")
+		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+		PANZ E 5 A_FaceTarget
+		PANZ E 1 A_PlaySound("weapons/hsgfire",CHAN_WEAPON,1.0,0)
+		PANZ E 4 A_PlaySound("weapons/hsgfire",7,1.0,0)
+		TNT1 AAAAAAAAAAAA 0 Bright A_CustomMissile("MonsterTracer2",Random(36,44),24,Random(6,-6),0)
+		TNT1 AAAAAAAAAAAA 0 Bright A_CustomMissile("MonsterTracer2",Random(36,44),-24,Random(6,-6),0)
+		PANZ G 1 Bright A_CustomBulletAttack(15.4,10.6,78,Random(1,4)*3,"SSBulletPuff")
+		PANZ H 4 Bright A_CustomBulletAttack(15.4,10.6,78,Random(1,4)*3,"SSBulletPuff")
+		PANZ E 10 A_FaceTarget	
+		TNT1 AAAAAA 0 A_SpawnItemEx("SSGShellCasing",10,24,40,Random(2,4),Random(-3,-6),Random(3,6),0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		TNT1 AAAAAA 0 A_SpawnItemEx("SSGShellCasing",10,-24,40,Random(2,4),Random(-3,-6),Random(3,6),0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		PANZ E 5
+		Goto See
+	Railgun:
+		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+		TNT1 A 0 A_PlaySound("weapons/rgcharge")
+		PANZ E 5 A_FaceTarget
+		PANZ E 1 A_FaceTarget
+		PANZ E 4 A_FaceTarget
+		TNT1 A 0 A_CustomMissile("PanzRail",62,18,random(4,-8),CMF_TRACKOWNER)
+		PANZ F 1 BRIGHT A_CustomMissile("PanzRail",62,-18,random(4,-8),CMF_TRACKOWNER)
+		PANZ E 10 A_FaceTarget
+		PANZ E 5
+		TNT1 A 0 A_Jump(192,3)
+		TNT1 A 0 A_PlaySound("PansGrosse/taunt",CHAN_VOICE,1.0,0)
+		TNT1 A 0 A_PlaySoundEx("PansGrosse/taunt", "Voice", 0, 2)
+		TNT1 A 0 A_SetUserVar("user_taunt",0)
+		TNT1 A 0
+		Goto See
+	Railgun2:
+		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+		TNT1 A 0 A_PlaySound("weapons/rgcharge")
+		PANZ E 5 A_FaceTarget
+		PANZ E 1 A_FaceTarget
+		PANZ E 4 A_FaceTarget
+		TNT1 A 0 A_CustomMissile("PanzRail",62,18,random(4,-8),CMF_TRACKOWNER)
+		PANZ F 1 BRIGHT A_CustomMissile("PanzRail",62,-18,random(4,-8),CMF_TRACKOWNER)
+		PANZ E 10 A_FaceTarget	
+		PANZ E 5
+		Goto See
+	DoubleHexaTaunt:
+		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+		PANZ E 5 A_FaceTarget
+		PANZ E 1 A_PlaySound("weapons/hsgfire",CHAN_WEAPON,1.0,0)
+		PANZ E 4 A_PlaySound("weapons/hsgfire",7,1.0,0)
+		TNT1 AAAAAAAAAAAA 0 Bright A_CustomMissile("MonsterTracer2",Random(36,44),24,Random(6,-6),0)
+		TNT1 AAAAAAAAAAAA 0 Bright A_CustomMissile("MonsterTracer2",Random(36,44),-24,Random(6,-6),0)
+		PANZ G 1 Bright A_CustomBulletAttack(15.4,10.6,78,Random(1,4)*3,"SSBulletPuff")
+		PANZ H 4 Bright A_CustomBulletAttack(15.4,10.6,78,Random(1,4)*3,"SSBulletPuff")
+		PANZ E 10 A_FaceTarget
+		TNT1 AAAAAA 0 A_SpawnItemEx("SSGShellCasing",10,24,40,Random(2,4),Random(-3,-6),Random(3,6),0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		TNT1 AAAAAA 0 A_SpawnItemEx("SSGShellCasing",10,-24,40,Random(2,4),Random(-3,-6),Random(3,6),0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		PANZ E 5 A_FaceTarget
+		PANZ E 1 A_PlaySound("weapons/hsgfire",CHAN_WEAPON,1.0,0)
+		PANZ E 4 A_PlaySound("weapons/hsgfire",CHAN_AUTO,1.0,0)
+		TNT1 AAAAAAAAAAAA 0 Bright A_CustomMissile("MonsterTracer2",Random(36,44),24,Random(6,-6),0)
+		TNT1 AAAAAAAAAAAA 0 Bright A_CustomMissile("MonsterTracer2",Random(36,44),-24,Random(6,-6),0)
+		PANZ G 1 Bright A_CustomBulletAttack(15.4,10.6,78,Random(1,4)*3,"SSBulletPuff")
+		PANZ H 4 Bright A_CustomBulletAttack(15.4,10.6,78,Random(1,4)*3,"SSBulletPuff")
+		PANZ E 10 A_FaceTarget
+		TNT1 AAAAAA 0 A_SpawnItemEx("SSGShellCasing",10,24,40,Random(2,4),Random(-3,-6),Random(3,6),0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		TNT1 AAAAAA 0 A_SpawnItemEx("SSGShellCasing",10,-24,40,Random(2,4),Random(-3,-6),Random(3,6),0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		PANZ E 5 A_FaceTarget
+		TNT1 A 0 A_JumpIfInventory("MarineKilled",1,"Rekt")
+		TNT1 A 0 A_Jump(100,3)
+		TNT1 A 0 A_PlaySound("PansGrosse/taunt",CHAN_VOICE,1.0,0)
+		TNT1 A 0 A_PlaySoundEx("PansGrosse/taunt", "Voice", 0, 2)
+		TNT1 A 0 A_SetUserVar("user_taunt",0)
+		PANZ E 7 A_FaceTarget
+		TNT1 A 0 A_JumpIf((user_currenthp - ACS_NamedExecuteWithResult("CF_GetCurrentHealth")) > 100,"PainAttack")
+		PANZ E 7 A_FaceTarget
+		TNT1 A 0 A_JumpIf((user_currenthp - ACS_NamedExecuteWithResult("CF_GetCurrentHealth")) > 100,"PainAttack")
+		PANZ E 7 A_FaceTarget
+		TNT1 A 0 A_JumpIf((user_currenthp - ACS_NamedExecuteWithResult("CF_GetCurrentHealth")) > 100,"PainAttack")
+		PANZ E 7 A_FaceTarget
+		TNT1 A 0 A_JumpIf((user_currenthp - ACS_NamedExecuteWithResult("CF_GetCurrentHealth")) > 100,"PainAttack")
+		PANZ E 7 A_FaceTarget
+		TNT1 A 0 A_JumpIf((user_currenthp - ACS_NamedExecuteWithResult("CF_GetCurrentHealth")) > 100,"PainAttack")
+		PANZ E 7 A_FaceTarget
+		TNT1 A 0 A_JumpIf((user_currenthp - ACS_NamedExecuteWithResult("CF_GetCurrentHealth")) > 100,"PainAttack")
+		PANZ E 7 A_FaceTarget
+		Goto See
+	Rekt:
+		PANZ E 1 A_FaceTarget
+		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+		TNT1 A 0 A_StopSound(CHAN_VOICE)
+		TNT1 A 0 A_TakeInventory("MarineKilled",1)
+		PANZ E 6 A_FaceTarget
+		TNT1 A 0 A_JumpIf((user_currenthp - ACS_NamedExecuteWithResult("CF_GetCurrentHealth")) > 100,"PainAttack")
+		PANZ E 7 A_FaceTarget
+		TNT1 A 0 A_JumpIf((user_currenthp - ACS_NamedExecuteWithResult("CF_GetCurrentHealth")) > 100,"PainAttack")
+		PANZ E 7 A_FaceTarget
+		TNT1 A 0 A_JumpIf((user_currenthp - ACS_NamedExecuteWithResult("CF_GetCurrentHealth")) > 100,"PainAttack")
+		PANZ E 7 A_FaceTarget
+		TNT1 A 0 A_JumpIf((user_currenthp - ACS_NamedExecuteWithResult("CF_GetCurrentHealth")) > 100,"PainAttack")
+		PANZ E 7 A_FaceTarget
+		TNT1 A 0 A_JumpIf((user_currenthp - ACS_NamedExecuteWithResult("CF_GetCurrentHealth")) > 100,"PainAttack")
+		PANZ E 7 A_FaceTarget
+		TNT1 A 0 A_JumpIf((user_currenthp - ACS_NamedExecuteWithResult("CF_GetCurrentHealth")) > 100,"PainAttack")
+		PANZ E 7 A_FaceTarget
+		TNT1 A 0 A_JumpIf((user_currenthp - ACS_NamedExecuteWithResult("CF_GetCurrentHealth")) > 100,"PainAttack")
+		PANZ E 7 A_FaceTarget
+		TNT1 A 0 A_PlaySound("PansGrosse/killtaunt",CHAN_VOICE,1.0,0,ATTN_NONE)
+		TNT1 A 0 A_PlaySoundEx("PansGrosse/killtaunt", "Voice", 0, 2)
+		TNT1 A 0 A_SetUserVar("user_taunt",0)
+		TNT1 A 0 A_JumpIf((user_currenthp - ACS_NamedExecuteWithResult("CF_GetCurrentHealth")) > 100,"PainAttack")
+		PANZ E 7 A_FaceTarget
+		TNT1 A 0 A_JumpIf((user_currenthp - ACS_NamedExecuteWithResult("CF_GetCurrentHealth")) > 100,"PainAttack")
+		PANZ E 7 A_FaceTarget
+		TNT1 A 0 A_JumpIf((user_currenthp - ACS_NamedExecuteWithResult("CF_GetCurrentHealth")) > 100,"PainAttack")
+		PANZ E 7 A_FaceTarget
+		TNT1 A 0 A_JumpIf((user_currenthp - ACS_NamedExecuteWithResult("CF_GetCurrentHealth")) > 100,"PainAttack")
+		PANZ E 7 A_FaceTarget
+		TNT1 A 0 A_JumpIf((user_currenthp - ACS_NamedExecuteWithResult("CF_GetCurrentHealth")) > 100,"PainAttack")
+		PANZ E 7 A_FaceTarget
+		TNT1 A 0 A_JumpIf((user_currenthp - ACS_NamedExecuteWithResult("CF_GetCurrentHealth")) > 100,"PainAttack")
+		PANZ E 7 A_FaceTarget
+		TNT1 A 0 A_JumpIf((user_currenthp - ACS_NamedExecuteWithResult("CF_GetCurrentHealth")) > 100,"PainAttack")
+		PANZ E 7 A_FaceTarget
+		TNT1 A 0 A_JumpIf((user_currenthp - ACS_NamedExecuteWithResult("CF_GetCurrentHealth")) > 100,"PainAttack")
+		PANZ E 7 A_FaceTarget
+		GoTo See
+	GoBack:
+		TNT1 A 0
+		TNT1 A 0 A_PlaySound("DeathKnight/jump",CHAN_BODY,1.0,0)
+		PANZ E 10 A_Recoil(20)
+		Goto DoubleHexaTaunt
+	PainAttack:
+		TNT1 A 0
+		TNT1 A 0 A_FaceTarget
+		TNT1 A 0 A_PlaySound("DeathKnight/jump",CHAN_BODY,1.0,0)
+		PANZ E 10 A_Recoil(-20)
+		TNT1 A 0 A_SetUserVar("user_taunt",1)
+		Goto DoubleHexa
+	PainAttack2:
+		TNT1 A 0
+		TNT1 A 0 A_FaceTarget
+		TNT1 A 0 A_PlaySound("DeathKnight/jump",CHAN_BODY,1.0,0)
+		PANZ E 10 A_Recoil(-20)
+		Goto DoubleHexa
+	Avoid:
+		TNT1 A 0
+		TNT1 A 0 A_Jump(192,"AvoidLeft","AvoidRight")
+		PANZ E 20 A_Recoil(-40)
+		TNT1 A 0 A_Jump(192,"AvoidLeft","AvoidRight")
+		TNT1 A 0 A_SetUserVar("user_taunt",1)
+		Goto DoubleHexa
+	AvoidLeft:
+		PANZ E 1 A_FaceTarget
+		TNT1 A 0 A_PlaySound("DeathKnight/jump",CHAN_BODY,1.0,0)
+		TNT1 A 0 ThrustThing(angle*256/360+192,15,0,0)
+		PANZ E 5 A_FaceTarget
+		TNT1 A 0 A_Jump(48,"DoubleHexa","FirePanz15kLoop")
+		GoTo Missile
+	AvoidRight:
+		PANZ E 1 A_FaceTarget
+		TNT1 A 0 A_PlaySound("DeathKnight/jump",CHAN_BODY,1.0,0)
+		TNT1 A 0 ThrustThing(angle*256/360+64,15,0,0)
+		PANZ E 5 A_FaceTarget
+		TNT1 A 0 A_Jump(48,"DoubleHexa","FirePanz15kLoop")
+		GoTo Missile
+	Pain.Crush:
+		TNT1 A 0
+		TNT1 A 0 A_Recoil(-20)
+		PANZ E 8 A_Pain
+		TNT1 A 0 A_SetUserVar("user_taunt",0)
+		GoTo See
+	Pain:
+		TNT1 A 0
+		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+		PANZ E 8 A_Pain
+		TNT1 A 0 A_SetUserVar("user_taunt",0)
+		Goto Avoid
+	Death:
+		TNT1 A 0
+		TNT1 A 0 A_TakeInventory("Tic",999999)
+		PANZ E 35
+		TNT1 A 0 A_PlaySound("DeathKnight/step",5,1.0,0)
+		PANZ E 55 A_Scream
+		PANZ I 4 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
+		PANZ J 4 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
+		TNT1 A 0 A_PlaySound("DeathKnight/step",6,1.0,0)
+		PANZ K 4 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
+		PANZ L 4 A_Fall
+		TNT1 A 0 A_BossDeath
+		TNT1 A 0 A_RemoveChildren
+		TNT1 A 0 A_SpawnItemEx("PowerStimpack",0,0,8,random(0,8),random(0,8),2,random(0,360),0,32)
+		TNT1 A 0 A_SpawnItemEx("AmmoSphere",0,0,8,random(0,8),random(0,8),2,random(0,360),0,32)
+		//TNT1 A 0 A_SpawnItemEx("RegenerationRuneItem",0,0,8,random(0,8),random(0,8),2,random(0,360),0,32)
+		PANZ L -1 
+		Stop
+	}
+}
+
+Actor Panz15k
+{
+Projectile
+Height 15
+Radius 15
+Speed 35
+Scale 0.5
+RenderStyle Add
+Alpha 0.75
+ExplosionDamage 108
+ExplosionRadius 162
+Damage 20
++RANDOMIZE
++FORCERADIUSDMG
++THRUSPECIES
++MTHRUSPECIES
++DONTHARMSPECIES
+Damagetype "SS"
+SeeSound "weapons/bfg15kfire"
+DeathSound "weapons/bfg95explode"
+States
+{
+Spawn:
+    TNT1 AA 0 A_SpawnItemEx("ProjectileTrailParticleOrange2",Random(-8,8),Random(-8,8),Random(-8,8),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+    CFS1 A 4 Bright
+    TNT1 AA 0 A_SpawnItemEx("ProjectileTrailParticleOrange2",Random(-8,8),Random(-8,8),Random(-8,8),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+	CFS1 B 4 Bright
+    Loop
+Death:
+	TNT1 A 0
+    TNT1 A 0 A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AAA 0 A_CustomMissile("Kaboom14", 0, 0, random(0,360), 2, random(0,360))	
+    CFE1 A 3 Bright A_Explode
+    CFE1 BC 3 Bright 
+    CFE1 BA 3 Bright
+    CFG9 ABCDEF 3 Bright   
+    Stop
+    }
+}
+
+
+ACTOR Panz10k : FastProjectile
+{
+PROJECTILE
+Height 1
+Radius 1
+Speed 200
+Scale 0.15
+RenderStyle Add
+Alpha 0.85
++NOEXTREMEDEATH
++THRUSPECIES
++DONTHARMSPECIES
+DamageType "SS"
+DeathSound "weapons/bfg95explode"
+Obituary "%o was terminated by a Death Knight."
+States
+	{
+	Spawn:
+		TRA3 A 1 Bright
+		Loop
+	Death:
+	XDeath:
+		TNT1 A 0
+		TNT1 A 1 A_SpawnItemEx("Panz10kEx",0,0,0,0,0,0,0,SXF_SETMASTER,0)
+		Stop
+	}
+}
+
+ACTOR Panz10kEx
+{
+Height 8
+Radius 11
+Scale 0.85
+Renderstyle Add
+Alpha 0.75
+Damage 140
++NOGRAVITY
++NOBLOCKMAP
++NOTELEPORT
++FORCERADIUSDMG
++THRUSPECIES
++DONTHARMSPECIES
+DamageType "SS"
+States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("BFGShockwaveRed",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+		TNT1 AA 0 A_SpawnItemEx("RedParticleSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+		TNT1 AAAA 0 A_CustomMissile("Kaboom14",0,0,random(0,360),CMF_AIMDIRECTION,random(0,360))
+		CFE1 A 4 Bright A_Detonate
+		CFE1 BCDEF 4 Bright
+		Stop
+	}
+}
+
+ACTOR PanzRail : CardinalRail
+{
+DamageType "SS"
+MissileType "CardinalRailTrail"
+States
+{
+Spawn:
+    DCRP A 1 Bright
+    Loop
+Death:
+    TNT1 A 0
+	TNT1 A 0 A_SpawnItemEx("BFGShockwaveRed", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AAA 0 A_CustomMissile("Kaboom14", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 A 1 A_SpawnItem("RailgunImpactEffectRed")
+	Stop
+	}
+}
+
+Actor NewSSMissile : Rocket
+{
+Speed 32
+Damage 10
+Reactiontime 350
+-ROCKETTRAIL
++ThruSpecies
++SeekerMissile
++DONTHARMSPECIES
+Damagetype ""
+Damagetype "SS"
+DeathType "Extreme"
+Obituary "%o splattered by Nazi's Rocket."
+SeeSound "rocket/fire"
+States
+	{
+	Spawn:
+		TNT1 A 0 Bright A_CountDown
+		TNT1 A 0 Bright A_CustomMissile("MissileTrail",Random(4,6),Random(-2,2)) 
+		TNT1 A 0 Bright A_CustomMissile("ProjectileTrailParticleOrange",Random(4,6),Random(-2,2))
+		SSMI A 1 Bright A_Seekermissile(10,30,SMF_PRECISE,0)
+		TNT1 A 0 Bright A_JumpIfTargetInLOS("SeekFly",360,JLOSF_PROJECTILE)
+		Goto NoSeekFly
+	SeekFly:
+		TNT1 A 0 Bright A_JumpIfTracerCloser(250,"Precise")
+		TNT1 A 0 Bright A_PlaySound("monster/homingrockbeep")
+		Goto Spawn
+	Precise:
+		TNT1 A 0 Bright A_FaceTracer
+		TNT1 A 0 Bright A_PlaySound("monster/homingrockbeep")
+		Goto Spawn
+	NoSeekFly:
+		TNT1 A 0 Bright A_CustomMissile("MissileTrail",Random(4,6),Random(-2,2))
+		TNT1 A 0 Bright A_CustomMissile("ProjectileTrailParticleOrange",Random(4,6),Random(-2,2))
+		SSMI A 1 Bright
+		TNT1 A 0 Bright A_JumpIfTargetInLOS("Spawn",360,JLOSF_PROJECTILE)
+		TNT1 A 0 Bright A_PlaySound("monster/homingrockbeep")
+		Loop
+	Death:
+		TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE) 
+		TNT1 AAA 0 A_CustomMissile("Kaboom3",0,0,random(0,360),CMF_AIMDIRECTION,random(0,360))
+		TNT1 AAA 0 A_CustomMissile("SmokeFX2",0,0,random(0,360),CMF_AIMDIRECTION,random(0,360))
+		TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,Random(-4,4),Random(-4,4),Random(4,8),0,SXF_CLIENTSIDE)
+		MIS3 B 6 Bright A_Explode
+		TNT1 A 1 A_SpawnItem("RocketEx")
+		MIS3 CDEF 4 Bright A_SetTranslucent(0.75,1)
+		Stop
+	}
+}

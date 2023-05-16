@@ -1,0 +1,237 @@
+Actor DeathRev 27567
+{
+  Health 1300
+  Radius 20
+  Height 56
+  Mass 500
+  Speed 10
+  Scale 0.9
+  PainChance 40
+  Species "Skeletons"
+  DamageFactor "CadaverRocket", 0.0
+  Damagefactor "Shadow", 0.0
+  Monster
+  +FLOORCLIP
+  +MISSILEMORE
+  +MISSILEEVENMORE
+  +DONTHURTSPECIES
+  +QUICKTORETALIATE
+  DropItem "BossLifeEssence" 200
+  DropItem "BossArmorBonusMax" 200
+  DropItem "NewShell" 128 16
+  DropItem "BulletBox" 128
+  DropItem "CellPack", 128, 100
+  DropItem "BackPack" 120
+  DropItem "Explosive Minigun" 180
+  DropItem "ExplosiveSSG" 80
+  SeeSound "Death/sight"
+  PainSound "Death/pain"
+  DeathSound "Death/death"
+  ActiveSound "Death/active"
+  Obituary "%o became Death's new victim."
+  Tag "$NEDeathRev"
+	States
+	{
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
+	Goto Idle
+  Idle:
+	DATH A 10 A_Look
+	Loop
+  See:
+    TNT1 A 0 A_StopSound(CHAN_WEAPON)
+	DATH AABB 2 A_Chase
+    TNT1 A 0 A_SpawnItem("BonyStep",0,0,0,0)
+	DATH CCDD 2 A_Chase
+    TNT1 A 0 A_SpawnItem("BonyStep",0,0,0,0)
+    Loop
+  Missile:
+	TNT1 A 0 A_JumpIfCloser(400,"ExSSG")
+    TNT1 A 0 A_Jump(128,"Missiles","Railgun")
+    TNT1 A 0 A_Jump(64,"Summon","Resurrect","Summon")
+  ExMinigun:
+	DATH EEE 5 A_FaceTarget
+    TNT1 A 0 A_PlaySound("sentient/fire")
+	TNT1 A 0 A_FaceTarget
+	TNT1 A 0 A_CustomMissile("DeathExplosiveTracer",48,-16,random(-5,5))
+	DATH F 3 Bright A_CustomMissile("DeathExplosiveTracer",48,16,random(-5,5))
+	TNT1 A 0 A_FaceTarget
+	TNT1 A 0 A_CustomMissile("DeathExplosiveTracer",48,-16,random(-4,4))
+	DATH G 4 Bright A_CustomMissile("DeathExplosiveTracer",48,16,random(-4,4))
+	TNT1 A 0 A_SpidRefire
+	Goto ExMinigun+3
+  Missiles:
+	DATH III 7 A_FaceTarget
+	DATH J 4 Bright A_CustomMissile("DeathRocket", 46, 0, 0)
+	DATH II 5 A_FaceTarget
+	DATH J 4 Bright A_CustomMissile("DeathRocket", 46, 0, 0)
+	DATH I 5 A_FaceTarget
+	DATH J 4 Bright A_CustomMissile("DeathRocket", 46, 0, 0)
+	DATH I 5 A_FaceTarget
+	Goto See
+  ExSSG:
+	DATH I 10 A_FaceTarget
+	TNT1 A 0 A_PlaySound("ExpSSG/Fire")
+	TNT1 AAAAAAAAAA 0 Bright A_CustomMissile("DeathExplosiveTracer",Random(26,29),0,Random(8,-8),0)
+	DATH J 5 Bright A_CustomBulletAttack(13.8,9.6,10,Random(1,4)*3)
+	DATH I 5 A_FaceTarget
+	Goto See
+  Railgun:
+	TNT1 A 0 A_PlaySound("weapons/rgcharge")
+    DATH II 15 Bright A_FaceTarget
+    DATH J 10 Bright A_CustomMissile("HuntertronRail", 52, 0, 0)
+    DATH J 10
+    Goto See
+  Summon:
+    TNT1 A 0 A_Jump(128,"Summoner")
+ FSummoner:
+    DATH H 1 Bright A_SetInvulnerable
+	TNT1 A 0 A_PlaySound("Death/Summon")
+	DATH HHHHHHHHHHHHHHHHH 2 Bright A_SpawnItem("NemesisHellionSmokeSpawner",0,0,0,0)
+	TNT1 A 0 A_SpawnItemEx("Famine",0,0,20,30,0,0,180,0)
+	TNT1 A 0 A_SpawnItemEx("Famine",0,0,20,30,0,0,360,0)
+	DATH H 24 Bright
+	DATH H 1 Bright A_UnSetInvulnerable
+	Goto See
+ Summoner:
+    DATH H 1 Bright A_SetInvulnerable
+	TNT1 A 0 A_PlaySound("Death/Summon")
+	DATH HHHHHHHHHHHHHHHHH 2 Bright A_SpawnItem("NemesisHellionSmokeSpawner",0,0,0,0)
+	TNT1 A 0 A_SpawnItemEx("Nightshade",0,0,20,30,0,0,180,0)
+	TNT1 A 0 A_SpawnItemEx("Nightshade",0,0,20,30,0,0,360,0)
+	DATH H 24 Bright
+	DATH H 1 Bright A_UnSetInvulnerable
+	Goto See
+  Resurrect:
+	DATH H 1 Bright A_SetInvulnerable
+	TNT1 A 0 A_PlaySound("Death/Resurrect")
+	DATH HHHHHHHHHHHHHHHHH 2 Bright A_SpawnItem("TrueNemesisHellionSmokeSpawner",0,0,0,0)
+	TNT1 A 0 A_PlaySound("brain/spit")
+	TNT1 A 0 A_CustomMissile("VelociratorResRadius",10,0,0,0)
+	TNT1 A 0 A_CustomMissile("VelociratorResRadius",10,0,20,0)
+	TNT1 A 0 A_CustomMissile("VelociratorResRadius",10,0,40,0)
+	TNT1 A 0 A_CustomMissile("VelociratorResRadius",10,0,60,0)
+	TNT1 A 0 A_CustomMissile("VelociratorResRadius",10,0,80,0)
+	TNT1 A 0 A_CustomMissile("VelociratorResRadius",10,0,100,0)
+	TNT1 A 0 A_CustomMissile("VelociratorResRadius",10,0,120,0)
+	TNT1 A 0 A_CustomMissile("VelociratorResRadius",10,0,140,0)
+	TNT1 A 0 A_CustomMissile("VelociratorResRadius",10,0,160,0)
+	TNT1 A 0 A_CustomMissile("VelociratorResRadius",10,0,180,0)
+	TNT1 A 0 A_CustomMissile("VelociratorResRadius",10,0,200,0)
+	TNT1 A 0 A_CustomMissile("VelociratorResRadius",10,0,220,0)
+	TNT1 A 0 A_CustomMissile("VelociratorResRadius",10,0,240,0)
+	TNT1 A 0 A_CustomMissile("VelociratorResRadius",10,0,260,0)
+	TNT1 A 0 A_CustomMissile("VelociratorResRadius",10,0,280,0)
+	TNT1 A 0 A_CustomMissile("VelociratorResRadius",10,0,300,0)
+	TNT1 A 0 A_CustomMissile("VelociratorResRadius",10,0,320,0)
+	TNT1 A 0 A_CustomMissile("VelociratorResRadius",10,0,340,0)
+	TNT1 A 0 A_CustomMissile("VelociratorResRadius",10,0,360,0)
+	DATH H 1 Bright A_UnSetInvulnerable
+    Goto See	
+  Pain:
+    TNT1 A 0 A_StopSound(CHAN_WEAPON)
+	DATH H 2
+	DATH H 2 A_Pain
+	TNT1 A 0 A_Jump(80,"Missile")
+	Goto See
+  Death:
+    TNT1 A 0 A_StopSound(CHAN_WEAPON)
+	DATH K 5
+	DATH L 6 A_Scream
+	DATH MNOP 5
+	TNT1 A 0 A_Noblocking
+	TNT1 A 0 A_SpawnItem("BodyCrash",0,0,0,0)
+	DATH QRSTU 5 
+	DATH V -1
+	Stop
+  Raise:
+	TNT1 A 0
+	TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	DATH VUTSRQ 3
+	DATH PONM 4
+	DATH LK 5
+	Goto See
+	}
+}
+
+ACTOR DeathExplosiveTracer : BabySentientExplosiveTracer
+{
+DamageType "CadaverRocket"
+States
+{
+Spawn:
+    TRAC A 1 Bright
+	Loop
+Death:
+	TNT1 A 0
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+	TNT1 A 0 A_SpawnItem("SentientExplosiveEffect")
+    MISL B 4 Bright A_Explode(Random(3,6)*5,72)
+    MISL CD 3 Bright
+    Stop
+    }
+}
+
+ACTOR DeathRocket : NewRocket
+{
+Species "Skeletons"
+DamageType "CadaverRocket"
++THRUSPECIES
+-ROCKETTRAIL
+States
+{
+Death:
+	TNT1 A 0
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+    TNT1 AAA 0 A_CustomMissile("Kaboom3", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
+    TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+	TNT1 AAAA 0 A_CustomMissile("DeathBomblet",0,0,random(0,359),CMF_TRACKOWNER,random(0,70))
+    TNT1 A 0 A_Explode
+    TNT1 A 1 A_SpawnItem("RocketEx")
+    Stop
+    }
+}
+
+ACTOR DeathBomblet
+{
+  Projectile
+  Radius 3
+  Height 3
+  Speed 19
+  Damage 8
+  Scale 0.3
+  Mass 300
+  SeeSound "weapons/hgrenadebounce"
+  Species "Skeletons"
+  DamageType "CadaverRocket"
+  Decal "Scorch"
+  WallBounceFactor 0.15
+  BounceFactor 0.40
+  Gravity 0.5
+  Translation "80:95=96:111"
+  +DONTFALL
+  +CANBOUNCEWATER
+  +DOOMBOUNCE
+  +NOTELEPORT
+  -NOGRAVITY
+  States
+  {
+   Spawn:
+	  TNT1 A 0
+      TNT1 A 0 A_StopSound
+   SpawnLoop:
+	  GRND A 1 A_CustomMissile("GrenadeTrail",Random(-1,1),Random(-1,1))     		
+      Loop
+   Death: 
+   	  TNT1 A 0
+      TNT1 A 0 A_Explode  
+	  TNT1 A 0 A_PlaySound("weapons/hgrenadeex")
+	  TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+      TNT1 AAA 0 A_CustomMissile("Kaboom3", 0, 0, random(0,360), 2, random(0,360))
+	  TNT1 AAA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
+	  TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+      TNT1 A 1 A_SpawnItem("RocketEx")
+      Stop
+  }
+}

@@ -1,0 +1,611 @@
+/*
+Do not modify this file for other languages!!!
+This is for the 4.1 bullshit spawns
+BS*monstername*Count must equal the number of entries per monster (including the 0 entry)
+BS*monstername*Total must equal the sum of their spawning chances
+BS*monstername*T must equal the sum of the spawning chances of the monster that are cut off
+  when using HardSpawns||HardBossSpawns
+BS*monstername*Cut is the number of the last monster that is cut off using HardSpawns||HardBossSpawns
+  Example: HardSpawns cuts off PlasmaGunner (=BSZombieman1), so BSZombiemanCut = 1
+*/
+
+[enu default]
+
+
+BSZombiemanCount = 16; BSZombiemanTotal = 194;
+BSZombiemanCut = 1; BSZombiemanT = 61;
+BSZombieman0 = ""; BSZombieman0Chance = 0;
+BSZombieman1 = "PlasmaGunner";  BSZombieman1Chance = 61;
+BSZombieman2 = "PistolZombie";  BSZombieman2Chance = 46;
+BSZombieman3 = "Railgunner";  BSZombieman3Chance = 28;
+BSZombieman4 = "DemonTechBallistaZombie";  BSZombieman4Chance = 10;
+BSZombieman5 = "SpecOpsRailgunner";  BSZombieman5Chance = 8;
+BSZombieman6 = "RMSuicideBomber";  BSZombieman6Chance = 7;
+BSZombieman7 = "DemonTechZombie";  BSZombieman7Chance = 5;
+BSZombieman8 = "RocketZombie";  BSZombieman8Chance = 5;
+BSZombieman9 = "M79Zombie";  BSZombieman9Chance = 4;
+BSZombieman10 = "JetpackZombie";  BSZombieman10Chance = 4;
+BSZombieman11 = "HeavySpecOpsRailgunner";  BSZombieman11Chance = 3;
+BSZombieman12 = "InsaneZombie";  BSZombieman12Chance = 2;
+BSZombieman13 = "PGNZombie";  BSZombieman13Chance = 2;
+BSZombieman14 = "TRCZombie";  BSZombieman14Chance = 2;
+BSZombieman15 = "HellClone";  BSZombieman15Chance = 1;
+
+BSZombiemanBossCount = 6;
+BSZombieman16 = "LegendaryZombie";  BSZombieman16Chance = 1;
+BSZombieman17 = "LegendaryRevolverZombie";  BSZombieman17Chance = 1;
+BSZombieman18 = "LegendaryCowboy"; BSZombieman18Chance = 1;
+BSZombieman19 = "EnragedLegendaryZombie";  BSZombieman19Chance = 1;
+BSZombieman20 = "NemesisZombie";  BSZombieman20Chance = 1;
+BSZombieman21 = "HackroidZombie";  BSZombieman21Chance = 1;
+
+
+BSShotgunGuyCount = 26; BSShotgunGuyTotal = 266;
+BSShotgunGuyCut = 1; BSShotgunGuyT = 60;
+BSShotgunGuy0 = ""; BSShotgunGuy0Chance = 0;
+BSShotgunGuy1 = "ShotgunZombie"; BSShotgunGuy1Chance = 60;
+BSShotgunGuy2 = "AssaultShotgunZombie"; BSShotgunGuy2Chance = 46;
+BSShotgunGuy3 = "SuperShotgunZombie"; BSShotgunGuy3Chance = 22;
+BSShotgunGuy4 = "QuadShotgunZombie"; BSShotgunGuy4Chance = 12;
+BSShotgunGuy5 = "SpecOpsShotgunner"; BSShotgunGuy5Chance = 10;
+BSShotgunGuy6 = "MRLZombie"; BSShotgunGuy6Chance = 10;
+BSShotgunGuy7 = "Formerlieutenant"; BSShotgunGuy7Chance = 10;
+BSShotgunGuy8 = "HomingRocketZombie"; BSShotgunGuy8Chance = 8;
+BSShotgunGuy9 = "HeavySpecOpsShotgunner"; BSShotgunGuy9Chance = 8;
+BSShotgunGuy10 = "ExplosiveShotgunZombie"; BSShotgunGuy10Chance = 7;
+BSShotgunGuy11 = "Hexa-ShotgunZombie"; BSShotgunGuy11Chance = 7;
+BSShotgunGuy12 = "EraserZombie"; BSShotgunGuy12Chance = 7;
+BSShotgunGuy13 = "PyroZombie"; BSShotgunGuy13Chance = 7;
+BSShotgunGuy14 = "ShotgunCommando"; BSShotgunGuy14Chance = 7;
+BSShotgunGuy15 = "InsaneSergeant"; BSShotgunGuy15Chance = 6;
+BSShotgunGuy16 = "CyborgShotgunner"; BSShotgunGuy16Chance = 6;
+BSShotgunGuy17 = "DTDevastatorZombie"; BSShotgunGuy17Chance = 5;
+BSShotgunGuy18 = "DTShotgunZombie"; BSShotgunGuy18Chance = 4;
+BSShotgunGuy19 = "CommanderDevastatorZombie"; BSShotgunGuy19Chance = 4;
+BSShotgunGuy20 = "ProShotgunCommando"; BSShotgunGuy20Chance = 3;
+BSShotgunGuy21 = "FlakCannonZombie"; BSShotgunGuy21Chance = 2;
+BSShotgunGuy22 = "DeathAssassin"; BSShotgunGuy22Chance = 2;
+BSShotgunGuy23 = "PhaseShotgunCommando"; BSShotgunGuy23Chance = 2;
+BSShotgunGuy24 = "EmpoweredProShotgunCommando"; BSShotgunGuy24Chance = 2;
+BSShotgunGuy25 = "HellClone2"; BSShotgunGuy25Chance = 1;
+
+BSShotgunGuyBossCount = 8;
+BSShotgunGuy26 = "LegendaryAssaultCaptain"; BSShotgunGuy26Chance = 1;
+BSShotgunGuy27 = "LegendaryLieutenant"; BSShotgunGuy27Chance = 1;
+BSShotgunGuy28 = "LegendarySuperShotgunZombie"; BSShotgunGuy28Chance = 1;
+BSShotgunGuy29 = "EnragedLegendaryAssaultCaptain"; BSShotgunGuy29Chance = 1;
+BSShotgunGuy30 = "EnragedLegendaryLieutenant"; BSShotgunGuy30Chance = 1;
+BSShotgunGuy31 = "NemesisAssaultCaptain"; BSShotgunGuy31Chance = 1;
+BSShotgunGuy32 = "NemesisSuperShotgunZombie"; BSShotgunGuy32Chance = 1;
+BSShotgunGuy33 = "HackroidAssaultCaptain"; BSShotgunGuy33Chance = 1;
+
+
+BSChaingunGuyCount = 23; BSChaingunGuyTotal = 313;
+BSChaingunGuyCut = 1; BSChaingunGuyT = 112;
+BSChaingunGuy0 = ""; BSChaingunGuy0Chance = 0;
+BSChaingunGuy1 = "AssaultRifleZombie"; BSChaingunGuy1Chance = 112;
+BSChaingunGuy2 = "Chaingunner"; BSChaingunGuy2Chance = 64;
+BSChaingunGuy3 = "Minigunner"; BSChaingunGuy3Chance = 28;
+BSChaingunGuy4 = "SpecOpsMachinegunner"; BSChaingunGuy4Chance = 18;
+BSChaingunGuy5 = "HeavySpecOpsMachinegunner"; BSChaingunGuy5Chance = 12;
+BSChaingunGuy6 = "RMExplosiveMinigunner"; BSChaingunGuy6Chance = 10;
+BSChaingunGuy7 = "FreezerZombie"; BSChaingunGuy7Chance = 8;
+BSChaingunGuy8 = "DemonicZombie"; BSChaingunGuy8Chance = 6;
+BSChaingunGuy9 = "HellStormGeneral"; BSChaingunGuy9Chance = 4;
+BSChaingunGuy10 = "BFGZombieman"; BSChaingunGuy10Chance = 4;
+BSChaingunGuy11 = "BFG10KGeneral"; BSChaingunGuy11Chance = 4;
+BSChaingunGuy12 = "BFG15KMajor"; BSChaingunGuy12Chance = 4;
+BSChaingunGuy13 = "FormerAdmiral"; BSChaingunGuy13Chance = 4;
+BSChaingunGuy14 = "ToxicZombie"; BSChaingunGuy14Chance = 4;
+BSChaingunGuy15 = "RepeaterZombie"; BSChaingunGuy15Chance = 4;
+BSChaingunGuy16 = "EFGLunatic"; BSChaingunGuy16Chance = 4;
+BSChaingunGuy17 = "InsaneChaingunner"; BSChaingunGuy17Chance = 3;
+BSChaingunGuy18 = "TechErasusZombie"; BSChaingunGuy18Chance = 3;
+BSChaingunGuy19 = "NailgunCommando"; BSChaingunGuy19Chance = 3;
+BSChaingunGuy20 = "CorruptedGeneral"; BSChaingunGuy20Chance = 2;
+BSChaingunGuy21 = "HellClone3"; BSChaingunGuy21Chance = 2;
+BSChaingunGuy22 = "HellClone4"; BSChaingunGuy22Chance = 1;
+
+BSChaingunGuyBossCount = 9;
+BSChaingunGuy23 = "LegendaryStealthTrooper"; BSChaingunGuy23Chance = 1;
+BSChaingunGuy24 = "LegendaryCommando"; BSChaingunGuy24Chance = 1;
+BSChaingunGuy25 = "LegendaryGeneral"; BSChaingunGuy25Chance = 1;
+BSChaingunGuy26 = "EnragedLegendaryCommando"; BSChaingunGuy26Chance = 1;
+BSChaingunGuy27 = "EnragedLegendaryStealthTrooper"; BSChaingunGuy27Chance = 1;
+BSChaingunGuy28 = "GeneralRoasterock"; BSChaingunGuy28Chance = 1;
+BSChaingunGuy29 = "CFLegendaryDoomguy"; BSChaingunGuy29Chance = 1;
+BSChaingunGuy30 = "NemesisCommando"; BSChaingunGuy30Chance = 1;
+BSChaingunGuy31 = "NemesisStealthTrooper"; BSChaingunGuy31Chance = 1;
+
+
+
+BSDoomImpCount = 36; BSDoomImpTotal = 266;
+BSDoomImpCut = 1; BSDoomImpT = 61;
+BSDoomImp0 = ""; BSDoomImp0Chance = 0;
+BSDoomImp1 = "Imp"; BSDoomImp1Chance = 61;
+BSDoomImp2 = "VoidImp"; BSDoomImp2Chance = 26;
+BSDoomImp3 = "Devil"; BSDoomImp3Chance = 12;
+BSDoomImp4 = "CryoImp"; BSDoomImp4Chance = 11;
+BSDoomImp5 = "PyroImp"; BSDoomImp5Chance = 11;
+BSDoomImp6 = "ToxicImp"; BSDoomImp6Chance = 10;
+BSDoomImp7 = "PhaseImp"; BSDoomImp7Chance = 9;
+BSDoomImp8 = "CyberImp"; BSDoomImp8Chance = 8;
+BSDoomImp9 = "NetherImp"; BSDoomImp9Chance = 8;
+BSDoomImp10 = "GoreImp"; BSDoomImp10Chance = 8;
+BSDoomImp11 = "ImpLord"; BSDoomImp11Chance = 7;
+BSDoomImp12 = "Hellion"; BSDoomImp12Chance = 7;
+BSDoomImp13 = "HellRazer"; BSDoomImp13Chance = 6;
+BSDoomImp14 = "CerebralImp"; BSDoomImp14Chance = 6;
+BSDoomImp15 = "DarkCyberImp"; BSDoomImp15Chance = 6;
+BSDoomImp16 = "CyberImp"; BSDoomImp16Chance = 5;
+BSDoomImp17 = "PainHarvester"; BSDoomImp17Chance = 5;
+BSDoomImp18 = "CFGhoul"; BSDoomImp18Chance = 5;
+BSDoomImp19 = "Poltergeist"; BSDoomImp19Chance = 5;
+BSDoomImp20 = "AnnihilatorImp"; BSDoomImp20Chance = 5;
+BSDoomImp21 = "InsanityTechImp"; BSDoomImp21Chance = 5;
+BSDoomImp22 = "InsaneAnnihilatorImp"; BSDoomImp22Chance = 4;
+BSDoomImp23 = "Saboteur"; BSDoomImp23Chance = 3;
+BSDoomImp24 = "Anubian"; BSDoomImp24Chance = 3;
+BSDoomImp25 = "Drone"; BSDoomImp25Chance = 3;
+BSDoomImp26 = "BerserkerImp"; BSDoomImp26Chance = 3;
+BSDoomImp27 = "DoomShadow"; BSDoomImp27Chance = 3;
+BSDoomImp28 = "CFStoneImp"; BSDoomImp28Chance = 3;
+BSDoomImp29 = "DAImp"; BSDoomImp29Chance = 2;
+BSDoomImp30 = "HellRazerSecret"; BSDoomImp30Chance = 2;
+BSDoomImp31 = "DarkHellRazer"; BSDoomImp31Chance = 2;
+BSDoomImp32 = "Salamander"; BSDoomImp32Chance = 2;
+BSDoomImp33 = "DarkCatharsi"; BSDoomImp33Chance = 2;
+BSDoomImp34 = "WarlordImp"; BSDoomImp34Chance = 2;
+BSDoomImp35 = "AbyssalImp"; BSDoomImp35Chance = 1;
+
+BSDoomImpBossCount = 5;
+BSDoomImp36 = "LegendaryImp"; BSDoomImp36Chance = 1;
+BSDoomImp37 = "LegendaryPhaseImp"; BSDoomImp37Chance = 1;
+BSDoomImp38 = "EnragedLegendaryImp"; BSDoomImp38Chance = 1;
+BSDoomImp39 = "NemesisImp"; BSDoomImp39Chance = 1;
+BSDoomImp40 = "CerebralShadowBoss"; BSDoomImp40Chance = 1;
+
+
+BSDemonCount = 10; BSDemonTotal = 126;
+BSDemonCut = 1; BSDemonT = 65;
+BSDemon0 = ""; BSDemon0Chance = 0;
+BSDemon1 = "BullFiend"; BSDemon1Chance = 65;
+BSDemon2 = "CyberFiend"; BSDemon2Chance = 24;
+BSDemon3 = "MagmaFiend"; BSDemon3Chance = 8;
+BSDemon4 = "CorruptFiend"; BSDemon4Chance = 6;
+BSDemon5 = "ChaingunFiend"; BSDemon5Chance = 4;
+BSDemon6 = "DTechFiend"; BSDemon6Chance = 3;
+BSDemon7 = "AbyssalHound"; BSDemon7Chance = 3;
+BSDemon8 = "ToxicFiend"; BSDemon8Chance = 2;
+BSDemon9 = "LoperComplex"; BSDemon9Chance = 2;
+
+BSDemonBossCount = 9;
+BSDemon10 = "LegendaryFiend"; BSDemon10Chance = 1;
+BSDemon11 = "LegChainsawZombie"; BSDemon11Chance = 1;
+BSDemon12 = "LegendarySuicideBomber"; BSDemon12Chance = 1;
+BSDemon13 = "LegendaryBeheadedKamikaze"; BSDemon13Chance = 1;
+BSDemon14 = "EnragedLegendaryFiend"; BSDemon14Chance = 1;
+BSDemon15 = "EnragedLegendarySuicideBomber"; BSDemon15Chance = 1;
+BSDemon16 = "NemesisSuicideBomber"; BSDemon16Chance = 1;
+BSDemon17 = "NemesisFiend"; BSDemon17Chance = 1;
+BSDemon18 = "NemesisChainsawZombie"; BSDemon18Chance = 1;
+
+
+BSSpectreCount = 12; BSSpectreTotal = 155;
+BSSpectreCut = 1; BSSpectreT = 70;
+BSSpectre0 =""; BSSpectre0Chance = 0;
+BSSpectre1 = "CFSpectre"; BSSpectre1Chance = 70;
+BSSpectre2 = "Lurker"; BSSpectre2Chance = 24;
+BSSpectre3 = "VoidFiend"; BSSpectre3Chance = 12;
+BSSpectre4 = "Spook"; BSSpectre4Chance = 8;
+BSSpectre5 = "Mechtre"; BSSpectre5Chance = 8;
+BSSpectre6 = "ColdNightmare"; BSSpectre6Chance = 7;
+BSSpectre7 = "DTechSpectre"; BSSpectre7Chance = 6;
+BSSpectre8 = "FacelessSpectre"; BSSpectre8Chance = 6;
+BSSpectre9 = "TransparentLoper"; BSSpectre9Chance = 5;
+BSSpectre10 = "RabidFiend"; BSSpectre10Chance = 5;
+BSSpectre11 = "PhaseNightmare"; BSSpectre11Chance = 3;
+
+BSSpectreBossCount = 1;
+BSSpectre12 = "LegendaryApparition"; BSSpectre12Chance = 1;
+
+
+BSLostSoulCount = 17; BSLostSoulTotal = 162;
+BSLostSoulCut = 1; BSLostSoulT = 62;
+BSLostSoul0 = ""; BSLostSoul0Chance = 0;
+BSLostSoul1 = "Terrorsoul"; BSLostSoul1Chance = 62;
+BSLostSoul2 = "ForgottenOne"; BSLostSoul2Chance = 24;
+BSLostSoul3 = "GuardianCube"; BSLostSoul3Chance = 16;
+BSLostSoul4 = "PhaseSoul"; BSLostSoul4Chance = 13;
+BSLostSoul5 = "PoisonSoul"; BSLostSoul5Chance = 10;
+BSLostSoul6 = "Rictus"; BSLostSoul6Chance = 6;
+BSLostSoul7 = "BabyWatcher"; BSLostSoul7Chance = 3;
+BSLostSoul8 = "Wicked"; BSLostSoul8Chance = 3;
+BSLostSoul9 = "Cruel"; BSLostSoul9Chance = 3;
+BSLostSoul10 = "DTGuardianCube"; BSLostSoul10Chance = 3;
+BSLostSoul11 = "PhaseGuardianCube"; BSLostSoul11Chance = 3;
+BSLostSoul12 = "BloodSkull"; BSLostSoul12Chance = 2;
+BSLostSoul13 = "ChaosSoul"; BSLostSoul13Chance = 2;
+BSLostSoul14 = "ImpureSoul"; BSLostSoul14Chance = 3;
+BSLostSoul15 = "CryoSoulEnemy"; BSLostSoul15Chance = 2;
+BSLostSoul16 = "PyroSoulEnemy"; BSLostSoul16Chance = 2;
+
+BSLostSoulBossCount = 5;
+BSLostSoul17 = "AtomicSoul"; BSLostSoul17Chance = 1;
+BSLostSoul18 = "LegendarySoul"; BSLostSoul18Chance = 1;
+BSLostSoul19 = "EnragedLegendarySoul"; BSLostSoul19Chance = 1;
+BSLostSoul20 = "NemesisSoul"; BSLostSoul20Chance = 1;
+BSLostSoul21 = "LegendaryHeroSoul"; BSLostSoul21Chance = 1;
+
+
+
+BSCacodemonCount = 24; BSCacodemonTotal = 203;
+BSCacodemonCut = 1; BSCacodemonT = 84;
+BSCacodemon0 =  ""; BSCacodemon0Chance = 0;
+BSCacodemon1 = "CFCacodemon"; BSCacodemon1Chance = 84;
+BSCacodemon2 = "Watcher"; BSCacodemon2Chance = 10;
+BSCacodemon3 = "Agathodemon"; BSCacodemon3Chance = 10;
+BSCacodemon4 = "RMAbaddon"; BSCacodemon4Chance = 9;
+BSCacodemon5 = "CacolanternComplex"; BSCacodemon5Chance = 9;
+BSCacodemon6 = "BabyCacoGangs"; BSCacodemon6Chance = 8;
+BSCacodemon7 = "CacoLich"; BSCacodemon7Chance = 7;
+BSCacodemon8 = "Caconite"; BSCacodemon8Chance = 7;
+BSCacodemon9 = "Cacomental"; BSCacodemon9Chance = 6;
+BSCacodemon10 = "DarkBishop"; BSCacodemon10Chance = 5;
+BSCacodemon11 = "Glaucoma"; BSCacodemon11Chance = 5;
+BSCacodemon12 = "BabyCacoGangsMKII"; BSCacodemon12Chance = 5;
+BSCacodemon13 = "PhaseCacodemon"; BSCacodemon13Chance = 5;
+BSCacodemon14 = "DarkCacolich"; BSCacodemon14Chance = 3;
+BSCacodemon15 = "BFGCacodemon"; BSCacodemon15Chance = 3;
+BSCacodemon16 = "CerebralCaco"; BSCacodemon16Chance = 3;
+BSCacodemon17 = "InsanityCacodemon"; BSCacodemon17Chance = 3;
+BSCacodemon18 = "CerebralRedeemer"; BSCacodemon18Chance = 2;
+BSCacodemon19 = "EmpoweredBFGCacodemon"; BSCacodemon19Chance = 2;
+BSCacodemon20 = "DistortionDisciple"; BSCacodemon20Chance = 2;
+BSCacodemon21 = "Surrogate"; BSCacodemon21Chance = 2;
+BSCacodemon22 = "ImpureElemental"; BSCacodemon22Chance = 2;
+BSCacodemon23 = "RedeemerCommander"; BSCacodemon23Chance = 1;
+
+BSCacodemonBossCount = 10;
+BSCacodemon24 = "LegendaryRedeemer"; BSCacodemon24Chance = 1;
+BSCacodemon25 = "LegendaryNecromancer"; BSCacodemon25Chance = 1;
+BSCacodemon26 = "EnragedLegendaryRedeemer"; BSCacodemon26Chance = 1;
+BSCacodemon27 = "EnragedLegendaryNecromancer"; BSCacodemon27Chance = 1;
+BSCacodemon28 = "NemesisDefiler"; BSCacodemon28Chance = 1;
+BSCacodemon29 = "BloodyFlandre"; BSCacodemon29Chance = 1;
+BSCacodemon30 = "MoonbitchSpawn"; BSCacodemon30Chance = 1;
+BSCacodemon31 = "Lamia"; BSCacodemon31Chance = 1;
+BSCacodemon32 = "Uroboros"; BSCacodemon32Chance = 1;
+BSCacodemon33 = "Tatsuya"; BSCacodemon33Chance = 1;
+
+
+
+BSPainElementalCount = 16; BSPainElementalTotal = 146;
+BSPainElementalCut = 1; BSPainElementalT = 81;
+BSPainElemental0 = ""; BSPainElemental0Chance = 0;
+BSPainElemental1 = "Soulkeeper"; BSPainElemental1Chance = 81;
+BSPainElemental2 = "Defiler"; BSPainElemental2Chance = 10;
+BSPainElemental3 = "PhaseElemental"; BSPainElemental3Chance = 8;
+BSPainElemental4 = "PoisonElemental"; BSPainElemental4Chance = 6;
+BSPainElemental5 = "BombElemental"; BSPainElemental5Chance = 5;
+BSPainElemental6 = "GrossElemental"; BSPainElemental6Chance = 5;
+BSPainElemental7 = "TechDrone"; BSPainElemental7Chance = 5;
+BSPainElemental8 = "TorturedSoul"; BSPainElemental8Chance = 5;
+BSPainElemental9 = "LukewarmElemental"; BSPainElemental9Chance = 4;
+BSPainElemental10 = "BloodElemental"; BSPainElemental10Chance = 3;
+BSPainElemental11 = "Broat"; BSPainElemental11Chance = 3;
+BSPainElemental12 = "Carrier"; BSPainElemental12Chance = 2;
+BSPainElemental13 = "CerebralRedeemer"; BSPainElemental13Chance = 2;
+BSPainElemental14 = "ChaosElemental"; BSPainElemental14Chance = 2;
+BSPainElemental15 = "ImpureElemental"; BSPainElemental15Chance = 2;
+
+BSPainElementalBossCount = 3;
+BSPainElemental16 = "LegendaryTormentor"; BSPainElemental16Chance = 1;
+BSPainElemental17 = "EnragedLegendaryTormentor"; BSPainElemental17Chance = 1;
+BSPainElemental18 = "NemesisTormentor"; BSPainElemental18Chance = 1;
+
+
+
+BSArachnotronCount = 20; BSArachnotronTotal = 215;
+BSArachnotronCut = 1; BSArachnotronT = 100;
+BSArachnotron0 = ""; BSArachnotron0Chance = 0;
+BSArachnotron1 = "Dualachnotron"; BSArachnotron1Chance = 100;
+BSArachnotron2 = "Fusionite"; BSArachnotron2Chance = 17;
+BSArachnotron3 = "SpiderMinimind"; BSArachnotron3Chance = 13;
+BSArachnotron4 = "DTechSpider"; BSArachnotron4Chance = 10;
+BSArachnotron5 = "BabyMastermind"; BSArachnotron5Chance = 10;
+BSArachnotron6 = "BabyDemolisher"; BSArachnotron6Chance = 8;
+BSArachnotron7 = "BabyDDemolisher"; BSArachnotron7Chance = 6;
+BSArachnotron8 = "BabySentient"; BSArachnotron8Chance = 6;
+BSArachnotron9 = "ShotgunSpider"; BSArachnotron9Chance = 6;
+BSArachnotron10 = "Arachhunter"; BSArachnotron10Chance = 5;
+BSArachnotron11 = "LaserSpider"; BSArachnotron11Chance = 4;
+BSArachnotron12 = "BabyOverseer"; BSArachnotron12Chance = 4;
+BSArachnotron13 = "InsaneWrithe"; BSArachnotron13Chance = 4;
+BSArachnotron14 = "BabyEraserMastermind"; BSArachnotron14Chance = 4;
+BSArachnotron15 = "BabyBFGMastermind"; BSArachnotron15Chance = 3;
+BSArachnotron16 = "Aracknight"; BSArachnotron16Chance = 3;
+BSArachnotron17 = "ArachhunterMKII"; BSArachnotron17Chance = 3;
+BSArachnotron18 = "Samael"; BSArachnotron18Chance = 2;
+BSArachnotron19 = "BabyInsanitySpider"; BSArachnotron19Chance = 2;
+
+BSArachnotronBossCount = 5;
+BSArachnotron20 = "LegendaryBabySentient"; BSArachnotron20Chance = 1;
+BSArachnotron21 = "LegendaryBabyDemolisher"; BSArachnotron21Chance = 1;
+BSArachnotron22 = "EnragedLegendaryBabySentient"; BSArachnotron22Chance = 1;
+BSArachnotron23 = "RMManipulator"; BSArachnotron23Chance = 1;
+BSArachnotron24 = "NemesisBabySentient"; BSArachnotron24Chance = 1;
+
+
+BSFatsoCount = 15; BSFatsoTotal = 180;
+BSFatsoCut = 1; BSFatsoT = 100;
+BSFatso0 = ""; BSFatso0Chance = 0;
+BSFatso1 = "Hectebus"; BSFatso1Chance = 100;
+BSFatso2 = "Daedabus"; BSFatso2Chance = 17;
+BSFatso3 = "Cacobus"; BSFatso3Chance = 12;
+BSFatso4 = "Behemoth"; BSFatso4Chance = 8;
+BSFatso5 = "Barbatos"; BSFatso5Chance = 6;
+BSFatso6 = "Corpulant"; BSFatso6Chance = 6;
+BSFatso7 = "Mancutank"; BSFatso7Chance = 5;
+BSFatso8 = "Rockebus"; BSFatso8Chance = 5;
+BSFatso9 = "FreezerBehemoth"; BSFatso9Chance = 4;
+BSFatso10 = "Demobus"; BSFatso10Chance = 3;
+BSFatso11 = "Ruffian"; BSFatso11Chance = 3;
+BSFatso12 = "SuperCacobus"; BSFatso12Chance = 3;
+BSFatso13 = "CrownedOne"; BSFatso13Chance = 3;
+BSFatso14 = "CerebralBehemoth"; BSFatso14Chance = 2;
+
+BSFatsoBossCount = 3;
+BSFatso15 = "LegendaryBehemoth"; BSFatso15Chance = 1;
+BSFatso16 = "EnragedLegendaryBehemoth"; BSFatso16Chance = 1;
+BSFatso17 = "NemesisBehemoth"; BSFatso17Chance = 1;
+
+
+BSRevenantCount = 19; BSRevenantTotal = 208;
+BSRevenantCut = 1; BSRevenantT = 90;
+BSRevenant0 = ""; BSRevenant0Chance =  0;
+BSRevenant1 = "Guardian"; BSRevenant1Chance = 90;
+BSRevenant2 = "Cadaver"; BSRevenant2Chance = 16;
+BSRevenant3 = "HellfireRevenant"; BSRevenant3Chance = 12;
+BSRevenant4 = "ToxicRevenant"; BSRevenant4Chance = 12;
+BSRevenant5 = "WidowMaker"; BSRevenant5Chance = 10;
+BSRevenant6 = "Famine"; BSRevenant6Chance = 10;
+BSRevenant7 = "FreezerRevenant"; BSRevenant7Chance = 8;
+BSRevenant8 = "Pestilence"; BSRevenant8Chance = 8;
+BSRevenant9 = "Infected"; BSRevenant9Chance = 6;
+BSRevenant10 = "NightmareFamine"; BSRevenant10Chance = 6;
+BSRevenant11 = "Draugr"; BSRevenant11Chance = 5;
+BSRevenant12 = "CerebralIncarnate"; BSRevenant12Chance = 4;
+BSRevenant13 = "InsanityRevenant"; BSRevenant13Chance = 4;
+BSRevenant14 = "Huntertron"; BSRevenant14Chance = 4;
+BSRevenant15 = "War"; BSRevenant15Chance = 3;
+BSRevenant16 = "DeathRev"; BSRevenant16Chance = 2;
+BSRevenant17 = "NightmarePestilence"; BSRevenant17Chance = 2;
+BSRevenant18 = "PhaseGhoul"; BSRevenant18Chance = 2;
+
+BSRevenantBossCount = 4;
+BSRevenant19 = "LegendaryRevenant"; BSRevenant19Chance = 1;
+BSRevenant20 = "SanaeKochiya"; BSRevenant20Chance = 1;
+BSRevenant21 = "EnragedLegendaryRevenant"; BSRevenant21Chance = 1;
+BSRevenant22 = "NemesisRevenant"; BSRevenant22Chance = 1;
+
+
+
+BSHellKnightCount = 17; BSHellKnightTotal = 142;
+BSHellKnightCut = 1; BSHellKnightT = 83;
+BSHellKnight0 = ""; BSHellKnight0Chance = 0;
+BSHellKnight1 = "CFHellKnight"; BSHellKnight1Chance = 83;
+BSHellKnight2 = "PyroDemon"; BSHellKnight2Chance = 9;
+BSHellKnight3 = "CryoDemon"; BSHellKnight3Chance = 9;
+BSHellKnight4 = "CyberNoble"; BSHellKnight4Chance = 5;
+BSHellKnight5 = "HellGuardian"; BSHellKnight5Chance = 4;
+BSHellKnight6 = "RadiationKnight"; BSHellKnight6Chance = 4;
+BSHellKnight7 = "Paladin"; BSHellKnight7Chance = 4;
+BSHellKnight8 = "HellDuke"; BSHellKnight8Chance = 3;
+BSHellKnight9 = "DarkCyberNoble"; BSHellKnight9Chance = 3;
+BSHellKnight10 = "HereticKnight"; BSHellKnight10Chance = 3;
+BSHellKnight11 = "ForgottenWarrior"; BSHellKnight11Chance = 2;
+BSHellKnight12 = "EmpoweredDarkCybernoble"; BSHellKnight12Chance = 2;
+BSHellKnight13 = "InsanityKnight"; BSHellKnight13Chance = 2;
+BSHellKnight14 = "SandSpirit"; BSHellKnight14Chance = 2;
+BSHellKnight15 = "Cyberassault"; BSHellKnight15Chance = 2;
+BSHellKnight16 = "Styx"; BSHellKnight16Chance = 2;
+
+BSHellKnightBossCount = 3;
+BSHellKnight17 = "LegendaryHellKnight"; BSHellKnight17Chance = 1;
+BSHellKnight18 = "EnragedLegendaryHellKnight"; BSHellKnight18Chance = 1;
+BSHellKnight19 = "NemesisHellKnight"; BSHellKnight19Chance = 1;
+
+
+
+BSBaronOfHellCount = 29; BSBaronOfHellTotal = 228;
+BSBaronOfHellCut = 1; BSBaronOfHellT = 80;
+BSBaronOfHell0 = ""; BSBaronOfHell0Chance = 0;
+BSBaronOfHell1 = "CFBaronOfHell"; BSBaronOfHell1Chance = 80;
+BSBaronOfHell2 = "BruiserDemon"; BSBaronOfHell2Chance = 14;
+BSBaronOfHell3 = "CyberBaron"; BSBaronOfHell3Chance = 11;
+BSBaronOfHell4 = "Damned"; BSBaronOfHell4Chance = 11;
+BSBaronOfHell5 = "RMAfrit"; BSBaronOfHell5Chance = 10;
+BSBaronOfHell6 = "Heterodox"; BSBaronOfHell6Chance = 9;
+BSBaronOfHell7 = "STBelphegor"; BSBaronOfHell7Chance = 9;
+BSBaronOfHell8 = "PlaguedBruiserDemon"; BSBaronOfHell8Chance = 6;
+BSBaronOfHell9 = "Cybruiser"; BSBaronOfHell9Chance = 6;
+BSBaronOfHell10 = "PainLord"; BSBaronOfHell10Chance = 6;
+BSBaronOfHell11 = "HellfireIfrit"; BSBaronOfHell11Chance = 6;
+BSBaronOfHell12 = "RictusIncarnate"; BSBaronOfHell12Chance = 5;
+BSBaronOfHell13 = "FrostAfrit"; BSBaronOfHell13Chance = 5;
+BSBaronOfHell14 = "LesserCardinal"; BSBaronOfHell14Chance = 5;
+BSBaronOfHell15 = "InfernalCyberNoble"; BSBaronOfHell15Chance = 5;
+BSBaronOfHell16 = "Hellspawn"; BSBaronOfHell16Chance = 4;
+BSBaronOfHell17 = "PhaseOverlord2"; BSBaronOfHell17Chance = 3;
+BSBaronOfHell18 = "WrathLord"; BSBaronOfHell18Chance = 3;
+BSBaronOfHell19 = "CorruptionServantStandalone"; BSBaronOfHell19Chance = 3;
+BSBaronOfHell20 = "ProtoDestroyer"; BSBaronOfHell20Chance = 3;
+BSBaronOfHell21 = "Cydestroyer"; BSBaronOfHell21Chance = 2;
+BSBaronOfHell22 = "InsanityCyberNoble"; BSBaronOfHell22Chance = 2;
+BSBaronOfHell23 = "DarkCybruiser"; BSBaronOfHell23Chance = 2;
+BSBaronOfHell24 = "HellFireBaron"; BSBaronOfHell24Chance = 2;
+BSBaronOfHell25 = "BFGServant"; BSBaronOfHell25Chance = 2;
+BSBaronOfHell26 = "HellPaladin"; BSBaronOfHell26Chance = 2;
+BSBaronOfHell27 = "DarkCydestroyer"; BSBaronOfHell27Chance = 2;
+BSBaronOfHell28 = "PhaseWarlord"; BSBaronOfHell28Chance = 2;
+
+BSBaronOfHellBossCount = 8;
+BSBaronOfHell29 = "LordAsmodeus"; BSBaronOfHell29Chance = 1;
+BSBaronOfHell30 = "LegendaryCybruiser"; BSBaronOfHell30Chance = 1;
+BSBaronOfHell31 = "LegendaryCyberNoble"; BSBaronOfHell31Chance = 1;
+BSBaronOfHell32 = "LegendaryAfrit"; BSBaronOfHell32Chance = 1;
+BSBaronOfHell33 = "LegendaryArchon"; BSBaronOfHell33Chance = 1;
+BSBaronOfHell34 = "EnragedLegendaryCybruiser"; BSBaronOfHell34Chance = 1;
+BSBaronOfHell35 = "Obliterator"; BSBaronOfHell35Chance = 1;
+BSBaronOfHell36 = "NemesisCyberNoble"; BSBaronOfHell36Chance = 1;
+
+
+
+BSArchvileCount = 13; BSArchvileTotal = 148;
+BSArchvileCut = 1; BSArchvileT = 88;
+BSArchvile0 = ""; BSArchvile0Chance = 0;
+BSArchvile1 = "Exile"; BSArchvile1Chance = 88;
+BSArchvile2 = "Diabolist"; BSArchvile2Chance = 8;
+BSArchvile3 = "ImpureVile"; BSArchvile3Chance = 7;
+BSArchvile4 = "Infernalist"; BSArchvile4Chance = 6;
+BSArchvile5 = "DarkHellion"; BSArchvile5Chance = 6;
+BSArchvile6 = "PhaseExile"; BSArchvile6Chance = 6;
+BSArchvile7 = "Hierophant"; BSArchvile7Chance = 6;
+BSArchvile8 = "Summoner"; BSArchvile8Chance = 4;
+BSArchvile9 = "Velocirator"; BSArchvile9Chance = 4;
+BSArchvile10 = "Illusionist"; BSArchvile10Chance = 3;
+BSArchvile11 = "DeathKnight"; BSArchvile11Chance = 2;
+BSArchvile12 = "IllusoCorpseRandomizer"; BSArchvile12Chance = 1;
+
+BSArchvileBossCount = 6;
+BSArchvile13 = "Darkvile"; BSArchvile13Chance = 2;
+BSArchvile14 = "LegendaryVile"; BSArchvile14Chance = 1;
+BSArchvile15 = "LegendaryCrusader"; BSArchvile15Chance = 1;
+BSArchvile16 = "LegendaryVessel"; BSArchvile16Chance = 1;
+BSArchvile17 = "NemesisExile"; BSArchvile17Chance = 1;
+BSArchvile18 = "MakaiSlut"; BSArchvile18Chance = 1;
+
+
+
+BSSpiderMastermindCount = 20; BSSpiderMastermindTotal = 318;
+BSSpiderMastermindCut = 4; BSSpiderMastermindT = 140;
+BSSpiderMastermind0 = ""; BSSpiderMastermind0Chance = 0;
+BSSpiderMastermind1 = "Demolisher"; BSSpiderMastermind1Chance = 80;
+BSSpiderMastermind2 = "DarkDemolisher"; BSSpiderMastermind2Chance = 20;
+BSSpiderMastermind3 = "SpiderMasterspark"; BSSpiderMastermind3Chance = 20;
+BSSpiderMastermind4 = "BFGMastermind"; BSSpiderMastermind4Chance = 20;
+BSSpiderMastermind5 = "InsanitySpider"; BSSpiderMastermind5Chance = 20;
+BSSpiderMastermind6 = "InsanityArachnophyte"; BSSpiderMastermind6Chance = 16;
+BSSpiderMastermind7 = "EmpoweredBFGArachnophyte"; BSSpiderMastermind7Chance = 16;
+BSSpiderMastermind8 = "CerebralSentient"; BSSpiderMastermind8Chance = 16;
+BSSpiderMastermind9 = "DemolisherMKII"; BSSpiderMastermind9Chance = 15;
+BSSpiderMastermind10 = "InsanityDemolisher"; BSSpiderMastermind10Chance = 13;
+BSSpiderMastermind11 = "Overseer"; BSSpiderMastermind11Chance = 13;
+BSSpiderMastermind12 = "InsanitySentient"; BSSpiderMastermind12Chance = 10;
+BSSpiderMastermind13 = "CerebralCardinal"; BSSpiderMastermind13Chance = 8;
+BSSpiderMastermind14 = "CardihilatorDemolisher"; BSSpiderMastermind14Chance = 8;
+BSSpiderMastermind15 = "GoreCarrier"; BSSpiderMastermind15Chance = 7;
+BSSpiderMastermind16 = "Ebonhound"; BSSpiderMastermind16Chance = 7;
+BSSpiderMastermind17 = "CorruptedSentient"; BSSpiderMastermind17Chance = 7;
+BSSpiderMastermind18 = "SacrosanctOverseer"; BSSpiderMastermind18Chance = 5;
+BSSpiderMastermind19 = "InsaneWritheQueen"; BSSpiderMastermind19Chance = 4;
+
+BSSpiderMastermindBossCount = 7;
+BSSpiderMastermind20 = "LegendarySentient"; BSSpiderMastermind20Chance = 3;
+BSSpiderMastermind21 = "sin-genjitsu3"; BSSpiderMastermind21Chance = 3;
+BSSpiderMastermind22 = "EnragedLegendarySentient"; BSSpiderMastermind22Chance = 2;
+BSSpiderMastermind23 = "NemesisSentient"; BSSpiderMastermind23Chance = 2;
+BSSpiderMastermind24 = "CFOverlord"; BSSpiderMastermind24Chance = 1;
+BSSpiderMastermind25 = "EvaccanniaDOOM"; BSSpiderMastermind25Chance = 1;
+BSSpiderMastermind26 = "CerebralCommander"; BSSpiderMastermind26Chance = 1;
+
+
+
+BSCyberdemonCount = 21; BSCyberdemonTotal = 387;
+BSCyberdemonCut = 4; BSCyberdemonT = 176;
+BSCyberdemon0 = ""; BSCyberdemon0Chance = 0;
+BSCyberdemon1 = "CFAnnihilator"; BSCyberdemon1Chance = 100;
+BSCyberdemon2 = "DarkCyberdemon"; BSCyberdemon2Chance = 30;
+BSCyberdemon3 = "CorruptedCyberLord"; BSCyberdemon3Chance = 23;
+BSCyberdemon4 = "Desolator"; BSCyberdemon4Chance = 23;
+BSCyberdemon5 = "PhaseCyberdemon"; BSCyberdemon5Chance = 20;
+BSCyberdemon6 = "Cardinal"; BSCyberdemon6Chance = 15;
+BSCyberdemon7 = "Thamuz"; BSCyberdemon7Chance = 14;
+BSCyberdemon8 = "DarkAnnihilator"; BSCyberdemon8Chance = 13;
+BSCyberdemon9 = "EmpoweredDarkCyberdemon"; BSCyberdemon9Chance = 13;
+BSCyberdemon10 = "ClockworkCyberdemon"; BSCyberdemon10Chance = 12;
+BSCyberdemon11 = "Thamuz-Lord"; BSCyberdemon11Chance = 11;
+BSCyberdemon12 = "Cardihilator"; BSCyberdemon12Chance = 9;
+BSCyberdemon13 = "ClockworkAnnihilator"; BSCyberdemon13Chance = 9;
+BSCyberdemon14 = "Apprentice"; BSCyberdemon14Chance = 7;
+BSCyberdemon15 = "ClockworkCardinal"; BSCyberdemon15Chance = 6;
+BSCyberdemon16 = "HellfrostCardihilator"; BSCyberdemon16Chance = 6;
+BSCyberdemon17 = "HellfrostCyberdemon"; BSCyberdemon17Chance = 6;
+BSCyberdemon18 = "TerminatorPrototype"; BSCyberdemon18Chance = 6;
+BSCyberdemon19 = "Frostdemon"; BSCyberdemon19Chance = 5;
+BSCyberdemon20 = "CorruptedCardinal"; BSCyberdemon20Chance = 5;
+
+BSCyberdemonBossCount = 31;
+BSCyberdemon21 = "LegendaryCyberdemon"; BSCyberdemon21Chance = 4;
+BSCyberdemon22 = "Freezemotaur"; BSCyberdemon22Chance = 4;
+BSCyberdemon23 = "Plamexis"; BSCyberdemon23Chance = 4;
+BSCyberdemon24 = "Exos"; BSCyberdemon24Chance = 4;
+BSCyberdemon25 = "Maephisto"; BSCyberdemon25Chance = 4;
+BSCyberdemon26 = "DeathLord"; BSCyberdemon26Chance = 3;
+BSCyberdemon27 = "Supremotaur"; BSCyberdemon27Chance = 3;
+BSCyberdemon28 = "Utsuho"; BSCyberdemon28Chance = 2;
+BSCyberdemon29 = "LegendaryAnnihilator"; BSCyberdemon29Chance = 2;
+BSCyberdemon30 = "EnragedLegendaryCyberdemon"; BSCyberdemon30Chance = 2;
+BSCyberdemon31 = "NemesisCyberdemon"; BSCyberdemon31Chance = 2;
+BSCyberdemon32 = "MagaReimu"; BSCyberdemon32Chance = 1;
+BSCyberdemon33 = "Arcradimus"; BSCyberdemon33Chance = 1;
+BSCyberdemon34 = "HellsMinister"; BSCyberdemon34Chance = 1;
+BSCyberdemon35 = "LegendaryCardinal"; BSCyberdemon35Chance = 1;
+BSCyberdemon36 = "HellfireCyberdemon"; BSCyberdemon36Chance = 1;
+BSCyberdemon37 = "RMTerminator"; BSCyberdemon37Chance = 1;
+BSCyberdemon38 = "DementedTerminator"; BSCyberdemon38Chance = 1;
+BSCyberdemon39 = "AbyssalSatyr"; BSCyberdemon39Chance = 1;
+BSCyberdemon40 = "Moloch"; BSCyberdemon40Chance = 1;
+BSCyberdemon41 = "CFHeresiarch"; BSCyberdemon41Chance = 1;
+BSCyberdemon42 = "LegendaryTerminator"; BSCyberdemon42Chance = 1;
+BSCyberdemon43 = "Corruption"; BSCyberdemon43Chance = 1;
+BSCyberdemon44 = "LordArchon"; BSCyberdemon44Chance = 1;
+BSCyberdemon45 = "LordOfInsanity"; BSCyberdemon45Chance = 1;
+BSCyberdemon46 = "CorruptedLegendaryCardinal"; BSCyberdemon46Chance = 1;
+BSCyberdemon47 = "HellfireCardinal"; BSCyberdemon47Chance = 1;
+BSCyberdemon48 = "NemHellsmith"; BSCyberdemon48Chance = 1;
+BSCyberdemon49 = "Hellsmith"; BSCyberdemon49Chance = 1;
+BSCyberdemon50 = "Hibachi"; BSCyberdemon50Chance = 1;
+BSCyberdemon51 = "Mainyu"; BSCyberdemon51Chance = 1;
+
+
+
+
+BSWolfensteinSSCount = 16; BSWolfensteinSSTotal = 332;
+BSWolfensteinSSCut = 2; BSWolfensteinSST = 150;
+BSWolfensteinSS0 = ""; BSWolfensteinSS0Chance = 0;
+BSWolfensteinSS1 = "Guard"; BSWolfensteinSS1Chance = 100;
+BSWolfensteinSS2 = "SSNazi"; BSWolfensteinSS2Chance = 50;
+BSWolfensteinSS3 = "Mutant"; BSWolfensteinSS3Chance = 36;
+BSWolfensteinSS4 = "Officer"; BSWolfensteinSS4Chance = 30;
+BSWolfensteinSS5 = "NaziDog"; BSWolfensteinSS5Chance = 24;
+BSWolfensteinSS6 = "Cyberhund"; BSWolfensteinSS6Chance = 20;
+BSWolfensteinSS7 = "SSRocketMan"; BSWolfensteinSS7Chance = 16;
+BSWolfensteinSS8 = "SSDualRocketMan"; BSWolfensteinSS8Chance = 14;
+BSWolfensteinSS9 = "SSSuperSoldier"; BSWolfensteinSS9Chance = 12;
+BSWolfensteinSS10 = "RocketDoge"; BSWolfensteinSS10Chance = 12;
+BSWolfensteinSS11 = "Darko"; BSWolfensteinSS11Chance = 3;
+BSWolfensteinSS12 = "Hitler"; BSWolfensteinSS12Chance = 3;
+BSWolfensteinSS13 = "SSUberSoldat"; BSWolfensteinSS13Chance = 2;
+BSWolfensteinSS14 = "SSUberSoldierExMinigun"; BSWolfensteinSS14Chance = 2;
+BSWolfensteinSS15 = "SSSuperSoldierPyroCannon"; BSWolfensteinSS15Chance = 2;
+
+BSWolfensteinSSBossCount = 6;
+BSWolfensteinSS16 = "CFDeathKnight"; BSWolfensteinSS16Chance = 1;
+BSWolfensteinSS17 = "PanzGrosse"; BSWolfensteinSS17Chance = 1;
+BSWolfensteinSS18 = "TrueHitler"; BSWolfensteinSS18Chance = 1;
+BSWolfensteinSS19 = "Schabbs"; BSWolfensteinSS19Chance = 1;
+BSWolfensteinSS20 = "LegendaryKrieger"; BSWolfensteinSS20Chance = 1;
+BSWolfensteinSS21 = "IncubusKaiser"; BSWolfensteinSS21Chance = 1;
+

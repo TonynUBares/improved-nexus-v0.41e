@@ -1,0 +1,62 @@
+ACTOR LegendaryTechBarrel : ModdedExplosiveBarrel
+{
+ Scale 1.2
+ -FORCERADIUSDMG
+ DamageFactor "Legendary", 0.0
+ DamageFactor "Legendary1", 0.0
+ DeathSound "Weapons/GuruBlast3"
+ Obituary "%o payed the ultimate price for his greed."
+ Tag "Legendary Tech Barrel"
+ States
+ {
+  Spawn:
+	LTBB A 6 Bright A_SpawnItem("LHellionSmokeSpawner",0,0,0,0)
+	Loop
+  Death:
+	TNT1 A 0 Bright
+	TNT1 A 1 Bright A_StopSound
+	TNT1 A 0 Bright A_UnSetSolid
+	TNT1 A 0 Bright A_UnSetShootable
+	TNT1 A 1 Bright A_Explode(2048,192,0,1)
+	TNT1 A 1 Bright A_ChangeFlag(FORCERADIUSDMG,1)
+	TNT1 A 0 Bright A_CustomBulletAttack(0,0,1,10000,"LegSBomberAttack",1588)
+	TNT1 A 0 Bright Radius_Quake(7,105,0,140,0)
+	TNT1 A 0 Bright A_SpawnItemEx("BlueParticleSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE) 
+	TNT1 AAA 0 Bright A_CustomMissile("BlueKaboom3",0,0,random(0,360),CMF_AIMDIRECTION,random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX2",0,0,random(0,360),CMF_AIMDIRECTION,random(0,360))
+	TNT1 A 0 Bright A_PlaySound("Weapons/GuruBlast3",6,1.0,0)
+	TNT1 A 1 A_SpawnItemEx("LegBarrelBoom",0,0,32)
+	Stop
+ }
+}
+
+Actor LegBarrelBoom
+{
+ PROJECTILE
+ RENDERSTYLE ADD
+ DamageType "Legendary"
+ +SPAWNSOUNDSOURCE
+ +EXTREMEDEATH
+ +SPAWNSOUNDSOURCE
+ +FORCERADIUSDMG
+ Obituary "%o payed the ultimate price for his greed."
+ States
+ {
+  Spawn:
+	TNT1 A 0 A_PlaySound("Weapons/GuruBlast3",5) 
+	Goto Death
+  Death:
+	TNT1 A 0 A_PlaySound("Weapons/GuruBlast3",5)
+	//COLLATERAL DAMAGE EFFECTS
+	TNT1 A 0 A_Explode(2048,192,0,1)
+	TNT1 A 0 A_BFGSpray("CFGuruSpray",15,20)
+
+	//IMPACT STUFF
+	TNT1 A 0 A_SpawnItemEx("CFGuruStruckGlowX",0,0,10,0,0,0,0,128,0)
+	TNT1 A 0 A_SpawnItemEx("CFGuruStruckGlowY",0,0,10,0,0,0,0,128,0)
+	TNT1 AAAAAAAAAAA 0 A_SpawnItemEx("CyberGuruSphereSmoke",random(126,-126),random(126,-126),random(66,-66),0.00001*random(100000,-100000),0.00001*random(100000,-100000),0.00001*random(100000,-100000),random(0,359),0,0)
+	TNT1 AAAAAAAAAAA 0 A_SpawnItemEx("CFGuruChunkSpark",random(126,-126),random(126,-126),random(66,-66),0,0,0,0,0,0)
+	TNT1 AAAAAAAAAAAAAAAAAAA 2 A_SpawnItemEx("CFGuruChunkSpark",random(126,-126),random(126,-126),random(66,-66),0,0,0,0,0,0)
+	Stop
+  }
+}

@@ -1,0 +1,329 @@
+ACTOR NightmareFamine : Famine 27221
+{
+  PainChance 40
+  Health 1000
+  Speed 15
+  SeeSound "EnragedFamine/sight"
+  PainSound "Huntertron/pain"
+  DeathSound "EnragedFamine/death"
+  ActiveSound "EnragedFamine/active"
+  HitObituary "%o was brutally beaten by the Nightmare Famine's bare fists."
+  Obituary "%o failed to dodge a Nightmare Famine's homing souls."
+  DropItem "RedArmor" 64
+  BloodColor "30 30 30"
+  Tag "$NENightFamine"
+  MeleeThreshold 60
+  +QUICKTORETALIATE
+  -LONGMELEERANGE
+  States
+  {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
+	Goto Idle
+  Idle:
+    EFMV A 10 A_Look
+    Loop
+  See:
+    TNT1 A 0 A_SpawnItem("BonyStep",0,0,0,0)
+    EFMV AABBCC 2 A_Chase
+    TNT1 A 0 A_SpawnItem("BonyStep",0,0,0,0)
+    EFMV DDEEFF 2 A_Chase
+    Loop
+  Melee:
+    TNT1 A 0 A_JumpIfInventory("EnragedFamineMeleeToken",1,"Melee2")
+    TNT1 A 0 A_FaceTarget
+    EFMV G 3 A_SkelWhoosh
+    EFMV H 3 A_FaceTarget
+	TNT1 A 0 A_GiveInventory("EnragedFamineMeleeToken",1)	
+    EFMV I 3 A_SkelFist
+    Goto See
+  Melee2:
+    TNT1 A 0 A_FaceTarget
+    EFMV R 3 A_SkelWhoosh
+    EFMV S 3 A_FaceTarget
+	TNT1 A 0 A_TakeInventory("EnragedFamineMeleeToken",1)	
+    EFMV T 3 A_SkelFist
+    Goto See
+  Missile:
+    TNT1 A 0 A_JumpIfCloser(275,"DashPunch")
+	TNT1 A 0 A_Jump(20,"Brimstone")
+  Normal:		
+    EFMV J 14 Bright A_FaceTarget
+    TNT1 A 0 A_CustomMissile("FamineTracer", 40, -14, 0)
+    EFMV K 10 A_CustomMissile("FamineTracer", 40, 14, 0) 
+	EFMV K 10
+	TNT1 A 0 A_Jump(64,"Pause")
+    Goto Normal
+  Rage:		
+	TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+	TNT1 A 0 A_PlaySound("EnragedFamine/sight")
+    EFMV J 14 Bright A_FaceTarget
+    TNT1 A 0 A_CustomMissile("FamineTracer", 40, -14, 0)
+    EFMV K 10 A_CustomMissile("FamineTracer", 40, 14, 0)
+	EFMV J 7 Bright A_FaceTarget
+	TNT1 A 0 A_CustomMissile("FamineTracer", 40, -14, 0)
+    EFMV K 10 A_CustomMissile("FamineTracer", 40, 14, 0)
+	EFMV J 7 Bright A_FaceTarget
+	TNT1 A 0 A_CustomMissile("FamineTracer", 40, -14, 0)
+    EFMV K 10 A_CustomMissile("FamineTracer", 40, 14, 0)
+	EFMV J 7 Bright A_FaceTarget
+	TNT1 A 0 A_CustomMissile("FamineTracer", 40, -14, 0)
+    EFMV K 10 A_CustomMissile("FamineTracer", 40, 14, 0)
+	TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+	EFMV K 10
+    Goto See
+  Brimstone:		
+	TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+	EFMV J 4 Bright A_PlaySoundEx("EnragedFamine/sight","Voice")
+    TNT1 A 0 A_SpawnItem("EnragedHellionSmokeSpawner",0,0,0,0)
+	EFMV J 4 Bright A_FaceTarget
+    TNT1 A 0 A_SpawnItem("EnragedHellionSmokeSpawner",0,0,0,0)
+	EFMV J 4 Bright A_FaceTarget
+    TNT1 A 0 A_SpawnItem("EnragedHellionSmokeSpawner",0,0,0,0)
+	EFMV J 4 Bright A_FaceTarget
+    TNT1 A 0 A_SpawnItem("EnragedHellionSmokeSpawner",0,0,0,0)
+	EFMV J 4 Bright A_FaceTarget
+    TNT1 A 0 A_SpawnItem("EnragedHellionSmokeSpawner",0,0,0,0)
+	EFMV J 4 Bright A_FaceTarget
+    TNT1 A 0 A_SpawnItem("EnragedHellionSmokeSpawner",0,0,0,0)
+	EFMV J 4 Bright A_FaceTarget
+    TNT1 A 0 A_SpawnItem("EnragedHellionSmokeSpawner",0,0,0,0)
+	EFMV J 4 Bright A_FaceTarget
+    TNT1 A 0 A_SpawnItem("EnragedHellionSmokeSpawner",0,0,0,0)
+	EFMV J 4 Bright A_FaceTarget
+    TNT1 A 0 A_SpawnItem("EnragedHellionSmokeSpawner",0,0,0,0)
+	EFMV J 4 Bright A_FaceTarget
+    EFMV J 14 Bright A_FaceTarget
+    TNT1 A 0 A_CustomMissile("RevBrimstoneRailCore",48,0,0)
+    TNT1 A 0 A_CustomMissile("RevBrimstoneRail",48,0,0)
+	TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+	EFMV K 12
+    Goto See
+  DashPunch:
+    TNT1 A 0 A_Jump(32,"Normal")
+    TNT1 A 0 A_JumpIfInventory("EnragedFamineMeleeToken",1,"DashPunch2")
+	TNT1 A 0 A_FaceTarget
+    TNT1 A 0 A_Recoil(-40)
+    TNT1 A 0 A_SkelWhoosh	
+	EFMV GGGGG 1 A_SpawnItemEx("EnragedFamineDashGhostA",0,0,0,0,0,0,0,128)
+    TNT1 A 0 A_GiveInventory("EnragedFamineMeleeToken",1)
+	EFMV HHHHH 1 A_SpawnItemEx("EnragedFamineDashGhostA2",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_CustomMissile("EnragedFamineDashPunch",32,0,0,CMF_AIMDIRECTION)
+	EFMV III 1 A_SpawnItemEx("EnragedFamineDashGhostA3",0,0,0,0,0,0,0,128)
+	EFMV T 2 A_Stop	
+    Goto See
+  DashPunch2:
+    TNT1 A 0 A_Jump(32,"Normal")
+	TNT1 A 0 A_FaceTarget
+    TNT1 A 0 A_Recoil(-40)
+    TNT1 A 0 A_SkelWhoosh	
+	EFMV RRRRR 1 A_SpawnItemEx("EnragedFamineDashGhostB",0,0,0,0,0,0,0,128)
+    TNT1 A 0 A_TakeInventory("EnragedFamineMeleeToken",1)
+	EFMV SSSSS 1 A_SpawnItemEx("EnragedFamineDashGhostB2",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_CustomMissile("EnragedFamineDashPunch",32,0,0,CMF_AIMDIRECTION)
+	EFMV TTT 1 A_SpawnItemEx("EnragedFamineDashGhostB3",0,0,0,0,0,0,0,128)
+	EFMV T 2 A_Stop
+    Goto See	
+  Pause:
+	EFMV K 10
+	Goto See
+  Pain:
+    TNT1 A 0 A_Jump(42,"PainEvade","PainEvade2")
+    TNT1 A 0 A_Jump(104,"MissilePain")
+    EFMV L 10 A_Pain
+    Goto See
+  PainEvade:
+	TNT1 A 0 A_Pain
+	TNT1 A 0 A_FaceTarget
+	TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+	TNT1 A 0 ThrustThing(Angle*256/360+64,20,0,0)
+    EFMV AAAAAAAA 1 A_SpawnItemEx("EnragedFamineGhost",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	TNT1 A 0 A_ChangeFlag(NOPAIN,0)
+	TNT1 A 0 A_Jump(62,"Missile")
+	Goto See
+  PainEvade2:
+	TNT1 A 0 A_Pain
+	TNT1 A 0 A_FaceTarget
+	TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+	TNT1 A 0 ThrustThing(Angle*256/360+192,20,0,0)
+    EFMV AAAAAAAA 1 A_SpawnItemEx("EnragedFamineGhost",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	TNT1 A 0 A_ChangeFlag(NOPAIN,0)
+	TNT1 A 0 A_Jump(62,"Missile")
+	Goto See
+  MissilePain:
+	EFMV L 10 A_Pain
+	TNT1 A 0 A_Jump(60,"Rage")
+	TNT1 A 0 A_Jump(30,"Brimstone")
+    Goto Missile
+  Death:
+  XDeath:
+    TNT1 A 0 A_ChangeFlag(NOPAIN,0)
+	TNT1 A 0 A_JumpIfInventory("EnragedFamineDeathToken",1,"TrueDeath")
+	TNT1 A 0 A_Die
+	TNT1 A 0 A_NoBlocking
+	TNT1 A 0 A_Jump(84,"FakeDeath")
+  TrueDeath:
+	TNT1 A 0 A_Jump(128,2,3,4,5,6)
+	TNT1 A 0 A_SpawnItem("DemonAmmoBox",0,12)
+	TNT1 A 0 A_SpawnItem("BossLifeEssence",0,12)
+	TNT1 A 0 A_SpawnItem("BossArmorBonusMax",0,12)
+	TNT1 A 0 A_SpawnItem("BossLifeEssence",0,12)
+	TNT1 A 0 A_SpawnItem("BossArmorBonusMax",0,12)
+	TNT1 A 0 A_SpawnItemEx("BrimstoneItem",0,0,8,random(0,2),random(0,2),2,random(0,360),0,90)
+    EFMX A 5 Bright
+	TNT1 AAA 0 A_SpawnItemEx("RedParticleSpawner", 0, 0, 40, 0, 0, 0, 0, 128)
+    EFMX B 5 Bright A_Scream
+    EFMX C 5 Bright
+	EFMX D 5 Bright A_CustomMissile("FamineSoul",72,0,0,2,90)
+	TNT1 AAAA 0 A_CustomMissile("SmokeFX", Random(30,60), 0, random(0,360), 2, random(0,360))
+	EFMX EFGH 4 Bright
+	EFMX I 4 A_SpawnItem("BodyCrash",0,0,0,0)
+	EFMX J 4 A_TakeInventory("EnragedFamineDeathToken",1)
+    EFMX K -1
+    Stop
+  FakeDeath:
+    EFMV L 7 A_GiveInventory("EnragedFamineDeathToken",1)
+	EFMV MNO 7
+    EFMV P 7 A_SpawnItem("BodyCrash",0,0,0,0)
+    TNT1 A 0 A_Jump(128,2,3,4,5)
+    EFMV QQQQQ 100
+	TNT1 A 0 A_CustomMissile("EnragedFamineResurrection",0,0,0)
+	EFMV Q -1
+	Stop
+  Raise:
+ 	TNT1 A 0
+    TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+    EFMV PONML 5
+    Goto See
+    }
+}
+
+ACTOR EnragedFamineMeleeToken : Inventory
+{
+Inventory.Amount 2
+Inventory.MaxAmount 2
+}
+
+ACTOR EnragedFamineDeathToken : Inventory
+{
+Inventory.Amount 2
+Inventory.MaxAmount 2
+}
+
+ACTOR EnragedFamineResurrection
+{ 
+Radius 12
+Height 5
+Speed 4
+PROJECTILE
++NOCLIP
+States 
+{ 
+Spawn: 
+	TNT1 AAAAAA 1 A_VileChase 
+	Stop 
+Heal: 
+	TNT1 A 1 
+	Stop
+	} 
+}
+
+ACTOR EnragedFamineDashGhostA
+{
+Scale 0.8
+RENDERSTYLE Translucent
+Alpha 0.75
++NOGRAVITY
++CLIENTSIDEONLY
++DONTSPLASH
++NOINTERACTION
++NOCLIP
+States
+{
+Spawn:
+    EFMV G 2 A_FadeOut(0.18)
+    Loop
+    }
+}
+
+ACTOR EnragedFamineDashGhostA2 : FamineDashGhostA
+{
+States
+{
+Spawn:
+    EFMV H 2 A_FadeOut(0.18)
+    Loop
+    }
+}
+
+ACTOR EnragedFamineDashGhostA3 : FamineDashGhostA
+{
+States
+{
+Spawn:
+    EFMV I 2 A_FadeOut(0.18)
+    Loop
+    }
+}
+
+
+ACTOR EnragedFamineDashGhostB : FamineDashGhostA
+{
+States
+{
+Spawn:
+    EFMV R 2 A_FadeOut(0.18)
+    Loop
+    }
+}
+
+ACTOR EnragedFamineDashGhostB2 : FamineDashGhostA
+{
+States
+{
+Spawn:
+    EFMV S 2 A_FadeOut(0.18)
+    Loop
+    }
+}
+
+ACTOR EnragedFamineDashGhostB3 : FamineDashGhostA
+{
+States
+{
+Spawn:
+    EFMV T 2 A_FadeOut(0.18)
+    Loop
+    }
+}
+
+ACTOR EnragedFamineGhost : FamineDashGhostA
+{
+States
+{
+Spawn:
+    EFMV A 2 A_FadeOut(0.12)
+    Loop
+    }
+}
+
+ACTOR EnragedFamineDashPunch : FastProjectile
+{
+   Height 16
+   Radius 18
+   Speed 50
+   Damage (6*Random(12,20))
+   Species "Skeletons"
+   SeeSound ""  
+   DeathSound "skeleton/melee"  
+   +THRUSPECIES
+   States
+   {
+   Spawn:
+    TNT1 A 2
+    Stop
+   Death:
+    TNT1 A 1
+    Stop
+    }
+}

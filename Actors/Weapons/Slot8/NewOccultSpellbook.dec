@@ -1,0 +1,835 @@
+Actor OccultDelay : Inventory
+{
+ Inventory.MaxAmount 1
+ States
+ {
+  Held:
+	TNT1 A 140
+	Stop
+ }
+}
+
+Actor OccultChoice1 : Inventory { Inventory.MaxAmount 1 }
+Actor OccultChoice2 : OccultChoice1 {}
+Actor OccultChoice3 : OccultChoice1 {}
+Actor OccultChoice4 : OccultChoice1 {}
+Actor OccultChoice5 : OccultChoice1 {}
+
+
+Actor OccultSpellbookGiver : CustomInventory
+{
+  Inventory.Amount 1
+  Inventory.MaxAmount 0
+  Inventory.InterHubAmount 0
+  Inventory.PickupMessage "You found the Occult Spellbook! What chaotic sorcery does this thing hold?"
+  +FLOATBOB
+  Tag "Occult Spellbook"
+  States
+  {
+  Spawn:
+	OBOK A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckMods",3) == 1,"HoldAndDestroy")
+	TNT1 A 0 ACS_NamedExecuteWithResult("WeaponListCheck",8,0)
+	OBOK A -1 
+	Stop
+  Pickup:
+	TNT1 A 0 A_JumpIfInventory("OccultSpellbook",1,"JustAmmo")
+  All:
+	TNT1 A 0 A_GiveInventory("OccultSpellbook",1)
+	TNT1 A 0 A_JumpIfInventory("OccultSpellbookGiverCheck",1,"HoldAndDestroy")
+	TNT1 A 0 A_GiveInventory("OccultSpellbookGiverCheck",1)
+	TNT1 A 0 A_GiveInventory("CFMana",50)
+	Stop
+  JustAmmo:
+    TNT1 A 0 A_JumpIfInventory("OccultSpellbookGiverCheck",1,"Null")
+	TNT1 A 0 A_GiveInventory("OccultSpellbookGiverCheck",1)
+	TNT1 A 0 A_GiveInventory("CFMana",50)
+	TNT1 A 0 A_SpawnItemEx("OccultSpellbook")
+	Stop
+  }
+}
+
+Actor OccultSpellbookSpawnerGiver : OccultSpellbookGiver
+{
+  States
+  {
+  JustAmmo:
+    TNT1 A 0 A_JumpIfInventory("OccultSpellbookGiverCheck",1,"Null")
+	TNT1 A 0 A_GiveInventory("OccultSpellbookGiverCheck",1)
+	TNT1 A 0 A_GiveInventory("CFMana",50)
+	Stop
+  }
+}
+
+Actor OccultSpellbookGiverCheck : Inventory { Inventory.Amount 1 Inventory.MaxAmount 1 Inventory.InterHubAmount 0 }
+
+Actor OccultSpellbook : Weapon 17601
+{
+  Inventory.PickupSound "HellStaff/Pickup"
+  Weapon.AmmoGive1 50 
+  Weapon.AmmoUse1 1
+  Weapon.AmmoType1 "CFMana"
+  Weapon.AmmoType2 "CFMana"
+  Weapon.SlotNumber 8
+  Weapon.SlotPriority 1.0
+  Damagetype "RailG"
+  Tag "Occult Spellbook"
+  Inventory.PickupMessage "You found the Occult Spellbook! What chaotic sorcery does this thing hold?"
+  +FLOATBOB
+  +WEAPON.NOALERT
+  -INVENTORY.UNDROPPABLE
+  States
+  {
+  Spawn:
+	OBOK A -1 
+	Loop  
+  Ready: 
+	TNT1 A 0 A_JumpIfInventory("OccultDarkMatterToken2",1,"Ready2")
+	TNT1 A 0 A_JumpIfInventory("OccultChaosLightningToken2",1,"Ready3")
+	TNT1 A 0 A_JumpIfInventory("OccultSlicerToken2",1,"Ready4")
+	TNT1 A 0 A_JumpIfInventory("SummonerToken2",1,"Ready5")
+  Ready1:
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"ToSlicer")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"ToSummoner")
+	SPBK A 1 A_WeaponReady(WRF_ALLOWZOOM|WRF_ALLOWRELOAD)
+	Loop
+  Ready2:
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"ToSlicer")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"ToSummoner")
+	SPBD A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+	Loop
+  Ready3:
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"ToSlicer")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"ToSummoner")
+	SPBC A 1 A_WeaponReady(WRF_ALLOWZOOM)
+	Loop
+  Ready4:
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"SlicerSwitch")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"ToSummoner")
+	SBXS A 1 A_WeaponReady(WRF_ALLOWZOOM|WRF_ALLOWRELOAD)
+	Loop
+  Ready5:
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"SummonerSwitch")
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"ToSlicer")
+	SBVV A 1 A_WeaponReady(WRF_ALLOWZOOM|WRF_ALLOWRELOAD)
+	TNT1 A 0 A_TakeInventory("VileCache",999)
+	Loop
+   Deselect:
+	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",1)
+	"####" A 0 A_TakeInventory("HandGrenadeAction",1)
+	"####" A 0 A_TakeInventory("MineAction",1)
+	"####" A 0 A_PlayWeaponSound("weapons/weapondown")
+  DeselectLoop:
+	"####" A 0 A_Lower
+	"####" A 1 A_Lower
+	Loop
+  Select:
+	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",0)
+	TNT1 A 0 A_JumpIfInventory("OccultDarkMatterToken2",1,"Select2")
+	TNT1 A 0 A_JumpIfInventory("OccultChaosLightningToken2",1,"Select3")
+	TNT1 A 0 A_JumpIfInventory("OccultSlicerToken2",1,"Select4")
+	TNT1 A 0 A_JumpIfInventory("SummonerToken2",1,"Select5")
+  Select1:
+	SPBK A 0 A_Raise
+	SPBK A 1 A_Raise 
+	Loop
+  Select2:
+	SPBD A 0 A_Raise
+	SPBD A 1 A_Raise 
+	Loop
+  Select3:
+	SPBC A 0 A_Raise
+	SPBC A 1 A_Raise 
+	Loop
+  Select4:
+	SBXS A 0 A_Raise
+	SBXS A 1 A_Raise 
+	Loop
+  Select5:
+	SBVV A 0 A_Raise
+	SBVV A 1 A_Raise 
+	Loop
+  Fire:
+	TNT1 A 0 A_JumpIfNoAmmo("Ready")
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 A_JumpIfInventory("OccultDarkMatterToken2",1,"Fire2")
+	TNT1 A 0 A_JumpIfInventory("OccultChaosLightningToken2",1,"Fire3")
+	TNT1 A 0 A_JumpIfInventory("OccultSlicerToken2",1,"Fire4")
+	TNT1 A 0 A_JumpIfInventory("SummonerToken2",1,"Fire5")
+  Fire1:
+	SPBK A 10 A_Playsound("Spellbook/Charge")
+	SPBK BCDEF 4
+  FireContinue:
+	SPBK A 0 A_JumpIfNoAmmo("Firestop")
+	TNT1 A 0 A_PlaySound("Spellbook/Fire1")
+	SPBK GH 2 Bright A_RailAttack(random(6,8)*2,5,1,"none","none",RGF_SILENT,30,"PlayerRailPuff",0,0,0,0,12.0,0,"OccultLaserTrail",-2)
+	TNT1 A 0 A_PlaySound("Spellbook/Fire1")
+	SPBK IJ 2 Bright A_RailAttack(random(6,8)*2,5,1,"none","none",RGF_SILENT,30,"PlayerRailPuff",0,0,0,0,12.0,0,"OccultLaserTrail",-2)
+	TNT1 A 0 A_Refire("FireContinue")
+  FireStop:
+	SPBK FEDCB 4
+	Goto Ready
+  Fire2:
+	TNT1 A 0 A_JumpIfInventory("CFMana",30,1)
+	Goto Ready2
+	SPBD A 10 A_Playsound("Spellbook/Charge")
+	SPBD BCD 4
+	TNT1 A 0 A_TakeInventory("CFMana",30,TIF_NOTAKEINFINITE)
+	SPBD E 10 A_FireCustomMissile("PlayerDarkMatterBall",0,0)
+	SPBD FGHIJKL 3
+	Goto Ready2
+  Fire3:
+	TNT1 A 0 A_JumpIfInventory("CFMana",100,1)
+	Goto Ready3
+	SPBC A 5 A_Playsound("Spellbook/Charge2")
+	SPBC BCDEF 3
+	TNT1 A 0 A_JumpIfInventory("LegDoubleFiringSpeed",1,"Fire3Rune")
+	TNT1 A 0 A_FireCustomMissile("OccultSpellbookChaosCharging",0,0,0,30)
+	Goto Fire3Continue
+  Fire3Rune:
+	TNT1 A 0 A_FireCustomMissile("OccultSpellbookChaosCharging2",0,0,0,30)
+  Fire3Continue:
+	SPBC GHIJGHIJGH 5
+	TNT1 A 0 A_TakeInventory("CFMana",100,TIF_NOTAKEINFINITE)
+	TNT1 A 0 A_PlaySound("comet/launch",7)
+	TNT1 A 0 A_PlaySound("legsoul/attack2",6)
+	SPBC K 6 A_FireCustomMissile("ChaosSuperLightningProjPlayer",0,0)
+	SPBC LM 5
+	SPBC NOGFEDCB 3
+	Goto Ready3
+  Fire4:
+	TNT1 A 0 A_JumpIfInventory("CFMana",60,1)
+	Goto Ready4
+	TNT1 A 0 A_JumpIfInventory ("SlicerUpgraded", 1, "Fire4Continue2")
+	SBXS A 4 A_PlaySound ("weapons/lightningstarter")
+	SBXS BC 4 Bright
+	SBXS D 4 Bright A_FireBullets(0,0,1,666,"SlicerPuff",FBF_NORANDOM,128)
+	SBXS EFG 4 Bright
+	SBXS H 4 A_ReFire("Fire4Hold")
+	SBXS I 4
+	Goto Ready4
+  Fire4Continue2:
+	SBXS A 4 A_PlaySound ("darkthunder/charge2")
+	SBX3 BCDE 4
+	SBX3 F 4 Bright A_FireCustomMissile("FakeLoreShot2",0,0,0,-1)
+	SBX3 G 4 Bright A_ReFire("Fire4Holding2")
+	SBX3 HI 4 Bright
+	SBX3 J 4
+	SBXS I 4
+	Goto Ready4
+  Fire4Holding2:
+	SBX3 S 4 Bright A_JumpIfCloser(128, "Fire4Go2")
+	SBX3 T 4 Bright A_FireCustomMissile("FakeLoreShot2",0,0,0,-1)
+	SBX3 U 4 Bright A_JumpIfCloser(128, "Fire4Go2")
+	SBX3 F 4 Bright A_FireCustomMissile("FakeLoreShot2",0,0,0,-1)
+	TNT1 A 0 Bright A_ReFire("Fire4Holding2")
+	SBX3 GHI 4 Bright
+	SBX3 J 4
+	SBXS I 4
+	Goto Ready4
+  Fire4Hold:
+	SBXS H 4
+	SBX2 FGH 4
+	SBX2 I 3 Bright
+	SBX2 J 2 Bright A_PlayWeaponSound ("weapons/lightningstarter")
+	SBX2 KLMNOPQR 2 Bright A_PlaySound ("weapons/waveidle")
+  Fire4Holding:
+	TNT1 A 0 A_PlaySound ("weapons/waveidle")
+	SBX2 OPQR 2 Bright A_FireBullets(0,0,1,6,"SlicerPuff2",0,64)
+	SBX2 R 2 Bright A_ReFire("Fire4Holding")
+	Goto Fire4Go
+  Fire4Go:
+	SBX2 STU 4 Bright
+	TNT1 A 0 A_TakeInventory("CFMana",60,TIF_NOTAKEINFINITE)
+	TNT1 A 0 A_PlayWeaponSound ("weapons/waveidle")
+	SBX2 V 1 Bright A_PlayWeaponSound ("weapons/wavelaunch")
+	SBX2 V 3 Bright A_FireCustomMissile("Slicer",0,0,0,0)
+	SBX2 W 4 Bright
+	SBX2 X 4
+	Goto Ready4
+  Fire4Go2:
+	SBX3 KL 2 Bright
+	TNT1 A 0 A_TakeInventory("CFMana",60,TIF_NOTAKEINFINITE)
+	SBX3 M 4 Bright A_FireBullets(0,0,1,0,"ThunderboltPuff",0,128)
+	SBX3 N 4 Bright
+	SBX3 OPQR 4
+	Goto Ready4
+  Fire5:
+	TNT1 A 0 A_JumpIfInventory("CFMana",300,"Fire5Continue")
+	TNT1 A 0 A_JumpIfInventory("CFMana",50,"Fire5Continue2")
+	Goto Ready5
+  Fire5Continue:
+	SBVV A 10
+	SBVV BCDE 4
+	TNT1 A 0 A_Refire("Fire5Hold")
+	Goto VileFire
+  Fire5Hold:
+	SBVV F 4 A_Playsound("Spellbook/Charge2")
+  Fire5Holding:
+	TNT1 A 0 A_JumpIfInventory ("VileCache", 50, "Fire5Level2")
+	SBVV GHIJ 5
+	TNT1 A 0 A_GiveInventory("VileCache",10)
+	TNT1 A 0 A_Refire("Fire5Holding")
+	Goto VileFire
+  Fire5Level2:
+	SBV2 GHIJ 5
+	TNT1 A 0 A_Refire("Fire5Level2Hold")
+	Goto VileFire
+  Fire5Level2Hold:
+	SBV3 GHIJ 5
+	TNT1 A 0 A_Refire("Fire5Level2Hold")
+	Goto VileFire	
+  Fire5Continue2:
+	SBVV A 10
+	SBVV BCDE 4
+	TNT1 A 0 A_Refire("Fire5Hold2")
+	Goto VileFire
+  Fire5Hold2:
+	SBVV F 4 A_Playsound("Spellbook/Charge2")
+  Fire5Holding2:
+	SBVV GHIJ 5
+	TNT1 A 0 A_Refire("Fire5Holding2")
+	Goto VileFire	
+  VileFire:
+	TNT1 A 0 A_JumpIfInventory ("VileCache", 50, "VileFire2")
+	TNT1 A 0 A_TakeInventory("CFMana",50)
+	TNT1 A 0 A_Playsound("weapons/vilesht2")
+	TNT1 A 0 A_FireCustomMissile("Vilefake",0,0,0,0)
+	SBVV PPPPP 2 A_SpawnItem("HellionSmokeAttackSpawnerArcradimus",0,0,0,0)
+	SBVV QRSTU 3
+	Goto Ready5
+  VileFire2:
+	SBV3 KLMNO 4
+	TNT1 A 0 A_JumpIfInventory ("SummonerUpgraded", 1, "VileFire3")
+	TNT1 A 0 A_TakeInventory("CFMana",300)
+	TNT1 A 0 A_Playsound("weapons/vilesht1")
+	TNT1 A 0 A_FireCustomMissile("Vilefake2",0,0,0,0) 
+	TNT1 A 0 A_FireCustomMissile("Vilefake2",15,0,0,0) 
+	TNT1 A 0 A_FireCustomMissile("Vilefake2",30,0,0,0) 
+	TNT1 A 0 A_FireCustomMissile("Vilefake2",45,0,0,0) 
+	TNT1 A 0 A_FireCustomMissile("Vilefake2",60,0,0,0) 
+	TNT1 A 0 A_FireCustomMissile("Vilefake2",75,0,0,0) 
+	TNT1 A 0 A_FireCustomMissile("Vilefake2",90,0,0,0) 
+	TNT1 A 0 A_FireCustomMissile("Vilefake2",105,0,0,0) 
+	TNT1 A 0 A_FireCustomMissile("Vilefake2",120,0,0,0) 
+	TNT1 A 0 A_FireCustomMissile("Vilefake2",135,0,0,0) 
+	TNT1 A 0 A_FireCustomMissile("Vilefake2",150,0,0,0) 
+	TNT1 A 0 A_FireCustomMissile("Vilefake2",165,0,0,0) 
+	TNT1 A 0 A_FireCustomMissile("Vilefake2",180,0,0,0) 
+	TNT1 A 0 A_FireCustomMissile("Vilefake2",195,0,0,0)
+	TNT1 A 0 A_FireCustomMissile("Vilefake2",210,0,0,0)
+	TNT1 A 0 A_FireCustomMissile("Vilefake2",225,0,0,0)
+	TNT1 A 0 A_FireCustomMissile("Vilefake2",240,0,0,0)
+	TNT1 A 0 A_FireCustomMissile("Vilefake2",255,0,0,0)
+	TNT1 A 0 A_FireCustomMissile("Vilefake2",270,0,0,0)
+	TNT1 A 0 A_FireCustomMissile("Vilefake2",285,0,0,0)
+	TNT1 A 0 A_FireCustomMissile("Vilefake2",300,0,0,0)
+	TNT1 A 0 A_FireCustomMissile("Vilefake2",315,0,0,0)
+	TNT1 A 0 A_FireCustomMissile("Vilefake2",330,0,0,0)
+	TNT1 A 0 A_FireCustomMissile("Vilefake2",345,0,0,0)
+	SBV3 PPPPPPPPPPPPPPPPPPPPPPPPP 2 A_SpawnItem("HellionSmokeAttackSpawnerArcradimus",0,0,0,0)
+	SBVV QRSTU 3
+	Goto Ready5
+  VileFire3:
+	TNT1 A 0 A_TakeInventory("CFMana",300)
+	TNT1 A 0 A_Playsound("weapons/vilesht1")
+  	SBV3 P 8 A_FireCustomMissile("PlayerVilefakeSpawn2",0,0,0)
+	SBVV QRSTU 3
+	Goto Ready5
+  AltFire:
+	"####" A 0 A_JumpIfInventory("OccultDelay",1,"Ready")
+	"####" A 0 ACS_NamedExecute("OccultScript")
+  AltFire2:
+	"####" A 1 A_JumpIfInventory("OccultChoice1",1,"ToLasers")
+	"####" A 1 A_JumpIfInventory("OccultChoice2",1,"Zoom")
+	"####" A 1 A_JumpIfInventory("OccultChoice3",1,"Reload")
+	"####" A 1 A_JumpIfInventory("OccultChoice4",1,"ToSlicer")
+	"####" A 1 A_JumpIfInventory("OccultChoice5",1,"ToSummoner")
+	"####" A 1 A_JumpIf(ACS_NamedExecuteWithResult("OccultEscape")==1,"Escape")
+	Loop
+  Escape:
+	"####" A 1 A_TakeInventory("OccultChoice1",1)
+	"####" A 0 A_TakeInventory("OccultChoice2",1)
+	"####" A 0 A_TakeInventory("OccultChoice3",1)
+	"####" A 0 A_TakeInventory("OccultChoice4",1)
+	"####" A 1 A_TakeInventory("OccultChoice5",1)
+	Goto Ready
+  ToLasers:
+	"####" A 1 A_WeaponReady(WRF_NOFIRE|WRF_DISABLESWITCH)
+	"####" A 0 A_TakeInventory("OccultChoice1",1)
+	"####" A 0 A_JumpIfInventory("OccultLasersToken2",1,"Ready1")
+	"####" A 0 A_TakeInventory("OccultDarkMatterToken2",1)
+	"####" A 0 A_TakeInventory("OccultChaosLightningToken2",1)
+	"####" A 0 A_TakeInventory("OccultSlicerToken2",1)
+	"####" A 0 A_TakeInventory("SummonerToken2",1)
+	"####" A 0 A_Print("Occult Lasers")
+	"####" A 12 A_GunFlash
+	TNT1 A 0 A_GiveInventory("OccultLasersToken2",1)
+	SPBK A 12
+	Goto Ready
+  Zoom: 
+	"####" A 1 A_WeaponReady(WRF_NOFIRE|WRF_DISABLESWITCH)
+	"####" A 1 A_TakeInventory("OccultChoice2",1)
+	"####" A 0 A_JumpIfInventory("OccultDarkMatterToken2",1,"Ready2")
+	"####" A 0 A_JumpIfInventory("OccultDarkMatterToken",1,2)
+	"####" A 0 A_Print("You don't have the Dark Matter upgrade yet!",0,"CFCONFONT")
+	Goto Ready
+	"####" A 1 A_TakeInventory("OccultLasersToken2",1)
+	"####" A 0 A_TakeInventory("OccultChaosLightningToken2",1)
+	"####" A 0 A_TakeInventory("OccultSlicerToken2",1)
+	"####" A 0 A_TakeInventory("SummonerToken2",1)
+	"####" A 0 A_Print("Dark Matter")
+	"####" A 12 A_GunFlash
+	TNT1 A 0 A_GiveInventory("OccultDarkMatterToken2",1)
+	SPBD A 12
+	Goto Ready2
+  Reload:
+	"####" A 1 A_WeaponReady(WRF_NOFIRE|WRF_DISABLESWITCH)
+	"####" A 1 A_TakeInventory("OccultChoice3",1)
+	"####" A 0 A_JumpIfInventory("OccultChaosLightningToken2",1,"Ready3")
+	"####" A 0 A_JumpIfInventory("OccultChaosLightningToken",1,2)
+	"####" A 0 A_Print("You don't have the Chaos Lightning upgrade yet!",0,"CFCONFONT")
+	Goto Ready
+	"####" A 0 A_TakeInventory("OccultLasersToken2",1)
+	"####" A 0 A_TakeInventory("OccultDarkMatterToken2",1)
+	"####" A 0 A_TakeInventory("OccultSlicerToken2",1)
+	"####" A 0 A_TakeInventory("SummonerToken2",1)
+	"####" A 0 A_Print("Chaos Lightning")
+	"####" A 12 A_GunFlash
+	TNT1 A 0 A_GiveInventory("OccultChaosLightningToken2",1)
+	SPBC A 12
+	Goto Ready3
+  ToSlicer:
+	"####" A 1 A_WeaponReady(WRF_NOFIRE|WRF_DISABLESWITCH)
+	"####" A 0 A_TakeInventory("OccultChoice4",1)
+	"####" A 0 A_JumpIfInventory("OccultSlicerToken2",1,"SlicerSwitch")
+	"####" A 0 A_TakeInventory("HandGrenadeAction",1)
+	"####" A 0 A_JumpIfInventory("OccultSlicerToken",1,2)
+	"####" A 0 A_Print("You don't have the Slicer upgrade yet!",0,"CFCONFONT")
+	Goto Ready
+	"####" A 0 A_TakeInventory("OccultLasersToken2",1)
+	"####" A 0 A_TakeInventory("OccultDarkMatterToken2",1)
+	"####" A 0 A_TakeInventory("OccultChaosLightningToken2",1)
+	"####" A 0 A_TakeInventory("SummonerToken2",1)
+	"####" A 0 A_JumpIfInventory("SlicerUpgraded",1,3)
+	"####" A 0 A_Print("Slicer")
+	"####" A 0 A_Jump(256,2)
+	"####" A 0 A_Print("Dark Thunderbolt")
+	"####" A 12 A_GunFlash
+	TNT1 A 0 A_GiveInventory("OccultSlicerToken2",1)
+	SBXS A 12
+	Goto Ready4
+  ToSummoner:
+	"####" A 1 A_WeaponReady(WRF_NOFIRE|WRF_DISABLESWITCH)
+	"####" A 0 A_TakeInventory("OccultChoice5",1)
+	"####" A 0 A_JumpIfInventory("SummonerToken2",1,"SummonerSwitch")
+	"####" A 0 A_TakeInventory("MineAction",1)
+	"####" A 0 A_JumpIfInventory("SummonerToken",1,2)
+	"####" A 0 A_Print("You don't have the Summoner upgrade yet!",0,"CFCONFONT")
+	Goto Ready
+	"####" A 0 A_TakeInventory("OccultLasersToken2",1)
+	"####" A 0 A_TakeInventory("OccultDarkMatterToken2",1)
+	"####" A 0 A_TakeInventory("OccultChaosLightningToken2",1)
+	"####" A 0 A_TakeInventory("OccultSlicerToken2",1)
+	"####" A 0 A_JumpIfInventory("SummonerUpgraded",1,3)
+	"####" A 0 A_Print("Summoner")
+	"####" A 0 A_Jump(256,2)
+	"####" A 0 A_Print("Mini Archviles")
+	"####" A 12 A_GunFlash
+	TNT1 A 0 A_GiveInventory("SummonerToken2",1)
+	SBVV A 12
+	Goto Ready5
+  Flash:
+	TNT1 A 0 A_Playsound("Soul/Fire")
+	SPBF ABCD 2
+	SPBF E 8 Bright
+	SPBF DCBA 2 Bright
+	Stop
+  SlicerSwitch:
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	TNT1 A 0 A_JumpIfInventory("SlicerUpgradeToken",1,3)
+	SBXS A 1 A_Print("You need more souls!",2,"CFCONFONT")
+	SBXS A 11
+	Goto Ready4
+	TNT1 A 0 A_JumpIfInventory("SlicerUpgraded",1,"SlicerSwitchBack")
+	TNT1 A 0 A_Print("Dark Thunderbolt")
+	SBXS A 12 A_Playsound("Soul/Fire")
+	TNT1 A 0 A_GiveInventory("SlicerUpgraded",1)
+	Goto Ready4
+  SlicerSwitchBack:
+	SBXS A 1 A_Print("Slicer")
+	SBXS A 11 A_Playsound("Soul/Fire")
+	TNT1 A 0 A_TakeInventory("SlicerUpgraded",1)
+	Goto Ready4
+  SummonerSwitch:
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	TNT1 A 0 A_JumpIfInventory("SummonerUpgradeToken",1,3)
+	SBVV A 1 A_Print("You need more souls!",2,"CFCONFONT")
+	SBVV A 11
+	Goto Ready5
+	TNT1 A 0 A_JumpIfInventory("SummonerUpgraded",1,"SummonerSwitchBack")
+	SBVV A 1 A_Print("Mini Archviles")
+	SBVV A 11 A_Playsound("Soul/Fire")
+	TNT1 A 0 A_GiveInventory("SummonerUpgraded",1)
+	Goto Ready5
+  SummonerSwitchBack:
+	TNT1 A 0 A_Print("Summoner")
+	SBVV A 12 A_Playsound("Soul/Fire")
+	TNT1 A 0 A_TakeInventory("SummonerUpgraded",1)
+	Goto Ready5
+ }
+}
+
+
+
+actor Slicer : DarkSlicer
+{
+  obituary "%o was sliced in two by %k 's Occult Spellbook Slicer."
+  speed 25
+  damage (29)
+  Damagetype "Normal"
+  Species "Player"  
+  PROJECTILE
+  +RIPPER
+  +FRIENDLY
+  +MTHRUSPECIES
+  +DONTHARMSPECIES
+  +STRIFEDAMAGE
+  BounceCount 6
+  ReactionTime 15
+  states
+  {
+  Spawn:
+    TNT1 A 0 bright A_SeekerMissile (20,30,SMF_LOOK|SMF_PRECISE,45,2)
+    SLIC A 2 bright A_SpawnItemEx("SlicerTrailA",0,0,0,0,0,0,0,128)
+	TNT1 A 0 bright A_SeekerMissile (20,30,SMF_LOOK|SMF_PRECISE,45,2)
+    SLIC B 2 bright A_SpawnItemEx("SlicerTrailB",0,0,0,0,0,0,0,128)
+	TNT1 A 0 bright A_SeekerMissile (20,30,SMF_LOOK|SMF_PRECISE,45,2)
+    SLIC C 2 bright A_SpawnItemEx("SlicerTrailC",0,0,0,0,0,0,0,128)
+	TNT1 A 0 bright A_SeekerMissile (20,30,SMF_LOOK|SMF_PRECISE,45,2)
+    SLIC D 2 bright A_SpawnItemEx("SlicerTrailD",0,0,0,0,0,0,0,128)
+	TNT1 A 0 bright A_SeekerMissile (20,30,SMF_LOOK|SMF_PRECISE,45,2)    
+    SLIC E 2 bright A_SpawnItemEx("SlicerTrailE",0,0,0,0,0,0,0,128)
+	TNT1 A 0 bright A_SeekerMissile (20,30,SMF_LOOK|SMF_PRECISE,45,2)    
+    SLIC F 2 bright A_SpawnItemEx("SlicerTrailF",0,0,0,0,0,0,0,128)
+	TNT1 A 0 bright A_SeekerMissile (20,30,SMF_LOOK|SMF_PRECISE,45,2)    
+    SLIC G 2 bright A_SpawnItemEx("SlicerTrailG",0,0,0,0,0,0,0,128)
+	TNT1 A 0 bright A_SeekerMissile (20,30,SMF_LOOK|SMF_PRECISE,45,2)    
+    SLIC H 2 bright A_SpawnItemEx("SlicerTrailH",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_Countdown
+    loop
+  Death:
+    TNT1 A 0 A_PlaySound("weapons/wavedeath")
+	TNT1 A 0 A_SetScale(0.5)
+	TNT1 A 0 A_Jump(128,"Death2")
+	TNT1 A 0 A_Explode(120,100,0)
+    SLIC I 2 Bright A_FadeOut(0.10)
+	TNT1 A 0 A_Explode(120,100,0)
+    SLIC J 2 Bright A_FadeOut(0.10)
+	TNT1 A 0 A_Explode(120,100,0)
+    SLIC K 2 Bright A_FadeOut(0.10)
+	TNT1 A 0 A_Explode(120,100,0)
+    SLIC L 2 Bright A_FadeOut(0.10)
+	TNT1 A 0 A_Explode(120,100,0)
+    SLIC M 2 Bright A_FadeOut(0.10)
+    stop
+  Death2:
+	TNT1 A 0 A_Explode(120,100,0)
+    SLIC N 2 Bright A_FadeOut(0.10)
+	TNT1 A 0 A_Explode(120,100,0)
+    SLIC O 2 Bright A_FadeOut(0.10)
+	TNT1 A 0 A_Explode(120,100,0)
+    SLIC P 2 Bright A_FadeOut(0.10)
+	TNT1 A 0 A_Explode(120,100,0)
+    SLIC Q 2 Bright A_FadeOut(0.10)
+	TNT1 A 0 A_Explode(120,100,0)
+    SLIC R 2 Bright A_FadeOut(0.10)
+    stop
+  }
+}
+
+Actor SlicerTrailA : DarkSlicerTrailA
+{       
+ States
+ {   
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	SLIC ABCDEFGH 1 Bright A_FadeOut(0.05)
+	Stop
+  Vanilla:
+	TNT1 A 0
+	Stop
+ }
+}
+
+Actor SlicerTrailB : DarkSlicerTrailA
+{       
+ States
+ {   
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	SLIC BCDEFGHA 1 Bright A_FadeOut(0.05)
+	Stop
+ }
+}
+Actor SlicerTrailC : DarkSlicerTrailA
+{       
+  States
+	{   
+  Spawn:
+	TNT1 A 0
+    TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	SLIC CDEFGHAB 1 Bright A_FadeOut(0.05)
+    Stop
+	}
+}
+
+Actor SlicerTrailD : DarkSlicerTrailA
+{       
+  States
+	{   
+  Spawn:
+	TNT1 A 0
+    TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	SLIC DEFGHABC 1 Bright A_FadeOut(0.05)
+    Stop
+	}
+}
+
+Actor SlicerTrailE : DarkSlicerTrailA
+{       
+  States
+	{   
+  Spawn:
+	TNT1 A 0
+    TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	SLIC EFGHABCD 1 Bright A_FadeOut(0.05)
+    Stop
+	}
+}
+
+Actor SlicerTrailF : DarkSlicerTrailA
+{       
+  States
+	{   
+  Spawn:
+	TNT1 A 0
+    TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	SLIC FGHABCDE 1 Bright A_FadeOut(0.05)
+    Stop
+	}
+}
+
+Actor SlicerTrailG : DarkSlicerTrailA
+{       
+  States
+	{   
+  Spawn:
+	TNT1 A 0
+    TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	SLIC GHABCDEF 1 Bright A_FadeOut(0.05)
+    Stop
+	}
+}
+
+Actor SlicerTrailH : DarkSlicerTrailA
+{       
+  States
+	{   
+  Spawn:
+	TNT1 A 0
+    TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	SLIC HABCDEFG 1 Bright A_FadeOut(0.05)
+    Stop
+	}
+}
+
+Actor SlicerPuff
+{
+ radius 4
+ height 6
+ renderstyle Add
+ alpha 0.75
+ scale 0.5
+ +ALWAYSPUFF
+ +PUFFONACTORS
+ +NOGRAVITY
+ DeathSound "weapons/wavedeath"
+ States
+ {
+  Spawn:
+	TNT1 A 0 A_Jump(128,"Spawn2")
+	SLIC IJKLM 2 Bright A_FadeOut(0.10)
+	Stop
+  Spawn2:
+	SLIC NOPQR 2 Bright A_FadeOut(0.10)
+ 	Stop
+  Crash:
+	NULL A 1 Bright
+ 	Stop
+ }
+}
+
+ACTOR FakeLoreShot2 : LoreShot
+{
+ Speed 60
+ Damage 4
+ Height 2
+ Radius 2
+ SeeSound ""
+ DeathSound ""
+ RENDERSTYLE None
+ States
+ {
+  Spawn:
+	PLAY A 2
+	Loop
+ }
+}
+
+Actor SlicerPuff2 : SlicerPuff
+{
+ DeathSound "weapons/buzz"
+ States
+ {
+  Spawn:
+  Crash:
+	NULL A 1 Bright
+	Stop
+ }
+}
+
+ACTOR ThunderboltPuff : DarkThunderStrike
+{
+ Damagetype "Players"
+ Species "Player"
+ SeeSound "darkthunder/fire"
+ DeathSound "darkthunder/fire"
+ +PUFFONACTORS
+ +DONTHARMSPECIES
+ +NODAMAGETHRUST
+ +FORCERADIUSDMG
+ States
+ {
+  Spawn:
+	DZ08 A 1 bright
+  Death:
+	DZ08 A 2 bright A_Explode(250,250)
+	DZ08 B 2 bright A_Explode(250,250)
+	DZ08 C 2 bright A_Explode(250,250)
+	DZ08 B 2 bright A_Explode(250,250)
+	DZ08 C 1 bright A_Explode(250,250)
+	Stop
+ }
+}
+
+ACTOR PlayerVilefakeSpawn : PlayerMinivileSpawn
+{
+ States
+ {
+  Death:
+	ARCB J 0 A_SetTranslucent (0.67,1)
+	ARCB J 3 BRIGHT A_SpawnItemEX("PlayerMiniArchvile",0,0,0,0,0,0,0,SXF_SETMASTER)
+	ARCB K 3 Bright A_Explode(250,100,0)
+	ARCB LMN 3 Bright A_SpawnItem("HellionSmokeSpawner",0,0,0,0)
+	Stop
+ }
+}
+
+ACTOR PlayerVilefakeSpawn2 : PlayerMinivileSpawn
+{
+ States
+ {
+  Death:
+	ARCB J 3 BRIGHT A_SetTranslucent (0.67,1)
+	TNT1 A 0 A_CustomMissile("PlayerMiniArchvile",0,0,0,CMF_TRACKOWNER) 
+	TNT1 A 0 A_CustomMissile("PlayerMiniArchvile",0,0,15,CMF_TRACKOWNER) 
+	TNT1 A 0 A_CustomMissile("PlayerMiniArchvile",0,0,30,CMF_TRACKOWNER) 
+	TNT1 A 0 A_CustomMissile("PlayerMiniArchvile",0,0,45,CMF_TRACKOWNER) 
+	TNT1 A 0 A_CustomMissile("PlayerMiniArchvile",0,0,60,CMF_TRACKOWNER) 
+	TNT1 A 0 A_CustomMissile("PlayerMiniArchvile",0,0,75,CMF_TRACKOWNER) 
+	TNT1 A 0 A_CustomMissile("PlayerMiniArchvile",0,0,90,CMF_TRACKOWNER) 
+	TNT1 A 0 A_CustomMissile("PlayerMiniArchvile",0,0,105,CMF_TRACKOWNER) 
+	TNT1 A 0 A_CustomMissile("PlayerMiniArchvile",0,0,120,CMF_TRACKOWNER) 
+	TNT1 A 0 A_CustomMissile("PlayerMiniArchvile",0,0,135,CMF_TRACKOWNER) 
+	TNT1 A 0 A_CustomMissile("PlayerMiniArchvile",0,0,150,CMF_TRACKOWNER) 
+	TNT1 A 0 A_CustomMissile("PlayerMiniArchvile",0,0,165,CMF_TRACKOWNER) 
+	TNT1 A 0 A_CustomMissile("PlayerMiniArchvile",0,0,180,CMF_TRACKOWNER) 
+	TNT1 A 0 A_CustomMissile("PlayerMiniArchvile",0,0,195,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("PlayerMiniArchvile",0,0,210,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("PlayerMiniArchvile",0,0,225,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("PlayerMiniArchvile",0,0,240,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("PlayerMiniArchvile",0,0,255,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("PlayerMiniArchvile",0,0,270,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("PlayerMiniArchvile",0,0,285,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("PlayerMiniArchvile",0,0,300,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("PlayerMiniArchvile",0,0,315,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("PlayerMiniArchvile",0,0,330,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("PlayerMiniArchvile",0,0,345,CMF_TRACKOWNER)
+	TNT1 A 0 A_SpawnItemEx("BlackGibbedGenerator",0,0,0,0,0,0,0,128,0)
+	ARCB K 3 Bright A_Explode(750,200,0)
+	ARCB LMN 3 Bright A_SpawnItem("HellionSmokeSpawner",0,0,0,0)
+	Stop
+ }
+}
+
+actor Vilefake
+{
+ Species "Player"
+ Speed 7
+ +FRIENDLY
+ +NOCLIP
+ Radius 50
+ Height 5
+ PROJECTILE
+ RENDERSTYLE NONE
+ States
+ {
+  Spawn:
+	PLAY AAAAA 6 A_VileChase
+	Stop
+  Death:
+	Play A 1
+	Stop
+  Heal:
+	Play A 1
+	TNT1 A 0 A_RadiusGive("InfernalistResurrect",100,RGF_MONSTERS,1)
+	Stop 
+ }
+}
+
+ACTOR Vilefake2 : Vilefake
+{
+ Speed 20
+ States
+ {
+  Spawn:
+	PLAY AAAAAAAAAAAAAAA 6 A_VileChase
+	Stop
+ }
+}
+
+ACTOR VileCache : Inventory
+{ 
+ +INVENTORY.IGNORESKILL
+ Inventory.MaxAmount 50
+ +INVENTORY.UNDROPPABLE
+ -inventory.invbar
+}
+
+Actor OccultCanUpgrade : Inventory { Inventory.MaxAmount 1 }
+Actor OccultLaserToken : Inventory { Inventory.MaxAmount 1 }
+Actor OccultLasersToken2 : Inventory { Inventory.MaxAmount 1 }
+Actor OccultDarkMatterToken : Inventory { Inventory.MaxAmount 1 }
+Actor OccultDarkMatterToken2 : Inventory { Inventory.MaxAmount 1 }
+Actor OccultChaosLightningToken : Inventory { Inventory.MaxAmount 1 }
+Actor OccultChaosLightningToken2 : Inventory { Inventory.MaxAmount 1 }
+Actor OccultSlicerToken : Inventory { Inventory.MaxAmount 1 }
+Actor OccultSlicerToken2 : Inventory { Inventory.MaxAmount 1 }
+ACTOR SlicerUpgraded : Inventory {Inventory.MaxAmount 1}
+ACTOR SlicerUpgradeToken : Inventory {Inventory.MaxAmount 1}
+ACTOR SummonerUpgraded : Inventory {Inventory.MaxAmount 1}
+ACTOR SummonerUpgradeToken : Inventory {Inventory.MaxAmount 1}
+Actor SummonerToken : Inventory { Inventory.MaxAmount 1 }
+Actor SummonerToken2 : Inventory { Inventory.MaxAmount 1 }

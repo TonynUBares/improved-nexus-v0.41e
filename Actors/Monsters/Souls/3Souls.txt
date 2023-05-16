@@ -1,0 +1,894 @@
+ACTOR PyroSoulEnemy : TerrorSoul 24711
+{
+Health 120
+Speed 7
+PainChance "Souls", 0
+PainChance "ChaosSoul", 0
+PainChance "SoulToxic", 0
+PainChance 80
+DropItem "LifeEssence" 150
+DropItem "ArmorBonusMax" 150
+Species "EleSouls"
+Damagefactor "Souls", 0.0
+DamageFactor "SoulToxic", 0.0
+DamageFactor "Ice", 0.0
+DamageFactor "BombBreath", 0.0
+Damagefactor "EleSouls", 0.0
+AttackSound "monster/psoattack"
+PainSound "monster/psopain"
+DeathSound "monster/psodeath"
+ActiveSound "skull/active"
+Obituary "%o was burned up by a Pyro Soul."
+Tag "$NEPyroSoul"
+Scale 0.8
++MISSILEMORE
++QUICKTORETALIATE
++DONTHARMSPECIES
++DONTFALL
++NOICEDEATH
++NOBLOOD
++NOBLOODDECALS
+var int user_lowlag;
+States
+{
+Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
+	Goto Idle
+  Idle:
+    TNT1 A 0 Bright A_SpawnItem("RictFireSpawner",0,0,0,0)
+	PYSO A 2 Bright A_Look
+    TNT1 A 0 Bright A_SpawnItem("RictFireSpawner",0,0,0,0)
+	PYSO A 2 Bright A_Look
+    TNT1 A 0 Bright A_SpawnItem("RictFireSpawner",0,0,0,0)
+	PYSO B 2 Bright A_Look
+    TNT1 A 0 Bright A_SpawnItem("RictFireSpawner",0,0,0,0)
+	PYSO B 2 Bright A_Look
+	Loop
+  See:
+	TNT1 A 0 A_JumpIf(user_lowlag == 1,"MoreSee")
+	TNT1 A 0 A_JumpIfTargetInLOS("MoreSee",0,0,0,0)
+	PYSO AB 2 A_Chase
+	Loop
+  MoreSee:
+	TNT1 A 0 A_SetUserVar("user_lowlag",1)
+    TNT1 A 0 Bright A_SpawnItem("RictFireSpawner",0,0,0,0)
+	PYSO A 2 Bright A_Chase
+    TNT1 A 0 Bright A_SpawnItem("RictFireSpawner",0,0,0,0)
+	PYSO A 2 Bright A_Chase
+	TNT1 A 0 Bright A_SpawnItem("RictFireSpawner",0,0,0,0)
+	PYSO B 2 Bright A_Chase
+    TNT1 A 0 Bright A_SpawnItem("RictFireSpawner",0,0,0,0)
+	PYSO B 2 Bright A_Chase
+	TNT1 A 0 Bright A_Jump(12,"Evade")
+	Loop
+Evade:
+	TNT1 A 0 A_Jump(128,13)
+	TNT1 A 0 ThrustThing(Angle*256/360+64,16,0,0)
+	PYSO A 2 Bright A_Chase
+	PYSO A 2 Bright A_Chase
+	PYSO B 2 Bright A_Chase
+	PYSO B 2 Bright A_Chase
+	TNT1 A 0 A_Stop
+	Goto See
+	TNT1 A 0 ThrustThing(Angle*256/360+192,16,0,0)
+	PYSO A 2 Bright A_Chase
+	PYSO A 2 Bright A_Chase
+	PYSO B 2 Bright A_Chase
+	PYSO B 2 Bright A_Chase
+	TNT1 A 0 A_Stop
+	Goto See
+Missile:
+	TNT1 A 0 A_Jump(28,"Kamikaze")
+Normal:
+	TNT1 A 0 A_Jump(50,"Seeker")
+	TNT1 A 0 A_SpawnItem("RictFireSpawner",0,0,0,0)
+	PYSO A 2 Bright A_FaceTarget
+	TNT1 A 0 A_SpawnItem("RictFireSpawner",0,0,0,0)
+	PYSO A 2 Bright A_FaceTarget
+	TNT1 A 0 A_SpawnItem("RictFireSpawner",0,0,0,0)
+	PYSO C 2 Bright A_CustomMissile("PyroSoulComet",6,0,0)
+    PYSO CD 2 Bright A_SpawnItem("RictFireSpawner",0,0,0,0)
+    Goto See
+Seeker:
+	TNT1 A 0 A_SpawnItem("RictFireSpawner",0,0,0,0)
+	PYSO A 2 Bright A_FaceTarget
+	TNT1 A 0 A_SpawnItem("RictFireSpawner",0,0,0,0)
+	PYSO A 2 Bright A_FaceTarget
+	TNT1 A 0 A_SpawnItem("RictFireSpawner",0,0,0,0)
+	PYSO C 2 Bright A_CustomMissile("PyroSoulSeekingComet",6,0,0)
+    PYSO CD 2 Bright A_SpawnItem("RictFireSpawner",0,0,0,0)
+    Goto See
+Kamikaze:
+	TNT1 A 0 A_JumpIfCloser(450,1)
+	Goto Normal
+	TNT1 A 0
+	Goto PainSuicide+3
+Pain:
+	TNT1 A 0 A_JumpIfHealthLower(50,"PainSuicide")
+    TNT1 A 0 A_SpawnItem("RictFireSpawner",0,0,0,0)
+	PYSO E 3 Bright A_Pain
+	Goto See
+PainSuicide:
+    TNT1 A 0 A_JumpIfCloser(450,1)
+	Goto See
+    TNT1 A 0 A_SpawnItem("RictFireSpawner",0,0,0,0)
+	PYSO C 3 Bright A_Pain
+	TNT1 A 0 A_Jump(28,"See")
+	TNT1 A 0 A_ChangeFlag(NOTARGET,1)
+	PYSO C 1 Bright A_ChangeFlag(NOPAIN,1)
+    TNT1 A 0 A_SpawnItem("RictFireSpawner",0,0,0,0)
+    TNT1 A 0 A_CustomMissile("PyroSoulSuicide",0,0,0,0)
+	PYSO D 1 Bright A_Die("Suicide")
+    Stop
+Death:
+    TNT1 A 0
+	TNT1 A 0 A_Scream
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+	TNT1 AA 0 A_SpawnItemEx("SoulPart1",0,0,Random(10,20),Random(8,-8),Random(8,-8),Random(6,8))
+	TNT1 A 0 A_SpawnItemEx("SoulPart2",0,0,Random(10,20),Random(8,-8),Random(8,-8),Random(6,8))
+	TNT1 AA 0 A_SpawnItemEx("SoulPart3",0,0,Random(10,20),Random(8,-8),Random(8,-8),Random(6,8))
+    TNT1 AA 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+	TNT1 AAA 0 A_CustomMissile("Kaboom3", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAAA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+	TNT1 AAA 0 Bright A_SpawnItemEx("PyroSoulFlamethrowerShot",0,0,random(10,32),random(0,2),random(0,2),2,random(0,360),SXF_TRANSFERPOINTERS|SXF_SETMASTER,0)
+    PYSO F 2 Bright A_NoBlocking
+	PYSO GHIJK 1 Bright
+    Stop
+Death.Suicide:
+	TNT1 A 0
+    TNT1 A 100 A_NoBlocking
+    Stop
+    }
+}
+
+ACTOR PyroSoulSuicide
+{
+Radius 14
+Height 48
+Health 50
+Damage 6
+Speed 35
+Scale 0.8
+SeeSound "monster/psoattack"
+DeathSound "monster/psodeath"
+DamageType "SoulToxic"
+Species "EleSouls"
+ExplosionDamage 72
+ExplosionRadius 148
+Decal Scorch
+Tag "\ciPyro Soul"
+PROJECTILE
++SOLID
++SHOOTABLE
++NOBLOOD
++NOBLOODDECALS
++SKYEXPLODE
++NOTARGETSWITCH
+-NOBLOCKMAP
+States
+{
+Spawn:
+	PYSO CD 1 Bright A_SpawnItem("RictFireSpawner",0,0,0,0)
+    Loop
+Death:
+	TNT1 A 0 A_Die
+Explode:
+	TNT1 A 0 A_ChangeFlag(NOBLOCKMAP,1)
+	TNT1 A 0 A_Explode
+	TNT1 AA 0 A_SpawnItemEx("SoulPart1",0,0,Random(10,20),Random(8,-8),Random(8,-8),Random(6,8))
+	TNT1 A 0 A_SpawnItemEx("SoulPart2",0,0,Random(10,20),Random(8,-8),Random(8,-8),Random(6,8))
+	TNT1 AA 0 A_SpawnItemEx("SoulPart3",0,0,Random(10,20),Random(8,-8),Random(8,-8),Random(6,8))
+    TNT1 AA 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AAA 0 A_CustomMissile("Kaboom3", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAAA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+	TNT1 AAA 0 Bright A_SpawnItemEx("PyroSoulFlamethrowerShot",0,0,random(10,32),random(0,2),random(0,2),2,random(0,360),SXF_TRANSFERPOINTERS|SXF_SETMASTER,0)
+    PYSO F 2 Bright A_SetTranslucent(0.75,1)
+	PYSO GHIJK 1 Bright
+    Stop
+    }
+}
+
+ACTOR PyroSoulComet : BehemothComet
+{
+Scale 0.4
+Damage 6
+Damagetype "Souls"
+Species "Souls"
+}
+
+ACTOR PyroSoulSeekingComet : ZombieSeekingComet
+{
+Scale 0.25
+Damage 6
+Damagetype "Souls"
+Species "Souls"
+}
+
+Actor PyroSoulFlamethrowerShot : BaseFireSpawner
+{
+Damage (random(65,75))
+Damagetype "Souls"
+Species "Souls"
+Obituary "%o was burned up by a Pyro Soul."
+States
+	{
+	Death:
+		TNT1 AAA 0 Bright A_StopSound(CHAN_BODY)
+		TNT1 A 0 Bright A_Stop
+		TNT1 A 0 Bright A_NoGravity
+		TNT1 A 0 Bright A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+		TNT1 AA 0 Bright A_CustomMissile("Kaboom69",0,0,random(0,360),CMF_AIMDIRECTION,random(0,360))
+		TNT1 AA 0 Bright A_CustomMissile("SmokeFX7",0,0,random(0,360),CMF_AIMDIRECTION,random(0,360))
+		TNT1 A 0 Bright A_SpawnItemEx("PyroSoulFlare",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_SETMASTER)
+		TNT1 AAAA 0 Bright A_SpawnItemEx("PyroSoulFlare",0,0,0,random(2,4),random(2,4),2,random(0,360),SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_SETMASTER,128)
+		FRTM CDE 3 Bright
+		Stop
+	}
+}
+
+Actor PyroSoulFlare : BaseFireFlare
+{
+Damagetype "Souls"
+Species "Souls"
+Obituary "%o was burned down on fire of Pyro Soul's death."
+}
+
+ACTOR CryoSoulEnemy : TerrorSoul 24712
+{
+Health 120
+Speed 7
+PainChance "SoulToxic", 0
+PainChance "Souls", 0
+PainChance "ChaosSoul", 0
+PainChance 80
+DropItem "LifeEssence" 150
+DropItem "ArmorBonusMax" 150
+Species "EleSouls"
+Damagefactor "Souls", 0.0
+DamageFactor "SoulToxic", 0.0
+DamageFactor "Ice", 0.0
+DamageFactor "BombBreath", 0.0
+Damagefactor "EleSouls", 0.0
+AttackSound "monster/psoattack"
+PainSound "monster/psopain"
+DeathSound "iceexplode"
+ActiveSound "skull/active"
+Obituary "%o was frozen solid by a Cryo Soul."
+Tag "$NECryoSoul"
+Scale 0.8
++MISSILEMORE
++QUICKTORETALIATE
++DONTHARMSPECIES
++DONTFALL
++NOICEDEATH
++NOBLOOD
++NOBLOODDECALS
+var int user_lowlag;
+States
+{
+Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
+	Goto Idle
+  Idle:
+    TNT1 A 0 Bright A_SpawnItem("CryoSoulFireSpawner",0,0,0,0)
+	CRSO A 2 Bright A_Look
+    TNT1 A 0 Bright A_SpawnItem("CryoSoulFireSpawner",0,0,0,0)
+	CRSO A 2 Bright A_Look
+    TNT1 A 0 Bright A_SpawnItem("CryoSoulFireSpawner",0,0,0,0)
+	CRSO B 2 Bright A_Look
+    TNT1 A 0 Bright A_SpawnItem("CryoSoulFireSpawner",0,0,0,0)
+	CRSO B 2 Bright A_Look
+	Loop
+  See:
+	TNT1 A 0 A_JumpIf(user_lowlag == 1,"MoreSee")
+	TNT1 A 0 A_JumpIfTargetInLOS("MoreSee",0,0,0,0)
+	CRSO AB 2 A_Chase
+	Loop
+  MoreSee:
+	TNT1 A 0 A_SetUserVar("user_lowlag",1)
+    TNT1 A 0 Bright A_SpawnItem("CryoSoulFireSpawner",0,0,0,0)
+	CRSO A 2 Bright A_Chase
+    TNT1 A 0 Bright A_SpawnItem("CryoSoulFireSpawner",0,0,0,0)
+	CRSO A 2 Bright A_Chase
+	TNT1 A 0 Bright A_SpawnItem("CryoSoulFireSpawner",0,0,0,0)
+	CRSO B 2 Bright A_Chase
+    TNT1 A 0 Bright A_SpawnItem("CryoSoulFireSpawner",0,0,0,0)
+	CRSO B 2 Bright A_Chase
+	TNT1 A 0 Bright A_Jump(12,"Evade")
+	Loop
+Evade:
+	TNT1 A 0 A_Jump(128,13)
+	TNT1 A 0 ThrustThing(Angle*256/360+64,16,0,0)
+	CRSO A 2 Bright A_Chase
+	CRSO A 2 Bright A_Chase
+	CYSO B 2 Bright A_Chase
+	CYSO B 2 Bright A_Chase
+	TNT1 A 0 A_Stop
+	Goto See
+	TNT1 A 0 ThrustThing(Angle*256/360+192,16,0,0)
+	CRSO A 2 Bright A_Chase
+	CRSO A 2 Bright A_Chase
+	CRSO B 2 Bright A_Chase
+	CRSO B 2 Bright A_Chase
+	TNT1 A 0 A_Stop
+	Goto See
+Missile:
+	TNT1 A 0 A_Jump(28,"Kamikaze")
+Normal:
+	TNT1 A 0 A_SpawnItem("CryoSoulFireSpawner",0,0,0,0)
+	CRSO A 2 Bright A_FaceTarget
+	TNT1 A 0 A_SpawnItem("CryoSoulFireSpawner",0,0,0,0)
+	CRSO A 2 Bright A_FaceTarget
+	TNT1 A 0 A_SpawnItem("CryoSoulFireSpawner",0,0,0,0)
+	CRSO C 2 Bright A_CustomMissile("CryoSoulFreezeBlast",5,0,0)
+    CRSO CD 2 Bright A_SpawnItem("CryoSoulFireSpawner",0,0,0,0)
+    Goto See
+Kamikaze:
+	TNT1 A 0 A_JumpIfCloser(450,1)
+	Goto Normal
+	TNT1 A 0
+	Goto PainSuicide+3
+Pain:
+	TNT1 A 0 A_JumpIfHealthLower(50,"PainSuicide")
+    TNT1 A 0 A_SpawnItem("CryoSoulFireSpawner",0,0,0,0)
+	TNT1 AAAA 0 A_SpawnItemEx("IceDebris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+	CRSO A 0 A_SpawnItemEx("ShatteringIce1", random(-8,8), random(-8,8), random(16,48), random(-2, 2), random(-2, 2), random(-1, 1),0,128)
+	CRSO A 0 A_SpawnItemEx("ShatteringIce2", random(-8,8), random(-8,8), random(16,48), random(-2, 2), random(-2, 2), random(-1, 1),0,128)
+	CRSO A 0 A_SpawnItemEx("ShatteringIce2", random(-8,8), random(-8,8), random(16,48), random(-2, 2), random(-2, 2), random(-1, 1),0,128)
+	CRSO A 0 A_SpawnItemEx("ShatteringIce3", random(-8,8), random(-8,8), random(16,48), random(-2, 2), random(-2, 2), random(-1, 1),0,128)
+	CRSO A 0 A_SpawnItemEx("ShatteringIce3", random(-8,8), random(-8,8), random(16,48), random(-2, 2), random(-2, 2), random(-1, 1),0,128)
+	CRSO A 0 A_SpawnItemEx("ShatteringIce3", random(-8,8), random(-8,8), random(16,48), random(-2, 2), random(-2, 2), random(-1, 1),0,128)
+	CRSO A 0 A_SpawnItemEx("ShatteringIce4", random(-8,8), random(-8,8), random(16,48), random(-2, 2), random(-2, 2), random(-1, 1),0,128)
+	CRSO A 0 A_SpawnItemEx("ShatteringIce4", random(-8,8), random(-8,8), random(16,48), random(-2, 2), random(-2, 2), random(-1, 1),0,128)
+	CRSO A 0 A_SpawnItemEx("ShatteringIce4", random(-8,8), random(-8,8), random(16,48), random(-2, 2), random(-2, 2), random(-1, 1),0,128)
+	CRSO A 0 A_SpawnItemEx("ShatteringIce4", random(-8,8), random(-8,8), random(16,48), random(-2, 2), random(-2, 2), random(-1, 1),0,128)
+	CRSO E 3 Bright A_Pain
+	Goto See
+PainSuicide:
+    TNT1 A 0 A_JumpIfCloser(450,1)
+	Goto See
+    TNT1 A 0 A_SpawnItem("CryoSoulFireSpawner",0,0,0,0)
+	TNT1 AAAA 0 A_SpawnItemEx("IceDebris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+	CRSO A 0 A_SpawnItemEx("ShatteringIce1", random(-8,8), random(-8,8), random(16,48), random(-2, 2), random(-2, 2), random(-1, 1),0,128)
+	CRSO A 0 A_SpawnItemEx("ShatteringIce2", random(-8,8), random(-8,8), random(16,48), random(-2, 2), random(-2, 2), random(-1, 1),0,128)
+	CRSO A 0 A_SpawnItemEx("ShatteringIce2", random(-8,8), random(-8,8), random(16,48), random(-2, 2), random(-2, 2), random(-1, 1),0,128)
+	CRSO A 0 A_SpawnItemEx("ShatteringIce3", random(-8,8), random(-8,8), random(16,48), random(-2, 2), random(-2, 2), random(-1, 1),0,128)
+	CRSO A 0 A_SpawnItemEx("ShatteringIce3", random(-8,8), random(-8,8), random(16,48), random(-2, 2), random(-2, 2), random(-1, 1),0,128)
+	CRSO A 0 A_SpawnItemEx("ShatteringIce3", random(-8,8), random(-8,8), random(16,48), random(-2, 2), random(-2, 2), random(-1, 1),0,128)
+	CRSO A 0 A_SpawnItemEx("ShatteringIce4", random(-8,8), random(-8,8), random(16,48), random(-2, 2), random(-2, 2), random(-1, 1),0,128)
+	CRSO A 0 A_SpawnItemEx("ShatteringIce4", random(-8,8), random(-8,8), random(16,48), random(-2, 2), random(-2, 2), random(-1, 1),0,128)
+	CRSO A 0 A_SpawnItemEx("ShatteringIce4", random(-8,8), random(-8,8), random(16,48), random(-2, 2), random(-2, 2), random(-1, 1),0,128)
+	CRSO A 0 A_SpawnItemEx("ShatteringIce4", random(-8,8), random(-8,8), random(16,48), random(-2, 2), random(-2, 2), random(-1, 1),0,128)
+	CRSO C 3 Bright A_Pain
+	TNT1 A 0 A_Jump(28,"See")
+	TNT1 A 0 A_ChangeFlag(NOTARGET,1)
+	CRSO C 1 Bright A_ChangeFlag(NOPAIN,1)
+    TNT1 A 0 A_SpawnItem("CryoSoulFireSpawner",0,0,0,0)
+    TNT1 A 0 A_CustomMissile("CryoSoulSuicide",0,0,0,0)
+	CRSO D 1 Bright A_Die("Suicide")
+    Stop
+Death:
+    TNT1 A 0
+	TNT1 A 0 A_Scream
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+	TNT1 AA 0 A_SpawnItemEx("Kaboom6",0,0,Random(10,20),Random(8,-8),Random(8,-8),Random(6,8))
+	TNT1 A 0 A_SpawnItemEx("IceDebris",0,0,Random(10,20),Random(8,-8),Random(8,-8),Random(6,8))
+	TNT1 AA 0 A_SpawnItemEx("Kaboom6",0,0,Random(10,20),Random(8,-8),Random(8,-8),Random(6,8))
+    TNT1 AA 0 A_SpawnItemEx("BlueParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+	TNT1 AAA 0 A_CustomMissile("Bluekaboom4", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAAA 0 A_CustomMissile("SmokeFX4", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,15,CMF_AIMDIRECTION)
+	TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,45,CMF_AIMDIRECTION)
+	TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,65,CMF_AIMDIRECTION)
+	TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,80,CMF_AIMDIRECTION)
+	TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,105,CMF_AIMDIRECTION)
+	TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,120,CMF_AIMDIRECTION)
+	TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,145,CMF_AIMDIRECTION)
+	TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,160,CMF_AIMDIRECTION)
+	TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,185,CMF_AIMDIRECTION)
+	TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,200,CMF_AIMDIRECTION)
+	TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,220,CMF_AIMDIRECTION)
+	TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,240,CMF_AIMDIRECTION)
+	TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,260,CMF_AIMDIRECTION)
+	TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,280,CMF_AIMDIRECTION)
+	TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,300,CMF_AIMDIRECTION)
+    CRSO F 2 Bright A_NoBlocking
+	CRSO GHIJK 1 Bright
+    Stop
+Death.Suicide:
+	TNT1 A 0
+    TNT1 A 100 A_NoBlocking
+    Stop
+    }
+}
+
+ACTOR CryoSoulSuicide
+{
+Radius 14
+Height 48
+Health 50
+Damage 6
+Speed 35
+Scale 0.8
+SeeSound "monster/psoattack"
+DeathSound "iceexplode"
+DamageType "SoulToxic"
+DamageType "Ice"
+Species "EleSouls"
+ExplosionDamage 72
+ExplosionRadius 148
+Tag "\cvCryo Soul"
+PROJECTILE
++SOLID
++SHOOTABLE
++NOBLOOD
++NOBLOODDECALS
++SKYEXPLODE
++NOTARGETSWITCH
+-NOBLOCKMAP
+States
+{
+Spawn:
+	CRSO CD 1 Bright A_SpawnItem("CryoSoulFireSpawner",0,0,0,0)
+    Loop
+Death:
+	TNT1 A 0 A_Die
+Explode:
+	TNT1 A 0 A_ChangeFlag(NOBLOCKMAP,1)
+	TNT1 A 0 A_Explode
+	TNT1 AA 0 A_SpawnItemEx("Kaboom6",0,0,Random(10,20),Random(8,-8),Random(8,-8),Random(6,8))
+	TNT1 A 0 A_SpawnItemEx("IceDebris",0,0,Random(10,20),Random(8,-8),Random(8,-8),Random(6,8))
+	TNT1 AA 0 A_SpawnItemEx("Kaboom6",0,0,Random(10,20),Random(8,-8),Random(8,-8),Random(6,8))
+    TNT1 AA 0 A_SpawnItemEx("BlueParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+	TNT1 AAA 0 A_CustomMissile("Bluekaboom4", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAAA 0 A_CustomMissile("SmokeFX4", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,15,CMF_AIMDIRECTION)
+	TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,45,CMF_AIMDIRECTION)
+	TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,65,CMF_AIMDIRECTION)
+	TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,80,CMF_AIMDIRECTION)
+	TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,105,CMF_AIMDIRECTION)
+	TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,120,CMF_AIMDIRECTION)
+	TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,145,CMF_AIMDIRECTION)
+	TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,160,CMF_AIMDIRECTION)
+	TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,185,CMF_AIMDIRECTION)
+	TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,200,CMF_AIMDIRECTION)
+	TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,220,CMF_AIMDIRECTION)
+	TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,240,CMF_AIMDIRECTION)
+	TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,260,CMF_AIMDIRECTION)
+	TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,280,CMF_AIMDIRECTION)
+	TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,300,CMF_AIMDIRECTION)
+    CRSO F 2 Bright A_SetTranslucent(0.75,1)
+	CRSO GHIJK 1 Bright
+    Stop
+    }
+}
+
+ACTOR CryoSoulFireSpawner : RedParticleSpawner
+{
+  States
+  {
+  Spawn:
+    TNT1 A 0
+    TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+    TNT1 AA 0 A_SpawnItemEx("ImpFrozenWind",3,random(-2,2),random(8,12),1,0,random(1,2),random(90,270),128,0)
+	TNT1 A 1
+    Stop
+    }
+}
+
+Actor CryoSoulFreezeBlast : ZombieFreezeBlast
+{
+Damage 7
+DamageType "Souls"
+DamageType "Ice"
+}
+
+Actor AtomicSoul 29152
+{
+Monster
+Health 1000
+Radius 16
+Height 56
+Mass 100
+Speed 15
+Damage 11
+PainChance "Souls", 0
+PainChance "ChaosSoul", 0
+PainChance 50
+MeleeRange 44
+MeleeThreshold 100
+MaxTargetRange 2000
++FLOAT
++NOGRAVITY
++NOTARGET
++NOINFIGHTING
++SKYEXPLODE
++BOSS
++AVOIDMELEE
++NOTIMEFREEZE
++MISSILEMORE
++MISSILEEVENMORE
++NOICEDEATH
++DONTGIB
++NOTELEFRAG
++QUICKTORETALIATE
++DONTHARMSPECIES
++DONTHURTSPECIES
++NORADIUSDMG
++EXTREMEDEATH
++DONTRIP
++DONTFALL
++NOFEAR
++NOBLOOD
++NOBLOODDECALS
+BloodColor "Black"
+Species "Souls"
+DamageFactor 0.75
+Damagefactor "Souls", 0.0
+DamageFactor "SoulToxic", 0.0
+DamageFactor "BombBreath", 0.0
+DamageFactor "CurseComet", 0.0
+DamageFactor "HelementalComet", 0.0
+DamageFactor "Legendary1", 0.2
+DamageFactor "LegendaryPlayer", 0.1
+DamageFactor "Legendary", 0.2
+DamageFactor "LegendaryGuru", 0.2
+DamageFactor "LegendaryGuruPlayer", 0.3
+DamageFactor "PDTBFG", 0.01
+DamageFactor "PDTBFGTracer", 0.01
+DamageFactor "PlayerDevBall", 0.01
+DamageFactor "PlayerDevBall2", 0.01
+DamageFactor "PlayerDTBFGRailgunSlug", 0.01
+DamageFactor "PlayerDevTracer", 0.01
+DamageFactor "DBFG10K2", 0.65
+DamageFactor "PlayerDBFG10K2", 0.65
+DamageFactor "DBFG2", 0.65
+DamageFactor "PlayerDTRG", 0.5
+DamageFactor "PlayerDBFG2", 0.65
+DamageFactor "PlayerNemesisPlasma", 0.4
+DamageFactor "PlayerPyro", 0.05
+DamageFactor "PlayerDBFG2", 0.3
+DamageFactor "PlayerDTRG", 0.4
+DamageFactor "DTRailgun", 0.4
+DamageFactor "PDTPuff", 0.4
+DamageFactor "RailG", 0.5
+DamageFactor "Extreme", 0.0
+DamageFactor "SuperWeapon", 0.0
+DamageFactor "T3rm", 0.0
+DamageFactor "Hell", 0.0
+DamageFactor "Cyber10K", 0.0
+Damagefactor "Disintegrate", 0.01
+DropItem "DemonicChalice" 128 1
+DropItem "HellfireUltraSphere" 64 1
+DropItem "BossLifeEssence" 256
+DropItem "BossArmorBonusMax" 256
+SeeSound "AtomicSoul/See"
+PainSound "AtomicSoul/Pain"
+DeathSound "AtomicSoul/Death"
+ActiveSound ""
+AttackSound "AtomicSoul/Attack"
+Obituary "%o's life became death and then disintegrated by an Atomic Soul."
+Tag "$NEAtomicSoul"
+Scale 1.2
+var int user_music;
+var int user_lowlag;
+States
+  {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("GetCVar",54) == 1,"Remove")
+	Goto Idle
+  Idle:
+    TNT1 A 0 A_SpawnItem("AtomicSoulFireSpawner",0,0,0,0)
+    ATSO A 2 Bright A_Look
+	TNT1 A 0 A_SpawnItem("AtomicSoulFireSpawner",0,0,0,0)
+    ATSO A 2 Bright A_Look
+	TNT1 A 0 A_SpawnItem("AtomicSoulFireSpawner",0,0,0,0)
+    ATSO B 2 Bright A_Look
+	TNT1 A 0 A_SpawnItem("AtomicSoulFireSpawner",0,0,0,0)
+    ATSO B 2 Bright A_Look
+    Loop
+  Remove:
+	TNT1 A 1
+	TNT1 A 0 A_SpawnItemEx("Lostsoul",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	TNT1 A 0 A_ChangeFlag("COUNTKILL", FALSE)
+	TNT1 A 0
+	Stop
+  See:
+	TNT1 A 0 A_JumpIf(user_lowlag == 1,"MoreSee")
+	TNT1 A 0 A_JumpIfTargetInLOS("MoreSee",0,0,0,0)
+	ATSO AB 2 A_Chase
+	Loop
+  MoreSee:
+	TNT1 A 0 A_SetUserVar("user_lowlag",1)
+	TNT1 A 0 A_JumpIf(user_music == 1,3)
+    TNT1 A 0 ACS_NamedExecuteAlways("CFMusic",0,3009)
+	TNT1 A 0 A_SetUserVar("user_music",1)
+    TNT1 A 0 A_SpawnItem("AtomicSoulFireSpawner",0,0,0,0)
+    ATSO A 2 Bright A_Chase
+	TNT1 A 0 A_SpawnItem("AtomicSoulFireSpawner",0,0,0,0)
+    ATSO A 2 Bright A_Chase
+	TNT1 A 0 A_SpawnItem("AtomicSoulFireSpawner",0,0,0,0)
+    ATSO B 2 Bright A_Chase
+	TNT1 A 0 A_SpawnItem("AtomicSoulFireSpawner",0,0,0,0)
+    ATSO B 2 Bright A_Chase
+	TNT1 A 0 A_Jump(68,"Avoid","Rush")
+    Loop	
+  Rush:
+    TNT1 A 0
+	TNT1 A 0 A_SpawnItem("AtomicSoulFireSpawner",0,0,0,0)
+	ATSO AB 0 Bright A_Chase
+	TNT1 A 0 A_SpawnItem("AtomicSoulFireSpawner",0,0,0,0)
+    ATSO AB 1 Bright A_SpawnItemEx("AtomicSoulGhost")
+	TNT1 A 0 A_Jump(12,"See")	
+    Loop
+  Avoid:
+	ATSO A 0
+	ATSO B 0 A_SetAngle(angle+random(0,359))
+	ATSO A 0 A_Recoil(-50)
+	ATSO B 0 A_FaceTarget
+	TNT1 A 0 A_SpawnItem("AtomicSoulFireSpawner",0,0,0,0)
+	ATSO AB 1 Bright A_SpawnItemEx("AtomicSoulGhost")
+	TNT1 A 0 A_SpawnItem("AtomicSoulFireSpawner",0,0,0,0)
+	ATSO AB 1 Bright A_SpawnItemEx("AtomicSoulGhost")
+	TNT1 A 0 A_SpawnItem("AtomicSoulFireSpawner",0,0,0,0)
+	ATSO AB 1 Bright A_SpawnItemEx("AtomicSoulGhost")
+	TNT1 A 0 A_SpawnItem("AtomicSoulFireSpawner",0,0,0,0)
+	ATSO AB 1 Bright A_SpawnItemEx("AtomicSoulGhost")
+	TNT1 A 0 A_SpawnItem("AtomicSoulFireSpawner",0,0,0,0)
+	ATSO AB 1 Bright A_SpawnItemEx("AtomicSoulGhost")
+	TNT1 A 0 A_Jump(127,"See")
+	ATSO B 1 Bright A_Stop
+    Goto Avoid
+  Missile:
+	TNT1 A 0
+	ATSO A 1 Bright A_FaceTarget
+	TNT1 A 0 A_SpawnItemEx("AtomicSoulFireSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+	ATSO A 1 Bright A_FaceTarget
+	TNT1 A 0 A_SpawnItemEx("AtomicSoulFireSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+	ATSO A 1 Bright A_FaceTarget
+	TNT1 A 0 A_SpawnItemEx("AtomicSoulFireSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+	ATSO A 1 Bright A_FaceTarget
+	TNT1 A 0 A_SpawnItemEx("AtomicSoulFireSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+	Goto Charge
+  Charge:
+	TNT1 A 0
+	TNT1 A 0 A_CposRefire
+	TNT1 A 0 A_FaceTarget
+	TNT1 A 0 A_Recoil(-15)
+	TNT1 A 0 A_SpawnItemEx("AtomicSoulGhost2")
+	TNT1 A 0 A_SpawnItem("AtomicSoulFireSpawner",0,0,0,0)
+	ATSO CD 1 Bright A_JumpIfTargetInLOS("Melee",90,JLOSF_DEADNOJUMP|JLOSF_TARGETLOS,90,0)
+	TNT1 A 0 A_FaceTarget
+	TNT1 A 0 A_Recoil(-15)
+	TNT1 A 0 A_SpawnItemEx("AtomicSoulGhost2")
+	TNT1 A 0 A_SpawnItem("AtomicSoulFireSpawner",0,0,0,0)
+	ATSO CD 1 Bright A_JumpIfTargetInLOS("Melee",90,JLOSF_DEADNOJUMP|JLOSF_TARGETLOS,90,0)
+	TNT1 A 0 A_FaceTarget
+	TNT1 A 0 A_Recoil(-15)
+	TNT1 A 0 A_SpawnItemEx("AtomicSoulGhost2")
+	TNT1 A 0 A_SpawnItem("AtomicSoulFireSpawner",0,0,0,0)
+	ATSO CD 1 Bright A_JumpIfTargetInLOS("Melee",90,JLOSF_DEADNOJUMP|JLOSF_TARGETLOS,90,0)
+	TNT1 A 0 A_FaceTarget
+	TNT1 A 0 A_Recoil(-15)
+	TNT1 A 0 A_JumpIf(z - floorz >= 64,"ChargeStop")
+	TNT1 A 0 A_SpawnItemEx("AtomicSoulGhost2")
+	TNT1 A 0 A_SpawnItem("AtomicSoulFireSpawner",0,0,0,0)
+	ATSO CD 1 Bright A_JumpIfTargetInLOS("Melee",90,JLOSF_DEADNOJUMP|JLOSF_TARGETLOS,90,0)
+	Goto StillCharge
+  StillCharge:
+	TNT1 A 0
+	TNT1 A 0 A_SpawnItemEx("AtomicSoulGhost2")
+	TNT1 A 0 A_SpawnItem("AtomicSoulFireSpawner",0,0,0,0)
+	TNT1 A 0 A_JumpIf(velx != 0 || vely != 0,"Charge")
+	Goto ChargeStop
+  ChargeStop:
+	TNT1 A 0
+	ATSO A 1 Bright A_Stop
+	TNT1 A 0 A_StopSound(CHAN_VOICE)
+	TNT1 A 0 A_SpawnItem("AtomicSoulFireSpawner",0,0,0,0)
+	TNT1 A 0 A_JumpIfInTargetLOS("Melee",90,JLOSF_DEADNOJUMP,200)
+	Goto See
+  Melee:
+	TNT1 A 0
+	TNT1 A 0 A_StopSound(CHAN_VOICE)
+	TNT1 A 0 A_Facetarget
+	ATSO E 2 Bright A_SpawnItemEx("AtomicSoulFireSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+	TNT1 A 0 A_CustomMissile("DarkDesNuke",24,0,0,CMF_AIMDIRECTION)
+	Goto Kill
+  PainAttack:
+	TNT1 A 0
+	TNT1 A 0 A_StopSound(CHAN_VOICE)
+	TNT1 A 0 A_Facetarget
+	ATSO E 2 Bright A_SpawnItemEx("AtomicSoulFireSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+	TNT1 A 0 A_CustomMissile("DarkDesNuke",24,0,0,CMF_AIMDIRECTION)
+	Goto Kill
+  Pain:
+	TNT1 A 0
+	TNT1 A 0 A_StopSound(CHAN_VOICE)
+	ATSO E 3 Bright
+	TNT1 A 0 A_SpawnItemEx("AtomicSoulFireSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+	ATSO E 3 Bright A_Pain
+	TNT1 A 0 A_JumpIfInventory("Tic",6,"PainAttack")
+	TNT1 A 0 A_GiveInventory("Tic",1)
+	Goto See
+  Kill:
+	TNT1 A 0
+	//TNT1 A 0 A_Die("Hell")
+	Goto XDeath
+  Death:
+	TNT1 A 0
+	TNT1 A 0 A_Jump(54,"Boom")
+	TNT1 AAA 0 A_StopSound(CHAN_VOICE)
+	TNT1 A 0 A_TakeInventory("Tic",999999)
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner",0,0,24,0,0,0,0,128) 
+	TNT1 AAA 0 A_CustomMissile("Kaboom3",24,0,random(0,360),2,random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX2",24,0,random(0,360),2,random(0,360))
+	TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,24,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+	TNT1 A 0 A_SpawnItem("RocketEx",0,24)
+	TNT1 AAA 0 Bright A_SpawnItemEx("MolochFlamethrowerShot",0,0,random(10,32),random(0,2),random(0,2),2,random(0,360),SXF_TRANSFERPOINTERS|SXF_SETMASTER,0)
+	TNT1 A 0 A_Stop
+	TNT1 A 0 A_PlaySound("weapons/rocklx",CHAN_BODY)
+	ATSO F 2 Bright
+	ATSO G 2 Bright A_Scream
+	ATSO H 2 A_NoBlocking
+	//TNT1 A 0 A_SpawnItemEx("ExplosiveDemonTechRifle",0,0,8,random(0,8),random(0,8),2,random(0,360),0,250)
+	ATSO IJK 3 Bright
+	Stop
+  XDeath:
+	TNT1 A 0
+	TNT1 A 0 A_Stop
+	ATSO F 2 Bright
+	ATSO G 2 Bright
+	ATSO H 2 A_NoBlocking
+	//TNT1 A 0 A_SpawnItemEx("ExplosiveDemonTechRifle",0,0,8,random(0,8),random(0,8),2,random(0,360),0,250)
+	ATSO IJK 3 Bright
+	Stop
+  Boom:
+	TNT1 A 0
+	TNT1 A 0 A_PlaySoundEx("Utsuho/alert", "Voice", 0, 2)
+	ATSO EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 2 Bright A_SpawnItem("ASoulFlameSpawner",0,0,0,0)
+	TNT1 AAA 0 A_StopSound(CHAN_VOICE)
+	TNT1 A 0 A_TakeInventory("Tic",999999)
+	ATSO F 2 Bright
+	ATSO G 2 Bright
+	TNT1 A 0 A_SpawnItem("DarkDesNuke",0,24)
+	TNT1 A 0 A_Stop
+	ATSO H 2 A_NoBlocking
+	//TNT1 A 0 A_SpawnItemEx("ExplosiveDemonTechRifle",0,0,8,random(0,8),random(0,8),2,random(0,360),0,250)
+	ATSO IJK 3 Bright
+	Stop
+  }
+}
+
+ACTOR AtomicSoulFireSpawner : RedParticleSpawner
+{
+  States
+  {
+  Spawn:
+    TNT1 A 0
+    TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 0 A_PlaySound("monster/ambientfire")
+    TNT1 A 0 A_SpawnItemEx("ASoulSmoke",3,random(20,-20),random(-40,40),0,0,random(-6,6),0,128,0)
+	TNT1 A 1
+    Stop
+    }
+}
+
+ACTOR ASoulSmoke
+{
++MISSILE
++DONTSPLASH
++CLIENTSIDEONLY
++NOGRAVITY
++FORCEXYBILLBOARD
++THRUACTORS
++NOTELEPORT
++NOBLOCKMAP
++NOINTERACTION
+RenderStyle Add
+Scale 1.0
+States
+{
+Spawn:
+	FIR1 ABCDEFGHIJKL 1 Bright A_FadeOut
+	Stop
+	}
+}
+
+ACTOR AtomicSoulGhost
+{
+Scale 1.2
+Radius 31
+Height 56
+Speed 0
+Alpha 0.7
+PROJECTILE
+RENDERSTYLE Translucent
++CLIENTSIDEONLY
++NOTIMEFREEZE
+States
+	{
+Spawn:
+    TNT1 A 0
+    TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 0
+	TNT1 A 0
+Fade:
+	TNT1 A 0 A_Jump(128,"Fade2")
+    TNT1 A 1
+    ATSO A 2 A_FadeOut(0.10)
+    Goto Fade+1
+Fade2:
+    TNT1 A 1
+    ATSO B 2 A_FadeOut(0.10)
+    Goto Fade2+1
+Vanilla:
+    TNT1 A 0
+    Stop
+    }
+}
+
+ACTOR AtomicSoulGhost2 : AtomicSoulGhost
+{
+States
+	{
+Spawn:
+    TNT1 A 0
+    TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 0
+	TNT1 A 0
+Fade:
+	TNT1 A 0 A_Jump(128,"Fade2")
+    TNT1 A 0
+    TNT1 A 1
+    ATSO C 2 A_FadeOut(0.10)
+    Goto Fade+1
+Fade2:
+    TNT1 A 0
+    TNT1 A 1
+    ATSO D 2 A_FadeOut(0.10)
+    Goto Fade2+1
+    }
+}
+
+ACTOR ASoulFlameSpawner : LegendaryRedParticleSpawner
+{
+  +CLIENTSIDEONLY
+  States
+  {
+  Spawn:
+    TNT1 A 0
+    TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+    TNT1 AAAAAA 0 A_SpawnItemEx("ASoulFlame",3,random(20,-20),random(-40,40),0,0,random(-6,6),0,128,0)
+    TNT1 A 1
+    Stop		
+  }
+}
+
+ACTOR ASoulFlame
+{
++MISSILE
++DONTSPLASH
++CLIENTSIDEONLY
++NOBLOCKMAP
++NOGRAVITY
++NOTELEPORT
++FORCEXYBILLBOARD
++NOTIMEFREEZE
+RenderStyle Add
+Scale 1.5
+States
+{
+Spawn:
+    TNT1 A 0
+    TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	FIR1 ABCDEFGHIJKL 2 Bright A_FadeOut
+	Stop
+Vanilla:
+    TNT1 A 0
+    Stop
+ }
+}

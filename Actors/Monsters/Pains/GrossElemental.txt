@@ -1,0 +1,216 @@
+ACTOR GrossElemental : SoulKeeper 
+{
+Monster
++FLOORCLIP
++FLOAT
++NOGRAVITY
++QUICKTORETALIATE
++MissileMore
++DontHarmSpecies
+Health 1200
+Speed 16
+FloatSpeed 7
+PainChance 160
+Painchance "Mine", 128
+Painchance "SatanGuard", 0
+Painchance "BloodElemental", 0
+Painchance "Wicked", 0
+Species "Souls"
+BloodColor "Green"
+DamageType "Poison"
+DamageFactor "PDTBFG", 0.25
+DamageFactor "PDTBFGTracer", 0.25
+DamageFactor "PlayerDevBall", 0.125
+DamageFactor "PlayerDevBall2", 0.125
+DamageFactor "PlayerDevTracer", 0.125
+DamageFactor "PlayerDTBFGRailgunSlug", 0.125
+DamageFactor "PlayerDevTracer", 0.125
+DamageFactor "LegendaryPlayer", 0.3
+DamageFactor "LegendaryGuruPlayer", 0.3
+//No Infight
+Damagefactor "Broat", 0.0
+Damagefactor "BloodSkull", 0.0
+Damagefactor "BloodElemental", 0.0
+Damagefactor "Wicked", 0.0
+Damagefactor "EleSouls", 0.0
+DamageFactor "CacoComet", 0.0
+Obituary "$o was melted by the acid vomit of the Gross Elemental, Eugh!"
+SeeSound "GrossElem/Sight"
+DeathSound "GrossElem/Die"
+ActiveSound "GrossElem/Idle"
+PainSound "GrossElem/Pain"
+AttackSound "GrossElem/Fire"
+Tag "$NEGrossElem"
+DropItem "BossLifeEssence" 200 25
+DropItem "BossArmorBonusMax" 200 1
+DropItem "PartialKakuhou", 100, 1
+DropItem "PartialKakuhou", 100, 1
+DropItem "PartialKakuhou", 100, 1
+var int user_lowlag;
+states
+{
+Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
+	Goto Idle
+  Idle:
+DFLY A 10 A_Look
+Loop
+  See:
+	TNT1 A 0 A_JumpIf(user_lowlag == 1,"MoreSee")
+	TNT1 A 0 A_JumpIfTargetInLOS("MoreSee",0,0,0,0)
+	DFLY ABC 2 A_Chase
+	Loop
+  MoreSee:
+	TNT1 A 0 A_SetUserVar("user_lowlag",1)
+DFLY AAABBBCCC 1 Fast A_FastChase
+DFLY AAABBBCCC 1 Fast A_FastChase
+TNT1 A 0 A_SpawnItemEx("GrossEleBreath", 0, 0, random(20,40), 0, 0, 0, 0, 128, 220)
+Loop
+Missile:
+DFLY D 0 A_JumpIfCloser(250,"Vomit")
+DFLY D 4 A_FaceTarget
+DFLY E 4 A_FaceTarget
+DFLY F 0 A_PainAttack("VenomMaggot")
+TNT1 A 0 A_SpawnItemEx("GrossEleBreath", 0, 0, random(20,40), 0, 0, 0, 0, 128, 220)
+DFLY F 2 A_FaceTarget
+Goto See
+Vomit:
+DFLY D 4 Fast A_FaceTarget
+DFLY E 4 Fast A_FaceTarget
+DFLY F 0 A_CustomMissile("PukeVenom", 23, 0, 0)
+DFLY F 0 A_CustomMissile("PukeVenom", 23, 0, 3)
+DFLY F 0 A_CustomMissile("PukeVenom", 23, 0, -3)
+TNT1 A 0 A_SpawnItemEx("GrossEleBreath", 0, 0, random(20,40), 0, 0, 0, 0, 128, 220)
+DFLY F 2 Fast A_FaceTarget
+Goto See
+Melee:
+DFLY DE 5 A_FaceTarget 
+DFLY F 4 A_MeleeAttack
+TNT1 A 0 A_SpawnItemEx("GrossEleBreath", 0, 0, random(20,40), 0, 0, 0, 0, 128, 220)
+DFLY ED 3 A_FaceTarget
+Goto See
+Pain:
+DFLY G 4 Fast
+DFLY G 0 A_Wander
+TNT1 A 0 A_SpawnItemEx("GrossEleBreath", 0, 0, random(20,40), 0, 0, 0, 0, 128, 220)
+DFLY G 0 A_Wander
+DFLY G 4 Fast A_Pain
+Goto See
+Death:
+DFLY H 8 A_Scream
+DFLY IJK 8
+TNT1 A 0 A_SpawnItemEx("PoisonEleGoreGenerator",0,0,0,0,0,0,0,128,0)
+TNT1 AAAA 0 A_SpawnItemEx("GreenParticleSpawner", 0, 0, random(20,40), 0, 0, 0, 0, 128)
+TNT1 AAAA 0 A_CustomMissile("SmokeFX2", random(20,40), 0, random(0,360), 2, random(0,360))
+TNT1 AAAA 0 A_CustomMissile("Kaboom4", random(20,40), 0, random(0,360), 2, random(0,360))
+TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("PoisonEleBreath",0,0,10,Random(10,-10),Random(10,-10),Random(6,-6))
+DFLY L 8 A_PainDie("VenomMaggot")
+DFLY M 8
+Stop
+}
+}
+
+ACTOR VenomMaggot : Demon 6157
+{
++DontHarmSpecies
+Health 90
+Scale 0.5
+Radius 15
+Height 28
+Speed 9
+PainChance 70
+Painchance "Mine", 128
+Painchance "SatanGuard", 0
+Painchance "BloodElemental", 0
+Painchance "Wicked", 0
+BloodColor "Green"
+DamageFactor "PDTBFG", 0.25
+DamageFactor "PDTBFGTracer", 0.25
+DamageFactor "PlayerDevBall", 0.125
+DamageFactor "PlayerDevBall2", 0.125
+DamageFactor "PlayerDevTracer", 0.125
+DamageFactor "PlayerDTBFGRailgunSlug", 0.125
+DamageFactor "PlayerDevTracer", 0.125
+DamageFactor "LegendaryPlayer", 0.3
+DamageFactor "LegendaryGuruPlayer", 0.3
+Species "EleSouls"
+Obituary "$o's flesh was infected by the Venom Maggot's deadly bite, Gross!"
+SeeSound "VenMaggot/Sight"
+DeathSound "VenMaggot/Die"
+ActiveSound "VenMaggot/Idle"
+PainSound "VenMaggot/Pain"
+AttackSound "VenMaggot/Melee"
+DropItem "LifeEssence", 200, 4
+DropItem "BossArmorBonusMax", 200
+states
+{
+Spawn:
+MAGT AB 5 A_Look
+Loop
+See:
+MAGT AABBCCDD 2 Fast A_Chase
+Loop
+Melee:
+MAGT EF 6 Fast A_FaceTarget
+MAGT G 6 Fast A_CustomMeleeAttack(random(2, 6) * 4, "VenMaggot/Melee", "", "Poison")
+Goto See
+Pain:
+MAGT H 2 Fast
+MAGT H 2 Fast A_Pain
+Goto See
+Death:
+MAGT I 4 A_Scream
+MAGT J 4
+MAGT K 2 A_NoBlocking
+MAGT L 2
+MAGT M 2
+MAGT N -1
+Stop
+Raise:
+MAGT N 4
+MAGT MLKJI 4
+Goto See
+}
+}
+
+ACTOR PukeVenom : CacodemonBall
+{
+Speed 15
+Damage 6
+RenderStyle Normal
+DamageType "Poison"
+PoisonDamage 1, 8
+Gravity 0.4
+States
+{
+Spawn:
+VBAL AB 4
+Loop
+Death:
+VBAL CDE 4
+Stop
+}
+}
+
+ACTOR GrossEleBreath : PoisonSoulCloud
+{ 
+	Scale 0.85
+	Speed 12
+	Species "EleSouls"
+	Damagetype "Poison"
+	+MISSILE
+	+THRUSPECIES
+	+HEXENBOUNCE
+	-NOGRAVITY
+	Gravity 0.06
+    States 
+    { 
+    Spawn: 
+	    TNT1 A 0
+		TNT1 A 0 A_PlaySound("monsters/barbgas", 4)
+        TRPS AABBCDEFGDFEG 3 A_Explode(2,68)
+    Death: 
+		TRPS CCBBAA 1 A_FadeOut(0.15)
+        Stop 
+		} 
+}

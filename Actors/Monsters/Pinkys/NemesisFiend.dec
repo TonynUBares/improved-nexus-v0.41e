@@ -1,0 +1,562 @@
+Actor NemesisFiend : LegendaryFiend 28025
+{
+  Health 1800
+  PainChance 20
+  Speed 18
+  BloodColor "Black"
+  Scale 1.25
+  DamageFactor 0.6
+  DamageFactor "PlayerNemesisPlasma", 0.3
+  DamageFactor "PlayerNemesisBFG", 0.1
+  DamageFactor "Explosion", 0.2
+  DamageFactor "PlayerDTRG", 0.4
+  DamageFactor "DTRailgun", 0.4
+  DamageFactor "PDTPuff", 0.4
+  DamageFactor "RailG", 0.3
+  DamageFactor "PlayerPyro", 0.2
+  DamageFactor "VileFires", 0.0
+  DamageFactor "Lightning", 0.5
+  DamageFactor "NemesisBall", 0.2
+  DamageFactor "Ice", 0.25
+  DamageFactor "Legendary", 0.0
+  DamageFactor "PlayerLegendary", 0.0
+  DamageFactor "LegendaryPlayer", 0.2
+  DamageFactor "LegendaryGuru", 0.0
+  DamageFactor "LegendaryGuruPlayer", 0.0
+  DamageFactor "Superweapon", 0.0
+  DamageFactor "None", 0.4
+  DamageFactor "Normal", 0.8  
+  DropItem "NemesisHealthBonusMax", 256, 32
+  DropItem "NemesisArmorBonus32", 256
+  DropItem "NemesisHealthBonusMax", 256, 32
+  DropItem "NemesisArmorBonus32", 256
+  DropItem "EnragedLegendaryArmor" 110 1
+  DropItem "LegendaryPowerSphere" 100 1
+  DropItem "NLDemonAmmoBoxPickup" 200 
+  DropItem "NLDemonAmmoPickup" 256
+  DropItem "LegTimeFreezeSphere" 100
+  DropItem "EnragedLegendaryPowerShard" 65 1
+  DropItem "NemesisRifleGiver" 40 1
+  SeeSound "NemesisFiend/Sight"
+  ActiveSound "NemesisFiend/Active"
+  PainSound "NemesisFiend/Pain"
+  DeathSound "NemesisFiend/Death"
+  AttackSound "LegFiend/Melee"
+  Obituary "%o was wiped clean off the floor by the Nemesis Fiend."
+  HitObituary "%o was processed into the Nemesis Fiend's daily meal."
+  Tag "$CFNemFiend"
+  var int user_deathtimer;
+  var int user_deathtimeractive;
+  States
+  {
+  Spawn:
+	NFND A 0
+	TNT1 A 0 ACS_NamedExecuteAlways("WimpyMode",0,2)
+	TNT1 A 0 ACS_NamedExecuteAlways("ModifyMonster",0,2,4)
+	TNT1 A 0 ACS_NamedExecuteAlways("SpawnEffects",0)
+	TNT1 A 0 A_SetUserVar("user_effect_type",22)
+	TNT1 A 0 A_SetUserVar("user_effect_delay",6)
+	TNT1 A 0 A_SetUserVar("user_effect_quantity",1)
+  Idle:
+	NFND A 12 Bright A_Look
+	Loop
+  See:
+	TNT1 A 0 A_SetUserVar("user_effect_delay",6)
+	TNT1 A 0 A_SetUserVar("user_effect_type",22)
+	TNT1 A 0 A_JumpIf(user_lowlag == 1,"MoreSee")
+	TNT1 A 0 A_JumpIfTargetInLOS("MoreSee",0,0,0,0)
+	NFND AABB 2 A_Chase
+	TNT1 A 0 A_PlaySound("NemesisFiend/Step1")
+	Loop
+  MoreSee:
+	TNT1 A 0 A_SetUserVar("user_lowlag",1)
+	TNT1 A 0 A_JumpIf(user_deathtimeractive == 1,3)
+	TNT1 A 0 ACS_NamedExecuteAlways("NemesisDeathTimerForVexed",0)
+	TNT1 A 0 A_SetUserVar("user_deathtimeractive",1)
+	TNT1 A 0 A_JumpIf(user_music == 1,3)
+	TNT1 A 0 ACS_NamedExecuteAlways("CFMusic",0,747)
+	TNT1 A 0 A_SetUserVar("user_music",1)
+	TNT1 A 0 A_ChangeFlag(NOPAIN,0)
+	TNT1 A 0 A_Jump(110,"Rush")
+	TNT1 A 0 A_PlaySound("NemesisFiend/Step1")
+	NFND AABB 2 Bright A_Chase
+	TNT1 A 0 A_PlaySound("NemesisFiend/Step1")
+	NFND CCDD 2 Bright A_Chase
+	TNT1 A 0 A_Jump(25,"Teleport")
+	Loop
+  Rush:
+	TNT1 A 0 A_PlaySound("NemesisFiend/Step2")
+	NFND AA 0 A_Chase
+	NFND A 1 Bright A_SpawnItemEx("NemesisFiendGhost",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
+	NFND AA 0 A_Chase
+	NFND A 1 Bright A_SpawnItemEx("NemesisFiendGhost",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
+	NFND AA 0 A_Chase
+	NFND B 1 Bright A_SpawnItemEx("NemesisFiendGhost",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
+	NFND AA 0 A_Chase
+	NFND B 1 Bright A_SpawnItemEx("NemesisFiendGhost",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
+	TNT1 A 0 A_PlaySound("NemesisFiend/Step2")
+	NFND AA 0 A_Chase
+	NFND C 1 Bright A_SpawnItemEx("NemesisFiendGhost",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
+	NFND AA 0 A_Chase
+	NFND C 1 Bright A_SpawnItemEx("NemesisFiendGhost",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
+	NFND AA 0 A_Chase
+	NFND D 1 Bright A_SpawnItemEx("NemesisFiendGhost",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
+	NFND AA 0 A_Chase
+	NFND D 1 Bright A_SpawnItemEx("NemesisFiendGhost",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
+	TNT1 A 0 A_Jump(15,"Teleport")
+	TNT1 A 0 A_Jump(87,"See")
+	Loop
+ Teleport:
+	TNT1 A 0 A_SetUserVar("user_effect_type",0)
+	NFND A 1 Bright A_UnSetShootable
+	NFND AAAAAAAAAA 1 A_FadeOut(0.1,0)
+	NFND AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	NFND A 1 A_PlayWeaponSound("boss/teleport")
+	TNT1 A 0 A_Recoil(0.1)
+	NFND AAAAAAAAAA 1 A_FadeIn(0.1)
+	NFND A 1 Bright A_SetShootable
+	Goto See		
+  Missile:
+	TNT1 A 0 A_SetShootable
+	TNT1 A 0 ACS_NamedExecuteAlways("TakeResistance") //A_UnSetInvulnerable
+	TNT1 A 0 A_SetTranslucent(1)
+	TNT1 A 0 A_Jump(128,2)
+	TNT1 A 0 A_JumpIfCloser(500,"FireBreath")
+	TNT1 A 0 A_Jump(48,"Rage")
+	TNT1 A 0 A_Jump(64,"Ripper","BigBall")
+	TNT1 A 0 A_JumpIfCloser(300,"Lunge")
+  Normal:		
+	NFND EF 6 Bright A_FaceTarget
+	NFND G 6 Bright A_CustomMissile("NemesisFiendBall",32,0,0)
+	NFND EF 6 Bright A_FaceTarget
+	NFND G 6 Bright A_CustomMissile("NemesisFiendBall",32,0,0)	
+	NFND EF 8 Bright A_FaceTarget
+	TNT1 A 0 A_CustomMissile("NemesisFiendBall",32,0,10)
+	TNT1 A 0 A_CustomMissile("NemesisFiendBall",32,0,-10)	
+	NFND G 8 Bright A_CustomMissile("NemesisFiendBall",32,0,0)	
+	NFND E 6 Bright
+	Goto See	
+  BigBall:
+	NFND EF 8 A_FaceTarget
+	NFND G 8 Bright A_CustomMissile("NemesisFiendBigBall",32,0,0)
+	NFND EF 8 A_FaceTarget
+	NFND G 8 Bright A_CustomMissile("NemesisFiendBigBall",32,0,0)
+	Goto See
+  FireBreath:
+	TNT1 A 0 A_PlaySound("LegFiend/Melee",2)
+	NFND EF 5 Bright A_FaceTarget
+	TNT1 A 0 A_PlaySound("magma/firebreath")
+	TNT1 A 0 A_FaceTarget
+	NFND FFFFFFFFFFFF 1 Bright A_CustomMissile("NemesisFiendBreath",32,0,frandom(-6,6))
+	TNT1 A 0 A_FaceTarget
+	NFND FFFFFFFFFFFF 1 Bright A_CustomMissile("NemesisFiendBreath",32,0,frandom(-6,6))
+	TNT1 A 0 A_FaceTarget
+	NFND FFFFFFFFFFFF 1 Bright A_CustomMissile("NemesisFiendBreath",32,0,frandom(-6,6))
+	TNT1 A 0 A_FaceTarget
+	NFND FFFFFFFFFFFF 1 Bright A_CustomMissile("NemesisFiendBreath",32,0,frandom(-6,6))
+	NFND E 10 Bright
+	Goto See
+  Ripper:		
+	NFND EEEFFF 3 Bright A_FaceTarget
+	NFND GGG 3 Bright A_CustomMissile("NemesisFiendBoomerang",32,0,frandom(-2,2))
+	NFND G 0 A_FaceTarget
+	NFND GGG 3 Bright A_CustomMissile("NemesisFiendBoomerang",32,0,frandom(-2,2))
+	NFND G 0 A_FaceTarget
+	NFND GGG 3 Bright A_CustomMissile("NemesisFiendBoomerang",32,0,frandom(-2,2))
+	NFND E 2 Bright A_FaceTarget
+	Goto See
+  Lunge:
+	TNT1 A 0 A_Jump(64,"Normal")
+	TNT1 A 0 A_PlaySound("LegFiend/Melee")
+	NFND EF 4 Bright A_FaceTarget
+	TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,1)
+	TNT1 A 0 ThrustThingZ(0,20,0,1)
+	NFND F 2 Bright A_Recoil(-36)
+	NFND F 3 Bright A_CustomMissile("NemesisFiendLunge",18,0,0,CMF_AIMDIRECTION)
+	NFND G 6 Bright
+	NFND G 2 Bright A_ScaleVelocity(0.2)
+	TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)
+	NFND G 1 Bright A_ScaleVelocity(0)
+	Goto Missile
+  Rage:	
+	NFND G 1 A_JumpIfCloser(1500,1)
+	Goto Normal
+	NFND G 1 Bright A_PlaySound("NemesisFiend/Attack",2)
+	NFND G 0 A_GiveInventory("BossProtectionTierIII",1) //A_SetInvulnerable
+    TNT1 A 0 ACS_NamedExecuteAlways("BossResistanceBuff")
+	NFND G 1 Bright A_FaceTarget
+  RageWait:
+	TNT1 A 0 A_JumpIf(user_ragewait >= 10,"RageGo")
+	TNT1 A 0 A_SetUserVar("user_ragewait",user_ragewait+1)
+	NFND G 0 A_JumpIfTargetInLos(2)
+	NFND G 0 A_Jump(256,2)
+	NFND G 0 A_FaceTarget
+	NFND G 2 Bright A_SpawnItemEx("NemesisSoulFlameSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE)
+	Loop
+  RageGo:
+	TNT1 A 0 A_SetUserVar("user_ragewait",0) 
+	TNT1 A 0 ACS_NamedExecuteAlways("TakeResistance") //A_UnSetInvulnerable
+	TNT1 A 0 ThrustThingZ(0,35,0,1)
+	TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,1)
+	TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+	TNT1 A 0 A_PlaySound("NemesisFiend/Jump",7)
+	NFND G 9 Bright
+	NFND G 0 A_JumpIfTargetInLos(2)
+	NFND G 0 A_Jump(256,2)
+	NFND G 0 A_FaceTarget
+	NFND G 3 Bright
+	TNT1 A 0 ThrustThingZ(0,20,0,1)
+	NFND F 2 A_Recoil(-100)
+	TNT1 A 0 A_PlaySound("LegFiend/Melee")
+	TNT1 A 0 A_SetUserVar("user_effect_type",24)
+	TNT1 A 0 A_SetUserVar("user_effect_delay",2)
+	NFND G 0 A_SpawnItemEx("NemesisFiendLungeGhost",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+	NFND G 0 A_CustomMissile("BigLFLunge",18,0,0,CMF_AIMDIRECTION)
+	NFND G 2 Bright A_FaceTarget
+	NFND G 0 A_SpawnItemEx("NemesisFiendLungeGhost",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+	NFND G 0 A_CustomMissile("BigLFLunge",18,0,0,CMF_AIMDIRECTION)
+	NFND G 2 Bright A_FaceTarget
+	TNT1 A 0 A_Jump(128,"LungeTeleport")
+	NFND G 0 A_SpawnItemEx("NemesisFiendLungeGhost",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+	NFND G 0 A_CustomMissile("BigLFLunge",18,0,0,CMF_AIMDIRECTION)
+	NFND G 2 Bright A_FaceTarget
+	NFND G 0 A_SpawnItemEx("NemesisFiendLungeGhost",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+	NFND G 0 A_CustomMissile("BigLFLunge",18,0,0,CMF_AIMDIRECTION)
+	NFND G 2 Bright A_FaceTarget	
+	NFND G 0 A_SpawnItemEx("NemesisFiendLungeGhost",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+	NFND G 0 A_CustomMissile("BigLFLunge",18,0,0,CMF_AIMDIRECTION)
+	NFND G 2 Bright A_FaceTarget
+	NFND G 0 A_SpawnItemEx("NemesisFiendLungeGhost",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+	NFND G 0 A_CustomMissile("BigLFLunge",18,0,0,CMF_AIMDIRECTION)
+	NFND G 2 Bright A_FaceTarget
+	NFND G 0 A_SpawnItemEx("NemesisFiendLungeGhost",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+	NFND G 0 A_CustomMissile("BigLFLunge",18,0,0,CMF_AIMDIRECTION)
+	NFND G 2 Bright A_FaceTarget
+	NFND G 0 A_SpawnItemEx("NemesisFiendLungeGhost",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+	NFND G 0 A_CustomMissile("BigLFLunge",18,0,0,CMF_AIMDIRECTION)
+	NFND G 2 Bright A_FaceTarget
+	NFND G 0 A_SpawnItemEx("NemesisFiendLungeGhost",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+	NFND G 0 A_CustomMissile("BigLFLunge",18,0,0,CMF_AIMDIRECTION)
+	NFND G 2 Bright A_FaceTarget
+	NFND G 0 A_SpawnItemEx("NemesisFiendLungeGhost",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+	NFND G 0 A_CustomMissile("BigLFLunge",18,0,0,CMF_AIMDIRECTION)
+	NFND G 2 Bright A_FaceTarget
+	NFND G 0 A_SpawnItemEx("NemesisFiendLungeGhost",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+	NFND G 0 A_CustomMissile("BigLFLunge",18,0,0,CMF_AIMDIRECTION)
+	NFND G 2 Bright A_FaceTarget
+	NFND G 0 A_SpawnItemEx("NemesisFiendLungeGhost",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+	NFND G 0 A_CustomMissile("BigLFLunge",18,0,0,CMF_AIMDIRECTION)
+	NFND G 2 Bright A_FaceTarget
+	NFND G 0 A_SpawnItemEx("NemesisFiendLungeGhost",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+	NFND G 0 A_CustomMissile("BigLFLunge",18,0,0,CMF_AIMDIRECTION)
+	NFND G 2 Bright A_FaceTarget
+	NFND G 0 A_SpawnItemEx("NemesisFiendLungeGhost",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+	NFND G 0 A_CustomMissile("BigLFLunge",18,0,0,CMF_AIMDIRECTION)
+	NFND G 2 Bright A_FaceTarget
+	NFND G 0 A_SpawnItemEx("NemesisFiendLungeGhost",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+	NFND G 0 A_CustomMissile("BigLFLunge",18,0,0,CMF_AIMDIRECTION)
+	NFND G 2 Bright A_FaceTarget
+	NFND G 0 A_SpawnItemEx("NemesisFiendLungeGhost",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+	NFND G 0 A_CustomMissile("BigLFLunge",18,0,0,CMF_AIMDIRECTION)
+	NFND G 2 Bright A_FaceTarget
+	NFND G 0 A_SpawnItemEx("NemesisFiendLungeGhost",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+	NFND G 0 A_CustomMissile("BigLFLunge",18,0,0,CMF_AIMDIRECTION)
+	NFND G 2 Bright A_FaceTarget
+	NFND G 0 A_SpawnItemEx("NemesisFiendLungeGhost",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+	NFND G 0 A_CustomMissile("BigLFLunge",18,0,0,CMF_AIMDIRECTION)
+	NFND G 2 Bright A_FaceTarget
+	NFND G 0 A_SpawnItemEx("NemesisFiendLungeGhost",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+	NFND G 0 A_CustomMissile("BigLFLunge",18,0,0,CMF_AIMDIRECTION)
+	NFND G 2 Bright A_FaceTarget
+	NFND G 0 A_SpawnItemEx("NemesisFiendLungeGhost",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+	NFND G 0 A_CustomMissile("BigLFLunge",18,0,0,CMF_AIMDIRECTION)
+	NFND G 2 Bright A_FaceTarget
+	TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)
+	TNT1 A 0 A_ChangeFlag(NOPAIN,0)
+	Goto See
+  LungeTeleport:
+	TNT1 A 0 A_SetUserVar("user_effect_type",0)
+	NFND G 1 Bright A_UnSetShootable
+	TNT1 A 0 A_PlaySound("boss/teleport",1)
+	NFND GGGGGGGGGG 1 A_FadeOut(0.1,0)
+	TNT1 A 0 A_Stop
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Chase("","")
+	NFND A 1 A_PlaySound("boss/teleport",1)
+	NFND AAAAAAAAAA 1 A_FadeIn(0.1)
+	TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)
+	TNT1 A 0 A_ChangeFlag(NOPAIN,0)
+	NFND A 1 Bright A_SetShootable
+	TNT1 A 0 A_Jump(128,"RageGo")
+	Goto See
+  Melee:
+	NFND EF 2 Bright A_FaceTarget
+	NFND G 2 Bright A_MeleeAttack
+	NFND E 2 Bright A_FaceTarget
+	Goto See
+  Pain:
+  	TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)
+	TNT1 A 0 A_Jump(35,"Teleport")
+	TNT1 A 0 A_Jump(88,"Rage")
+	NFND H 2 Bright
+	NFND H 2 Bright A_Pain
+	Goto See
+  PainMissile:
+	NFND H 2 Bright
+	NFND H 2 Bright A_Pain
+	Goto Missile
+  Death:
+  	TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("GetCVar",12) == 1,4)
+	TNT1 A 0 ACS_NamedExecuteWithResult("VexCheck")
+	TNT1 A 0 A_JumpIf(user_deathtimer <= 10,"VexedSpawn")
+	NFND I 10 A_StopSound(6)
+	NFND J 0 A_PlaySound("Gore/Splat")
+	NFND J 0 A_SpawnItemEx("NemesisGibbedGenerator",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+	NFND J 10 A_Scream
+	NFND K 10 
+	NFND L 10 A_NoBlocking
+	NFND M 10 
+	TNT1 A 0 A_Jump(100,"MoreStuff")
+	NFND N -1
+	Stop
+  MoreStuff:
+	NFND N 100
+	TNT1 A 0 A_SpawnItem("HellionSmokeAttack")
+	NFND NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN 1 A_SpawnItem("NemesisZombieItemRandomizer")
+	NFND N 1 A_SpawnItem("NemesisZombieSuperItemRandomizer")
+	NFND N -1
+	Stop
+  VexedSpawn:
+	NFND G 3 Bright A_Pain
+	NFND G 0 A_PlaySoundEx("brain/spit",7,0,2)
+	NFND GGGGGGGGGGGGGGGGG 2 Bright A_GiveInventory("NemesisSoulEvent",1)
+	NFND GGGGGGGGGGGGGGGGG 2 Bright A_GiveInventory("NemesisSoulEvent",1)
+	NFND GGGGGGGGGGGGGGGGG 2 Bright A_GiveInventory("NemesisSoulEvent",1)
+	TNT1 A 0 A_SpawnItemEx("NemesisLightning")
+	NFND GGGGGGGGGGGG 2 Bright A_SpawnItemEx("VexedNemesisFlameSpawner")
+	TNT1 A 0 A_SpawnItemEx("VexedNemesisFiend",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TELEFRAG)
+	TNT1 A 0
+	Stop
+  }
+}
+
+Actor NemesisFiendBreath : MagmaBreath
+{
+  Height 10
+  Radius 10
+  Scale 0.8
+  Speed 25
+  Decal "Scorch"
+  Damage (Random(12,24))
+  -THRUSPECIES 
+  -THRUACTORS
+  -SKYEXPLODE
+  +FORCERADIUSDMG
+  Species "Fiends"
+  DamageType "FiendFire"
+  States 
+  { 
+  Spawn:
+	TNT1 A 0
+	2HDT LKJIHGFEDCB 2 Bright //A_Explode(10,20,0)
+	Goto Death
+  Death:
+	2HDT AAAAA 2 Bright //A_FadeOut(0.25,1)
+	Stop
+  } 
+}
+
+Actor NemesisFiendLunge : LFLunge { Speed 36 Damage (Random(80,160)) }
+
+Actor NemesisFiendBoomerang : LegFiendBall
+{
+  Damage 10
+  BounceCount 4
+  States
+  {
+  Spawn:
+	TNT1 A 0
+	NFB1 ABCDEFGH 2 Bright A_SpawnItemEx("NemesisFiendBoomerangTrail")
+	Loop
+  Death:
+	TNT1 A 0 A_SpawnItemEx("NemesisWhiteParticleSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0) 
+	TNT1 AAA 0 A_CustomMissile("WhiteNemesisKaboom7",0,0,frandom(0,360),CMF_AIMDIRECTION,frandom(0,360))
+	TNT1 AAA 0 A_CustomMissile("LegendarySmokeFX4",0,0,frandom(0,360),CMF_AIMDIRECTION,frandom(0,360))
+	NFB1 IJK 4 Bright A_FadeOut(0.10)
+	Stop
+  }
+}
+
+Actor NemesisFiendBoomerangTrail
+{	  
+  +NOINTERACTION
+  +CLIENTSIDEONLY
+  +NOTIMEFREEZE
+  Renderstyle Add
+  Alpha 0.6
+  Scale 0.8
+  States
+  {  
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_CheckSight("Vanilla")
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	NFB1 ABCDEFGH 1 Bright A_FadeOut(0.05)
+	Stop
+  Vanilla:
+	TNT1 A 0
+	Stop
+  }
+}
+
+Actor NemesisFiendBall : LegFiendBall2
+{
+  Speed 40
+  Damage 25
+  +FORCERADIUSDMG
+  States
+  {
+  Spawn: 
+	TNT1 A 0 A_Weave(3,0,1.0,0.0)
+	NFB2 A 1 Bright A_SpawnItemEx("NemesisFiendBallTrail")
+	TNT1 A 0 A_Weave(3,0,1.0,0.0)
+	NFB2 B 1 Bright A_SpawnItemEx("NemesisFiendBallTrail")
+	Loop
+  Death:
+	TNT1 A 0 A_Explode(32,64,0)
+	TNT1 A 0 A_SpawnItemEx("NemesisWhiteParticleSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0) 
+	TNT1 AAA 0 A_CustomMissile("WhiteNemesisKaboom7",0,0,frandom(0,360),CMF_AIMDIRECTION,frandom(0,360))
+	TNT1 AAA 0 A_CustomMissile("LegendarySmokeFX4",0,0,frandom(0,360),CMF_AIMDIRECTION,frandom(0,360))
+	NFB2 C 5 Bright A_Explode(8,32,0)
+	NFB2 DE 5 Bright
+	Stop
+  }
+}
+
+Actor NemesisFiendBallTrail
+{	  
+  +NOINTERACTION
+  +CLIENTSIDEONLY
+  +NOTIMEFREEZE
+  Renderstyle Add
+  Alpha 0.6
+  Scale 0.8
+  States
+  {  
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_CheckSight("Vanilla")
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	NFB2 AAAABBBB 1 Bright A_FadeOut(0.05)
+	Stop
+  Vanilla:
+	TNT1 A 0
+	Stop	
+  }
+}
+
+Actor NemesisFiendBigBall : NemesisFiendBall
+{
+  Speed 45
+  Damage 25
+  Scale 1.2
+  SeeSound "comet/launch"
+  DeathSound "comet/explosion"
+  +FORCERADIUSDMG
+  States
+  {
+  Spawn: 
+	NFB3 AAABBBCCCDDDEEEFFF 1 Bright A_SpawnItemEx("NemesisFiendBigBallTrail")
+	Loop
+  Death:
+	TNT1 A 0 A_Explode(64,120,0)
+	TNT1 A 0 A_SpawnItemEx("NemesisWhiteParticleSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0) 
+	TNT1 AAA 0 A_CustomMissile("LegendarySmokeFX4",0,0,frandom(0,360),CMF_AIMDIRECTION,frandom(0,360))
+    TNT1 A 0 A_CustomMissile("NemesisFiendHellBoom",0,0,0,6)
+    TNT1 A 0 A_CustomMissile("NemesisFiendHellBoom",0,0,45,6)
+    TNT1 A 0 A_CustomMissile("NemesisFiendHellBoom",0,0,90,6)
+    TNT1 A 0 A_CustomMissile("NemesisFiendHellBoom",0,0,135,6)
+    TNT1 A 0 A_CustomMissile("NemesisFiendHellBoom",0,0,180,6)
+    TNT1 A 0 A_CustomMissile("NemesisFiendHellBoom",0,0,225,6)
+    TNT1 A 0 A_CustomMissile("NemesisFiendHellBoom",0,0,270,6)
+    TNT1 A 0 A_CustomMissile("NemesisFiendHellBoom",0,0,315,6)
+	NFB3 GHI 5 Bright
+	Stop
+  }
+}
+
+Actor NemesisFiendBigBallTrail : NemesisFiendBallTrail
+{	  
+  Scale 1.2
+  +NOINTERACTION
+  +NOBLOCKMAP
+  States
+  {  
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_CheckSight("Vanilla")
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	NFB3 AAABBBCCCDDDEEEFFF 1 Bright Bright A_FadeOut(0.05)
+	Stop	
+  }
+}
+
+Actor NemesisFiendHellBoom : HellBoom
+{
+  +NOTIMEFREEZE
+  States
+  {
+  Spawn:
+	TNT1 AAAAA 3 A_SpawnItem("NemesisFiendHellFX",0,0)
+	Stop
+  }
+}
+
+Actor NemesisFiendHellFX : HellFX
+{   
+  +NOTIMEFREEZE
+  States
+  {
+  Spawn:
+	NCX8 A 3 Bright
+	NCX8 B 3 Bright A_Explode(16,96)
+	NCX8 CDEFGHIJ 3 Bright
+	stop
+  }
+}
+
+Actor NemesisFiendGhost
+{
+  Scale 1.25
+  Renderstyle Translucent
+  Alpha 0.75
+  +CLIENTSIDEONLY
+  +NOINTERACTION
+  +NOBLOCKMAP
+  +NOTIMEFREEZE
+  States
+  {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_CheckSight("Vanilla")
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	NFND A 2 A_FadeOut(0.09)
+	Loop
+  Vanilla:
+	TNT1 A 0
+	Stop	
+  }
+}
+
+Actor NemesisFiendLungeGhost : NemesisFiendGhost
+{
+  States
+  {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_CheckSight("Vanilla")
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	NFND G 2 A_FadeOut(0.09)
+	Loop
+  }
+}

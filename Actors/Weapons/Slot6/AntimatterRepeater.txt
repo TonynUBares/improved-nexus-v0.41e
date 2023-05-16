@@ -1,0 +1,307 @@
+Actor AntiMatterRepeaterGiver : CustomInventory
+{
+  Scale 0.9
+  Inventory.Amount 1
+  Inventory.MaxAmount 0
+  Inventory.InterHubAmount 0
+  Inventory.PickupSound "PlasmaRepeater/Pickup"
+  Inventory.PickupMessage "Antimatter Repeater"
+  Obituary "%o was disintegrated by %k's Antimatter Repeater."
+  Tag "AntiMatter Repeater"
+  States
+  {
+  Spawn:
+	ANRP A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",6,0)
+  SpawnLoop:
+	ANRP A -1
+	Loop
+  Pickup:
+	TNT1 A 0 A_JumpIfInventory("AntiMatterRepeater",1,"JustAmmo")
+  All:
+	TNT1 A 0 A_GiveInventory("AntiMatterRepeater",1)
+	TNT1 A 0 A_JumpIfInventory("AntiMatterRepeaterGiverCheck",1,"HoldAndDestroy")
+	TNT1 A 0 A_GiveInventory("AntiMatterRepeaterGiverCheck",1)
+	TNT1 A 0 A_GiveInventory("DemonAmmo",40)
+	Stop
+  JustAmmo:
+    TNT1 A 0 A_JumpIfInventory("AntiMatterRepeaterGiverCheck",1,"Null")
+	TNT1 A 0 A_GiveInventory("AntiMatterRepeaterGiverCheck",1)
+	TNT1 A 0 A_GiveInventory("DemonAmmo",40)
+	TNT1 A 0 A_SpawnItemEx("AntiMatterRepeater")
+	Stop
+  }
+}
+
+Actor AntiMatterRepeaterSpawnerGiver : AntiMatterRepeaterGiver
+{
+  States
+  {
+  JustAmmo:
+    TNT1 A 0 A_JumpIfInventory("AntiMatterRepeaterGiverCheck",1,"Null")
+	TNT1 A 0 A_GiveInventory("AntiMatterRepeaterGiverCheck",1)
+	TNT1 A 0 A_GiveInventory("DemonAmmo",40)
+	Stop
+  }
+}
+
+Actor AntiMatterRepeaterGiverCheck : Inventory { Inventory.Amount 1 Inventory.MaxAmount 1 Inventory.InterHubAmount 0 }
+
+
+
+Actor AntimatterRepeater : Weapon
+{
+  Inventory.PickupSound "PlasmaRepeater/Pickup"
+  Weapon.Upsound "PlasmaRepeater/Draw"
+  Inventory.PickupMessage "Antimatter Repeater"
+  Obituary "%o was disintegrated by %k's Antimatter Repeater."
+  Weapon.AmmoType1 "DemonAmmo"
+  Weapon.AmmoType2 "DemonAmmo"
+  Weapon.AmmoUse1 2
+  Weapon.AmmoGive1 70
+  Weapon.SlotNumber 6
+  Weapon.SlotPriority 4.1
+  Tag "Antimatter Repeater"
+  Weapon.PreferredSkin "AntimatterRepeaterMarine"
+  +Weapon.Explosive
+  States
+  {
+  Spawn:
+  	ANRP A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",6,0)
+  SpawnLoop:
+    ANRP A -1
+    Loop
+  Ready:
+    TNT1 A 0 A_TakeInventory("RepeaterSpin", 3)
+    TNT1 A 0 A_GiveInventory("RepeaterFrameA", 1)
+    REPA A 1 A_WeaponReady
+    Loop
+   Deselect:
+	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",1)
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	TNT1 A 0 A_TakeInventory("RailgunAction",1)
+	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown")
+    TNT1 A 0 A_TakeInventory("RepeaterSpin", 3)
+    TNT1 A 0 A_GiveInventory("RepeaterFrameA", 1)
+	TNT1 A 0 A_Lower
+    REPA A 1 A_Lower
+    Goto Deselect+7
+   Select:
+	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",0)
+	TNT1 A 0 A_Raise
+    REPA A 1 A_Raise
+    Goto Select+1
+  Fire:
+    //===========Spinup
+    REPA A 0 A_PlaySound("PlasmaRepeater/Spin",7)
+    REPA A 0 A_JumpIfInventory("RepeaterSpin", 1, 8)
+    REPA A 0 A_JumpIfInventory("RepeaterB", 1, 4)
+    REPA A 0 A_JumpIfInventory("RepeaterC", 1, 4)
+    REPA A 0 A_JumpIfInventory("RepeaterD", 1, 4)
+    REPA ABC 4
+    REPA D 4 A_GiveInventory("RepeaterFrameA")
+    REPA A 0 A_JumpIfInventory("RepeaterSpin", 2, 9)
+    REPA A 0 A_GiveInventory("RepeaterSpin", 1)
+    REPA A 0 A_JumpIfInventory("RepeaterB", 1, 4)
+    REPA A 0 A_JumpIfInventory("RepeaterC", 1, 4)
+    REPA A 0 A_JumpIfInventory("RepeaterD", 1, 4)
+    REPA ABC 3
+    REPA D 3 A_GiveInventory("RepeaterFrameA")
+    REPA A 0 A_JumpIfInventory("RepeaterB", 1, 4)
+    REPA A 0 A_JumpIfInventory("RepeaterC", 1, 4)
+    REPA A 0 A_JumpIfInventory("RepeaterD", 1, 4)
+    REPA ABC 2
+    REPA D 2 A_GiveInventory("RepeaterFrameA")
+    //===========Fire
+    REPA A 0 A_Refire
+    //===========Spindown
+    REPA A 0 A_PlaySound("PlasmaRepeater/Down",7)
+    REPA A 0 A_GiveInventory("RepeaterFrameA", 1)
+    REPA AA 1 A_WeaponReady(11)
+    REPA A 0 A_GiveInventory("RepeaterFrameB", 1)
+    REPA BB 1 A_WeaponReady(11)
+    REPA A 0 A_GiveInventory("RepeaterFrameC", 1)
+    REPA CC 1 A_WeaponReady(11)
+    REPA A 0 A_GiveInventory("RepeaterFrameD", 1)
+    REPA DD 1 A_WeaponReady(11)
+    REPA A 0 A_TakeInventory("RepeaterSpin", 1)
+    REPA A 0 A_GiveInventory("RepeaterFrameA", 1)
+    REPA AAA 1 A_WeaponReady(11)
+    REPA A 0 A_GiveInventory("RepeaterFrameB", 1)
+    REPA BBB 1 A_WeaponReady(11)
+    REPA A 0 A_GiveInventory("RepeaterFrameC", 1)
+    REPA CCC 1 A_WeaponReady(11)
+    REPA A 0 A_GiveInventory("RepeaterFrameD", 1)
+    REPA DDD 1 A_WeaponReady(11)
+    REPA A 0 A_TakeInventory("RepeaterSpin", 1)
+    REPA A 0 A_GiveInventory("RepeaterFrameA", 1)
+    REPA AAAA 1 A_WeaponReady(11)
+    REPA A 0 A_GiveInventory("RepeaterFrameB", 1)
+    REPA BBBB 1 A_WeaponReady(11)
+    REPA A 0 A_GiveInventory("RepeaterFrameC", 1)
+    REPA CCCC 1 A_WeaponReady(11)
+    REPA A 0 A_GiveInventory("RepeaterFrameD", 1)
+    REPA DDDD 1 A_WeaponReady(11)
+    REPA A 0 A_GiveInventory("RepeaterFrameA", 1)
+    REPA AAAA 1 A_WeaponReady(11)
+    REPA A 0 A_GiveInventory("RepeaterFrameB", 1)
+    REPA BBBB 1 A_WeaponReady(11)
+    REPA A 0 A_GiveInventory("RepeaterFrameC", 1)
+    REPA CCCC 1 A_WeaponReady(11)
+    REPA A 0 A_GiveInventory("RepeaterFrameD", 1)
+    REPA DDDD 1 A_WeaponReady(11)
+    Goto Ready
+  Hold:
+    TNT1 A 0 A_JumpIfInventory("PowerSpreadRune",1,"HoldSpread")
+    REPA E 0 Bright A_Gunflash
+    REPA E 0 Bright A_AlertMonsters
+	TNT1 A 0 Radius_Quake(4,2,0,1,0)
+    REPA E 1 Bright A_FireCustomMissile("PlayerRepeaterAntimatter",frandom(-2,2),1,0,-8)
+    REPA F 1 Bright
+    REPA G 0 Bright A_AlertMonsters
+	TNT1 A 0 Radius_Quake(4,2,0,1,0)
+    REPA G 1 Bright A_FireCustomMissile("PlayerRepeaterAntimatter",frandom(-2,2),1,0,-8)
+    REPA H 1 Bright
+    REPA A 0 A_Refire
+    Goto Spindown
+  HoldSpread:
+    REPA E 0 Bright A_Gunflash
+    REPA E 0 Bright A_AlertMonsters
+	TNT1 A 0 Radius_Quake(4,2,0,1,0)
+    REPA E 1 Bright A_FireCustomMissile("PlayerRepeaterAntimatter",frandom(-2,2),1,0,-8)
+    TNT1 A 0 A_FireCustomMissile("PlayerRepeaterAntimatter",frandom(-2,2)+15.0,1,0,-8)
+    TNT1 A 0 A_FireCustomMissile("PlayerRepeaterAntimatter",frandom(-2,2)-15.0,1,0,-8)
+    REPA F 1 Bright
+    REPA G 0 Bright A_AlertMonsters
+	TNT1 A 0 Radius_Quake(4,2,0,1,0)
+    REPA G 1 Bright A_FireCustomMissile("PlayerRepeaterAntimatter",frandom(-2,2),1,0,-8)
+    TNT1 A 0 A_FireCustomMissile("PlayerRepeaterAntimatter",frandom(-2,2)+15.0,1,0,-8)
+    TNT1 A 0 A_FireCustomMissile("PlayerRepeaterAntimatter",frandom(-2,2)-15.0,1,0,-8)
+    REPA H 1 Bright
+    REPA A 0 A_Refire("HoldSpread")
+    Goto Spindown
+  Spindown:
+    REPA A 0 A_PlaySound("PlasmaRepeater/Down",7)
+    REPA A 0 A_GiveInventory("RepeaterFrameA", 1)
+    REPA AA 1 A_WeaponReady(11)
+    REPA A 0 A_GiveInventory("RepeaterFrameB", 1)
+    REPA BB 1 A_WeaponReady(11)
+    REPA A 0 A_GiveInventory("RepeaterFrameC", 1)
+    REPA CC 1 A_WeaponReady(11)
+    REPA A 0 A_GiveInventory("RepeaterFrameD", 1)
+    REPA DD 1 A_WeaponReady(11)
+    REPA A 0 A_TakeInventory("RepeaterSpin", 1)
+    REPA A 0 A_GiveInventory("RepeaterFrameA", 1)
+    REPA AAA 1 A_WeaponReady(11)
+    REPA A 0 A_GiveInventory("RepeaterFrameB", 1)
+    REPA BBB 1 A_WeaponReady(11)
+    REPA A 0 A_GiveInventory("RepeaterFrameC", 1)
+    REPA CCC 1 A_WeaponReady(11)
+    REPA A 0 A_GiveInventory("RepeaterFrameD", 1)
+    REPA DDD 1 A_WeaponReady(11)
+    REPA A 0 A_TakeInventory("RepeaterSpin", 1)
+    REPA A 0 A_GiveInventory("RepeaterFrameA", 1)
+    REPA AAAA 1 A_WeaponReady(11)
+    REPA A 0 A_GiveInventory("RepeaterFrameB", 1)
+    REPA BBBB 1 A_WeaponReady(11)
+    REPA A 0 A_GiveInventory("RepeaterFrameC", 1)
+    REPA CCCC 1 A_WeaponReady(11)
+    REPA A 0 A_GiveInventory("RepeaterFrameD", 1)
+    REPA DDDD 1 A_WeaponReady(11)
+    REPA A 0 A_GiveInventory("RepeaterFrameA", 1)
+    REPA AAAA 1 A_WeaponReady(11)
+    REPA A 0 A_GiveInventory("RepeaterFrameB", 1)
+    REPA BBBB 1 A_WeaponReady(11)
+    REPA A 0 A_GiveInventory("RepeaterFrameC", 1)
+    REPA CCCC 1 A_WeaponReady(11)
+    REPA A 0 A_GiveInventory("RepeaterFrameD", 1)
+    REPA DDDD 1 A_WeaponReady(11)
+    Goto Ready
+  Flash:
+    TNT1 A 2 A_Light2
+    TNT1 A 2 A_Light1
+    TNT1 A 0 A_Light0
+    Stop
+  }
+}
+
+
+ACTOR PlayerRepeaterAntimatter : FastProjectile
+{
+PROJECTILE
+Height 1
+Radius 1
+Speed 200
+Scale 0.10
+RenderStyle Add
+Alpha 0.85
++NOEXTREMEDEATH
++THRUSPECIES
+Decal EDTRScorch
+Species "Player"
+SeeSound "OverseerPlasma/fire"
+DeathSound "OverseerPlasma/explode"
+States
+	{
+	Spawn:
+		TRA3 A 1 Bright
+		Loop
+	Death:
+	XDeath:
+		TNT1 A 0 Bright
+		TNT1 A 1 Bright A_SpawnItemEx("PlayerAntimatterRepeaterEx",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS,0)
+		Stop
+	}
+}
+
+Actor PlayerAntimatterRepeaterEx
+{
+   Radius 3
+   Height 3
+   RENDERSTYLE ADD
+   ALPHA 0.75
+   +NOBLOCKMAP
+   +NOTELEPORT
+   +NOGRAVITY
+   +FORCERADIUSDMG
+   States
+   {
+   Spawn:
+	  TNT1 A 0
+	  TNT1 A 0 A_Explode(45,95)
+	  TNT1 A 0 A_SpawnItemEx("BFGShockwaveOrange",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+	  TNT1 AA 0 A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+	  TNT1 AAAA 0 A_CustomMissile("AMKaboom13",0,0,random(0,360),CMF_AIMDIRECTION,random(0,360))
+      BLAS A 1 Bright
+      BLAS A 2 Bright A_Detonate
+      BLAS BCDEFG 3 Bright
+      stop
+   }
+}
+
+ACTOR BFGShockwaveOrange : DTech10KShockwave 
+{
+Scale 0.6
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+SHOA ABCDEFGHIJKLMNOPQR 1 Bright A_FadeOut(0.04)
+Stop
+}
+}
+
+ACTOR AMKaboom13 : CFKaboom
+{
+Speed 1
+Scale 0.6
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+EDT9 AABBCDEFGHIJKLM 1 Bright A_FadeOut(0.05)
+Stop
+}
+}

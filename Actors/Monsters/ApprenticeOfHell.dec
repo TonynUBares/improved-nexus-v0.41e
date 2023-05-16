@@ -1,0 +1,270 @@
+ACTOR Apprentice 31600
+{ 
+	Tag "\c[D1]Apprentice\c-"
+	Health 4500
+	Radius 40 
+	Height 110 
+	Mass 1000 
+	Speed 33 
+	PainChance 20 
+	species "Cybers"
+	MONSTER
+	Obituary "%o felt the wrath of the Apprentice."
+	HitObituary "%o got crushed by the Apprentice." 
+	+FLOORCLIP 
+	+NORADIUSDMG 
+	+BOSS 
+	+BOSSDEATH
+	+FIRERESIST
+	+MISSILEMORE
+	+DEFLECT
+	+NODAMAGETHRUST
+	DropItem "UltraSphere", 256
+	DropItem "Flak Cannon", 256
+	DropItem "ShellBox", 256
+	DropItem "RocketBox", 256
+	DropItem "FuelCore" 256 1
+	Damage 0
+	MeleeRange 86
+	DamageFactor "MinotaurDamage", 0.0
+	DamageType "MinotaurDamage"
+	Damagefactor 0.3
+	SeeSound "monster/smiths" 
+	PainSound "monster/smithp" 
+	DeathSound "monster/smithd" 
+	ActiveSound "monster/smitha"
+	States 
+	{    
+	Spawn: 
+		TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
+		Goto Idle
+	Idle:
+		SMT1 AB 10 A_Look
+		Loop
+	See: 
+		SMT1 A 3 A_Hoof 
+		SMT1 ABB 3 A_Chase 
+		SMT1 C 3 A_Hoof
+		SMT1 CDD 3 A_Chase
+		Loop
+	Melee:
+		SMT1 E 6 A_FaceTarget
+		SMT1 F 1 A_Playsound ("monster/hamswg")
+		SMT1 F 5 A_FaceTarget
+		SMT1 G 10 A_CustomMeleeAttack (15*Random(1,8),"monster/hamhit","monster/hamflr","MinotaurDamage")
+		SMT1 B 0 A_Jump (192,1)
+		Goto See
+		SMT1 J 6 A_FaceTarget
+		SMT1 K 1 A_Playsound ("monster/hamswg")
+		SMT1 K 5 A_FaceTarget
+		SMT1 L 10 A_CustomMeleeAttack (15*Random(1,8),"monster/hamhit","monster/hamflr","MinotaurDamage")
+		Goto See       
+	Missile:
+		SMT1 A 0 A_Jump(128,"Missile1","Missile2")
+		SMT1 O 1 A_Playsound ("weapons/suldth")
+		SMT1 O 4 A_SkullAttack
+		SMT1 O 0 A_Explode(60,64,0)
+		SMT1 O 0 A_SpawnItemEx("SmithGhost1",0,0,0,0,0,0,0,128,0)
+		SMT1 O 4 A_SkullAttack
+		SMT1 O 0 A_Explode(60,64,0)
+		SMT1 O 0 A_SpawnItemEx("SmithGhost1",0,0,0,0,0,0,0,128,0)
+		SMT1 O 4 A_SkullAttack
+		SMT1 O 0 A_Explode(60,64,0)
+		SMT1 O 0 A_SpawnItemEx("SmithGhost1",0,0,0,0,0,0,0,128,0)
+		SMT1 O 4 A_SkullAttack
+		SMT1 O 0 A_Explode(60,64,0)
+		SMT1 O 0 A_SpawnItemEx("SmithGhost1",0,0,0,0,0,0,0,128,0)
+		SMT1 O 4 A_SkullAttack
+		SMT1 O 0 A_Explode(60,64,0)
+		SMT1 O 0 A_SpawnItemEx("SmithGhost1",0,0,0,0,0,0,0,128,0)
+		SMT1 O 4 A_SkullAttack
+		SMT1 O 0 A_Explode(60,64,0)
+		SMT1 O 0 A_SpawnItemEx("SmithGhost1",0,0,0,0,0,0,0,128,0)
+		SMT1 O 4 A_SkullAttack
+		SMT1 O 0 A_Explode(60,64,0)
+		SMT1 O 0 A_SpawnItemEx("SmithGhost1",0,0,0,0,0,0,0,128,0)
+		SMT1 O 4 A_SkullAttack
+		SMT1 O 0 A_Explode(60,64,0)
+		SMT1 O 0 A_SpawnItemEx("SmithGhost1",0,0,0,0,0,0,0,128,0)
+		SMT1 O 0 A_Stop
+		SMT1 O 1
+		Goto See
+	Missile1:
+		SMT1 A 0 A_Jump (128,16)
+		SMT1 E 6 A_FaceTarget
+		SMT1 H 6 A_PlaySound ("monster/hamswg")
+		SMT1 N 0 A_PLaySound ("weapons/hellfi") 
+		SMT1 I 0 A_CustomMissile ("Hellshot",52,0,0)
+		SMT1 I 0 A_CustomMissile ("Hellshot",52,0,8)
+		SMT1 I 12 A_CustomMissile ("Hellshot",52,0,-8)
+		SMT1 I 0 A_Jump (128,8)
+		SMT1 B 6
+		SMT1 J 6 A_FaceTarget
+		SMT1 M 6 A_PlaySound ("monster/hamswg")
+		SMT1 N 1 A_PLaySound ("weapons/hellfi") 
+		SMT1 N 0 A_CustomMissile ("Hellshot",52,0,0)
+		SMT1 N 0 A_CustomMissile ("Hellshot",52,0,8)
+		SMT1 N 11 A_CustomMissile ("Hellshot",52,0,-8)
+		SMT1 N 0 A_Jump (128,"See")
+		Goto Missile2
+	Missile2:
+		SMT1 E 6 A_FaceTarget
+		SMT1 F 1 A_Playsound ("monster/hamswg")
+		SMT1 F 5 A_FaceTarget
+		SMT1 G 0 A_CustomMissile("STracer",0,0,30,0)
+		SMT1 G 0 A_CustomMissile("STracer",0,0,60,0)
+		SMT1 G 0 A_CustomMissile("STracer",0,0,90,0)
+		SMT1 G 0 A_CustomMissile("STracer",0,0,120,0)
+		SMT1 G 0 A_CustomMissile("STracer",0,0,150,0)
+		SMT1 G 0 A_CustomMissile("STracer",0,0,180,0)
+		SMT1 G 0 A_CustomMissile("STracer",0,0,210,0)
+		SMT1 G 0 A_CustomMissile("STracer",0,0,240,0)
+		SMT1 G 0 A_CustomMissile("STracer",0,0,270,0)
+		SMT1 G 0 A_CustomMissile("STracer",0,0,300,0)
+		SMT1 G 0 A_CustomMissile("STracer",0,0,330,0)
+		SMT1 G 0 A_CustomMissile("STracer",0,0,0,0)
+		SMT1 G 10 A_Playsound("monster/hamflr")
+		SMT1 N 0 A_Jump (128,"See")
+		Goto Missile3
+	Missile3:
+		SMT1 J 6 A_FaceTarget
+		SMT1 K 1 A_Playsound ("monster/hamswg")
+		SMT1 K 5 A_FaceTarget
+		SMT1 L 0 A_CustomMissile("STracer",0,0,30,0)
+		SMT1 L 0 A_CustomMissile("STracer",0,0,60,0)
+		SMT1 L 0 A_CustomMissile("STracer",0,0,90,0)
+		SMT1 L 0 A_CustomMissile("STracer",0,0,120,0)
+		SMT1 L 0 A_CustomMissile("STracer",0,0,150,0)
+		SMT1 L 0 A_CustomMissile("STracer",0,0,180,0)
+		SMT1 L 0 A_CustomMissile("STracer",0,0,210,0)
+		SMT1 L 0 A_CustomMissile("STracer",0,0,240,0)
+		SMT1 L 0 A_CustomMissile("STracer",0,0,270,0)
+		SMT1 L 0 A_CustomMissile("STracer",0,0,300,0)
+		SMT1 L 0 A_CustomMissile("STracer",0,0,330,0)
+		SMT1 L 0 A_CustomMissile("STracer",0,0,0,0)
+		SMT1 L 10 A_Playsound("monster/hamflr")
+		Goto See
+	Pain: 
+		SMT1 P 10 A_Pain 
+		Goto See 
+	Death: 
+		SMT1 Q 6 A_CustomMissile("SmithHammer",128,-40,-30,0)
+		SMT1 R 6 A_Scream
+		SMT1 STU 6 
+		SMT1 V 6 A_NoBlocking 
+		SMT1 X 6 
+		SMT1 X 6 
+		SMT1 Y -1 A_BossDeath 
+	} 
+}//Apprentice
+
+ACTOR STracer
+{
+	Radius 5
+	Height 5
+	Speed 15
+	Damage 15
+	RenderStyle ADD
+	DamageType "MinotaurDamage"
+	DeathType "Fire"
+	Alpha 0.67
+	species "Cybers"
+	PROJECTILE
+	+DONTHARMSPECIES
+	+FLOORHUGGER
+	+THRUGHOST
+	-NOGRAVITY
+	+DONTSPLASH
+	+NODAMAGETHRUST
+	Seesound "weapons/diasht"
+	DeathSound "weapons/firex3"   
+	States
+	{
+	Spawn:
+		NULL A 1 Bright A_CStaffMissileSlither
+		NULL A 0 Bright A_SpawnItem("STracerPuff",0,0)
+		loop
+	Death:
+		FTRA K 4 Bright
+		FTRA L 4 Bright A_Explode(64,128)
+		FTRA MNO 3 Bright
+		stop
+	}
+}
+
+ACTOR STracerPuff
+{
+	Radius 1
+	Height 1
+	Speed 0
+	RENDERSTYLE ADD
+	DamageType "MinotaurDamage"
+	DeathType "Fire"
+	ALPHA 0.67
+	PROJECTILE
+	species "Cybers"
+	+DONTHARMSPECIES
+	+FLOORHUGGER
+	-NOGRAVITY
+	+DONTSPLASH
+	+NODAMAGETHRUST
+	States
+	{
+	Spawn:
+		FTRA ABCDEFGHIJ 3 Bright A_Explode(4,8)
+		stop
+	}
+}
+
+ACTOR SmithHammer
+{
+	Radius 5
+	Height 5
+	Speed 2
+	Damage 0
+	RenderStyle NORMAL
+	PROJECTILE
+	-NOGRAVITY
+	+LOWGRAVITY
+	DeathSound "monsters/hamflr"   
+	States
+	{
+	Spawn:
+		MAUL A 3  
+		MAUL B 4
+		MAUL C -1
+		Stop
+	Death:
+		MAUL D -1 
+		stop
+	}
+}
+
+ACTOR Hellshot
+{
+	Radius 8
+	Height 12
+	Speed 25
+	Damage 20
+	PROJECTILE
+	RENDERSTYLE ADD
+	ALPHA 0.95
+	DeathSound "weapons/hellex"
+	DONTHURTSHOOTER
+	DamageType "MinotaurDamage"
+	DeathType "Fire"
+	species "Minotaur"
+	+DONTHARMSPECIES
+	+THRUGHOST
+	States
+	{
+	Spawn: 
+		HSBL ABCD 3 Bright
+		loop
+	Death:
+		HSBL EF 3 Bright
+		HSBL G 3 Bright A_Explode(128,128)
+		HSBL HI 3 Bright
+		stop
+	}
+}

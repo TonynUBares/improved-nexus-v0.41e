@@ -1,0 +1,55 @@
+ACTOR LegendaryMastermindSpawner : RandomSpawner
+{
+Dropitem "GoreCarrier", 256, 7
+Dropitem "Ebonhound", 256, 7 
+Dropitem "CorruptedSentient", 256, 7
+Dropitem "SacrosanctOverseer", 256, 5
+Dropitem "InsaneWritheQueen", 256, 4
+Dropitem "LegendarySentient", 256, 3
+Dropitem "EnragedLegendarySentient", 256, 2
+Dropitem "NemesisSentient", 256, 2
+Dropitem "singenjitsu3", 256, 1 //1 instead of 3, in this case
+Dropitem "CFOverlord", 256, 1
+Dropitem "EvaccanniaDOOM", 256, 1
+Dropitem "CerebralCommander", 256, 1
+}
+
+ACTOR LegendaryCyberSpawner : RandomSpawner
+{
+Dropitem "HellfrostCardihilator", 256, 6
+DropItem "HellfrostCyberdemon", 256, 6
+Dropitem "CorruptedCardinal", 256, 5
+DropItem "Frostdemon", 256, 5
+Dropitem "LegendaryCyberdemon", 256, 4
+DropItem "Freezemotaur", 256, 4 //Hellsmith
+Dropitem "Plamexis", 256, 4
+Dropitem "Exos", 256, 4
+DropItem "Maephisto", 256, 4
+Dropitem "DeathLord", 256, 3
+DropItem "Supremotaur", 256, 3 //Hellsmith
+Dropitem "Utsuho", 256, 2
+Dropitem "LegendaryAnnihilator", 256, 2
+Dropitem "EnragedLegendaryCyberdemon", 256, 2
+Dropitem "NemesisCyberdemon", 256, 2
+Dropitem "MagaReimu", 256, 1
+Dropitem "Arcradimus", 256, 1
+DropItem "HellsMinister", 256, 1
+Dropitem "LegendaryCardinal", 256, 1
+Dropitem "HellfireCyberdemon", 256, 1
+Dropitem "RMTerminator", 256, 1
+Dropitem "DementedTerminator", 256, 1
+Dropitem "AbyssalSatyr", 256, 1
+Dropitem "Moloch", 256, 1
+Dropitem "CFHeresiarch", 256, 1
+Dropitem "LegendaryTerminator", 256, 1
+Dropitem "Corruption", 256, 1
+Dropitem "LordArchon", 256, 1
+Dropitem "LordOfInsanity", 256, 1
+DropItem "CorruptedLegendaryCardinal", 256, 1
+//DropItem "HellfireCardinal", 256, 1
+//DropItem "VexedNemesisTerminator", 256, 1
+DropItem "NemHellsmith", 256, 1 //Hellsmith
+DropItem "Hellsmith", 256, 1 //Hellsmith
+Dropitem "Hibachi", 256, 1
+Dropitem "Mainyu", 256, 1
+}

@@ -1,0 +1,16 @@
+server bool dr_marine_tele = TRUE;
+server int dr_marine_beacon = 0;
+
+server int nx_startingarmor = 0;
+server int nx_xmas = 0;
+server int nx_lunatic = 0;
+server int nx_shinki = 0;
+server int nx_agony = 1;
+server int nx_welder=0;
+server int st_newrunes = 0;
+
+server int kazumi_nukechoker = 0;
+server int kazumi_NoChair = 0;
+
+server int txs_noatomic = 0;
+server int txs_noshufflecrates = 0;

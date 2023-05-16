@@ -1,0 +1,347 @@
+Actor LegendaryQuadShotgunGiver : CustomInventory
+{
+  Scale 0.85
+  Inventory.Amount 1
+  Inventory.MaxAmount 0
+  Inventory.InterHubAmount 0
+  Inventory.PickupMessage "Legendary Quad Barrel Shotgun. The great OOFinator."
+  Inventory.PickupSound "weapons/pickupqsg"
+  Tag "Legendary Quad Barrel Shotgun"
+  States
+  {
+  Spawn:
+	QS2S Z 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",3,1)
+  SpawnLoop:
+	QS2S Z -1
+    Stop
+  Pickup:
+	TNT1 A 0 A_JumpIfInventory("LegendaryQuadShotgun",1,"JustAmmo")
+  All:
+	TNT1 A 0 A_GiveInventory("LegendaryQuadShotgun",1)
+	TNT1 A 0 A_JumpIfInventory("LegendaryQuadShotgunGiverCheck",1,"HoldAndDestroy")
+	TNT1 A 0 A_GiveInventory("LegendaryQuadShotgunGiverCheck",1)
+	TNT1 A 0 A_GiveInventory("LegendaryQuadShell",Random(8,16))
+	TNT1 A 0 A_GiveInventory("LegendaryShell",8)
+	Stop
+  JustAmmo:
+    TNT1 A 0 A_JumpIfInventory("LegendaryQuadShotgunGiverCheck",1,"Null")
+	TNT1 A 0 A_GiveInventory("LegendaryQuadShotgunGiverCheck",1)
+	TNT1 A 0 A_GiveInventory("LegendaryQuadShell",Random(8,16))
+	TNT1 A 0 A_GiveInventory("LegendaryShell",8)
+	TNT1 A 0 A_SpawnItemEx("LegendaryQuadShotgun")
+	Stop
+  }
+}
+
+Actor LegendaryQuadShotgunSpawnerGiver : LegendaryQuadShotgunGiver
+{
+  States
+  {
+  JustAmmo:
+    TNT1 A 0 A_JumpIfInventory("LegendaryQuadShotgunGiverCheck",1,"Null")
+	TNT1 A 0 A_GiveInventory("LegendaryQuadShotgunGiverCheck",1)
+	TNT1 A 0 A_GiveInventory("LegendaryQuadShell",Random(8,16))
+	TNT1 A 0 A_GiveInventory("LegendaryShell",8)
+	Stop
+  }
+}
+
+Actor LegendaryQuadShotgunGiverCheck : Inventory { Inventory.Amount 1 Inventory.MaxAmount 1 Inventory.InterHubAmount 0 }
+
+
+
+ACTOR LegendaryQuadShotgun : Weapon 
+{
+  Tag "Legendary Quad Barrel Shotgun"
+  Weapon.PreferredSkin "QuadBarrelSG-Marine"
+  Weapon.SelectionOrder 4450
+  Weapon.KickBack 100
+  Weapon.AmmoGive 4
+  Weapon.AmmoGive2 20
+  Weapon.SlotNumber 3
+  Weapon.SlotPriority 11.1
+  Weapon.AmmoType "LegendaryQuadShell"
+  Weapon.AmmoType2 "LegendaryShell"
+  //Weapon.UpSound "LegendaryQuadShotgun/Up"
+  Inventory.PickupMessage "Legendary Quad Barrel Shotgun. The great OOFinator."
+  Inventory.PickupSound "weapons/pickupqsg"
+  Obituary "%o was a victim to %k's deathmatch addiction."
+  Decal LegBulletChip
+  +WEAPON.AMMO_OPTIONAL
+  +WEAPON.NOALERT
+  States
+  {
+  Spawn:
+    QS2S Z 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",3,1)
+    QS2S Z -1
+    Stop
+  Ready:
+	LQ78 HG 1
+ 	LQ78 FE 1
+ 	LQ78 D 2
+	TNT1 A 0 A_PlayWeaponSound("LegendaryQuadShotgun/Up")
+ 	LQ78 C 1
+ 	LQ78 BA 1
+	LQ77 H 1
+	LQ77 A 2
+  ReadyLoop:
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	LQ77 A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+	Loop
+   Deselect:
+	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",1) 
+	TNT1 A 0 A_Lower
+	LQ77 A 1 A_Lower
+	Goto Deselect+1
+   Select:
+	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",0)
+	TNT1 A 1 A_Raise
+	TNT1 A 0 A_Raise
+	Wait
+  Fire:
+	TNT1 A 0 A_JumpIfInventory("LegendaryQuadShell",4,"QuadFire")
+	TNT1 A 0 A_JumpIfInventory("LegendaryShell",2,"Reload")
+	Goto Empty
+  QuadFire:
+	TNT1 A 0 A_JumpIfInventory("PowerSpreadRune",1,"QuadFireSpread")
+	TNT1 A 0 A_PlaySound("LegendaryQuadShotgun/QuadFire")
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 A_Recoil(12)
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+	TNT1 A 0 Radius_Quake(20,5,0,1,0)
+	TNT1 A 0 A_TakeInventory("LegendaryQuadShell",4)	
+	TNT1 AAAAAAAAAAAA 0 A_FireCustomMissile("BlueSGTracer",frandom(8,-8),0,0,frandom(10,-10))
+	LQ77 B 2 Bright A_FireBullets(11.8,7.3,48,Random(10,35),"LegendaryASGBulletPuff",FBF_NORANDOM)
+	LQ77 C 2 Bright A_Light2
+	TNT1 A 0 A_Light0
+	TNT1 A 0 Radius_Quake(20,5,0,1,0)
+	LQ77 DE 2
+	LQ77 FG 1
+	LQ77 A 4
+	Goto QuadReloadCheck
+  QuadFireSpread:
+	TNT1 A 0 A_PlaySound("LegendaryQuadShotgun/QuadFire")
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 A_Recoil(12)
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+	TNT1 A 0 Radius_Quake(20,5,0,1,0)
+	TNT1 A 0 A_TakeInventory("LegendaryQuadShell",4)	
+	TNT1 AAAAAAAAAAAA 0 A_FireCustomMissile("BlueSGTracer",frandom(8,-8),0,0,frandom(10,-10))
+	TNT1 AAAAAAAAAAAA 0 A_FireCustomMissile("BlueSGTracer",frandom(8,-8)+15.0,0,0,frandom(10,-10))
+	TNT1 AAAAAAAAAAAA 0 A_FireCustomMissile("BlueSGTracer",frandom(8,-8)-15.0,0,0,frandom(10,-10))
+	LQ77 B 2 Bright A_FireBullets(11.8+15.0,7.3,48*3,Random(10,35),"LegendaryASGBulletPuff",FBF_NORANDOM)
+	LQ77 C 2 Bright A_Light2
+	TNT1 A 0 A_Light0
+	TNT1 A 0 Radius_Quake(20,5,0,1,0)
+	LQ77 DE 2
+	LQ77 FG 1
+	LQ77 A 4
+	Goto QuadReloadCheck
+  QuadReloadCheck:
+  	TNT1 A 0 A_JumpIfInventory("LegendaryShell",4,1)
+	Goto ReadyLoop
+	TNT1 A 0
+	Goto ReloadFourShells
+  AltFire:
+	TNT1 A 0 A_JumpIfInventory("LegendaryQuadShell",4,"FireLeft")
+	TNT1 A 0 A_JumpIfInventory("LegendaryQuadShell",2,1)
+	Goto Reload
+	TNT1 A 0 A_JumpIfInventory("PowerSpreadRune",1,"AltFireSpread")
+	TNT1 A 0 A_PlaySound("LegendaryQuadShotgun/DualFire",CHAN_WEAPON)	
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 A_Recoil(8)
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+	TNT1 A 0 Radius_Quake(10,5,0,1,0)
+	TNT1 A 0 A_TakeInventory("LegendaryQuadShell",2)	
+	TNT1 AAAAAAAAAAAA 0 A_FireCustomMissile("BlueSGTracer",frandom(8,-8),0,0,frandom(10,-10))
+	LQ77 B 2 Bright A_FireBullets(11.8,7.3,24,Random(10,35),"LegendaryASGBulletPuff",FBF_NORANDOM)
+	LQ77 C 2 Bright A_Light2
+	TNT1 A 0 A_Light0
+	TNT1 A 0 Radius_Quake(10,5,0,1,0)
+	LQ77 DE 2
+	LQ77 FG 1
+	LQ77 A 6
+	Goto ReadyLoop
+  AltFireSpread:
+	TNT1 A 0 A_JumpIfInventory("LegendaryQuadShell",4,"FireLeft")
+	TNT1 A 0 A_JumpIfInventory("LegendaryQuadShell",2,1)
+	Goto Reload
+	TNT1 A 0 A_PlaySound("LegendaryQuadShotgun/DualFire",CHAN_WEAPON)	
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 A_Recoil(8)
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+	TNT1 A 0 Radius_Quake(10,5,0,1,0)
+	TNT1 A 0 A_TakeInventory("LegendaryQuadShell",2)	
+	TNT1 AAAAAAAAAAAA 0 A_FireCustomMissile("BlueSGTracer",frandom(8,-8),0,0,frandom(10,-10))
+	TNT1 AAAAAAAAAAAA 0 A_FireCustomMissile("BlueSGTracer",frandom(8,-8)+15.0,0,0,frandom(10,-10))
+	TNT1 AAAAAAAAAAAA 0 A_FireCustomMissile("BlueSGTracer",frandom(8,-8)-15.0,0,0,frandom(10,-10))
+	LQ77 B 2 Bright A_FireBullets(11.8+15.0,7.3,24*3,Random(10,35),"LegendaryASGBulletPuff",FBF_NORANDOM)
+	LQ77 C 2 Bright A_Light2
+	TNT1 A 0 A_Light0
+	TNT1 A 0 Radius_Quake(10,5,0,1,0)
+	LQ77 DE 2
+	LQ77 FG 1
+	LQ77 A 6
+	Goto ReadyLoop
+  FireLeft:
+	TNT1 A 0 A_JumpIfInventory("PowerSpreadRune",1,"FireLeftSpread")
+	TNT1 A 0 A_PlaySound("LegendaryQuadShotgun/DualFire")	
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 A_Recoil(8)
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+	TNT1 A 0 Radius_Quake(10,5,0,1,0)
+	TNT1 A 0 A_TakeInventory("LegendaryQuadShell",2)	
+	TNT1 AAAAAAAAAAAA 0 A_FireCustomMissile("BlueSGTracer",frandom(8,-8),0,0,frandom(10,-10))
+	LQ77 B 2 Bright A_FireBullets(11.8,7.3,24,Random(10,35),"LegendaryASGBulletPuff",FBF_NORANDOM)
+	LQ77 C 2 Bright A_Light2
+	TNT1 A 0 A_Light0
+	TNT1 A 0 Radius_Quake(10,5,0,1,0)
+	LQ77 DE 2
+	LQ77 FG 1
+	LQ77 A 4
+	Goto ReadyLoop
+  FireLeftSpread:
+	TNT1 A 0 A_PlaySound("LegendaryQuadShotgun/DualFire")	
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 A_Recoil(8)
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+	TNT1 A 0 Radius_Quake(10,5,0,1,0)
+	TNT1 A 0 A_TakeInventory("LegendaryQuadShell",2)	
+	TNT1 AAAAAAAAAAAA 0 A_FireCustomMissile("BlueSGTracer",frandom(8,-8),0,0,frandom(10,-10))
+	TNT1 AAAAAAAAAAAA 0 A_FireCustomMissile("BlueSGTracer",frandom(8,-8)+15.0,0,0,frandom(10,-10))
+	TNT1 AAAAAAAAAAAA 0 A_FireCustomMissile("BlueSGTracer",frandom(8,-8)-15.0,0,0,frandom(10,-10))
+	LQ77 B 2 Bright A_FireBullets(11.8+15.0,7.3,24*3,Random(10,35),"LegendaryASGBulletPuff",FBF_NORANDOM)
+	LQ77 C 2 Bright A_Light2
+	TNT1 A 0 A_Light0
+	TNT1 A 0 Radius_Quake(10,5,0,1,0)
+	LQ77 DE 2
+	LQ77 FG 1
+	LQ77 A 4
+	Goto ReadyLoop
+  Empty:
+	LQ77 A 10 A_PlayWeaponSound("weapons/click")
+	TNT1 A 0 A_JumpIfInventory("LegendaryShell",4,"ReloadFourShells")
+	Goto ReadyLoop
+  Reload:
+	TNT1 A 0 A_JumpIfInventory("LegendaryQuadShell",0,"ReadyLoop")
+	TNT1 A 0 A_JumpIfInventory("LegendaryQuadShell",2,"ReloadTwoShells")
+	TNT1 A 0 A_JumpIfInventory("LegendaryShell",4,"ReloadFourShells")
+	Goto Empty	
+  ReloadFourShells:
+	LQ77 H 2
+ 	LQ78 AB 1
+ 	LQ78 C 2
+ 	LQ78 D 6
+ 	LQ78 E 2
+ 	LQ78 FGH 1
+ 	TNT1 A 2
+	TNT1 AAAA 0 A_SpawnItemEx("BlueShellCasing",25,-2,25,frandom(2,4),frandom(-3,-6),frandom(3,6),0)
+	TNT1 A 0 A_PlayWeaponSound("LegendaryQuadShotgun/Open")
+	LQ79 ABCD 1
+	LQ79 D 6
+	LQ80 ABCD 2
+	LQ80 EFGH 1
+	TNT1 A 0 A_TakeInventory("LegendaryShell",2)
+	TNT1 A 0 A_GiveInventory("LegendaryQuadShell",2)
+	TNT1 A 0 A_PlayWeaponSound("LegendaryQuadShotgun/Load")
+	LQ81 A 6
+	LQ81 ABCD 2
+	LQ81 EFGHI 1
+	TNT1 A 0 A_TakeInventory("LegendaryShell",2)
+	TNT1 A 0 A_GiveInventory("LegendaryQuadShell",2)
+	TNT1 A 0 A_PlayWeaponSound("LegendaryQuadShotgun/Load")	
+	TNT1 A 12
+	LQ78 HGFE 1
+ 	LQ78 D 2
+	TNT1 A 0 A_PlayWeaponSound("LegendaryQuadShotgun/Close")
+ 	LQ78 CBA 1
+	LQ77 HA 2
+	Goto ReadyLoop
+  ReloadTwoShells:
+	TNT1 A 0 A_JumpIfInventory("LegendaryShell",2,1)
+	Goto ReadyLoop
+	LQ77 H 2
+ 	LQ78 AB 1
+ 	LQ78 C 2
+ 	LQ78 D 6
+ 	LQ78 E 2
+ 	LQ78 FGH 1
+ 	TNT1 A 2
+	TNT1 AA 0 A_SpawnItemEx("BlueShellCasing",25,-2,25,frandom(2,4),frandom(-3,-6),frandom(3,6),0)
+	TNT1 A 0 A_PlayWeaponSound("LegendaryQuadShotgun/Open")
+	LQ81 ABCD 2
+	LQ81 EFGHI 1
+	TNT1 A 0 A_TakeInventory("LegendaryShell",2)
+	TNT1 A 0 A_GiveInventory("LegendaryQuadShell",2)
+	TNT1 A 0 A_PlayWeaponSound("LegendaryQuadShotgun/Load")	
+	TNT1 A 8
+	LQ78 HGFED 1
+	TNT1 A 0 A_PlayWeaponSound("LegendaryQuadShotgun/Close")
+ 	LQ78 CBA 1
+	LQ77 H 1
+	LQ77 A 2
+	Goto ReadyLoop
+  GrenadeCheck:
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAmmo",1,"GrenadeToss")
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	Goto ReadyLoop
+  GrenadeToss:
+ 	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown") 
+	LQ78 ABCDEFGH 1
+	TNT1 A 4
+	HGRN ABC 1
+	HGRN D 2
+	HGRN EFG 1
+	HGRN HI 2
+	TNT1 A 15 A_PlayWeaponSound("weapons/hgrenadepin")
+	TNT1 A 0 A_PlayWeaponSound("weapons/hgrenadethrow")
+	TNT1 A 0 A_TakeInventory("HandGrenadeAmmo",1,TIF_NOTAKEINFINITE)
+	HGNE A 1 A_FireCustomMissile("ThrownGrenade",0,0,0,0,false)
+	HGRN J 1
+	HGRN KLM 2
+	HGRN NO 1
+	TNT1 A 6
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAmmo",1,2)
+	TNT1 A 0 A_TakeInventory("Hand Grenade",1)
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	TNT1 A 0
+	Goto Ready
+  MineCheck:
+	TNT1 A 0 A_JumpIfInventory("MineAmmo",1,"MineToss")
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	Goto ReadyLoop
+  MineToss:
+	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown") 
+	LQ78 ABCDEFGH 1
+	TNT1 A 8
+	TNT1 A 0 A_PlayWeaponSound("weapons/hgrenadethrow")
+	MINE ABCDEF 1	
+	TNT1 A 0 A_TakeInventory("MineAmmo",1,TIF_NOTAKEINFINITE)	  
+	MINE G 1 A_FireCustomMissile("ThrownMine",0,0,0,0,false)
+	MINE HI 1
+	MINE JK 2
+	TNT1 A 0 A_JumpIfInventory("MineAmmo",1,2)
+	TNT1 A 0 A_TakeInventory("Land Mine",1)
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	TNT1 A 0
+	TNT1 A 5
+	Goto Ready
+ }
+}
+
+ACTOR LegendaryQuadShell : Ammo
+{
+Inventory.Amount 0
+Inventory.MaxAmount 4
+Ammo.BackpackAmount 0
+Ammo.BackpackMaxAmount 4
+Inventory.Icon "QS2SZ0"
++IGNORESKILL
+}

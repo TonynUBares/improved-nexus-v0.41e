@@ -1,0 +1,595 @@
+ACTOR BrimstoneItem : CustomInventory 28166
+{
+ Renderstyle Add
+ Inventory.Amount 1
+ Inventory.MaxAmount 5
+ Inventory.InterHubAmount 5
+ Inventory.PickupSound "Devil/Get"
+ Inventory.PickupMessage "Brimstone. It's alive and bloody as hell!"
+ Tag "Brimstone - Cast an obelisk to fight for you"
+ Inventory.Icon "BR1MB0"
+ +INVENTORY.HUBPOWER
+ +INVENTORY.PERSISTENTPOWER
+ +INVENTORY.UNDROPPABLE
+ +INVENTORY.INVBAR
+ //+FLOATBOB
+ +COUNTITEM
+ +FLOORCLIP
+ +NOTIMEFREEZE
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,10,18)
+  SpawnLoop: 
+	BR1M A -1 Bright
+	Stop
+  Use:
+	TNT1 A 0 A_JumpIfInventory("BrimstoneCooldown",1,"Nah")
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 A_GiveInventory("BrimstoneCooldown",1)
+	TNT1 A 0 A_PlaySound("weapons/brimstonefire",7)
+	TNT1 A 0 A_FireCustomMissile("NexusBrimstoneSpawner",0,0,0,5)
+	//TNT1 A 2 Bright A_RailAttack(200,0,0,"Red","None",0,0,"PlayerRailPuffBrimstone",0,0,8192,35,0.5,0.5,"BrimstoneRailCoreTrail")
+	Stop
+  Nah:
+	TNT1 A 2 A_PlaySound("weapons/brimstonenope",4)
+	Fail
+ }
+}
+
+
+ACTOR NexusBrimstoneSpawner : FastProjectile
+{
+ Speed 350
+ Radius 17
+ Height 10
+ Damage 75
+ Renderstyle Add
+ +RIPPER
+ -CANNOTPUSH
+ +NODAMAGETHRUST
+ +EXTREMEDEATH
+ +FORCERADIUSDMG
+ +MTHRUSPECIES
+ Species "player"
+ DamageType "PlayerDTRG"
+ DeathSound "weapons/brimstonehit"
+ MissileType "BrimstoneTrail"
+ States
+ {
+  Spawn:
+    TNT1 A 0 NoDelay ThrustThingZ(0,90,0,1)
+  Looplet:
+    TNT1 A 0 ThrustThingZ(0,random(-40,-45),0,1)
+    TNT1 A 1 A_PlaySound("weapons/brimstonefly",5,1.0,1)
+    Loop
+  Death:
+    TNT1 A 0 A_PlaySound("weapons/brimstonestart",5)
+    TNT1 A 0 A_SpawnItemEx("BrimstoneObeliskExplode",0,0,0,0,0,0,0,128,0)
+    YAE4 A 0 A_SpawnItemEx("BrimstoneImpact",0,0,10)
+    YAE4 A 0 A_AlertMonsters
+    YAE4 A 1
+    YAE4 A 0 A_SpawnItemEx("BrimstoneGLDEF")
+    YAE4 A 1 A_SpawnItemEx("Brimstoner",0,0,10,0,0,0,0,SXF_TRANSFERPOINTERS)
+    stop
+ }
+}
+
+ACTOR BrimstoneTrail
+{
+ RenderStyle Add
+ Scale 0.175
+ Alpha 1
+ +CLIENTSIDEONLY
+ +NOINTERACTION
+ +NOGRAVITY
+ States
+ {
+  Spawn:
+    TNT1 A 0 NoDelay A_SetScale(ScaleX, ScaleY -0.0875)
+    YAE4 A 0 A_SpawnItemEx("BrimstoneSmokeDeath",random(13,-13),random(13,-13),random(13,-13),frandom(-0.3,0.3),frandom(-0.3,0.3),frandom(-0.3,0.3),random(0,359),128,0)
+    YAE4 A 2 bright A_SpawnItemEx("BrimstoneObeliskTrailSpark", random(4,-4), random(4,-4), random(4,-4), 0, 0, 0, 0, 128, 0)
+    YAE4 A 2 bright
+  Trolololo:
+    YAE4 A 0 A_SetScale(ScaleX -0.01, ScaleY -0.01)
+    YAE4 A 1 bright A_FadeOut(0.085)
+    Loop
+ }
+}
+
+ACTOR BrimstoneInherit
+{
+ +CLIENTSIDEONLY
+ +NOINTERACTION
+ +NOGRAVITY
+ +NOBLOCKMAP
+ States
+ {
+  Vanilla:
+	TNT1 A 1
+	Stop
+ }
+}
+
+
+ACTOR BrimstoneSmoke : BrimstoneInherit
+{
+ Renderstyle Add
+ Alpha 0.4
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	OBSK FGHIJKLMNOPQRST 1
+	OBSK UVWXYZ 1 A_FadeOut(0.05)
+	Stop
+ }
+}
+
+ACTOR Brimstoner
+{
+  obituary "%o was scorched by %k's obelisk."
+  tag "\c[m6]Brimstone Obelisk\c-"
+  radius 15
+  height 42
+  mass 100000
+  speed 0
+  MaxTargetRange 2048
+  Health 5000
+  Damagefactor 0.5
+  Scale 0.175
+  Renderstyle Add
+  MONSTER
+  -MTHRUSPECIES
+  +FLOORCLIP
+  +FRIENDLY
+  +NOBLOOD
+  +MISSILEMORE
+  +MISSILEEVENMORE
+  +LOOKALLAROUND
+  +NEVERRESPAWN
+  +STANDSTILL
+  +DONTBLAST
+  +NOFEAR
+  +DONTMORPH
+  +FLOAT
+  +NOGRAVITY
+  +NOCLIP
+  //+FLOATBOB
+  states
+  {
+  Spawn:
+    YAE4 A 0 NoDelay A_PlaySound("weapons/brimstoneloop",5,0.85,1)
+    YAE4 A 0 A_TakeInventory("BrimstoneCounter",1)
+    YAE4 A 0 A_SpawnItemEx("BrimstoneObeliskTrailSpark", random(10,-10), random(10,-10), random(10,-10), 0, 0, 0, 0, 128, 0)
+    YAE4 AA 0 A_SpawnItemEx("BrimstoneSmoke",random(23,-23),random(23,-23),random(23,-23),frandom(0.3,0.6),frandom(0.3,0.6),frandom(-0.2,0.5),random(0,359),128,0)
+    YAE4 A 0 A_JumpIfInventory("BurnoutCounter",925,"Death")
+    YAE4 A 0 A_GiveInventory("BurnoutCounter",1)
+    YAE4 A 1 Bright A_Look
+    loop
+  See:
+    YAE4 A 0 A_TakeInventory("BrimstoneCounter",1)
+    YAE4 AA 0 A_SpawnItemEx("BrimstoneSmoke",random(23,-23),random(23,-23),random(23,-23),frandom(0.3,0.6),frandom(0.3,0.6),frandom(-0.2,0.5),random(0,359),128,0)
+    YAE4 A 0 A_JumpIfInventory("BurnoutCounter",925,"Death")
+    YAE4 A 0 A_GiveInventory("BurnoutCounter",1)
+    YAE4 A 1 Bright A_Chase
+    loop
+  Missile:
+    YAE4 A 0 A_JumpIfInventory("BurnoutCounter",925,"Death")
+    YAE4 A 0 A_JumpIfInventory("BrimstoneCounter",1,"See")
+    YAE4 A 0 A_SpawnItemEx("BrimstoneObeliskTrailSpark", random(10,-10), random(10,-10), random(10,-10), 0, 0, 0, 0, 128, 0)
+    YAE4 A 0 A_SpawnItemEx("BrimstoneLaunch",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS,0)
+    YAE4 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("BrimstoneSmokeDeath",random(28,-28),random(28,-28),random(28,-28),frandom(-4,4),frandom(1,4),frandom(-3,4),random(0,359),128,0)
+    YAE4 AA 0 A_SpawnItemEx("BrimstoneSmoke",random(23,-23),random(23,-23),random(23,-23),frandom(0.3,0.6),frandom(0.3,0.6),frandom(-0.2,0.5),random(0,359),128,0)
+    YAE4 A 0 A_PlaySound("weapons/brimstonebigfire")
+    YAE4 A 0 A_PlaySound("Weapons/BrimstoneExplode",6)
+    YAE4 A 0 A_GiveInventory("BurnoutCounter",25)
+    YAE4 A 0 A_AlertMonsters
+    YAE4 A 1 Bright A_FaceTarget
+    YAE4 A 0 A_SpawnItemEx("BrimstoneObeliskTrailSpark", random(10,-10), random(10,-10), random(10,-10), 0, 0, 0, 0, 128, 0)
+    YAE4 AA 0 A_SpawnItemEx("BrimstoneSmoke",random(23,-23),random(23,-23),random(23,-23),frandom(0.3,0.6),frandom(0.3,0.6),frandom(-0.2,0.5),random(0,359),128,0)
+    YAE4 A 1 Bright A_CustomMissile("BrimstoneObeliskProjectile")
+    YAE4 A 1 Bright A_ClearTarget
+    YAE4 A 0 A_SpawnItemEx("BrimstoneObeliskTrailSpark", random(10,-10), random(10,-10), random(10,-10), 0, 0, 0, 0, 128, 0)
+    YAE4 AA 0 A_SpawnItemEx("BrimstoneSmoke",random(23,-23),random(23,-23),random(23,-23),frandom(0.3,0.6),frandom(0.3,0.6),frandom(-0.2,0.5),random(0,359),128,0)
+    YAE4 A 0 A_GiveInventory("BrimstoneCounter",70)
+    goto Spawn
+  Death:
+    YAE4 A 0 A_AlertMonsters
+    YAE4 A 0 A_PlaySound("weapons/brimstonedead",5)
+    YAE4 A 0 A_SpawnItemEx("BrimstoneImpact",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS)
+    YAE4 A 0 A_SpawnItemEx("BrimstoneGLDEF")
+    Stop
+ }
+}
+
+
+ACTOR BrimstoneLaunch : BrimstoneInherit
+{
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 AAAAAAAA 0 A_SpawnItemEx("NexusBrimstoneBlast",random(40,-40),random(40,-40),random(40,-40),frandom(0.05,0.1),frandom(0.05,0.1),frandom(0.075,0.125),random(0,359),SXF_TRANSFERPOINTERS,0)
+	Stop
+ }
+}
+
+ACTOR NexusBrimstoneBlast
+{
+ +NOGRAVITY
+ +NOINTERACTION
+ +FORCERADIUSDMG
+ Renderstyle Add
+ Damagetype "PlayerDTRG"
+ Alpha 0.8
+ Scale 1
+ States
+ {
+  Spawn:
+	YAE2 A 0
+	YAE2 A 0 A_Explode(45,128,0)
+        YAE2 ABCDEFGHIJKLMNO 1 Bright
+	YAE2 PQRSTU 2 A_FadeOut
+	Stop
+ }
+}
+
+ACTOR BrimstoneSmokeDeath : BrimstoneInherit
+{
+ Renderstyle Add
+ Alpha 0.75
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	OBSK FGHIJKLMNOPQRST 2
+	OBSK UVWXYZ 2 A_FadeOut(0.1)
+	Stop
+ }
+}
+
+ACTOR BrimstoneImpact : BrimstoneInherit
+{
+ DamageType "PlayerDTRG"
+ -CLIENTSIDEONLY
+ +FORCERADIUSDMG
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_Explode(100,224,0)
+	YAE4 AAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("BrimstoneObeliskTrailSpark", random(10,-10), random(10,-10), random(10,-10), frandom(4,6), frandom(4,6), frandom(-6,6), random(0,359), 128, 0)
+	YAE4 AA 0 A_SpawnItemEx("BrimstoneSmoke",random(23,-23),random(23,-23),random(23,-23),frandom(0.3,0.6),frandom(0.3,0.6),frandom(-0.2,0.5),random(0,359),128,0)
+	YAE4 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("BrimstoneSmokeDeath",random(28,-28),random(28,-28),random(28,-28),frandom(-4,4),frandom(1,4),frandom(-3,4),random(0,359),128,0)
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("BrimstoneSmokeDeath",random(28,-28),random(28,-28),random(28,-28),frandom(1,4),frandom(1,4),frandom(1,4),random(0,359),128,0)
+	Stop
+ }
+}
+
+ACTOR BrimstoneGLDEF : BrimstoneInherit
+{
+ States
+ {
+ Spawn:
+	TNT1 A 21
+	Stop
+ }
+}
+
+ACTOR BrimstoneObeliskProjectile : FastProjectile
+{
+  Speed 350
+  Radius 17
+  Height 10
+  Damage 70
+  Renderstyle Add
+  +THRUSPECIES
+  +RIPPER
+  -CANNOTPUSH
+  +NODAMAGETHRUST
+  +EXTREMEDEATH
+  +FORCERADIUSDMG
+  DamageType "PlayerBrimstone"
+  Species "Player"
+  DeathSound "weapons/brimstonehit"
+  MissileType "BrimstoneObeliskTrail"
+  MissileHeight 10
+  states
+  {
+  Spawn:
+    TNT1 A 0
+    TNT1 A 1 A_PlaySound("weapons/brimstonefly",5,1.0,1)
+    Loop
+  Death:
+    TNT1 A 0 A_PlaySound("Weapons/brimstonxExp",5)
+    TNT1 AAAAAAAAAA 0 A_SpawnItemEx("BrimstoneObeliskTrailSpark", random(19,-19), random(19,-19), random(19,-19), 0, 0, 0, 0, 128, 0)
+    TNT1 A 0 A_SpawnItemEx("BrimstoneObeliskExplode",0,0,0,0,0,0,0,128,0)
+    TNT1 A 0 A_Explode(150,128,0,1)
+    TNT1 BCD 4
+    stop
+  }
+}
+
+ACTOR BrimstoneObeliskExplode
+{
+  Radius 17
+  Height 10
+  Renderstyle Add
+  Scale 0.5
+  +CLIENTSIDEONLY
+  +NOINTERACTION
+  +NOGRAVITY
+  states
+  {
+  Spawn:
+	YAE3 ABCDEFGHIJKLMNOPQRS 1 bright A_FadeOut(0.05)
+	Stop
+  }
+}
+
+ACTOR BrimstoneObeliskTrail
+{
+  RenderStyle Add
+  Scale 0.175
+  Alpha 1
+  +CLIENTSIDEONLY
+  +NOINTERACTION
+  +NOGRAVITY
+  States
+  {
+  Spawn:
+    TNT1 A 0
+    TNT1 A 0 A_SetScale(ScaleX, ScaleY -0.0875)
+    YAE4 A 2 bright A_SpawnItemEx("BrimstoneObeliskTrailSpark", random(4,-4), random(4,-4), random(4,-4), 0, 0, 0, 0, 128, 0)
+    YAE4 A 2 bright
+  Trolololo:
+    YAE4 A 0 A_JumpIf(ScaleY <= 0, "NULL")
+    YAE4 A 0 A_SetScale(ScaleX -0.01, ScaleY -0.01)
+    YAE4 A 1 bright A_FadeOut(0.295)
+    Loop
+  }
+}
+
+ACTOR BrimstoneObeliskTrailSpark : BrimstoneInherit
+{ 
+ RenderStyle Add
+ Scale 0.0125
+ Alpha 0.95
+ States
+ {
+  Spawn:
+	YAE4 A 0 NoDelay A_JumpIf(ScaleX <= 0, "NULL")
+	YAE4 A 0 A_SetScale(ScaleX-0.00075)
+	YAE4 A 3 bright A_ChangeVelocity (frandom(-0.8, 0.8), frandom(-0.8, 0.8), frandom(-0.8, 0.8), 0)
+	YAE4 A 1 bright A_FadeOut(0.05)
+	Loop
+ }
+}
+
+ACTOR BrimstoneProjectile : BrimstoneObeliskProjectile {DamageType "Player"}
+
+ACTOR BurnoutCounter : Inventory {Inventory.MaxAmount 999} //The fuel
+
+ACTOR BrimstoneCounter : Inventory {Inventory.MaxAmount 999} //Reload
+
+
+Actor BrimstoneCooldown : PowerDamage
+{
+ +INVENTORY.ADDITIVETIME
+ DamageFactor "nothing", 1.0
+ Powerup.duration -15
+}
+
+ACTOR PlayerRailPuffBrimstone : BulletPuff
+{
+ States
+ {
+  Spawn:
+	TNT1 A 1 NoDelay A_SpawnItem("RailgunImpactEffectRed")
+	Stop
+ }
+}
+
+ACTOR BrimstoneRail : DarkCyberRail
+{
+ Radius 6
+ Height 12
+ Speed 500
+ Scale 0.25
+ DamageType "PlayerBrimstone"
+ Damage 30
+ SeeSound "BrimstoneCannon/Short"
+ MissileType "BrimstoneRailTrail"
+ MissileHeight 8
+ Species "Player"
+ DeathSound "Null"
+ +RIPPER
+ +THRUSPECIES
+ +EXTREMEDEATH
+ +BLOODLESSIMPACT
+ States
+ {
+  Spawn:
+	TNT1 A 1 
+	Loop
+  Death:
+	TNT1 A 0 A_SpawnItemEx("GibbedGenerator", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AAAA 0 A_CustomMissile("RedBloodCloud", 0, 0, random(0,360), 2, random(0,360))	
+	TNT1 A 1 //A_SpawnItem("RailgunImpactEffectBrimstone")
+	Stop
+ }
+}
+
+ACTOR BrimstoneRailTrail : BFG9500Trail
+{
+ Radius 6
+ Height 12
+ Scale 0.1
+ States
+ {
+  Spawn:
+	TNT1 A 1
+	RBSP ABCDEFGHIJKLM 1 Bright A_FadeOut(0.04)
+	Loop
+ }
+}
+
+ACTOR BrimstoneRailCore : BrimstoneRail
+{
+ Damage (Random(10,20))
+ Speed 500
+ MissileType "BrimstoneRailCoreTrail"
+ DamageType "PlayerBrimstone"
+ Species "Player"
+ SeeSound ""
+ DeathSound ""
+ +RIPPER
+ States
+ {
+  Death:
+	TNT1 AAAAAAAAAA 30
+	Stop
+ }
+}
+
+ACTOR BrimstoneRailCoreTrail : BrimstoneRailTrail
+{
+ +NOGRAVITY
+ +NOBLOCKMAP
+ +NOCLIP
+ +NOINTERACTION
+ +CLIENTSIDEONLY
+ RenderStyle Add
+ Alpha 0.75
+ Scale 0.50
+ States
+ {
+  Spawn:
+	TNT1 AA 0
+  BurnOut:
+	X0B2 ABCBABCBABCBABCBABCBABC 1 Bright A_FadeOut(0.01)
+	X0B2 ABCABC 2 Bright A_FadeOut(0.01)
+	X0B2 DEF 2 Bright
+	Stop
+ }
+}
+
+ACTOR PlayerBrimstoneRail : DTRail
+{
+   DamageType "PlayerBrimstone"
+   Species "Player"  
+}
+
+ACTOR PlayerBrimstoneRailShotTestSpawner
+{
+ Radius 1
+ Height 2
+ +NOGRAVITY
+ +NOBLOCKMAP
+ +NOCLIP
+ +NOINTERACTION
+ -RANDOMIZE
+ Projectile
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_CustomMissile("BrimstoneRail", 8, 0, 0, CMF_AIMDIRECTION) // CMF_AIMOFFSET
+	TNT1 A 0 A_CustomMissile("BrimstoneRailCore", 8, 0, 0, CMF_AIMDIRECTION) // CMF_AIMOFFSET
+	MISL BCD 30
+	Loop
+ }
+}
+
+ACTOR BrimstoneRailTrailSpark: BrimstoneInherit
+{ 
+ RenderStyle Add
+ Scale 0.025
+ Alpha 0.95
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	SPKR A 0 A_JumpIf(ScaleX <= 0, "NULL")
+	SPKR A 0 A_SetScale(ScaleX-0.0008)
+	SPKR A 1 bright A_ChangeVelocity (frandom(-0.2, 0.2), frandom(-0.2, 0.2), frandom(-0.2, 0.2), 0)
+	SPKR A 2 bright A_FadeOut(0.05)
+	Loop
+ }
+}
+
+ACTOR BrimstoneItemPack : BrimstoneItem 28168
+{
+ Inventory.Amount 3
+ Inventory.PickupMessage "Brimstone Pack. Blood Railgun Barrage."
+}
+
+// ENEMIES
+
+// Revenant
+
+ACTOR RevBrimstoneRail : BrimstoneRail
+{
+ DamageType "CadaverRocket"
+ Species "Skeletons"
+ States
+ {
+  Spawn:
+	TNT1 A 1 
+	Loop
+  Death:
+	TNT1 A 0 A_SpawnItemEx("GibbedGenerator", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AAAA 0 A_CustomMissile("RedBloodCloud", 0, 0, random(0,360), 2, random(0,360))	
+	TNT1 A 1 //A_SpawnItem("RailgunImpactEffectBrimstone")
+	Stop
+ }
+}
+
+ACTOR RevBrimstoneRailCore : BrimstoneRailCore
+{
+ DamageType "CadaverRocket"
+ Species "Skeletons"
+}
+
+// Cacodemon
+
+ACTOR CacoBrimstoneRail : RevBrimstoneRail
+{
+ DamageType "CacoComet"
+ Species "CacoDemon"
+}
+
+ACTOR CacoBrimstoneRailCore : RevBrimstoneRailCore
+{
+ DamageType "CacoComet"
+ Species "CacoDemon"
+}
+
+// Hell Knight/Baron of Hell
+
+ACTOR NobleBrimstoneRail : RevBrimstoneRail
+{
+ DamageType "NobleComet"
+ Species "Nobles"
+}
+
+ACTOR NobleBrimstoneRailCore : RevBrimstoneRailCore
+{
+ DamageType "NobleComet"
+ Species "Nobles"
+}
+
+// Mancubus
+
+ACTOR FatsoBrimstoneRail : RevBrimstoneRail
+{
+ DamageType "BeheComet"
+ Species "Fatsos"
+}
+
+ACTOR FatsoBrimstoneRailCore : RevBrimstoneRailCore
+{
+ DamageType "BeheComet"
+ Species "Fatsos"
+}

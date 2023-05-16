@@ -1,0 +1,194 @@
+Actor LegendaryBehemothCannonGiver : CustomInventory
+{
+  Scale 0.9
+  Inventory.Amount 1
+  Inventory.MaxAmount 0
+  Inventory.InterHubAmount 0
+   Inventory.PickupMessage "Legendary Behemoth Cannon, B.I.H Legendary Behemoth ;-D"
+   Inventory.PickupSound "LegBeheCannon/up"
+   Obituary "%o ate %k's Legendary Behemoth Cannon beautiful comets."
+   Tag "Legendary Behemoth Cannon"
+  States
+  {
+  Spawn:
+	LBHC A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",5,1)
+  SpawnLoop:
+	LBHC A -1
+	Loop
+  Pickup:
+	TNT1 A 0 A_JumpIfInventory("Legendary Behemoth Cannon",1,"JustAmmo")
+  All:
+	TNT1 A 0 A_GiveInventory("Legendary Behemoth Cannon",1)
+	TNT1 A 0 A_JumpIfInventory("LegendaryBehemothCannonGiverCheck",1,"HoldAndDestroy")
+	TNT1 A 0 A_GiveInventory("LegendaryBehemothCannonGiverCheck",1)
+	TNT1 A 0 A_GiveInventory("LDemonAmmo",40)
+	Stop
+  JustAmmo:
+    TNT1 A 0 A_JumpIfInventory("LegendaryBehemothCannonGiverCheck",1,"Null")
+	TNT1 A 0 A_GiveInventory("LegendaryBehemothCannonGiverCheck",1)
+	TNT1 A 0 A_GiveInventory("LDemonAmmo",40)
+	TNT1 A 0 A_SpawnItemEx("Legendary Behemoth Cannon")
+	Stop
+  }
+}
+
+Actor LegendaryBehemothCannonSpawnerGiver : LegendaryBehemothCannonGiver
+{
+  States
+  {
+  JustAmmo:
+    TNT1 A 0 A_JumpIfInventory("LegendaryBehemothCannonGiverCheck",1,"Null")
+	TNT1 A 0 A_GiveInventory("LegendaryBehemothCannonGiverCheck",1)
+	TNT1 A 0 A_GiveInventory("LDemonAmmo",40)
+	Stop
+  }
+}
+
+Actor LegendaryBehemothCannonGiverCheck : Inventory { Inventory.Amount 1 Inventory.MaxAmount 1 Inventory.InterHubAmount 0 }
+
+
+
+ACTOR "Legendary Behemoth Cannon" : Weapon
+{
+ Weapon.Kickback 300
+ Weapon.AmmoUse 6
+ Weapon.AmmoGive 100
+ Weapon.PreferredSkin "BehemothCannon-Marine"  
+ Weapon.SelectionOrder 7950
+ Weapon.SlotNumber 5
+ Weapon.SlotPriority 10.1
+ Scale 0.95
+ Weapon.AmmoType "LDemonAmmo"   
+ Weapon.AmmoUse2 36
+ Weapon.AmmoType2 "LDemonAmmo"    
+ Inventory.PickupMessage "Legendary Behemoth Cannon, B.I.H Legendary Behemoth ;-D"
+ Inventory.PickupSound "LegBeheCannon/up"
+ Obituary "%o ate %k's Legendary Behemoth Cannon beautiful comets."
+ Tag "Legendary Behemoth Cannon"
+ Weapon.Upsound "LegBeheCannon/up"
+ States
+ {
+  Spawn:
+	LBHC A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",5,1)
+  SpawnLoop:
+	LBHC H -1 
+	Stop
+	Ready:
+	LBHC A 1 A_WeaponReady
+	Loop
+  Select:
+	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",0)
+	TNT1 A 0 A_Raise
+	LBHC A 1 A_Raise
+	Goto Select+1
+  Deselect:
+	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",1)	
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	TNT1 A 0 A_TakeInventory("RailgunAction",1)
+	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown")
+	TNT1 A 0 A_Lower
+	LBHC A 1 A_Lower
+	Goto Deselect+5
+  Fire:	
+	LBHC D 3 Bright
+	LBHC E 3 Bright A_PlaySound("cannon/fire", CHAN_WEAPON, 1.0, 0)
+	LBHC F 1 Bright A_FireCustomMissile("LegBehemothCometPlayer")
+	LBHC F 0 Bright A_FireCustomMissile("LegBehemothCometPlayer", -2)
+	LBHC F 0 Bright A_FireCustomMissile("LegBehemothCometPlayer", 2)
+	LBHC G 3 Bright
+	LBHC CBA 5 Bright
+	Goto Ready
+  AltFire:	
+	LBHC A 35 A_PlaySound("weapons/bfgf", CHAN_WEAPON, 1.0, 0)
+	LBHC BCDE 1
+	LBHC F 2 A_FireCustomMissile("LegBehBFGBallPlayer")
+	LBHC FG 3
+	LBHC CBA 5
+	Goto Ready	
+ }
+}	
+
+ACTOR LegBehemothCometPlayer : LegBehComet
+{
+ +THRUSPECIES
+ +SEEKERMISSILE
+ +SCREENSEEKER
+ +DOOMBOUNCE
+ +NOTIMEFREEZE
+ Species "Player"
+ Decal "Scorch"
+ DamageType "PlayerLegendary"
+ MissileType ""
+ Damage 50
+ ExplosionDamage 90
+ Scale 0.55
+ States
+ {
+  Spawn:
+	LHTB AAAAABBBBBB 1 Bright A_SpawnItemEx("LegBehCometTail", 0, 0, 0, 0, 0, 0, 0, 128)
+  Fly:
+	TNT1 A 0 A_SeekerMissile(15,8,SMF_LOOK)
+	LHTB AAAAA 1 Bright A_SpawnItemEx("LegBehCometTail", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 A 0 A_SeekerMissile(15,8,SMF_LOOK)
+	LHTB BBBBB 1 Bright A_SpawnItemEx("LegBehCometTail", 0, 0, 0, 0, 0, 0, 0, 128)
+	Loop
+  Death:
+	TNT1 A 0 A_SpawnItemEx("LegendaryBlueParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AAAA 0 A_SpawnItemEx("LegendaryDebris",0,0,Random(20,40),Random(4,-4),Random(4,-4),Random(4,8),0,128)
+	TNT1 AAA 0 A_CustomMissile("BlueKaboom", 0, 0, random(0,360), 2, random(0,360))	
+	TNT1 AAA 0 A_CustomMissile("LegendarySmokeFX2", 0, 0, random(0,360), 2, random(0,360))
+	BCOM DE 3 Bright
+	Stop
+ }
+}	
+
+ACTOR LegBehBFGBallPlayer : LegBehBFGBall
+{
+ +EXTREMEDEATH
+ +FORCERADIUSDMG
+ +NOTIMEFREEZE
+ Species "Player"
+ DeathSound "lrball3/exp"
+ Damage 300
+ Scale 1.4
+ Speed 35
+ DECAL BlueBFG9500Lightning
+ DamageType "PlayerLegendary"
+ MissileType ""
+ States
+ {
+  Spawn:
+	LTB1 A 0 A_CustomMissile("LegBehBFGBallTrail",0,0,0,CMF_AIMDIRECTION|CMF_TRACKOWNER,0)
+	LTB1 AAA 1 Bright A_SpawnItemEx("BFGTrailParticleBlue",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	LTB1 B 0 A_CustomMissile("LegBehBFGBallTrail",0,0,0,CMF_AIMDIRECTION|CMF_TRACKOWNER,0)
+	LTB1 BBB 1 Bright A_SpawnItemEx("BFGTrailParticleBlue",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	Loop
+  Death:
+	TNT1 A 0 A_Explode(48,156,0)
+	TNT1 A 0 A_PlaySound("lrball3/exp")
+	LTB1 CDEF 4 Bright A_SpawnItemEx("BFGTrailParticleBlue",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	TNT1 A 0 A_PlaySound("lrball3/exp")
+	TNT1 A 0 A_Explode(48,156,0)
+	LTB1 CDEF 4 Bright A_SpawnItemEx("BFGTrailParticleBlue",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	TNT1 A 0 A_PlaySound("lrball3/exp")
+	TNT1 A 0 A_Explode(48,156,0)
+	LTB1 CDEF 4 Bright A_SpawnItemEx("BFGTrailParticleBlue",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	TNT1 A 0 A_PlaySound("lrball3/exp")
+	TNT1 A 0 A_Explode(48,156,0)
+	LTB1 CDEF 4 Bright A_SpawnItemEx("BFGTrailParticleBlue",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	TNT1 A 0 A_PlaySound("lrball3/exp")
+	TNT1 A 0 A_Explode(48,156,0)
+	LTB1 CDEF 4 Bright A_SpawnItemEx("BFGTrailParticleBlue",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	TNT1 A 0 A_PlaySound("lrball3/exp")
+	TNT1 A 0 A_Explode(48,156,0)
+	LTB1 CDEF 4 Bright A_SpawnItemEx("BFGTrailParticleBlue",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	TNT1 A 0 A_Explode(156,156,0)
+	TNT1 A 0 A_PlaySound("lrball3/exp")
+	TNT1 A 0 A_SpawnItemEx("LegendaryBlueParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+	TNT1 AAAAAAAA 0 A_SpawnItemEx("BlueKaboom",random(-32,32),random(-40,40),random(8,16),random(-4,4),random(-4,4),random(0,4),0,SXF_TRANSFERPOINTERS)
+	TNT1 AAA 0 A_CustomMissile("LegendarySmokeFX4", 0, 0, random(0,360), 2, random(0,360))
+	LTB1 CDEF 4 Bright
+	Stop    
+ }
+}

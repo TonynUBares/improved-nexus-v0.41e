@@ -1,0 +1,159 @@
+ACTOR ExplosiveDTechUpgrade : CustomInventory
+{
+ +COUNTITEM
+ +INVENTORY.UNDROPPABLE
+ +INVENTORY.HUBPOWER
+ +INVENTORY.PERSISTENTPOWER
+ Inventory.Amount 1
+ Inventory.MaxAmount 1
+ Inventory.Pickupsound "explosivedtech/pickup"
+ Inventory.Pickupmessage "Explosive Demon Tech Rifle Upgrade! Use railgun zoom key to change modes!"
+ Tag "Explosive Demon Tech Rifle Upgrade"
+ States
+ {
+  Spawn:
+	ASMP ABCDEFEDCB 5 BRIGHT
+	Loop
+  Pickup:
+	TNT1 A 0 A_JumpIfInventory("ExpDTechToken",1,"Null")
+	TNT1 A 0 A_GiveInventory("ExpDTechUpgraded",1)
+	TNT1 A 0 A_GiveInventory("ExpDTechToken",1)
+	Stop
+ }
+}
+
+ACTOR ExpDTechUpgraded : Inventory {Inventory.MaxAmount 1}
+
+ACTOR ExpDTechToken : Inventory {Inventory.MaxAmount 1}
+
+ACTOR PlayerExplosiveDemonTechProjectile
+{
+ Height 4
+ Radius 4
+ Speed 75
+ Damage 10
+ Scale 0.06
+ Gravity 0.13
+ PROJECTILE
+ +THRUSPECIES
+ +FORCERADIUSDMG
+ -NOGRAVITY
+ Species "Player"
+ DeathSound "sentient/chaingunex"
+ Decal EDTRScorch
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_Jump(128,"Spawn2")
+  Normal:
+	TNT1 A 0 A_Jump(128,"NormalFX")
+	EDT5 A 1 Bright A_SpawnItemEx("PExplosiveDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+	Loop
+  NormalFX:
+	TNT1 A 0 A_SpawnItemEx("ExDTechLightning",Random(1,-1),Random(1,-1),Random(1,-1),0,0,0,0,128)
+	EDT5 A 1 Bright A_SpawnItemEx("PExplosiveDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+	TNT1 A 0 A_SpawnItemEx("ExDTechLightning2",Random(1,-1),Random(1,-1),Random(1,-1),0,0,0,0,128)
+	EDT5 A 1 Bright A_SpawnItemEx("PExplosiveDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+	Goto Normal
+  Spawn2:
+	TNT1 A 0 A_Jump(128,"Spawn2FX")
+	EDT5 A 1 Bright A_SpawnItemEx("PExplosiveDemonTechTrail2",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+	Loop
+  Spawn2FX:
+	TNT1 A 0 A_SpawnItemEx("ExDTechLightning",Random(1,-1),Random(1,-1),Random(1,-1),0,0,0,0,128)
+	EDT5 A 1 Bright A_SpawnItemEx("PExplosiveDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+	TNT1 A 0 A_SpawnItemEx("ExDTechLightning2",Random(1,-1),Random(1,-1),Random(1,-1),0,0,0,0,128)
+	EDT5 A 1 Bright A_SpawnItemEx("PExplosiveDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+	Goto Spawn2
+  Death:
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,128,0)
+	TNT1 A 0 A_SpawnItemEx("ExplosiveDemonTechEx",0,0,0,0,0,0,0,128,0)
+	TNT1 AAA 0 A_CustomMissile("EDTRKaboom7", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX4", 0, 0, random(0,360), 2, random(0,360))
+	Stop
+ }
+}
+
+ACTOR ExplosiveDemonTechEx
+{
+ RenderStyle Add
+ Alpha 0.75
+ Scale 0.5
+ PROJECTILE
+ +NOCLIP
+ +THRUSPECIES
+ +FORCERADIUSDMG
+ Species "Player"
+ DamageType "Explosion"
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_SpawnItem("SentientExplosiveEffect")
+	EDT7 A 2 Bright A_Explode(Random(24,30)*5,74)
+	EDT7 BCDEFGH 2 Bright A_FadeOut(0.1)
+	Stop
+ }
+}
+
+ACTOR PExplosiveDemonTechTrail : BFG9500Trail
+{
+ Scale 0.04
+ Alpha 0.65
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 2
+	EDT6 AAAAAABBBBBBBB 1 Bright A_FadeOut(0.05)
+	Stop
+ }
+}
+
+ACTOR PExplosiveDemonTechTrail2 : DemonTechTrail
+{
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 2
+	EDT6 AAAAAACCCCCCCC 1 Bright A_FadeOut(0.05)
+	Stop
+ }
+}
+
+ACTOR EDTRKaboom7 : Kaboom6
+{
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	EDT9 AABBCDEFGHIJKLM 1 Bright A_FadeOut(0.05)
+  Stop
+ }
+}
+
+ACTOR ExDTechLightning : TeleportFogLightning
+{
+ Scale 0.03
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 0 A_Jump(256,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72)
+	OEL1 ABCDEFGHIJKLMNOPQR 0 Bright A_Jump(256,"Death")
+	OEL2 ABCDEFGHIJKLMNOPQR 0 Bright A_Jump(256,"Death")
+	OEL3 ABCDEFGHIJKLMNOPQR 0 Bright A_Jump(256,"Death")
+	OEL4 ABCDEFGHIJKLMNOPQR 0 Bright A_Jump(256,"Death")
+  Death:
+	"----" A 1 Bright
+	Stop
+ }
+}
+
+ACTOR ExDTechLightning2 : ExDTechLightning { Scale 0.06 }

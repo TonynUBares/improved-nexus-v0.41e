@@ -1,0 +1,395 @@
+Actor PlayerCallingMinions : Inventory
+{
+ Inventory.MaxAmount 1
+ States
+ {
+  Held:
+	B3AC A 50
+	Stop
+ }
+}
+Actor Map_SpawnCount : Inventory{Inventory.MaxAmount 9999}
+Actor MarineTeleportDelay : Powerup
+{
+ Inventory.MaxAmount 1
+ Powerup.Duration -10
+}
+
+ACTOR BeaconKaboom
+{  
+ Radius 2
+ Height 2
+ Damage 8
+ Scale 0.4
+ +MTHRUSPECIES
+ +MISSILE
+ +DONTFALL
+ +NOTELEPORT
+ Mass 400
+ Decal "Scorch"
+ DamageType "Explosion"
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	Goto Death      
+  Death: 
+	TNT1 A 0 A_Explode  
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 A_PlaySound("beacon/explode")
+	TNT1 A 0 A_PlaySound("FAREXPL",CHAN_VOICE)
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+	TNT1 AAA 0 A_CustomMissile("Kaboom3", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+	TNT1 A 1 A_SpawnItem("RocketEx")
+	Stop
+ }
+}
+
+ACTOR LargeBeaconKaboom: BeaconKaboom
+{
+ States 
+ {
+  Spawn:
+	TNT1 A 0
+	Goto Death
+  Death:
+	TNT1 A 0 A_NoBlocking
+	TNT1 A 0 A_Explode(100,150,0,0)
+	TNT1 A 0 Radius_Quake(2,24,0,15,0)
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 A_PlaySound("beacon/explode",CHAN_BODY)
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,128) 
+	TNT1 AAA 0 A_CustomMissile("Kaboom3",0,0,random(0,360),2,random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX2",0,0,random(0,360),2,random(0,360))
+	TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,SXF_CLIENTSIDE,0)
+	TNT1 A 1 A_SpawnItem("RocketEx")
+	TNT1 A 0 A_Explode(200,300,0,0)
+	TNT1 A 0 A_PlaySound("Explosion",CHAN_WEAPON)
+	TNT1 A 0 A_PlaySound("FAREXPL",CHAN_VOICE)
+	TNT1 AAA 1 A_SpawnItemEx("RocketEx",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,SXF_CLIENTSIDE,0)
+	TNT1 A 48 
+	Stop
+ }
+}
+
+ACTOR StartingTemporalInvul : PowerupGiver
+{
+ +INVENTORY.AUTOACTIVATE
+ +INVENTORY.ALWAYSPICKUP
+ Inventory.MaxAmount 0
+ Powerup.Duration -7
+ Powerup.Type "Invulnerable"
+ Powerup.Mode Reflective
+ Powerup.Color White 0.15
+}
+
+ACTOR MarineBeacon : CustomInventory
+{
+ +INVBAR
+ Inventory.MaxAmount 8
+ Inventory.InterHubAmount 8
+ Inventory.Icon "B3ACZ0"
+ Inventory.PickupSound "Beacon/Pickup"
+ Inventory.PickupMessage "$DrBeacon0Pickup"
+ Tag "$DrBeacon0"
+ Scale 0.8
+ States
+ {
+  Spawn:
+	B3AC A -1
+	Stop
+  Use:
+	TNT1 A 0 A_JumpIfInventory("PlayerMorphed",1,"Null")
+	TNT1 A 0 ACS_NamedExecuteWithResult("MarineBeaconDrop",0)
+	Stop
+ }
+}
+
+ACTOR MarineSquadBeacon : MarineBeacon Replaces Beacon
+{
+ Inventory.MaxAmount 3
+ Inventory.InterHubAmount 3
+ Inventory.Icon "BEACZ0"
+ Inventory.PickupSound "Beacon/Pickup"
+ Inventory.PickupMessage "$DrSquadBeacon0Pickup"
+ Tag "$DrSquadBeacon0"
+ States
+ {
+  Spawn:
+	BEAC A -1
+	Stop
+  Use:
+	TNT1 A 0 A_JumpIfInventory("PlayerMorphed",1,"Null")
+	TNT1 A 0 ACS_NamedExecuteWithResult("MarineBeaconDrop",1)
+	Stop
+ }
+}
+
+ACTOR MarineDBFGBeacon : MarineBeacon
+{
+ Inventory.MaxAmount 1
+ Inventory.InterHubAmount 1
+ Inventory.Icon "B34CZ0"
+ Inventory.PickupSound "Beacon/Pickup"
+ Inventory.PickupMessage "$DrBeacon1Pickup"
+ Tag "$DrBeacon1"
+ States
+ {
+  Spawn:
+	B34C A -1
+	Stop
+  Use:
+	TNT1 A 0 A_JumpIfInventory("PlayerMorphed",1,"Null")
+	TNT1 A 1 A_SpawnItemEx("MarineDBFGBeaconActivated",0,0,16,8,0,4,0,SXF_SETMASTER)
+	Stop
+ }
+}
+
+ACTOR MarineMedicBeacon : MarineDBFGBeacon
+{
+ Inventory.Icon "BCMDZ0"
+ Inventory.PickupSound "Beacon/Pickup"
+ Inventory.PickupMessage "DrBeacon2Pickup"
+ Tag "$DrBeacon2"
+ States
+ {
+  Spawn:
+	BCMD A -1
+	Stop
+  Use:
+	TNT1 A 0 A_JumpIfInventory("PlayerMorphed",1,"Null")
+	TNT1 A 1 A_SpawnItemEx("MarineMedicBeaconActivated",0,0,16,8,0,4,0,SXF_SETMASTER)
+	Stop
+ }
+}
+
+ACTOR MarineDispensersBeacon : MarineDBFGBeacon
+{
+ Inventory.Icon "BCBPZ0"
+ Inventory.PickupSound "Beacon/Pickup"
+ Inventory.PickupMessage "$DrBeacon3Pickup"
+ Tag "$DrBeacon3"
+ States
+ {
+  Spawn:
+	BCBP A -1
+	Stop
+  Use:
+	TNT1 A 0 A_JumpIfInventory("PlayerMorphed",1,"Null")
+	TNT1 A 1 A_SpawnItemEx("MarineDispensersBeaconActivated",0,0,16,8,0,4,0,SXF_SETMASTER)
+	Stop
+ }
+}
+
+ACTOR MarineBeaconActivated
+{
+ Monster
+ Health 1000
+ Radius 6
+ Height 28
+ Mass 9999
+ +FLOORCLIP
+ +FRIENDLY
+ +NOTELEPORT
+ -COUNTKILL
+ -SHOOTABLE
+ -SOLID
+ States
+ {
+  Spawn:
+	B3AC A 0
+	B3AC A 1 
+	Goto Spawn2
+  Spawn2:
+	"####" ABCDE 6
+	"####" E 20
+	"####" F 15 Bright A_PlaySound("beacon/alarm")
+	"####" E 20
+	"####" F 15 Bright A_PlaySound("beacon/alarm")
+	"####" E 20
+	"####" F 15 Bright A_PlaySound("beacon/alarm")
+	"####" F 35 Bright
+	"####" E 70 A_SpawnItemEx("TeleportFog")
+	"####" A 0 A_Jump(256,"Spawn3")
+  Spawn3:
+	"####" A 5 ACS_NamedExecuteAlways("MarineBeaconActivation",0,1)
+	Goto Death
+  Death:
+	"####" A 1
+	TNT1 A 1 A_SpawnItemEx("TeleportFog")
+	Stop
+ }
+}
+
+ACTOR MarineBeaconShotgunActivated : MarineBeaconActivated
+{
+ States
+ {
+  Spawn3:
+	"####" A 5 ACS_NamedExecuteAlways("MarineBeaconActivation",0,2)
+	Goto Death
+ }
+}
+
+ACTOR MarineBeaconChaingunActivated : MarineBeaconActivated
+{
+ States
+ {
+  Spawn3:
+	"####" A 5 ACS_NamedExecuteAlways("MarineBeaconActivation",0,3)
+	Goto Death
+ }
+}
+
+ACTOR MarineBeaconExplosiveActivated : MarineBeaconActivated
+{
+ States
+ {
+  Spawn3:
+	"####" A 5 ACS_NamedExecuteAlways("MarineBeaconActivation",0,4)
+	Goto Death
+ }
+}
+
+ACTOR MarineBeaconPlasmaActivated : MarineBeaconActivated
+{
+ States
+ {
+  Spawn3:
+	"####" A 5 ACS_NamedExecuteAlways("MarineBeaconActivation",0,5)
+	Goto Death
+ }
+}
+
+ACTOR MarineBeaconDemonTechActivated : MarineBeaconActivated
+{
+ States
+ {
+  Spawn3:
+	"####" A 5 ACS_NamedExecuteAlways("MarineBeaconActivation",0,6)
+	Goto Death
+ }
+}
+
+ACTOR MarineSquadBeaconActivated : MarineBeaconActivated
+{
+ States
+ {
+  Spawn:
+	BEAC A 0
+	BEAC A 1
+	Goto Spawn2
+  Spawn2:
+	"####" A 10
+	"####" AAA 35 A_PlaySound("beacon/alarm")
+	"####" A 0 A_Jump(256,"Spawn3")
+  Spawn3:
+	"####" AAAA 35 ACS_NamedExecuteAlways("MarineBeaconActivation",0,15)
+	Goto Death
+  Explosion:
+	BEAC AA 35 A_PlaySound("weapon/warn")
+	TNT1 A 0 A_SpawnItem("LargeBeaconKaboom")
+	Stop
+ }
+}
+
+ACTOR MarineSquadBeaconShotgunActivated : MarineSquadBeaconActivated
+{
+ States
+ {
+  Spawn3:
+	"####" AAAA 35 ACS_NamedExecuteAlways("MarineBeaconActivation",0,7)
+	Goto Death
+ }
+}
+
+ACTOR MarineSquadBeaconChaingunActivated : MarineSquadBeaconActivated
+{
+ States
+ {
+  Spawn3:
+	"####" AAAA 35 ACS_NamedExecuteAlways("MarineBeaconActivation",0,8)
+	Goto Death
+ }
+}
+
+ACTOR MarineSquadBeaconExplosiveActivated : MarineSquadBeaconActivated
+{
+ States
+ {
+
+  Spawn3:
+	"####" AAAA 35 ACS_NamedExecuteAlways("MarineBeaconActivation",0,9)
+	Goto Death
+ }
+}
+
+ACTOR MarineSquadBeaconPlasmaActivated : MarineSquadBeaconActivated
+{
+ States
+ {
+
+  Spawn3:
+	"####" AAAA 35 ACS_NamedExecuteAlways("MarineBeaconActivation",0,10)
+	Goto Death
+ }
+}
+
+ACTOR MarineSquadBeaconDemonTechActivated : MarineSquadBeaconActivated
+{
+ States
+ {
+
+  Spawn3:
+	"####" AAAA 35 ACS_NamedExecuteAlways("MarineBeaconActivation",0,11)
+	Goto Death
+ }
+}
+
+ACTOR MarineDBFGBeaconActivated : MarineBeaconActivated
+{
+ States
+ {
+  Spawn:
+	B34C A 0
+	B34C A 1
+	Goto Spawn2
+  Spawn3:
+	"####" AAA 35 ACS_NamedExecuteAlways("MarineBeaconActivation",0,12)
+	Goto Death
+  Explosion:
+	B34C A 70 BRIGHT A_PlaySound("dbfgbeacon/warn",CHAN_BODY,2)
+	TNT1 A 0 A_SpawnItem("T3DBFGBoltExp")
+	Stop
+ }
+}
+
+ACTOR MarineMedicBeaconActivated : MarineBeaconActivated
+{
+ States
+ {
+  Spawn:
+	BCMD A 0
+	BCMD A 1
+	Goto Spawn2
+  Spawn3:
+	"####" AA 35 ACS_NamedExecuteAlways("MarineBeaconActivation",0,13)
+	Goto Death
+ }
+}
+
+ACTOR MarineDispensersBeaconActivated : MarineBeaconActivated
+{
+ States
+ {
+  Spawn:
+	BCBP A 0
+	BCBP A 1
+	Goto Spawn2
+  Spawn3:
+	"####" AAA 35 ACS_NamedExecuteAlways("MarineBeaconActivation",0,14)
+	Goto Death
+ }
+}

@@ -1,0 +1,60 @@
+//TXS
+Actor BerserkSphere2 : BerserkSphere replaces BerserkSphere
+{
+ Scale 1.0
+ Inventory.PickupSound "BerserkSphere/Get"
+ States
+ {
+  Spawn:
+	BERS A 0
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckMods",5) == 1,"HoldAndDestroy")
+	TNT1 A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,10,18)
+  SpawnLoop:
+	BERS ABCDCBA 4 Bright
+	Loop
+ }
+}
+
+Actor PortableMedCell2 : PortableMedCell replaces PortableMedCell
+{
+Inventory.PickupSound "MedCell/Pick"
+Inventory.UseSound "MedCell/Use"
+}
+
+Actor PortableMedCellPack2 : PortableMedCellPack replaces PortableMedCellPack
+{
+Inventory.PickupSound "MedCell/Pick"
+Inventory.UseSound "MedCellPack/Use"
+}
+
+
+//Other
+Actor NexusLegendarySphere : LegendarySphere Replaces LegendarySphere
+{
+ States
+ {
+  Spawn:
+	LSPH A 0
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckMods",1) == 1,"HoldAndDestroy")
+	TNT1 A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,20)
+  SpawnLoop:
+	TNT1 A 0 A_PlaySound("legendarysphere/idle",6,5.0)
+	LSPH ABCDEFGHIJKLMNOP 4 Bright 
+	Loop
+ }
+}
+
+
+Actor NexusLegTimeFreezeSphere : LegTimeFreezeSphere Replaces LegTimeFreezeSphere
+{
+States
+ {
+  Spawn:
+	TTIM A 0
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckMods",1) == 1,"HoldAndDestroy")
+	TNT1 A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,20)
+  SpawnLoop:
+	TTIM ABCDEFGHIJKLMNOPQRS 3 Bright
+	Loop	
+ }
+}

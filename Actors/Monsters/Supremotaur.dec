@@ -1,0 +1,679 @@
+ACTOR Supremotaur 30500
+{ 
+	Tag "\c[A6]Super Apprentice\c-"
+	Health 8000 //MAD2's Default Setting
+	Radius 40 
+	Height 110 
+	Mass 1000 
+	Speed 45
+	PainChance 1 //MAD2's Default Setting
+	MONSTER
+ Obituary "%o was maulotated by the Super Apprentice."
+ HitObituary "%o was hammered by the Super Apprentice." 
+	species "Cybers"
+    +FLOORCLIP 
+    +NORADIUSDMG 
+    +BOSS 
+    +BOSSDEATH
+    +FIRERESIST
+    +MISSILEMORE
+    +NODAMAGETHRUST
+    +NOTIMEFREEZE
+    +DONTHURTSPECIES
+    +DONTHARMSPECIES
+    +NOFEAR
+	+LOOKALLAROUND
+	DropItem "BLG", 255
+	DropItem "LegendaryRune", 180
+	DropItem "VitalityRune", 180
+	DropItem "Legendary BFG", 150
+	DropItem "InvulnerabilitySphere", 180
+	DropItem "AgilityRune", 128
+	DropItem "LDemonAmmoBox", 255
+	DropItem "LDemonAmmoBox", 160
+	DropItem "LDemonAmmo", 255
+	DropItem "LDemonAmmo", 160
+	DropItem "NewCellPack", 255
+	DropItem "NewCell", 255
+	DropItem "NewCellPack", 160
+	DropItem "NewCell", 160
+	DropItem "FuelCore" 256 1
+	DropItem "FuelCore" 256 1
+	DropItem "FuelCore" 256 1
+	DropItem "BossArmorBonusMax", 256, 32
+	DropItem "BossArmorBonusMax", 256, 32
+	Damage 0
+	//damagefactor "BFG10k", 0.1 //MAD2's Default Setting
+	MeleeRange 86
+	DamageFactor "Cyber10K", 0.0
+    DamageFactor "PDTBFG", 0.01
+    DamageFactor "PDTBFGTracer", 0.01
+    DamageFactor "Legendary", 0.3
+    DamageFactor "LegendaryGuru", 0.0
+    DamageFactor "LegendaryGuruPlayer", 0.3
+    DamageFactor "LegendaryPlayer", 0.3
+    DamageFactor "BFGSplash", 0.2
+    DamageFactor "BFGSpray", 0.2
+    DamageFactor "CerEnergyBall", 0.0
+    DamageFactor "PlayerDevBall", 0.005
+    DamageFactor "PlayerDevBall2", 0.005
+    DamageFactor "PlayerDTBFGRailgunSlug", 0.005
+    DamageFactor "PlayerDevTracer", 0.005
+    DamageFactor "DemolisherEx", 0.0
+    DamageFactor "DarkDemoEx", 0.0
+    DamageFactor "CerChainguns", 0.0	
+    DamageFactor "CerEnergyBall", 0.0
+    DamageFactor "PlayerDTRG", 0.3
+    DamageFactor "DBFG10K2", 0.65
+    DamageFactor "PlayerDBFG10K2", 0.65
+    DamageFactor "DBFG2", 0.65
+    DamageFactor "PlayerDBFG2", 0.65
+    DamageFactor "PyroShot", 0.0
+    DamageFactor "PlayerPyro", 0.0
+    DamageFactor "PDTPuff", 0.0
+    DamageFactor 0.3
+	DamageFactor "MinotaurDamage", 0.0
+	DamageType "MinotaurDamage"
+	SeeSound "monster/smiths" 
+	PainSound "monster/smithp" 
+	DeathSound "monster/smithd" 
+	ActiveSound "monster/smitha"
+	MeleeSound "monster/hamhit"
+   var int user_lowlag;
+	States 
+	{    
+	Spawn: 
+		TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
+		Goto Idle
+	Idle:
+		SMT3 AB 10 A_Look
+		Loop
+  See:
+	TNT1 A 0 A_JumpIf(user_lowlag == 1,"MoreSee")
+	TNT1 A 0 A_JumpIfTargetInLOS("MoreSee",0,0,0,0)
+	SMT3 ABCD 2 A_Chase
+	Loop
+  MoreSee:
+	TNT1 A 0 A_SetUserVar("user_lowlag",1)
+		SMT3 A 2 A_Hoof 
+		SMT3 ABB 2 A_Chase
+		SMT3 C 2 A_Hoof
+		SMT3 CDD 2 A_Chase
+		TNT1 A 0 A_Jump(100,"Rush")
+		Loop
+  Rush:
+		TNT1 A 0 A_SetShootable
+		TNT1 A 0 A_UnSetInvulnerable
+		TNT1 A 0 A_SetTranslucent(1)
+		TNT1 A 0 A_Hoof
+		SMT3 AAABCC 2 Bright A_Chase
+		TNT1 A 0 A_Hoof
+		SMT3 DD 2 Bright A_Chase
+		TNT1 A 0 A_Jump(75,"See")	
+		Loop
+	Melee:
+		SMT3 E 6 A_FaceTarget
+		SMT3 F 1 A_Playsound ("monster/hamswg")
+		SMT3 F 5 A_FaceTarget
+		SMT3 G 10 A_CustomMeleeAttack (20*Random(1,8),"monster/hamhit","monster/hamflr","MinotaurDamage")
+		SMT3 B 0 A_Jump (192,1)
+		Goto See
+		SMT3 J 6 A_FaceTarget
+		SMT3 K 1 A_Playsound ("monster/hamswg")
+		SMT3 K 5 A_FaceTarget
+		SMT3 L 10 A_CustomMeleeAttack (20*Random(1,8),"monster/hamhit","monster/hamflr","MinotaurDamage")
+		Goto See       
+	Missile:
+		SMT1 A 0 A_Jump(128,"Missile1","Missile2")
+		SMT3 O 1 A_Playsound ("weapons/suldth")
+		SMT3 O 0 A_FatAttack3("SupremoArachPlasma")
+		SMT3 O 4 A_SkullAttack
+		SMT3 O 0 A_Explode(80,64,0)
+		SMT3 O 0 A_SpawnItemEx("SmithGhost3",0,0,0,0,0,0,0,128,0)
+		SMT3 O 0 A_FatAttack1("SupremoBaronBall")
+		SMT3 O 4 A_SkullAttack
+		SMT3 O 0 A_Explode(80,64,0)
+		SMT3 O 0 A_SpawnItemEx("SmithGhost3",0,0,0,0,0,0,0,128,0)
+		SMT3 O 0 A_FatAttack2("SupremoArachPlasma")
+		SMT3 O 4 A_SkullAttack
+		SMT3 O 0 A_Explode(80,64,0)
+		SMT3 O 0 A_SpawnItemEx("SmithGhost3",0,0,0,0,0,0,0,128,0)
+		SMT3 O 0 A_FatAttack3("SupremoBaronBall")
+		SMT3 O 4 A_SkullAttack
+		SMT3 O 0 A_Explode(80,64,0)
+		SMT3 O 0 A_SpawnItemEx("SmithGhost3",0,0,0,0,0,0,0,128,0)
+		SMT3 O 0 A_FatAttack1("SupremoArachPlasma")
+		SMT3 O 4 A_SkullAttack
+		SMT3 O 0 A_Explode(80,64,0)
+		SMT3 O 0 A_SpawnItemEx("SmithGhost3",0,0,0,0,0,0,0,128,0)
+		SMT3 O 0 A_FatAttack2("SupremoBaronBall")
+		SMT3 O 4 A_SkullAttack
+		SMT3 O 0 A_Explode(80,64,0)
+		SMT3 O 0 A_SpawnItemEx("SmithGhost3",0,0,0,0,0,0,0,128,0)
+		SMT3 O 0 A_FatAttack3("SupremoArachPlasma")
+		SMT3 O 4 A_SkullAttack
+		SMT3 O 0 A_Explode(80,64,0)
+		SMT3 O 0 A_SpawnItemEx("SmithGhost3",0,0,0,0,0,0,0,128,0)
+		SMT3 O 0 A_FatAttack2("SupremoBaronBall")
+		SMT3 O 4 A_SkullAttack
+		SMT3 O 0 A_Explode(80,64,0)
+		SMT3 O 0 A_SpawnItemEx("SmithGhost3",0,0,0,0,0,0,0,128,0)
+		SMT3 O 0 A_Stop
+		SMT3 O 1
+		Goto See
+	Missile1:
+		SMT3 A 0 A_Jump(64,"SupremoScanAttack")
+		SMT3 A 0 A_Jump(128,16)
+		SMT3 E 6 A_FaceTarget
+		SMT3 H 6 A_PlaySound ("monster/hamswg")
+		SMT3 N 0 A_PlaySound ("weapons/hellfi") 
+		SMT3 I 0 A_CustomMissile ("SupremoBall",52,0,0)
+		SMT3 I 0 A_CustomMissile ("SupremoBall",52,0,8)
+		SMT3 I 12 A_CustomMissile ("SupremoBall",52,0,-8)
+		SMT3 I 0 A_Jump (128,8)
+		SMT3 B 6
+		SMT3 J 6 A_FaceTarget
+		SMT3 M 6 A_PlaySound ("monster/hamswg")
+		SMT3 N 1 A_PlaySound ("weapons/hellfi") 
+		SMT3 N 0 A_CustomMissile ("SupremoBall",52,0,0)
+		SMT3 N 0 A_CustomMissile ("SupremoBall",52,0,8)
+		SMT3 N 11 A_CustomMissile ("SupremoBall",52,0,-8)
+		SMT3 N 0 A_Jump (128,"See")
+		Goto Missile2
+	Missile2:
+		SMT3 E 6 A_FaceTarget
+		SMT3 F 1 A_Playsound ("monster/hamswg")
+		SMT3 F 5 A_FaceTarget
+		SMT3 G 0 A_CustomMissile("SupremoFireTracer",0,0,30,0)
+		SMT3 G 0 A_CustomMissile("SupremoFireTracer",0,0,60,0)
+		SMT3 G 0 A_CustomMissile("SupremoFireTracer",0,0,90,0)
+		SMT3 G 0 A_CustomMissile("SupremoFireTracer",0,0,120,0)
+		SMT3 G 0 A_CustomMissile("SupremoFireTracer",0,0,150,0)
+		SMT3 G 0 A_CustomMissile("SupremoFireTracer",0,0,180,0)
+		SMT3 G 0 A_CustomMissile("SupremoFireTracer",0,0,210,0)
+		SMT3 G 0 A_CustomMissile("SupremoFireTracer",0,0,240,0)
+		SMT3 G 0 A_CustomMissile("SupremoFireTracer",0,0,270,0)
+		SMT3 G 0 A_CustomMissile("SupremoFireTracer",0,0,300,0)
+		SMT3 G 0 A_CustomMissile("SupremoFireTracer",0,0,330,0)
+		SMT3 G 0 A_CustomMissile("SupremoFireTracer",0,0,0,0)
+		SMT3 G 10 A_Playsound("monster/hamflr")
+		SMT3 N 0 A_Jump (128,"See")
+		Goto Missile3
+	Missile3:
+		SMT3 J 6 A_FaceTarget
+		SMT3 K 1 A_Playsound ("monster/hamswg")
+		SMT3 K 5 A_FaceTarget
+		SMT3 L 0 A_CustomMissile("SupremoFireTracer",0,0,30,0)
+		SMT3 L 0 A_CustomMissile("SupremoFireTracer",0,0,60,0)
+		SMT3 L 0 A_CustomMissile("SupremoFireTracer",0,0,90,0)
+		SMT3 L 0 A_CustomMissile("SupremoFireTracer",0,0,120,0)
+		SMT3 L 0 A_CustomMissile("SupremoFireTracer",0,0,150,0)
+		SMT3 L 0 A_CustomMissile("SupremoFireTracer",0,0,180,0)
+		SMT3 L 0 A_CustomMissile("SupremoFireTracer",0,0,210,0)
+		SMT3 L 0 A_CustomMissile("SupremoFireTracer",0,0,240,0)
+		SMT3 L 0 A_CustomMissile("SupremoFireTracer",0,0,270,0)
+		SMT3 L 0 A_CustomMissile("SupremoFireTracer",0,0,300,0)
+		SMT3 L 0 A_CustomMissile("SupremoFireTracer",0,0,330,0)
+		SMT3 L 0 A_CustomMissile("SupremoFireTracer",0,0,0,0)
+		SMT3 L 10 A_Playsound("monster/hamflr")
+		Goto See
+	SupremoScanAttack:
+		SMT3 E 6 A_FaceTarget
+		SMT3 F 1 A_Playsound ("monster/hamswg")
+		SMT3 F 5 A_FaceTarget
+		SMT3 G 0 A_CustomBulletAttack(5,5,10,0,"SupremoHitScanSuperShot")
+		SMT3 G 30 A_Playsound("monster/hamflr")
+		SMT3 G 0 A_Jump(64,"See")
+		SMT3 J 6 A_FaceTarget
+		SMT3 K 1 A_PlaySound ("monster/hamswg")
+		SMT3 K 5 A_FaceTarget
+		SMT3 L 0 A_CustomBulletAttack(5,5,10,0,"SupremoHitScanSuperShot")
+		SMT3 L 30 A_Playsound("monster/hamflr")
+		Goto See
+	Pain: 
+		SMT3 P 10 A_Pain 
+		SMT3 P 0 A_Jump(32,"See")
+		SMT3 E 0 A_SetReflectiveInvulnerable
+		SMT3 E 6 A_FaceTarget
+		SMT3 F 1 A_Playsound ("monster/hamswg")
+		SMT3 F 5 A_FaceTarget
+		SMT3 F 0 A_CustomMissile("SupremoPento1",0,0,-72,2)
+		SMT3 F 0 A_CustomMissile("SupremoPento1",0,0,-144,2)
+		SMT3 F 0 A_CustomMissile("SupremoPento1",0,0,-216,2)
+		SMT3 F 0 A_CustomMissile("SupremoPento1",0,0,-288,2)
+		SMT3 F 0 A_CustomMissile("SupremoPento1",0,0,0,2)
+		SMT3 G 1 A_Playsound ("monster/hamflr")
+		SMT3 GGGGGGGGGGGGGG 5 HealThing(100)
+		SMT3 B 0 A_UnSetReflectiveInvulnerable
+		Goto See
+	Death: 
+	SMT3 P 60 A_PlaySoundEx("monster/smitht","Voice",0,2)
+	SMT3 P 0 A_CustomMissile("SupremoPento3",0,0,-72,2)
+	SMT3 P 0 A_CustomMissile("SupremoPento3",0,0,-144,2)
+	SMT3 P 0 A_CustomMissile("SupremoPento3",0,0,-216,2)
+	SMT3 P 0 A_CustomMissile("SupremoPento3",0,0,-288,2)
+	SMT3 P 0 A_CustomMissile("SupremoPento3",0,0,0,2)
+	SMT3 P 0 Radius_Quake(6,250,2,64,8)
+	SMT3 P 0 A_Mushroom("SupremoArachPlasma",35)
+	SMT3 PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP 1 A_CustomMissile("SupremoExplosion",52,0,random(0,360),2,random(0,100))
+	TNT1 A 0 A_SpawnItemEx("ModdedInvulnerabilitySphere",0,0,64,random(3,8),0,20,random(0,360),0,64)
+	SMT3 PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP 1 A_CustomMissile("SupremoExplosion",52,0,random(0,360),2,random(0,100))
+	TNT1 A 0 A_SpawnItemEx("ModdedInvulnerabilitySphere",0,0,64,random(3,8),0,20,random(0,360),0,64)
+	SMT3 PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP 1 A_CustomMissile("SupremoExplosion",52,0,random(0,360),2,random(0,100))
+	TNT1 A 0 A_SpawnItemEx("ModdedInvulnerabilitySphere",0,0,64,random(3,8),0,20,random(0,360),0,64)
+	SMT3 PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP 1 A_CustomMissile("SupremoExplosion",52,0,random(0,360),2,random(0,100))
+	TNT1 A 0 A_SpawnItemEx("ModdedInvulnerabilitySphere",0,0,64,random(3,8),0,20,random(0,360),0,64)
+	SMT3 PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP 1 A_CustomMissile("SupremoExplosion",52,0,random(0,360),2,random(0,100))
+	SMT3 Q 6 A_CustomMissile("SmithHammer",128,-40,-30,0)
+	SMT3 R 6 A_Scream
+	SMT3 STU 6 
+	SMT3 V 6 A_NoBlocking
+	SMT3 X 6 
+	SMT3 X 6 
+	SMT3 Y -1 A_BossDeath 
+	stop
+	} 
+}//Supremotaur
+
+actor SupremoArachPlasma : ArachnotronPlasma
+{
+	DamageType "MinotaurDamage"
+}
+
+actor SupremoBaronBall : BaronBall
+{
+	DamageType "MinotaurDamage"
+}
+
+actor SupremoBall : BFGBall
+{
+	speed 12
+	damage 25
+	DamageType "MinotaurDamage"
+	species "Cybers"
+	+DONTHARMSPECIES
+	-NOGRAVITY
+	+DOOMBOUNCE
+	bouncefactor 1.0
+	bouncecount 25
+	+SEEKERMISSILE
+	seesound "world/spark"
+	states
+	{
+	Spawn:
+		BFS1 A 4 bright A_SpawnItem("SupremoBallShadowA")
+		BFS1 B 4 bright A_SpawnItem("SupremoBallShadowB")
+		BFS1 A 0 bright A_SeekerMissile(360,360)
+		Loop
+	Death:
+		BFE1 ABCDEF 8 bright
+		Stop
+	}
+}
+
+actor SupremoBallShadowA
+{
+	radius 1
+	height 1
+	damage 0
+	renderstyle "Translucent"
+	alpha 0.75
+	+NOBLOCKMAP
+	+NOGRAVITY
+	+NOCLIP
+	states
+	{
+	Spawn:
+		BFS1 A 2 bright A_FadeOut(0.05)
+		loop
+	}
+}
+
+actor SupremoBallShadowB
+{
+	radius 1
+	height 1
+	damage 0
+	renderstyle "Translucent"
+	alpha 0.75
+	+NOBLOCKMAP
+	+NOGRAVITY
+	+NOCLIP
+	states
+	{
+	Spawn:
+		BFS1 B 2 bright A_FadeOut(0.05)
+		loop
+	}
+}
+
+//Taken from Skulltag
+ACTOR SupremoHitScanShot
+{
+	Game Doom
+	SpawnID 217
+	Radius 11
+	Height 8
+	Speed 20
+	Damage 16
+	DamageType "MinotaurDamage"
+	DeathType "BFG10K"
+	species "Cybers"
+	+DONTHARMSPECIES
+	+NOBLOCKMAP
+	+NOGRAVITY
+	+ACTIVATEIMPACT
+	+ACTIVATEPCROSS
+	+NOTELEPORT 
+	+PUFFONACTORS
+	+FORCERADIUSDMG
+	+PUFFGETSOWNER
+	+NODAMAGETHRUST
+	Renderstyle Add
+	Alpha 0.75
+	SeeSound "weapons/rocklx"
+	AttackSound "weapons/rocklx"
+	Obituary "%o was blasted by the Power of Supremotaur."
+	States
+	{
+	Spawn:
+		BFE1 A 0 bright
+		BFE1 A 3 bright A_Explode(16,64,0)
+		BFE1 BCDEF 3 bright
+		Stop
+	}
+}
+
+//taken from sk_weaps.wad
+ACTOR SupremoHitScanSuperShot : SupremoHitScanShot
+{
+	DamageType "MinotaurDamage"
+	States
+	{
+	Spawn:
+		BFE2 CDCDCDCDCDCDCDCDCDCDCDCDCDCDCD 1 Bright A_Explode(2,512,0)
+		BFE1 A 3 Bright A_Explode(32,256,0)
+		BFE1 BCDEF 3 Bright
+		Stop
+	}
+}
+
+actor SupremoExplosion
+{
+	radius 8
+	height 8
+	speed 5
+	PROJECTILE
+	+NOCLIP
+	states
+	{
+	Spawn:
+		BFE1 A 0
+		BFE1 A 0 bright A_PlaySound("weapons/bfgx")
+		BFE1 ABCDEF 3 bright
+		stop
+	}
+}
+
+ACTOR SupremoPento1
+{
+	Radius 0
+	Height 15
+	Speed 200
+	RenderStyle NONE
+	Alpha 0.10
+	PROJECTILE
+	+FLOORHUGGER
+	+NOCLIP
+	SeeSound "weapons/bfgf"
+	states
+	{
+	Spawn:
+		NULL A 1
+		NULL A 0 A_CustomMissile("SupremoPento2",0,0,-198,2)
+		NULL A 0 A_CustomMissile("SupremoPento2",0,0,198,2)
+		stop
+	}
+}
+
+ACTOR SupremoPento2
+{
+	Radius 0
+	Height 15
+	Speed 16
+	RenderStyle NONE
+	Alpha 0.10
+	PROJECTILE
+	+FLOORHUGGER
+	+NOCLIP
+	states
+	{
+	Spawn:
+		NULL AAAAAAAAAAAAAAAA 1 A_SpawnItem("SupremoPentoFire",0,0)
+		stop
+	}
+}
+
+ACTOR SupremoPentoFire
+{
+	Radius 1
+	Height 1
+	Speed 0
+	DamageType "MinotaurDamage"
+	DeathType "Electric"
+	translation "224:231=112:127","160:167=112:127"
+	RenderStyle Add
+	Alpha 0.10
+	ReactionTime 2
+	PROJECTILE
+	species "Cybers"
+	+DONTHARMSPECIES
+	+FLOORHUGGER
+	+DONTSPLASH
+	-NOGRAVITY
+	states
+	{
+	Spawn:
+		UNFI A 1 Bright A_Explode(8,192,0)
+		UNFI A 2 Bright A_FireCrackle
+		UNFI BCDCDCDEDEDE 3 Bright A_Explode(8,192,0)
+		UNFI A 0 Bright A_CountDown
+		loop
+	Death:
+		UNFI DEFGH 3 Bright A_Explode(8,192,0)
+		stop
+	}
+}
+
+ACTOR SupremoPento3
+{
+	Radius 0
+	Height 15
+	Speed 200
+	RenderStyle NONE
+	Alpha 0.10
+	PROJECTILE
+	+FLOORHUGGER
+	+NOCLIP
+	SeeSound "weapons/bfgf"
+	states
+	{
+	Spawn:
+		NULL A 1
+		NULL A 0 A_CustomMissile("SupremoPento4",0,0,-198,2)
+		NULL A 0 A_CustomMissile("SupremoPento4",0,0,198,2)
+		stop
+	}
+}
+
+ACTOR SupremoPento4
+{
+	Radius 0
+	Height 15
+	Speed 16
+	RenderStyle NONE
+	Alpha 0.10
+	PROJECTILE
+	+FLOORHUGGER
+	+NOCLIP
+	states
+	{
+	Spawn:
+		NULL AAAAAAAAAAAAAAAA 1 A_SpawnItem("SupremoPentoFire2",0,0)
+		stop
+	}
+}
+
+ACTOR SupremoPentoFire2
+{
+	Radius 5
+	Height 5
+	Speed 0
+	DamageType "MinotaurDamage"
+	DeathType "Electric"
+	translation "224:231=112:127","160:167=112:127"
+	RenderStyle Add
+	Alpha 0.10
+	ReactionTime 7
+	PROJECTILE
+	species "Cybers"
+	+DONTHARMSPECIES
+	+FLOORHUGGER
+	+DONTSPLASH
+	-NOGRAVITY
+	states
+	{
+	Spawn:
+		UNFI A 1 Bright A_Explode(8,192,0)
+		UNFI A 2 Bright A_FireCrackle
+		UNFI BCDCDCDEDEDE 3 Bright A_Explode(8,192,0)
+		UNFI A 0 Bright A_CountDown
+		loop
+	Death:
+		UNFI DEFGH 3 Bright A_Explode(8,192,0)
+		stop
+	}
+}
+
+ACTOR SupremoFireTracer
+{
+	Radius 2
+	Height 2
+	Speed 15
+	Damage 15
+	RenderStyle ADD
+	DamageType "MinotaurDamage"
+	DeathType "Electric"
+	Alpha 0.10
+	translation "224:231=112:127","160:167=112:127"
+	PROJECTILE
+	species "Cybers"
+	+DONTHARMSPECIES
+	+FLOORHUGGER
+	+THRUGHOST
+	-NOGRAVITY
+	+DONTSPLASH
+	SeeSound "weapons/rocklf"
+	DeathSound "weapons/rocklx"  
+	States
+	{
+	Spawn:
+		MISL A 1 Bright A_CStaffMissileSlither
+		MISL A 0 Bright A_SpawnItem("SupremoFireTracerPuff",0,0)
+		loop
+	Death:
+		UNFI A 0 Bright A_Explode(8,192)
+		UNFI A 2 bright A_StartFire
+		UNFI BAB 2 bright A_Fire
+		UNFI C 2 bright A_FireCrackle
+		UNFI BCBCDCDCDEDED 2 bright A_Fire
+		UNFI E 2 bright A_FireCrackle
+		UNFI FEFEFGHGHGH 2 bright A_Fire
+		Stop
+	}
+}
+
+ACTOR SupremoFireTracerPuff
+{
+	Radius 1
+	Height 2
+	Speed 0
+	RENDERSTYLE ADD
+	DamageType "MinotaurDamage"
+	DeathType "Electric"
+	ALPHA 0.10
+	PROJECTILE
+	translation "224:231=112:127","160:167=112:127"
+	seesound "vile/firecrkl"
+	deathSound "vile/firecrkl"
+	species "Cybers"
+	+DONTHARMSPECIES
+	+FLOORHUGGER
+	-NOGRAVITY
+	+DONTSPLASH
+	States
+	{
+	Spawn:				//This Code is a Pain in the Flames to work on.
+		UNFI A 0 Bright A_Explode(1,32)
+		UNFI A 2 bright A_StartFire
+		UNFI B 0 Bright A_Explode(1,32)
+		UNFI B 2 bright A_Fire
+		UNFI A 0 Bright A_Explode(1,32)
+		UNFI A 2 bright A_Fire
+		UNFI B 0 Bright A_Explode(1,32)
+		UNFI B 2 bright A_Fire
+		UNFI C 0 Bright A_Explode(1,32)
+		UNFI C 2 bright A_FireCrackle
+		UNFI B 0 Bright A_Explode(1,32)
+		UNFI B 2 bright A_Fire
+		UNFI C 0 Bright A_Explode(1,32)
+		UNFI C 2 bright A_Fire
+		UNFI B 0 Bright A_Explode(1,32)
+		UNFI B 2 bright A_Fire
+		UNFI C 0 Bright A_Explode(1,32)
+		UNFI C 2 bright A_Fire
+		UNFI B 0 Bright A_Explode(1,32)
+		UNFI D 2 bright A_Fire
+		UNFI C 0 Bright A_Explode(1,32)
+		UNFI C 2 bright A_Fire
+		UNFI D 0 Bright A_Explode(1,32)
+		UNFI D 2 bright A_Fire
+		UNFI C 0 Bright A_Explode(1,32)
+		UNFI C 2 bright A_Fire
+		UNFI D 0 Bright A_Explode(1,32)
+		UNFI D 2 bright A_Fire
+		UNFI E 0 Bright A_Explode(1,32)
+		UNFI E 2 bright A_Fire
+		UNFI D 0 Bright A_Explode(1,32)
+		UNFI D 2 bright A_Fire
+		UNFI E 0 Bright A_Explode(1,32)
+		UNFI E 2 bright A_Fire
+		UNFI D 0 Bright A_Explode(1,32)
+		UNFI D 2 bright A_Fire
+		UNFI E 0 Bright A_Explode(1,32)
+		UNFI E 2 bright A_FireCrackle
+		UNFI F 0 Bright A_Explode(1,32)
+		UNFI F 2 bright A_Fire
+		UNFI E 0 Bright A_Explode(1,32)
+		UNFI E 2 bright A_Fire
+		UNFI F 0 Bright A_Explode(1,32)
+		UNFI F 2 bright A_Fire
+		UNFI E 0 Bright A_Explode(1,32)
+		UNFI E 2 bright A_Fire
+		UNFI F 0 Bright A_Explode(1,32)
+		UNFI F 2 bright A_Fire
+		UNFI G 0 Bright A_Explode(1,32)
+		UNFI G 2 bright A_Fire
+		UNFI H 0 Bright A_Explode(1,32)
+		UNFI H 2 bright A_Fire
+		UNFI G 0 Bright A_Explode(1,32)
+		UNFI G 2 bright A_Fire
+		UNFI H 0 Bright A_Explode(1,32)
+		UNFI H 2 bright A_Fire
+		UNFI G 0 Bright A_Explode(1,32)
+		UNFI G 2 bright A_Fire
+		UNFI H 0 Bright A_Explode(1,32)
+		UNFI H 2 bright A_Fire
+		Stop
+	}
+}

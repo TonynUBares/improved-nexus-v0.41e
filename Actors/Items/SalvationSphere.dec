@@ -1,0 +1,33 @@
+Actor Salvationsphere : CustomInventory 17751
+{
+ States
+ {
+  Spawn:
+	TNT1 A 1
+	Stop
+  Held:
+	TNT1 A 1
+	Stop
+ }
+}
+
+Actor SalvationSphereToken : Inventory { Inventory.Amount 1 Inventory.MaxAmount 1 } 
+
+Actor SalvationCoolDown : Inventory { Inventory.Amount 1 Inventory.MaxAmount 500 } 
+
+Actor BuddhaToken : Inventory { Inventory.MaxAmount 1 }
+
+Actor SalvationInvul : PowerInvulnerable
+{
+  +INVENTORY.AUTOACTIVATE
+  +INVENTORY.ALWAYSPICKUP
+  Powerup.Duration -5
+}
+
+Actor NoCrush : PowerProtection { DamageFactor "Crush", 0.0 Powerup.Duration -15 }
+
+Actor Salvate : ArtiTeleport
+{
+  +INVENTORY.AUTOACTIVATE
+  +INVENTORY.ALWAYSPICKUP
+}

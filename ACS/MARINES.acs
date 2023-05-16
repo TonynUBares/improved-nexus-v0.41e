@@ -1,0 +1,208 @@
+#library "marines"
+#include "zcommon.acs"
+
+//CREDIT TO THESE SCRIPTS GOES TO DR. BLOOD
+//All these scripts except the first one have been completely rewritten by TonynUBares
+//that is still too shy to share its source
+
+Script "Marine Beacon ReSupply" ENTER
+{
+    if (GetCVar("dr_marine_beacon") == 1)
+    {
+        while(CheckInventory("MarineBeacon"))delay(35);
+        delay(35*random(30,90));
+        if(!CheckInventory("MarineBeacon") && GetCVar("dr_marine_beacon") == 1)
+        {
+            GiveInventory("MarineBeacon",1);
+            HudMessage(s:"The UAC sent you a marine beacon!";2,6900+PlayerNumber(),CR_GREEN,0.5,0.82,1.0);
+        }
+    }
+    else
+    {
+        delay(35*10);
+    }
+    restart;
+}
+
+Script "Marine Weapons Type" (void)
+{
+    SetResultValue(GetUserCVar(PlayerNumber(),"dr_marine_weapons"));
+}
+
+Script 8882 (void) NET
+{
+ //Player Calls his Minions
+ GiveInventory("PlayerCallingMinions",1);
+ HudMessage(s:"Calling nearby marines...";2,6800+PlayerNumber(),CR_GRAY,0.5,0.85,1.0);
+ delay(53);
+ TakeInventory("PlayerCallingMinions",1);
+}
+
+Script "Marine Healing Script" (void)
+{
+    while(GetActorProperty(0,APROP_Health) > 0)
+	{
+		HealThing(5,350);
+		delay(35);
+	}
+}
+
+Script "Check For Master Player Calling Help" (void)
+{
+    if(!CheckInventory("MarineIsHealing"))
+    {
+        ACS_NamedExecuteAlways("Marine Healing Script",0,0,0,0);
+        GiveInventory("MarineIsHealing",1);
+    }
+    if(CheckInventory("MarineTeleportDelay"))terminate;
+	int TempTIDa = UniqueTID();
+	int TempTIDb = UniqueTID();
+	int OldTIDa = ActivatorTID();
+	Thing_ChangeTID(0,TempTIDa);
+	SetActivator(TempTIDa,AAPTR_FRIENDPLAYER);
+	int x0 = GetActorZ(0) - GetActorFloorZ(0);
+	if(PlayerNumber() == -1)
+	{
+		SetActivator(TempTIDa);
+		Thing_ChangeTID(TempTIDa,OldTIDa);
+		terminate;
+	}
+	else{if(CheckInventory("PlayerCallingMinions") == 0 || x0 >= 7000000){Thing_ChangeTID(TempTIDa,OldTIDa);terminate;}}
+	int OldTIDb = ActivatorTID();
+	Thing_ChangeTID(0,TempTIDb);
+	SetActivator(TempTIDa);
+	SetPointer(AAPTR_TRACER,TempTIDb);
+	if(CheckActorDistance(TempTIDa,TempTIDb,160))int test;
+	else
+	{
+		int x = GetActorX(TempTIDb) + random(-64.0,64.0);
+		int y = GetActorY(TempTIDb) + random(-64.0,64.0);
+		int z = GetActorZ(TempTIDb);
+		int angle = GetActorAngle(TempTIDb) >> 8;
+		SetActorPosition(TempTIDa,x,y,z,TRUE);
+        SetActorState(TempTIDa,"GiveUp");
+
+	}
+	Thing_ChangeTID(TempTIDa,OldTIDa);
+	Thing_ChangeTID(TempTIDb,OldTIDb);
+}
+
+Script "Marine Teleport Delay" (void)
+{
+    GiveInventory("MarineTeleportDelay",1);
+    delay(53);
+    TakeInventory("MarineTeleportDelay",1);
+}
+
+Script "Find Master Player" (void)
+{
+    if(CheckInventory("MarineTeleportDelay"))terminate;
+	int TempTIDa = UniqueTID();
+	int TempTIDb = UniqueTID();
+	int OldTIDa = ActivatorTID();
+	Thing_ChangeTID(0,TempTIDa);
+	SetActivator(TempTIDa,AAPTR_FRIENDPLAYER);
+	int x0 = GetActorZ(0) - GetActorFloorZ(0);
+	if(PlayerNumber() == -1)
+	{
+		SetActivator(TempTIDa);
+		Thing_ChangeTID(TempTIDa,OldTIDa);
+		terminate;
+	}
+	else{if(!GetUserCVar(PlayerNumber(),"dr_marine_tele") || x0 >= 7000000){Thing_ChangeTID(TempTIDa,OldTIDa);terminate;}}
+	int OldTIDb = ActivatorTID();
+	Thing_ChangeTID(0,TempTIDb);
+	SetActivator(TempTIDa);
+	SetPointer(AAPTR_TRACER,TempTIDb);
+	if(CheckActorDistance(TempTIDa,TempTIDb,1024))int test;
+	else
+	{
+		int x = GetActorX(TempTIDb) + random(-64.0,64.0);
+		int y = GetActorY(TempTIDb) + random(-64.0,64.0);
+		int z = GetActorZ(TempTIDb);
+		int angle = GetActorAngle(TempTIDb) >> 8;
+		SetActorPosition(TempTIDa,x,y,z,TRUE);
+	}
+	Thing_ChangeTID(TempTIDa,OldTIDa);
+	Thing_ChangeTID(TempTIDb,OldTIDb);
+}
+
+Script "Marine Protection" (void)
+{
+int time;
+//if(GetUserArray(0,"user_healed",0) > 0)terminate;
+while(GetActorProperty(0,APROP_Health) > 0 )// && time <= 1050)
+{
+    int x = GetActorX(0);
+    int y = GetActorY(0);
+    int z = GetActorZ(0);
+    int id = UniqueTID();
+	int height = GetActorProperty(0,APROP_Height);
+	int radius = GetActorProperty(0,APROP_Radius);
+	SpawnForced("HemBluePowerLine",x+random(-radius,radius),y+random(-radius,radius),z+random(0,height),id,0);
+    ThrustThingZ(id,random(3,9),0,1);
+	//SetUserArray(0,"user_healed",0,1);
+	HealThing(0.0);
+	//time++;
+    delay(1);
+}
+//SetUserArray(0,"user_healed",0,0);
+}
+
+Script "Marine Healing" (void)
+{
+int time;
+if(!CheckActorProperty(0,APROP_Species,"Player"))terminate;
+if(CheckInventory("MarineHealingItemActive"))terminate;
+while(GetActorProperty(0,APROP_Health) > 0 && time <= 700)
+{
+    int x = GetActorX(0);
+    int y = GetActorY(0);
+    int z = GetActorZ(0);
+    int id = UniqueTID();
+	int height = GetActorProperty(0,APROP_Height);
+	int radius = GetActorProperty(0,APROP_Radius);
+	SpawnForced("MarineHealingEffect",x+random(-radius,radius),y+random(-radius,radius),z+random(0,height),id,0);
+    ThrustThingZ(id,random(3,9),0,1);
+	GiveInventory("MarineHealingItemActive",1);
+	HealThing(1,500);
+	time++;
+    delay(1);
+}
+TakeInventory("MarineHealingItemActive",1);
+}
+
+Script "Marine Ammunition" (void)
+{
+int time;
+if(!CheckActorProperty(0,APROP_Species,"Player"))terminate;
+if(CheckInventory("MarineAmmoItemActive"))terminate;
+while(GetActorProperty(0,APROP_Health) > 0 && time <= 700)
+{
+    int x = GetActorX(0);
+    int y = GetActorY(0);
+    int z = GetActorZ(0);
+    int id = UniqueTID();
+	int height = GetActorProperty(0,APROP_Height);
+	int radius = GetActorProperty(0,APROP_Radius);
+	SpawnForced("MarineAmmoEffect",x+random(-radius,radius),y+random(-radius,radius),z+random(0,height),id,0);
+    ThrustThingZ(id,random(3,9),0,1);
+	GiveInventory("MarineAmmoItemActive",1);
+	GiveInventory("MarineAmmunition",1);
+	time++;
+    delay(1);
+}
+TakeInventory("MarineAmmoItemActive",1);
+}
+
+Function bool CheckActorDistance(int Source, int Target, int Range)
+{
+	if(ThingCount(T_NONE,Target) == 0 || ThingCount(T_NONE,Source) == 0)return false;
+	int Dist = msqr(GetActorX(Source) - GetActorX(Target)>>16);
+	Dist += msqr(GetActorY(Source) - GetActorY(Target)>>16);
+	Dist += msqr(GetActorZ(Source) - GetActorZ(Target)>>16);
+	if(Dist <= msqr(Range))return true;
+	return false;
+}
+
+Function int msqr (int n) {return n*n;}

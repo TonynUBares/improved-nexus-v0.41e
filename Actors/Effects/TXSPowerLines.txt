@@ -1,0 +1,334 @@
+//     Orange
+ACTOR OrangePowerLineSpawner : BluePowerLineSpawner
+{
+States
+{
+Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_CheckSight("Vanilla")
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 1 A_SpawnItemEx("OrangePowerLine",frandom(12,-12),frandom(12,-12),0,0,0,2,0,128,0) 
+    Stop  
+    }
+}
+
+ACTOR OrangePowerLine : BluePowerLine
+{
+Translation "80:111=213:223"
+}
+
+//     Pink
+ACTOR PinkPowerLineSpawner : BluePowerLineSpawner
+{
+States
+{
+Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_CheckSight("Vanilla")
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 1 A_SpawnItemEx("PinkPowerLine",frandom(12,-12),frandom(12,-12),0,0,0,2,0,128,0) 
+    Stop  
+    }
+}
+
+ACTOR PinkPowerLine : BluePowerLine
+{
+Translation "80:111=250:252"
+}
+
+//     Purple
+ACTOR PurplePowerLineSpawner : BluePowerLineSpawner
+{
+States
+{
+Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_CheckSight("Vanilla")
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 1 A_SpawnItemEx("PurplePowerLine",frandom(12,-12),frandom(12,-12),0,0,0,2,0,128,0) 
+    Stop  
+    }
+}
+
+ACTOR PurplePowerLine : BluePowerLine
+{
+Translation "80:111=253:254"
+}
+
+//     Black
+ACTOR BlackPowerLineSpawner : BluePowerLineSpawner
+{
+States
+{
+Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_CheckSight("Vanilla")
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 1 A_SpawnItemEx("BlackPowerLine",frandom(12,-12),frandom(12,-12),0,0,0,2,0,128,0) 
+    Stop  
+    }
+}
+
+ACTOR BlackPowerLine
+{
+Speed 1
+Radius 0
+Height 0
+Scale 0.28
+RenderStyle Subtract
+Alpha 0.8
++MISSILE
++NOGRAVITY
++NOBLOCKMAP
++NOINTERACTION
++NOTELEPORT
++DONTSPLASH
+-SOLID
+States
+{
+Spawn:
+   BLKL A 5 Bright
+   TNT1 A 0 A_Jump(128,"FadeOut2")
+Normal:
+   BLKL AAAAAAAA 1 Bright A_FadeOut(0.05)
+   Stop
+FadeOut2:
+   BLKL AAAAAAAA 1 Bright A_FadeOut(0.075)
+   Stop
+   }
+}
+
+//     White
+ACTOR WhitePowerLineSpawner : BluePowerLineSpawner
+{
+States
+{
+Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_CheckSight("Vanilla")
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 1 A_SpawnItemEx("WhitePowerLine",frandom(12,-12),frandom(12,-12),0,0,0,2,0,128,0) 
+    Stop  
+    }
+}
+
+ACTOR WhitePowerLine : BluePowerLine
+{
+Translation "80:111=4:4"
+}
+
+//     Brown
+ACTOR BrownPowerLineSpawner : BluePowerLineSpawner
+{
+States
+{
+Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_CheckSight("Vanilla")
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 1 A_SpawnItemEx("BrownPowerLine",frandom(12,-12),frandom(12,-12),0,0,0,2,0,128,0) 
+    Stop  
+    }
+}
+
+ACTOR BrownPowerLine : BluePowerLine
+{
+Translation "80:111=64:79"
+}
+
+//     Yellow
+ACTOR YellowPowerLineSpawner : BluePowerLineSpawner
+{
+States
+{
+Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_CheckSight("Vanilla")
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 1 A_SpawnItemEx("YellowPowerLine",frandom(12,-12),frandom(12,-12),0,0,0,2,0,128,0) 
+    Stop  
+    }
+}
+
+ACTOR YellowPowerLine : BluePowerLine
+{
+Translation "80:111=228:231"
+}
+
+//     Dark Red
+ACTOR DarkRedPowerLineSpawner : BluePowerLineSpawner
+{
+States
+{
+Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_CheckSight("Vanilla")
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 1 A_SpawnItemEx("DarkRedPowerLine",frandom(12,-12),frandom(12,-12),0,0,0,2,0,128,0) 
+    Stop  
+    }
+}
+
+ACTOR DarkRedPowerLine : BluePowerLine
+{
+Translation "80:111=32:47"
+}
+
+//     Grey (X offset)
+ACTOR GreyPowerLineSpawner : BluePowerLineSpawner
+{
+States
+{
+Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_CheckSight("Vanilla")
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 1 A_SpawnItemEx("GrayPowerLine",frandom(12,-12),frandom(12,-12),0,0,0,2,0,128,0) 
+    Stop  
+    }
+}
+
+//     Light Grey
+ACTOR LightGreyPowerLineSpawner : BluePowerLineSpawner
+{
+States
+{
+Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_CheckSight("Vanilla")
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 1 A_SpawnItemEx("LightGreyPowerLine",frandom(12,-12),frandom(12,-12),0,0,0,2,0,128,0) 
+    Stop  
+    }
+}
+
+ACTOR LightGreyPowerLine : BluePowerLine
+{
+Translation "80:111=80:95"
+}
+
+//     Dark Grey
+ACTOR DarkGreyPowerLineSpawner : BluePowerLineSpawner
+{
+States
+{
+Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_CheckSight("Vanilla")
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 1 A_SpawnItemEx("DarkGreyPowerLine",frandom(12,-12),frandom(12,-12),0,0,0,2,0,128,0) 
+    Stop  
+    }
+}
+
+ACTOR DarkGreyPowerLine : BluePowerLine
+{
+Translation "80:111=96:111"
+}
+
+//     Green (Time duration)
+ACTOR LongGreenPowerLineSpawner : BluePowerLineSpawner
+{
+States
+{
+Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_CheckSight("Vanilla")
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 1 A_SpawnItemEx("LongGreenPowerLine",frandom(12,-12),frandom(12,-12),0,0,0,2,0,128,0) 
+    Stop  
+    }
+}
+
+ACTOR LongGreenPowerLine : BluePowerLine
+{
+Translation "80:111=112:127"
+}
+
+//     Monochrome
+ACTOR MonochromePowerLineSpawner : BluePowerLineSpawner
+{
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_CheckSight("Vanilla")
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 AAA 1 A_SpawnItemEx("WhitePowerLine",frandom(12,-12),frandom(12,-12),0,0,0,2,0,128,0)
+	TNT1 AAA 1 A_SpawnItemEx("LightGreyPowerLine",frandom(12,-12),frandom(12,-12),0,0,0,2,0,128,0)
+	TNT1 AAA 1 A_SpawnItemEx("GrayPowerLine",frandom(12,-12),frandom(12,-12),0,0,0,2,0,128,0)
+	TNT1 AAA 1 A_SpawnItemEx("DarkGreyPowerLine",frandom(12,-12),frandom(12,-12),0,0,0,2,0,128,0)
+	TNT1 AAA 1 A_SpawnItemEx("BlackPowerLine",frandom(12,-12),frandom(12,-12),0,0,0,2,0,128,0)
+	TNT1 AAA 1 A_SpawnItemEx("DarkGreyPowerLine",frandom(12,-12),frandom(12,-12),0,0,0,2,0,128,0)
+	TNT1 AAA 1 A_SpawnItemEx("GrayPowerLine",frandom(12,-12),frandom(12,-12),0,0,0,2,0,128,0)
+	TNT1 AAA 1 A_SpawnItemEx("LightGreyPowerLine",frandom(12,-12),frandom(12,-12),0,0,0,2,0,128,0)
+	Stop  
+ }
+}
+
+ACTOR MonochromePowerLineRandomSpawner : BluePowerLineSpawner
+{
+States
+{
+Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_CheckSight("Vanilla")
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 1 A_SpawnItemEx("MonochromePowerLine",frandom(12,-12),frandom(12,-12),0,0,0,2,0,128,0) 
+    Stop  
+    }
+}
+
+Actor MonochromePowerLine : RandomSpawner
+{
+DropItem "WhitePowerLine", 256, 10
+DropItem "LightGreyPowerLine", 256, 10
+DropItem "GrayPowerLine", 256, 10
+DropItem "DarkGreyPowerLine", 256, 10
+DropItem "BlackPowerLine", 256, 10
+}
+
+//     Rainbow
+
+ACTOR RainbowPowerLineSpawner : BluePowerLineSpawner
+{
+States
+{
+Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_CheckSight("Vanilla")
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 AAA 1 A_SpawnItemEx("RedPowerLine",frandom(12,-12),frandom(12,-12),0,0,0,2,0,128,0)
+	TNT1 AAA 1 A_SpawnItemEx("OrangePowerLine",frandom(12,-12),frandom(12,-12),0,0,0,2,0,128,0)
+	TNT1 AAA 1 A_SpawnItemEx("YellowPowerLine",frandom(12,-12),frandom(12,-12),0,0,0,2,0,128,0)
+	TNT1 AAA 1 A_SpawnItemEx("LongGreenPowerLine",frandom(12,-12),frandom(12,-12),0,0,0,2,0,128,0)
+	TNT1 AAA 1 A_SpawnItemEx("BluePowerLine",frandom(12,-12),frandom(12,-12),0,0,0,2,0,128,0)
+	TNT1 AAA 1 A_SpawnItemEx("PurplePowerLine",frandom(12,-12),frandom(12,-12),0,0,0,2,0,128,0)
+	TNT1 AAA 1 A_SpawnItemEx("PinkPowerLine",frandom(12,-12),frandom(12,-12),0,0,0,2,0,128,0)
+    Stop  
+    }
+}
+
+ACTOR RainbowPowerLineRandomSpawner : BluePowerLineSpawner
+{
+States
+{
+Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_CheckSight("Vanilla")
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 1 A_SpawnItemEx("RainbowPowerLine",frandom(12,-12),frandom(12,-12),0,0,0,2,0,128,0) 
+    Stop  
+    }
+}
+
+Actor RainbowPowerLine : RandomSpawner
+{
+DropItem "RedPowerLine", 256, 10
+DropItem "OrangePowerLine", 256, 10
+DropItem "YellowPowerLine", 256, 10
+DropItem "LongGreenPowerLine", 256, 10
+DropItem "BluePowerLine", 256, 10
+DropItem "PurplePowerLine", 256, 10
+DropItem "PinkPowerLine", 256, 10
+}

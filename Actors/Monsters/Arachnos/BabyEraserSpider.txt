@@ -1,0 +1,387 @@
+ACTOR BabyEraserMastermind : BabyBFGMastermind 25472
+{
+	Health 1600
+	PainChance 30
+	Scale 1.2
+	Speed 13
+	Radius 52
+	SeeSound "BabyEraser/sight"
+    ActiveSound "BabyEraser/active"
+    PainSound "BabyEraser/pain"
+    DeathSound "BabyEraser/death"
+    AttackSound ""
+	DropItem "BossLifeEssence" 128 25
+    DropItem "BossArmorBonusMax" 128 1
+	DropItem "DemonAmmoBox" 128 200
+	DropItem "DemonAmmo" 160
+	DropItem "NewCellPack" 128
+	DropItem "NewCell" 160
+	DropItem "BabyEraserSpiderRandomDrops" 64
+	DamageFactor "Baby15K", 0.0
+	DamageFactor "DemolisherEx", 0.0
+	DamageFactor "DarkDemoEx", 0.0
+	DamageFactor "CerChainguns", 0.0	
+	DamageFactor "CerEnergyBall", 0.0
+	DamageFactor "Cyber10K", 0.0
+	DamageFactor "C0mm4nder", 0.0
+	DamageFactor "CustomSpray", 0.0
+    DamageFactor "BFG9500Ball", 0.0
+	DamageFactor "DTBFG10KTracerCyber", 0.0
+	Species "BabySpiders"
+	Monster
+	+MISSILEMORE
+	Obituary "%o got erased by a Baby Eraser Mastermind."
+	Tag "$NEBabyEMMind"
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
+		Goto Idle
+	Idle:
+		DVSP A 10 A_Look
+		Loop
+	See:
+		DVSP A 2 A_BabyMetal
+		DVSP ABBCC 2 A_Chase
+		DVSP D 2 A_BabyMetal
+		DVSP DEEFF 2 A_Chase
+		Loop
+	Pause:
+    DVSP A 10
+    Goto See
+	Missile:
+		TNT1 A 0 A_Jump(98,"DTBFG10K","Devastetor")
+	Normal: 
+		TNT1 A 0 A_PlaySound("weapons/bfgf")
+		DVSP G 15 A_FaceTarget
+		DVSP G 10 Bright A_FaceTarget
+		DVSP H 10 Bright A_CustomMissile("BEraserSpiderRedBFGBall",22,0,0) 
+		DVSP G 15 Bright A_FaceTarget
+		TNT1 A 0 A_Jump(87,"Pause","DTBFG10K","Devastetor")
+    Goto See
+	DTBFG10K:
+		TNT1 A 0 A_StopSound(6)
+		DVSP G 0 A_PlaySound ("Cardinal/9k")
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP H 2 Bright A_FaceTarget
+		DVSP H 2 Bright A_FaceTarget
+		DVSP H 2 Bright A_FaceTarget
+		DVSP H 2 Bright A_FaceTarget
+		DVSP H 2 Bright A_FaceTarget
+		DVSP H 2 Bright A_FaceTarget
+		DVSP H 2 Bright A_FaceTarget
+		DVSP H 2 Bright A_FaceTarget
+		DVSP H 2 Bright A_FaceTarget
+		DVSP H 2 Bright A_CustomMissile("BEraserSpiderDTBFG10KBall",20,0,0)
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		DVSP G 15
+		Goto See
+	Devastetor:
+		DVSP G 0 Bright A_FaceTarget
+		TNT1 A 0 A_StopSound(6)
+		DVSP G 0 Bright A_PlaySound ("devastator/charge")
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP G 2 Bright A_FaceTarget
+		DVSP H 2 Bright
+		DVSP H 2 Bright
+		DVSP H 2 Bright
+		DVSP H 2 Bright
+		DVSP H 2 Bright
+		DVSP H 0 A_PlaySound ("devastator/fire")
+		DVSP H 10 Bright A_CustomMissile("BEraserSpiderDTDBall",24,0,0)
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		DVSP G 20
+		Goto See
+	Pain:
+		TNT1 A 0 A_Jump(87,"PainMissile")
+		DVSP I 12 A_Pain
+		Goto See
+	PainMissile:
+		DVSP I 12 A_Pain
+		Goto Missile
+	Death:
+		DVSP I 20 A_Scream
+		DVSP J 6
+		TNT1 AAA 0 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
+		DVSP KKKKK 2 Bright A_CustomMissile("CFKaboom2", random(20,40), random(10,-10), random(0,360), 2, random(0,360))
+		TNT1 AAAA 0 A_CustomMissile("SmokeFX2", random(20,40), 0, random(0,360), 2, random(0,360))
+		DVSP L 6 A_NoBlocking
+		DVSP MN 6
+		DVSP O 6
+		DVSP P -1 A_KillMaster
+		Stop
+    Raise:
+	  	TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		DVSP pONMLKJ 5
+		Goto See
+	}
+}
+
+ACTOR BEraserSpiderRedBFGBall : SentientBFG9500Ball
+{
+  DamageType "Baby15K"
+  Species "BabySpiders"
+  Obituary "%o got a knockout by the Baby Eraser Mastermind."   
+}
+
+ACTOR BEraserSpiderDTBFG10KBall : SentientDTBFG10KBall
+{
+  DamageType "Baby15K"
+  Species "BabySpiders"
+  Obituary "%o got a knockout by the Baby Eraser Mastermind." 
+}
+
+ACTOR BEraserSpiderDTDBall2 : FusionDevastatorBall2
+{
+  DamageType "Baby15K"
+  Species "BabySpiders"
+  Obituary "%o got a knockout by the Baby Eraser Mastermind."
+}
+
+ACTOR BEraserSpiderDTDBall : FusionDevastatorBall
+{
+  DamageType "Baby15K"
+  Species "BabySpiders"
+  Obituary "%o got a knockout by the Baby Eraser Mastermind."
+States
+{
+Spawn:
+    TNT1 A 0
+    TNT1 A 0 A_PlaySoundEx("devastator/fly","Voice",1)
+
+	TNT1 A 0 A_CustomMissile("BEraserSpiderDevastatorBolt",6,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40))
+	CRS9 A 0 Bright A_CustomMissile("BEraserSpiderLiteShot",0,0,Random(0,360))
+    CRS9 A 1 Bright A_SpawnItemEx("ProjectileTrailParticleRed",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	TNT1 A 0 A_SpawnItemEx("DevastatorLightningRed",Random(6,-6),Random(6,-6),Random(6,-6),0,0,0,0,128)
+	CRS9 A 1 Bright A_CustomMissile("BEraserSpiderDTBFGProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("DevastatorTrail",0,0,0,CMF_AIMDIRECTION|CMF_TRACKOWNER,0)
+	TNT1 A 0 A_Explode(32,450,0)
+
+	TNT1 A 0 A_CustomMissile("BEraserSpiderDevastatorBolt",6,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40))
+	CRS9 A 0 Bright A_CustomMissile("BEraserSpiderLiteShot",0,0,Random(0,360))
+    CRS9 B 1 Bright A_SpawnItemEx("ProjectileTrailParticleRed",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	TNT1 A 0 A_SpawnItemEx("DevastatorLightningRed2",Random(6,-6),Random(6,-6),Random(6,-6),0,0,0,0,128)
+	CRS9 A 1 Bright A_CustomMissile("BEraserSpiderDTBFGProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER)
+	TNT1 A 0 A_Explode(32,450,0)
+
+	TNT1 A 0 A_CustomMissile("BEraserSpiderDevastatorBolt",6,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40))
+	CRS9 A 0 Bright A_CustomMissile("BEraserSpiderLiteShot",0,0,Random(0,360))
+    CRS9 C 1 Bright A_SpawnItemEx("ProjectileTrailParticleRed",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	TNT1 A 0 A_SpawnItemEx("DevastatorLightningRed",Random(6,-6),Random(6,-6),Random(6,-6),0,0,0,0,128)
+	CRS9 A 1 Bright A_CustomMissile("BEraserSpiderDTBFGProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("DevastatorTrail",0,0,0,CMF_AIMDIRECTION|CMF_TRACKOWNER,0)
+	TNT1 A 0 A_Explode(32,450,0)
+
+	TNT1 A 0 A_CustomMissile("BEraserSpiderDevastatorBolt",6,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40))
+	CRS9 A 0 Bright A_CustomMissile("BEraserSpiderLiteShot",0,0,Random(0,360))
+    CRS9 D 1 Bright A_SpawnItemEx("ProjectileTrailParticleRed",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	TNT1 A 0 A_SpawnItemEx("DevastatorLightningRed2",Random(6,-6),Random(6,-6),Random(6,-6),0,0,0,0,128)
+	CRS9 A 1 Bright A_CustomMissile("BEraserSpiderDTBFGProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER)
+    Goto Spawn
+Death:
+    TNT1 A 0
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+	TNT1 A 0 Radius_Quake(3,35,0,10,0)
+	TNT1 A 0 A_CustomMissile("DTBFG10KTracerBEraserSpider",0,0,0,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("DTBFG10KTracerBEraserSpider",0,0,10,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("DTBFG10KTracerBEraserSpider",0,0,20,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("DTBFG10KTracerBEraserSpider",0,0,30,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("DTBFG10KTracerBEraserSpider",0,0,40,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("DTBFG10KTracerBEraserSpider",0,0,50,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("DTBFG10KTracerBEraserSpider",0,0,60,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("DTBFG10KTracerBEraserSpider",0,0,70,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("DTBFG10KTracerBEraserSpider",0,0,80,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("DTBFG10KTracerBEraserSpider",0,0,90,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("DTBFG10KTracerBEraserSpider",0,0,100,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("DTBFG10KTracerBEraserSpider",0,0,110,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("DTBFG10KTracerBEraserSpider",0,0,120,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("DTBFG10KTracerBEraserSpider",0,0,130,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("DTBFG10KTracerBEraserSpider",0,0,140,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("DTBFG10KTracerBEraserSpider",0,0,150,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("DTBFG10KTracerBEraserSpider",0,0,160,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("DTBFG10KTracerBEraserSpider",0,0,170,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("DTBFG10KTracerBEraserSpider",0,0,180,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("DTBFG10KTracerBEraserSpider",0,0,190,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("DTBFG10KTracerBEraserSpider",0,0,200,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("DTBFG10KTracerBEraserSpider",0,0,210,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("DTBFG10KTracerBEraserSpider",0,0,220,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("DTBFG10KTracerBEraserSpider",0,0,230,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("DTBFG10KTracerBEraserSpider",0,0,240,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("DTBFG10KTracerBEraserSpider",0,0,250,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("DTBFG10KTracerBEraserSpider",0,0,260,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("DTBFG10KTracerBEraserSpider",0,0,270,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("DTBFG10KTracerBEraserSpider",0,0,280,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("DTBFG10KTracerBEraserSpider",0,0,290,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("DTBFG10KTracerBEraserSpider",0,0,310,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("DTBFG10KTracerBEraserSpider",0,0,320,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("DTBFG10KTracerBEraserSpider",0,0,330,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("DTBFG10KTracerBEraserSpider",0,0,340,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("DTBFG10KTracerBEraserSpider",0,0,350,CMF_TRACKOWNER)	
+	TNT1 A 0 A_SpawnItemEx("DevastatorLightningRedSpawner",0,0,0,0,0,0,0,128)	
+	TNT1 A 0 A_Explode(80,256)
+	CRS9 A 6 Bright A_SpawnItemEx("DevastatorShockWave",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_Explode(80,256)
+	CRS9 B 6 Bright A_SpawnItemEx("DevastatorShockWave",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_Explode(80,256)
+	CRS9 C 6 Bright A_SpawnItemEx("DevastatorShockWave",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_Explode(80,256)
+	CRS9 D 6 Bright A_SpawnItemEx("DevastatorShockWave",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_Explode(80,256)
+	CRS9 A 6 Bright A_SpawnItemEx("DevastatorShockWave",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_Explode(80,256)
+	CRS9 B 6 Bright A_SpawnItemEx("DevastatorShockWave",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_Explode(80,256)
+	CRS9 C 6 Bright A_SpawnItemEx("DevastatorShockWave",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_Explode(80,256)
+	CRS9 D 6 Bright A_SpawnItemEx("DevastatorShockWave",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_Explode(80,256)
+	CRS9 A 6 Bright A_SpawnItemEx("DevastatorShockWave",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_Explode(80,256)
+	CRS9 B 6 Bright A_SpawnItemEx("DevastatorShockWave",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_Explode(80,256)
+	CRS9 C 6 Bright A_SpawnItemEx("DevastatorShockWave",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_Explode(80,256)
+	CRS9 D 6 Bright A_SpawnItemEx("DevastatorShockWave",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_Explode(128,1024,0)
+	TNT1 A 0 A_Explode(460,640,0)
+	TNT1 A 0 A_Explode(618,256)
+	TNT1 A 0 A_StopSoundEx("Voice")
+	TNT1 A 0 Radius_Quake(20,12,0,12,0)
+	TNT1 A 0 A_PlaySound("weapons/dtech10kexplode")
+	TNT1 A 0 A_SpawnItemEx("DevastatorShockWave2",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_SpawnItem("RedDTBFGEx",0,-10)
+	CRE9 D 0 Bright A_CustomMissile("BEraserSpiderDTDBall2",0,0,18,2)
+    CRE9 D 0 Bright A_CustomMissile("BEraserSpiderDTDBall2",0,0,36,2)
+    CRE9 D 0 Bright A_CustomMissile("BEraserSpiderDTDBall2",0,0,54,2)
+    CRE9 D 0 Bright A_CustomMissile("BEraserSpiderDTDBall2",0,0,72,2)
+    CRE9 D 0 Bright A_CustomMissile("BEraserSpiderDTDBall2",0,0,90,2)
+    CRE9 D 0 Bright A_CustomMissile("BEraserSpiderDTDBall2",0,0,108,2)
+    CRE9 D 0 Bright A_CustomMissile("BEraserSpiderDTDBall2",0,0,126,2)
+    CRE9 D 0 Bright A_CustomMissile("BEraserSpiderDTDBall2",0,0,144,2)
+    CRE9 D 0 Bright A_CustomMissile("BEraserSpiderDTDBall2",0,0,144,2)
+    CRE9 D 0 Bright A_CustomMissile("BEraserSpiderDTDBall2",0,0,162,2)
+    CRE9 D 0 Bright A_CustomMissile("BEraserSpiderDTDBall2",0,0,180,2)
+    CRE9 D 0 Bright A_CustomMissile("BEraserSpiderDTDBall2",0,0,196,2)
+    CRE9 D 0 Bright A_CustomMissile("BEraserSpiderDTDBall2",0,0,216,2)
+    CRE9 D 0 Bright A_CustomMissile("BEraserSpiderDTDBall2",0,0,234,2)
+    CRE9 D 0 Bright A_CustomMissile("BEraserSpiderDTDBall2",0,0,252,2)
+    CRE9 D 0 Bright A_CustomMissile("BEraserSpiderDTDBall2",0,0,270,2)
+    CRE9 D 0 Bright A_CustomMissile("BEraserSpiderDTDBall2",0,0,288,2)
+    CRE9 D 0 Bright A_CustomMissile("BEraserSpiderDTDBall2",0,0,306,2)
+    CRE9 D 0 Bright A_CustomMissile("BEraserSpiderDTDBall2",0,0,324,2)
+    CRE9 D 0 Bright A_CustomMissile("BEraserSpiderDTDBall2",0,0,342,2)
+	CRE9 AAAAAABBBBBBCCCCCCDDDDDD 1 A_CustomMissile("KaboomDevastator22",0,0,random(0,360),2,random(0,360))
+    CRE9 EF 6 Bright
+    Stop    
+    }
+}
+
+ACTOR BEraserSpiderDevastatorBolt : DevastatorBolt
+{
+  Damagetype "Baby15K"
+  Species "BabySpiders"
+}
+
+ACTOR BEraserSpiderDTBFGProjectileAttack : SentientDTBFGTracerAttack
+{
+MissileType "CardinalDTBFGRailgunSlug"
+Damagetype "Baby15K"
+Species "BabySpiders"
+Obituary "%o got a knockout by the Baby Eraser Mastermind."
+}
+
+ACTOR BEraserSpiderLiteShot : LiteShot
+{
+   Damagetype "Baby15K"
+   Species "BabySpiders"
+   States
+   {
+   Spawn:
+      DLIT AAABBBCCC 1 Bright A_SpawnItem ("LiteTrail",0,0,0)
+      Loop
+   Death:
+      DLIT DEFGHIJKLMNO 1 Bright
+      Stop
+   }
+}
+
+ACTOR DTBFG10KTracerBEraserSpider : DTBFG10KTracer
+{
+   -THRUSPECIES
+   Species "BabySpiders"
+   DamageType "Baby15K"
+   States
+   {
+   XDeath:
+      TNT1 A 0
+      TNT1 A 1 A_SpawnItem("CustomSpray2")
+      Stop
+	  }
+}
+
+Actor "BabyEraserSpiderRandomDrops" : RandomSpawner
+{
+  DropItem "BFG9500" 128 1
+  DropItem "Demon Tech BFG10K" 87 1
+  DropItem "Demon Tech Devastator" 56 1
+}

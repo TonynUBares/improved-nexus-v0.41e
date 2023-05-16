@@ -1,0 +1,255 @@
+[enu default]
+
+//Monster tags
+
+//Spiders
+NEVexBSent = "\c[w2]Vexed Nemesis Baby Sentient\c-";
+NEShotSpid = "Shotgun Spider";
+NEBabyMMind = "Baby Spider Mastermind";
+NEBabyEMMind = "\c[q3]Baby Eraser Mastermind\c-";
+NEArachhMKii = "\c[Q3]Arachhunter MK II\c-";
+NEArachh = "\c[Q3]Arachhunter\c-";
+
+//Barons
+NELegCybr = "\c[z3]Legendary Cybruiser\c-";
+NEHellSpawn = "\c[q3]Hellspawn\c-";
+NEFrAfrit = "\c[o7]Frost Afrit\c-";
+NEBFGServ = "\c[q6]BFG Servant\c-";
+
+//Bosses
+NEOblit = "\c[q3]Obliterator\c-";
+NEMaep = "\c[z5]Maephisto\c-";
+NEHellMini = "\c[s0]Hell's Minister\c-";
+NEHellfCardi = "\c[z4]HellFire \c[v9]Cardinal\c-";
+NEHellfrCyb = "\c[o7]HellFrost Cyberdemon\c-";
+NEEvacc = "\c[w2]Evaccannia DOOM!!\c-";
+NECorrLegCard = "\c[o7]Corrupted \c[z3]Legendary Cardinal\c-";
+
+//Cacos
+NEVedDefi = "\c[w2]Vexed Nemesis Redeemer\c-";
+NETechDrone = "\c[h1]Tech Drone\c-";
+NERedeemComm = "\c[j8]Redeemer Commander\c-";
+NEBabyCaco = "Baby Cacodemon";
+NEBabyCacoC = "Baby Cacodemon";
+NECacolant = "\ciCacolantern\c-";
+NECacolant = "Caconite";
+NEAbbandine = "\cmAbbandine\c-";
+
+//Cybers
+NEThamuzLord = "\c[u1]Thamuz-Lord\c-";
+NEThamuz = "\c[u1]Thamuz\c-";
+NEFrostDem = "\c[o7]Frost Demon\c-";
+NEEnrCyber = "\c[m6]Enraged\c- \c[z3]Legendary CyberDemon\c-";
+
+
+//Fatsos
+NEVexFatso = "\c[w2]Vexed Nemesis Goliath\c-";
+NESCacobus = "\c[g6]Super Cacobus\c-";
+NERockebus = "\c[o2]Rockebus\c-";
+NECacobus = "Cacobus";
+
+//Imps
+NESabot = "\c[c4]Saboteur\c-";
+NEHellRaz = "Hell Razer";
+NEDrone = "\c[m9]Drone\c-";
+NEDHellRaz = "\c[l2]Dark Hell Razer\c-";
+NEDaimp = "\c[l2]Dark Annihilator Imp\c-";
+NEAnubi = "\c[o0]Anubian\c-";
+
+//Hell Knights
+NEVexArchon = "\c[w2]Vexed Nemesis Archon\c-";
+NEPalad = "\c[m8]Paladin\c-";
+NECybAssault = "\cuCyberassault\c-";
+
+//Masterminds
+NEVexSent = "\c[w2]Vexed Nemesis Sentient\c-";
+
+//Nazis
+NETrueHitler = "\c[i8]True \c[d4]Hitler\c-";
+NESSExpMini = "SS Uber Soldat with Explosive Minigun";
+NESSDualRock = "Nazi Dual Rocket Soldier";
+NEOriSchabbs = "Dr. Schabbs";
+NEPanzG = "\c[i7]Panz \c[y7]Grosse\c-";
+NEIncKaiser = "\c[b1]Incubus Kaiser\c-";
+NEDarko = "\ciDarko\c-";
+NECybHund = "Cyberhund";
+NECusSchabbs = "Dr. Schabbs";
+
+//Others
+NEMiniLegCard = "\c[z3]Mini Legendary Cardinal\c-";
+NELegChair = "\c[z3]Legendary... Chair\c-";
+NEHellClone = "\c[i7]Hell\c[a2]Clone\c-";
+NEHSpecOpsR = "\cmHeavy \cuSpec \crOps \csRailgunner\c-";
+
+//Pain Elementals
+NETortSoul = "\c[g4]Tortured Soul\c-";
+NELukewarm = "\c[x5]Luke\c[x1]Warm \c[x5]Elem\c[h0]e\c[x1]ntal\c-";
+NEGrossElem = "\c[x9]Gross Elemental\c-";
+NECarrier = "\c[z2]Carrier\c-";
+
+//Pinkies
+NEVexFiend = "\c[w2]Vexed Nemesis Archfiend\c-";
+NENemChain = "\c[v9]Nemesis Chainsaw Zombie\c-";
+NEVexChain = "\c[w2]vexed Nemesis Chainsaw Zombie\c-";
+NELoperC = "\c[m8]Loper\c-";
+NELegBehKami = "\c[z3]Legendary Beheaded Kamikaze\c-";
+
+//Revenants
+NEToxRev = "\c[q9]Toxic Revenant\c-";
+NENightPest = "\c[i7]Nightmare Pestilence\c-";
+NENightFamine = "\c[s0]Nightmare Famine\c-";
+NEInfected = "Infected";
+NEHuntert = "\c[Q3]Huntertron\c-";
+NEDeathRev = "\c[a4]Death\c-";
+
+//Souls
+NEPyroSoul = "\ciPyro Soul\c-";
+NECryoSoul = "\cvCryo Soul\c-";
+NEAtomicSoul = "\c[q7]Atomic \c[g5]Soul\c-";
+NEGuardCube = "\c[o6]Guardian Cube\c-";
+NEDTGuardCube = "\c[g4]Demon Tech Guardian Cube\c-";
+NEPhGuardCube = "\c[u5]Phase Guardian Cube\c-";
+
+//Touhous
+NEKaguya = "\c[n6]Kaguya Houraisan\c[l5]...\c-";
+NEHibachi = "\c[l5]Hibachi!!\c-";
+NEUtsuho = "\c[g5]Utsuho\c-";
+NESinGenj3 = "\c[t7]s\c[n6]i\c[j8]n\c[c6]-\c[k5]g\c[e6]e\c[d3]n\c[v0]j\c[a4]i\c[g2]tsu\c-";
+NEMakai = "\cgThe Goddess of Makai, \c[l3]Shinki\c-";
+NESanae = "\c[m4]Sanae \c[m5]Kochiya\c-";
+
+//Zombies
+NEHSGeneral = "\c[q3]HellStorm General\c-";
+NEHackZomb = "\c[p7]Hackroid Zombie\c-";
+NEHackShot = "\c[i7]Hackroid Assault Captain\c-";
+NEFormLieu = "\c[o6]Former Lieutenant\c-";
+NEFlakZomb = "\c[y5]Flak Cannon Zombie\c-";
+NEEnrLieu = "\c[m6]Enraged\c- \c[z3]Legendary Lieutenant\c-";
+NEEFGZomb = "\c[k7]EFG Lunatic\c-";
+NECyShotg = "\c[h2]Cyborg Shotgunner\c-";
+NEDeathAss = "\c[s0]Death Assassin\c-";
+NEVexTroop = "\c[w2]Vexed Nemesis Stealth Trooper\c-";
+NETRCZomb = "\c[v7]Tech Ripper Cyber Zombie\c-";
+NEErasusZomb = "\crTech Erasus Zombie\c-";
+NEPyroZomb = "\ciPyroblast Zombieman\c-";
+NEPhShotg = "\ctPhase Shotgun Commando\c-";
+NEPhMoon = "\c[q0]Phase \c[g1]Moon\c-";
+NENemSSGShot = "\c[v9]Nemesis Super Shotgun Zombie\c-";
+NEMarineSl = "\c[o6]Marine Slayer\c-";
+NEM79Zomb = "\cqM79 Zombie\c-";
+NELegGeneral = "\c[z3]Legendary General\c-";
+
+
+
+//Items
+
+NENemShard = "Nemesis Power Shard";
+NENemPow = "Nemesis Power Sphere";
+
+//Skulltag
+STStrength1 = "Strength Rune!";
+STStrength2 = "Strength Rune";
+
+STHighJump1 = "High Jump Rune!";
+STHighJump2 = "High Jump Rune";
+
+STResistance1 = "Resistance Rune!";
+STResistance2 = "Resistance Rune";
+
+//Xmas
+NEPresent = "A Present!";
+NEDarkPresent = "Dark Xmas Present";
+NERedGPresent = "Red Green Xmas Present";
+NERedWPresent = "Red White Xmas Present";
+NEWhiteRPresent = "White Red Xmas Present";
+NEGreenRPresent = "Green Red Xmas Present";
+NELegPresent = "Legendary Xmas Present";
+NELegPresPickup = "Enraged Legendary Present!";
+NEEnrPresent = "Enraged Legendary Xmas Present";
+NEEnrPresPickup = "Enraged Legendary Present!";
+NENemPresent = "Nemesis Xmas Present";
+NENemPresPickup = "Nemesis Present!";
+NEPhasePresent = "Phase Xmas Present";
+NEPhasePresPickup = "Phase Present!";
+
+NEUCorePickup = "Uranium Core. Be careful with this one!";
+NEUCore = "Uranium Core - Can be spawned everywhere and it'll eventually explode.";
+NEUCoreActive = "\c[q6]Uranium Core \cg(Time Bomb)\c-";
+NEUCoreObituary = "%o was blasted into atoms by %k's Uranium Core.";
+
+NEVCorePickup = "Void Core. Releases a Black Hole!";
+NEVCore = "Void Core - Can be spawned everywhere and it'll eventually explode.";
+NEVCoreActive = "\c[k5]Void Core \cg(Time Bomb)\c-";
+NEVCoreObituary = "%o was sucked into a %k's Black Hole.";
+
+//Marine stuff
+
+DrBeacon0 = "Beacon - Single Marine";
+DrBeacon0Pickup = "Marine Beacon";
+DrSquadBeacon0 = "Marine Squad Beacon";
+DrSquadBeacon0Pickup = "Beacon - Marine Squad";
+DrBeacon1 = "Beacon - Marine D-BFG";
+DrBeacon1Pickup = "Marine D-BFG Beacon";
+DrBeacon2 = "Beacon - Marine Medic";
+DrBeacon2Pickup = "Marine Medic Beacon";
+DrBeacon3 = "Beacon - Marine Dispensers";
+DrBeacon3Pickup = "Marine Dispensers Beacon";
+
+DrMarineSprintMine = "Spring Mine Planted";
+DrMarineSprintMineObit = "%o came too close to spring mine.";
+
+
+DrUACGuyAR = "\c[a6]UAC \c[v2]Marine - \c[m3]Assault Rifle\c-";
+DrUACGuyMachinegun = "\c[a6]UAC \c[v2]Marine - \c[m3]Machinegun\c-";
+DrUACGuyMP40 = "\c[a6]UAC \c[v2]Marine - \c[m3]MP40\c-";
+DrUACGuyPistols = "\c[a6]UAC \c[v2]Marine - \c[m3]Pistols\c-";
+DrUACGuyASG = "\c[a6]UAC \c[v2]Marine - \c[m3]Assault Shotgun\c-";
+DrUACGuySSG = "\c[a6]UAC \c[v2]Marine - \c[m3]Double Barrel Shotgun\c-";
+DrUACGuyQSG = "\c[a6]UAC \c[v2]Marine - \c[m3]Quad Barrel Shotgun\c-";
+DrUACGuyHSG = "\c[a6]UAC \c[v2]Marine - \c[m3]Hexa Barrel Shotgun\c-";
+DrUACGuyRapidShotgun = "\c[a6]UAC \c[v2]Marine - \c[m3]Rapid Shotgun\c-";
+DrUACGuyExplosiveShotgun = "\c[a6]UAC \c[v2]Marine - \c[m3]Explosive Shotgun\c-";
+DrUACGuyExpSSG = "\c[a6]UAC \c[v2]Marine - \c[m3]Explosive Super Shotgun\c-";
+DrUACGuySniper = "\c[a6]UAC \c[v2]Marine - \c[m3]Sniper\c-";
+DrUACGuyChaingun = "\c[a6]UAC \c[v2]Marine - \c[m3]Chaingun\c-";
+DrUACGuyMinigun = "\c[a6]UAC \c[v2]Marine - \c[m3]Minigun\c-";
+DrUACGuyExpMinigun = "\c[a6]UAC \c[v2]Marine - \c[m3]Explosive Minigun\c-";
+DrUACGuyRocket = "\c[a6]UAC \c[v2]Marine - \c[m3]Rocket Launcher\c-";
+DrUACGuyHRL = "\c[a6]UAC \c[v2]Marine - \c[m3]Homing Rocket Launcher\c-";
+DrUACGuyMRL = "\c[a6]UAC \c[v2]Marine - \c[m3]Mini Rocket Launcher\c-";
+DrUACGuyGuardian = "\c[a6]UAC \c[v2]Marine - \c[m3]Guardian Armor\c-";
+DrUACGuyBehemoth = "\c[a6]UAC \c[v2]Marine - \c[m3]Behemoth Cannon\c-";
+DrUACGuyPlasma = "\c[a6]UAC \c[v2]Marine - \c[m3]Plasma Rifle\c-";
+DrUACGuyPlasmaRepeater = "\c[a6]UAC \c[v2]Marine - \c[m3]Plasma Repeater\c-";
+DrUACGuyFreezer = "\c[a6]UAC \c[v2]Marine - \c[m3]Freezer Rifle\c-";
+DrUACGuyRailgun = "\c[a6]UAC \c[v2]Marine - \c[m3]Railgun\c-";
+DrUACGuyExplosiveRailgun = "\c[a6]UAC \c[v2]Marine - \c[m3]Explosive Railgun\c-";
+DrUACGuyDTRifle = "\c[a6]UAC \c[v2]Marine - \c[m3]Demon Tech Rifle\c-";
+DrUACGuyDTRailgun = "\c[a6]UAC \c[v2]Marine - \c[m3]Demon Tech Railgun\c-";
+DrUACGuyDTShotgun = "\c[a6]UAC \c[v2]Marine - \c[m3]Demon Tech Shotgun\c-";
+DrUACGuyMine = "\c[a6]UAC \c[v2]Marine - \c[m3]Miner\c-";
+DrUACGuyDBFG = "\c[a6]UAC \c[v2]Marine - \c[m3]D-BFG\c-";
+DrUACGuyMedic = "\c[a6]UAC \c[v2]Marine - \c[m3]Pistols\c-";
+DrUACGuyDispenser = "\c[a6]UAC \c[v2]Marine - \c[m3]Dispenser\c-";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

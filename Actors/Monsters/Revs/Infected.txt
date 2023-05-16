@@ -1,0 +1,207 @@
+ACTOR Infected : Guardian
+{
+  PainChance 70
+  Speed 11
+  Health 850
+  DropItem "BossLifeEssence" 200 25
+  DropItem "BossArmorBonusMax" 200 1
+  DropItem "DemonAmmoBox" 128 200
+  DropItem "Railgun " 50
+  DropItem "Rocket Launcher" 50
+  DropItem "BackPack" 75
+  SeeSound "heavynant/sight"
+  PainSound "heavynant/pain"
+  DeathSound "heavynant/die"
+  ActiveSound "heavynant/active"
+  HitObituary "%o's face got caved in by an Infected."
+  Obituary "%o got destroyed by the artillery of an Infected."
+  BloodColor "Black"
+  Tag "$NEInfected"
+  States
+  {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
+	Goto Idle
+  Idle:
+    SK3L A 10 A_Look
+    Loop
+  See:
+    TNT1 A 0 A_SpawnItem("BonyStep",0,0,0,0)
+    SK3L AAABBBCCC 2 A_Chase
+    TNT1 A 0 A_SpawnItem("BonyStep",0,0,0,0)
+    SK3L DDDEEEFFF 2 A_Chase
+    Loop
+  Melee:
+    TNT1 A 0 A_FaceTarget
+    SK3L G 5 A_SkelWhoosh
+    SK3L H 5 A_FaceTarget
+    SK3L I 5 A_SkelFist
+    Goto See
+ DashPunch:
+    TNT1 A 0 A_Jump(32,"Normal")
+	TNT1 A 0 A_FaceTarget
+    TNT1 A 0 A_Recoil(-40)
+    TNT1 A 0 A_SkelWhoosh	
+	SK3L GGGGG 1 A_SpawnItemEx("InfectedDashGhostA",0,0,0,0,0,0,0,128)
+    TNT1 A 0 A_GiveInventory("InfectedMeleeToken",1)
+	SK3L HHHHH 1 A_SpawnItemEx("InfectedDashGhostA2",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_CustomMissile("FamineDashPunch",32,0,0,CMF_AIMDIRECTION)
+	SK3L III 1 A_SpawnItemEx("InfectedDashGhostA3",0,0,0,0,0,0,0,128)
+	SK3L T 2 A_Stop	
+    Goto See
+  Missile:
+    TNT1 A 0 A_JumpIfCloser(275,"DashPunch")
+    TNT1 A 0 A_Jump(87,"WithHellfire","Railgun")
+	Normal:
+    SK3L J 8 Bright A_FaceTarget
+	TNT1 A 0 A_CustomMissile("GuardianTracer", 40, -14, 0)
+    SK3L K 6 A_CustomMissile("CadaverRocket",40,12,0)
+	SK3L J 8 Bright A_FaceTarget
+	TNT1 A 0 A_CustomMissile("GuardianTracer", 40, -14, 0)
+    SK3L K 6 A_CustomMissile("CadaverRocket",40,12,0)
+	SK3L K 10
+    Goto See
+	WithHellFire:
+	SK3L J 8 Bright A_FaceTarget
+	TNT1 A 0 A_CustomMissile("HellFireRocket", 40, -14, 0)
+    SK3L K 6 A_CustomMissile("CadaverRocket",40,12,0)
+	SK3L J 8 Bright A_FaceTarget
+	TNT1 A 0 A_CustomMissile("HellFireRocket", 40, -14, 0)
+    SK3L K 6 A_CustomMissile("CadaverRocket",40,12,0)
+	SK3L K 10
+	Goto see
+	Railgun:
+	TNT1 A 0 A_PlaySound("weapons/rgcharge")
+	SK3L JJ 10 Bright A_FaceTarget
+	TNT1 A 0 A_CustomMissile("RailgunImpactRed",40,-12)
+    TNT1 A 0 Bright A_CustomRailgun(Random(40, 60), -12, "00 85 FF", None, 1, 1, 0, "InfectedRailPuff")
+    SK3L K 6 A_CustomMissile("InfectedRailG",40,12,0)
+	SK3L K 10
+	Goto see
+  Pain:
+    TNT1 A 0 A_Jump(87,"MissilePain")
+    SK3L L 5 A_Pain
+    Goto See
+  MissilePain:
+	SK3L L 5 A_Pain
+    Goto Missile
+Death:
+    SK3L LM 7
+    SK3L N 7 A_Scream
+    SK3L O 7 A_NoBlocking
+    SK3L P 7 A_SpawnItem("BodyCrash",0,0,0,0)
+    SK3L Q -1
+    Stop
+XDeath:
+	SK3X A 5 A_XScream
+    SK3X B 4 A_SpawnItemEx("BlackGibbedGenerator",0,0,0,0,0,0,0,128,0)
+    SK3X C 4 A_NoBlocking
+    SK3X D 4 A_SpawnItem("BodyCrash",0,0,0,0)
+    SK3X E 4 
+    SK3X F -1
+    Stop
+Raise:
+	TNT1 A 0
+	TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+    SK3L PONML 5
+    Goto See
+  }
+}
+
+ACTOR InfectedMeleeToken : Inventory
+{
+Inventory.Amount 1
+Inventory.MaxAmount 1
+}
+
+ACTOR InfectedDashGhostA
+{
+Scale 0.8
+RENDERSTYLE Translucent
+Alpha 0.75
++NOGRAVITY
++CLIENTSIDEONLY
++DONTSPLASH
++NOINTERACTION
++NOCLIP
+States
+{
+Spawn:
+    SK3L G 2 A_FadeOut(0.18)
+    Loop
+    }
+}
+
+ACTOR InfectedDashGhostA2 : InfectedDashGhostA
+{
+States
+{
+Spawn:
+    SK3L H 2 A_FadeOut(0.18)
+    Loop
+    }
+}
+
+ACTOR InfectedDashGhostA3 : InfectedDashGhostA
+{
+States
+{
+Spawn:
+    SK3L I 2 A_FadeOut(0.18)
+    Loop
+    }
+}
+
+
+ACTOR InfectedRailPuff : BulletPuff
+{
+DamageType "CadaverRocket"
+States
+{
+Spawn:
+	TNT1 A 0
+	Stop
+	}
+}
+
+ACTOR InfectedRailG : FastProjectile
+{
+Radius 6
+Height 6
+Speed 300
+Damage (Random(30,40))
+Scale 0.9
+SeeSound "monsters/darkcyberrail"
+MissileType "DarkCyberRailTrail2"
+Species "Skeletons"
+DamageType "CadaverRocket"
+DeathSound "cyberrail/impact"
++RIPPER
++THRUSPECIES
++EXTREMEDEATH
++BLOODLESSIMPACT
+States
+{
+Spawn:
+    DCRP A 1 Bright
+    Loop
+Death:
+	TNT1 A 0
+	TNT1 A 0 A_SpawnItemEx("BFGShockwave", 0, 0, 0, 0, 0, 0, 0, 128)
+    TNT1 AAAA 0 A_CustomMissile("Kaboom13", 0, 0, random(0,360), 2, random(0,360))	
+	TNT1 A 1 A_SpawnItem("RailgunImpactEffectGreen")
+	Stop
+	}
+}
+
+ACTOR DarkCyberRailTrail2 : BFG9500Trail
+{
+Scale 0.8
+States
+{
+Spawn:
+	TNT1 A 0
+	RGPG ABCDEFGHIJKLMNOP 2 A_FadeOut(0.04)
+	Stop
+	}
+}

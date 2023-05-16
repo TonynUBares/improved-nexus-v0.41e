@@ -1,0 +1,12 @@
+Flat ZFKLAVA1 range ZFKLAVA4 tics 8
+Flat ZFOWATR1 range ZFOWATR4 tics 8
+Flat NEMFL01 range NEMFL02 tics 8
+Texture FIREBLK1 range FIREBLK2 tics 8
+Texture GLDFALL1 range GLDFALL4 tics 8
+Texture ACANDL01 range ACANDL03 tics 8
+
+Switch	Doom 1		ZHELLSW7	On Pic	ZHELLSW8	Tics 0
+Switch  Doom 1		NMSW01A		On Pic  NMSW01B		Tics 0
+Switch	Doom 1		NMSW02A		On Pic	NMSW02B		Tics 0
+
+texture MAINSK01 range MAINSK60 tics 2

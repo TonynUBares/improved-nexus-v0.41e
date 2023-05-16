@@ -1,0 +1,1205 @@
+Actor SentryBoxParent : CustomInventory
+{
+ +FLOORCLIP
+ +INVENTORY.INVBAR
+ +INVENTORY.HUBPOWER
+ +INVENTORY.PERSISTENTPOWER
+ +INVENTORY.BIGPOWERUP
+ Inventory.Amount 1
+ Inventory.MaxAmount 4
+ Inventory.InterHubAmount 4
+ var int user_TurretLoop;
+}
+
+ACTOR SentryBox : SentryBoxParent
+{
+ Inventory.Icon "SGING0"
+ Inventory.PickupMessage "Sentry Gun"
+ Inventory.PickupSound "DTechSentry/pickup"
+ Inventory.UseSound "DTechSentry/use"
+ Tag "Sentry Gun (Regular)"
+ States
+ {
+  Spawn:
+	RSGX A -1
+	Stop
+  Use:
+	TNT1 A 0 A_SpawnItemEx("AlliedSentryGun",56,0,8,0,0,0,0,0)
+	Stop
+ }
+}
+
+Actor SentryParent
+{
+ Mass 100000
+ Speed 0
+ Monster
+ +FRIENDLY
+ +DONTHARMSPECIES
+ +THRUSPECIES
+ +FLOORCLIP
+ +MISSILEMORE
+ +MISSILEEVENMORE
+ +NOTARGET
+ +QUICKTORETALIATE
+ +NOBLOOD
+ +LOOKALLAROUND
+ +DROPOFF
+ +STANDSTILL
+ var int user_TurretLoop;
+ States
+ {
+  See:
+	"####" A 0 A_SetUserVar(user_TurretLoop,0)
+	"####" AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Chase
+	"####" A 0 A_PlaySound("DTechSentry/beep")
+	"####" A 0 A_ClearTarget
+	Loop
+  Missile:
+	"####" A 1 A_FaceTarget
+	"####" A 3 A_PlaySound("DTechSentry/sight",7)
+	"####" A 5 A_FaceTarget
+	"####" A 1 A_Jump(256,"TurretLoop")
+	Wait
+ }
+}
+
+Actor AllySentryParent: SentryParent
+{
+ States
+ {
+  See:
+	"####" A 0 A_SetUserVar(user_TurretLoop,0)
+	"####" AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Chase
+	"####" A 0 A_PlaySound("sentry/beep")
+	"####" A 0 A_ClearTarget
+	Loop
+  Missile:
+	"####" A 1 A_FaceTarget
+	"####" A 3 A_PlaySound("sentry/see",7)
+	"####" A 5 A_FaceTarget
+	"####" A 1 A_Jump(256,"TurretLoop")
+	Wait
+ }
+}
+
+Actor AlliedSentryGun : AllySentryParent
+{
+ Decal "BulletChip"
+ Obituary "%o was betrayed by an Sentry Gun."
+ Tag "Sentry Gun (Regular)"
+ Health 500
+ Radius 16
+ Height 56
+ Species "Player"
+ DamageFactor 0.6
+ AttackSound "sentry/attack"
+ DeathSound "sentry/die"
+ States
+ {
+  Spawn:
+	S3NT A 0 NoDelay
+	Goto See
+  TurretLoop:
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 A_JumpIf(user_TurretLoop == 60,"Pause")
+	TNT1 A 0 A_SetUserVar(user_TurretLoop,user_TurretLoop+1)
+	S3NT A 1 A_FaceTarget 
+	S3NT B 0 A_CustomMissile("MonsterTracer",Random(38,42),0,Random(5,-5),0)
+	S3NT B 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	S3NT B 0 A_CustomBulletAttack(3,3,1,random(1,5)*3,"SentryGunBulletPuff")
+	S3NT B 1 Bright A_FaceTarget
+	S3NT B 1 A_CPosRefire  
+	Loop
+  Pause:
+	S3NT AA 25 A_PlaySound("sentry/warn")
+	TNT1 A 0 A_SetUserVar("user_TurretLoop", 0)
+	Goto TurretLoop	
+  Death:
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+	TNT1 AAA 0 A_CustomMissile("Kaboom3", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+	TNT1 A 0 A_PlaySound("weapons/rocklx")
+	TNT1 A 1 A_SpawnItem("RocketEx",0,32)
+	S3NT C 0 A_NoBlocking
+	S3NT C 0 A_Scream
+	S3NT C 250
+	Stop
+  }
+}
+
+ACTOR SentryBox2 : SentryBoxParent
+{
+ Inventory.Icon "SGINF0"
+ Inventory.PickupMessage "Explosive Sentry Gun"
+ Inventory.PickupSound "DTechSentry/pickup"
+ Inventory.UseSound "DTechSentry/use"
+ Tag "Sentry Gun (Explosive)"
+ States
+ {
+  Spawn:
+	ESGX A 35
+	Loop
+  Use:
+	TNT1 A 0 A_SpawnItemEx("AlliedExSentryGun",56,0,8,0,0,0,0,0)
+	Stop
+ }
+}
+
+Actor AlliedExSentryGun : AllySentryParent
+{
+ Obituary "%o was betrayed by an Explosive Sentry Gun."
+ Tag "Explosive Sentry Gun"
+ Health 650
+ Radius 16
+ Height 56
+ Species "Player"
+ DamageFactor 0.6
+ DeathSound "sentry/die"
+ States
+  {
+  Spawn:
+	SET2 A 0 NoDelay
+	Goto See
+  TurretLoop:
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 A_JumpIf(user_TurretLoop == 20,"Pause")
+	TNT1 A 0 A_SetUserVar(user_TurretLoop,user_TurretLoop+1)
+	SET2 AAA 1 A_FaceTarget
+	TNT1 A 0 A_PlayWeaponSound("PulseNail/fire")
+	SET2 A 0 A_CustomMissile("SentryGunExplosiveTracer",34,9,frandom(-2.0,2.0),CMF_OFFSETPITCH,frandom(-2.0,2.0))
+	SET2 B 2 Bright A_CustomMissile("SentryExplosiveBullet",34,9,frandom(-2.0,2.0),CMF_TRACKOWNER|CMF_OFFSETPITCH,frandom(-2.0,2.0))
+	SET2 C 2 Bright A_FaceTarget
+	SET2 A 1 A_CPosRefire  
+	Loop
+  Pause:
+	SET2 AA 25 A_PlaySound("sentry/warn")
+	TNT1 A 0 A_SetUserVar("user_TurretLoop", 0)
+	Goto TurretLoop	
+  Death:
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+	TNT1 AAA 0 A_CustomMissile("Kaboom3", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+	TNT1 A 0 A_PlaySound("weapons/rocklx")
+	TNT1 A 1 A_SpawnItem("RocketEx",0,32)
+	SET2 D 0 A_NoBlocking
+	SET2 D 0 A_Scream
+	SET2 D 250
+	Stop
+  }
+}
+
+Actor SentryGunExplosiveTracer : SentientExplosiveTracer
+{
+ Scale 0.7
+ Decal ""
+ Damage (0)
+ +DONTREFLECT
+ +THRUSPECIES
+ +MTHRUSPECIES
+ Species "Player"
+ DamageType "Player"
+ States
+ {
+  Spawn:
+	TRAC A 1 Bright
+	Loop
+  XDeath:
+  Death:
+	TNT1 A 1 
+	Stop
+ }
+}
+
+Actor SentryExplosiveBullet : ZPulseNail
+{
+ Species "Player"
+ Damagetype "Player"
+ Damage (random(20,25))
+ States
+ {
+  Spawn:
+	TNT1 A -1 
+	Stop
+  Death:
+	TNT1 A 1 
+	TNT1 A 0 A_Playsound("PulseNail/hit",CHAN_AUTO,1.0,0)
+	TNT1 A 0 A_Explode(25,95,0,0,78)
+	TNT1 AAA 0 A_SpawnItemEX("Kaboom9",0,0,0,random(-2,2),random(-2,2),random(-2,2),random(0,360),SXF_CLIENTSIDE,0)
+	TNT1 AAA 0 A_SpawnItemEX("SmokeFX4",0,0,0,random(-2,2),random(-2,2),random(-2,2),random(0,360),SXF_CLIENTSIDE,0)
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner",0,0,1,0,0,0,0,SXF_CLIENTSIDE,0)
+	TNT1 A 0 A_SetTranslucent(0.85,1)
+	MISL BBBBCC 1 Bright A_Explode(8,95,0,0,78)
+	MISL CDE 3 Bright
+	Stop
+ }
+}
+
+ACTOR SentryBox3 : SentryBoxParent
+{
+ Inventory.Icon "SGINH0"
+ Inventory.PickupMessage "Sniper Sentry Gun"
+ Inventory.PickupSound "DTechSentry/pickup"
+ Inventory.UseSound "DTechSentry/use"
+ Tag "Sentry Gun (Sniper)"
+ States
+ {
+  Spawn:
+	SSGX A -1
+	Stop
+  Use:
+	TNT1 A 0 A_SpawnItemEx("AlliedSniperSentryGun",56,0,8,0,0,0,0,0)
+	Stop
+ }
+}
+
+Actor AlliedSniperSentryGun : AlliedSentryGun
+{
+  Health 800
+  AttackSound "sentry/sniper"
+  Tag "Sniper Sentry Gun"
+  States
+  {
+  Spawn:
+	SET3 A 0 NoDelay
+	Goto See
+  TurretLoop:
+	SET3 A 4 A_FaceTarget
+	TNT1 A 0 A_AlertMonsters
+	SET3 B 6 Bright A_CustomBulletAttack(1,1,1,random(1,5)*20,"SniperSentryGunBulletPuff")
+	SET3 CA 2 A_FaceTarget
+	TNT1 A 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	SET3 A 3 A_FaceTarget
+	SET3 A 10 A_PlayWeaponSound("sniper/clip")
+	SET3 AAA 3 A_FaceTarget
+	SET3 A 1 A_CPosRefire 
+	Loop
+  Death:
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+	TNT1 AAA 0 A_CustomMissile("Kaboom3", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+	TNT1 A 0 A_PlaySound("weapons/rocklx")
+	TNT1 A 1 A_SpawnItem("RocketEx",0,32)
+	SENT C 0 A_NoBlocking
+	SENT C 0 A_Scream
+	SENT C 250
+	Stop
+  }
+}
+
+Actor SentryGunBulletPuff : ModdedBulletPuff
+{
+ DamageType "Player"
+ //Species "Player"
+ +MTHRUSPECIES
+}
+
+Actor SniperSentryGunBulletPuff : ModdedBulletPuff
+{
+ DamageType "Player"
+ //Species "Player"
+ +MTHRUSPECIES
+ -EXTREMEDEATH
+}
+
+Actor DemonTechSentryBox : SentryBoxParent
+{
+ Inventory.Icon "SGINA0"
+ Inventory.PickupMessage "Demon Tech Sentry Gun."
+ Inventory.PickupSound "DTechSentry/pickup"
+ Inventory.UseSound "DTechSentry/use"
+ Tag "Demon Tech Sentry Gun (Regular)"
+ States
+ {
+  Spawn:
+	DTBX ABCDEFGHIJ 2 BRIGHT
+	Loop
+  Use:
+	TNT1 A 0 A_SpawnItemEx("AlliedDemonTechSentryGun",56,0,8,0,0,0,0,0)
+	Stop	
+ }
+}
+
+Actor AlliedDemonTechSentryGun : SentryParent
+{
+ Obituary "%o was betrayed by an Demon Tech Sentry Gun."
+ Tag "\c[l2]Demon tech\c- Sentry Gun"
+ Health 500
+ Radius 24
+ Height 56
+ Species "Player"
+ DamageFactor 0.6
+ DeathSound "DTechSentry/death"
+ States
+ {
+  Spawn:
+	DTSN A 0 NoDelay
+	Goto See
+  TurretLoop:
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 A_JumpIf(user_TurretLoop == 20,"Pause")
+	TNT1 A 0 A_SetUserVar(user_TurretLoop,user_TurretLoop+1)
+	DTSN A 2 A_FaceTarget
+	TNT1 A 0 A_PlayWeaponSound("weapons/demontechfire")
+	TNT1 A 0 A_CustomMissile("DemonTechProjectile",Random(38,42),0,Random(125,-125)/125.25,0)
+	DTSN B 2 Bright A_FaceTarget
+	DTSN B 1 A_CPosRefire  
+	Loop
+  Pause:
+	DTSN A 25 A_PlaySound("weapons/demontechsteam")
+	TNT1 A 0 A_SetUserVar("user_TurretLoop", 0)
+	Goto TurretLoop	
+  Death:
+	TNT1 A 0 A_SpawnItemEx("GreenParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+	TNT1 AAA 0 A_CustomMissile("Kaboom4", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+	TNT1 A 0 A_PlaySound("weapons/clrocketexplode")
+	TNT1 A 1 A_Explode
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+	TNT1 A 0 A_NoBlocking
+	TNT1 A 0 A_Scream
+	Stop
+  }
+}
+
+Actor ExplosiveDemonTechSentryBox : SentryBoxParent
+{
+ Inventory.Icon "SGINB0"
+ Inventory.PickupMessage "Explosive Demon Tech Sentry Gun."
+ Inventory.PickupSound "DTechSentry/pickup"
+ Inventory.UseSound "DTechSentry/use"
+ Tag "Demon Tech Sentry Gun (Explosive)"
+ States
+ {
+  Spawn:
+	ETBX ABCDEFGHIJ 2 BRIGHT
+	Loop
+  Use:
+	TNT1 A 0 A_SpawnItemEx("AlliedExDemonTechSentryGun",56,0,8,0,0,0,0,0)
+	Stop	
+ }
+}
+
+Actor AlliedExDemonTechSentryGun : SentryParent
+{
+  Obituary "%o was betrayed by an Demon Tech Sentry Gun."
+  Tag "\c[l6]Explosive Demon Tech\c- Sentry Gun"
+  Health 600
+  Radius 24
+  Height 56
+  Species "Player"
+  DamageFactor 0.6
+  DeathSound "DTechSentry/death"
+  States
+  {
+  Spawn:
+	EXGN A 0 NoDelay
+	Goto See
+  TurretLoop:
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 A_JumpIf(user_TurretLoop == 20,"Pause")
+	TNT1 A 0 A_SetUserVar(user_TurretLoop,user_TurretLoop+1)
+	EXGN A 2 A_FaceTarget
+	TNT1 A 0 A_PlayWeaponSound("explosivedtech/fire")
+	TNT1 A 0 A_CustomMissile("PlayerExplosiveDemonTechProjectile",Random(38,42),0,Random(125,-125)/125.25,0)
+	EXGN B 2 Bright A_FaceTarget
+	EXGN B 1 A_CPosRefire  
+	Loop
+  Pause:
+	EXGN A 25 A_PlaySound("weapons/demontechsteam")
+	TNT1 A 0 A_SetUserVar("user_TurretLoop", 0)
+	Goto TurretLoop
+  Death:
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+	TNT1 AAA 0 A_CustomMissile("Kaboom3", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+	TNT1 A 0 A_PlaySound("weapons/clrocketexplode")
+	TNT1 A 1 A_Explode
+	TNT1 A 0 A_NoBlocking
+	TNT1 A 0 A_Scream
+	Stop
+  }
+}
+
+Actor PhaseDemonTechSentryBox : SentryBoxParent
+{
+ Inventory.Icon "SGINC0"
+ Inventory.PickupMessage "Phase Demon Tech Sentry Gun."
+ Inventory.PickupSound "DTechSentry/pickup"
+ Inventory.UseSound "DTechSentry/use"
+ Tag "Demon Tech Sentry Gun (Phase)"
+ States
+ {
+  Spawn:
+	PHBX ABCDEFGHIJ 2 BRIGHT
+	Loop
+  Use:
+	TNT1 A 0 A_SpawnItemEx("AlliedPhaseDemonTechSentryGun",56,0,8,0,0,0,0,0)
+	Stop	
+ }
+}
+
+Actor AlliedPhaseDemonTechSentryGun : SentryParent
+{
+  Obituary "%o was betrayed by an Demon Tech Sentry Gun."
+  Tag "\c[c6]Phase Demon Tech\c- Sentry Gun"
+  Health 750
+  Radius 24
+  Height 56
+  +AMBUSH
+  Species "Player"
+  DamageFactor 0.6
+  DeathSound "DTechSentry/death"
+  States
+  {
+  Spawn:
+  See:
+	TNT1 A 0 A_SetUserVar(user_TurretLoop,0)
+	TNT1 A 0 A_SetTranslucent(1)
+	PHSN AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Chase
+	TNT1 A 0 A_PlaySound("DTechSentry/beep")
+	TNT1 A 0 A_Jump(50,"Phase")
+	TNT1 A 0 A_ClearTarget
+	Loop
+  Phase:
+	TNT1 A 0 A_PlaySound("phaseimp/teleport")
+	PHSN A 1 A_SetTranslucent(0.15)
+  Phaseloop:
+	TNT1 A 0 A_SetUserVar(user_TurretLoop,0)
+	PHSN AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Chase
+	TNT1 A 0 A_PlaySound("DTechSentry/beep")
+	TNT1 A 0 A_ClearTarget
+	Loop
+  Missile:	
+	PHSN A 1 A_FaceTarget
+	PHSN A 3 A_PlaySound("DTechSentry/sight",7)
+	PHSN A 15 A_FaceTarget
+	TNT1 A 0 A_PlaySound("phaseimp/teleport")
+	PHSN A 1 A_SetTranslucent(0.15)
+	PHSN A 15 A_FaceTarget
+  TurretLoop:
+	TNT1 A 0 A_JumpIf(user_TurretLoop == 20,"Pause")
+	TNT1 A 0 A_SetUserVar(user_TurretLoop,user_TurretLoop+1)
+	PHSN A 2 A_FaceTarget
+	TNT1 A 0 A_PlayWeaponSound("weapons/demontechfire")
+	TNT1 A 0 A_CustomMissile("PhaseDTSentryProjectile",Random(38,42),0,Random(125,-125)/125.25,0)
+	PHSN B 2 Bright A_FaceTarget
+	PHSN B 1 A_CPosRefire 
+	Loop
+  Pause:
+	PHSN A 25 A_PlaySound("weapons/demontechsteam")
+	TNT1 A 0 A_SetUserVar("user_TurretLoop", 0)
+	Goto TurretLoop
+  Death:
+	TNT1 A 0 A_SetTranslucent(1)
+	TNT1 A 0 A_SpawnItemEx("PurpleParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+	TNT1 AAA 0 A_CustomMissile("PurpleKaboom4", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+	TNT1 A 0 A_PlaySound("weapons/clrocketexplode")
+	TNT1 A 1 A_Explode
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+	TNT1 A 0 A_NoBlocking
+	TNT1 A 0 A_Scream
+	Stop
+  }
+}
+
+Actor PhaseDTSentryProjectile 
+{
+   Height 4
+   Radius 4
+   Speed 50
+   Damage 10
+   Scale 0.06
+   PROJECTILE
+   +THRUSPECIES
+   +FORCERADIUSDMG
+   DamageType "Player"
+   Species "Player"
+   DeathSound "weapons/demontechex"
+   Decal DTRScorch
+   States
+   {
+   Spawn:
+	TNT1 A 0 A_SeekerMissile(12,0)
+	TNT1 A 0 A_Jump(128,"Spawn2")
+   Normal:
+	TNT1 A 0 A_SeekerMissile(12,0)
+   	TNT1 A 0 A_Jump(128,"NormalFX")
+	PTPR A 1 Bright A_SpawnItemEx("PhaseSentryDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+	Loop
+   NormalFX:
+	PTPR A 1 Bright A_SpawnItemEx("PhaseSentryDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+	PTPR A 1 Bright A_SpawnItemEx("PhaseSentryDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+	Goto Normal
+   Spawn2:
+	TNT1 A 0 A_SeekerMissile(12,0)
+	TNT1 A 0 A_Jump(128,"Spawn2FX")
+	PTPR A 1 Bright A_SpawnItemEx("PhaseSentryDemonTechTrail2",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+	Loop
+   Spawn2FX:
+	PTPR A 1 Bright A_SpawnItemEx("PhaseSentryDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+	PTPR A 1 Bright A_SpawnItemEx("PhaseSentryDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+	Goto Spawn2
+   Death:
+	TNT1 A 0 A_SpawnItemEx("PhaseSentryDemonTechEx",0,0,0,0,0,0,0,128,0)
+	TNT1 AAA 0 A_CustomMissile("Kaboom8", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX4", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 A 1 A_Explode(20,64)
+	Stop
+ }
+}
+
+ACTOR PhaseSentryDemonTechEx
+{
+ RenderStyle Add
+ Alpha 0.75
+ Scale 0.5
+ PROJECTILE
+ +NOCLIP
+ States
+ {
+  Spawn:
+	PTXP ABCDEFGH 2 Bright A_FadeOut(0.1)
+	Stop
+ }
+}
+
+ACTOR PhaseSentryDemonTechTrail : BFG9500Trail
+{
+ Scale 0.04
+ Alpha 0.65
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 2
+	PTRI AAAAAABBBBBBBB 1 Bright A_FadeOut(0.05)
+	Stop
+ }
+}
+
+ACTOR PhaseSentryDemonTechTrail2 : DemonTechTrail
+{
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 2
+	PTRI AAAAAACCCCCCCC 1 Bright A_FadeOut(0.05)
+	Stop
+ }
+}
+
+Actor SuperChargedDemonTechSentryBox : SentryBoxParent
+{
+ Inventory.Icon "SGINE0"
+ Inventory.PickupMessage "Empowered Demon Tech Sentry Gun."
+ Inventory.PickupSound "DTechSentry/pickup"
+ Inventory.UseSound "DTechSentry/use"
+ Tag "Empowered Demon Tech Sentry Gun "
+ States
+ {
+  Spawn:
+	SCBX ABCDEFGHIJ 2 BRIGHT
+	Loop
+  Use:
+	TNT1 A 0 A_SpawnItemEx("AlliedEmpoweredDemonTechSentryGun",56,0,8,0,0,0,0,0)
+	Stop
+ }
+}
+
+Actor AlliedEmpoweredDemonTechSentryGun : SentryParent
+{
+  Obituary "%o should not have died from a Demon Tech Sentry Gun."
+  Tag "\c[d4]Empowered Demon Tech\c- Sentry Gun"
+  Health 900
+  Radius 24
+  Height 56
+  Species "Player"
+  DamageFactor 0.6
+  DeathSound "DTechSentry/death"
+  States
+  {
+  Spawn:
+	SCSN A 0 NoDelay
+	Goto See
+  TurretLoop:
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 A_JumpIf(user_TurretLoop == 50,"Pause")
+	TNT1 A 0 A_SetUserVar(user_TurretLoop,user_TurretLoop+1)
+	SCSN A 2 A_FaceTarget
+	TNT1 A 0 A_PlayWeaponSound("EDTR/Fire")
+	TNT1 A 0 A_CustomMissile("SentryGunPoweredDemonTechProjectile",Random(38,42),0,Random(125,-125)/125.25,0)
+	SCSN B 1 Bright A_FaceTarget
+	SCSN B 1 A_CPosRefire 
+	Loop
+  Pause:
+	SCSN A 40 A_PlaySound("EDT/Steam")
+	TNT1 A 0 A_SetUserVar("user_TurretLoop", 0)
+	Goto TurretLoop
+  Death:
+	TNT1 A 0 A_PlaySound("BFG9K/Explode")
+	TNT1 A 0 A_SpawnItemEx("BFGShockwaveRed2", 0, 0, 0, 0, 0, 0, 0, 128) 
+	TNT1 AAA 0 A_CustomMissile("Kaboom3", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAA 0 A_CustomMissile("Kaboom18", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAAA 0 A_SpawnItemEx("RedParticleSpawner",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+	TNT1 AAA 0 A_BFGSpray("CustomSprayRed")
+	TNT1 A 0 A_NoBlocking
+	TNT1 A 0 A_Scream
+	Stop
+  }
+}
+
+ACTOR SentryGunPoweredDemonTechProjectile : DemonTechProjectile
+{
+   Speed 70
+   Damage 16
+   Scale 0.1
+   Decal Scorch
+   DamageType "Player"
+   Species "Player"
+   +FORCERADIUSDMG
+   +THRUSPECIES
+   States
+   {
+   Spawn:
+	TNT1 A 0 NoDelay A_Jump(128,"Spawn2")
+   Normal:
+   	TNT1 A 0 A_Jump(128,"NormalFX")
+	PDTS A 1 Bright A_SpawnItemEx("PoweredDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+	Loop
+   NormalFX:
+	TNT1 A 0 A_SpawnItemEx("RDTechLightning",Random(1,-1),Random(1,-1),Random(1,-1),0,0,0,0,128)
+	PDTS A 1 Bright A_SpawnItemEx("PoweredDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+	TNT1 A 0 A_SpawnItemEx("RDTechLightning2",Random(1,-1),Random(1,-1),Random(1,-1),0,0,0,0,128)
+	PDTS A 1 Bright A_SpawnItemEx("PoweredDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+	Goto Normal
+   Spawn2:
+	 TNT1 A 0 A_Jump(128,"Spawn2FX")
+	 PDTS A 1 Bright A_SpawnItemEx("PoweredDemonTechTrail2",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+	 Loop
+   Spawn2FX:
+	TNT1 A 0 A_SpawnItemEx("RDTechLightning",Random(1,-1),Random(1,-1),Random(1,-1),0,0,0,0,128)
+	PDTS A 1 Bright A_SpawnItemEx("PoweredDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+	TNT1 A 0 A_SpawnItemEx("RDTechLightning2",Random(1,-1),Random(1,-1),Random(1,-1),0,0,0,0,128)
+	PDTS A 1 Bright A_SpawnItemEx("PoweredDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+	Goto Spawn2
+   Death:
+	TNT1 A 0 A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 A 0 A_SpawnItemEx("PoweredDemonTechEx",0,0,0,0,0,0,0,128,0)
+	TNT1 AAA 0 A_CustomMissile("Kaboom10", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX4", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 A 1 A_Explode(80,60)
+	Stop
+ }
+}
+
+Actor AlliedSuperChargedDemonTechSentryGun : SentryParent
+{
+ Obituary "%o was betrayed by an Demon Tech Sentry Gun."
+ Tag "\c[d4]Supercharged \c[l2]Demon Tech\c- Sentry Gun"
+ Health 900
+ Radius 24
+ Height 56
+ Species "Player"
+ DamageFactor 0.6
+ DeathSound "DTechSentry/death"
+ States
+ {
+  Spawn:
+	SCSN A 0 NoDelay
+	Goto See
+  Missile:	
+	SCSN A 1 A_FaceTarget
+	SCSN A 3 A_PlaySound("DTechSentry/sight",7)
+	SCSN A 10 A_FaceTarget
+  TurretLoop:
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 A_JumpIf(user_TurretLoop == 50,"Pause")
+	TNT1 A 0 A_SetUserVar(user_TurretLoop,user_TurretLoop+1)
+	SCSN A 1 A_FaceTarget
+	TNT1 A 0 A_PlayWeaponSound("explosivedtech/fire")
+	TNT1 A 0 A_CustomMissile("SuperchargedSentryGunDemonTechProjectile",Random(38,42),0,Random(125,-125)/125.25,0)
+	SCSN B 1 Bright A_FaceTarget
+	SCSN B 1 A_CPosRefire 
+	Loop
+  Pause:
+	SCSN A 40 A_PlaySound("weapons/demontechsteam")
+	TNT1 A 0 A_SetUserVar("user_TurretLoop", 0)
+	Goto TurretLoop
+  Death:
+	TNT1 A 0 A_PlaySound("BFG9K/Explode")
+	TNT1 A 0 A_SpawnItemEx("BFGShockwaveRed2", 0, 0, 0, 0, 0, 0, 0, 128) 
+	TNT1 AAA 0 A_CustomMissile("Kaboom3", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAA 0 A_CustomMissile("Kaboom18", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAAA 0 A_SpawnItemEx("RedParticleSpawner",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+	TNT1 AAA 0 A_BFGSpray("CustomSprayRed")
+	TNT1 A 0 A_NoBlocking
+	TNT1 A 0 A_Scream
+	Stop
+  }
+}
+
+ACTOR SuperchargedSentryGunDemonTechProjectile
+{
+ Height 4
+ Radius 4
+ Speed 58
+ Damage 20
+ Scale 0.1
+ PROJECTILE
+ +THRUSPECIES
+ +FORCERADIUSDMG
+ Species "Player"
+ DeathSound "weapons/demontechex"
+ Decal DTRScorch
+ States
+ {
+   Spawn:
+	TNT1 A 0 NoDelay A_Jump(128,"Spawn2")
+   Normal:
+   	TNT1 A 0 A_Jump(128,"NormalFX")
+	RIPP A 1 Bright A_SpawnItemEx("DemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+	Loop
+   NormalFX:
+	TNT1 A 0 A_SpawnItemEx("DTechLightning",Random(1,-1),Random(1,-1),Random(1,-1),0,0,0,0,128)
+	RIPP A 1 Bright A_SpawnItemEx("DemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+	TNT1 A 0 A_SpawnItemEx("DTechLightning2",Random(1,-1),Random(1,-1),Random(1,-1),0,0,0,0,128)
+	RIPP A 1 Bright A_SpawnItemEx("DemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+	Goto Normal
+   Spawn2:
+	TNT1 A 0 A_Jump(128,"Spawn2FX")
+	RIPP A 1 Bright A_SpawnItemEx("SuperchargedSentryGunDemonTechTrail2",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+	Loop
+   Spawn2FX:
+	TNT1 A 0 A_SpawnItemEx("DTechLightning",Random(1,-1),Random(1,-1),Random(1,-1),0,0,0,0,128)
+	RIPP A 1 Bright A_SpawnItemEx("SuperchargedSentryGunDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+	TNT1 A 0 A_SpawnItemEx("DTechLightning2",Random(1,-1),Random(1,-1),Random(1,-1),0,0,0,0,128)
+	RIPP A 1 Bright A_SpawnItemEx("SuperchargedSentryGunDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+	Goto Spawn2
+   Death:
+	TNT1 A 0 A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 A 0 A_SpawnItemEx("SuperchargedSentryGunDemonTechEx",0,0,0,0,0,0,0,128,0)
+	TNT1 AAA 0 A_CustomMissile("Kaboom10", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX4", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 A 1 A_Explode(20,64)
+	Stop
+ }
+}
+
+ACTOR SuperchargedSentryGunDemonTechEx
+{
+ RenderStyle Add
+ Alpha 0.75
+ Scale 0.5
+ PROJECTILE
+ +NOCLIP
+ States
+ {
+  Spawn:
+	RFOG BCDEF 3 Bright A_FadeOut(0.1)
+	Stop
+ }
+}
+
+ACTOR SuperchargedSentryGunDemonTechTrail : BFG9500Trail
+{
+ Scale 0.04
+ Alpha 0.65
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 2
+	FRPG AAAAAABBBBBB 1 Bright A_FadeOut(0.05)
+	Stop
+ }
+}
+
+ACTOR SuperchargedSentryGunDemonTechTrail2 : DemonTechTrail
+{
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 2
+	SRPG AAAAAACCCCC 1 Bright A_FadeOut(0.05)
+	Stop
+ }
+}
+
+Actor TurretBoxParent : CustomInventory
+{
+  +FLOORCLIP
+  +INVENTORY.INVBAR
+  +INVENTORY.HUBPOWER
+  +INVENTORY.PERSISTENTPOWER
+  +INVENTORY.BIGPOWERUP
+  Inventory.Amount 1
+  Inventory.MaxAmount 1
+  Inventory.InterHubAmount 1
+}
+
+ACTOR TurretBox : TurretBoxParent
+{
+  Inventory.Icon "RTBXE0"
+  Inventory.PickupMessage "Rocket Turret"
+  Inventory.PickupSound "turret/pickup"
+  Inventory.UseSound "turret/use"
+  Tag "Rocket Turret"
+  States
+  {
+  Spawn:
+	RTBX ABCD 3
+	Loop
+  Use:
+	TNT1 A 0 A_SpawnItemEx("RocketTurret",56,0,8,0,0,0,0,0)
+	Stop
+ }
+}
+
+Actor SentryParent2
+{
+ Mass 100000
+ Speed 0
+ Monster
+ +FRIENDLY
+ +DONTHARMSPECIES
+ +THRUSPECIES
+ +FLOORCLIP
+ +MISSILEMORE
+ +MISSILEEVENMORE
+ +NOTARGET
+ +QUICKTORETALIATE
+ +NOBLOOD
+ +LOOKALLAROUND
+ +DROPOFF
+ +STANDSTILL
+ var int user_TurretLoop;
+ States
+ {
+  See:
+	"####" A 0 A_SetUserVar(user_TurretLoop,0)
+	"####" AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Chase
+	"####" A 0 A_PlaySound("turret/beep")
+	"####" A 0 A_ClearTarget
+	Loop
+  Missile:
+	"####" A 1 A_FaceTarget
+	"####" A 3 A_PlaySound("turret/see",7)
+	"####" A 5 A_FaceTarget
+	"####" A 0 A_Jump(256,"TurretLoop")
+ }
+}
+
+Actor RocketTurret : SentryParent2
+{
+ Obituary "%o was blown to pieces by a Rocket Turret"
+ Tag "Rocket Turret"
+ Health 1500
+ Radius 24
+ Height 56
+ Scale 2.0
+ +AMBUSH
+ Species "Player"
+ DamageFactor 0.4
+ DeathSound "sentry/die"
+ States
+ {
+  Spawn:
+	RTUR A 0 NoDelay
+	Goto See
+  TurretLoop:
+	RTUR A 2 A_FaceTarget 
+	TNT1 A 0 A_AlertMonsters
+	RTUR B 5 Bright A_CustomMissile("TurretRocket", 30, 0, 0)
+	RTUR A 12 A_CPosRefire  
+	Loop
+  Death:
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+	TNT1 AAA 0 A_CustomMissile("Kaboom3", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+	TNT1 A 0 A_PlaySound("weapons/rocklx")
+	TNT1 A 1 A_SpawnItem("RocketEx",0,32)
+	RTUR C 0 A_NoBlocking
+	RTUR C 0 A_Scream
+	RTUR C 250
+	Stop
+  }
+}
+
+ACTOR TurretRocket : NewRocket
+{
+ Speed 30
+ Damage 30
+ DamageType "Player"
+ -THRUSPECIES
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_CustomMissile("MissileTrail",Random(4,6),Random(-2,2)) 
+	TNT1 A 0 A_CustomMissile("ProjectileTrailParticleOrange",Random(4,6),Random(-2,2)) 
+	TMIS A 1 Bright
+	Loop
+ }
+}
+
+ACTOR TurretBox2 : TurretBoxParent
+{
+ Inventory.Icon "BFBXE0"
+ Inventory.PickupMessage "BFG10K Turret"
+ Inventory.PickupSound "turret/pickup"
+ Inventory.UseSound "turret/use"
+ Tag "BFG10K Turret"
+ States
+ {
+  Spawn:
+	BFBX ABCD 3
+	Loop
+  Use:
+	TNT1 A 0 A_SpawnItemEx("BFG10KTurret",56,0,8,0,0,0,0,0)
+	Stop	
+ }
+}
+
+Actor BFG10KTurret : SentryParent2
+{
+  Obituary "%o was blown to pieces by a BFG10K Turret"
+  Tag "\cqBFG 10K\c- Turret"
+  Health 1350
+  Radius 24
+  Height 56
+  Scale 2.0
+  +AMBUSH
+  Species "Player"
+  DamageFactor 0.4
+  DeathSound "sentry/die"
+  States
+  {
+  Spawn:
+	BTUR A 0 NoDelay
+	Goto See
+  TurretLoop:
+	BTUR A 2 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/charge15k")
+	TNT1 A 0 A_AlertMonsters
+	BTUR A 15 A_FaceTarget
+	BTUR A 0 A_PlayWeaponSound("weapons/bfg15kfire")
+	BTUR B 3 Bright A_CustomMissile("Turret10K",34,0,Random(2,-2))	
+	BTUR A 4 A_FaceTarget
+	BTUR A 0 A_PlayWeaponSound("weapons/bfg15kfire")
+	BTUR B 3 Bright A_CustomMissile("Turret10K",34,0,Random(2,-2))
+	BTUR A 4 A_FaceTarget
+	BTUR A 0 A_PlayWeaponSound("weapons/bfg15kfire")
+	BTUR B 3 Bright A_CustomMissile("Turret10K",34,0,Random(2,-2))
+	BTUR A 4 A_FaceTarget
+	BTUR A 0 A_PlayWeaponSound("weapons/bfg15kfire")
+	BTUR B 3 Bright A_CustomMissile("Turret10K",34,0,Random(2,-2))
+	BTUR A 4 A_FaceTarget
+	BTUR A 0 A_PlayWeaponSound("weapons/bfg15kfire")
+	BTUR B 3 Bright A_CustomMissile("Turret10K",34,0,Random(2,-2))	
+	BTUR A 4 A_FaceTarget
+	BTUR A 0 A_PlayWeaponSound("weapons/bfg15kfire")
+	BTUR B 3 Bright A_CustomMissile("Turret10K",34,0,Random(2,-2))
+	BTUR A 4 A_FaceTarget
+	BTUR A 0 A_PlayWeaponSound("weapons/bfg15kfire")
+	BTUR B 3 Bright A_CustomMissile("Turret10K",34,0,Random(2,-2))
+	BTUR A 4 A_FaceTarget
+	BTUR A 0 A_PlayWeaponSound("weapons/bfg15kfire")
+	BTUR B 3 Bright A_CustomMissile("Turret10K",34,0,Random(2,-2))		
+	BTUR A 30 A_PlaySound("weapons/bfg15kcooldown",CHAN_AUTO)
+	BTUR A 2 A_CPosRefire  
+	Loop
+  Death:
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+	TNT1 AAA 0 A_CustomMissile("Kaboom3", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+	TNT1 A 0 A_PlaySound("weapons/rocklx")
+	TNT1 A 1 A_SpawnItem("RocketEx",0,32)
+	BTUR C 0 A_NoBlocking
+	BTUR C 0 A_Scream
+	BTUR C 250
+	Stop
+  }
+}
+
+ACTOR Turret10K : 10KProjectile
+{
+ Obituary "%o was blown to pieces by a BFG10K Turret"
+ States
+ {
+  Death:
+  XDeath:  
+	TNT1 A 1 A_SpawnItem("Turret10KEx")
+	Stop
+ }
+}
+
+ACTOR Turret10KEx : Player10KEx {DamageType "Player"}
+
+ACTOR TurretBox3 : TurretBoxParent
+{
+ Inventory.Icon "DXBXE0"
+ Inventory.PickupMessage "Death Turret"
+ Inventory.PickupSound "turret/pickup"
+ Inventory.UseSound "turret/use"
+ Tag "Death Turret"
+ States
+ {
+  Spawn:
+	DXBX ABCD 3
+	Loop
+  Use:
+	TNT1 A 0 A_SpawnItemEx("DeathTurret",56,0,8,0,0,0,0,0)
+	Stop
+ }
+}
+
+Actor DeathTurret : RocketTurret
+ {
+  Obituary "%o was blown to pieces by a Death Turret"
+  Health 1500
+  Radius 24
+  Height 56
+  Scale 2.0
+  Species "Player"
+  DamageFactor 0.4
+  DeathSound "sentry/die"
+  Tag "\c[i8]Death \c[i7]Turret\c-"
+  States
+   {
+  Spawn:
+	DTUR A 0 NoDelay
+	Goto See
+  TurretLoop:
+	DTUR A 6 A_FaceTarget 
+	TNT1 A 0 A_AlertMonsters
+	DTUR B 6 Bright A_CustomMissile("TurretHomRocket", 30, 0, 0)
+	DTUR A 2 A_CPosRefire  
+	Loop
+  Death:
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+	TNT1 AAA 0 A_CustomMissile("Kaboom3", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+	TNT1 A 0 A_PlaySound("weapons/rocklx")
+	TNT1 A 1 A_SpawnItem("RocketEx",0,32)
+	DTUR C 0 A_NoBlocking
+	DTUR C 0 A_Scream
+	DTUR C 250
+	Stop
+  }
+ }
+
+Actor EnemyDeathTurret
+{
+ Obituary "%o was found and destroyed by the Death Turret"
+ Health 1500
+ Radius 16
+ Height 56
+ Mass 100000
+ Speed 0
+ Scale 2.0
+ Monster
+ +BOSSDEATH
+ +NOTARGET
+ +NOBLOOD
+ +NOSPLASHALERT
+ +MISSILEMORE
+ +MISSILEEVENMORE
+ +QUICKTORETALIATE
+ +LOOKALLAROUND
+ +DONTHARMSPECIES
+ +DONTHARMCLASS
+ +STANDSTILL
+ +NOPAIN
+ Species "Nobles"
+ DamageFactor 0.4
+ DamageFactor "SatanGuard", 0.0
+ DamageFactor "AbyssalSatyr", 0.0
+ Damagefactor "Moloch", 0.0
+ Damagefactor "Exos", 0.0
+ Damagefactor "ZombieDev", 0.0
+ DamageFactor "Terminator", 0.0
+ Damagefactor "AdvancedImp", 0.0
+ DamageFactor "Legendary1", 0.0
+ DamageFactor "LegendaryGuru", 0.0
+ Damagefactor "UltimateLegendary", 0.0
+ Damagefactor "Nobles", 0.0
+ Damagefactor "VileFires", 0.0
+ Damagefactor "Shadow", 0.0
+ Damagefactor "DarkBruiserBFG10K", 0.0
+ DamageFactor "Cybers", 0.0
+ DamageFactor "Hell", 0.0
+ DamageFactor "Commander", 0.0
+ DamageFactor "Baby15K", 0.0
+ DamageFactor "Cyber10K", 0.0
+ DamageFactor "DemolisherEx", 0.0
+ DamageFactor "DarkDemoEx", 0.0
+ DamageFactor "CerChainguns", 0.0
+ DamageFactor "CerEnergyBall", 0.0
+ DamageFactor "LegMind", 0.0
+ DamageFactor "BeheComet", 0.0
+ DamageFactor "UBDTR", 0.0
+ DamageFactor "NobleComet", 0.0
+ DamageFactor "CacoComet", 0.0
+ DamageFactor "SoulToxic", 0.0
+ DamageFactor "Cacolich", 0.0
+ DamageFactor "CadaverRocket", 0.0
+ DamageFactor "HellComet", 0.0
+ DamageFactor "HFCyber", 0.0
+ DamageFactor "DBFG2", 0.0
+ DamageFactor "DBFG10K2", 0.0
+ DamageFactor "DBFGSplash2", 0.0
+ DeathSound "sentry/die"
+ var int user_TurretLoop;
+ Tag "\c[i8]Death \c[i7]Turret\c-"
+ States
+ {
+  Spawn:
+  See:
+	TNT1 A 0 A_SetUserVar(user_TurretLoop,0)
+	DTUR AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Chase
+	DTUR A 0 A_PlaySound("turret/beep")
+	TNT1 A 0 A_ClearTarget
+	Loop
+  Missile:	
+	DTUR A 1 A_FaceTarget
+	DTUR A 3 A_PlaySound("turret/see",7)
+	DTUR A 5 A_FaceTarget
+  TurretLoop:
+	DTUR A 6 A_FaceTarget 
+	TNT1 A 0 A_AlertMonsters
+	DTUR B 6 Bright A_CustomMissile("EnemyTurretHomRocket", 30, 0, 0)
+	DTUR A 2 A_CPosRefire 
+	Loop
+  Death:
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+	TNT1 AAA 0 A_CustomMissile("Kaboom3", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+	TNT1 A 0 A_PlaySound("weapons/rocklx")
+	TNT1 A 1 A_SpawnItem("RocketEx",0,32)
+	DTUR C 0 A_NoBlocking
+	DTUR C 0 A_Scream
+	DTUR C 250
+	Stop
+  }
+}
+
+ACTOR TurretHomRocket : PlayerHomRocket {DamageType "Player"}
+
+ACTOR EnemyTurretHomRocket : PlayerHomRocket 
+{
+ DamageType "NobleComet"
+ -THRUSPECIES
+}

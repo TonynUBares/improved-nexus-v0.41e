@@ -1,0 +1,7 @@
+List of files and the correct load order:
+
+--Your map wad here--
+clusterfuck-v4.2.5.pk3
+improved-nexus_v0.3.pk3
+
+NOTE: All wads can be dowloaded from https://allfearthesentinel.net/

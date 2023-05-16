@@ -1,0 +1,1780 @@
+Actor TrueLegendaryIonStrikerGiver : CustomInventory
+{
+  Scale 0.85
+  Inventory.Amount 1
+  Inventory.MaxAmount 0
+  Inventory.InterHubAmount 0
+Tag "True Legendary Ion Striker"
+inventory.pickupsound "weapons/CFPlanetCrackerPickup"
+inventory.PickupMessage "True Legendary Ion Striker! Use railgun zoom to change alt-fire mode!"
+  States
+  {
+  Spawn:
+    IOZG A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",7,1)
+  SpawnLoop:
+	IONG A -1
+    Stop
+  Pickup:
+	TNT1 A 0 A_JumpIfInventory("True Legendary Ion Striker",1,"JustAmmo")
+  All:
+	TNT1 A 0 A_GiveInventory("True Legendary Ion Striker",1)
+	TNT1 A 0 A_JumpIfInventory("TrueLegendaryIonStrikerGiverCheck",1,"HoldAndDestroy")
+	TNT1 A 0 A_GiveInventory("TrueLegendaryIonStrikerGiverCheck",1)
+	TNT1 A 0 A_GiveInventory("TrueLegendaryCell",Random(8,16))
+	TNT1 A 0 A_GiveInventory("LegendaryFusionCell",8)
+	Stop
+  JustAmmo:
+    TNT1 A 0 A_JumpIfInventory("TrueLegendaryIonStrikerGiverCheck",1,"Null")
+	TNT1 A 0 A_GiveInventory("TrueLegendaryIonStrikerGiverCheck",1)
+	TNT1 A 0 A_GiveInventory("TrueLegendaryCell",Random(8,16))
+	TNT1 A 0 A_GiveInventory("LegendaryFusionCell",8)
+	TNT1 A 0 A_SpawnItemEx("True Legendary Ion Striker")
+	Stop
+  }
+}
+
+Actor TrueLegendaryIonStrikerSpawnerGiver : TrueLegendaryIonStrikerGiver
+{
+  Scale 0.85
+  Inventory.Amount 1
+  Inventory.MaxAmount 0
+  Inventory.InterHubAmount 0
+Tag "True Legendary Ion Striker"
+inventory.pickupsound "weapons/CFPlanetCrackerPickup"
+inventory.PickupMessage "True Legendary Ion Striker! Use railgun zoom to change alt-fire mode!"
+  States
+  {
+  JustAmmo:
+    TNT1 A 0 A_JumpIfInventory("TrueLegendaryIonStrikerGiverCheck",1,"Null")
+	TNT1 A 0 A_GiveInventory("TrueLegendaryIonStrikerGiverCheck",1)
+	TNT1 A 0 A_GiveInventory("TrueLegendaryCell",Random(8,16))
+	TNT1 A 0 A_GiveInventory("LegendaryFusionCell",8)
+	Stop
+  }
+}
+
+Actor TrueLegendaryIonStrikerGiverCheck : Inventory { Inventory.Amount 1 Inventory.MaxAmount 1 Inventory.InterHubAmount 0 }
+
+
+
+ACTOR "True Legendary Ion Striker" : Weapon 
+{
+//$Category Weapons/BFG20K
+//$Sprite IONGX0
+//$Title "True Legendary Ion Striker"
+Tag "True Legendary Ion Striker"
+inventory.pickupsound "weapons/CFPlanetCrackerPickup"
+inventory.PickupMessage "True Legendary Ion Striker! Use railgun zoom to change alt-fire mode!"
+obituary "%o was blasted off to another galaxy by %k's concentrated \cnLegendary\c- plasma."
+Weapon.UpSound "weapons/CFPlanetCrackerUp"
+Weapon.SelectionOrder 1
+Weapon.AmmoType "TrueLegendaryCell"
+Weapon.AmmoType2 "LegendaryFusionCell"
+Weapon.AmmoGive 250
+Weapon.AmmoGive2 1
+Weapon.AmmoUse 0
+Weapon.AmmoUse2 1
+Weapon.Kickback 105
+Weapon.SlotNumber 0
+  Weapon.SlotPriority 4.0
+Weapon.PreferredSkin "BFG9500-Marine"
++INVENTORY.UNDROPPABLE
++WEAPON.AMMO_OPTIONAL
++WEAPON.ALT_AMMO_OPTIONAL
++WEAPON.NOAUTOFIRE
+States
+{
+Spawn:
+    IOZG A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",7,1)
+SpawnLoop:
+  IOZG X -1
+  Loop
+Ready:
+  TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+  IOZG A 3 A_WeaponReady
+  TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+  IOZG A 3 A_WeaponReady
+  TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+  IOZG A 3 A_WeaponReady
+  TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+  IOZG A 3 A_WeaponReady
+  TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+  IOZG A 3 A_WeaponReady
+  TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+  IOZG A 3 A_WeaponReady
+  TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+  IOZG A 3 A_WeaponReady
+  TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+  IOZG A 3 A_WeaponReady
+  TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+  IOZG A 3 A_WeaponReady
+  TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+  IOZG A 3 A_WeaponReady
+  TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+  IOZG A 3 A_WeaponReady
+  TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+  IOZG A 3 A_WeaponReady
+  TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+  IOZG A 3 A_WeaponReady
+  TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+  IOZG A 3 A_WeaponReady
+  TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+  IOZG A 3 A_WeaponReady
+  TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+  IOZG BC 2 A_WeaponReady
+  IOZG DE 2 A_WeaponReady
+  TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+  IOZG FG 2 A_WeaponReady
+  IOZG HI 2 A_WeaponReady
+  TNT1 A 0 A_JumpIfInventory("RailgunAction",1,"Zoom")
+  IOZG JK 2 A_WeaponReady
+  IOZG L 2 A_WeaponReady
+  Loop
+ Deselect:
+	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",1)
+  TNT1 A 0
+  TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+  TNT1 A 0 A_TakeInventory("MineAction",1)
+  TNT1 A 0 A_TakeInventory("RailgunAction",1)
+  IOZR A 0 A_PlayWeaponSound("weapons/CFPlanetCrackerDown")
+  TNT1 A 0 A_Lower
+  IOZG A 1 A_Lower
+  Goto Deselect+7
+ Select:
+	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",0)
+  TNT1 A 0 A_Raise
+  IOZG A 1 A_Raise
+  Goto Select+1
+Fire:
+  TNT1 A 0
+  TNT1 A 0 A_JumpIfInventory("TrueLegendaryCell",50,1)
+  Goto Empty
+  TNT1 A 0 A_JumpIfInventory("AgilityRuneRage",1,"NotSoFast")
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Fire",6)
+  IOZZ A 0 A_FireCustomMissile("CFPlanetBeam", 0, 1, 15, 10)
+  IOZZ A 0 A_PlayWeaponSound("weapons/plasmacellin")
+  IOZZ A 0 A_Recoil(30)
+  TNT1 A 0 A_Quake(7,25,0,2,0)
+  IOZG A 0 A_SetBlend("Blue",0.1,40)
+  TNT1 A 0 A_TakeInventory("TrueLegendaryCell",50)
+  IOZF A 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF A 0 A_ZoomFactor(0.985)
+  IOZF B 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF B 0 A_ZoomFactor(0.965)
+  IOZF C 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF C 0 A_ZoomFactor(0.92)
+  IOZF D 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF D 0 A_ZoomFactor(0.85)
+  IOZF E 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF E 0 A_ZoomFactor(0.8)
+  IOZF F 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF F 0 A_ZoomFactor(0.825)
+  IOZF G 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF G 0 A_ZoomFactor(0.85)
+  IOZF H 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF H 0 A_ZoomFactor(0.875)
+  IOZF I 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF I 0 A_ZoomFactor(0.9)
+  IOZF J 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF J 0 A_ZoomFactor(0.925)
+  IOZF K 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF K 0 A_ZoomFactor(0.95)
+  IOZF L 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF L 0 A_ZoomFactor(0.975)
+  IOZF A 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF A 0 A_ZoomFactor(1)
+  IOZG AAAAA 3 A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZG A 0 A_PlaySoundEx("weapons/CFPlanetCrackerReload","SoundSlot5")
+  IOZR ABC 2
+  IOZR DEFDEFDEF 2
+  IOZR CBG 2
+  IOZG A 10
+  Goto Ready
+NotSoFast:
+  TNT1 A 0
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Fire",6)
+  IOZZ A 0 A_FireCustomMissile("CFPlanetBeam", 0, 1, 15, 10)
+  IOZZ A 0 A_PlayWeaponSound("weapons/plasmacellin")
+  IOZZ A 0 A_Recoil(30)
+  TNT1 A 0 A_Quake(7,25,0,2,0)
+  IOZG A 0 A_SetBlend("Blue",0.1,40)
+  TNT1 A 0 A_TakeInventory("TrueLegendaryCell",50)
+  IOZF A 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF A 0 A_ZoomFactor(0.985)
+  IOZF B 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF B 0 A_ZoomFactor(0.965)
+  IOZF C 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF C 0 A_ZoomFactor(0.92)
+  IOZF D 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF D 0 A_ZoomFactor(0.85)
+  IOZF E 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF E 0 A_ZoomFactor(0.8)
+  IOZF F 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF F 0 A_ZoomFactor(0.825)
+  IOZF G 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF G 0 A_ZoomFactor(0.85)
+  IOZF H 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF H 0 A_ZoomFactor(0.875)
+  IOZF I 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF I 0 A_ZoomFactor(0.9)
+  IOZF J 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF J 0 A_ZoomFactor(0.925)
+  IOZF K 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF K 0 A_ZoomFactor(0.95)
+  IOZF L 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF L 0 A_ZoomFactor(0.975)
+  IOZF A 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF A 0 A_ZoomFactor(1)
+  IOZG AAAAA 6 A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZG A 0 A_PlaySoundEx("weapons/CFPlanetCrackerReload","SoundSlot5")
+  IOZR ABC 4
+  IOZR DEFDEFDEF 4
+  IOZR CBG 4
+  IOZG A 10
+  Goto Ready
+Altfire:
+  TNT1 A 0
+  TNT1 A 0 A_JumpIfInventory("IonStrikerMode",1,"AltFire2")
+  TNT1 A 0 A_JumpIfInventory("TrueLegendaryCell",150,1)
+  Goto Empty
+  TNT1 A 0 A_JumpIfInventory("AgilityRuneRage",1,"NotSoFastAlt")
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Charge",5)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_MiniBip1",1)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_MiniCharge1",6)
+  TNT1 A 0 A_Quake(1,43,0,2,0)
+  IOZC ABCDEFG 5 BRIGHT
+  IOZC H 13 BRIGHT
+  TNT1 A 0 A_Quake(3,21,0,2,0)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_MiniCharge2",6)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_MiniBip2",1)
+  IOZC IJKLMNNNNNNNNNNNNNNNN 1 BRIGHT
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_MiniCharge3",6)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_MiniBip3",1)
+  TNT1 A 0 A_Quake(5,52,0,2,0)
+  IOZC OPQR 13 BRIGHT
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Ready",6)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Cling",1)
+  TNT1 A 0 A_Quake(7,13,0,2,0)
+  IOZC STUVWWWWWWWWW 1 BRIGHT
+  TNT1 A 0 A_Quake(7,10,0,6,0)
+  IOZC W 10 BRIGHT
+  TNT1 A 0 A_Quake(7,14,0,2,0)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Void",6)
+  IOZC WWWWWWW 2 BRIGHT
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Mechanism1",0)
+  TNT1 A 0 A_Quake(8,8,0,2,0)
+  IOZC WWWWWWWWWWW 2 BRIGHT
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Mechanism2",0)
+  TNT1 A 0 A_Quake(9,90,0,2,0)
+  IOZD BCDEFGHIJKLMNNN 5 BRIGHT
+  IOZZ A 0 A_Recoil(70)
+  IOZG A 0 A_SetBlend("Blue",0.4,180)
+  IOZG A 0 A_SetBlend("Cyan",0.8,180)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Hyper",5)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Fire",6)
+  IOZZ A 0 A_FireCustomMissile("CFPlanetBeamSuper", 0, 0, 15, 10)
+  TNT1 A 0 A_TakeInventory("TrueLegendaryCell",150)
+  TNT1 A 0 A_Quake(9,35,0,2,0)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF A 0 A_ZoomFactor(0.95)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF B 0 A_ZoomFactor(0.85)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF C 0 A_ZoomFactor(0.8)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF D 0 A_ZoomFactor(0.7)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF E 0 A_ZoomFactor(0.55)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF F 0 A_ZoomFactor(0.5)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF G 0 A_ZoomFactor(0.515)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF F 0 A_ZoomFactor(0.525)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF E 0 A_ZoomFactor(0.55)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF D 0 A_ZoomFactor(0.575)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF C 0 A_ZoomFactor(0.6)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF B 0 A_ZoomFactor(0.75)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF A 0 A_ZoomFactor(0.85)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF A 0 A_ZoomFactor(0.9)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF A 0 A_ZoomFactor(0.925)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF A 0 A_ZoomFactor(0.95)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF A 0 A_ZoomFactor(0.975)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF A 0 A_ZoomFactor(0.985)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZO A 0 A_ZoomFactor(1)
+  IOZD NNNNNNN 2 BRIGHT A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZD MLKJ 2 BRIGHT A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZD IHGFEDCBA 2 BRIGHT A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_MiniCharge1",5)
+  IOZC WVUTSRQPON 1 BRIGHT A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZC MLKJ 4 BRIGHT A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_MiniBip4",1)
+  IOZC IHGFEDCBA 2 BRIGHT A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZG AAAAAA 3 BRIGHT A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZG AAAAA 4 A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZG A 5
+  Goto Ready 
+NotSoFastAlt:
+  TNT1 A 0
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Charge",5)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_MiniBip1",1)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_MiniCharge1",6)
+  TNT1 A 0 A_Quake(1,43,0,2,0)
+  IOZC ABCDEFG 5 BRIGHT
+  IOZC H 26 BRIGHT
+  TNT1 A 0 A_Quake(3,21,0,2,0)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_MiniCharge2",6)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_MiniBip2",1)
+  IOZC IJKLMNNNNNNNNNNNNNNNN 1 BRIGHT
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_MiniCharge3",6)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_MiniBip3",1)
+  TNT1 A 0 A_Quake(5,52,0,2,0)
+  IOZC OPQR 26 BRIGHT
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Ready",6)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Cling",1)
+  TNT1 A 0 A_Quake(7,13,0,2,0)
+  IOZC STUVWWWWWWWWW 1 BRIGHT
+  TNT1 A 0 A_Quake(7,10,0,6,0)
+  IOZC W 20 BRIGHT
+  TNT1 A 0 A_Quake(7,14,0,2,0)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Void",6)
+  IOZC WWWWWWW 4 BRIGHT
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Mechanism1",0)
+  TNT1 A 0 A_Quake(8,8,0,2,0)
+  IOZC WWWWWWWWWWW 4 BRIGHT
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Mechanism2",0)
+  TNT1 A 0 A_Quake(9,90,0,2,0)
+  IOZD BCDEFGHIJKLMNNN 10 BRIGHT
+  IOZZ A 0 A_Recoil(70)
+  IOZG A 0 A_SetBlend("Blue",0.4,180)
+  IOZG A 0 A_SetBlend("Cyan",0.8,180)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Hyper",5)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Fire",6)
+  IOZZ A 0 A_FireCustomMissile("CFPlanetBeamSuper", 0, 0, 15, 10)
+  TNT1 A 0 A_TakeInventory("TrueLegendaryCell",150)
+  TNT1 A 0 A_Quake(9,35,0,2,0)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF A 0 A_ZoomFactor(0.95)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF B 0 A_ZoomFactor(0.85)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF C 0 A_ZoomFactor(0.8)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF D 0 A_ZoomFactor(0.7)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF E 0 A_ZoomFactor(0.55)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF F 0 A_ZoomFactor(0.5)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF G 0 A_ZoomFactor(0.515)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF F 0 A_ZoomFactor(0.525)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF E 0 A_ZoomFactor(0.55)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF D 0 A_ZoomFactor(0.575)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF C 0 A_ZoomFactor(0.6)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF B 0 A_ZoomFactor(0.75)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF A 0 A_ZoomFactor(0.85)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF A 0 A_ZoomFactor(0.9)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF A 0 A_ZoomFactor(0.925)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF A 0 A_ZoomFactor(0.95)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF A 0 A_ZoomFactor(0.975)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF A 0 A_ZoomFactor(0.985)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZO A 0 A_ZoomFactor(1)
+  IOZD NNNNNNN 4 BRIGHT A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZD MLKJ 4 BRIGHT A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZD IHGFEDCBA 4 BRIGHT A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_MiniCharge1",5)
+  IOZC WVUTSRQPON 1 BRIGHT A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZC MLKJ 8 BRIGHT A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_MiniBip4",1)
+  IOZC IHGFEDCBA 4 BRIGHT A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZG AAAAAA 6 BRIGHT A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZG AAAAA 8 A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZG A 5
+  Goto Ready 
+Altfire2:
+  TNT1 A 0
+  TNT1 A 0 A_JumpIfInventory("LegendaryFusionCell",1,1)
+  Goto Empty
+  TNT1 A 0 A_JumpIfInventory("AgilityRuneRage",1,"NotSoFastAlt2")
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Charge",5)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_MiniBip1",1)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_MiniCharge1",6)
+  TNT1 A 0 A_Quake(1,43,0,2,0)
+  IOZC ABCDEFG 5 BRIGHT
+  IOZC H 13 BRIGHT
+  TNT1 A 0 A_Quake(3,21,0,2,0)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_MiniCharge2",6)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_MiniBip2",1)
+  IOZC IJKLMNNNNNNNNNNNNNNNN 1 BRIGHT
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_MiniCharge3",6)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_MiniBip3",1)
+  TNT1 A 0 A_Quake(5,52,0,2,0)
+  IOZC OPQR 13 BRIGHT
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Ready",6)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Cling",1)
+  TNT1 A 0 A_Quake(7,13,0,2,0)
+  IOZC STUVWWWWWWWWW 1 BRIGHT
+  TNT1 A 0 A_Quake(7,10,0,6,0)
+  IOZC W 10 BRIGHT
+  TNT1 A 0 A_Quake(7,14,0,2,0)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Void",6)
+  IOZC WWWWWWW 2 BRIGHT
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Mechanism1",0)
+  TNT1 A 0 A_Quake(8,8,0,2,0)
+  IOZC WWWWWWWWWWW 2 BRIGHT
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Mechanism2",0)
+  TNT1 A 0 A_Quake(9,90,0,2,0)
+  IOZD BCDEFGHIJKLMNNN 5 BRIGHT
+  IOZZ A 0 A_Recoil(70)
+  IOZG A 0 A_SetBlend("Blue",0.4,180)
+  IOZG A 0 A_SetBlend("Cyan",0.8,180)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Hyper",5)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Fire",6)
+  IOZZ A 0 A_FireCustomMissile("IonCannonShot", 0, 0, 15, 10)
+  TNT1 A 0 A_TakeInventory("LegendaryFusionCell",1)
+  TNT1 A 0 A_Quake(9,35,0,2,0)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF A 0 A_ZoomFactor(0.95)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF B 0 A_ZoomFactor(0.85)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF C 0 A_ZoomFactor(0.8)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF D 0 A_ZoomFactor(0.7)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF E 0 A_ZoomFactor(0.55)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF F 0 A_ZoomFactor(0.5)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF G 0 A_ZoomFactor(0.515)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF F 0 A_ZoomFactor(0.525)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF E 0 A_ZoomFactor(0.55)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF D 0 A_ZoomFactor(0.575)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF C 0 A_ZoomFactor(0.6)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF B 0 A_ZoomFactor(0.75)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF A 0 A_ZoomFactor(0.85)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF A 0 A_ZoomFactor(0.9)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF A 0 A_ZoomFactor(0.925)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF A 0 A_ZoomFactor(0.95)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF A 0 A_ZoomFactor(0.975)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF A 0 A_ZoomFactor(0.985)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZO A 0 A_ZoomFactor(1)
+  IOZD NNNNNNN 2 BRIGHT A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZD MLKJ 2 BRIGHT A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZD IHGFEDCBA 2 BRIGHT A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_MiniCharge1",5)
+  IOZC WVUTSRQPON 1 BRIGHT A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZC MLKJ 4 BRIGHT A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_MiniBip4",1)
+  IOZC IHGFEDCBA 2 BRIGHT A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZG AAAAAA 3 BRIGHT A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZG AAAAA 4 A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZG A 5
+  Goto Ready
+NotSoFastAlt2:
+  TNT1 A 0
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Charge",5)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_MiniBip1",1)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_MiniCharge1",6)
+  TNT1 A 0 A_Quake(1,43,0,2,0)
+  IOZC ABCDEFG 10 BRIGHT
+  IOZC H 26 BRIGHT
+  TNT1 A 0 A_Quake(3,21,0,2,0)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_MiniCharge2",6)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_MiniBip2",1)
+  IOZC IJKLMNNNNNNNNNNNNNNNN 1 BRIGHT
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_MiniCharge3",6)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_MiniBip3",1)
+  TNT1 A 0 A_Quake(5,52,0,2,0)
+  IOZC OPQR 26 BRIGHT
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Ready",6)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Cling",1)
+  TNT1 A 0 A_Quake(7,13,0,2,0)
+  IOZC STUVWWWWWWWWW 1 BRIGHT
+  TNT1 A 0 A_Quake(7,10,0,6,0)
+  IOZC W 20 BRIGHT
+  TNT1 A 0 A_Quake(7,14,0,2,0)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Void",6)
+  IOZC WWWWWWW 4 BRIGHT
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Mechanism1",0)
+  TNT1 A 0 A_Quake(8,8,0,2,0)
+  IOZC WWWWWWWWWWW 4 BRIGHT
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Mechanism2",0)
+  TNT1 A 0 A_Quake(9,90,0,2,0)
+  IOZD BCDEFGHIJKLMNNN 10 BRIGHT
+  IOZZ A 0 A_Recoil(70)
+  IOZG A 0 A_SetBlend("Blue",0.4,180)
+  IOZG A 0 A_SetBlend("Cyan",0.8,180)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Hyper",5)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Fire",6)
+  IOZZ A 0 A_FireCustomMissile("IonCannonShot", 0, 0, 15, 10)
+  TNT1 A 0 A_TakeInventory("LegendaryFusionCell",1)
+  TNT1 A 0 A_Quake(9,35,0,2,0)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF A 0 A_ZoomFactor(0.95)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF B 0 A_ZoomFactor(0.85)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF C 0 A_ZoomFactor(0.8)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF D 0 A_ZoomFactor(0.7)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF E 0 A_ZoomFactor(0.55)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF F 0 A_ZoomFactor(0.5)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF G 0 A_ZoomFactor(0.515)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF F 0 A_ZoomFactor(0.525)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF E 0 A_ZoomFactor(0.55)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF D 0 A_ZoomFactor(0.575)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF C 0 A_ZoomFactor(0.6)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF B 0 A_ZoomFactor(0.75)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF A 0 A_ZoomFactor(0.85)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF A 0 A_ZoomFactor(0.9)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF A 0 A_ZoomFactor(0.925)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF A 0 A_ZoomFactor(0.95)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF A 0 A_ZoomFactor(0.975)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZF A 0 A_ZoomFactor(0.985)
+  IOZD N 1 Bright A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZO A 0 A_ZoomFactor(1)
+  IOZD NNNNNNN 4 BRIGHT A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZD MLKJ 4 BRIGHT A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZD IHGFEDCBA 4 BRIGHT A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_MiniCharge1",5)
+  IOZC WVUTSRQPON 1 BRIGHT A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZC MLKJ 8 BRIGHT A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_MiniBip4",1)
+  IOZC IHGFEDCBA 4 BRIGHT A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZG AAAAAA 6 BRIGHT A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZG AAAAA 8 A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
+  IOZG A 5
+  Goto Ready
+Zoom:
+  TNT1 A 0 A_TakeInventory("RailgunAction",1)
+ChangeMode:
+  TNT1 A 0 A_JumpIfInventory("IonStrikerMode",1,"ChangeMode2")
+  TNT1 A 0 A_Print("Ion Cannon Alt-fire",1)
+  TNT1 A 0 A_GiveInventory("IonStrikerMode")
+  IOZG A 4 A_PlaySound("weapons/CFPlanetCracker_Mode",7)
+  IOZG A 2 Offset(0,34)
+  IOZG A 2 Offset(0,37)
+  IOZG A 2 Offset(0,40)
+  IOZG A 2 Offset(0,37)
+  IOZG A 2 Offset(0,34)
+  IOZG A 1
+  Goto Ready
+ChangeMode2:
+  TNT1 A 0 A_Print("Plasmatic Cannon Alt-fire",1)
+  TNT1 A 0 A_TakeInventory("IonStrikerMode")
+  IOZG A 4 A_PlaySound("weapons/CFPlanetCracker_Mode",7)
+  IOZG A 2 Offset(0,34)
+  IOZG A 2 Offset(0,37)
+  IOZG A 2 Offset(0,34)
+  IOZG A 1
+  Goto Ready
+Empty:
+  IOZG A 4 A_PlaySound("weapons/CFPlanetCracker_MiniBip3",7)
+  IOZG A 2 Offset(0,34)
+  IOZG A 2 Offset(0,37)
+  IOZG A 2 Offset(0,34)
+  Goto ready
+}
+}
+
+ACTOR IonStrikerMode : Inventory { Inventory.MaxAmount 1 }
+
+ACTOR DullInheritance
+{ 
+RenderStyle Add
++NOINTERACTION
++NOGRAVITY
+}
+
+//Main Fire
+ACTOR CFPlanetBeam : FastProjectile
+{
+Speed 100
+Radius 19
+Height 10
+Damage (250)
+Renderstyle Add
++RIPPER
+-CANNOTPUSH
+-NODAMAGETHRUST
++EXTREMEDEATH
++FORCERADIUSDMG
++EXPLODEONWATER
++DONTBLAST
++THRUSPECIES
++FOILINVUL
+DeathSound ""
+Species "Player"
+MissileType "CFPlanetBeamTrail"
+DamageType "TrueLegendaryDamage"
+Scale 0.2
+states
+{
+Spawn:
+    TNT1 A 0
+    TNT1 A 1 A_Explode(1500,92,0,0)
+	TNT1 A 0 Bright A_PlaySoundEx("weapons/dtech10kball","Voice",1)
+    Loop
+Death:
+    TNT1 A 0 A_PlaySoundEx("CFPlanetCrackerImpact","Normal")
+    TNT1 A 0 A_Explode(3500,256,0,1)
+	TNT1 A 0 A_Explode(500,256,XF_HURTSOURCE,1)
+    TNT1 A 0 A_SpawnItemEx("CFPlanetCrackerImpact1", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+    TNT1 A 0 A_SpawnItemEx("CFPlanetCrackerImpact2", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+    TNT1 A 0 A_SpawnItemEx("CFPlanetCrackerImpact3", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+    TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("CFIonRainFlare",random(-150,150),random(-150,150),random(-25,50),0,0,frandom(1,2),0,0,0)
+    TNT1 A 1 A_SpawnItemEx("CFPlanetCrackerBeamHit", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+    TNT1 AAAAAAAAAAA 1 A_SpawnItemEx("CFIonRainFlare",random(-150,150),random(-150,150),random(-25,50),0,0,frandom(1,2),0,0,0)
+    Stop
+  }
+}
+
+ACTOR CFPlanetCrackerProjectileSpray : DullInheritance
+{ 
+Scale 1
+Alpha 1
+Renderstyle Normal
++CLIENTSIDEONLY
+States
+{
+Spawn:
+    TNT1 A 0
+    TNT1 A 0 A_SpawnItemEx("CFPlanetBeamTrail", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+    TNT1 A 0 A_SpawnItemEx("CFPlanetCrackerMiniImpact", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+    TNT1 AAAAAAA 1 A_SpawnItemEx("CFIonRainFlare",random(-50,50),random(-50,50),random(-15,25),0,0,frandom(1,2),0,0,0)
+    Stop
+    }
+}
+
+ACTOR CFPlanetCrackerImpact1
+{
++NOGRAVITY
++NOINTERACTION
++CLIENTSIDEONLY
+Renderstyle Add
+Alpha 0.99
+Scale 0.5
+States
+{
+  Spawn:
+  TNT1 A 2
+  Looplet:
+  TNT1 A 0 //A_SetScale(ScaleX +0.04, ScaleY +0.04)
+  TNT1 A 0 A_FadeOut(0.07)
+  BLUF A 1 Bright
+  Loop
+  }
+}
+
+ACTOR CFPlanetCrackerImpact2 : CFPlanetCrackerImpact1
+{
+  Scale 0.75
+  Alpha 0.8
+  +CLIENTSIDEONLY
+  States
+  {
+  Spawn:
+  TNT1 A 4
+  Looplet:
+  TNT1 A 0 //A_SetScale(ScaleX +0.05, ScaleY +0.05)
+  TNT1 A 0 A_FadeOut(0.07)
+  BLUF A 1 Bright
+  Loop
+  }
+}
+
+ACTOR CFPlanetCrackerImpact3 : CFPlanetCrackerImpact1
+{
+  Scale 0.9
+  Alpha 0.7
+  +CLIENTSIDEONLY
+  States
+  {
+  Spawn:
+  TNT1 A 6
+  Looplet:
+  TNT1 A 0 //A_SetScale(ScaleX +0.06, ScaleY +0.06)
+  TNT1 A 0 A_FadeOut(0.07)
+  BLUF A 1 Bright
+  Loop
+  }
+}
+
+ACTOR CFPlanetCrackerMiniImpact : CFPlanetCrackerImpact1
+{
+  Scale 0.2
+  +CLIENTSIDEONLY
+  States
+  {
+  Spawn:
+  TNT1 A 2
+  Looplet:
+  TNT1 A 0 //A_SetScale(ScaleX +0.05, ScaleY +0.05)
+  TNT1 A 0 A_FadeOut(0.07)
+  BLUF A 1 Bright
+  Loop
+  }
+}
+
+ACTOR CFPlanetCrackerBeamHit
+{ 
+    Projectile
+    Scale 2.5
+    Alpha 0.8
+    RenderStyle Add
+    +NOINTERACTION
++CLIENTSIDEONLY
+    +NOGRAVITY
+    States
+    {
+    Spawn:
+      PBOM ABCDEFGHIJKLMN 1 BRIGHT //A_SetScale(ScaleX +0.06, ScaleY +0.06)
+      Stop
+    }
+}
+
+ACTOR CFPlanetSmoke
+{
+Radius 1
+Height 1
+RenderStyle ADD
+Alpha 0.3
+Scale 0.2
+Speed 0.65
++NOGRAVITY
++NOBLOCKMAP
++FLOORCLIP
++FORCEXYBILLBOARD
++CLIENTSIDEONLY
+States
+{
+Spawn:
+ISMK ABCDEFGHIJKLMNOP 3
+Stop
+}
+}
+
+ACTOR CFPlanetSmoke2 : CFPlanetSmoke
+{
+Speed 1
+}
+
+ACTOR CFPlanetSmoke3 : CFPlanetSmoke
+{
+Speed 0.35
+}
+
+//Main Fire Trails
+ACTOR CFPlanetBeamTrail
+{
+  RenderStyle Add
+  Alpha 0.75
+  Scale 0.15
+  +NOCLIP
+  +NOGRAVITY
+  +CLIENTSIDEONLY
+  States
+  {
+  Spawn:
+    BLUF A 0
+    BLUF A 0 A_SpawnItemEx("CFPlanetCrackerProjectileTrail1", random(15,-15), random(15,-15), random(15,-15), 0, 0, 0, 0, 128, 0)
+  Looplet:
+    BLUF A 0 //A_SetScale(ScaleX -0.006, ScaleY -0.006)
+    BLUF A 2 bright A_FadeOut(0.05)
+    Loop
+  }
+}
+
+ACTOR CFPlanetBeamTrailSmall : CFPlanetBeamTrail
+{
+  Scale 0.05
+  +CLIENTSIDEONLY
+  States
+  {
+  Spawn:
+    BLUF A 0
+    BLUF A 2 bright A_FadeOut(0.05)
+    Wait
+  }
+}
+
+ACTOR CFPlanetCrackerProjectileTrail1 : DullInheritance
+{ 
+    Scale 1
+    Alpha 0.25
++CLIENTSIDEONLY
+    States
+    {
+    Spawn:
+      PBOM EFGHIJKLMN 2 BRIGHT
+      Stop
+    }
+}
+
+ACTOR CFPlanetCrackerProjectileTrail2 : DullInheritance
+{ 
+    Scale 2
+    Alpha 0.5
++CLIENTSIDEONLY
+    States
+    {
+    Spawn:
+      PLNS ABCDEFGHIJKLMNOP 3 BRIGHT A_ChangeVelocity (1, frandom(-3, 3), frandom(-3, 3), 1)
+      Stop
+    }
+}
+
+//Main Fire smoke
+ACTOR CFPlanetCrackerSmokeSpawner
+{
+    Radius 1
+Height 1
+Speed 25
++CLIENTSIDEONLY
+    PROJECTILE
+    States
+    {
+    Spawn:
+TNT1 A 1
+TNT1 A 0 A_Die
+Goto Death
+    Death:
+TNT1 AAAAA 0 A_CustomMissile("CFPlanetSmoke",0, 0, random(-90, 90), 2, random(-90, 90))
+TNT1 AAAAA 0 A_CustomMissile("CFPlanetSmoke2",0, 0, random(-90, 90), 2, random(-90, 90))
+TNT1 AAAAA 0 A_CustomMissile("CFPlanetSmoke3",0, 0, random(-90, 90), 2, random(-90, 90))
+Stop
+    }
+}
+
+ACTOR CFPlanetCrackerProjectileBoom : DullInheritance
+{ 
+    Projectile
+    Scale 2
+    Alpha 0.5
++CLIENTSIDEONLY
+    Renderstyle Add
+    States
+    {
+    Spawn:
+      PULS ABCDEFGHIJKLMNOPQRST 2 BRIGHT
+      Stop
+    }
+}
+
+Actor CFIonRain
+{
+ +NoInteraction
+ Height 3
+ Radius 2
+ RenderStyle Add
+ Scale 0.4
+ +CLIENTSIDEONLY
+ reactiontime 11
+ States
+ {
+  Spawn:
+   TNT1 A 0 A_SpawnItemEx("CFIonRainFlare",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+   TNT1 A 0 A_SpawnItemEx("CFIonRainFlare",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+   TNT1 A 3 A_SpawnItemEx("CFIonRainFlare",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+   TNT1 A 0 A_SpawnItemEx("CFIonRainFlare",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+   TNT1 A 0 A_SpawnItemEx("CFIonRainFlare",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+   TNT1 A 3 A_SpawnItemEx("CFIonRainFlare",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+   TNT1 A 0 A_SpawnItemEx("CFIonRainFlare",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+   TNT1 A 0 A_SpawnItemEx("CFIonRainFlare",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+   TNT1 A 3 A_SpawnItemEx("CFIonRainFlare",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+   TNT1 A 0 A_SpawnItemEx("CFIonRainFlare",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+   TNT1 A 0 A_SpawnItemEx("CFIonRainFlare",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+   TNT1 A 3 A_SpawnItemEx("CFIonRainFlare",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+   TNT1 A 0 A_SpawnItemEx("CFIonRainFlare",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+   TNT1 A 0 A_SpawnItemEx("CFIonRainFlare",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+   TNT1 A 3 A_SpawnItemEx("CFIonRainFlare",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+   TNT1 A 0 A_SpawnItemEx("CFIonRainFlare",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+   TNT1 A 0 A_SpawnItemEx("CFIonRainFlare",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+   TNT1 A 3 A_SpawnItemEx("CFIonRainFlare",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+   TNT1 A 0 A_SpawnItemEx("CFIonRainFlare",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+   TNT1 A 0 A_SpawnItemEx("CFIonRainFlare",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+   TNT1 A 3 A_SpawnItemEx("CFIonRainFlare",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+   TNT1 A 0 A_SpawnItemEx("CFIonRainFlare",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+   TNT1 A 0 A_SpawnItemEx("CFIonRainFlare",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+   TNT1 A 3 A_SpawnItemEx("CFIonRainFlare",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+   TNT1 A 0 A_SpawnItemEx("CFIonRainFlare",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+   TNT1 A 0 A_SpawnItemEx("CFIonRainFlare",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+   TNT1 A 3 A_SpawnItemEx("CFIonRainFlare",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+   TNT1 A 0 A_SpawnItemEx("CFIonRainFlare",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+   TNT1 A 0 A_SpawnItemEx("CFIonRainFlare",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+   TNT1 A 3 A_SpawnItemEx("CFIonRainFlare",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+   TNT1 A 0 A_SpawnItemEx("CFIonRainFlare",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+   TNT1 A 0 A_SpawnItemEx("CFIonRainFlare",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+   TNT1 A 3 A_SpawnItemEx("CFIonRainFlare",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+   TNT1 A 0 A_SpawnItemEx("CFIonRainFlare",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+   TNT1 A 0 A_SpawnItemEx("CFIonRainFlare",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+   TNT1 A 2 A_SpawnItemEx("CFIonRainFlare",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+   TNT1 A 0 A_Countdown
+   loop
+  Death:
+   TNT1 A 0
+   stop
+ }
+}
+
+actor CFIonRainFlare
+{
+  RenderStyle Add
+  alpha 1
+  +NOINTERACTION
+  +RANDOMIZE
+  +NOCLIP
+  +NOGRAVITY
+  +CLIENTSIDEONLY
+  Scale 0.4
+  states
+  {
+  Spawn:
+    TNT1 A 0
+    TNT1 A 0 A_ChangeVelocity (frandom(-0.2, 0.2), frandom(-0.2, 0.2), frandom(-0.1, 0.1), 0)
+    //TNT1 A 0 A_CustomMissile("CFPlanetCrackerIonBolter",0,0,random(0,360),CMF_TRACKOWNER,random(45,0))
+    PBAX B 5 bright A_FadeOut(0.1)
+    Loop
+  }
+}
+
+
+//Alternative Plasmatic Alt-Fire
+ACTOR CFPlanetBeamSuper : FastProjectile
+{
+  Speed 75
+  Radius 19
+  Height 10
+  Damage 800
+  PROJECTILE
+  +NODAMAGETHRUST
+  +EXTREMEDEATH
+  +FORCERADIUSDMG
+  +EXPLODEONWATER
+  +DONTBLAST
+  +FOILINVUL
+  +PIERCEARMOR
+  +MTHRUSPECIES
+  +DONTHURTSPECIES
+  species "player"
+  Renderstyle Add
+  MissileType "CFPlanetBeamTrail"
+  DamageType "TrueLegendaryDamage"
+  DeathSound ""
+  states
+  {
+  Spawn:
+      TNT1 A 1
+      Loop
+  Death:
+      TNT1 A 0 A_StopSoundEx("Body")
+      TNT1 A 0 A_PlaySound("weapons/CFPlanetCrackerBoom",6)
+      TNT1 A 0 A_Explode(5000,512,XF_HURTSOURCE,1)
+	  TNT1 AA 0 A_SpawnItemEx("BlueGuruStruckGlowX",0,0,10,0,0,0,0,128,0)
+	  TNT1 AA 0 A_SpawnItemEx("BlueGuruStruckGlowY",0,0,10,0,0,0,0,128,0)
+	  TNT1 AAAAAA 0 A_SpawnItemEx("playertruelegbfgsmoke",random(126,-126),random(126,-126),random(66,-66),0.00001*random(100000,-100000),0.00001*random(100000,-100000),0.00001*random(100000,-100000),random(0,359),SXF_TRANSFERPOINTERS,0)
+      PBAX BBBB 1 A_SpawnItemEx("CFPlanetCrackerProjectileBoom", 0, 0, 0, 0.1*random(20,15), 0.1*random(25,15), 2+random(1,-1), 0, 128, 0)
+      PBAX BBBB 1 A_SpawnItemEx("CFPlanetCrackerProjectileBoom", 0, 0, 0, random(3,2), random(3,2), 3+random(3,2), 0, 128, 0)
+	  PBAX A 0 A_SpawnItemEx("PCPlasmaticSpawner",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS)
+	  PBAX B 1 A_FadeOut(0.05)
+      Wait
+  }
+}
+
+ACTOR PCPlasmaticSpawner : LegCybThorStrikeSpawner
+{
++NODAMAGETHRUST
++DONTHURTSPECIES
++THRUSPECIES
++FOILINVUL
++PIERCEARMOR
+Species "player"
+DamageType "TrueLegendaryDamage"
+States
+{
+  Spawn:
+	TNT1 A 0 
+	TNT1 AAAAAAAAA 1 A_SpawnItemEx("TLPCBigBall", 0, 0, 0, 0.1*Random(-5,5), 0.1*Random(-5, 5), 0.01*Random(20, 30), random(0,359), SXF_TRANSFERPOINTERS, 0)
+	TNT1 AAAAAAAAA 1 A_SpawnItemEx("TLPCBigBall", 0, 0, 0, 0.1*Random(-5,5), 0.1*Random(-5, 5), 0.01*Random(20, 30), random(0,359), SXF_TRANSFERPOINTERS, 0)
+	LROC DD 3 Bright A_SetTranslucent(0.75,1)
+	Stop
+}
+}
+
+Actor TLPCBigBall : LegRevBall3
+{
+Damage 125
+DamageType "TrueLegendaryDamage"
+Species "Player"
++THRUSPECIES
++NOTIMEFREEZE
++FOILINVUL
+States
+{
+Death:
+	TNT1 A 0 A_Explode(128,128,0)
+	TNT1 A 0 A_SpawnItemEx("BlueParticleSpawner", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
+	TNT1 A 0 A_SpawnItemEx("LNCometDeath",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_PlaySound("lrball3/exp")
+	TNT1 AAAAAAAA 0 A_SpawnItemEx("TLPCSmallBall",Random(-8,8),Random(-8,8),Random(-8,8),Random(45,70),0,Random(-3,3),Random(170,190),SXF_NOCHECKPOSITION)	
+	TNT1 AAAAAAAA 0 A_SpawnItemEx("TLPCSmallBall",Random(-8,8),Random(-8,8),Random(-8,8),Random(45,70),0,Random(-3,3),Random(-14,14),SXF_NOCHECKPOSITION)
+	MMSD A 8 bright A_Explode(38, 140, 0)
+	Stop
+}
+}
+
+Actor TLPCSmallBall : LegRevSmallBall3
+{
+Damage 10
+DamageType "TrueLegendaryDamage"
+Species "Player"
++THRUSPECIES
++NOTIMEFREEZE
++FOILINVUL
+}
+
+//Ion Cannon Alt-Fire
+ACTOR IonCannonShot : FastProjectile
+{
+  Speed 75
+  Radius 19
+  Height 10
+  Damage 800
+  PROJECTILE
+  +NODAMAGETHRUST
+  +EXTREMEDEATH
+  +FORCERADIUSDMG
+  +EXPLODEONWATER
+  +DONTBLAST
+  +FOILINVUL
+  +PIERCEARMOR
+  +THRUSPECIES
+  species "player"
+  Renderstyle Add
+  MissileType "CFPlanetBeamTrail"
+  DamageType "TrueLegendaryDamage"
+  DeathSound ""
+  states
+  {
+  Spawn:
+      TNT1 A 1
+      Loop
+  Death:
+      TNT1 A 0 A_StopSoundEx("Body")
+      TNT1 A 0 A_PlaySound("weapons/CFPlanetCrackerBoom",6)
+      TNT1 A 0 A_BFGSpray("CFPlanetCrackerProjectileSpray",30,30)
+      TNT1 A 0 A_Explode(5000,512,XF_HURTSOURCE,1)
+	  TNT1 AA 0 A_SpawnItemEx("BlueGuruStruckGlowX",0,0,10,0,0,0,0,128,0)
+	  TNT1 AA 0 A_SpawnItemEx("BlueGuruStruckGlowY",0,0,10,0,0,0,0,128,0)
+	  TNT1 AAAAAA 0 A_SpawnItemEx("playertruelegbfgsmoke",random(126,-126),random(126,-126),random(66,-66),0.00001*random(100000,-100000),0.00001*random(100000,-100000),0.00001*random(100000,-100000),random(0,359),SXF_TRANSFERPOINTERS,0)
+      PBAX BBBB 4 A_SpawnItemEx("CFPlanetCrackerProjectileBoom", 0, 0, 0, 0.1*random(20,15), 0.1*random(25,15), 2+random(1,-1), 0, 128, 0)
+      PBAX BBBB 4 A_SpawnItemEx("CFPlanetCrackerProjectileBoom", 0, 0, 0, random(3,2), random(3,2), 3+random(3,2), 0, 128, 0)
+      TNT1 A 0 A_PlaySound("weapons/CFPlanetCrackerRain",0)
+      PBAX B 5 A_SpawnItemEx("CFIonRain",0,0,0,0,0,0,0,128,0)
+      PBAX BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB 2 A_SpawnItemEx("CFBeamFire", 0, 0, 0, 0.1*Random(-3,3), 0.1*Random(-3, 3), 0.01*Random(20, 30), random(0,359), 128, 0)
+      PBAX B 1 ACS_ExecuteAlways(384, 0, 0, 0, 0)
+	  PBAX A 0 A_SpawnItemEx("PCStrikeSpawner",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS)
+	  PBAX B 1 A_FadeOut(0.05)
+	  TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 5 A_Explode(50,512,XF_HURTSOURCE,1)
+	  TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 5 A_Explode(50,512,XF_HURTSOURCE,1)
+      Stop
+  }
+}
+
+
+ACTOR PCStrikeSpawner : LegCybThorStrikeSpawner
+{
+//+NODAMAGETHRUST
++THRUSPECIES
++FOILINVUL
++PIERCEARMOR
+Species "player"
+DamageType "TrueLegendaryDamage"
+States
+{
+  Spawn:
+	TNT1 A 0 
+	TNT1 A 0
+	TNT1 A 0 A_SpawnItemEx("PCStrikeBeam")
+    TNT1 A 0 A_SpawnItemEx("PCStrikeBeam2")
+	TNT1 AAAAAAA 5 A_SpawnItemEx("TrueLegSpark",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+	TNT1 A 0 A_GiveToTarget("BlueWarn",1,AAPTR_DEFAULT)
+	TNT1 AAAAAAA 5 A_SpawnItemEx("TrueLegSpark",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+	TNT1 AAAAAAA 5 A_SpawnItemEx("TrueLegSpark",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+	TNT1 AAAAAAA 5 A_SpawnItemEx("TrueLegSpark",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+	TNT1 AAAAAAA 5 A_SpawnItemEx("TrueLegSpark",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+	TNT1 AAAAAAA 5 A_SpawnItemEx("TrueLegSpark",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+	TNT1 AAAAAAA 5 A_SpawnItemEx("TrueLegSpark",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+	TNT1 AAAAAAAAA 5 A_SpawnItemEx("TrueLegSpark",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0)
+	TNT1 A 0 A_SpawnItemEx("TrueLegSpark",random(-1200,1200),random(-1200,1200),random(50,800),0,0,frandom(1,2),0,SXF_TRANSFERPOINTERS,0) 
+	LROC B 0 A_Explode(10000,5000,XF_HURTSOURCE) //Yeah, you might need to keep your distance
+	LROC B 0 Bright A_Explode(5000,7500,0)
+	LROC C 0 Bright A_Explode(2500,10000,0)
+	LROC DD 3 Bright A_SetTranslucent(0.75,1)
+	Stop
+}
+}
+
+Actor BlueWarn : CustomInventory
+{
+  +NOTIMEFREEZE
+  +INVENTORY.ALWAYSPICKUP
+  +INVENTORY.AUTOACTIVATE
+  +INVENTORY.IGNORESKILL
+  Inventory.Amount 1
+  Inventory.MaxAmount 1
+  States
+  {
+  Spawn:
+	TNT1 A 1
+	Stop
+  Pickup:
+    TNT1 A 0
+    TNT1 A 0 ACS_NamedLockedExecute("BlueWarned",0)
+    stop
+  Nope:
+	TNT1 A 0
+	Stop
+  }
+}
+
+Actor BlueWarningSign : LegendaryRuneItem { }
+
+Actor PCStrikeBeam : LegCybThorStrikeBeam 
+{
+XScale 1.0
+YScale 10.0
+Alpha 0.5
++CLIENTSIDEONLY
+States
+{
+  Spawn:
+	THOR A 0
+	THOR AAAAAAAAAA 35 BRIGHT A_FadeIn(0.1)
+	THOR A 1 Bright A_FadeOut(0.05)
+	Wait
+ }
+}
+
+Actor PCStrikeBeam2 : PCStrikeBeam
+{
+XScale 4.0
+YScale 10.0
+Alpha 0.1
+}
+
+Actor PCStrike : LegCybThorStrike
+{
+Alpha 0.9
+Scale 14.0
++CLIENTSIDEONLY
+}
+
+Actor PCHyperPillar : CFNuke
+{
++NOTIMEFREEZE
++CLIENTSIDEONLY
+ States
+ {
+  Spawn:
+   TNT1 A 0
+   TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1  A_SpawnItemEx("PCHyperFire", 0, 0, 0, 0.00001 * Random(0, 300000), 0.00001 * Random(0, 300000), 0.00001 * Random(0, -600000), Random(0, 359), SXF_TRANSFERPOINTERS, 0)
+   TNT1 A 0 A_SpawnItem("NukeHyperSmokering", 0, 0, 0)
+   TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("PCHyperFire", 0, 0, 0, 0.00001 * Random(0, 300000), 0.00001 * Random(0, 300000), 0.00001 * Random(0, -600000), Random(0, 359), SXF_TRANSFERPOINTERS, 0)
+   Stop
+ }
+}
+
+Actor PCHyperFlare : CFNukeFire
+{
+Scale 48
++NoInteraction
++NOTIMEFREEZE
++CLIENTSIDEONLY
+States
+ {
+  Spawn:
+   BLUF A 1 Bright A_FadeOut(0.01)
+   Wait
+ }
+}
+
+Actor PCHyperFire : CFNuke
+{
+RenderStyle Add
++NoInteraction
++CLIENTSIDEONLY
+-ForceYBillBoard
++NOTIMEFREEZE
++THRUSPECIES
+Scale 3
+PROJECTILE
+Species "player"
+DamageType "TrueLegendaryDamage"
+States
+ {
+  Spawn:
+   TNT1 AA 0 A_Jump(196, "Spawn2", "Spawn3", "Spawn4")
+   TNT1 A 0 A_JumpIf(Alpha<0.3,2)
+   BFL1 A 0 A_Explode(128,1300)
+   BFL1 A 1 Bright A_FadeOut(0.015)
+   Wait
+  Spawn2:
+   TNT1 A 0 A_JumpIf(Alpha<0.3,2)
+   BFL2 A 0 A_Explode(128,1300)
+   BFL2 A 1 Bright A_FadeOut(0.015)
+   Wait
+  Spawn3:
+   TNT1 A 0 A_JumpIf(Alpha<0.3,2)
+   BFL3 A 0 A_Explode(128,1300)
+   BFL3 A 1 Bright A_FadeOut(0.015)
+   Wait
+  Spawn4:
+   TNT1 A 0 A_JumpIf(Alpha<0.3,2)
+   BFL4 A 0 A_Explode(128,1300)
+   BFL4 A 1 Bright A_FadeOut(0.015)
+   Wait
+ }
+}
+
+Actor CFBlueStrike
+{
+ +NoGravity
+ +ForceRadiusDmg
+ +ForceYBillboard
+ +THRUSPECIES
+ Species "player"
+ RenderStyle Add
+ DamageType "TrueLegendaryPlayer"
+ Scale 1.0
+ YScale 4.0
+ States
+ {
+  Spawn:
+   TNT1 A 0
+   TNT1 A 0 A_SpawnItem("CFBlueGlare", 0, 0, 0)
+   TNT1 A 0 A_SpawnItem("CFIonFloor", 0, 0, 0)
+   TNT1 A 0 A_SpawnItem("CFIonSphere", 0, 0, 0)
+   TNT1 A 0 A_SpawnItem("CFIonBlasphemy", 0, 0, 0)
+   TNT1 A 0 A_SpawnItem("CFIonPole", 0, 0, 0)
+   TNT1 A 0 A_SpawnItem("CFIonSmokePole", 0, 0, 0)
+   TNT1 A 0 A_SpawnItem("CFIonDebris", 0, 0, 0)
+   BBLU A 1 Bright A_PlaySound("weapons/CFPlanetCrackerBlast",0)
+   //BBLU A 1 Bright A_Explode(75000, 2048, 1)
+   BBLU A 1 Bright A_SetTranslucent(0.9, 1)
+   //BBLU A 0 A_Explode(75000, 3072, 1)
+   BBLU A 1 Bright A_SetTranslucent(1.0, 1)
+   //BBLU A 1 Bright A_Explode(75000, 2048, 1)
+   //BBLU A 0 A_Explode(75000, 3072, 1)
+   BBLU A 0 Bright A_Explode(5000,2048,0,1)
+   BBLU AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Bright A_FadeOut(0.02)
+   TNT1 A 105
+   stop
+ }
+}
+
+Actor CFBlueGlare : CFBlueStrike
+{
+ XScale 1.0
+ YScale 1.0
+ Scale 10.0
+ Alpha 0.8
+ States
+ {
+  Spawn:
+   BLUF A 0 Bright
+   BLUF A 1 Bright A_FadeOut(0.005)
+   Wait
+ }
+}
+Actor CFBeaconSpark
+{
+ +NoInteraction
+ Gravity 1
+ Height 3
+ Radius 2
+ RenderStyle Add
+ Scale 0.1
+ States
+ {
+  Spawn:
+   IOZ1 A 20 Bright
+   IOZ1 A 1 Bright A_FadeOut(0.2)
+   Wait
+ }
+}
+
+Actor CFIonRing
+{
++NOBLOCKMAP
++NOCLIP
++CLIENTSIDEONLY
+States
+{
+Spawn:
+TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("CFIonSmokefx", 0, 0, 0 ,0.00001 * Random(0, 300000), 0.00001 * Random(0, 300000), 0, Random(0, 359), 128, 0)
+TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnitemEx("CFIonFx3", 0, 0, 0, random(-6,6), random(-6,6), random(0,6), 0, (128|32), 0)
+TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnitemEx("CFIonFx3", 0, 0, 0, random(-1,1), random(-1,1), 0.0001 * Random(10000, 20000), 0, (128|32), 0)
+TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnitemEx("CFIonSmoke2", 0, 0, 0,0.0001 * Random(-80000, 80000), 0.0001 * Random(-80000, 80000), 0.0001 * Random(0, 80000), 0, (128|32), 0)
+//TNT1 AAAAA 0 A_SpawnitemEx("CFIonSmoke2", 0.0001 * Random(-60000, 60000), 0.0001 * Random(-60000, 60000), 0.0001 * Random(-60000, 60000), 0, 0, 0.0001 * Random(0, 10000), 0, (128|32), 0)
+TNT1 AAAAA 0 A_SpawnitemEx("CFIonFire", random(-1,1), random(-1,1), 0, 0.0001 * Random(0, 100), 0.0001 * Random(0, 100), 0.0001 * Random(0, 7000), 0, (128|32), 0)
+//TNT1 AAAAAAAAAAAAAA 0 A_SpawnitemEx("CFIonBigSmoke", 0, 0, 16, 0.0001 * Random(0, 10000), 0.0001 * Random(0, 10000), 0.0001 * Random(0, 10000), 0, (128|32), 0)
+TNT1 A 0 
+TNT1 A 1
+stop
+}}
+
+Actor CFIonFloor : CFIonRing
+{
++CLIENTSIDEONLY
+States
+{
+Spawn:
+TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("CFIonSmokefx", 0, 0, 0 ,0.00001 * Random(-800000, 800000), 0.00001 * Random(-800000, 800000),0,0, 128, 0)
+stop
+}}
+
+Actor CFIonSphere : CFIonRing
+{
++CLIENTSIDEONLY
+States
+{
+Spawn:
+TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("CFIonSmokefx", 0, 0, 0 ,0.00001 * Random(-500000, 500000), 0.00001 * Random(-500000, 50000),0.00001 * Random(0, 500000),0, 128, 0)
+stop
+}}
+
+Actor CFIonBlasphemy : CFIonRing
+{
++CLIENTSIDEONLY
+States
+{
+Spawn:
+TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("CFIonFx2", 0, 0, 0 ,0.00001 * Random(-500000, 500000), 0.00001 * Random(-500000, 500000),0.00001 * Random(0, 500000),0, 128, 0)
+stop
+}}
+
+Actor CFIonPole : CFIonRing
+{
++CLIENTSIDEONLY
+States
+{
+Spawn:
+TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("CFIonFx2", 0, 0, 0 ,0.00001 * Random(-10000, 10000), 0.00001 * Random(-10000, 10000),0.00001 * Random(0, 2000000),0, 128,0)
+stop
+}
+}
+
+Actor CFIonSmokePole : CFIonRing
+{
++CLIENTSIDEONLY
+States
+{
+Spawn:
+TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("CFIonSmokefx", 0, 0, 0 ,0.00001 * Random(-10000, 10000), 0.00001 * Random(-1000, 10000),0.00001 * Random(0, 2000000),0, 128,0)
+stop
+}
+}
+
+Actor CFIonDebris : CFIonRing
+{
++CLIENTSIDEONLY
+States
+{
+Spawn:
+TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("CFIonFx3", 0, 0, 0 ,0.00001 * Random(-2000000, 2000000), 0.00001 * Random(-2000000, 2000000),0.00001 * Random(0, 2000000),0, 128,0)
+stop
+}
+}
+
+Actor CFIonFx
+{
++NOBLOCKMAP
++NOCLIP
++NOINTERACTION
++NOGRAVITY
++CLIENTSIDEONLY
+Renderstyle Add
+alpha 0.2
+ReactionTime 10
+Speed 28
+Scale 5.0
+PROJECTILE
+States
+{
+Spawn:
+ION1 ABCD 10 bright A_SpawnitemEx("CFIonFx2", 0, 0, 0, 0, 0, 0, 0, (128|32), 0)
+ION1 A 0 bright A_Countdown
+loop
+Death:
+Stop
+}
+}
+
+Actor CFIonFx2 : CFIonFx
+{
+reactionTime 0
+Speed 0
+scale 4.0
+States
+{
+Spawn:
+   TNT1 AA 0 A_Jump(196, "Spawn2", "Spawn3", "Spawn4")
+   IOZ1 A 1 Bright A_FadeOut(0.001)
+   Wait
+  Spawn2:
+   IOZ1 B 1 Bright A_FadeOut(0.001)
+   Wait
+  Spawn3:
+   IOZ1 C 1 Bright A_FadeOut(0.001)
+   Wait
+  Spawn4:
+   IOZ1 D 1 Bright A_FadeOut(0.001)
+   Wait
+ }
+}
+
+Actor CFIonFx3 : CFIonFx
+{
+ReactionTime 5
+Scale 3.7
+renderstyle Add
+Alpha 0.02
+States
+{
+Spawn:
+ION1 ABCD 4 bright A_SpawnitemEx("CFIonFx4", 0, 0, 0, 0, 0, 0, 0, (128|32), 0)
+ION1 A 0 bright A_Countdown
+loop
+Death:
+Stop
+}
+}
+
+Actor CFIonFx4 : CFIonFx2
+{
+scale 3.0
+renderstyle Add
+Alpha 0.05
+}
+
+Actor CFIonSmoke1 : CFIonFx
+{
++NOINTERACTION
++ForceRadiusDmg
++THRUSPECIES
+Speed 28
+DamageType "TrueLegendaryDamage"
+Species "player"
+ReactionTime 70
+States
+{
+Spawn:
+TNT1 A 2 A_SpawnitemEx("CFIonSmokeFx", 0, 0, 0, 0, 0, 0.0001 * Random(80000, 100000), 0, (128|32), 0)
+TNT1 A 0 A_Explode(255, 256, 1)
+TNT1 A 0 A_Countdown
+loop
+}
+}
+
+Actor CFIonSmokeFx : CFIonSmoke1
+{
++NOGRAVITY
++CLIENTSIDEONLY
+RenderStyle Normal
+reactionTime 0
+Speed 0
+Alpha 0.2
+scale 8.0
+States
+{
+  Spawn:
+   TNT1 A 0 NoDelay A_Jump(256, "Spawn1", "Spawn2", "Spawn3", "Spawn4")
+  Spawn1:
+   SMOK A 0
+   Goto Main
+  Spawn2:
+   SMOK B 0
+   Goto Main
+  Spawn3:
+   SMOK C 0
+   Goto Main
+  Spawn4:
+   SMOK D 0
+   Goto Main
+  Main:
+   "####" "#" 1 A_FadeOut(0.0005)
+   Loop
+  FASTAH:
+   "####" "#" 1 A_FadeOut(0.0015)
+   Loop
+ }
+}
+
+Actor CFIonSmoke2 : CFIonSmoke1
+{
++NoInteraction
++CLIENTSIDEONLY
+RenderStyle Normal
+reactionTime 0
+Speed 0
+scale 5.4
+States
+{
+  Spawn:
+   TNT1 A 0 NoDelay A_Jump(256, "Spawn1", "Spawn2", "Spawn3", "Spawn4")
+  Spawn1:
+   SMOK A 0
+   Goto Main
+  Spawn2:
+   SMOK B 0
+   Goto Main
+  Spawn3:
+   SMOK C 0
+   Goto Main
+  Spawn4:
+   SMOK D 0
+   Goto Main
+  Main:
+   "####" "#" 1 A_FadeOut(0.00002)
+   Loop
+  FASTAH:
+   "####" "#" 1 A_FadeOut(0.00006)
+   Loop
+ }
+}
+
+Actor CFIonBigSmoke : CFIonSmoke1
+{
++NoInteraction
+-Noclip
+-Nogravity
++LowGravity
++Hexenbounce
++Doombounce
+-ForceRadiusDmg
+}
+
+Actor CFIonFire : CFIonSmokeFx
+{
+Scale 1.0
+Renderstyle Add
+alpha 0.25
+States
+{
+  Spawn:
+   IOF1 A 5 A_FadeOut(0.003)
+   Wait
+ }
+}
+
+Actor CFBlueBeam
+{
+ +NoClip
+ +NoBlockmap
+ +ForceYBillboard
+ +NoInteraction
+ +CLIENTSIDEONLY
+ RenderStyle Add
+ XScale 2.0
+ YScale 8.0
+ Alpha 0.5
+ States
+ {
+  Spawn:
+	SBBL A 0
+	SBBL AAAAAAAAAA 1 A_FadeIn(0.1)
+	SBBL A 1 Bright A_SpawnItemEx("CFBeamFire", 0, 0, 0, 0.01 * Random(-10, 10), 0.01 * Random(-10, 10), 0.01 * Random(0, 125), 0, 128, 0)
+	Wait
+  FadeOut:
+	SBBL A 1 Bright A_FadeOut(0.1)
+	Loop
+ }
+}
+
+Actor CFBeamFire
+{
+ +NoInteraction
+ 
+ RenderStyle Add
+ Alpha 1
+ Scale 0.2
+ 
+ States
+ {
+  Spawn:
+   TNT1 AA 0 A_Jump(196, "Spawn2", "Spawn3", "Spawn4")
+   TNT1 A 0 A_SpawnItemEx("CFBeamSmoke", 0, 0, 0, momx, momy, momz, 0, 128, 0)
+   IOZ1 A 1 Bright A_FadeOut(0.02)
+   Wait
+  Spawn2:
+   IOZ1 B 1 Bright A_FadeOut(0.02)
+   Wait
+  Spawn3:
+   IOZ1 C 1 Bright A_FadeOut(0.02)
+   Wait
+  Spawn4:
+   IOZ1 D 1 Bright A_FadeOut(0.02)
+   Wait
+ }
+}
+
+Actor CFBeamSmoke
+{
+ +NoInteraction
+ Scale 0.4
+ States
+ {
+  Spawn:
+   TNT1 A 0 NoDelay A_Jump(256, "Spawn1", "Spawn2", "Spawn3", "Spawn4")
+  Spawn1:
+   SMOK A 0
+   Goto Main
+  Spawn2:
+   SMOK B 0
+   Goto Main
+  Spawn3:
+   SMOK C 0
+   Goto Main
+  Spawn4:
+   SMOK D 0
+   Goto Main
+  Main:
+   "####" "#" 1 A_FadeOut(0.01)
+   Loop
+  FASTAH:
+   "####" "#" 1 A_FadeOut(0.03)
+   Loop
+ }
+}
+
+//Orbiters
+actor CFPlanetOrbiter1 : FastProjectile
+{
+  Speed 75
+  Radius 12
+  Height 8
+  WeaveIndexXY 0
+  WeaveIndexZ 48
+  Renderstyle Normal
+  +CLIENTSIDEONLY
+  +NOGRAVITY
+  Scale 1
+  MissileType "CFPlanetBeamTrailSmall"
+  States
+  {
+  Spawn:
+    TNT1 AA 1 A_Weave(1, 1, 2.5, 2.5)
+    Loop
+  Death:
+    TNT1 A 1
+    stop
+  }
+}
+
+ACTOR CFPlanetOrbiter2 : CFPlanetOrbiter1 { WeaveIndexXY 21  WeaveIndexZ 5 }
+ACTOR CFPlanetOrbiter3 : CFPlanetOrbiter1 { WeaveIndexXY 42  WeaveIndexZ 26 }
+
+actor CFPlanetCrackerHyperBolter
+{
+  Radius 11
+  Height 8
+  Scale 0.1
+  Speed 45
+  Damage 1
+  Projectile
+  ReactionTime 20
+  Species "Player"
+  Renderstyle Add
+  +NOGRAVITY
+  +FORCERADIUSDMG
+  +NOCLIP
+  +THRUSPECIES
+  DamageType "TrueLegendaryDamage"
+  Obituary "%o was neutralized %k's ion storm."
+  States
+  {
+  Spawn:
+    TNT1 A 0
+    TNT1 A 0 A_Countdown
+    TNT1 A 1 A_ChangeVelocity (frandom(-32, 32), frandom(-32, 32), frandom(-6, 6), 1)
+    Loop
+  Death:
+    TNT1 A 0 A_SpawnItemEx("CFHyperBombing",0,0,0,0,0,0,0,0,0)
+    PBOM ABCDEF 1 Bright
+    PBOM GHIJKLMN 1 Bright
+    stop
+  }
+}
+
+ACTOR CFHyperBombing
+{
++NOINTERACTION
++NOCLIP
++THRUSPECIES
++NODAMAGETHRUST
+Renderstyle Add
+Species "Player"
+DamageType "TrueLegendaryDamage"
+States
+{
+Spawn:
+      TNT1 A 0 A_StopSoundEx("Body")
+      TNT1 A 0 A_Explode(5000,2056,0,1)
+      PBAX B 28
+      PBAX BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB 1 A_SpawnItemEx("CFBeamFire", 0, 0, 0, 0.1*Random(-3,3), 0.1*Random(-3, 3), 0.01*Random(20, 30), random(0,359), 0, 0)
+      PBAX B 1 A_SpawnItemEx("CFBlueStrike",0,0,100,0,0,0,0,SXF_TRANSFERPOINTERS,0)
+      PBAX B 1 A_FadeOut(0.05)
+      Wait
+}
+}

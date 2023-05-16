@@ -1,0 +1,327 @@
+//     Black
+ACTOR BlackSparkleSpawner : WhiteSparkleSpawner
+{
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_CheckSight("Vanilla")
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 AA 2 A_SpawnItemEx("BlackStar", frandom(-15, 15), frandom(-15, 15), frandom(28, 44), 0, 0, 0, 0, 128) 
+        Stop
+ }
+}
+
+ACTOR BlackStar
+{
+Height 0
+Radius 0
+Speed 2
+Scale 0.16
+RenderStyle Subtract
+PROJECTILE
++CLIENTSIDEONLY
++DOOMBOUNCE
++DONTSPLASH
++NOTELEPORT
++NOGRAVITY
++FORCEXYBILLBOARD
++FLOATBOB
+States
+ {
+ Spawn:
+	BLKS ABC 2 Bright A_FadeOut(0.05)
+	Loop
+ }
+}
+
+//     White (Real)
+ACTOR WhiteSparkleSpawner2 : WhiteSparkleSpawner
+{
+States
+ {
+ Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_CheckSight("Vanilla")
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 AA 2 A_SpawnItemEx("WhiteStar2", frandom(-15, 15), frandom(-15, 15), frandom(28, 44), 0, 0, 0, 0, 128) 
+        Stop
+ }
+}
+
+ACTOR WhiteStar2 : WhiteStar
+{
+Translation "80:111=4:4"
+}
+
+//     Light Grey
+ACTOR LightGreySparkleSpawner : WhiteSparkleSpawner
+{
+States
+ {
+ Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_CheckSight("Vanilla")
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 AA 2 A_SpawnItemEx("LightGreyStar", frandom(-15, 15), frandom(-15, 15), frandom(28, 44), 0, 0, 0, 0, 128) 
+        Stop
+ }
+}
+
+ACTOR LightGreyStar : WhiteStar
+{
+Translation "80:111=80:95"
+}
+
+//     Dark Grey
+ACTOR DarkGreySparkleSpawner : WhiteSparkleSpawner
+{
+States
+ {
+ Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_CheckSight("Vanilla")
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 AA 2 A_SpawnItemEx("DarkGreyStar", frandom(-15, 15), frandom(-15, 15), frandom(28, 44), 0, 0, 0, 0, 128) 
+        Stop
+ }
+}
+
+ACTOR DarkGreyStar : WhiteStar
+{
+Translation "80:111=96:111"
+}
+
+//     Dark Red
+
+ACTOR DarkRedSparkleSpawner : WhiteSparkleSpawner
+{
+States
+{
+Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_CheckSight("Vanilla")
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 AA 2 A_SpawnItemEx("DarkRedStar", frandom(-15, 15), frandom(-15, 15), frandom(28, 44), 0, 0, 0, 0, 128) 
+        Stop
+        }
+}
+
+ACTOR DarkRedStar : WhiteStar
+{
+Translation "80:111=32:47"
+}
+
+//     Pink
+ACTOR PinkSparkleSpawner : WhiteSparkleSpawner
+{
+States
+{
+Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_CheckSight("Vanilla")
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 AA 2 A_SpawnItemEx("PinkStar", frandom(-15, 15), frandom(-15, 15), frandom(28, 44), 0, 0, 0, 0, 128) 
+        Stop
+        }
+}
+
+ACTOR PinkStar : WhiteStar
+{
+Translation "80:111=250:252"
+}
+
+//     Brown
+ACTOR BrownSparkleSpawner : WhiteSparkleSpawner
+{
+States
+{
+Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_CheckSight("Vanilla")
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 AA 2 A_SpawnItemEx("BrownStar", frandom(-15, 15), frandom(-15, 15), frandom(28, 44), 0, 0, 0, 0, 128) 
+        Stop
+        }
+}
+
+ACTOR BrownStar : WhiteStar
+{
+Translation "80:111=64:79"
+}
+
+//     Monochrome
+ACTOR MonochromeSparkleSpawner : WhiteSparkleSpawner
+{
+States
+{
+Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_CheckSight("Vanilla")
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 AAAAAA 2 A_SpawnItemEx("WhiteStar2", frandom(-15, 15), frandom(-15, 15), frandom(28, 44), 0, 0, 0, 0, 128)
+	TNT1 AAAAAA 2 A_SpawnItemEx("LightGreyStar", frandom(-15, 15), frandom(-15, 15), frandom(28, 44), 0, 0, 0, 0, 128)
+	TNT1 AAAAAA 2 A_SpawnItemEx("WhiteStar", frandom(-15, 15), frandom(-15, 15), frandom(28, 44), 0, 0, 0, 0, 128)
+	TNT1 AAAAAA 2 A_SpawnItemEx("DarkGreyStar", frandom(-15, 15), frandom(-15, 15), frandom(28, 44), 0, 0, 0, 0, 128)
+	TNT1 AAAAAA 2 A_SpawnItemEx("BlackStar", frandom(-15, 15), frandom(-15, 15), frandom(28, 44), 0, 0, 0, 0, 128)
+	TNT1 AAAAAA 2 A_SpawnItemEx("DarkGreyStar", frandom(-15, 15), frandom(-15, 15), frandom(28, 44), 0, 0, 0, 0, 128)
+	TNT1 AAAAAA 2 A_SpawnItemEx("WhiteStar", frandom(-15, 15), frandom(-15, 15), frandom(28, 44), 0, 0, 0, 0, 128)
+	TNT1 AAAAAA 2 A_SpawnItemEx("LightGreyStar", frandom(-15, 15), frandom(-15, 15), frandom(28, 44), 0, 0, 0, 0, 128)
+        Stop
+        }
+}
+
+ACTOR MonochromeSparkleRandomSpawner : WhiteSparkleSpawner
+{
+States
+ {
+ Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_CheckSight("Vanilla")
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 AA 2 A_SpawnItemEx("MonochromeStar", frandom(-15, 15), frandom(-15, 15), frandom(28, 44), 0, 0, 0, 0, 128) 
+        Stop
+ }
+}
+
+ACTOR MonochromeStar : RandomSpawner
+{
+DropItem "WhiteStar2", 256, 10
+DropItem "LightGreyStar", 256, 10
+DropItem "WhiteStar", 256, 10
+DropItem "DarkGreyStar", 256, 10
+DropItem "BlackStar", 256, 10
+}
+
+//     Rainbow
+ACTOR RainbowSparkleSpawner : WhiteSparkleSpawner
+{
+States
+ {
+ Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_CheckSight("Vanilla")
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 AAAAAA 2 A_SpawnItemEx("RedStar", frandom(-15, 15), frandom(-15, 15), frandom(28, 44), 0, 0, 0, 0, 128)
+	TNT1 AAAAAA 2 A_SpawnItemEx("OrangeStar", frandom(-15, 15), frandom(-15, 15), frandom(28, 44), 0, 0, 0, 0, 128)
+	TNT1 AAAAAA 2 A_SpawnItemEx("YellowStar", frandom(-15, 15), frandom(-15, 15), frandom(28, 44), 0, 0, 0, 0, 128)
+	TNT1 AAAAAA 2 A_SpawnItemEx("GreenStar", frandom(-15, 15), frandom(-15, 15), frandom(28, 44), 0, 0, 0, 0, 128)
+	TNT1 AAAAAA 2 A_SpawnItemEx("BlueStar", frandom(-15, 15), frandom(-15, 15), frandom(28, 44), 0, 0, 0, 0, 128)
+	TNT1 AAAAAA 2 A_SpawnItemEx("PurpleStar", frandom(-15, 15), frandom(-15, 15), frandom(28, 44), 0, 0, 0, 0, 128)
+	TNT1 AAAAAA 2 A_SpawnItemEx("PinkStar", frandom(-15, 15), frandom(-15, 15), frandom(28, 44), 0, 0, 0, 0, 128)
+	TNT1 AAAAAA 2 A_SpawnItemEx("WhiteStar", frandom(-15, 15), frandom(-15, 15), frandom(28, 44), 0, 0, 0, 0, 128)
+        Stop
+ }
+}
+
+ACTOR RainbowSparkleRandomSpawner : WhiteSparkleSpawner
+{
+States
+ {
+ Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_CheckSight("Vanilla")
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 AA 2 A_SpawnItemEx("RainbowStar", frandom(-15, 15), frandom(-15, 15), frandom(28, 44), 0, 0, 0, 0, 128) 
+        Stop
+ }
+}
+
+ACTOR RainbowStar : RandomSpawner
+{
+DropItem "RedStar", 256, 10
+DropItem "OrangeStar", 256, 10
+DropItem "YellowStar", 256, 10
+DropItem "GreenStar", 256, 10
+DropItem "BlueStar", 256, 10
+DropItem "PurpleStar", 256, 10
+DropItem "PinkStar", 256, 10
+DropItem "WhiteStar", 256, 10
+}
+
+// Crystal Armor
+ACTOR CrystalSparkleSpawner : BluePowerLineSpawner
+{
+States
+ {
+ Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_CheckSight("Vanilla")
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 1 A_SpawnItemEx("CrystalArmorStar",frandom(12,-12),frandom(12,-12),0,0,0,2,0,128,0) 
+    Stop  
+ }
+}
+
+ACTOR CrystalArmorStar
+{
+Height 0
+Radius 0
+Speed 1
+Scale 0.16
+Renderstyle Add
+Translation "80:111=196:207"
+PROJECTILE
++NOGRAVITY
++NOBLOCKMAP
++NOINTERACTION
++NOTELEPORT
++DONTSPLASH
+-SOLID
+States
+ {
+ Spawn:
+	PTCL ABC 2 Bright A_FadeOut(0.05)
+	TNT1 A 0 A_Jump(128,"FadeOut2")
+ Normal:
+	PTCL ABCABCABC 1 Bright A_FadeOut(0.05)
+	Stop
+ FadeOut2:
+	PTCL ABCABCABC 1 Bright A_FadeOut(0.075)
+	Stop
+ }
+}
+
+// Hellfire Armor (Flame)
+ACTOR HFArmorFireSpawner : BluePowerLineSpawner
+{
+States
+{
+Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_CheckSight("Vanilla")
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 1 A_SpawnItemEx("HFArmorFire",frandom(12,-12),frandom(12,-12),0,0,0,2,0,128,0) 
+    Stop  
+ }
+}
+
+ACTOR HFArmorFire
+{
+Speed 1
+Radius 0
+Height 0
+Scale 0.30
+RenderStyle Add
+Alpha 0.8
++MISSILE
++NOGRAVITY
++NOBLOCKMAP
++NOINTERACTION
++NOTELEPORT
++DONTSPLASH
+-SOLID
+States
+{
+ Spawn:
+	FIR1 A 5 Bright
+	TNT1 A 0 A_PlaySound("monster/ambientfire")
+	TNT1 A 0 A_Jump(128,"FadeOut2")
+ Normal:
+	FIR1 ABCDEFGHIJKL 1 Bright A_FadeOut(0.08)
+	Stop
+ FadeOut2:
+	FIR1 ABCDEFGHIJKL 1 Bright A_FadeOut(0.0125)
+	Stop
+   }
+}

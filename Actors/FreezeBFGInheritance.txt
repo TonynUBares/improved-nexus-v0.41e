@@ -1,0 +1,35 @@
+ACTOR FreezeLiteShotBase
+{
+ PROJECTILE
+ Height 8
+ Radius 13
+ Speed 32
+ Scale 2
+ RENDERSTYLE ADD
+ ALPHA 0.85
+ Reactiontime 26
+ Damage 15
+ +THRUGHOST
+ +THRUSPECIES
+ +MTHRUSPECIES
+ +DONTHARMSPECIES
+ Damagetype "Ice"
+ DeathSound "weapons/icehit2"
+ States
+ {
+  Spawn:
+	TNT1 A 0 A_CountDown
+	ISHR AABB 1 Bright A_SpawnItemEx("FreezeLiteTrail",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE)
+	Loop
+  Death:
+	TNT1 AAAA 0 Bright A_SpawnItemEx("IceDebris",0,0,0,random(-4,4),random(-4,4),random(4,8),0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE)
+	TNT1 A 1 
+	Stop
+  XDeath:
+	TNT1 AAA 0 A_CustomMissile("Kaboom6",0,0,random(0,360),CMF_AIMDIRECTION,random(0,360))
+	TNT1 AAAA 0 A_SpawnItemEx("IceDebris",0,0,0,random(-4,4),random(-4,4),random(4,8),0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE)
+	TNT1 AAA 0 A_CustomMissile("Kaboom6",0,0,random(0,360),CMF_AIMDIRECTION,random(0,360))
+	TNT1 A 1 
+	Stop
+ }
+}

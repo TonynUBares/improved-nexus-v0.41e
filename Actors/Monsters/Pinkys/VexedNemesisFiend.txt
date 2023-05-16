@@ -1,0 +1,385 @@
+ACTOR VexedNemesisFiend : NemesisFiend 
+{
+  Health 2400
+  PainChance 18
+  Speed 28
+  BloodColor "Black"
+  Scale 1.25
+  Renderstyle Translucent
+  DamageFactor 0.35
+  DamageFactor "Explosion", 0.0001
+  DamageFactor "PlayerDTRG", 0.0001
+  DamageFactor "DTRailgun", 0.0001
+  DamageFactor "PDTPuff", 0.0001
+  DamageFactor "RailG", 0.0001
+  DamageFactor "PyroShot", 0.0001
+  DamageFactor "PlayerPyro", 0.0001
+  DamageFactor "PlayerBHole", 0.025
+  DamageFactor "PlayerDBFG", 0.015
+  DamageFactor "PlayerDBFG2", 0.015
+  PainChance "Explosion", 128
+  PainChance "PlayerDTRG", 128
+  PainChance "DTRailgun", 128
+  PainChance "PDTPuff", 128
+  PainChance "RailG", 128
+  PainChance 20
+  PainChance "Explosion", 128
+  DamageFactor "VileFires", 0.0
+  DropItem "NemesisHealthBonusMax", 256, 32
+  DropItem "NemesisArmorBonus32", 256
+  DropItem "NemesisHealthBonusMax", 256, 32
+  DropItem "NemesisArmorBonus32", 256
+  DropItem "NemesisPowerSphere" 100 1
+  DropItem "NLDemonAmmoBox" 200 
+  DropItem "NLDemonAmmo" 256
+  DropItem "LegTimeFreezeSphere" 100
+  DropItem "NemesisPowerShard" 65 1
+  DropItem "Nemesis Rifle" 40 1
+  SeeSound "NemesisFiend/Sight"
+  ActiveSound "NemesisFiend/Active"
+  PainSound "NemesisFiend/Pain"
+  DeathSound "NemesisFiend/Death"
+  AttackSound "LegFiend/Melee"
+  Obituary "Not a single piece of %o was left after getting completely devoured by the Vexed Nemesis Archfiend."
+  HitObituary "Not a single piece of %o was left after getting completely devoured by the Vexed Nemesis Archfiend"
+  Tag "$NEVexFiend"
+  States
+  {
+  Spawn:
+    VFND A 0
+	TNT1 A 0 ACS_NamedExecuteAlways("WimpyMode",0,2)
+    TNT1 A 0 A_SetTranslucent (0.3)
+	TNT1 A 0 ACS_NamedExecuteAlways("ModifyMonster",0,2,5)
+  Idle:
+	TNT1 A 0 A_SpawnItem("TrueNemesisHellionSmokeSpawner",0,0,0,0)
+	VFND A 12 Bright A_Look
+	Loop
+  See:
+    TNT1 A 0 A_SetTranslucent (0.3)
+	TNT1 A 0 A_JumpIf(user_music == 1,3)
+	TNT1 A 0 ACS_NamedExecuteAlways("CFMusic",0,2004)
+	TNT1 A 0 A_SetUserVar("user_music",1)
+	TNT1 A 0 ACS_NamedExecuteWithResult("CFRuneCheck",1)
+	TNT1 A 0 A_ChangeFlag(NOPAIN,0)
+	TNT1 A 0 A_Jump(110,"Rush")
+	TNT1 A 0 A_SpawnItem("TrueNemesisHellionSmokeSpawner",0,0,0,0)
+	TNT1 A 0 A_PlaySound("NemesisFiend/Step1")
+	VFND AABB 2 Bright A_Chase
+	TNT1 A 0 A_SpawnItem("TrueNemesisHellionSmokeSpawner",0,0,0,0)
+	TNT1 A 0 A_PlaySound("NemesisFiend/Step1")
+	VFND CCDD 2 Bright A_Chase
+	TNT1 A 0 A_Jump(25,"Teleport")
+	Loop
+  Rush:
+    TNT1 A 0 A_SetTranslucent (0.3)
+	TNT1 A 0 A_SpawnItem("TrueNemesisHellionSmokeSpawner",0,0,0,0)
+	TNT1 A 0 A_PlaySound("NemesisFiend/Step2")
+	VFND AA 0 A_Chase
+	VFND A 1 Bright A_SpawnItemEx("VNemesisFiendGhost",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
+	VFND AA 0 A_Chase
+	VFND A 1 Bright A_SpawnItemEx("VNemesisFiendGhost",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
+	VFND AA 0 A_Chase
+	VFND B 1 Bright A_SpawnItemEx("VNemesisFiendGhost",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
+	VFND AA 0 A_Chase
+	VFND B 1 Bright A_SpawnItemEx("VNemesisFiendGhost",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
+	TNT1 A 0 A_SpawnItem("TrueNemesisHellionSmokeSpawner",0,0,0,0)
+	TNT1 A 0 A_PlaySound("NemesisFiend/Step2")
+	VFND AA 0 A_Chase
+	VFND C 1 Bright A_SpawnItemEx("VNemesisFiendGhost",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
+	VFND AA 0 A_Chase
+	VFND C 1 Bright A_SpawnItemEx("VNemesisFiendGhost",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
+	VFND AA 0 A_Chase
+	VFND D 1 Bright A_SpawnItemEx("VNemesisFiendGhost",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
+	VFND AA 0 A_Chase
+	VFND D 1 Bright A_SpawnItemEx("VNemesisFiendGhost",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
+	TNT1 A 0 A_Jump(15,"Teleport")
+	TNT1 A 0 A_Jump(87,"See")
+	Loop
+ Teleport:
+	VFND A 1 Bright A_UnSetShootable
+	VFND AAAA 0 A_SpawnItem("TrueNemesisHellionSmokeSpawner",0,0,0,0)
+	VFND AAAAAAAAAA 1 A_FadeOut(0.1,0)
+	VFND AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	VFND AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	VFND A 1 A_PlayWeaponSound("boss/teleport")
+	VFND AAAA 0 A_SpawnItem("TrueNemesisHellionSmokeSpawner",0,0,0,0)
+	VFND AAAAAAAAAA 1 A_FadeIn(0.1)
+	VFND A 1 Bright A_SetShootable
+	Goto See		
+  Missile:
+    TNT1 A 0 A_SetTranslucent (0.3)
+	TNT1 A 0 A_SetShootable
+	TNT1 A 0 A_UnsetInvulnerable
+	TNT1 A 0 A_SetTranslucent(1)
+	TNT1 A 0 A_Jump(128,2)
+	TNT1 A 0 A_JumpIfCloser(500,"FireBreath")
+	TNT1 A 0 A_Jump(48,"Rage")
+	TNT1 A 0 A_Jump(64,"Ripper","BigBall")
+	TNT1 A 0 A_JumpIfCloser(300,"Lunge")
+  Normal:		
+    TNT1 A 0 A_SetTranslucent (0.3)
+	VFND EF 3 Bright A_FaceTarget
+	VFND G 6 Bright A_CustomMissile("DefilerBouncyBall",32,0,0)
+	VFND EF 3 Bright A_FaceTarget
+	VFND G 6 Bright A_CustomMissile("DefilerBouncyBall",32,0,0)	
+	VFND EF 4 Bright A_FaceTarget
+	TNT1 A 0 A_CustomMissile("DefilerBouncyBall",32,0,10)
+	TNT1 A 0 A_CustomMissile("DefilerBouncyBall",32,0,-10)	
+	VFND G 8 Bright A_CustomMissile("NemesisBehemothCannonLaser",32,0,0)	
+	VFND E 6 Bright
+	Goto See	
+  BigBall:
+    TNT1 A 0 A_SetTranslucent (0.3)
+	VFND EF 4 A_FaceTarget
+	VFND G 8 Bright A_CustomMissile("NemesisBehemothCannonBall",32,0,0)
+	VFND EF 4 A_FaceTarget
+	VFND G 8 Bright A_CustomMissile("NemesisBehemothCannonBall",32,0,0)
+	Goto See
+  FireBreath:
+	TNT1 A 0 A_PlaySound("LegFiend/Melee",2)
+	VFND EF 5 Bright A_FaceTarget
+	TNT1 A 0 A_PlaySound("magma/firebreath")
+	TNT1 A 0 A_FaceTarget
+	VFND FFFFFFFFFFFF 1 Bright A_CustomMissile("NemesisFiendBreath",32,0,Random(6,-6))
+	TNT1 A 0 A_FaceTarget
+	VFND FFFFFFFFFFFF 1 Bright A_CustomMissile("NemesisFiendBreath",32,0,Random(6,-6))
+	TNT1 A 0 A_FaceTarget
+	VFND FFFFFFFFFFFF 1 Bright A_CustomMissile("NemesisFiendBreath",32,0,Random(6,-6))
+	TNT1 A 0 A_FaceTarget
+	VFND FFFFFFFFFFFF 1 Bright A_CustomMissile("NemesisFiendBreath",32,0,Random(6,-6))
+	VFND E 10 Bright
+	Goto See
+  Ripper:
+    TNT1 A 0 A_SetTranslucent (0.3)
+	VFND EEEFFF 3 Bright A_FaceTarget
+	VFND GGG 2 Bright A_CustomMissile("NemesisFiendBoomerang",32,0,random(-2,2))
+	VFND G 0 A_FaceTarget
+	VFND GGG 2 Bright A_CustomMissile("DefilerHellStaffBall",32,0,random(-2,2))
+	TNT1 A 0 A_CustomMissile("DefilerHellStaffBall",32,-15,random(-2,2))
+	TNT1 A 0 A_CustomMissile("DefilerHellStaffBall",32,15,random(-2,2))
+	VFND G 0 A_FaceTarget
+	VFND GGG 2 Bright A_CustomMissile("NemesisFiendBoomerang",32,0,random(-2,2))
+	TNT1 A 0 A_CustomMissile("NemesisFiendBoomerang",32,-30,random(-2,2))
+	TNT1 A 0 A_CustomMissile("NemesisFiendBoomerang",32,30,random(-2,2))
+	VFND E 2 Bright A_FaceTarget
+	Goto See
+  Lunge:
+	TNT1 A 0 A_Jump(64,"Normal")
+	TNT1 A 0 A_PlaySound("LegFiend/Melee")
+	VFND EF 4 Bright A_FaceTarget
+	TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,1)
+	TNT1 A 0 ThrustThingZ(0,20,0,1)
+	VFND F 2 Bright A_Recoil(-36)
+	VFND F 3 Bright A_CustomMissile("NemesisFiendLunge",18,0,0,CMF_AIMDIRECTION)
+	VFND G 6 Bright
+	VFND G 2 Bright A_ScaleVelocity(0.2)
+	TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)
+	VFND G 1 Bright A_ScaleVelocity(0)
+	Goto Missile
+  Rage:	
+	VFND G 1 A_JumpIfCloser(1500,1)
+	Goto Normal
+	VFND G 1 Bright A_PlaySound("NemesisFiend/Attack",2)
+	VFND G 0 A_SetInvulnerable
+	VFND G 1 Bright A_FaceTarget
+  RageWait:
+	TNT1 A 0 A_JumpIf(user_ragewait >= 10,"RageGo")
+	TNT1 A 0 A_SetUserVar("user_ragewait",user_ragewait+1)
+	VFND G 0 A_JumpIfTargetInLos(2)
+	VFND G 0 A_Jump(256,2)
+	VFND G 0 A_FaceTarget
+	VFND G 2 Bright A_SpawnItem("NemesisSoulFlameSpawner",0,0,0,0)
+	Loop
+  RageGo:
+	TNT1 A 0 A_SetUserVar("user_ragewait",0) 
+	TNT1 A 0 A_UnSetInvulnerable
+	TNT1 A 0 ThrustThingZ(0,35,0,1)
+	TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,1)
+	TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+	TNT1 A 0 A_PlaySound("NemesisFiend/Jump",7)
+	VFND G 9 Bright
+	VFND G 0 A_JumpIfTargetInLos(2)
+	VFND G 0 A_Jump(256,2)
+	VFND G 0 A_FaceTarget
+	VFND G 3 Bright
+	TNT1 A 0 ThrustThingZ(0,20,0,1)
+	VFND F 2 A_Recoil(-100)
+	TNT1 A 0 A_PlaySound("LegFiend/Melee")
+	VFND G 0 A_SpawnItemEx("VNemesisFiendLungeGhost",0,0,0,0,0,0,0,128)
+	VFND G 0 A_SpawnItem("NemesisSoulFlameSpawner",0,0,0,0)
+	VFND G 0 A_CustomMissile("BigLFLunge",18,0,0,CMF_AIMDIRECTION)
+	VFND G 2 Bright A_FaceTarget
+	VFND G 0 A_SpawnItemEx("VNemesisFiendLungeGhost",0,0,0,0,0,0,0,128)
+	VFND G 0 A_SpawnItem("NemesisSoulFlameSpawner",0,0,0,0)
+	VFND G 0 A_CustomMissile("BigLFLunge",18,0,0,CMF_AIMDIRECTION)
+	VFND G 2 Bright A_FaceTarget
+	TNT1 A 0 A_Jump(128,"LungeTeleport")
+	VFND G 0 A_SpawnItemEx("VNemesisFiendLungeGhost",0,0,0,0,0,0,0,128)
+	VFND G 0 A_SpawnItem("NemesisSoulFlameSpawner",0,0,0,0)
+	VFND G 0 A_CustomMissile("BigLFLunge",18,0,0,CMF_AIMDIRECTION)
+	VFND G 2 Bright A_FaceTarget
+	VFND G 0 A_SpawnItemEx("VNemesisFiendLungeGhost",0,0,0,0,0,0,0,128)
+	VFND G 0 A_SpawnItem("NemesisSoulFlameSpawner",0,0,0,0)
+	VFND G 0 A_CustomMissile("BigLFLunge",18,0,0,CMF_AIMDIRECTION)
+	VFND G 2 Bright A_FaceTarget	
+	VFND G 0 A_SpawnItemEx("VNemesisFiendLungeGhost",0,0,0,0,0,0,0,128)
+	VFND G 0 A_SpawnItem("NemesisSoulFlameSpawner",0,0,0,0)
+	VFND G 0 A_CustomMissile("BigLFLunge",18,0,0,CMF_AIMDIRECTION)
+	VFND G 2 Bright A_FaceTarget
+	VFND G 0 A_SpawnItemEx("VNemesisFiendLungeGhost",0,0,0,0,0,0,0,128)
+	VFND G 0 A_SpawnItem("NemesisSoulFlameSpawner",0,0,0,0)
+	VFND G 0 A_CustomMissile("BigLFLunge",18,0,0,CMF_AIMDIRECTION)
+	VFND G 2 Bright A_FaceTarget
+	VFND G 0 A_SpawnItemEx("VNemesisFiendLungeGhost",0,0,0,0,0,0,0,128)
+	VFND G 0 A_SpawnItem("NemesisSoulFlameSpawner",0,0,0,0)
+	VFND G 0 A_CustomMissile("BigLFLunge",18,0,0,CMF_AIMDIRECTION)
+	VFND G 2 Bright A_FaceTarget
+	VFND G 0 A_SpawnItemEx("VNemesisFiendLungeGhost",0,0,0,0,0,0,0,128)
+	VFND G 0 A_SpawnItem("NemesisSoulFlameSpawner",0,0,0,0)
+	VFND G 0 A_CustomMissile("BigLFLunge",18,0,0,CMF_AIMDIRECTION)
+	VFND G 2 Bright A_FaceTarget
+	VFND G 0 A_SpawnItemEx("VNemesisFiendLungeGhost",0,0,0,0,0,0,0,128)
+	VFND G 0 A_SpawnItem("NemesisSoulFlameSpawner",0,0,0,0)
+	VFND G 0 A_CustomMissile("BigLFLunge",18,0,0,CMF_AIMDIRECTION)
+	VFND G 2 Bright A_FaceTarget
+	VFND G 0 A_SpawnItemEx("VNemesisFiendLungeGhost",0,0,0,0,0,0,0,128)
+	VFND G 0 A_SpawnItem("NemesisSoulFlameSpawner",0,0,0,0)
+	VFND G 0 A_CustomMissile("BigLFLunge",18,0,0,CMF_AIMDIRECTION)
+	VFND G 2 Bright A_FaceTarget
+	VFND G 0 A_SpawnItemEx("VNemesisFiendLungeGhost",0,0,0,0,0,0,0,128)
+	VFND G 0 A_SpawnItem("NemesisSoulFlameSpawner",0,0,0,0)
+	VFND G 0 A_CustomMissile("BigLFLunge",18,0,0,CMF_AIMDIRECTION)
+	VFND G 2 Bright A_FaceTarget
+	VFND G 0 A_SpawnItemEx("VNemesisFiendLungeGhost",0,0,0,0,0,0,0,128)
+	VFND G 0 A_SpawnItem("NemesisSoulFlameSpawner",0,0,0,0)
+	VFND G 0 A_CustomMissile("BigLFLunge",18,0,0,CMF_AIMDIRECTION)
+	VFND G 2 Bright A_FaceTarget
+	VFND G 0 A_SpawnItemEx("VNemesisFiendLungeGhost",0,0,0,0,0,0,0,128)
+	VFND G 0 A_SpawnItem("NemesisSoulFlameSpawner",0,0,0,0)
+	VFND G 0 A_CustomMissile("BigLFLunge",18,0,0,CMF_AIMDIRECTION)
+	VFND G 2 Bright A_FaceTarget
+	VFND G 0 A_SpawnItemEx("VNemesisFiendLungeGhost",0,0,0,0,0,0,0,128)
+	VFND G 0 A_SpawnItem("NemesisSoulFlameSpawner",0,0,0,0)
+	VFND G 0 A_CustomMissile("BigLFLunge",18,0,0,CMF_AIMDIRECTION)
+	VFND G 2 Bright A_FaceTarget
+	VFND G 0 A_SpawnItemEx("VNemesisFiendLungeGhost",0,0,0,0,0,0,0,128)
+	VFND G 0 A_SpawnItem("NemesisSoulFlameSpawner",0,0,0,0)
+	VFND G 0 A_CustomMissile("BigLFLunge",18,0,0,CMF_AIMDIRECTION)
+	VFND G 2 Bright A_FaceTarget
+	VFND G 0 A_SpawnItemEx("VNemesisFiendLungeGhost",0,0,0,0,0,0,0,128)
+	VFND G 0 A_SpawnItem("NemesisSoulFlameSpawner",0,0,0,0)
+	VFND G 0 A_CustomMissile("BigLFLunge",18,0,0,CMF_AIMDIRECTION)
+	VFND G 2 Bright A_FaceTarget
+	VFND G 0 A_SpawnItemEx("VNemesisFiendLungeGhost",0,0,0,0,0,0,0,128)
+	VFND G 0 A_SpawnItem("NemesisSoulFlameSpawner",0,0,0,0)
+	VFND G 0 A_CustomMissile("BigLFLunge",18,0,0,CMF_AIMDIRECTION)
+	VFND G 2 Bright A_FaceTarget
+	VFND G 0 A_SpawnItemEx("VNemesisFiendLungeGhost",0,0,0,0,0,0,0,128)
+	VFND G 0 A_SpawnItem("NemesisSoulFlameSpawner",0,0,0,0)
+	VFND G 0 A_CustomMissile("BigLFLunge",18,0,0,CMF_AIMDIRECTION)
+	VFND G 2 Bright A_FaceTarget
+	VFND G 0 A_SpawnItemEx("VNemesisFiendLungeGhost",0,0,0,0,0,0,0,128)
+	VFND G 0 A_SpawnItem("NemesisSoulFlameSpawner",0,0,0,0)
+	VFND G 0 A_CustomMissile("BigLFLunge",18,0,0,CMF_AIMDIRECTION)
+	VFND G 2 Bright A_FaceTarget
+	VFND G 0 A_SpawnItemEx("VNemesisFiendLungeGhost",0,0,0,0,0,0,0,128)
+	VFND G 0 A_SpawnItem("NemesisSoulFlameSpawner",0,0,0,0)
+	VFND G 0 A_CustomMissile("BigLFLunge",18,0,0,CMF_AIMDIRECTION)
+	VFND G 2 Bright A_FaceTarget
+	TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)
+	TNT1 A 0 A_ChangeFlag(NOPAIN,0)
+	Goto See
+  LungeTeleport:
+	VFND G 1 Bright A_UnSetShootable
+	TNT1 A 0 A_PlaySound("boss/teleport",1)
+	VFND AAAA 0 A_SpawnItem("TrueNemesisHellionSmokeSpawner",0,0,0,0)
+	VFND GGGGGGGGGG 1 A_FadeOut(0.1,0)
+	TNT1 A 0 A_Stop
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Chase("","")
+	VFND A 1 A_PlaySound("boss/teleport",1)
+	VFND AAAA 0 A_SpawnItem("TrueNemesisHellionSmokeSpawner",0,0,0,0)
+	VFND AAAAAAAAAA 1 A_FadeIn(0.1)
+	TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)
+	TNT1 A 0 A_ChangeFlag(NOPAIN,0)
+	VFND A 1 Bright A_SetShootable
+	TNT1 A 0 A_Jump(128,"RageGo")
+	Goto See
+  Melee:
+    TNT1 A 0 A_SetTranslucent (0.3)
+	VFND EF 2 Bright A_FaceTarget
+	VFND G 2 Bright A_MeleeAttack
+	VFND E 2 Bright A_FaceTarget
+	Goto See
+  Pain:
+  	TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)
+	TNT1 A 0 A_Jump(35,"Teleport")
+	TNT1 A 0 A_Jump(88,"Rage")
+	VFND H 2 Bright
+	VFND H 2 Bright A_Pain
+	Goto See
+  PainMissile:
+	VFND H 2 Bright
+	VFND H 2 Bright A_Pain
+	Goto Missile
+  Death:
+  	TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)
+	VFND I 10 A_StopSound(6)
+	VFND J 0 A_PlaySound("Gore/Splat")
+	VFND J 0 A_SpawnItemEx("NemesisGibbedGenerator",0,0,0,0,0,0,0,128,0)
+	VFND J 10 A_Scream
+	VFND K 10 
+	VFND L 10 A_NoBlocking
+	VFND M 100 
+	TNT1 A 0 A_Jump(100,"MoreStuff")
+	TNT1 A 0 A_JumpIfInTargetInventory("NemesisFragmentToken",1,3)
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("GetCVar",18) == 0,2)
+	TNT1 A 0 A_SpawnItemEx("NemesisFragmentSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,192)	
+	VFND N -1
+	Stop
+  MoreStuff:
+	VFND N 100
+	TNT1 A 0 A_SpawnItem("HellionSmokeAttack")
+	VFND NNNNNNNNNNNNNNNNNNNNNNNNNNNNNN 1 A_SpawnItem("NemesisZombieItemRandomizer")
+	VFND NNNNNNNNNNNNNNNNNNNNNNNNNNNNNN 1 A_SpawnItem("NemesisZombieItemRandomizer")
+	VFND N 1 A_SpawnItem("NemesisZombieSuperItemRandomizer")
+	VFND N -1
+	Stop
+  }
+}
+
+Actor VNemesisFiendGhost
+{
+  Scale 1.25
+  Renderstyle Translucent
+  Alpha 0.75
+  +CLIENTSIDEONLY
+  +NOINTERACTION
+  +NOTIMEFREEZE
+  States
+  {
+  Spawn:
+    TNT1 A 0 A_SetTranslucent (0.1)
+  Fade:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	VFND A 2 A_FadeOut(0.09)
+	Loop
+  Vanilla:
+	TNT1 A 0
+	Stop	
+	}
+}
+
+Actor VNemesisFiendLungeGhost : NemesisFiendGhost
+{
+  States
+  {
+  Spawn:
+    TNT1 A 0 A_SetTranslucent (0.1)
+  Fade:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	VFND G 2 A_FadeOut(0.09)
+	Loop
+	}
+}

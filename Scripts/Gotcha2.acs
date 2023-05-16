@@ -1,0 +1,163 @@
+//Old UtilityCrateUse
+Script "UtilityCrateUse" (void)
+{
+	int x = GetActorX(0);
+	int y = GetActorY(0);
+	int z = GetActorZ(0);
+	int angle = GetActorAngle(0);
+	int random_chance = Random(1,17);
+	delay(1);
+	
+	if (random_chance == 1)
+	{
+		SpawnForced("UtilyCrateGot", x, y, z, 0, angle);
+		PlaySound(0,"UtilyCrate/use");
+		Print(s:"Utily Crate Activated!");
+		delay(2*35);
+		terminate;
+	}
+	else if (random_chance == 2)
+	{
+		SpawnForced("UtilyCrateGot", x, y, z, 0, angle);
+		PlaySound(0,"UtilyCrate/use");
+		Print(s:"Utily Crate Activated!");
+		delay(2*35);
+		terminate;
+	}
+	else if (random_chance == 3)
+	{
+		PlaySound(0,"UtilyCrate/use");
+		Print(s:"It's empty. Better luck next time.");
+		delay(2*35);
+		terminate;
+	}
+	else if (random_chance == 4)
+	{
+		SpawnForced("UtilyCrateGot", x, y, z, 0, angle);
+		PlaySound(0,"UtilyCrate/use");
+		Print(s:"Utily Crate Activated!");
+		delay(2*35);
+		terminate;
+	}
+	else if (random_chance == 5)
+	{
+		SpawnForced("UtilyCrateGot", x, y, z, 0, angle);
+		PlaySound(0,"UtilyCrate/use");
+		Print(s:"Utily Crate Activated!");
+		delay(2*35);
+		terminate;
+	}
+	else if (random_chance == 6)
+	{
+		SpawnForced("UtilyCrateGot", x, y, z, 0, angle);
+		PlaySound(0,"UtilyCrate/use");
+		Print(s:"Utily Crate Activated!");
+		delay(2*35);
+		terminate;
+	}
+	else if (random_chance == 7)
+	{
+		PlaySound(0,"UtilyCrate/use");
+		Print(s:"It's empty. Better luck next time.");
+		delay(2*35);
+		terminate;
+	}
+	else if (random_chance == 8)
+	{
+		PlaySound(0,"UtilyCrate/use");
+		Print(s:"It's empty. Better luck next time.");
+		delay(2*35);
+		terminate;
+	}
+	else if (random_chance == 9)
+	{
+		PlaySound(0,"UtilyCrate/use");
+		Print(s:"It's empty. Better luck next time.");
+		delay(2*35);
+		terminate;
+	}
+	else if (random_chance == 10)
+	{
+		PlaySound(0,"UtilyCrate/use");
+		Print(s:"It's empty. Better luck next time.");
+		delay(2*35);
+		terminate;
+	}
+	else if (random_chance == 11)
+	{
+		PlaySound(0,"UtilyCrate/use");
+		Print(s:"It's empty. Better luck next time.");
+		delay(2*35);
+		terminate;
+	}
+	else if (random_chance == 12)
+	{
+		SpawnForced("UtilyCrateGot", x, y, z, 0, angle);
+		PlaySound(0,"UtilyCrate/use");
+		Print(s:"Utily Crate Activated!");
+		delay(2*35);
+		terminate;
+	}
+	else if (random_chance == 13)
+	{
+		SpawnForced("UtilyCrateGot", x, y, z, 0, angle);
+		PlaySound(0,"UtilyCrate/use");
+		Print(s:"Utily Crate Activated!");
+		delay(2*35);
+		terminate;
+	}
+	else if (random_chance == 14)
+	{
+		SpawnForced("UtilyCrateGot", x, y, z, 0, angle);
+		PlaySound(0,"UtilyCrate/use");
+		Print(s:"Utily Crate Activated!");
+		delay(2*35);
+		terminate;
+	}
+	else if (random_chance == 15)
+	{
+		SpawnForced("UtilyCrateGot", x, y, z, 0, angle);
+		PlaySound(0,"UtilyCrate/use");
+		Print(s:"Utily Crate Activated!");
+		delay(2*35);
+		terminate;
+	}
+	else if (random_chance == 16)
+	{
+		PlaySound(0,"UtilyCrate/use");
+		Print(s:"It's empty. Better luck next time.");
+		delay(2*35);
+		terminate;
+	}
+	else if (random_chance == 17)
+	{
+		SpawnForced("UtilyCrateGot", x, y, z, 0, angle);
+		PlaySound(0,"UtilyCrate/use");
+		Print(s:"Utily Crate Activated!");
+		delay(2*35);
+		terminate;
+	}
+}
+
+^ EW
+
+//New UtilityCrateUse
+Script "UtilityCrateUse" (void)
+{
+ int x = GetActorX(0); int y = GetActorY(0); int z = GetActorZ(0);
+ int angle = (GetActorAngle(0))>>8;
+ int randomchance = Random(1,170);
+ delay(1);
+
+ PlaySound(0,"UtilyCrate/use");
+	
+ if (randomchance <= 100)
+  {
+   SpawnForced("UtilyCrateGot", x, y, z, 0, angle);
+   Print(s:"Utily Crate Activated!");
+  }
+
+ else {Print(s:"It's empty. Better luck next time.");}
+}
+
+^OMG I can't believe it works the same

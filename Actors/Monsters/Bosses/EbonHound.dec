@@ -1,0 +1,622 @@
+Actor EbonHound
+{
+ Monster
+ MeleeRange 400
+ Mass 7000
+ Health 6000
+ MaxStepHeight 64
+ MaxDropOffHeight 50
+  BloodColor Purple
+ 
+  Damagefactor Dark, 0
+ DeathSound "Cerberus/Die"
+ SeeSound "Cerberus/See"
+ ActiveSound ""
+ Obituary "%o was swallowed by the Ebon Hound."
+ Painchance "Mine", 0
+ DamageFactor "SoulToxic", 0.0
+ DamageFactor "Cacolich", 0.0
+ Damagefactor "Acid", 2.5
+ Damagefactor "ObsidianSatyr", 0.0
+ Damagefactor "VileFires", 0.0
+ Damagefactor "Heterodox", 0.0
+ Damagefactor "Damned", 0.0
+ Painchance 16
+ Species "HEMBoss"
+ //Species "EbonHound"
+ +Boss
+ +FloorClip
+ +QuickToRetaliate
+ +MissileMore
+ -Pushable
+ +FullVolDeath
+ +DontBlast
+ +NoRadiusDMG
+ Height 128
+ Radius 80
+ Scale 1.27
+ Speed 6
+ Tag "CFEHound"
+ var int user_lowlag;
+ States
+  {
+   Spawn:
+    EBHA A 0
+	TNT1 A 0 ACS_NamedExecuteAlways("WimpyMode",0,2)
+	TNT1 A 0 ACS_NamedExecuteAlways("ModifyMonster",0,2)
+   SpawnLoop:
+	 EBHA AA 1 A_Look
+	 Loop
+	GiveUp:
+	  TNT1 A 0 A_ClearTarget
+	  GoTO Idle
+	Idle:
+	 TNT1 A 0 A_JumpIfInventory("Beheaded",1,"Idle.Head")
+	 tnt1 a 0 A_LookEx(0,0,0,0,0,"See")
+	 EBHW AABBCCDDEE 3 A_Wander
+	 tnt1 a 0 A_LookEx(0,0,0,0,0,"See")
+	 Loop
+	Idle.Head:
+	 tnt1 a 0 A_LookEx(0,0,0,0,0,"See")
+	 EBHW FGHIJ 7 A_Wander
+	 tnt1 a 0 A_LookEx(0,0,0,0,0,"See")
+	 Loop
+	Pain:
+	 TNT1 A 0
+	 TNT1 A 0 A_JumpIfInventory("Beheaded",1,"Pain.Head")
+	 TNT1 A 0 A_PlaySound("Cerberus/Pain",0,1.0,0)
+	 TNT1 A 0 A_PlaySound("Cerberus/Pain2",0,1.0,0)
+	 TNT1 A 0 A_JumpIfInTargetInventory("TrueLegendaryRune2Token",1,"Pain.Hard")
+	 EBHP A 5
+	 TNT1 A 0 A_CustomMissile("PhaseFangSummoner",random(27,58),random(-40,40),
+	 random(0,360),2|CMF_TRACKOWNER,random(-90,90))
+	 EBHP A 3
+	 TNT1 A 0 A_CustomMissile("PhaseFangSummoner",random(27,58),random(-40,40),
+	 random(0,360),2|CMF_TRACKOWNER,random(-90,90))
+	 EBHP A 3
+	 TNT1 A 0 A_CustomMissile("PhaseFangSummoner",random(27,58),random(-40,40),
+	 random(0,360),2|CMF_TRACKOWNER,random(-90,90))
+	 EBHP A 3
+	 TNT1 A 0 A_CustomMissile("PhaseFangSummoner",random(27,58),random(-40,40),
+	 random(0,360),2|CMF_TRACKOWNER,random(-90,90))
+	 GoTo See
+	 Pain.Hard:
+	 EBHP A 5
+	 TNT1 AA 0 A_CustomMissile("SlowBouncer",62,0,random(0,360),
+	 CMF_ABSOLUTEANGLE|CMF_ABSOLUTEPITCH|CMF_AIMDIRECTION,random(0,360))
+	 TNT1 AA 0 A_CustomMissile("PhaseFangSummoner",random(27,58),random(-40,40),
+	 random(0,360),2|CMF_TRACKOWNER,random(-90,90))
+	 EBHP A 3
+	 TNT1 AA 0 A_CustomMissile("SlowBouncer",62,0,random(0,360),
+	 CMF_ABSOLUTEANGLE|CMF_ABSOLUTEPITCH|CMF_AIMDIRECTION,random(0,360))
+	 TNT1 AA 0 A_CustomMissile("PhaseFangSummoner",random(27,58),random(-40,40),
+	 random(0,360),2|CMF_TRACKOWNER,random(-90,90))
+	 EBHP A 3
+	 TNT1 AA 0 A_CustomMissile("SlowBouncer",62,0,random(0,360),
+	 CMF_ABSOLUTEANGLE|CMF_ABSOLUTEPITCH|CMF_AIMDIRECTION,random(0,360))
+	 TNT1 A 0 A_CustomMissile("PhaseFangSummoner",random(27,58),random(-40,40),
+	 random(0,360),2|CMF_TRACKOWNER,random(-90,90))
+	 EBHP A 3
+	 TNT1 AA 0 A_CustomMissile("SlowBouncer",62,0,random(0,360),
+	 CMF_ABSOLUTEANGLE|CMF_ABSOLUTEPITCH|CMF_AIMDIRECTION,random(0,360))
+	 TNT1 A 0 A_CustomMissile("PhaseFangSummoner",random(27,58),random(-40,40),
+	 random(0,360),2|CMF_TRACKOWNER,random(-90,90))
+	 GoTo See
+	 Pain.Head:
+	 TNT1 A 0 A_PlaySound("Cerberus/Pain",0,1.0,0)
+	 TNT1 A 0 A_JumpIfInTargetInventory("TrueLegendaryRune2Token",1,"Pain.Head.Hard")
+	 EBHA E 5
+	 TNT1 A 0 A_CustomMissile("PhaseFangSummoner",random(27,58),random(-40,40),
+	 random(0,360),2|CMF_TRACKOWNER,random(-90,90))
+	 EBHA E 3 A_Jump(8,"Missile")
+	 TNT1 A 0 A_CustomMissile("PhaseFangSummoner",random(27,58),random(-40,40),
+	 random(0,360),2|CMF_TRACKOWNER,random(-90,90))
+	 GoTo See
+	 Pain.Head.Hard:
+	 EBHA E 5
+	 TNT1 AA 0 A_CustomMissile("SlowBouncer",62,0,random(0,360),
+	 CMF_ABSOLUTEANGLE|CMF_ABSOLUTEPITCH|CMF_AIMDIRECTION,random(0,360))
+	 TNT1 A 0 A_CustomMissile("PhaseFangSummoner",random(27,58),random(-40,40),
+	 random(0,360),2|CMF_TRACKOWNER,random(-90,90))
+	 TNT1 A 0 A_CustomMissile("PhaseFangSummoner",random(27,58),random(-40,40),
+	 random(0,360),2|CMF_TRACKOWNER,random(-90,90))
+	 EBHA E 3 A_Jump(8,"Missile")
+	 TNT1 AA 0 A_CustomMissile("SlowBouncer",62,0,random(0,360),
+	 CMF_ABSOLUTEANGLE|CMF_ABSOLUTEPITCH|CMF_AIMDIRECTION,random(0,360))
+	 TNT1 A 0 A_CustomMissile("PhaseFangSummoner",random(27,58),random(-40,40),
+	 random(0,360),2|CMF_TRACKOWNER,random(-90,90))
+	 TNT1 A 0 A_CustomMissile("PhaseFangSummoner",random(27,58),random(-40,40),
+	 random(0,360),2|CMF_TRACKOWNER,random(-90,90))
+	 GoTo See
+	 ActiveSound:
+	 TNT1 A 0
+	 TNT1 A 0 A_PlaySound("Cerberus/Active",0,1.0,0)
+	 TNT1 A 0 A_PlaySound("Cerberus/Active2",0,1.0,0)
+	 GoTo See2
+	 ActiveSoundGlobal:
+	 TNT1 A 0
+	 TNT1 A 0 A_PlaySound("Cerberus/Howl",0,1.0,0,attn_none)
+	 GoTo See2
+	 ActiveSound2:
+	 TNT1 A 0
+	 TNT1 A 0 A_PlaySound("Cerberus/Active",0,1.0,0)
+	 GoTo See.Head2
+  See:
+	TNT1 A 0 A_JumpIf(user_lowlag == 1,"MoreSee")
+	TNT1 A 0 A_JumpIfTargetInLOS("MoreSee",0,0,0,0)
+	EBHW ABCDE 5 A_Chase
+	Loop
+  MoreSee:
+	TNT1 A 0 A_SetUserVar("user_lowlag",1)
+	 TNT1 A 0 A_JumpIfHealthLower(2000,"Behead")
+	 TNT1 A 0 A_JumpIfTargetinLOS(2, 180)
+     TNT1 A 0 A_Jump(30, "Giveup")
+     TNT1 A 0 A_Jump(72, "ActiveSound")
+     TNT1 A 0 A_Jump(12, "ActiveSoundGlobal")
+	 See2:
+	 EBHW AA 1 A_Chase
+	 EBHW AAA 1 A_Chase("","")
+	 EBHW BB 1 A_Chase
+	 EBHW BBB 1 A_Chase("","")
+	 EBHW CC 1 A_Chase
+	 EBHW CCC 1 A_Chase("","")
+	 EBHW DD 1 A_Chase
+	 EBHW DDD 1 A_Chase("","")
+	 EBHW EE 1 A_Chase
+	 EBHW EEE 1 A_Chase("","")
+	 GoTo See
+	Behead:
+	 TNT1 A 0 A_JumpIfInventory("Beheaded",1,"See.Head")
+	 TNT1 A 0 A_PlaySound("Cerberus/See",0,1.0,0,attn_none)
+	 TNT1 A 0 A_JumpIfInTargetInventory("TrueLegendaryRune2Token",1,"Behead.Hard")
+	 EBHA AAB 4 Bright A_FaceTarget
+	 TNT1 AA 0 A_CustomMissile("SlowBouncer",62,0,random(0,360),
+	 CMF_ABSOLUTEANGLE|CMF_ABSOLUTEPITCH|CMF_AIMDIRECTION,random(0,360))
+	 TNT1 A 0 A_CustomMissile("PhaseFangSummoner",random(27,58),random(-40,40),
+	 random(0,360),2|CMF_TRACKOWNER,random(-90,90))
+	 TNT1 A 0 A_CustomMissile("PhaseFangSummoner",random(27,58),random(-40,40),
+	 random(0,360),2|CMF_TRACKOWNER,random(-90,90))
+	 TNT1 AA 0 A_CustomMissile("SlowBouncer",62,0,random(0,360),
+	 CMF_ABSOLUTEANGLE|CMF_ABSOLUTEPITCH|CMF_AIMDIRECTION,random(0,360))
+	 TNT1 A 0 A_FaceTarget
+	 EBHA BB 1 Bright A_CustomMissile("ASComet",75,35,random(10,-6))
+	 TNT1 AA 0 A_CustomMissile("SlowBouncer",62,0,random(0,360),
+	 CMF_ABSOLUTEANGLE|CMF_ABSOLUTEPITCH|CMF_AIMDIRECTION,random(0,360))
+	 EBHA CCD 4 Bright A_FaceTarget
+	 TNT1 AA 0 A_CustomMissile("SlowBouncer",62,0,random(0,360),
+	 CMF_ABSOLUTEANGLE|CMF_ABSOLUTEPITCH|CMF_AIMDIRECTION,random(0,360))
+	 TNT1 A 0 A_CustomMissile("PhaseFangSummoner",random(27,58),random(-40,40),
+	 random(0,360),2|CMF_TRACKOWNER,random(-90,90))
+	 TNT1 A 0 A_FaceTarget
+	 EBHA DDD 1 Bright A_CustomMissile("ASComet",75,-35,random(-10,6))
+	 TNT1 AA 0 A_CustomMissile("SlowBouncer",62,0,random(0,360),
+	 CMF_ABSOLUTEANGLE|CMF_ABSOLUTEPITCH|CMF_AIMDIRECTION,random(0,360))
+	 EBHA C 3
+	 TNT1 AA 0 A_CustomMissile("SlowBouncer",62,0,random(0,360),
+	 CMF_ABSOLUTEANGLE|CMF_ABSOLUTEPITCH|CMF_AIMDIRECTION,random(0,360))
+	 TNT1 AA 0 A_CustomMissile("SlowBouncer",62,0,random(0,360),
+	 CMF_ABSOLUTEANGLE|CMF_ABSOLUTEPITCH|CMF_AIMDIRECTION,random(0,360))
+	 EBHA AAB 4 Bright A_FaceTarget
+	 TNT1 AA 0 A_CustomMissile("SlowBouncer",62,0,random(0,360),
+	 CMF_ABSOLUTEANGLE|CMF_ABSOLUTEPITCH|CMF_AIMDIRECTION,random(0,360))
+	 TNT1 A 0 A_CustomMissile("PhaseFangSummoner",random(27,58),random(-40,40),
+	 random(0,360),2|CMF_TRACKOWNER,random(-90,90))
+	 TNT1 A 0 A_FaceTarget
+	 EBHA BB 1 Bright A_CustomMissile("ASComet",75,35,random(10,-6))
+	 EBHA CCD 4 Bright A_FaceTarget
+	 TNT1 A 0 A_CustomMissile("PhaseFangSummoner",random(27,58),random(-40,40),
+	 random(0,360),2|CMF_TRACKOWNER,random(-90,90))
+	 TNT1 A 0 A_FaceTarget
+	 EBHA DDD 1 Bright A_CustomMissile("AdvisorBall",75,-35,random(-10,6))
+	 TNT1 A 0 A_CustomMissile("PhaseFangSummoner",random(27,58),random(-40,40),
+	 random(0,360),2|CMF_TRACKOWNER,random(-90,90))
+	 EBHA C 3
+	 TNT1 A 0 A_PlaySound("Cerberus/Pain",0,1.0,0)
+	 EBHP A 4 A_GiveInventory("Beheaded",1)
+	 EBHP ABBCD 5
+	 GoTo Missile.Head
+	 Behead.Hard:
+	 EBHA AAB 4 Bright A_FaceTarget
+	 TNT1 A 0 A_CustomMissile("PhaseFangSummoner",random(27,58),random(-40,40),
+	 random(0,360),2|CMF_TRACKOWNER,random(-90,90))
+	 TNT1 A 0 A_CustomMissile("PhaseFangSummoner",random(27,58),random(-40,40),
+	 random(0,360),2|CMF_TRACKOWNER,random(-90,90))
+	 TNT1 A 0 A_FaceTarget
+	 EBHA BB 1 Bright A_CustomMissile("ASComet",75,35,random(10,-6))
+	 EBHA CCD 4 Bright A_FaceTarget
+	 TNT1 A 0 A_CustomMissile("PhaseFangSummoner",random(27,58),random(-40,40),
+	 random(0,360),2|CMF_TRACKOWNER,random(-90,90))
+	 TNT1 A 0 A_FaceTarget
+	 EBHA DDD 1 Bright A_CustomMissile("ASComet",75,-35,random(-10,6))
+	 EBHA C 3
+	 EBHA AAB 4 Bright A_FaceTarget
+	 TNT1 A 0 A_CustomMissile("PhaseFangSummoner",random(27,58),random(-40,40),
+	 random(0,360),2|CMF_TRACKOWNER,random(-90,90))
+	 TNT1 A 0 A_FaceTarget
+	 EBHA BB 1 Bright A_CustomMissile("ASComet",75,35,random(10,-6))
+	 EBHA CCD 4 Bright A_FaceTarget
+	 TNT1 A 0 A_CustomMissile("PhaseFangSummoner",random(27,58),random(-40,40),
+	 random(0,360),2|CMF_TRACKOWNER,random(-90,90))
+	 TNT1 A 0 A_FaceTarget
+	 EBHA DDD 1 Bright A_CustomMissile("AdvisorBall",75,-35,random(-10,6))
+	 TNT1 A 0 A_CustomMissile("PhaseFangSummoner",random(27,58),random(-40,40),
+	 random(0,360),2|CMF_TRACKOWNER,random(-90,90))
+	 EBHA C 3
+	 TNT1 A 0 A_PlaySound("Cerberus/Pain",0,1.0,0)
+	 EBHP A 4 A_GiveInventory("Beheaded",1)
+	 EBHP ABBCD 5
+	 GoTo Missile.Head
+	See.Head:
+     TNT1 A 0 A_Jump(55, "ActiveSound2")
+	 See.Head2:
+	 EBHW FFF 1 A_Chase("","")
+	 EBHW FF 1 A_Chase
+	 EBHW GGG 1 A_Chase("","")
+	 EBHW GG 1 A_Chase
+	 EBHW HHH 1 A_Chase("","")
+	 EBHW HH 1 A_Chase
+	 EBHW III 1 A_Chase("","")
+	 EBHW II 1 A_Chase
+	 EBHW JJJ 1 A_Chase("","")
+	 EBHW JJ 1 A_Chase
+	 GoTo See.Head
+	Run:
+	 TNT1 A 0 A_ChangeFlag(Frightened,1)
+	 TNT1 A 0 A_JumpIfInventory("Beheaded",1,"Run.Head")
+	 EBHW AAAAABBBBB 1 A_Chase("","")
+	 TNT1 A 0 A_Jump(75,"Missile")
+	 EBHW CCCCC 1 A_Chase("","Missile")
+	 EBHW DDDDDEEEEE 1 A_Chase("","")
+	 TNT1 A 0 A_ChangeFlag(Frightened,0)
+	 GoTo See
+	Run.Head:
+	 EBHW FFFFFGGGGG 1 A_Chase("","")
+	 TNT1 A 0 A_Jump(75,"Missile")
+	 EBHW HHHHH 1 A_Chase("","Missile")
+	 EBHW IIIIIJJJJJ 1 A_Chase("","")
+	 TNT1 A 0 A_ChangeFlag(Frightened,0)
+	 GoTo See
+	Missile:
+	 TNT1 A 0 A_ChangeFlag(Frightened,0)
+	 TNT1 A 0 A_JumpIfInventory("Beheaded",1,"Missile.Head")
+	 TNT1 A 0 A_JumpIfInTargetInventory("TrueLegendaryRune2Token",1,"Missile.Hard")
+	 TNT1 A 0 A_Jump(88,"SmallBallSpam")
+	 Normal:
+	 EBHA AAB 5 Bright A_FaceTarget
+	 TNT1 A 0 A_FaceTarget
+	 EBHA B 1 Bright A_CustomMissile("ASComet",75,35,0)
+	 EBHA CCD 5 Bright A_FaceTarget
+	 TNT1 A 0 A_FaceTarget
+	 EBHA D 1 Bright A_CustomMissile("ASComet",75,-35,0)
+	 EBHA C 5
+	 EBHA AAB 4 Bright A_FaceTarget
+	 TNT1 A 0 A_FaceTarget
+	 EBHA BB 1 Bright A_CustomMissile("ASComet",75,35,random(10,-6))
+	 EBHA CCD 4 Bright A_FaceTarget
+	 TNT1 A 0 A_FaceTarget
+	 EBHA DD 1 Bright A_CustomMissile("ASComet",75,-35,random(-10,6))
+	 EBHA C 3
+	 TNT1 A 0 A_Jump(55,"SmallBallSpam")
+	 GoTo See
+	 Missile.Hard:
+	 TNT1 A 0 A_Jump(88,"Spam.Hard")
+	 Hard:
+	 EBHA AAB 5 Bright A_FaceTarget
+	 TNT1 A 0 A_FaceTarget
+	 TNT1 A 0 A_CustomMissile("AdvisorBall",75,35,random(25,-8))
+	 EBHA B 1 Bright A_CustomMissile("ASComet",75,35,0)
+	 EBHA CCD 5 Bright A_FaceTarget
+	 TNT1 A 0 A_FaceTarget
+	 TNT1 A 0  A_CustomMissile("AdvisorBall",75,-35,random(-25,8))
+	 EBHA D 1 Bright A_CustomMissile("ASComet",75,-35,0)
+	 EBHA C 5
+	 EBHA AAB 4 Bright A_FaceTarget
+	 TNT1 A 0 A_FaceTarget
+	 TNT1 A 0 A_CustomMissile("AdvisorBall",75,35,random(25,-8))
+	 EBHA BB 1 Bright A_CustomMissile("ASComet",75,35,random(10,-6))
+	 EBHA CCD 4 Bright A_FaceTarget
+	 TNT1 A 0 A_FaceTarget
+	 TNT1 A 0  A_CustomMissile("AdvisorBall",75,-35,random(-25,8))
+	 EBHA DD 1 Bright A_CustomMissile("ASComet",75,-35,random(-10,6))
+	 EBHA C 3
+	 TNT1 A 0 A_Jump(55,"Spam.Hard")
+	 GoTo See
+	 Spam.Hard:
+	 EBHA AAAB 2 Bright A_FaceTarget
+	 TNT1 A 0 A_FaceTarget
+	 TNT1 AAA 0 A_CustomMissile("HoundDBBall",75,35,random(25,-8))
+	 EBHA BBB 1 Bright A_CustomMissile("AdvisorBall",75,35,random(25,-8))
+	 EBHA CCCD 2 Bright A_FaceTarget
+	 TNT1 A 0 A_FaceTarget
+	 TNT1 AAA 0  A_CustomMissile("HoundDBBall",75,-35,random(-25,8))
+	 EBHA DDD 1 Bright A_CustomMissile("AdvisorBall",75,-35,random(-25,8))
+	 EBHA C 4
+	 EBHA AAAB 2 Bright A_FaceTarget
+	 TNT1 A 0 A_FaceTarget
+	 TNT1 AAA 0 A_CustomMissile("HoundDBBall",75,35,random(25,-8))
+	 EBHA BBB 1 Bright A_CustomMissile("AdvisorBall",75,35,random(25,-8))
+	 EBHA CCCD 2 Bright A_FaceTarget
+	 TNT1 A 0 A_FaceTarget
+	 TNT1 AAA 0  A_CustomMissile("HoundDBBall",75,-35,random(-25,8))
+	 EBHA DDD 1 Bright A_CustomMissile("AdvisorBall",75,-35,random(-25,8))
+	 EBHA C 4
+	 GoTo See
+	 Melee:
+	 TNT1 A 0 A_JumpIfCloser(200,1)
+	 GoTo Run
+	 TNT1 A 0 A_ChangeFlag(Frightened,0)
+	 TNT1 A 0 A_JumpIfInventory("Beheaded",1,"Missile.Head")
+	 SmallBallSpam:
+	 EBHA AAAB 2 Bright A_FaceTarget
+	 TNT1 A 0 A_FaceTarget
+	 EBHA BBB 1 Bright A_CustomMissile("AdvisorBall",75,35,random(25,-8))
+	 EBHA CCCD 2 Bright A_FaceTarget
+	 TNT1 A 0 A_FaceTarget
+	 EBHA DDD 1 Bright A_CustomMissile("AdvisorBall",75,-35,random(-25,8))
+	 EBHA C 4
+	 EBHA AAAB 2 Bright A_FaceTarget
+	 TNT1 A 0 A_FaceTarget
+	 EBHA BBB 1 Bright A_CustomMissile("AdvisorBall",75,35,random(25,-8))
+	 EBHA CCCD 2 Bright A_FaceTarget
+	 TNT1 A 0 A_FaceTarget
+	 EBHA DDD 1 Bright A_CustomMissile("AdvisorBall",75,-35,random(-25,8))
+	 EBHA C 4
+	 GoTo See
+	Missile.Head:
+	 TNT1 A 0 A_JumpIfInTargetInventory("TrueLegendaryRune2Token",1,"Missile.Head.Hard")
+	 EBHA EEF 5 Bright A_FaceTarget
+	 TNT1 A 0 A_FaceTarget
+	 EBHA F 2 Bright A_CustomMissile("ASComet",75,35,random(8,-5))
+	 EBHA E 4
+	 EBHA EEF 3 Bright A_FaceTarget
+	 TNT1 A 0 A_FaceTarget
+	 EBHA FFF 1 Bright A_CustomMissile("AdvisorBall",75,35,random(-25,8))
+	 GoTo See.Head
+	 Missile.Head.Hard:
+	 EBHA EEF 5 Bright A_FaceTarget
+	 TNT1 A 0 A_FaceTarget
+	 TNT1 AAA 0 A_CustomMissile("HoundDBBall",75,35,random(25,-8))
+	 EBHA F 2 Bright A_CustomMissile("ASComet",75,35,random(8,-5))
+	 EBHA E 4
+	 EBHA EEF 3 Bright A_FaceTarget
+	 TNT1 A 0 A_FaceTarget
+	 TNT1 AAA 0 A_CustomMissile("HoundDBBall",75,35,random(25,-8))
+	 EBHA FFF 1 Bright A_CustomMissile("AdvisorBall",75,35,random(-25,8))
+	 GoTo See.Head
+	Death:
+	 EBHW F 8 A_Scream
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_CustomMissile("SlowBouncer",63,0,random(0,360),
+		CMF_ABSOLUTEANGLE|CMF_ABSOLUTEPITCH|CMF_AIMDIRECTION,random(0,360))
+	 EBHW F 1 A_FadeOut(0.028)
+	 Wait
+  }
+}
+
+Actor Beheaded : Inventory
+{ Inventory.MaxAmount 1 }
+
+Actor PhaseFangSummoner
+{
+  Radius 3
+  Height 3
+  Speed 8
+  Damage 0
+  +DontBlast
+  +ThruActors
+  -NoGravity
+  PROJECTILE
+  RENDERSTYLE Subtract
+  ALPHA 1.0
+  States
+  {
+  Spawn:
+  TNT1 A 1
+  Death:
+  TNT1 A 1
+   TNT1 A 0 A_SpawnItemEx(PhaseFang,0,0,0,momx,momy,momz,0,SXF_SETMASTER|SXF_ABSOLUTEVELOCITY|SXF_NOCHECKPOSITION,0)
+   Stop
+  }
+}
+
+Actor PhaseFang : AbyssalHound
+{
+ Health 290
+  PainChance 44
+  Species "HEMBoss"
+  //Species "EbonHound"
+ DamageFactor "SoulToxic", 0.0
+ DamageFactor "Cacolich", 0.0
+ Damagefactor "Acid", 2.5
+ Damagefactor "ObsidianSatyr", 0.0
+ Damagefactor "VileFires", 0.0
+ Damagefactor "Heterodox", 0.0
+ Damagefactor "Damned", 0.0
+  +ThruSpecies
+  +lookallaround
+  BloodColor Purple
+  Speed 13
+  Radius 39
+  Height 58
+  Mass 700
+  Scale 1.15
+  DropItem "LifeEssence" 256 8
+  DropItem "BossArmorBonusMax", 256
+  DropItem "ArmorBonusMax", 256
+  DropItem "ArmorBonusMax", 256
+  Obituary "%o was slayed by a Phase Fang."
+  SeeSound "PhaseFang/see"
+  PainSound "PhaseFang/pain" 
+  DeathSound "PhaseFang/death" 
+  ActiveSound "PhaseFang/see"
+  Tag "\c[c6]Phase Fang\c-"
+  States
+   {
+    Spawn:
+	 TNT1 A 0 
+	 TNT1 A 0 A_SpawnItemEx("ShadowSmokeGen2",0,0,35)
+	 TNT1 A 0 A_GiveInventory("Beheaded",1)
+	 TNT1 A 0 A_SetTranslucent(0.45,1)
+	 TNT1 A 0 A_ChangeFlag(THRUACTORS,1)
+	 TNT1 A 0 A_ChangeFlag(SHOOTABLE,0)
+	 TNT1 A 0 A_ChangeFlag(VULNERABLE,1)
+	Idle:
+     PFNG A 1
+	 PFNG A 1 A_Look
+	 Loop
+	Phase:
+	 TNT1 A 0 
+	 TNT1 A 0 A_SpawnItemEx("ShadowSmokeGen2",0,0,35)
+	 TNT1 A 0 A_GiveInventory("Beheaded",1)
+	 TNT1 A 0 A_SetTranslucent(0.85,1)
+	 TNT1 A 0 A_ChangeFlag(THRUACTORS,1)
+	 TNT1 A 0 A_ChangeFlag(SHOOTABLE,0)
+	 GoTo See
+	UnPhase:
+	 TNT1 A 0 
+	 TNT1 A 0 A_SpawnItemEx("ShadowSmokeGen2",0,0,35)
+	 TNT1 A 0 A_TakeInventory("Beheaded",1)
+	 TNT1 A 0 A_SetTranslucent(1.0,0)
+	 TNT1 A 0 A_ChangeFlag(THRUACTORS,0)
+	 TNT1 A 0 A_ChangeFlag(SHOOTABLE,1)
+	 GoTo See2
+	UnPhase2:
+	 TNT1 A 0 
+	 TNT1 A 0 A_SpawnItemEx("ShadowSmokeGen2",0,0,35)
+	 TNT1 A 0 A_TakeInventory("Beheaded",1)
+	 TNT1 A 0 A_SetTranslucent(1.0,0)
+	 TNT1 A 0 A_ChangeFlag(THRUACTORS,0)
+	 TNT1 A 0 A_ChangeFlag(SHOOTABLE,1)
+	 GoTo MissileNext
+	See:
+	 PFNG AAAABBBBCCCCDDDDEEEEFFFF 1 A_Chase("","")
+	 PFNG A 0 A_JumpIfCloser(300,2)
+	 PFNG A 0 A_Jump(142,"See2")
+	 PFNG A 0 A_Jump(100,"See2")
+	 PFNG A 0 A_JumpIfInventory("Beheaded",1,"UnPhase")
+	See2:
+	 PFNG A 1
+	 PFNG A 0 A_JumpIfInventory("Beheaded",1,2)
+	 TNT1 A 0 A_Jump(256,2)
+	 TNT1 A 0 A_Jump(192,2)
+	 PFNG A 0 A_Jump(52,"Phase")
+	 PFNG A 0 A_Jump(142,2)
+	 Loop
+	 PFNG A 0 A_JumpIfCloser(700,"Missile")
+     GoTo See
+	Missile:
+	 TNT1 A 0 
+	 PFNG A 0 A_JumpIfInventory("Beheaded",1,"UnPhase2")
+	MissileNext:
+	 TNT1 A 0 A_Jump(128,"Lunge")
+	 TNT1 A 0 A_Jump(69,"DarkFireBalls")
+	Normal:
+	 TNT1 A 0
+	 PFNG GGGGGG 1 A_FaceTarget
+	 PFNG HH 1 Bright A_FaceTarget
+	 TNT1 A 0 A_JumpIfInTargetInventory("TrueLegendaryRune2Token",1,"Missile.Hard")
+	 TNT1 A 0 A_CustomMissile("PainisHarvesterBall",28,0,0)
+	 PFNG H 1 Bright
+	 PFNG H 3
+	 PFNG I 9
+	 GoTo See
+	Missile.Hard:
+	 TNT1 AA 0 A_CustomMissile("HoundDBBall",28,0,random(-12,12))
+	 TNT1 A 0 A_CustomMissile("PainisHarvesterBall",28,0,0)
+	 PFNG H 1 Bright
+	 PFNG H 3
+	 PFNG I 9
+	 GoTo See
+	Lunge:
+	 TNT1 A 0
+	 TNT1 A 0 A_JumpIfCloser(200,1)
+	 Goto See
+	 PFNG AAAAAAAABBBB 1 A_FaceTarget
+	 TNT1 A 0 A_PlaySound("PhaseFang/lunge" )
+	 TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,1)
+	 TNT1 A 0 ThrustThingZ(0,18,0,1)
+	 PFNG CC 1 A_Recoil(-24)
+	 PFNG CCCDD 1 A_CustomMissile("PFangLunge",21,0,0,CMF_AIMDIRECTION)
+	 PFNG DDDD 1
+	 PFNG EEEE 1 A_ScaleVelocity(0.2)
+	 TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)
+	 PFNG FFFF 1 A_ScaleVelocity(0)
+	 Goto See
+	DarkFireBalls:
+	 TNT1 A 0
+	 PFNG GGGGGGGGG 1 A_FaceTarget
+	 PFNG HH 1 Bright A_FaceTarget
+	 TNT1 A 0 A_JumpIfInTargetInventory("TrueLegendaryRune2Token",1,"DarkFireBalls.Hard")
+	 TNT1 A 0 A_CustomMissile("AdvisorBall",28,0,random(-11,11))
+	 PFNG I 12
+	 GoTo See
+	DarkFireBalls.Hard:
+	 TNT1 AAA 0 A_CustomMissile("AdvisorBall",28,0,random(-11,11))
+	 PFNG I 12
+	 GoTo See
+	 Pain:
+	 PFNG A 0 A_JumpIfInventory("Beheaded",1,2)
+	 TNT1 A 0 A_Jump(256,2)
+	 TNT1 A 0 A_SpawnItemEx("ShadowSmokeGen2",0,0,35)
+	 TNT1 A 0 A_TakeInventory("Beheaded",1)
+	 TNT1 A 0 A_SetTranslucent(1.0,0)
+	 TNT1 A 0 A_ChangeFlag(THRUACTORS,0)
+	 TNT1 A 0 A_ChangeFlag(SHOOTABLE,1)
+     PFNG J 2
+     PFNG J 4 A_Pain
+	 PFNG A 0 A_Jump(248,"Phase")
+    Goto See
+  Death:
+	 TNT1 A 0 A_SpawnItemEx("ShadowSmokeGen2",0,0,35)
+	 TNT1 A 0 A_TakeInventory("Beheaded",1)
+	 TNT1 A 0 A_SetTranslucent(1.0,0)
+	 TNT1 A 0 A_ChangeFlag(THRUACTORS,0)
+	 TNT1 A 0 A_ChangeFlag(SHOOTABLE,1)
+	 TNT1 A 0 A_JumpIfInTargetInventory("TrueLegendaryRune2Token",1,"Death.Hard")
+    PFNG K 3
+    PFNG L 3 A_Scream
+		TNT1 A 0 A_CustomMissile("SlowBouncer",32,0,random(0,360),
+		CMF_ABSOLUTEANGLE|CMF_ABSOLUTEPITCH|CMF_AIMDIRECTION,random(0,360))
+    PFNG M 4
+    PFNG N 4 A_NoBlocking
+    PFNG OP 3
+    PFNG Q 1 A_FadeOut(0.02)
+    Wait
+  Death.Hard:
+	TNT1 A 0 A_DropItem("SoulSphere",1,74)
+    PFNG K 3
+    PFNG L 3 A_Scream
+		TNT1 A 0 A_CustomMissile("SlowBouncer",32,0,random(0,360),
+		CMF_ABSOLUTEANGLE|CMF_ABSOLUTEPITCH|CMF_AIMDIRECTION,random(0,360))
+    PFNG M 4
+    PFNG N 4 A_NoBlocking
+    PFNG OP 3
+    PFNG Q 1 A_FadeOut(0.02)
+    Wait
+  }
+}
+
+
+ACTOR PFangLunge
+{
+   Height 17
+   Radius 17
+   Speed 19
+   Damage (random(6,8))
+   Species "HEMBoss"
+   //Species "Fiends"
+   SeeSound ""  
+   DeathSound ""
+   +HitTracer
+   PROJECTILE
+   States
+   {
+   Spawn:
+	TNT1 A 2
+    Stop
+	Death:
+	 TNT1 A 0
+	 TNT1 A 0 A_GiveInventory("HeterodoxCurse",1,AAPTR_TRACER)
+	 TNT1 A 1
+	 Stop
+    }
+}

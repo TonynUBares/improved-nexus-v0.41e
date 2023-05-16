@@ -1,0 +1,331 @@
+actor SuperCacobus : Fatso 21677
+{
+Health 2000
+Scale 1.2
+Mass 1536
+Speed 12
+PainChance 36
+Monster
++FLOORCLIP
++MISSILEMORE
++MISSILEEVENMORE
++DONTHURTSPECIES
++QUICKTORETALIATE
+SeeSound "CBcaco/see"
+PainSound "CBcaco/pain"
+DeathSound "CBcaco/death"
+ActiveSound "CBcaco/active"
+PainChance "SoulToxic", 30
+PainChance "FiendFire", 30
+DamageFactor "BeheComet", 0.0
+DamageFactor "FatFlamer", 0.0
+DropItem "BossLifeEssence" 250
+DropItem "BossArmorBonusMax" 250
+DropItem "BossLifeEssence" 180
+DropItem "BossArmorBonusMax" 180
+//DropItem "BFG15K" 128
+DropItem "Tech Vulcan" 200
+DropItem "DemonAmmoBox" 256
+DropItem "NewCellPack" 256
+DropItem "BrimstoneItem" 85
+Obituary "%o was flattened by a Super Cacobus."
+BloodColor "Blue"
+Species "Fatsos"
+Tag "$NESCacobus"
+Translation "48:79=176:191"
+  States
+  {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
+	Goto Idle
+  Idle:
+    ZFAT C 15 A_Look
+	ZFAT C 15 A_Look
+	ZF4T C 15 A_Look
+	ZF4T C 15 A_Look
+    Loop
+  See:
+    TNT1 A 0 A_SpawnItem("BeefyStep",0,0,0,0)
+    ZFAT AABBCCDD 3 A_Chase
+	TNT1 A 0 A_SpawnItem("BeefyStep",0,0,0,0)
+	ZFAT EEFF 3 A_Chase
+    Loop
+  Missile:
+    ZFAT G 0 A_Jump(255,"Missile1","Missile2","Missile3","Missile4","Missile5","Missile6")
+  Missile1:
+	TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+	ZFAT A 15
+	ZFAT A 0 A_FaceTarget
+	ZFAT A 0 Bright A_CustomMissile("CacobusStompFireSpawner", 32, 0, 5)
+	ZFAT A 2 Bright A_CustomMissile("CacobusStompFireSpawner", 32, 0, -5)
+	ZFAT A 0 Bright A_CustomMissile("CacobusStompFireSpawner", 32, 0, 15)
+	ZFAT A 2 Bright A_CustomMissile("CacobusStompFireSpawner", 32, 0, -15)
+	ZFAT A 0 Bright A_CustomMissile("CacobusStompFireSpawner", 32, 0, 25)
+	ZFAT A 2 Bright A_CustomMissile("CacobusStompFireSpawner", 32, 0, -25)
+	ZFAT A 0 Bright A_CustomMissile("CacobusStompFireSpawner", 32, 0, 35)
+	ZFAT A 2 Bright A_CustomMissile("CacobusStompFireSpawner", 32, 0, -35)
+	ZFAT A 10 A_FaceTarget
+	TNT1 A 0 A_Jump(36,"Missile1")
+	TNT1 A 0 A_Jump(64,"Missile3","Missile5")
+	TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+	Goto See
+  Missile2:
+	TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+	ZFAT A 15
+	ZFAT A 0 A_FaceTarget
+	ZFAT A 0 Bright A_CustomMissile("CacobusFloorshits", 32, 0, 0)
+	ZFAT A 0 Bright A_CustomMissile("CacobusFloorshits", 32, 0, -10)
+	ZFAT A 2 Bright A_CustomMissile("CacobusFloorshits", 32, 0, 10)
+	ZFAT A 10 A_FaceTarget
+	TNT1 A 0 A_Jump(64,"Missile3","Missile4")
+	TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+	Goto See
+  Missile3:
+	TNT1 A 0 A_PlaySound("weapons/charge15k",7)
+	ZFAT GGGGGG 5 A_FaceTarget
+	TNT1 A 0 A_FaceTarget 
+	TNT1 A 0 A_CustomMissile("DBusBFG15K", 30, 38, Random(6, -12))
+	TNT1 A 0 A_CustomMissile("DBusBFG15K", 30, -38, Random(12, -6))
+    ZFAT H 6 Bright A_CustomMissile("DBusBFG15K", 56, 0, random(-5,5))
+	ZFAT IG 4 A_FaceTarget 
+	TNT1 A 0 A_CustomMissile("DBusBFG15K", 30, 38, Random(6, -12))
+	TNT1 A 0 A_CustomMissile("DBusBFG15K", 30, -38, Random(12, -6))
+    ZFAT H 6 Bright A_CustomMissile("DBusBFG15K", 56, 0, random(-5,5))
+	ZFAT IG 4 A_FaceTarget
+	TNT1 A 0 A_CustomMissile("DBusBFG15K", 30, 38, Random(6, -12))
+	TNT1 A 0 A_CustomMissile("DBusBFG15K", 30, -38, Random(12, -6))
+    ZFAT H 6 Bright A_CustomMissile("DBusBFG15K", 56, 0, random(-5,5))
+	ZFAT IG 4 A_FaceTarget 
+	TNT1 A 0 A_CustomMissile("DBusBFG15K", 30, 38, Random(0, 6))
+	TNT1 A 0 A_CustomMissile("DBusBFG15K", 30, -38, Random(0, -6))
+    ZFAT H 6 Bright A_CustomMissile("DBusBFG15K", 56, 0, random(-5,5))
+	ZFAT IG 4 A_FaceTarget 
+	TNT1 A 0 A_CustomMissile("DBusBFG15K", 30, 38, Random(0, 6))
+	TNT1 A 0 A_CustomMissile("DBusBFG15K", 30, -38, Random(0, -6))
+    ZFAT H 6 Bright A_CustomMissile("DBusBFG15K", 56, 0, random(-5,5))
+	ZFAT IG 4 A_FaceTarget 
+	TNT1 A 0 A_CustomMissile("DBusBFG15K", 30, 38, Random(0, 6))
+	TNT1 A 0 A_CustomMissile("DBusBFG15K", 30, -38, Random(0, -6))
+    ZFAT H 6 Bright A_CustomMissile("DBusBFG15K", 56, 0, random(-5,5))
+	TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+	ZFAT IG 10 A_FaceTarget 
+	TNT1 A 0 A_CustomMissile("DBusBFG15K", 30, 38, Random(0, 6))
+	TNT1 A 0 A_CustomMissile("DBusBFG15K", 30, -38, Random(0, -6))
+	TNT1 A 0 A_CustomMissile("DBusBFG15K", 30, 38, Random(-7, -12))
+	TNT1 A 0 A_CustomMissile("DBusBFG15K", 30, -38, Random(7, 12))
+	TNT1 A 0 A_CustomMissile("DBusBFG15K", 56, 6, random(-5,5))
+	TNT1 A 0 A_CustomMissile("DBusBFG15K", 56, -6, random(-5,5))
+    ZFAT H 6 Bright A_CustomMissile("DBusBFG15K", 56, 0, random(-5,5))
+	TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+	ZFAT IG 10
+    Goto See
+  Missile4:
+	TNT1 A 0 A_PlaySound("weapons/charge15k",7)
+	ZFAT G 15 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	TNT1 A 0 A_CustomMissile("CacobusBFG10K", 30, 38, Random(0, 6))
+	TNT1 A 0 A_CustomMissile("CacobusBFG10K", 30, -38, Random(0, -6))
+	ZFAT H 6 Bright A_CustomMissile("CacobusBFG10K", 56, 0, random(-6,6))
+    ZFAT IG 3 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	TNT1 A 0 A_CustomMissile("CacobusBFG10K", 30, 38, Random(0, 6))
+	TNT1 A 0 A_CustomMissile("CacobusBFG10K", 30, -38, Random(0, -6))
+	ZFAT H 6 Bright A_CustomMissile("CacobusBFG10K", 56, 0, random(-6,6))
+	ZFAT IG 3 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	TNT1 A 0 A_CustomMissile("CacobusBFG10K", 30, 38, Random(0, 6))
+	TNT1 A 0 A_CustomMissile("CacobusBFG10K", 30, -38, Random(0, -6))
+	ZFAT H 6 Bright A_CustomMissile("CacobusBFG10K", 56, 0, random(-6,6))
+	ZFAT IG 3 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	TNT1 A 0 A_CustomMissile("CacobusBFG10K", 30, 38, Random(0, 6))
+	TNT1 A 0 A_CustomMissile("CacobusBFG10K", 30, -38, Random(0, -6))
+	ZFAT H 6 Bright A_CustomMissile("CacobusBFG10K", 56, 0, random(-6,6))
+	ZFAT IG 3 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	TNT1 A 0 A_CustomMissile("CacobusBFG10K", 30, 38, Random(0, 6))
+	TNT1 A 0 A_CustomMissile("CacobusBFG10K", 30, -38, Random(0, -6))
+	ZFAT H 6 Bright A_CustomMissile("CacobusBFG10K", 56, 0, random(-6,6))
+	ZFAT IG 3 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	TNT1 A 0 A_CustomMissile("CacobusBFG10K", 30, 38, Random(0, 6))
+	TNT1 A 0 A_CustomMissile("CacobusBFG10K", 30, -38, Random(0, -6))
+	ZFAT H 6 Bright A_CustomMissile("CacobusBFG10K", 56, 0, random(-6,6))
+	ZFAT IG 12
+    Goto See
+  Missile5:
+	ZFAT GGG 5 A_FaceTarget
+	TNT1 A 0 A_FaceTarget 
+	TNT1 A 0 A_CustomMissile ("CacobusLargeBall", 30, 38, Random(0, 6))
+	TNT1 A 0 A_CustomMissile ("CacobusLargeBall", 30, -38, Random(0, -6))
+    ZFAT H 6 Bright A_CustomMissile ("CacobusLargeBall", 56, 0, 0)
+	ZFAT IG 8
+	TNT1 A 0 A_Jump(64,"Missile3","Missile4","Missile5","Missile6")
+	Goto See
+  Missile6:
+	TNT1 A 0 A_PlaySound("weapons/rgcharge",7)
+	TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+	ZFAT GG 10 A_FaceTarget
+	ZFAT G 2 A_FaceTarget
+	ZFAT G 1
+	TNT1 A 0 A_PlaySound("railgunner/chargedshot")
+    ZFAT I 0 A_CustomMissile ("CacobusRiley", 30, 38)
+	ZFAT I 0 A_CustomMissile ("CacobusRiley", 30, -38)
+	ZFAT I 0 A_CustomMissile("FatsoBrimstoneRailCore",56,0,0)
+	ZFAT I 6 Bright A_CustomMissile("FatsoBrimstoneRail",56,0,0)
+	TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+	ZFAT G 20
+	Goto See
+  Pain:
+	TNT1 A 0 A_Jump(87,"MissilePain")
+    ZFAT J 3 A_Pain
+    Goto See
+  MissilePain:
+    ZFAT J 3 A_Pain
+    Goto Missile	
+  Death:
+    ZFAT K 6
+    ZFAT L 6 A_Scream
+	TNT1 A 0 A_SpawnItemEx("BlueGibbedGenerator",0,0,0,0,0,0,0,128,0)
+    ZFAT M 6 A_NoBlocking
+	TNT1 A 0 A_SpawnItemEx("BlueGibbedGenerator",0,0,0,0,0,0,0,128,0)
+    ZFAT NOPQRS 6
+	ZFAT T 1 A_BossDeath
+    ZFAT T -1 A_KillMaster
+    Stop
+  Raise:
+	TNT1 A 0
+	TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+    ZFAT SRQPONMLK 6
+    Goto See
+  }
+}
+
+ACTOR CacobusLargeBall : BaronBall
+{
+  Speed 25
+  Damage 25
+  +DONTHURTSPECIES
+  scale 2
+  DamageType "BeheComet"
+  States
+  {
+  Spawn:
+    ABDB AABB 1 Bright A_SpawnItemEx("CacobusLargeBallTrail",0,0,0,0,0,0,0,128,0)
+    Loop
+  Death:
+	TNT1 A 0 A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AAA 0 A_CustomMissile("Kaboom10", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX4", 0, 0, random(0,360), 2, random(0,360))	
+	ABDB A 0 Bright A_CustomMissile("CacobusBall2",0,0,random(0,359),CMF_TRACKOWNER,random(0,60))
+	ABDB A 0 Bright A_CustomMissile("CacobusBall2",0,0,random(0,359),CMF_TRACKOWNER,random(0,60))
+	ABDB A 0 Bright A_CustomMissile("CacobusBall2",0,0,random(0,359),CMF_TRACKOWNER,random(0,60))
+	ABDB A 0 Bright A_CustomMissile("CacobusBall2",0,0,random(0,359),CMF_TRACKOWNER,random(0,60))
+	ABDB A 0 Bright A_CustomMissile("CacobusBall2",0,0,random(0,359),CMF_TRACKOWNER,random(0,60))
+    ABDB A 0 Bright A_CustomMissile("CacobusBall2",0,0,random(0,359),CMF_TRACKOWNER,random(0,60))
+	ABDB A 0 Bright A_CustomMissile("CacobusBall2",0,0,random(0,359),CMF_TRACKOWNER,random(0,60))
+	ABDB A 0 Bright A_CustomMissile("CacobusBall2",0,0,random(0,359),CMF_TRACKOWNER,random(0,60))
+	ABDB A 0 Bright A_CustomMissile("CacobusBall2",0,0,random(0,359),CMF_TRACKOWNER,random(0,60))
+	ABBE ABC 3 Bright
+   Stop
+  }
+}
+
+ACTOR CacobusLargeBallTrail : BFG9500Trail
+{
+Scale 1.85
+States
+{
+Spawn:
+    TNT1 A 0
+    TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 1
+    ABDB AABB 1 A_FadeOut(0.25)
+	Goto Spawn+3
+    }
+}
+
+ACTOR CacobusBFG10K : Red10KProjectile
+{
+Obituary "%o was vaporized by a Large Cacobus."
+States
+{
+Death:
+XDeath:  
+   TNT1 A 0
+   TNT1 A 1 A_SpawnItem("CacobusBFG10KEx")
+   Stop
+   }
+}
+
+ACTOR CacobusBFG10KEx : Red10KEx
+{
+DamageType "BeheComet"
+}
+
+ACTOR CacobusRiley : CardinalRail
+{
+DamageType "BeheComet"
+MissileType "CardinalRailTrail"
+States
+{
+Spawn:
+    DCRP A 1 Bright
+    Loop
+Death:
+    TNT1 A 0
+	TNT1 A 0 A_SpawnItemEx("BFGShockwaveRed", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AAA 0 A_CustomMissile("Kaboom14", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 A 1 A_SpawnItem("RailgunImpactEffectRed")
+	Stop
+	}
+}
+
+ACTOR FatsoPyroFire
+{
+  Radius 1
+  Height 1
+  Speed 0
+  Damage 8
+  Projectile
+  RenderStyle Add
+  +NOCLIP
+  +FLOORHUGGER
+  +FORCERADIUSDMG
+  Obituary "%o was vaporized by a Large Cacobus." 
+  DamageType "BeheComet"
+  SeeSound "weapons/rocklx"
+  States
+  {
+  Spawn:
+    XXBF AB 2 Bright
+    XXBF C 2 Bright A_Explode(42,106,0)
+    XXBF DEFGHIJKLMNOPQRST 2 Bright
+    Stop       
+   }
+}
+
+ACTOR CacobusStompFireSpawner : PyroFireSpawner
+{
+  Speed 25
+  FastSpeed 35
+  Species "Fatsos"
+  DamageType "BeheComet"
+  Obituary "%o was vaporized by a Large Cacobus." 
+  MissileType FatsoPyroFire
+  States
+  {
+  Spawn: 
+    TNT1 AAA 1 Bright A_CStaffMissileSlither
+	TNT1 A 1 Bright A_MissileAttack
+    Loop
+  Death:  
+    TNT1 A 1
+    Stop
+  }
+}
+
+ACTOR CacobusFloorshits : BFlanFloorshits
+{
+Damagetype "BeheComet"
+}

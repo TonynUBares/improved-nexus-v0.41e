@@ -1,0 +1,798 @@
+Actor EnragedLegendaryCoachgunGiver : CustomInventory
+{
+  Scale 0.85
+  Inventory.Amount 1
+  Inventory.MaxAmount 0
+  Inventory.InterHubAmount 0
+  Inventory.PickupMessage "Enraged Legendary Coachgun!"
+  Inventory.PickupSound "Coachgun/Pickup"
+  Tag "Enraged Legendary Coachgun"
+  States
+  {
+  Spawn:
+    ESS0 Z 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",3,1)
+  SpawnLoop:
+	ESS0 Z -1
+    Stop
+  Pickup:
+	TNT1 A 0 A_JumpIfInventory("EnragedLegendaryCoachgun",1,"JustAmmo")
+  All:
+	TNT1 A 0 A_GiveInventory("EnragedLegendaryCoachgun",1)
+	TNT1 A 0 A_JumpIfInventory("EnragedLegendaryCoachgunGiverCheck",1,"HoldAndDestroy")
+	TNT1 A 0 A_GiveInventory("EnragedLegendaryCoachgunGiverCheck",1)
+	TNT1 A 0 A_GiveInventory("ELegendaryCoachShells",Random(8,16))
+	TNT1 A 0 A_GiveInventory("EnragedLegendaryShell",8)
+	Stop
+  JustAmmo:
+    TNT1 A 0 A_JumpIfInventory("EnragedLegendaryCoachgunGiverCheck",1,"Null")
+	TNT1 A 0 A_GiveInventory("EnragedLegendaryCoachgunGiverCheck",1)
+	TNT1 A 0 A_GiveInventory("ELegendaryCoachShells",Random(8,16))
+	TNT1 A 0 A_GiveInventory("EnragedLegendaryShell",8)
+	TNT1 A 0 A_SpawnItemEx("EnragedLegendaryCoachgun")
+	Stop
+  }
+}
+
+Actor EnragedLegendaryCoachgunSpawnerGiver : EnragedLegendaryCoachgunGiver
+{
+  States
+  {
+  JustAmmo:
+    TNT1 A 0 A_JumpIfInventory("EnragedLegendaryCoachgunGiverCheck",1,"Null")
+	TNT1 A 0 A_GiveInventory("EnragedLegendaryCoachgunGiverCheck",1)
+	TNT1 A 0 A_GiveInventory("ELegendaryCoachShells",Random(8,16))
+	TNT1 A 0 A_GiveInventory("EnragedLegendaryShell",8)
+	Stop
+  }
+}
+
+Actor EnragedLegendaryCoachgunGiverCheck : Inventory { Inventory.Amount 1 Inventory.MaxAmount 1 Inventory.InterHubAmount 0 }
+
+
+
+ACTOR EnragedLegendaryCoachgun : Weapon
+{
+  Scale 0.85
+  +WEAPON.NOALERT
+  +WEAPON.AMMO_OPTIONAL
+  Weapon.SelectionOrder 400
+  Weapon.PreferredSkin "DoubleBarrelSG-Marine"
+  Decal ELegBulletChip
+  Weapon.KickBack 100
+  Weapon.AmmoUse 0
+  Weapon.AmmoGive 0
+  Weapon.AmmoGive2 8
+Weapon.SlotNumber 3
+  Weapon.SlotPriority 12.1
+  Weapon.AmmoType "ELegendaryCoachShells"
+  Weapon.AmmoType2 "EnragedLegendaryShell"
+  Inventory.PickupMessage "Enraged Legendary Coachgun!"
+  Inventory.PickupSound "Coachgun/Pickup"
+  Obituary "%o was suprised that someone made Craneo's enraged legendary coachgun real!"
+  Tag "Enraged Legendary Coachgun"
+  States
+  {
+  Spawn:
+    ESS0 Z 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",3,1)
+  SpawnLoop:
+	ESS0 Z -1 
+	Stop
+  Zoom:
+	TNT1 A 0 A_JumpIfInventory("EnragedSSGMode1",1,"ChangeMode2")
+	TNT1 A 0 A_Print("Dragon's Breath Shells")
+	TNT1 A 0 A_PlaySound("Dragon/Selectbreath")
+	TNT1 A 0 A_GiveInventory("EnragedSSGMode1")
+	ESSG A 3 Offset(0,34)
+	ESSG A 2 Offset(0,37)
+	ESSG A 2 Offset(0,40)
+	ESXG A 2 Offset(0,37)
+	ESXG A 3 Offset(0,34)
+	TNT1 A 0 Offset(0,32)
+	Goto ReadyLoop2
+  ChangeMode2:
+	TNT1 A 0 A_Print("Enraged Legendary Shells")
+	TNT1 A 0 A_PlaySound("Dragon/Selectnormal")
+	TNT1 A 0 A_TakeInventory("EnragedSSGMode1")
+	ESXG A 3 Offset(0,34)
+	ESXG A 2 Offset(0,37)
+	ESXG A 2 Offset(0,40)
+	ESSG A 2 Offset(0,37)
+	ESSG A 3 Offset(0,34)
+	TNT1 A 0 Offset(0,32)
+	Goto ReadyLoop
+  Ready:
+	TNT1 A 0 A_PlayWeaponSound("Coachgun/Pickup")
+	ESS7 ABCDEFGH 1
+  ReadyLoop:
+  	TNT1 A 0 A_JumpIfInventory("EnragedSSGMode1",1,"ReadyLoop2")
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	ESSG A 1 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM)
+	Loop
+  ReadyLoop2:
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	ESXG A 1 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM)
+	Loop
+   Select:
+	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",0)
+	TNT1 A 1 A_Raise
+	TNT1 A 0 A_Raise
+	Wait
+   Deselect:
+	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",1)
+	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown")
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	TNT1 A 0 A_TakeInventory("ELegLMGSight",1)
+    TNT1 A 0 A_Lower
+	ESSG A 1 A_Lower
+	Goto Deselect+6
+  Fire:
+  	TNT1 A 0 A_JumpIfInventory("EnragedSSGMode1",1,"Fire2")
+	TNT1 A 0 A_JumpIfInventory("ELegendaryCoachShells",2,"FireBoth")
+	TNT1 A 0 A_JumpIfInventory("EnragedLegendaryShell",1,"Reload")
+	Goto Empty
+  Fire2:
+	TNT1 A 0 A_JumpIfInventory("ELegendaryCoachShells",2,"FireBoth2")
+	TNT1 A 0 A_JumpIfInventory("EnragedLegendaryShell",1,"Reload2")
+	Goto Empty
+  FireBoth2:
+	TNT1 A 0 A_JumpIfInventory("PowerSpreadRune",1,"FireBoth2Spread")
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+	TNT1 A 0 A_PlaySound("Dragon/Fire",1)
+	TNT1 A 0 Radius_Quake(6,5,0,1,0)
+	TNT1 A 0 A_TakeInventory("ELegendaryCoachShells",2)
+	TNT1 AAAAAAAA 0 A_FireCustomMissile("PlayerDragonTracer",frandom(8,-8),0,0,frandom(8,-8))
+	TNT1 A 0 A_FireCustomMissile("DragonSmoke",1,14,0,0,frandom(4,-4))
+	TNT1 A 0 A_Light2
+	ESSF AB 1 Bright Radius_Quake(6,5,0,1,0)
+	ESSF CD 1
+	TNT1 A 0 A_Light0
+	ESSF EEFFGG 1
+	TNT1 A 0 A_Light0
+	ESXG AAA 1
+  SSGReloadCheck2:
+	TNT1 A 0 A_JumpIfInventory("EnragedLegendaryShell",2,2)
+	ESSG A 2
+	Goto ReadyLoop2
+	TNT1 A 0
+	Goto ReloadBoth2
+  FireBoth2Spread:
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+	TNT1 A 0 A_PlaySound("Dragon/Fire",1)
+	TNT1 A 0 Radius_Quake(6,5,0,1,0)
+	TNT1 A 0 A_TakeInventory("ELegendaryCoachShells",2)
+	TNT1 AAAAAAAA 0 A_FireCustomMissile("PlayerDragonTracer",frandom(8,-8),0,0,frandom(8,-8))
+	TNT1 AAAAAAAA 0 A_FireCustomMissile("PlayerDragonTracer",frandom(8,-8)+15.0,0,0,frandom(8,-8))
+	TNT1 AAAAAAAA 0 A_FireCustomMissile("PlayerDragonTracer",frandom(8,-8)-15.0,0,0,frandom(8,-8))
+	TNT1 A 0 A_FireCustomMissile("DragonSmoke",1,14,0,0,frandom(4,-4))
+	TNT1 A 0 A_FireCustomMissile("DragonSmoke",1+15.0,14,0,0,frandom(4,-4))
+	TNT1 A 0 A_FireCustomMissile("DragonSmoke",1-15.0,14,0,0,frandom(4,-4))
+	TNT1 A 0 A_Light2
+	ESSF AB 1 Bright Radius_Quake(6,5,0,1,0)
+	ESSF CD 1
+	TNT1 A 0 A_Light0
+	ESSF EEFFGG 1
+	TNT1 A 0 A_Light0
+	ESXG AAA 1
+	Goto SSGReloadCheck2
+  FireBoth:
+	TNT1 A 0 A_JumpIfInventory("PowerSpreadRune",1,"FireBothSpread")
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+	TNT1 A 0 A_PlaySound("Dragon/Normalfire",1)
+	TNT1 A 0 Radius_Quake(6,5,0,1,0)
+	TNT1 A 0 A_TakeInventory("ELegendaryCoachShells",2)
+	TNT1 AAAAAAAA 0 A_FireCustomMissile("RedSGTracer",frandom(8,-8),0,0,frandom(8,-8))
+	TNT1 A 0 A_FireBullets(10,5,24,random(15,18),"EnragedModdedBulletPuff")
+	TNT1 A 0 A_Light2
+	ESSF AB 1 Bright Radius_Quake(6,5,0,1,0)
+	ESSF CD 1
+	TNT1 A 0 A_Light0
+	ESSF EEFFGG 1
+	TNT1 A 0 A_Light0
+	ESSG AAA 1
+  SSGReloadCheck:
+	TNT1 A 0 A_JumpIfInventory("EnragedLegendaryShell",2,2)
+	ESSG A 2
+	Goto ReadyLoop
+	TNT1 A 0
+	Goto ReloadBoth
+  FireBothSpread:
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+	TNT1 A 0 A_PlaySound("Dragon/Normalfire",1)
+	TNT1 A 0 Radius_Quake(6,5,0,1,0)
+	TNT1 A 0 A_TakeInventory("ELegendaryCoachShells",2)
+	TNT1 AAAAAAAA 0 A_FireCustomMissile("RedSGTracer",frandom(8,-8),0,0,frandom(8,-8))
+	TNT1 AAAAAAAA 0 A_FireCustomMissile("RedSGTracer",frandom(8,-8)+15.0,0,0,frandom(8,-8))
+	TNT1 AAAAAAAA 0 A_FireCustomMissile("RedSGTracer",frandom(8,-8)-15.0,0,0,frandom(8,-8))
+	TNT1 A 0 A_FireBullets(10+15.0,5,24*3,random(15,18),"EnragedModdedBulletPuff")
+	TNT1 A 0 A_Light2
+	ESSF AB 1 Bright Radius_Quake(6,5,0,1,0)
+	ESSF CD 1
+	TNT1 A 0 A_Light0
+	ESSF EEFFGG 1
+	TNT1 A 0 A_Light0
+	ESSG AAA 1
+	Goto SSGReloadCheck
+  AltFire:
+	TNT1 A 0 A_JumpIfInventory("EnragedSSGMode1",1,"AltFire2")
+	TNT1 A 0 A_JumpIfInventory("ELegendaryCoachShells",2,"FireRight")
+	TNT1 A 0 A_JumpIfInventory("ELegendaryCoachShells",1,1)
+	Goto Reload
+	TNT1 A 0 A_JumpIfInventory("PowerSpreadRune",1,"AltFireSpread")
+	TNT1 A 0 A_PlaySound("Dragon/Normalaltfire",1)
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+	TNT1 A 0 Radius_Quake(4,4,0,1,0)
+	TNT1 A 0 A_TakeInventory("ELegendaryCoachShells",1)
+	TNT1 AAAA 0 A_FireCustomMissile("RedSGTracer",frandom(6,-6),0,0,frandom(6,-6))
+	ESS9 G 1 Bright A_FireBullets(4,2,10,random(15,18),"EnragedModdedBulletPuff")
+	ESS9 H 1 Bright A_Light2
+	TNT1 A 0 A_Light0
+	ESS9 IDEF 1
+	ESXG A 2
+	Goto ReadyLoop
+  AltFireSpread:
+	TNT1 A 0 A_JumpIfInventory("ELegendaryCoachShells",1,1)
+	Goto Reload
+	TNT1 A 0 A_PlaySound("Dragon/Normalaltfire",1)
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+	TNT1 A 0 Radius_Quake(4,4,0,1,0)
+	TNT1 A 0 A_TakeInventory("ELegendaryCoachShells",1)
+	TNT1 AAAA 0 A_FireCustomMissile("RedSGTracer",frandom(6,-6),0,0,frandom(6,-6))
+	TNT1 AAAA 0 A_FireCustomMissile("RedSGTracer",frandom(6,-6)+15.0,0,0,frandom(6,-6))
+	TNT1 AAAA 0 A_FireCustomMissile("RedSGTracer",frandom(6,-6)-15.0,0,0,frandom(6,-6))
+	ESS9 G 1 Bright A_FireBullets(4+15.0,2,10*3,random(15,18),"EnragedModdedBulletPuff")
+	ESS9 H 1 Bright A_Light2
+	TNT1 A 0 A_Light0
+	ESS9 IDEF 1
+	ESXG A 2
+	Goto ReadyLoop
+    AltFire2:
+	TNT1 A 0 A_JumpIfInventory("ELegendaryCoachShells",2,"FireRight2")
+	TNT1 A 0 A_JumpIfInventory("ELegendaryCoachShells",1,1)
+	Goto Reload
+	TNT1 A 0 A_JumpIfInventory("PowerSpreadRune",1,"AltFire2Spread")
+	TNT1 A 0 A_PlaySound("Dragon/Alt",1)
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+	TNT1 A 0 Radius_Quake(4,4,0,1,0)
+	TNT1 A 0 A_TakeInventory("ELegendaryCoachShells",1)
+	TNT1 A 0 BRIGHT A_FireCustomMissile("DragonSmoke",1,14,0,0,random(4.000,-4.000))
+	TNT1 AAAA 0 A_FireCustomMissile("PlayerDragonTracer",Random(6,-6),0,0,Random(6,-6))
+	ESS9 H 1 Bright A_Light2
+	TNT1 A 0 A_Light0
+	ESS9 IDEF 1
+	ESSG A 2
+	Goto ReadyLoop2
+    AltFire2Spread:
+	TNT1 A 0 A_JumpIfInventory("ELegendaryCoachShells",1,1)
+	Goto Reload
+	TNT1 A 0 A_PlaySound("Dragon/Alt",1)
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+	TNT1 A 0 Radius_Quake(4,4,0,1,0)
+	TNT1 A 0 A_TakeInventory("ELegendaryCoachShells",1)
+	TNT1 A 0 A_FireCustomMissile("DragonSmoke",1,14,0,0,frandom(4,-4))
+	TNT1 A 0 A_FireCustomMissile("DragonSmoke",1+15.0,14,0,0,frandom(4,-4))
+	TNT1 A 0 A_FireCustomMissile("DragonSmoke",1-15.0,14,0,0,frandom(4,-4))
+	TNT1 AAAA 0 A_FireCustomMissile("PlayerDragonTracer",frandom(6,-6),0,0,frandom(6,-6))
+	TNT1 AAAA 0 A_FireCustomMissile("PlayerDragonTracer",frandom(6,-6)+15.0,0,0,frandom(6,-6))
+	TNT1 AAAA 0 A_FireCustomMissile("PlayerDragonTracer",frandom(6,-6)-15.0,0,0,frandom(6,-6))
+	ESS9 H 1 Bright A_Light2
+	TNT1 A 0 A_Light0
+	ESS9 IDEF 1
+	ESSG A 2
+	Goto ReadyLoop2
+  FireRight:
+	TNT1 A 0 A_JumpIfInventory("PowerSpreadRune",1,"FireRightSpread")
+	TNT1 A 0 A_PlaySound("Dragon/Normalaltfire",1)
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+	TNT1 A 0 Radius_Quake(4,4,0,1,0)
+	TNT1 A 0 A_TakeInventory("ELegendaryCoachShells",1)
+	TNT1 AAAA 0 A_FireCustomMissile("RedSGTracer",frandom(6,-6),0,0,frandom(6,-6))
+	ESS9 A 1 Bright A_FireBullets(4,2,10,random(15,18),"EnragedModdedBulletPuff")
+	ESS9 B 1 Bright A_Light2
+	TNT1 A 0 A_Light0
+	ESS9 CDEF 1
+	ESSG A 2
+	Goto ReadyLoop
+  FireRightSpread:
+	TNT1 A 0 A_PlaySound("Dragon/Normalaltfire",1)
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+	TNT1 A 0 Radius_Quake(4,4,0,1,0)
+	TNT1 A 0 A_TakeInventory("ELegendaryCoachShells",1)
+	TNT1 AAAA 0 A_FireCustomMissile("RedSGTracer",frandom(6,-6),0,0,frandom(6,-6))
+	TNT1 AAAA 0 A_FireCustomMissile("RedSGTracer",frandom(6,-6)+15.0,0,0,frandom(6,-6))
+	TNT1 AAAA 0 A_FireCustomMissile("RedSGTracer",frandom(6,-6)-15.0,0,0,frandom(6,-6))
+	ESS9 A 1 Bright A_FireBullets(4+15.0,2,10*3,random(15,18),"EnragedModdedBulletPuff")
+	ESS9 B 1 Bright A_Light2
+	TNT1 A 0 A_Light0
+	ESS9 CDEF 1
+	ESSG A 2
+	Goto ReadyLoop
+  FireRight2:
+	TNT1 A 0 A_JumpIfInventory("PowerSpreadRune",1,"FireRight2Spread")
+	TNT1 A 0 A_PlaySound("Dragon/Alt",1)
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+	TNT1 A 0 Radius_Quake(4,4,0,1,0)
+	TNT1 A 0 A_TakeInventory("ELegendaryCoachShells",1)
+	TNT1 A 0 A_FireCustomMissile("DragonSmoke",1,14,0,0,random(4.000,-4.000))
+	TNT1 AAAA 0 A_FireCustomMissile("PlayerDragonTracer",frandom(6,-6),0,0,frandom(6,-6))
+	ESS9 B 1 Bright A_Light2
+	TNT1 A 0 A_Light0
+	ESS9 CDEF 1
+	ESXG A 2
+	Goto ReadyLoop2
+  FireRight2Spread:
+	TNT1 A 0 A_PlaySound("Dragon/Alt",1)
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_Light1
+	TNT1 A 0 Radius_Quake(4,4,0,1,0)
+	TNT1 A 0 A_TakeInventory("ELegendaryCoachShells",1)
+	TNT1 A 0 A_FireCustomMissile("DragonSmoke",1,14,0,0,random(4.000,-4.000))
+	TNT1 A 0 A_FireCustomMissile("DragonSmoke",1+15.0,14,0,0,random(4.000,-4.000))
+	TNT1 A 0 A_FireCustomMissile("DragonSmoke",1-15.0,14,0,0,random(4.000,-4.000))
+	TNT1 AAAA 0 A_FireCustomMissile("PlayerDragonTracer",frandom(6,-6),0,0,frandom(6,-6))
+	TNT1 AAAA 0 A_FireCustomMissile("PlayerDragonTracer",frandom(6,-6)+15.0,0,0,frandom(6,-6))
+	TNT1 AAAA 0 A_FireCustomMissile("PlayerDragonTracer",frandom(6,-6)-15.0,0,0,frandom(6,-6))
+	ESS9 B 1 Bright A_Light2
+	TNT1 A 0 A_Light0
+	ESS9 CDEF 1
+	ESXG A 2
+	Goto ReadyLoop2
+  Empty:
+	TNT1 A 0 A_JumpIfInventory("ELegendaryCoachShells",1,"Empty2")
+	ESSG A 10 A_PlaySound("weapons/click")
+	Goto ReadyLoop
+  Empty2:
+	ESSG A 10 A_PlaySound("weapons/click")
+	Goto ReadyLoop
+  Reload:
+	TNT1 A 0 A_JumpIfInventory("ELegendaryCoachShells",0,"ReadyLoop")
+	TNT1 A 0 A_JumpIfInventory("EnragedSSGMode1",1,"Reload2")
+	TNT1 A 0 A_JumpIfInventory("ELegendaryCoachShells",1,"ReloadRight")	
+	TNT1 A 0 A_JumpIfInventory("EnragedLegendaryShell",2,"ReloadBoth")
+	Goto Empty	
+  Reload2:
+	TNT1 A 0 A_JumpIfInventory("ELegendaryCoachShells",1,"ReloadRight2")	
+	TNT1 A 0 A_JumpIfInventory("EnragedLegendaryShell",2,"ReloadBoth2")
+	Goto Empty	
+  ReloadBoth:
+  	TNT1 A 0 A_JumpIfInventory("EnragedSSGMode1",1,"ReloadBoth2")
+	TNT1 A 0 A_JumpIfInventory("EnragedLegendaryShell",2,1)
+	Goto ReadyLoop
+	ESSG A 1
+	ESSR BCDEFGHIJKLMNOP 1
+	ESSR P 2 A_PlaySound("Coachgun/Open",7)
+	TNT1 AA 0 A_SpawnItemEx("RedShellCasing",25,-2,25,Random(2,4),Random(-3,-6),Random(3,6),0)
+	ESS2 ABCDEFGHIJ 1
+	TNT1 A 0 A_PlaySound("Coachgun/Load",7)
+	TNT1 A 0 A_TakeInventory("EnragedLegendaryShell",2,TIF_NOTAKEINFINITE)
+	TNT1 A 0 A_GiveInventory("ELegendaryCoachShells",2)
+	ESS2 KLMNO 1
+	ESS3 ABCDEFGH 1
+	ESS3 I 2 A_PlaySound("Coachgun/Close",7)
+	ESS3 IJK 1
+	ESSG A 2
+	Goto ReadyLoop
+   ReloadBoth2:
+	TNT1 A 0 A_JumpIfInventory("EnragedLegendaryShell",2,1)
+	Goto ReadyLoop2
+	ESXG A 1
+	ESSR BCDEFGHIJKLMNOP 1
+	ESSR P 2 A_PlaySound("Coachgun/Open",7)
+	TNT1 AA 0 A_SpawnItemEx("RedShellCasing",25,-2,25,Random(2,4),Random(-3,-6),Random(3,6),0)
+	ESS2 ABCDEFGHIJ 1
+	TNT1 A 0 A_PlaySound("Coachgun/Load",7)
+	TNT1 A 0 A_TakeInventory("EnragedLegendaryShell",2,TIF_NOTAKEINFINITE)
+	TNT1 A 0 A_GiveInventory("ELegendaryCoachShells",2)
+	ESS2 KLMNO 1
+	ESS3 ABCDEFGH 1
+	ESS3 I 2 A_PlaySound("Coachgun/Close",7)
+	ESS3 IJK 1
+	ESXG A 2
+	Goto ReadyLoop2
+  ReloadRight:
+    TNT1 A 0 A_JumpIfInventory("EnragedSSGMode1",1,"ReloadRight2")
+	TNT1 A 0 A_JumpIfInventory("EnragedLegendaryShell",1,1)
+	Goto ReadyLoop
+	ESSR BCDEFGNOP 1
+	ESS3 P 1 A_PlaySound("Coachgun/Open",7)
+	TNT1 A 0 A_SpawnItemEx("RedShellCasing",25,-2,25,Random(2,4),Random(-3,-6),Random(3,6),0)
+	ESS3 PQR 1
+	ESSG UVWX 1
+	TNT1 A 0 A_PlaySound("Coachgun/Load",7)
+	TNT1 A 0 A_TakeInventory("EnragedLegendaryShell",1,TIF_NOTAKEINFINITE)
+	TNT1 A 0 A_GiveInventory("ELegendaryCoachShells",1)
+	ESS2 KLMNO 1
+	ESS3 ABCDEFGH 1
+	ESS3 I 2 A_PlaySound("Coachgun/Close",7)
+	ESS3 IJK 1
+	ESSG A 2
+	Goto ReadyLoop
+  ReloadRight2:
+	TNT1 A 0 A_JumpIfInventory("EnragedLegendaryShell",1,1)
+	Goto ReadyLoop2
+	ESSR BCDEFGNOP 1
+	ESS3 P 1 A_PlaySound("Coachgun/Open",7)
+	TNT1 A 0 A_SpawnItemEx("RedShellCasing",25,-2,25,Random(2,4),Random(-3,-6),Random(3,6),0)
+	ESS3 PQR 1
+	ESSG UVWX 1
+	TNT1 A 0 A_PlaySound("Coachgun/Load",7)
+	TNT1 A 0 A_TakeInventory("EnragedLegendaryShell",1,TIF_NOTAKEINFINITE)
+	TNT1 A 0 A_GiveInventory("ELegendaryCoachShells",1)
+	ESS2 KLMNO 1
+	ESS3 ABCDEFGH 1
+	ESS3 I 2 A_PlaySound("Coachgun/Close",7)
+	ESS3 IJK 1
+	ESXG A 2
+	Goto ReadyLoop2
+  GrenadeCheck:
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAmmo",1,"GrenadeToss")
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	Goto ReadyLoop
+  GrenadeToss:
+	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown") 
+	ESS8 FEDCBA 1
+	TNT1 A 4
+	HGRN ABC 1
+	HGRN D 2
+	HGRN EFG 1
+	HGRN HI 2
+	TNT1 A 15 A_PlayWeaponSound("weapons/hgrenadepin")
+	TNT1 A 0 A_PlayWeaponSound("weapons/hgrenadethrow")
+	TNT1 A 0 A_TakeInventory("HandGrenadeAmmo",1,TIF_NOTAKEINFINITE)
+	HGNE A 1 A_FireCustomMissile("ThrownGrenade",0,0,0,0,false)
+	HGRN J 1
+	HGRN KLM 2
+	HGRN NO 1
+	TNT1 A 6
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAmmo",1,2)
+	TNT1 A 0 A_TakeInventory("Hand Grenade",1)
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	TNT1 A 0
+	ESS8 ABCDEF 1
+	Goto ReadyLoop
+  MineCheck:
+	TNT1 A 0 A_JumpIfInventory("MineAmmo",1,"MineToss")
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	Goto ReadyLoop
+  MineToss:
+	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown") 
+	ESS8 FEDCBA 1
+	TNT1 A 8
+	TNT1 A 0 A_PlayWeaponSound("weapons/hgrenadethrow")
+	MINE ABCDEF 1	
+	TNT1 A 0 A_TakeInventory("MineAmmo",1,TIF_NOTAKEINFINITE)	  
+	MINE G 1 A_FireCustomMissile("ThrownMine",0,0,0,0,false)
+	MINE HI 1
+	MINE JK 2
+	TNT1 A 0 A_JumpIfInventory("MineAmmo",1,2)
+	TNT1 A 0 A_TakeInventory("Land Mine",1)
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	TNT1 A 0
+	TNT1 A 5
+	ESS8 ABCDEF 1
+	Goto ReadyLoop
+	}
+}
+
+ACTOR ELegendaryCoachShells : Ammo
+{
+  +IGNORESKILL
+  Inventory.Amount 0
+  Inventory.MaxAmount 2
+  Ammo.BackpackAmount 0
+  Ammo.BackpackMaxAmount 2
+  Inventory.Icon "ESS0Z0"
+}
+
+ACTOR EnragedSSGMode1 : Inventory { Inventory.MaxAmount 1 }
+
+Actor DragonSmoke
+{
+ +MISSILE
+ +DONTSPLASH
+ +CLIENTSIDEONLY
+ +NOBLOCKMAP
+ +NOGRAVITY
+ +NOTELEPORT
+ +FORCEXYBILLBOARD
+ +THRUACTORS
+ +NOTIMEFREEZE
+ RenderStyle Add
+ Scale 0.2
+ Speed 11
+ States
+  {
+   Spawn:
+     ESX1 A 2 Bright A_FadeOut
+  }
+}
+
+ACTOR PlayerDragonTracer : PlayerExplosiveTracer
+{
+   Species "Player"
+   DamageType "Legendary"
+   Damage 35
+   +THRUSPECIES
+   +DONTHURTSPECIES
+   +NOTIMEFREEZE
+   Scale 0.7
+   States
+   {
+   Spawn:
+      TRA3 A 1 Bright
+      Loop
+   Death:
+		TNT1 A 0 Bright A_SpawnItemEx("DragonFlare",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_SETMASTER,64)
+		Stop
+   }
+}
+
+ACTOR PlayerDragonTracerBad : PlayerExplosiveTracer
+{
+   DamageType "Legendary"
+   Damage 20
+   +NOTIMEFREEZE
+   Scale 0.7
+   States
+   {
+   Spawn:
+      TRA3 A 1 Bright
+      Loop
+   Death:
+		TNT1 A 0 Bright A_SpawnItemEx("DragonFlareBad",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_SETMASTER,64)
+		Stop
+   }
+}
+
+Actor BaseFireFlareE
+{
+ Projectile
+ Height 4
+ Radius 2
+ Speed 1
+ Gravity 0.52
+ BounceFactor 0.01
+ WallBounceFactor 0.01
+ Renderstyle Add
+ Alpha 1.0
+ MaxStepHeight 4
+ Damage 1
+ +DOOMBOUNCE
+ +DONTFALL
+ -Nogravity
+ +Strifedamage
+ -NOCLIP
+ +Ripper
+ +BloodlessImpact
+ +NODAMAGETHRUST
+ -EXTREMEDEATH
+ +DontHurtSpecies
+ +DontHarmspecies
+ +NOTIMEFREEZE
+ Damagetype "Legendary"
+ DeathType "Fire"
+ var int user_firedamage;
+ States
+	{
+	Death:
+		TNT1 A 0 Bright
+		TNT1 A 0 Bright A_JumpIf(waterlevel > 1, "Nop")
+		TNT1 A 0 Bright A_ChangeFlag(MOVEWITHSECTOR,1)
+		CFCE AABBCC 1 Bright A_spawnItemEx("EnragedHellionSmokeSpawner",random(-3,3),random(-3,3),random(0,7),0,0,random(2,7),random(0,360),SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,64)
+		TNT1 A 0 Bright A_FadeOut(0.015,0)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,0,0)
+		TNT1 A 0 Bright A_Jump(256,2)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,1,0)
+		CFCE DDEEFF 1 Bright
+		TNT1 A 0 Bright A_FadeOut(0.015,0)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,0,0)
+		TNT1 A 0 Bright A_Jump(256,2)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,1,0)
+		CFCE GGHHII 1 Bright
+		TNT1 A 0 Bright A_FadeOut(0.015,0)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,0,0)
+		TNT1 A 0 Bright A_Jump(256,2)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,1,0)
+		CFCE KKLLMM 1 Bright
+		TNT1 A 0 Bright A_FadeOut(0.015,0)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,0,0)
+		TNT1 A 0 Bright A_Jump(256,2)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,1,0)
+		CFCE AABBCC 1 Bright
+		TNT1 A 0 Bright A_FadeOut(0.015,0)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,0,0)
+		TNT1 A 0 Bright A_Jump(256,2)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,1,0)
+		CFCE DDEEFF 1 Bright
+		TNT1 A 0 Bright A_FadeOut(0.015,0)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,0,0)
+		TNT1 A 0 Bright A_Jump(256,2)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,1,0)
+		CFCE GGHHII 1 Bright
+		TNT1 A 0 Bright A_FadeOut(0.015,0)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,0,0)
+		TNT1 A 0 Bright A_Jump(256,2)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,1,0)
+		CFCE KKLLMM 1 Bright
+		TNT1 A 0 Bright A_FadeOut(0.015,0)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,0,0)
+		TNT1 A 0 Bright A_Jump(256,2)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,1,0)
+		CFCE AABBCC 1 Bright
+		TNT1 A 0 Bright A_FadeOut(0.015,0)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,0,0)
+		TNT1 A 0 Bright A_Jump(256,2)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,1,0)
+		CFCE DDEEFF 1 Bright
+		TNT1 A 0 Bright A_FadeOut(0.015,0)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,0,0)
+		TNT1 A 0 Bright A_Jump(256,2)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,1,0)
+		CFCE GGHHII 1 Bright
+		TNT1 A 0 Bright A_FadeOut(0.015,0)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,0,0)
+		TNT1 A 0 Bright A_Jump(256,2)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,1,0)
+		CFCE KKLLMM 1 Bright
+		TNT1 A 0 Bright A_FadeOut(0.015,0)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,0,0)
+		TNT1 A 0 Bright A_Jump(256,2)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,1,0)
+		CFCE AABBCC 1 Bright
+		TNT1 A 0 Bright A_FadeOut(0.015,0)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,0,0)
+		TNT1 A 0 Bright A_Jump(256,2)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,1,0)
+		CFCE DDEEFF 1 Bright
+		TNT1 A 0 Bright A_FadeOut(0.015,0)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,0,0)
+		TNT1 A 0 Bright A_Jump(256,2)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,1,0)
+		CFCE GGHHII 1 Bright
+		TNT1 A 0 Bright A_FadeOut(0.015,0)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,0,0)
+		TNT1 A 0 Bright A_Jump(256,2)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,1,0)
+		CFCE KKLLMM 1 Bright
+		TNT1 A 0 Bright A_FadeOut(0.015,0)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,0,0)
+		TNT1 A 0 Bright A_Jump(256,2)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,1,0)
+		CFCE AABBCC 1 Bright
+		TNT1 A 0 Bright A_FadeOut(0.015,0)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,0,0)
+		TNT1 A 0 Bright A_Jump(256,2)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,1,0)
+		CFCE DDEEFF 1 Bright
+		TNT1 A 0 Bright A_FadeOut(0.015,0)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,0,0)
+		TNT1 A 0 Bright A_Jump(256,2)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,1,0)
+		CFCE GGHHII 1 Bright
+		TNT1 A 0 Bright A_FadeOut(0.015,0)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,0,0)
+		TNT1 A 0 Bright A_Jump(256,2)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,1,0)
+		CFCE KKLLMM 1 Bright
+		TNT1 A 0 Bright A_FadeOut(0.015,0)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,0,0)
+		TNT1 A 0 Bright A_Jump(256,2)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,1,0)
+		CFCE AABBCC 1 Bright
+		TNT1 A 0 Bright A_FadeOut(0.015,0)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,0,0)
+		TNT1 A 0 Bright A_Jump(256,2)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,1,0)
+		CFCE DDEEFF 1 Bright
+		TNT1 A 0 Bright A_FadeOut(0.015,0)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,0,0)
+		TNT1 A 0 Bright A_Jump(256,2)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,1,0)
+		CFCE GGHHII 1 Bright
+		TNT1 A 0 Bright A_FadeOut(0.015,0)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,0,0)
+		TNT1 A 0 Bright A_Jump(256,2)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,1,0)
+		CFCE KKLLMM 1 Bright
+		TNT1 A 0 Bright A_FadeOut(0.015,0)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,0,0)
+		TNT1 A 0 Bright A_Jump(256,2)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,1,0)
+		CFCE AABBCC 1 Bright
+		TNT1 A 0 Bright A_FadeOut(0.015,0)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,0,0)
+		TNT1 A 0 Bright A_Jump(256,2)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,1,0)
+		CFCE DDEEFF 1 Bright
+		TNT1 A 0 Bright A_FadeOut(0.015,0)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,0,0)
+		TNT1 A 0 Bright A_Jump(256,2)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,1,0)
+		CFCE GGHHII 1 Bright
+		TNT1 A 0 Bright A_FadeOut(0.015,0)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,0,0)
+		TNT1 A 0 Bright A_Jump(256,2)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,1,0)
+		CFCE KKLLMM 1 Bright
+		TNT1 A 0 Bright A_FadeOut(0.015,0)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,0,0)
+		TNT1 A 0 Bright A_Jump(256,2)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,1,0)
+		CFCE AABBCC 1 Bright
+		TNT1 A 0 Bright A_FadeOut(0.015,0)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,0,0)
+		TNT1 A 0 Bright A_Jump(256,2)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,1,0)
+		CFCE DDEEFF 1 Bright
+		TNT1 A 0 Bright A_FadeOut(0.015,0)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,0,0)
+		TNT1 A 0 Bright A_Jump(256,2)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,1,0)
+		CFCE GGHHII 1 Bright
+		TNT1 A 0 Bright A_FadeOut(0.015,0)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,0,0)
+		TNT1 A 0 Bright A_Jump(256,2)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,1,0)
+		CFCE KKLLMM 1 Bright
+		TNT1 A 0 Bright A_FadeOut(0.015,0)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,0,0)
+		TNT1 A 0 Bright A_Jump(256,2)
+		TNT1 A 0 Bright A_Explode(user_firedamage+random(0,5),80,1,0)
+		CFCE MNOP 2 Bright
+		Stop
+	Nop:
+		TNT1 A 1 Bright A_ChangeFlag("MISSILE",0)
+		Stop
+	}
+}
+Actor DragonFlare : BaseFireFlareE
+{
+Species "Player"
+Obituary "%o fell in the little flares from %k's Rage."
+States
+	{
+	Spawn:
+		TNT1 A 0 Bright
+		TNT1 A 0 Bright A_SetUserVar("user_firedamage",30)
+		TNT1 A 0 Bright A_Die
+		Goto Death
+	}
+}
+
+Actor DragonFlareBad : BaseFireFlareE
+{
+Obituary "%o fell in the little flares from %k's Rage."
+States
+	{
+	Spawn:
+		TNT1 A 0 Bright
+		TNT1 A 0 Bright A_SetUserVar("user_firedamage",10)
+		TNT1 A 0 Bright A_Die
+		Goto Death
+	}
+}

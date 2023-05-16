@@ -1,0 +1,414 @@
+Actor TrueHitler 21939
+{
+Monster
+Scale 1.25
+Health 3000
+Height 64
+Radius 30
+Mass 5000
+Speed 8
+MaxStepHeight 32
+MaxDropOffHeight 32
+Reactiontime 24
+PainChance 64
+PainChance "Crush", 256
+PainChance "Explosion", 100
+PainChance "Mine", 100
+PainChance "NuclearFire", 100
+Gibhealth 500
+MeleeRange 150
++BOSS
++BOSSDEATH
++DONTMORPH
++DONTRIP
++NORADIUSDMG
+-NOINFIGHTING
+-NOPAIN
++NoFear
++NOBLOOD
++FLOORCLIP
++NOTARGET
++LOOKALLAROUND
++ALWAYSFAST
++MISSILEMORE
++MISSILEEVENMORE
++QUICKTORETALIATE
++DONTHARMSPECIES
+Species "SS"
+Damagetype "SS"
+DamageFactor 0.4
+DamageFactor "SS", 0.0
+DamageFactor "Extreme", 0.0
+DamageFactor "Hell", 0.0
+DamageFactor "Legendary", 0.2
+DamageFactor "Legendary1", 0.2
+DamageFactor "PlayerNemesisPlasma", 0.3
+DamageFactor "PDTBFG", 0.1
+DamageFactor "PDTBFGTracer", 0.1
+DamageFactor "PlayerDevBall", 0.120
+DamageFactor "PlayerDevBall2", 0.120
+DamageFactor "PlayerDTBFGRailgunSlug", 0.120
+DamageFactor "PlayerDevTracer", 0.120
+DamageFactor "LegendaryPlayer", 0.5
+DamageFactor "LegendaryGuru", 0.5
+DamageFactor "LegendaryGuruPlayer", 0.5
+DamageFactor "DBFG10K2", 0.5
+DamageFactor "PlayerDBFG10K2", 0.5
+DamageFactor "DBFG2", 0.45
+DamageFactor "PlayerDBFG2", 0.45
+DamageFactor "PlayerDTRG", 0.45
+Damagefactor "Disintegrate", 0.01
+DamageFactor "PlayerPyro", 0.3
+DropItem "PortableMedkit" 256
+DropItem "PortableMedCell", 256, 1
+DropItem "PortableMedCellPack", 256, 1
+DropItem "PureRage", 256
+DropItem "TrueLegendaryUltraSphere", 100
+SeeSound "TrueHitler/Sight"
+ActiveSound "TrueHitler/Active"
+PainSound "TrueHitler/Pain"
+DeathSound "TrueHitler/Death"
+Tag "$NETrueHitler"
+Obituary "%o learned that the True Hitler cannot die."
+HitObituary "%o's body wasn't able to be identified after being shot by a Downfall Hitler."
+var int user_music;
+var int user_lowlag;
+States
+	{
+	Spawn:
+	DOLF A 0
+	TNT1 A 0 ACS_NamedExecuteAlways("WimpyMode",0,2)
+	TNT1 A 0 ACS_NamedExecuteAlways("ModifyMonster",0,2,6)
+		DOLF A 3 Bright A_Look
+		Loop
+	Idle:
+		TNT1 A 0 A_GiveInventory("ResetMonsterInvul",1)
+		TNT1 A 0 A_ChangeFlag("FRIGHTENED",0)
+		TNT1 A 0 A_ChangeFlag("NOFEAR",1)
+		TNT1 A 0 A_ChangeFlag("FRIENDLY",0)
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		TNT1 A 0 A_JumpIfInventory("MarineKilled",1,"Taunt")
+	Idle2:
+		DOLF AAAA 3 Bright A_Wander
+		TNT1 A 0 A_Look
+		DOLF BBBB 3 Bright A_Wander
+		TNT1 A 0 A_Look
+		TNT1 A 0 A_SpawnItemEx("DeathKnightStep",0,0,5,0,0,-20)
+		DOLF CCCC 3 Bright A_Wander
+		TNT1 A 0 A_Look
+		DOLF DDDD 3 Bright A_Wander
+		TNT1 A 0 A_Look
+		TNT1 A 0 A_SpawnItemEx("DeathKnightStep",0,0,5,0,0,-20)
+		Loop
+	Taunt:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_ChangeFlag("NODAMAGE",1)
+		TNT1 A 0 A_PlaySound("TrueHitler/KillTaunt",2,1.0,0,ATTN_NONE)
+		TNT1 A 0 A_TakeInventory("MarineKilled",1)
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		TNT1 A 0 A_ChangeFlag("NODAMAGE",0)
+		Goto Idle2
+  See:
+	TNT1 A 0 A_JumpIf(user_lowlag == 1,"MoreSee")
+	TNT1 A 0 A_JumpIfTargetInLOS("MoreSee",0,0,0,0)
+	DOLF ABCD 3 A_Chase
+	Loop
+  MoreSee:
+	TNT1 A 0 A_SetUserVar("user_lowlag",1)
+		TNT1 A 0 A_GiveInventory("ResetMonsterInvul",1)
+		TNT1 A 0 A_ChangeFlag("FRIGHTENED",0)
+		TNT1 A 0 A_ChangeFlag("NOFEAR",1)
+		TNT1 A 0 A_ChangeFlag("FRIENDLY",0)
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		TNT1 A 0 A_JumpIf(user_music == 1,3)
+		TNT1 A 0 ACS_NamedExecuteAlways("CFMusic",0,3013)
+		TNT1 A 0 A_SetUserVar("user_music",1)
+		DOLF AAAA 3 Bright A_Chase
+		DOLF BBBB 3 Bright A_Chase
+		TNT1 A 0 A_SpawnItemEx("DeathKnightStep",0,0,5,0,0,-20)
+		DOLF CCCC 3 Bright A_Chase
+		DOLF DDDD 3 Bright A_Chase
+		TNT1 A 0 A_SpawnItemEx("DeathKnightStep",0,0,5,0,0,-20)
+		TNT1 A 0 A_JumpIfInventory("MarineKilled",1,"Taunt")
+		Loop
+	Melee:
+		DOLF EE 2 Bright A_FaceTarget
+		DOLF H 1 Bright A_PlaySound("weapons/hsgfire",CHAN_WEAPON,1.0,0)
+		DOLF H 4 Bright A_PlaySound("weapons/hsgfire",7,1.0,0)
+		TNT1 AAAAAAAAAAAA 0 Bright A_CustomMissile("MonsterTracer2",Random(36,44),24,Random(6,-6),0)
+		TNT1 AAAAAAAAAAAA 0 Bright A_CustomMissile("MonsterTracer2",Random(36,44),-24,Random(6,-6),0)
+        TNT1 A 0 Bright A_CustomBulletAttack(15.4,10.6,78,Random(1,4)*3,"SSBulletPuff")
+		DOLF HH 4 Bright A_CustomBulletAttack(15.4,10.6,78,Random(1,4)*3,"SSBulletPuff")
+		DOLF E 10 A_FaceTarget
+		TNT1 AAAAAA 0 A_SpawnItemEx("SSGShellCasing",10,24,40,Random(2,4),Random(-3,-6),Random(3,6),0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		TNT1 AAAAAA 0 A_SpawnItemEx("SSGShellCasing",10,-24,40,Random(2,4),Random(-3,-6),Random(3,6),0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_StopSoundEx("Weapon")
+		TNT1 A 0 A_SpidRefire
+		Goto See
+	Missile:
+		TNT1 A 0 A_Jump(128,"MissileTaunt")
+		TNT1 A 0 A_Jump(85,"POD")
+		TNT1 A 0 A_Jump(256,"Missile1","Missile2")
+		TNT1 A 0 A_JumpIfCloser(1000,"GoCloser")
+		TNT1 A 0 A_PlaySound("DeathKnight/action",CHAN_VOICE,1.0,0,ATTN_NONE)
+		Goto See
+	MissileTaunt:
+		TNT1 A 0
+		TNT1 A 0 A_PlaySound("TrueHitler/Taunt",7)
+		TNT1 A 0 A_Jump(256,"Missile1","Missile2")
+		TNT1 A 0 A_JumpIfCloser(1000,"GoCloser")
+		Goto See
+	Missile1:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		DOLF EEEEE 7 Bright A_Facetarget
+	Refire1:
+		TNT1 A 0 A_PlaySound("ELegChaingun/fire",CHAN_WEAPON,1.0,0)
+		TNT1 A 0 A_CustomMissile("Panz10k",62,-18,random(8,-8),CMF_TRACKOWNER)
+		TNT1 A 0 A_CustomMissile("SSUberExplosiveTracer",random(36,44),0,Random(5,-5),0)
+		TNT1 A 0 A_SpawnItemEx("OrangeShellCasing",10,24,40,Random(2,6),0,Random(1,3),Random(80,90),SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		DOLF F 2 Bright A_Facetarget
+		TNT1 A 0 A_PlaySound("ELegChaingun/fire",CHAN_WEAPON,1.0,0)
+		TNT1 A 0 A_CustomMissile("Panz10k",62,18,random(8,-8),CMF_TRACKOWNER)
+		TNT1 A 0 A_CustomMissile("SSUberExplosiveTracer",random(36,44),0,Random(5,-5),0)
+		TNT1 A 0 A_SpawnItemEx("OrangeShellCasing",10,-24,40,Random(2,6),0,Random(1,3),Random(-80,-90),SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		DOLF G 2 Bright A_Facetarget
+		TNT1 A 0 A_SpidRefire
+		TNT1 A 0 A_JumpIfCloser(400,"Melee")
+		Loop
+	Missile2:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		DOLF EEEEE 7 Bright A_Facetarget
+	Refire2:
+		TNT1 A 0 A_PlaySound("weapons/bfg15kfire",CHAN_WEAPON,1.0,0)
+		TNT1 A 0 A_CustomMissile("Panz10k",62,-18,random(8,-8),CMF_TRACKOWNER)
+		TNT1 AAAA 0 A_CustomMissile("MonsterTracer2",Random(36,44),0,Random(-6,6),0)
+		TNT1 A 0 A_SpawnItemEx("ShellCasing",10,-24,40,Random(2,6),0,Random(1,3),Random(-80,-90),SXF_NOCHECKPOSITION|SXF_CLIENTSIDE)
+		TNT1 A 0 A_PlaySound("weapons/12gaugefire",CHAN_BODY,1.0,0)
+		TNT1 A 0 Bright A_CustomBulletAttack(22.5,18.3,4,Random(1,5)*5,"SSBulletPuff",2048,CBAF_NORANDOM)
+		DOLF F 1 Bright A_CustomBulletAttack(11.25,9,3,random(1,5)*6,"SSBulletPuff",2048,CBAF_NORANDOM)
+		DOLF H 1 Bright A_Facetarget
+		TNT1 A 0 A_PlaySound("weapons/bfg15kfire",CHAN_WEAPON,1.0,0)
+		TNT1 A 0 A_CustomMissile("Panz10k",62,-18,random(8,-8),CMF_TRACKOWNER)
+		TNT1 AAAA 0 A_CustomMissile("MonsterTracer2",Random(36,44),0,Random(-6,6),0)
+		TNT1 A 0 A_SpawnItemEx("ShellCasing",10,-24,40,Random(2,6),0,Random(1,3),Random(-80,-90),SXF_NOCHECKPOSITION|SXF_CLIENTSIDE)
+		TNT1 A 0 A_PlaySound("weapons/12gaugefire",CHAN_BODY,1.0,0)
+		TNT1 A 0 Bright A_CustomBulletAttack(22.5,18.3,4,Random(1,5)*5,"SSBulletPuff",2048,CBAF_NORANDOM)
+		DOLF G 1 Bright A_CustomBulletAttack(11.25,9,3,random(1,5)*6,"SSBulletPuff",2048,CBAF_NORANDOM)
+		DOLF H 1 Bright A_Facetarget
+		TNT1 A 0 A_SpidRefire
+		TNT1 A 0 A_JumpIfCloser(400,"Melee")
+		Loop
+	MissileEnd:
+		DOLF EEEEE 4 Bright A_Facetarget
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		Goto See
+	Railgun:
+		TNT1 A 0 A_TakeInventory("Tic",1)
+		TNT1 A 0 A_CheckFlag("FRIENDLY",6)
+		TNT1 A 0 A_TakeInventory("ProjHitCheck",1)
+		TNT1 A 0 A_TakeInventory("ProjMissCheck",1)
+		TNT1 A 0 A_FaceTarget
+		TNT1 A 0 A_CustomMissile("ss-hit-testing",40,-24,0,CMF_TRACKOWNER|CMF_CHECKTARGETDEAD)
+		TNT1 A 0 A_CustomMissile("ss-hit-testing",40,24,0,CMF_TRACKOWNER|CMF_CHECKTARGETDEAD)
+		TNT1 A 0 A_PlaySound("weapons/rgcharge")
+		DOLF EEEEEEEEEEEEEEEEEEEE 1 A_FaceTarget
+		TNT1 A 0 A_SetUserVar("user_lcounter",0)
+		TNT1 A 0 A_JumpIfInventory("ProjMissCheck",1,"Avoid")
+		TNT1 A 0 A_FaceTarget
+		DOLF F 1 BRIGHT A_CustomMissile("PanzRail",62,18,random(4,-8),CMF_TRACKOWNER)
+		DOLF G 1 BRIGHT A_CustomMissile("PanzRail",62,-18,random(4,-8),CMF_TRACKOWNER)
+		DOLF E 4 A_FaceTarget
+		TNT1 A 0
+		DOLF E 15 A_FaceTarget
+		Goto See
+	DoubleHexa:
+		TNT1 A 0 A_Jump(64,"Railgun")
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		DOLF E 5 A_FaceTarget
+		DOLF E 1 A_PlaySound("weapons/hsgfire",CHAN_WEAPON,1.0,0)
+		DOLF E 4 A_PlaySound("weapons/hsgfire",7,1.0,0)
+		TNT1 AAAAAAAAAAAA 0 Bright A_CustomMissile("MonsterTracer2",Random(36,44),24,Random(6,-6),0)
+		TNT1 AAAAAAAAAAAA 0 Bright A_CustomMissile("MonsterTracer2",Random(36,44),-24,Random(6,-6),0)
+		DOLF H 1 Bright A_CustomBulletAttack(15.4,10.6,78,Random(1,4)*3,"SSBulletPuff")
+		DOLF H 4 Bright A_CustomBulletAttack(15.4,10.6,78,Random(1,4)*3,"SSBulletPuff")
+		DOLF E 10 A_FaceTarget	
+		TNT1 AAAAAA 0 A_SpawnItemEx("SSGShellCasing",10,24,40,Random(2,4),Random(-3,-6),Random(3,6),0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		TNT1 AAAAAA 0 A_SpawnItemEx("SSGShellCasing",10,-24,40,Random(2,4),Random(-3,-6),Random(3,6),0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		DOLF E 5
+		Goto See
+	POD:
+		DOLF E 0 A_SetInvulnerable
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		DOLF EE 5
+		DOLF E 10 A_PlaySound("TrueHitler/VileAttack",7)
+		DOLF E 8 A_VileTarget("TrueHitlerPODCrosshair")
+		DOLF EEEEEEEEEEEEEE 8 A_FaceTarget
+		DOLF E 8
+		DOLF E 20
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		DOLF E 0 A_SetInvulnerable
+		Goto See
+	GoBack:
+		TNT1 A 0
+		TNT1 A 0 A_PlaySound("DeathKnight/jump",CHAN_BODY,1.0,0)
+		DOLF E 10 A_Recoil(20)
+		Goto Railgun
+	GoCloser:
+		TNT1 A 0 A_Jump(82,"GoBack")
+		TNT1 A 0
+		TNT1 A 0 A_FaceTarget
+		TNT1 A 0 A_PlaySound("DeathKnight/jump",CHAN_BODY,1.0,0)
+		DOLF E 10 A_Recoil(-20)
+		Goto DoubleHexa
+	Avoid:
+		TNT1 A 0
+		TNT1 A 0 A_Jump(192,"AvoidLeft","AvoidRight")
+		DOLF E 20 A_Recoil(-40)
+		TNT1 A 0 A_Jump(192,"AvoidLeft","AvoidRight")
+		TNT1 A 0 A_SetUserVar("user_taunt",1)
+		Goto DoubleHexa
+	AvoidLeft:
+		DOLF E 1 A_FaceTarget
+		TNT1 A 0 A_PlaySound("DeathKnight/jump",CHAN_BODY,1.0,0)
+		TNT1 A 0 ThrustThing(angle*256/360+192,15,0,0)
+		DOLF E 5 A_FaceTarget
+		TNT1 A 0 A_Jump(48,"DoubleHexa","Railgun","Beacon")
+		GoTo Missile
+	AvoidRight:
+		DOLF E 1 A_FaceTarget
+		TNT1 A 0 A_PlaySound("DeathKnight/jump",CHAN_BODY,1.0,0)
+		TNT1 A 0 ThrustThing(angle*256/360+64,15,0,0)
+		DOLF E 5 A_FaceTarget
+		TNT1 A 0 A_Jump(48,"DoubleHexa","Railgun","Beacon")
+		GoTo Missile
+	Pain.Crush:
+		TNT1 A 0
+		TNT1 A 0 A_Recoil(-20)
+		DOLF E 8 A_Pain
+		GoTo See
+	Pain:
+		TNT1 A 0 A_Jump(100,"PainTaunt")
+		DOLF E 8 A_Pain
+		TNT1 A 0 A_Jump(46,"Beacon")
+		Goto Avoid
+	PainTaunt:
+		TNT1 A 0
+		TNT1 A 0 A_PlaySound("TrueHitler/PainTaunt",7)
+		DOLF E 8 A_Pain
+		TNT1 A 0 A_Jump(46,"Beacon")
+		Goto Avoid
+	Beacon:
+		TNT1 A 0 A_Jump(120,"BeaconSpread")
+		DOLF E 20 A_SpawnItemEx("HitlerSSBeacon",0,0,8,random(0,8),random(0,8),2,random(0,360),0,32)
+		Goto See
+	BeaconSpread:
+		TNT1 A 0 A_Jump(36,"BeaconRage")
+		DOLF E 20 A_SpawnItemEx("ActiveSSBeacon",0,0,8,random(0,8),random(0,8),2,random(0,360),0,32)
+		TNT1 A 0 A_SpawnItemEx("ActiveSSBeacon",0,0,8,random(0,8),random(0,8),2,random(0,360),0,32)
+		TNT1 A 0 A_SpawnItemEx("ActiveSSBeacon",0,0,8,random(0,8),random(0,8),2,random(0,360),0,32)
+		Goto See
+	BeaconRage:
+		DOLF E 20 A_SpawnItemEx("ActiveSSBeacon",0,0,8,random(0,8),random(0,8),2,random(0,360),0,32)
+		TNT1 A 0 A_SpawnItemEx("ActiveStrongSSBeacon",0,0,8,random(0,8),random(0,8),2,random(0,360),0,32)
+		TNT1 A 0 A_SpawnItemEx("ActiveSSBeacon",0,0,8,random(0,8),random(0,8),2,random(0,360),0,32)
+		DOLF E 10 A_SpawnItemEx("ActiveSSBeacon",0,0,8,random(8,16),random(8,16),2,random(0,360),0,32)
+		TNT1 A 0 A_SpawnItemEx("ActiveStrongSSBeacon",0,0,8,random(8,16),random(8,16),2,random(0,360),0,32)
+		TNT1 A 0 A_SpawnItemEx("ActiveSSBeacon",0,0,8,random(8,16),random(8,16),2,random(0,360),0,32)
+		Goto See
+	Death:
+		TNT1 A 0
+		TNT1 A 0 A_TakeInventory("Tic",999999)
+		DOLF A 35 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
+		TNT1 A 0 A_PlaySound("DeathKnight/step",5,1.0,0)
+		DOLF E 105 A_Scream
+		DOLF E 4 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
+		DOLF I 4 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
+		TNT1 A 0 A_PlaySound("DeathKnight/step",6,1.0,0)
+		DOLF J 4 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
+		DOLF K 4 A_Fall
+		TNT1 A 0 A_BossDeath
+		TNT1 A 0 A_SpawnItemEx("PowerStimpack",0,0,8,random(0,8),random(0,8),2,random(0,360),0,32)
+		TNT1 A 0 A_SpawnItemEx("AmmoSphere",0,0,8,random(0,8),random(0,8),2,random(0,360),0,32)
+		TNT1 A 0 A_SpawnItemEx("RadarItem",0,0,8,random(0,8),random(0,8),2,random(0,360),0,32)
+		DOLF L -1
+		Stop
+	XDeath:
+		TNT1 A 0
+		TNT1 A 0 A_TakeInventory("Tic",999999)
+		DOLF A 35 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
+		TNT1 A 0 A_PlaySound("DeathKnight/step",5,1.0,0)
+		DOLF E 1 A_XScream
+		TNT1 A 0 A_PlaySoundEx("TrueHitler/XDeath", "Voice", 0, 2)
+		DOLF E 105
+		DOLF E 4 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
+		DOLF I 4 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
+		TNT1 A 0 A_PlaySound("DeathKnight/step",6,1.0,0)
+		DOLF J 4 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
+		DOLF K 4 A_Fall
+		TNT1 A 0 A_BossDeath
+		TNT1 A 0 A_SpawnItemEx("PowerStimpack",0,0,8,random(0,8),random(0,8),2,random(0,360),0,32)
+		TNT1 A 0 A_SpawnItemEx("AmmoSphere",0,0,8,random(0,8),random(0,8),2,random(0,360),0,32)
+		TNT1 A 0 A_SpawnItemEx("RadarItem",0,0,8,random(0,8),random(0,8),2,random(0,360),0,32)
+		DOLF L -1
+		Stop
+	}
+}
+
+actor HitlerSSBeacon
+{
+  -SOLID
+  -SHOOTABLE
+  States
+  {
+  Spawn:
+    BEAC A 210
+    BEAC A 0 A_CustomMissile ("TeleportFog", 0, 0, 0, 0, 0)
+    BEAC A 0 A_SpawnItemEx ("Hitler", 0, 0, 8, 0, 0, 0, 0, 1)
+    BEAC A 210
+    BEAC A 0 A_CustomMissile ("TeleportFog", 0, 0, 0, 0, 0)
+    BEAC A 0 A_SpawnItemEx ("Hitler", 0, 0, 8, 0, 0, 0, 0, 1)
+    BEAC A 210
+    BEAC A 0 A_CustomMissile ("TeleportFog", 0, 0, 0, 0, 0)
+    BEAC A 0 A_SpawnItemEx ("Hitler", 0, 0, 8, 0, 0, 0, 0, 1)
+    BEAC A 105
+    goto Death
+  Death:
+    TNT1 A 1 A_CustomMissile ("TeleportFog", 0, 0, 0, 0, 0)
+    stop
+  }
+}
+
+ACTOR TrueHitlerPODCrosshair : ArchvileFire
+{
+  RenderStyle Add
+  Alpha 1
+  Scale 2
+  +DONTSPLASH
+  +EXTREMEDEATH
+  DamageType "SS"
+  States
+  {
+  Spawn:
+    TNT1 A 0
+    DFCH AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Bright A_Fire
+    DFCH AAAAAAAA 1 Bright A_Fire
+    DFCH AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABBBBBBB 1 Bright A_Fire
+    DFCH BBBBBBBB 1 Bright A_Fire
+	TNT1 A 0 Bright
+	TNT1 A 0 Bright A_NoBlocking
+	TNT1 A 0 Bright A_Explode(300,200,0,0)
+	TNT1 A 0 Bright Radius_Quake(2,24,0,15,0)
+	TNT1 A 0 Bright A_PlaySound("weapons/hgrenadeex",CHAN_BODY)
+	TNT1 A 0 Bright A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,128) 
+	TNT1 AAA 0 Bright A_CustomMissile("Kaboom3",0,0,random(0,360),2,random(0,360))
+	TNT1 AAA 0 Bright A_CustomMissile("SmokeFX2",0,0,random(0,360),2,random(0,360))
+	TNT1 AAAA 0 Bright A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,SXF_CLIENTSIDE,0)
+	TNT1 A 1 Bright A_SpawnItem("RocketEx")
+	TNT1 A 0 Bright A_Explode(200,400,0,0)
+	TNT1 A 0 Bright A_PlaySound("Explosion",CHAN_WEAPON)
+	TNT1 A 0 Bright A_PlaySound("FAREXPL",CHAN_VOICE)
+	TNT1 AAA 1 Bright A_SpawnItemEx("RocketEx",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,SXF_CLIENTSIDE,0)
+	TNT1 A 48 Bright
+    Stop
+	}
+}

@@ -1,0 +1,79 @@
+ACTOR NemesisBarrelEdit : NemesisBarrel Replaces NemesisBarrel
+{
+ Scale 1.2
+ Health 50
+ +FORCERADIUSDMG
+ DamageFactor "Legendary", 0.0
+ DamageFactor "Legendary1", 0.0
+ DamageFactor "PlayerNemesisPlasma", 0.0
+ Speed 0
+ States
+ {
+  Spawn:
+	LB0R AABB 4 Bright A_SpawnItem("NemesisHellionSmokeSpawner",0,0,0,0)
+	Loop
+  Death:
+	TNT1 AAA 0 Bright A_StopSound(5)
+     	TNT1 A 0 A_SpawnItem("SuperGayAttackBarrel")
+	TNT1 AAAAAAAAA 4
+	TNT1 AAAAAAAAA 4
+	TNT1 A 0 A_Jump(90,"LastChance")
+        Stop
+  LastChance:
+  	TNT1 A 0 A_SpawnItem("TrueNemesisHellionSmokeSpawner",0,0,0,0)
+	TNT1 A 5 Bright
+	TNT1 A 0 A_SpawnItem("TrueNemesisHellionSmokeSpawner",0,0,0,0)
+	TNT1 A 5 Bright A_Scream
+	TNT1 A 0 A_SpawnItem("TrueNemesisHellionSmokeSpawner",0,0,0,0)
+	TNT1 A 5 A_Fall
+	TNT1 A 0 A_SpawnItem("TrueNemesisHellionSmokeSpawner",0,0,0,0)
+	TNT1 A 5
+	TNT1 A 0 A_SpawnItem("TrueNemesisHellionSmokeSpawner",0,0,0,0)
+	TNT1 ABCD 5
+	TNT1 A 175
+	TNT1 A 0 A_PlaySoundEx("brain/spit","Voice",0,2)
+	LB0R BBBBBBBBBBBBBBBBB 2 Bright A_GiveInventory("NemesisSoulEvent",1)
+	LB0R BBBBBBBBBBBBBBBBB 2 Bright A_GiveInventory("NemesisSoulEvent",1)
+	LB0R BBBBBBBBBBBBBBBBB 2 Bright A_GiveInventory("NemesisSoulEvent",1)
+	LB0R BBBBBBBBBBBBBBBBB 2 Bright A_GiveInventory("NemesisSoulEvent",1)
+	LB0R BBBBBBBBBBBBBBBBB 2 Bright A_GiveInventory("NemesisSoulEvent",1)
+	LB0R BBBBBBBBBBBBBBBBB 2 Bright A_GiveInventory("NemesisSoulEvent",1)
+	LB0R BBBBBBBBBBBBBBBBB 2 Bright A_GiveInventory("NemesisSoulEvent",1)
+	LB0R B 3 Bright
+	TNT1 A 0 A_SpawnItemEx("NemesisLightning")
+	LB0R BBBBBBBBBBBB 2 Bright A_SpawnItemEx("VexedNemesisFlameSpawner")
+	TNT1 A 0 A_SpawnItemEx("VexedNemesisBarrel",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	Stop
+ }
+}
+
+Actor SuperGayAttackBarrel
+{
+ Scale 1.2
+ Projectile
+ Height 1
+ Radius 1
+ Speed 0
+ +NOCLIP
+ -ForceRadiusDmg
+ +ForceYBillBoard
+ DamageType "Fuck"
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 1 A_Die
+  Death:
+	TNT1 A 1 A_StopSound
+	LB0R ABABABAB 6 Bright A_SpawnItemEx("NemesisAltBallShockwave")
+    	TNT1 A 0 A_PlaySound("Nemesis/BallExplode",1,1.0,0,0.2)
+	TNT1 A 1 A_Explode(10000,5000,0,1)
+	TNT1 A 1 A_ChangeFlag(FORCERADIUSDMG,1)
+	TNT1 A 0 A_Explode(random(500,1000),5000,0,0,2500)
+	TNT1 A 0 Radius_Quake(7,105,0,140,0)
+	TNT1 A 0 A_SpawnItemEx("NemesisHugeExplosion",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+	TNT1 A 25 A_SpawnItemEx("NemesisAltBallEx",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+	TNT1 A 1 
+	Stop
+ }
+}

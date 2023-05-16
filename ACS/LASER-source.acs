@@ -1,0 +1,217 @@
+#library "LASER"
+#include "zspecial.acs"
+#include "zdefs.acs"
+
+// Note: Tab size is 4.
+
+// -----------------------------------------------------------------------------
+//
+// Ion Cannon laser spin script written by KeksDose
+// 21 / February / 2016 v1
+//
+// This is an Ion Cannon wind-up animation much like the one seen in Command &
+// Conquer 3 and Mega Man X8 against Optic Sunflower's desperation attack.
+//
+// It is also a rewritten version of the old laser.acs from like 2008 or so.
+// The main upgrades of this version over the old one include:
+//	-You can run as many of these as you like parallel to each other
+//	-Cosine interpolation makes for a smoother animation
+//	-Warp interpolation moves the beams at uncapped framerates over 35 FPS
+//	-It is now a named script instead of the elusive number 387
+//	-All the Tids are unique, there are no possible conflicts
+//
+// Usage:
+// Define the actors pointed by the ACTOR_LASER and ACTOR_EXPLOSION symbols in
+// DECORATE. Call the named script below from the actor that initiates the
+// whole Ion Cannon thing. For instance, it could be a projectile beacon. After
+// that, mess with the settings until you are satisfied.
+//
+// -----------------------------------------------------------------------------
+
+// -----------------------------------------------------------------------------
+//
+// Licence stuff:
+// I wrote this ACS, so I get to decide on its licence, do I not? I release it
+// under: CC-BY-NC-SA (Creative Commons):
+//
+// 1. You credit me. °^°
+// 2. You agree not to use this file or its byte code in commercial products.
+// 3. Derivative works of this file adhere to the exact same licence.
+//
+// https://creativecommons.org/licenses/by-nc-sa/3.0/
+//
+// -----------------------------------------------------------------------------
+
+// [kd] (9):
+// Brief explanation of each symbol:
+// (int) LASER_COUNT: How many lasers you want to spin.
+// (int) LASER_TICS_SPIN: How long they are in the spinning animation.
+// (int) LASER_TICS_WAIT: How many tics to wait before the explosion after spin.
+// (fixed angle) LASER_SPIN_ANGLE: How many spins to do during the animation.
+// (fixed mu) LASER_SPIN_DISTANCE: Radius of the aiming circle at highest dist.
+// (int) LASER_WARP_FLAGS: WARPF_* flags to use for the Warp call.
+// (actor class) ACTOR_LASER: Which actor to use as the aiming laser.
+// (actor class) ACTOR_EXPLOSION: Which actor to use for damage.
+// (actor class) ACTOR_MAPSPOT: Which actor to use as origin and height tester
+// (actor state) ACTOR_STATE_END: State label for laser actors to end up in
+
+#libdefine LASER_COUNT			6
+#libdefine LASER_TICS_SPIN		400
+#libdefine LASER_TICS_WAIT		20
+#libdefine LASER_SPIN_ANGLE		1.0
+#libdefine LASER_SPIN_DISTANCE	666.0
+#libdefine LASER_WARP_FLAGS		WARPF_INTERPOLATE | WARPF_NOCHECKPOSITION |
+								WARPF_ABSOLUTEPOSITION | WARPF_ABSOLUTEANGLE |
+								WARPF_ABSOLUTEOFFSET | WARPF_TOFLOOR
+#libdefine ACTOR_LASER			"PCStrikeBeam2"
+#libdefine ACTOR_EXPLOSION		"BlueStrike"
+#libdefine ACTOR_MAPSPOT		"MapSpot"
+#libdefine ACTOR_STATE_END		"FadeOut"
+
+// [kd] (9):
+// Here comes cosine interpolation.
+// For our intents and purposes, this is much better suited than lerp because it
+// is smoother. trerp stands for TRigonometric intERPolation. I made it up and
+// it looks correct.
+
+function int trerp(int a, int b, int f)
+{
+	return a + FixedMul(b - a, (1.0 + cos(f >> 1)) >> 1);
+}
+
+// And this one interpolates the interpolation variable 'f' linearly.
+
+function int lerp(int a, int b, int f)
+{
+	return a + FixedMul(b - a, f);
+}
+
+script 384 (void)
+{
+	if(ClassifyActor(0) & ACTOR_WORLD) // Don't launch from a linedef or so.
+	{
+		Log(s:"\cnlaser.acs: 384:");
+		Log(s:"\ctScript activator is the world.");
+		terminate;
+	}
+	
+	if(LASER_COUNT < 1) // You don't wanna have negative array bounds or 0-div.
+	{
+		Log(s:"\cnlaser.acs: 384:");
+		Log(s:"\ctLASER_COUNT must be at least 1.");
+		terminate;
+	}
+	
+	int tids[LASER_COUNT], baseAng[LASER_COUNT], i, f, dist, offAng, ang;
+	int x, y, z, spotTid;
+	int t = 0;
+	int tFrac = 1.0 / (LASER_TICS_SPIN - 1);
+	int angFrac = 1.0 / LASER_COUNT;
+	int originTid = UniqueTid();
+	int oX = GetActorX(0);
+	int oY = GetActorY(0);
+	int oZ = GetActorFloorZ(0);
+	
+	// [kd] Something not immediately obvious to consider:
+	// It might seem amusing to have tFrac and the warpFlags (see below) as
+	// variables instead of the expressions using the preprocessor symbols as
+	// they are assigned to.
+	
+	// The thing is that preprocessor symbols are replaced at compile time by
+	// whatever they are defined to. This means the same thing would be
+	// evaluated every tic in the looped portion instead of just once here. A
+	// variable allows for this to be calculated just once.
+	
+	// And here comes some Warp-function cruft because somebody was incompetent.
+	
+	int me = ActivatorTid();
+	int warpFlags = LASER_WARP_FLAGS;
+	
+	if(me == 0)
+	{
+		me = UniqueTid();
+		Thing_ChangeTid(0, me);
+	}
+	
+	if(SpawnForced(ACTOR_MAPSPOT, oX, oY, oZ, originTid) < 1)
+	{
+		Log(s:"\cnlaser.acs: 384:");
+		Log(s:"\ctCould not spawn the origin mapspot, Tid: ", i:originTid);
+		terminate;
+	}
+	
+	for(i = 0; i < LASER_COUNT; i++)
+	{
+		tids[i] = UniqueTid();
+		baseAng[i] = (angFrac * i) % 1.0;
+		if(SpawnForced(ACTOR_LASER, 0, 0, 0, tids[i]) < 1)
+		{
+			Log(s:"\cnlaser.acs: 384:");
+			Log(s:"\ct", s:ACTOR_LASER, s:" could not be spawned.");
+			terminate;
+		}
+	}
+	
+	while(t < LASER_TICS_SPIN)
+	{
+		f = lerp(1.0, 0, t * tFrac);
+		dist = trerp(LASER_SPIN_DISTANCE, 0, f);
+		offAng = trerp(LASER_SPIN_ANGLE, 0, f) % 1.0;
+		spotTid = UniqueTid();
+		t++;
+		
+		for(i = 0; i < LASER_COUNT; i++)
+		{
+			ang = (baseAng[i] + offAng) % 1.0;
+			x = FixedMul(cos(ang), dist);
+			y = FixedMul(sin(ang), dist);
+			
+			// if(SpawnForced(ACTOR_MAPSPOT, x, y, oZ, spotTid) > 0)
+			// {
+				// z = GetActorFloorZ(spotTid);
+				// Thing_Remove(spotTid);
+			// }
+			// else
+				// z = oZ;
+			
+			// [kd] (9):
+			// I doubt randi or Graf Zahl would have implemented Warp in this
+			// demented manner for ACS. It is like somebody literally took the
+			// DECORATE definition and plastered it into the opcode table and
+			// called it an ACS-version. It does not even take a Tid for what to
+			// change the position of, so I have to resort to changing the
+			// activator like this. And all that just because I want some
+			// interpolation.
+			
+			// SetActorPosition(tids[i], oX + x, oY + y, z, false);
+			
+			if(SetActivator(tids[i]))
+			{
+				Warp(tids[i], oX + x, oY + y, z, 0, warpFlags);
+				if(!SetActivator(originTid))
+				{
+					Log(s:"\cnlaser.acs: 384:");
+					Log(s:"\ctActor Tid ", i:originTid, s:" could not be set\
+						as activator of the script.");
+					break;
+				}
+			}
+		}
+		
+		Delay(const:1);
+	}
+	
+	Delay(const:LASER_TICS_WAIT);
+	
+	if(SpawnForced(ACTOR_EXPLOSION, oX, oY, oZ) > 1)
+	{
+		Log(s:"\cnlaser.acs: 384:");
+		Log(s:"\ct", s:ACTOR_EXPLOSION, s:" could not be spawned.");
+	}
+	for(i = 0; i < LASER_COUNT; i++)
+		SetActorState(tids[i], ACTOR_STATE_END);
+	
+	// [kd] (9)
+	// Make sure the explosions and laser beams are coded in DECORATE to
+	// disappear by themselves -- I see no reason to remove them in this ACS.
+}

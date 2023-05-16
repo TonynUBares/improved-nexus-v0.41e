@@ -1,0 +1,465 @@
+ACTOR FrostAfrit : BaronOfHell 25128
+{ 
+Health 1600
+Speed 8
+PainChance 20
+PainChance "SoulToxic", 20
+PainChance "FatFlamer", 20
+PainChance "FiendFire", 20
+Bloodcolor "Blue"
+Mass 1000
+DamageFactor "NobleComet", 0.0
+DamageFactor "Ice", 0.0
+DamageFactor "FreezerBurn", 0.0
+DropItem "BossLifeEssence" 128
+DropItem "BossArmorBonusMax" 128
+DropItem "NewCellPack" 250
+DropItem "Freezer Rifle" 100 1
+DropItem "ArmorSphere", 20
+Meleedamage 24
+PainSound "monsters/baronpain"
+MeleeSound "baron/melee"
+Species "Nobles"
+MONSTER
++FLOAT
++MISSILEMORE
++FastMelee
++NOGRAVITY
++BOSSDEATH
++QUICKTORETALIATE
++DONTHURTSPECIES
+-FLOORCLIP
+Obituary "%o was put into a deep freeze by a Frost Afrit." 
+HitObituary "%o couldn't take the Frost Afrit's heat." 
+Tag "$NEFrAfrit"
+var int user_lowlag;
+States 
+{ 
+Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
+	Goto Idle
+  Idle:
+      TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+      FFRT A 4 Bright A_Look
+      TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+      FFRT B 4 Bright A_Look
+      TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+      FFRT C 4 Bright A_Look
+      TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+      FFRT D 4 Bright A_Look	  
+      Loop
+  See:
+	TNT1 A 0 A_JumpIf(user_lowlag == 1,"MoreSee")
+	TNT1 A 0 A_JumpIfTargetInLOS("MoreSee",0,0,0,0)
+	FFRT ABCD 3 A_Chase
+	Loop
+  MoreSee:
+	TNT1 A 0 A_SetUserVar("user_lowlag",1)
+      TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+      FFRT A 3 Bright A_Chase
+      TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+      FFRT B 3 Bright A_Chase	 
+      TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+      FFRT C 3 Bright A_Chase
+      TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+      FFRT D 3 Bright A_Chase	
+      Loop      
+Melee:
+	  TNT1 A 0 A_JumpIfCloser(112,"Freezethrowers")
+      TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+      FFRT ST 5 Bright A_FaceTarget
+	  TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+      FFRT U 4 Bright A_MeleeAttack
+	  TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+      FFRT TS 4 Bright A_FaceTarget  
+      Goto See
+Missile:
+       TNT1 A 0 A_SetShootable
+       TNT1 A 0 A_UnsetInvulnerable
+	   TNT1 A 0 A_SetTranslucent(1)
+	   TNT1 A 0 A_JumpIfCloser(84,"Freezethrowers")
+	   TNT1 A 0 A_Jump(128,"IceBall","FreezeBomb")
+Normal:
+	  TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+      FFRT S 6 Bright A_FaceTarget
+	  TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)	  
+      FFRT T 6 Bright A_FaceTarget	  
+	  TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+	  FFRT U 3 Bright A_FaceTarget
+	  TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+	  FFRT U 1 Bright A_CustomMissile("AfritIcicle", 44, 0, 0)	  
+	  FFRT U 0 Bright A_CustomMissile("AfritIcicle", 44, 0, 3)
+	  FFRT U 1 Bright A_CustomMissile("AfritIcicle", 44, 0, -3)
+	  TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+      FFRT T 5 Bright A_FaceTarget
+	  TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)	  
+      FFRT S 5 Bright A_FaceTarget
+	  TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)	  
+      FFRT T 6 Bright A_FaceTarget	  
+	  TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+	  FFRT U 3 Bright A_FaceTarget
+	  TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+	  FFRT U 1 Bright A_CustomMissile("AfritIcicle", 44, 0, 0)
+	  TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+	  FFRT U 0 Bright A_CustomMissile("AfritIcicle", 44, 0, 3)
+	  TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+	  FFRT U 1 Bright A_CustomMissile("AfritIcicle", 44, 0, -3) 
+	  TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+	  TNT1 A 0 A_Jump(112,"FreezeBomb","IceBall")
+      FFRT E 8 Bright A_FaceTarget
+	  TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+      FFRT F 8 Bright A_FaceTarget
+	  TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+      FFRT G 1 Bright A_CustomMissile("AfritIcicle", 44, 0, 0)
+	  FFRT G 0 Bright A_CustomMissile("AfritIcicle", 44, 0, 6)
+      FFRT G 0 Bright A_CustomMissile("AfritIcicle", 44, 0, 3)
+	  FFRT G 0 Bright A_CustomMissile("AfritIcicle", 44, 0, -3)
+      FFRT G 4 Bright A_CustomMissile("AfritIcicle", 44, 0, -6)
+	  TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+      FFRT G 6 Bright A_FaceTarget
+	  TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+      FFRT G 8 Bright A_FaceTarget
+	  TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+      FFRT F 8 Bright A_FaceTarget
+	  TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+      FFRT E 8 Bright A_FaceTarget
+	  TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+      TNT1 A 0 Bright A_FaceTarget
+	  TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+      TNT1 A 0 Bright A_CustomMissile ("FreezedAfritTracer",0,40,0)	  
+      FFRT E 1 Bright A_CustomMissile ("FreezedAfritTracer",0,-40,0)
+	  TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+      FFRT E 4 Bright A_FaceTarget	
+	  TNT1 A 0 A_Jump(132,"IceBall")
+      Goto See	  
+FreezeBomb:
+	   TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+       FFRT EF 8 A_FaceTarget
+	   TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+       FFRT G 0 Bright A_Custommissile("FRZAfritBomb",44,0,0)
+	   FFRT G 0 Bright A_Custommissile("FRZAfritBomb",44,0,6)
+	   FFRT G 7 Bright A_Custommissile("FRZAfritBomb",44,0,-6)
+	   TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+	   TNT1 A 0 A_Jump(90,"IceBall")
+       Goto See
+IceBall:
+	   TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+	   TNT1 A 0 A_PlaySound("FreezerBehe/Sight")
+       FFRT EF 14 A_FaceTarget
+       TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+       FFRT G 8 Bright A_Custommissile("FRZRAfritBall",44,0,0)
+	   TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+       Goto See
+Freezethrowers:
+	TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+    FFRT A 6 Bright A_FaceTarget
+	TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+	FFRT A 6 Bright A_FaceTarget
+	TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+	TNT1 A 0 A_PlaySound("devil/scream")
+	TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+    FFRT H 1 Bright A_CustomMissile("FRZAfritFlameShot",47,0,0)
+	FFRT H 0 A_FaceTarget
+	TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+	FFRT H 1 Bright A_CustomMissile("FRZAfritFlameShot",47,0,0)
+	FFRT H 0 A_FaceTarget
+	TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+	FFRT H 1 Bright A_CustomMissile("FRZAfritFlameShot",47,0,0)
+	FFRT H 0 A_FaceTarget
+	TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+	FFRT H 1 Bright A_CustomMissile("FRZAfritFlameShot",47,0,0)
+	FFRT H 0 A_FaceTarget
+	TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+	FFRT H 1 Bright A_CustomMissile("FRZAfritFlameShot",47,0,0)
+	FFRT H 0 A_FaceTarget
+	FFRT H 1 Bright A_CustomMissile("FRZAfritFlameShot",47,0,0)
+	FFRT H 0 A_FaceTarget
+	TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+	FFRT H 1 Bright A_CustomMissile("FRZAfritFlameShot",47,0,0)
+	FFRT H 0 A_FaceTarget
+	TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+	FFRT H 1 Bright A_CustomMissile("FRZAfritFlameShot",47,0,0)
+	FFRT H 0 A_FaceTarget
+	TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+	FFRT H 1 Bright A_CustomMissile("FRZAfritFlameShot",47,0,0)
+	FFRT H 0 A_FaceTarget
+	TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+	FFRT H 1 Bright A_CustomMissile("FRZAfritFlameShot",47,0,0)
+	FFRT H 0 A_FaceTarget
+	TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+	FFRT H 1 Bright A_CustomMissile("FRZAfritFlameShot",47,0,0)
+	FFRT H 0 A_FaceTarget
+	TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+	FFRT H 1 Bright A_CustomMissile("FRZAfritFlameShot",47,0,0)
+	FFRT H 0 A_FaceTarget
+	TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+	FFRT H 1 Bright A_CustomMissile("FRZAfritFlameShot",47,0,0)
+	FFRT H 0 A_FaceTarget
+	TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+	FFRT H 1 Bright A_CustomMissile("FRZAfritFlameShot",47,0,0)
+	FFRT H 0 A_FaceTarget
+	TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+	FFRT H 1 Bright A_CustomMissile("FRZAfritFlameShot",47,0,0)
+	FFRT H 0 A_FaceTarget
+	TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+	FFRT H 1 Bright A_CustomMissile("FRZAfritFlameShot",47,0,0)
+	FFRT H 0 A_FaceTarget
+	TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+	FFRT H 1 Bright A_CustomMissile("FRZAfritFlameShot",47,0,0)
+	FFRT H 0 A_FaceTarget
+	TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+	FFRT H 1 Bright A_CustomMissile("FRZAfritFlameShot",47,0,0)
+	FFRT H 0 A_FaceTarget
+	TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+	FFRT H 1 Bright A_CustomMissile("FRZAfritFlameShot",47,0,0)
+	FFRT H 0 A_FaceTarget
+	TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+	FFRT H 1 Bright A_CustomMissile("FRZAfritFlameShot",47,0,0)
+	FFRT H 0 A_FaceTarget
+	TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+	FFRT H 1 Bright A_CustomMissile("FRZAfritFlameShot",47,0,0)
+	FFRT H 0 A_FaceTarget
+	TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+	FFRT H 1 Bright A_CustomMissile("FRZAfritFlameShot",47,0,0)
+	FFRT H 0 A_FaceTarget
+	TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+	FFRT H 1 Bright A_CustomMissile("FRZAfritFlameShot",47,0,0)
+	FFRT H 0 A_FaceTarget
+	TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+	FFRT H 1 Bright A_CustomMissile("FRZAfritFlameShot",47,0,0)
+	FFRT H 0 A_FaceTarget
+	TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+	FFRT H 1 Bright A_CustomMissile("FRZAfritFlameShot",47,0,0)
+	TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+    Goto See
+Pain: 
+	  TNT1 A 0 A_Jump(87,3)
+      TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+      FFRT H 8 Bright A_Pain
+      Goto See
+      TNT1 A 0 Bright A_SpawnItem("FreezedAfritFireSpawner",0,0,0,0)
+      FFRT H 8 Bright A_Pain
+      Goto Missile	  
+Death: 
+      FFRT I 0 Bright
+      FFRT I 6 Bright A_Scream
+      FFRT J 4 Bright A_Fall
+      FFRT KLMNOPQ 3 Bright
+      FFRT R 3 Bright
+	  TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("FRZRIceSpike", random(-256,256), random(-256,256), 0, 0, 0, 0, 0, 34, 0)
+	  TNT1 A -1 Bright A_KillMaster
+      Stop  
+Raise:
+      FFRT RQPONMLKJI 3 Bright
+      Goto See
+      } 
+}
+
+ACTOR FreezedAfritFire
+{
++MISSILE
++DONTSPLASH
++CLIENTSIDEONLY
++NOBLOCKMAP
++NOGRAVITY
++NOTELEPORT
++FORCEXYBILLBOARD
+RenderStyle Add
+Scale 0.3
+States
+{
+Spawn:
+FIC1 ABCDEFGHIJKL 2 bright A_FadeOut
+Stop
+}
+}
+
+ACTOR FreezedAfritFireSpawner : RedParticleSpawner
+{
+  States
+  {
+  Spawn:
+    TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 0 A_PlaySound("monster/ambientfire")
+    TNT1 AAAAAA 0 A_SpawnItemEx("FreezedAfritFire",random(12,-12),random(12,-12),random(25,50),0,0,random(0,-5),0,128,0)
+    TNT1 A 1
+    Stop
+  }
+}
+
+ACTOR AfritIcicle : NewZombieFreezeBlast
+{
+DamageType "NobleComet"
+DamageType "Ice"
+}
+
+Actor FRZAfritBomb : FRZRBehBomb
+{
+DamageType "NobleComet"
+DamageType "Ice"
+States
+{
+  Spawn:
+	TNT1 A 0 A_CustomMissile("FRZRBehBombTrail",Random(-2,2),Random(-2,2))
+	TNT1 A 0 A_CustomMissile("ProjectileTrailParticleBlue",Random(-2,2),Random(-2,2))
+	TNT1 A 0 A_CustomMissile("FRZRBehBombTrail",Random(-2,2),Random(-2,2))	
+	TNT1 A 0 A_CustomMissile("ProjectileTrailParticleBlue",Random(-2,2),Random(-2,2))
+	FX05 A 1 Bright
+	TNT1 A 0 A_CustomMissile("FRZRBehBombTrail",Random(-2,2),Random(-2,2))
+	TNT1 A 0 A_CustomMissile("ProjectileTrailParticleBlue",Random(-2,2),Random(-2,2))
+	TNT1 A 0 A_CustomMissile("FRZRBehBombTrail",Random(-2,2),Random(-2,2))	
+	TNT1 A 0 A_CustomMissile("ProjectileTrailParticleBlue",Random(-2,2),Random(-2,2))
+	FX05 B 1 Bright
+	TNT1 A 0 A_CustomMissile("FRZRBehBombTrail",Random(-2,2),Random(-2,2))
+	TNT1 A 0 A_CustomMissile("ProjectileTrailParticleBlue",Random(-2,2),Random(-2,2))
+	TNT1 A 0 A_CustomMissile("FRZRBehBombTrail",Random(-2,2),Random(-2,2))	
+	TNT1 A 0 A_CustomMissile("ProjectileTrailParticleBlue",Random(-2,2),Random(-2,2))
+	FX05 C 1 Bright	
+	Loop
+  Death:
+	TNT1 AAA 0 A_CustomMissile("Bluekaboom4",0,0,random(0,360),2,random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX4",0,0,random(0,360),2,random(0,360))	
+	SHEX G 0 A_Explode(32,102,0)
+	SHEX G 0 A_CustomMissile("FRZRAfritBombProj",0,0,15,CMF_AIMDIRECTION)
+	SHEX G 0 A_CustomMissile("FRZRAfritBombProj",0,0,45,CMF_AIMDIRECTION)
+	SHEX G 0 A_CustomMissile("FRZRAfritBombProj",0,0,65,CMF_AIMDIRECTION)
+	SHEX G 0 A_CustomMissile("FRZRAfritBombProj",0,0,80,CMF_AIMDIRECTION)
+	SHEX G 0 A_CustomMissile("FRZRAfritBombProj",0,0,105,CMF_AIMDIRECTION)
+	SHEX G 0 A_CustomMissile("FRZRAfritBombProj",0,0,120,CMF_AIMDIRECTION)
+	SHEX G 0 A_CustomMissile("FRZRAfritBombProj",0,0,145,CMF_AIMDIRECTION)
+	SHEX G 0 A_CustomMissile("FRZRAfritBombProj",0,0,160,CMF_AIMDIRECTION)
+	SHEX G 0 A_CustomMissile("FRZRAfritBombProj",0,0,185,CMF_AIMDIRECTION)
+	SHEX G 0 A_CustomMissile("FRZRAfritBombProj",0,0,200,CMF_AIMDIRECTION)
+	SHEX G 0 A_CustomMissile("FRZRAfritBombProj",0,0,220,CMF_AIMDIRECTION)
+	SHEX G 0 A_CustomMissile("FRZRAfritBombProj",0,0,240,CMF_AIMDIRECTION)
+	SHEX G 0 A_CustomMissile("FRZRAfritBombProj",0,0,260,CMF_AIMDIRECTION)
+	SHEX G 0 A_CustomMissile("FRZRAfritBombProj",0,0,280,CMF_AIMDIRECTION)
+	SHEX G 0 A_CustomMissile("FRZRAfritBombProj",0,0,300,CMF_AIMDIRECTION)
+	SHEX DCEFG 3 Bright
+	Stop
+    }
+}
+
+Actor FRZRAfritBombProj : FRZRBehBombProj
+{
+DamageType "NobleComet"
+DamageType "Ice"
+States
+{
+  Spawn:
+	ISHR AB 2 Bright
+	Loop
+  Death:
+	TNT1 A 0
+	TNT1 AAA 0 A_CustomMissile("Kaboom6", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAAA 0 A_SpawnItemEx("IceDebris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+	TNT1 AAA 0 Bright A_CustomMissile("Kaboom6", 0, 0, random(0,360), 2, random(0,360))
+	Stop
+    }
+}
+
+Actor FRZRAfritBall : FRZRBehBall
+{
+DamageType "NobleComet"
+DamageType "Ice"
+States
+{
+  Spawn:
+	TNT1 A 0 A_SpawnItemEx("BlueParticleSpawner",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_SeekerMissile(15,5,SMF_LOOK)
+	ICBL A 1 Bright A_SpawnItemEx("FRZRBehBallTrail",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_SeekerMissile(15,5,SMF_LOOK)
+	ICBL B 1 Bright A_SpawnItemEx("FRZRBehBallTrail",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_SeekerMissile(15,5,SMF_LOOK)
+	ICBL C 1 Bright A_SpawnItemEx("FRZRBehBallTrail",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_SeekerMissile(15,5,SMF_LOOK)
+	ICBL D 1 Bright A_SpawnItemEx("FRZRBehBallTrail",0,0,0,0,0,0,0,128)
+	Loop
+  Death:
+	ICBL A 0 A_Explode(32,104,0)
+	ICBL A 0 A_PlaySound("icefurry")
+	TNT1 AAAA 0 A_SpawnItemEx("BlueParticleSpawner",0,0,0,0,0,0,0,128)
+	TNT1 AAAAAAAAAAA 0 A_SpawnItemEx("BlueKaboom3",0,0,0,random(-20,20),random(-20,20),random(-20,20))
+    TNT1 AAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("FRZRFlameShotEffect",random(-3,3),random(-3,3),CMF_AIMDIRECTION,random(-6,6),random(-6,6),random(-3,3))
+	Stop
+	}
+}
+
+Actor FRZAfritFlameShot : FlameShot
+{
+Species "Nobles"
+DamageType "NobleComet"
+DamageType "Ice"
++THRUSPECIES
+States
+{
+Death:
+		TNT1 A 0
+		stop
+	}
+}
+
+ACTOR FreezedAfritTracer
+{
+  Radius 5
+  Height 5
+  Damage 6
+  DamageType Fire
+  RenderStyle Add
+  Alpha 0.65
+  Projectile
+  +SeekerMissile
+  +FloorHugger
+  +DontSplash
+  -NoGravity
+  Speed 20
+  FastSpeed 25
+  DamageType "NobleComet"
+  DamageType "Ice"
+  Obituary "%o was deep fried by an Afrit."
+  Seesound "weapons/diasht"
+  DeathSound "weapons/firex3"   
+  States
+  {
+  Spawn:
+    TNT1 A 0 A_PlaySound("monster/ambientfire2")
+    TNT1 A 0 Bright A_SeekerMissile(0,2)
+    TNT1 A 1 Bright A_SpawnItemEx("FreezedATracerPuff", 0, 0, 0, 0, 0, 0, 0, 128)
+    TNT1 A 0 Bright A_SeekerMissile(0,2)
+    TNT1 A 1 Bright A_SpawnItemEx("FreezedATracerPuff", 0, 0, 0, 0, 0, 0, 0, 128)
+    TNT1 A 0 Bright A_SeekerMissile(0,2)
+    TNT1 A 1 Bright A_SpawnItemEx("FreezedATracerPuff", 0, 0, 0, 0, 0, 0, 0, 128)
+    TNT1 A 0 Bright A_SeekerMissile(0,2)
+    TNT1 A 1 Bright A_SpawnItemEx("FreezedATracerPuff", 0, 0, 0, 0, 0, 0, 0, 128)	
+    Loop
+  Death:
+    TNT1 A 0 A_SpawnItemEx("BlueParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+    FFRA K 4 Bright
+	TNT1 AAA 0 A_CustomMissile("Kaboom9", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX4", 0, 0, random(0,360), 2, random(0,360))	
+    FFRA L 4 Bright A_Explode(32, 64)
+    FFRA MNO 3 Bright
+    Stop
+  }
+}
+
+ACTOR FreezedATracerPuff
+{
+  Radius 1
+  Height 1
+  Speed 0
+  RenderStyle Add
+  Alpha 0.6
+  Scale 1.25
+  Projectile
+  +FloorHugger
+  -NoGravity
+  +CLIENTSIDEONLY
+  States
+  {
+  Spawn:
+    FFRA ABCDEFGHIJ 2 Bright
+    stop
+  }
+}

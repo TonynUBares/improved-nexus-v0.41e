@@ -1,0 +1,23 @@
+ACTOR fakeApprentice: Apprentice 
+{ 
+ Tag "\c[J6]Fake \c[D1]Apprentice\c-"
+ DropItem "ShellBox", 256
+ DropItem "RocketBox", 256
+ Damagefactor 0.6
+}//Apprentice
+
+ACTOR fakeFreezemotaur: Freezemotaur 
+{ 
+ Tag "\c[J6]Fake \c[N0]Frozen Apprentice\c-"
+ DropItem "NewCellPack", 256
+ DropItem "NewCellPack", 192
+ DamageFactor 0.6
+}//Freezemotaur
+
+ACTOR FakeSupremotaur: Supremotaur 
+{ 
+ Tag "\c[J6]Fake \c[A6]Super Apprentice\c-"
+ DropItem "NewCellPack", 256
+ DropItem "NewCell", 256
+ DamageFactor 0.6 
+}//Supremotaur

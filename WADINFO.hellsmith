@@ -1,0 +1,95 @@
+===========================================================================
+Advanced engine needed  : ZDoom and its spinoffs that support DECORATE
+Primary purpose         : Single + coop play
+===========================================================================
+Title                   : Nemesis Hellsmith
+Filename                : nemesis_hellsmith002fix.pk3
+Release date            : April 28, 2019
+Authors                 : Jon Armst (hellsmith1) and Larry Collins (Empyre)
+Email Address           : jonsnascar@gmail.com and empyre65@gmail.com
+
+Description             : Adds 5 new minotaur-based monsters that replace the
+						  Cyberdemon: the Apprentice, the Hellsmith,
+						  the Freezemotaur, the Supremotaur, and of course,
+						  the Nemesis Hellsmith himself.  It also adds 4 new
+						  weapons: Flak Cannon, Big Lightning Gun (BLG),
+						  Stingray, and Legendry Unmaker.
+
+Additional Credits to   : See the CREDITS lump.
+
+===========================================================================
+* What is included *
+
+New levels              : 0
+Sounds                  : Yes
+Music                   : No
+Graphics                : Yes
+Dehacked/BEX Patch      : No
+Demos                   : No
+Other                   : DECORATE, SNDINFO
+Other files required    : Complex-Doom with LCA, _OR_ the complete CF package
+						  (see Play Instructions in the WADINFO in
+						  nemesis_hellsmith_cf_patch002.wad), _OR_ the comprete
+						  True CF package (see Play Instructions in the WADINFO in
+						  nemesis_hellsmith_truecf_patch002.wad).
+
+
+* Play Information *
+
+NOTE: This will not work by itself.  It depends on Complex Doom and LCA to work.
+Also, the patches for Complex Doom and for LCA are obsolete and no longer needed.
+
+Game                    : Doom 2 or Doom
+Map #                   : None
+Single Player           : Designed for
+Cooperative 2-4 Player  : Designed for
+Deathmatch 2-4 Player   : No
+Other game styles       : None
+Difficulty Settings     : N/A
+
+
+* Construction *
+
+Base                    : Based on the Hellsmith and Apprentice available at Realm667.
+Build Time              : Many hours over the course of several months.
+Editor(s) used          : Slade 3 and GIMP-2.8 
+Known Bugs              : none known, but please tell us of any you find
+May Not Run With...     : non-ZDoom-based ports, and ZDaemon and Odamex,
+                          because of the DECORATE code
+
+
+* Copyright / Permissions *
+
+Authors may NOT use the contents of this file as a base for modification or
+reuse.  Permissions have been obtained from original authors for any of
+their resources modified or included in this file.
+
+You MAY distribute this file, provided you include this text file, with no
+modifications.  You may distribute this file in any electronic format (BBS,
+Diskette, CD, etc) as long as you include this file intact.  I have
+received permission from the original authors of any modified or included
+content in this file to allow further distribution.
+
+***** Changelog *****
+
+Changes in nemesis_hellsmith002fix.pk3:
+
+ - Fixed all known sprite conflicts with CD, LCA, and CF.
+ - Replaced ammo types with their replacements from LCA.
+ - Incorporated some, but not all, of the changes made in
+cf_txs_cw_patch1.4.1_custom_complete.pk3.
+
+--------------------------------------------------------------------------------
+
+Changes in nemesis_hellsmith002.pk3:
+
+ - Made this pk3 depend on Complex Doom and LCA, using some code, sprites, and
+ sounds from those pk3s, and not including them inside this pk3.
+ - Added 4 weapons: the Flak Cannon, the Big Lightning Gun (BLG), the Stingray,
+and the Legendary Unmaker
+ - Cleaned up some unused or duplicate code, sounds, and sprites.
+ - Added a song that plays when the Nemesis Hellsmith seees a player.
+ - Added GLDEFS and DECALDEF to make everything look better.
+ - Updated the CF patch (see changelog there) and added the True CF patch.
+ - Added the new weapons to the drop-lists for included monsters, and made them
+sometimes appear instad of the normal Complex Doom weapons.

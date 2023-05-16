@@ -1,0 +1,461 @@
+ACTOR EFGLunatic : PGNZombie //The apocalypse is here
+{
+Speed 5
+Mass 700
+Health 1050
+Painchance 80
+DropItem "PortableMedCell", 150, 1
+DropItem "StimKit", 180, 2
+DropItem "RocketAmmo", 180
+DropItem "HealthFlask", 200, 6
+DropItem "ArmorPlate", 160
+Dropitem "MarineSquadBeacon", 60, 1
+DropItem "HandGrenadeAmmo", 120, 1
+DropItem "MineAmmo", 90, 1
+DropItem "AmmoPack", 160, 1
+DropItem "ShieldSphere", 64, 1
+Damagefactor "Explosion", 0.1
+SeeSound "efglunatic/sight"
+ActiveSound "efglunatic/active"
+PainSound "efglunatic/pain"
+DeathSound "efglunatic/death"
+Obituary "%o was exploded into chunks by an EFG Lunatic."
+Tag "$NEEFGZomb"
+var int user_rage;
+var int user_cooldown;
+var int user_missile;
+var int user_nuke;
+var int user_fusion;
+//var int user_startspeed;
+//var int user_speedometer;
+var int user_lowlag;
+States
+	{
+	Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
+	Goto Idle
+  Idle:
+		EFGK A 10 A_Look
+		Loop
+	Idle:
+		EFGK AAAA 1 A_Wander
+		TNT1 A 0 A_Look
+		EFGK BBBB 1 A_Wander
+		TNT1 A 0 A_SpawnItemEx("FootStep2",0,0,5,0,0,-20)
+		EFGK CCCC 1 A_Wander
+		TNT1 A 0 A_Look
+		EFGK DDDD 1 A_Wander
+		TNT1 A 0 HealThing(random(2,3))
+		TNT1 A 0 A_SpawnItemEx("FootStep2",0,0,5,0,0,-20)
+		EFGK AAAA 1 A_Wander
+		TNT1 A 0 A_Look
+		EFGK BBBB 1 A_Wander
+		TNT1 A 0 A_SpawnItemEx("FootStep2",0,0,5,0,0,-20)
+		EFGK CCCC 1 A_Wander
+		TNT1 A 0 A_Look
+		EFGK DDDD 1 A_Wander
+		TNT1 A 0 HealThing(random(2,3))
+		TNT1 A 0 A_SpawnItemEx("FootStep2",0,0,5,0,0,-20)
+		Loop
+  See:
+	TNT1 A 0 A_JumpIf(user_lowlag == 1,"MoreSee")
+	TNT1 A 0 A_JumpIfTargetInLOS("MoreSee",0,0,0,0)
+	EFGK ABCD 4 A_Chase
+	Loop
+  MoreSee:
+	TNT1 A 0 A_SetUserVar("user_lowlag",1)
+	    TNT1 A 0 A_JumpIf(user_rage == 1,"SeeRage")
+		EFGK AAAABBBB 1 A_Chase
+		TNT1 A 0 A_SpawnItemEx("FootStep2",0,0,5,0,0,-20)
+		EFGK CCCCDDDD 1 A_Chase
+		TNT1 A 0 A_Jump(10,"Heal")
+		TNT1 A 0 A_SpawnItemEx("FootStep2",0,0,5,0,0,-20)
+		Loop
+	SeeRage:
+		EFGK AAAABBBB 1 A_Chase
+		TNT1 A 0 A_SpawnItemEx("FootStep2",0,0,5,0,0,-20)
+		EFGK CCCCDDDD 1 A_Chase
+		TNT1 A 0 A_Jump(30,"Teleport")
+		TNT1 A 0 A_Jump(40,"Heal")
+		TNT1 A 0 A_SpawnItemEx("FootStep2",0,0,5,0,0,-20)
+		TNT1 A 0 A_JumpIf(user_rage == 0, "See")
+		Loop
+	RageMissile:
+	    EFGK E 1 A_FaceTarget(45)
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("GetCVar",50) == 0,3)
+		TNT1 A 0 A_JumpIf(user_nuke == 1,2)
+		TNT1 A 0 A_Jump(30,"BigNuke") //off by default, can be turned on with nx_lunatic, have fun
+	    TNT1 A 0 A_Jump(100,"TeleportAttack","FusionNuke")
+		Goto Normal
+	Missile:
+	    TNT1 A 0
+		TNT1 A 0 A_SetUserVar("user_missile",0)
+		TNT1 A 0 A_JumpIf(user_rage == 1,"RageMissile")
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("GetCVar",50) == 0,3)
+		TNT1 A 0 A_JumpIf(user_nuke == 1,2)
+		TNT1 A 0 A_Jump(7,"BigNuke")
+		TNT1 A 0 A_Jump(36,"FusionNuke")
+	Normal:
+	    EFGK A 0 A_PlaySound("efglunatic/sight",CHAN_VOICE,1,0,0.5)
+	    EFGK E 1 A_FaceTarget(45)
+		EFGK A 0 A_PlayWeaponSound("efg/charge3")
+		EFGK EEEEEEEEEE 2 A_GiveInventory("SpecOpsStrafing",1)
+		TNT1 A 0 A_Jump(80,"SeekerMis")
+		EFGK E 1 A_FaceTarget(45)
+		TNT1 A 0 A_PlaySound("mrl/fire",CHAN_WEAPON,1,0,0.5)
+		TNT1 A 0 A_Recoil(2)
+		EFGK F 2 Bright A_CustomMissile("EFGRocket",34,9,frandom(-2.0,2.0))
+		EFGK E 1 A_GiveInventory("SpecOpsStrafing",1)
+		EFGK E 1 A_FaceTarget(45)
+		EFGK E 1 A_GiveInventory("SpecOpsStrafing",1)
+		EFGK E 1 A_FaceTarget(45)
+		EFGK E 1 A_GiveInventory("SpecOpsStrafing",1)
+		EFGK E 1 A_FaceTarget(45)
+		EFGK E 1 A_GiveInventory("SpecOpsStrafing",1)
+		EFGK E 1 A_FaceTarget(45)
+	MissileLoop:
+	    TNT1 A 0 A_JumpIf(user_missile >= 10, "Pause")
+	    TNT1 A 0 A_SetUserVar("user_missile", user_missile+1)
+		TNT1 A 0 A_PlaySound("mrl/fire",CHAN_WEAPON,1,0,0.5)
+		TNT1 A 0 A_Recoil(2)
+        EFGK F 2 Bright A_CustomMissile("EFGZombieRocket",34,9,frandom(-2.0,2.0))
+		EFGK E 1 A_GiveInventory("SpecOpsStrafing",1)
+		EFGK E 1 A_FaceTarget(45)
+		EFGK E 1 A_GiveInventory("SpecOpsStrafing",1)
+		EFGK E 1 A_FaceTarget(45)
+		EFGK E 1 A_GiveInventory("SpecOpsStrafing",1)
+		EFGK E 1 A_FaceTarget(45)
+		EFGK E 1 A_GiveInventory("SpecOpsStrafing",1)
+		EFGK E 1 A_FaceTarget(45)
+		TNT1 A 0 A_MonsterRefire(130,"Pause")
+		Loop
+	SeekerMis:
+		EFGK E 1 A_FaceTarget(45)
+		TNT1 A 0 A_PlaySound("mrl/fire",CHAN_WEAPON,1,0,0.5)
+		TNT1 A 0 A_Recoil(2)
+		EFGK F 2 Bright A_CustomMissile("EFGZombieSeekerRocket",34,9,frandom(-2.0,2.0))
+		EFGK E 1 A_GiveInventory("SpecOpsStrafing",1)
+		EFGK E 1 A_FaceTarget(45)
+		EFGK E 1 A_GiveInventory("SpecOpsStrafing",1)
+		EFGK E 1 A_FaceTarget(45)
+		EFGK E 1 A_GiveInventory("SpecOpsStrafing",1)
+		EFGK E 1 A_FaceTarget(45)
+		EFGK E 1 A_GiveInventory("SpecOpsStrafing",1)
+		EFGK E 1 A_FaceTarget(45)
+	SeekerMissileLoop:
+	    TNT1 A 0 A_JumpIf(user_missile >= 10,"Pause")
+	    TNT1 A 0 A_SetUserVar("user_missile", user_missile+1)
+		TNT1 A 0 A_PlaySound("mrl/fire",CHAN_WEAPON,1,0,0.5)
+		TNT1 A 0 A_Recoil(2)
+        EFGK F 2 Bright A_CustomMissile("EFGZombieSeekerRocket",34,9,frandom(-2.0,2.0))
+		EFGK E 1 A_GiveInventory("SpecOpsStrafing",1)
+		EFGK E 1 A_FaceTarget(45)
+		EFGK E 1 A_GiveInventory("SpecOpsStrafing",1)
+		EFGK E 1 A_FaceTarget(45)
+		EFGK E 1 A_GiveInventory("SpecOpsStrafing",1)
+		EFGK E 1 A_FaceTarget(45)
+		EFGK E 1 A_GiveInventory("SpecOpsStrafing",1)
+		EFGK E 1 A_FaceTarget(45)
+		TNT1 A 0 A_MonsterRefire(130,"Pause")
+		Loop
+	FusionNuke:
+	    TNT1 A 0 A_JumpIf(user_fusion > 0,"Normal")
+	    EFGK A 0 A_PlaySound("efglunatic/sight",CHAN_VOICE,1,0,0.5)
+	    EFGK E 1 A_FaceTarget(45)
+		TNT1 A 0 A_Changeflag(NOPAIN,1)
+	    EFGK E 1 A_PlaySound("efg/nukecharge",CHAN_WEAPON,1,0,0.5)
+		EFGK EEEEEEEEEEEEEEEEEE 3 A_FaceTarget(45)
+		TNT1 A 0 A_PlaySound("efg/nuke",6,1,0,ATTN_NONE)
+		EFGC A 4 Bright A_CustomMissile("EFGZombieFusionNuke",34,9,frandom(-1.0,1.0))
+		EFGC BBBBBBBBB 3 A_FaceTarget(45)
+		TNT1 A 0 A_SetUserVar("user_fusion",user_fusion+10)
+		TNT1 A 0 ACS_NamedExecuteAlways("FusionCooldownTimer",0)
+		TNT1 A 0 A_Changeflag(NOPAIN,0)
+		Goto FusionPause
+	BigNuke:
+	    TNT1 A 0
+	    EFGK A 0 A_PlaySound("efglunatic/sight",CHAN_VOICE,1,0,ATTN_NONE)
+	    TNT1 A 0 A_Changeflag(NOPAIN,1)
+		TNT1 A 0 A_SetInvulnerable
+		TNT1 A 0 A_PlaySound("efgzombie/alarm",7,1,0,ATTN_NONE)
+	    EFGK EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 3 A_FaceTarget(45)
+		TNT1 A 0 A_PlaySound("Armageddon/fire",CHAN_VOICE,1,0,ATTN_NONE)
+		TNT1 A 0 A_PlaySound("Armageddon/blast",CHAN_WEAPON,1,0,ATTN_NONE)
+		EFGC A 4 Bright A_CustomMissile("EFGZombieNukeRocket",34,9,frandom(-1.0,1.0))
+		TNT1 A 0 A_SetUserVar("user_nuke",1)
+		EFGC BBBBBBBBBBBBB 3 A_FaceTarget(45)
+		TNT1 A 0 A_Changeflag(NOPAIN,0)
+		TNT1 A 0 A_UnSetInvulnerable
+		Goto FusionPause
+	Pause:
+		TNT1 A 0 A_PlaySound("weapon/warn",CHAN_WEAPON,1,0,0.5)
+		EFGK E 15
+		TNT1 A 0 A_PlaySound("weapon/cool",6)
+		EFGK E 1 A_FaceTarget(45)
+		EFGK EEEEEEEEEEEE 1 A_SpawnItemEx("SmokeFX4",9,0,34,5,0,0,random(-1,1))
+		EFGK E 5
+		Goto See
+	FusionPause:
+		TNT1 A 0 A_PlaySound("weapon/warn",CHAN_WEAPON,1,0,0.5)
+		EFGC B 15
+		TNT1 A 0 A_PlaySound("weapon/cool",6)
+		EFGC B 1 A_FaceTarget(45)
+		EFGC BBBBBBBBBBBB 1 A_SpawnItemEx("SmokeFX4",9,0,34,5,0,0,random(-1,1))
+		EFGC B 5
+		Goto See
+	Teleport:
+	    TNT1 A 0 A_Jump(128,"TeleportAlt")
+	    TNT1 A 0 A_FaceTarget
+	    EFGK A 1 Bright A_UnSetShootable
+		EFGK A 0 A_PlayWeaponSound("boss/teleport")
+		TNT1 A 0 ThrustThing(angle*256/360+64, 20, 0, 0)
+	    EFGK AAAAAAAAAA 2 Bright A_FadeOut(0.1,0)
+		TNT1 A 0 A_Stop
+	    EFGK A 2 Bright
+	    TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	    TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	    EFGK A 1 Bright A_PlayWeaponSound("boss/teleport")
+		TNT1 A 0 A_FaceTarget
+		TNT1 A 0 ThrustThing(angle*256/360+192, 20, 0, 0)
+	    EFGK AAAAAAAAAA 2 Bright A_FadeIn(0.1)
+	    EFGK A 1 Bright A_SetShootable
+	    Goto See
+	TeleportAlt:
+	    TNT1 A 0 A_FaceTarget
+	    EFGK A 1 Bright A_UnSetShootable
+		EFGK A 0 A_PlayWeaponSound("boss/teleport")
+		TNT1 A 0 ThrustThing(angle*256/360+192, 20, 0, 0)
+	    EFGK AAAAAAAAAA 2 Bright A_FadeOut(0.1,0)
+		TNT1 A 0 A_Stop
+	    EFGK A 2 Bright
+	    TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	    TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	    EFGK A 1 Bright A_PlayWeaponSound("boss/teleport")
+		TNT1 A 0 A_FaceTarget
+		TNT1 A 0 ThrustThing(angle*256/360+64, 20, 0, 0)
+	    EFGK AAAAAAAAAA 2 Bright A_FadeIn(0.1)
+	    EFGK A 1 Bright A_SetShootable
+	    Goto See
+	TeleportAttack:
+	    TNT1 A 0 A_FaceTarget
+		TNT1 A 0 A_Jump(128,"TeleportAttackAlt")
+	    EFGK E 1 Bright A_UnSetShootable
+		TNT1 A 0 ThrustThing(angle*256/360+64, 20, 0, 0)
+	    EFGK EEEEEEEEEE 1 Bright A_FadeOut(0.1,0)
+		TNT1 A 0 A_Stop
+	    EFGK A 2 Bright
+	    TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	    TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	    EFGK A 1 Bright A_PlayWeaponSound("boss/teleport")
+		TNT1 A 0 A_FaceTarget
+		TNT1 A 0 ThrustThing(angle*256/360+192, 20, 0, 0)
+	    EFGK EEEEEEEEEE 1 Bright A_FadeIn(0.1)
+	    EFGK E 1 Bright A_SetShootable
+	    Goto Normal
+	TeleportAttackAlt:
+	    TNT1 A 0 A_FaceTarget
+	    EFGK E 1 Bright A_UnSetShootable
+		TNT1 A 0 ThrustThing(angle*256/360+192, 20, 0, 0)
+	    EFGK EEEEEEEEEE 1 Bright A_FadeOut(0.1,0)
+		TNT1 A 0 A_Stop
+	    EFGK A 2 Bright
+	    TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	    TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	    EFGK A 1 Bright A_PlayWeaponSound("boss/teleport")
+		TNT1 A 0 A_FaceTarget
+		TNT1 A 0 ThrustThing(angle*256/360+64, 20, 0, 0)
+	    EFGK EEEEEEEEEE 1 Bright A_FadeIn(0.1)
+	    EFGK E 1 Bright A_SetShootable
+	    Goto Normal
+	Heal:
+		EFGK A 5
+		TNT1 A 0 A_Jump(40,"Heal2")
+		TNT1 A 0 A_Jump(15,"Heal3")
+		TNT1 A 0 HealThing(10)
+		TNT1 A 0 A_PlaySound("pickups/flask",0,1.0,0)
+		GoTo See
+	Heal2:
+		TNT1 A 0
+		TNT1 A 0 HealThing(25)
+		TNT1 A 0 A_PlaySound("pickups/pstimpack",0,1.0,0)
+		GoTo See
+	Heal3:
+		TNT1 A 0
+		TNT1 A 0 HealThing(45)
+		TNT1 A 0 A_PlaySound("pmed/use",0,1.0,0)
+		GoTo See
+	Pain:
+	    TNT1 A 0
+		TNT1 A 0 A_JumpIf(user_cooldown > 0,3)
+		TNT1 A 0 A_JumpIf(user_rage == 1,2)
+		TNT1 A 0 A_Jump(50,"TriggerRage")
+		TNT1 A 0 A_Jump(40,"PainMissile")
+	    EFGK G 3 A_Pain
+		EFGK G 2
+		TNT1 A 0 A_Jump(20,"Heal")
+		Goto see
+	PainMissile: 
+        EFGK G 3 Bright
+        EFGK G 0 A_Pain
+	    EFGK G 3 Bright
+        Goto Missile
+	TriggerRage:
+	    TNT1 A 0 A_Changeflag(NOPAIN,1)
+	    EFGK G 1 A_Pain
+		TNT1 A 0 A_PlaySound("efgzombie/protection",CHAN_BODY,1,0,0.5)
+	    EFGK G 6 ACS_NamedExecuteAlways("LunaticRage",0)
+		TNT1 A 0 A_Changeflag(NOPAIN,0)
+		Goto SeeRage
+	Death:
+	    TNT1 A 0 A_StopSound(6)
+		EFGK H 5
+		EFGK I 5 A_Scream
+		EFGK J 5 A_Fall
+		TNT1 A 0 A_SpawnItemEx("EFG9000",0,0,8,random(0,8),random(0,8),2,random(0,360),0,201)
+		EFGK KLM 5
+		TNT1 A 0 A_SpawnItem("BodyCrash",0,0,0,0)
+		EFGK M 63000 CanRaise
+		Stop
+	XDeath:
+	    TNT1 A 0 A_StopSound(6)
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+		EFGK N 5 A_GiveInventory("XDeathCheck",1)
+		EFGK O 5 A_XScream
+		EFGK P 5 A_Fall
+		TNT1 A 0 A_SpawnItemEx("EFG9000",0,0,8,random(0,8),random(0,8),2,random(0,360),0,201)
+		EFGK QRSTU 5
+		EFGK V 63000 CanRaise
+		Stop
+	Raise:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_JumpIfInventory("XDeathCheck",1,"XRaise")
+		EFGK LKJIH 5
+		Goto See
+	XRaise:
+		EFGK VUTSRQPO 5
+		EFGK N 5 A_TakeInventory("XDeathCheck",1)
+		Goto See
+	}
+}
+
+ACTOR EFGZombieRocket : EFGRocket
+{
+-MTHRUSPECIES
+Damagetype "ZombieDev" 
+Damage (random(9,20))
+Obituary "%o was exploded into chunks by an EFG Lunatic."
+Species "EliteZombies"
+}
+
+ACTOR EFGZombieSeekerRocket : EFGSeekRocket
+{
+-MTHRUSPECIES
+Damagetype "ZombieDev" 
+Damage (random(2,10))
+Obituary "%o was exploded into chunks by an EFG Lunatic."
+Species "EliteZombies"
+}
+
+ACTOR EFGZombieFusionNuke : EFGFusionNuke //hem custom moment
+{
+Speed 75
+Damagetype "ZombieDev"
+Obituary "%o got fucking nuked by an EFG Lunatic."
+States
+	{
+	Death:
+		TNT1 A 0 Bright //why do you need an invisible sprite to be rendered at full brightness? also what's the point of TNT1 A 0 at the beginning of a death state
+		TNT1 A 0 Bright A_JumpIfInventory("Tic",1,"End") //there's no possible way "Tic" can be given before this check, why is it here?
+		TNT1 A 0 Bright A_GiveInventory("Tic",1) //people wonder why we shit on HEM-custom a lot, this code is worse than breakarmor because it's overly complex for something absolutely useless
+		TNT1 A 0 Bright A_SpawnItemEx("EFGFusionNukeFX",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0) //you don't need a clientside flag in A_SpawnItemEx and nocheckposition if the effect has +CLIENTSIDEONLY and +NOINTERACTION
+		TNT1 A 0 Bright A_CustomMissile("TerminatorEFGFusionNukeExplode",0,0,0,CMF_AIMDIRECTION|CMF_TRACKOWNER,0) //this is literally the only line that makes sense, and even that should've just been included in this death state rather than a separate actor
+		TNT1 AAAAAAAA 3 Bright A_SpawnItemEx("WelderFlare",0,0,0,random(2,4),random(2,4),2,random(0,360),SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_SETMASTER,64) //yay GLDefs
+		Stop
+	}
+}
+
+ACTOR EFGZombieNukeRocket : Kazumi_NukeRocket
+{
+-THRUSPECIES
+Species "EliteZombies"
+Damagetype "ZombieDev"
+Obituary "%o got fucking nuked by an EFG Lunatic."
+States
+ {
+    Spawn:
+		TNT1 A 0 A_JumpIf(user_flytime >= 110,2) //140.2
+		TNT1 A 0 A_ScaleVelocity(1.1) //1.02
+		TNT1 A 0 A_SetUserVar("user_flytime",user_flytime+1)
+		//YAMG A 0 A_PlaySound("redeemer/active",5,1.0,1,ATTN_NONE)
+		TNT1 A 0 Bright A_CustomMissile("MissileTrail",Random(-2,2),Random(-2,2)) 
+		TNT1 A 0 Bright A_CustomMissile("ProjectileTrailParticleOrange",Random(-2,2),Random(-2,2)) 
+		NKS1 A 1 Bright A_CustomMissile("PlayerNuclearMissileTrail",0,0,0)
+		loop
+	BOOM:
+	    TNT1 A 0
+		TNT1 A 0 A_StopSound(5)
+		TNT1 A 0 A_PlaySound("redeemer/explosion",5,1.0,0,ATTN_NONE)
+		goto Death
+	Death:
+		TNT1 A 0 A_CustomBulletAttack(0,0,1,7000,"BulletPuff",128,CBAF_AIMFACING)
+		TNT1 A 0 A_PlaySound("redeemer/explosion",5,1.0,0,ATTN_NONE)
+		TNT1 A 1 Bright A_Explode(10000,3600,true,true,666)
+		TNT1 A 0 Bright A_Blast(BF_DONTWARN,225,1000,30)
+		TNT1 A 0 A_SpawnItemEX("EFGZombieDOOKNOOKMsilent",0,0,0,0,0,0,0)
+	    TNT1 A 1
+		stop
+  }
+}
+
+Actor EFGZombieDOOKNOOKMsilent : DOOKNOOKMsilent
+{
+Damagetype "ZombieDev"
+Obituary "%o got fucking nuked by an EFG Lunatic."
+States
+ {
+  Spawn:
+   TNT1 A 0
+   TNT1 AAAA 0 A_Explode(1000, 2048, 1)
+   //TNT1 A 0 A_Quake(9, 210, 0, 1048576, "None")
+   TNT1 A 0 A_SpawnItemEx("CFMegaNukeFlare", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERPOINTERS)
+   TNT1 AAAAA 0 A_SpawnItemEx("CFMegaNukeSmokeFloor", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE)
+   TNT1 A 0 A_SpawnItemEx("CFMegaNukeFloor", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERPOINTERS)
+   TNT1 A 0 A_SpawnItemEx("CFMegaNukeMushroom", 0, 0, 0, 0, 0, 10, 0, SXF_TRANSFERPOINTERS, 0)
+   TNT1 A 1 A_SpawnItemEx("BoomHit",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS,0)
+   TNT1 A 0 A_SpawnItemEx("CFMegaNukeFlareMushroom", 0, 0, 0, 0, 0, 10, 0, SXF_CLIENTSIDE, 0)
+   TNT1 AA 0 A_SpawnItemEx("CFMegaNukeSmokeMushroom", 0, 0, 0, 0, 0, 10, 0, SXF_CLIENTSIDE, 0)
+   TNT1 A 0 A_SpawnItemEx("CFMegaNukePillar", 0, 0, 0, 0, 0, 0, 12, SXF_TRANSFERPOINTERS, 0)
+   TNT1 AA 0 A_SpawnItemEx("CFMegaNukeSmokePillar", 0, 0, 0, 0, 0, 12, 0, SXF_CLIENTSIDE, 0)
+   Stop
+ }
+}
+
+Actor EFGZombieShieldSphere : CustomInventory
+{
+-COUNTITEM
++NOTIMEFREEZE
++INVENTORY.QUIET
++INVENTORY.ALWAYSPICKUP
++INVENTORY.AUTOACTIVATE
+Inventory.Amount 1
+Inventory.MaxAmount 0
+Inventory.PickupSound "Gateway/Hell"
+States
+	{
+	Spawn:
+		TNT1 A -1
+		Loop
+	Pickup:
+		TNT1 A 1
+		TNT1 A 0 A_JumpIfInventory("SuperShieldSphereCooldown",1,"Nope")
+		TNT1 A 0 A_GiveInVentory("SuperShieldSphereCooldown")
+		TNT1 A 0 A_GiveInVentory("SuperShieldSphereGiver")
+		TNT1 A 1 ACS_NamedExecuteAlways("CF_ShieldSphereFX",0,2)
+		Stop
+	Nope:
+		TNT1 A 1
+		Fail
+	}
+}

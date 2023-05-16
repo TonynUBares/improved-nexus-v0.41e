@@ -1,0 +1,329 @@
+Actor MarineSlayer
+{
+Monster
+Health 100
+Height 56
+Radius 16
+Mass 100
+Speed 11
+MeleeThreshold 80
+MeleeRange 80
+MaxStepHeight 45
+Painchance "Mine", 256
+Painchance "Explosion", 256
+PainChance 61
++FLOORCLIP
++QUICKTORETALIATE
++DONTHARMSPECIES
+Species "EliteZombies"
+Damagefactor "Acid", 3.2
+Damagefactor "Explosion", 0.7
+Damagefactor "Rocket", 0.8
+Damagefactor "Mine", 0.1
+//No Infighting
+Damagefactor "HTZombie", 0.0
+DamageFactor "MiniRocket", 0.0
+DamageFactor "ZombieCannon", 0.0
+Damagefactor "ZExplosiveBullets", 0.0
+Damagefactor "ZGrenade", 0.0
+DamageFactor "SoulToxic", 0.0
+DamageFactor "Cacolich", 0.0
+DropItem "HealthFlask", 200, 4
+DropItem "Stimkit", 180, 1
+DropItem "PortableMedkit", 90
+DropItem "ArmorBooster", 90, 1
+DropItem "MineAmmo", 130, 2
+DropItem "HandGrenadeAmmo", 140, 4
+DropItem "AmmoPack", 170, 3
+DropItem "BulletMag", 192, 10
+DropItem "Enforcer", 256, 1
+SeeSound "PNZombie/See"
+ActiveSound "PNZombie/Act"
+PainSound "PNZombie/Pain"
+DeathSound "PNZombie/Die"
+Obituary "%o was pierced by a Marine Slayer."
+HitObituary "%o got castrated by a Marine Slayer." //what
+Tag "$NEMarineSl"
+States
+  {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
+	Goto Idle
+  Idle:
+	EXTR A 10 A_Look
+	loop
+  See:
+	TNT1 A 0 A_JumpIf(user_lowlag == 1,"MoreSee")
+	TNT1 A 0 A_JumpIfTargetInLOS("MoreSee",0,0,0,0)
+	EXTR ABCD 2 A_Chase
+	Loop
+  MoreSee:
+	TNT1 A 0 A_SetUserVar("user_lowlag",1)
+	TNT1 A 0 A_JumpIfInventory("Tic",1,2)
+	TNT1 A 0 A_JumpIfInTargetInventory("truelegendaryruneitem2",1,2)
+	TNT1 A 0 A_Jump(256,3)
+	TNT1 A 0 A_GiveInventory("Tic",1)
+	TNT1 A 0 A_SpawnItemEx("MarineSlayer2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	TNT1 A 0 A_FaceTarget
+	TNT1 A 0 A_Jump(256,"DodgeLeft","DodgeRight")
+	GoTo Chase
+  Chase:
+	EXTR A 1 A_Chase("Melee","Missile",CHF_FASTChase)
+	TNT1 A 0 A_Jump(1,"Heal")
+	EXTR A 0 A_JumpIfCloser(130,"Dodge")
+	EXTR AAA 1 A_Chase("","")
+	EXTR A 0 A_JumpIfCloser(130,"Dodge")
+	EXTR B 1 A_Chase
+	EXTR A 0 A_JumpIfCloser(130,"Dodge")
+	EXTR BBB 1 A_Chase("","")
+	TNT1 A 0 A_SpawnItemEx("FootStep2",0,0,2,0,0,-20)
+	EXTR A 0 A_JumpIfCloser(150,"Dodge")
+	EXTR C 1 A_Chase
+	TNT1 A 0 A_Jump(10,"Heal")
+	EXTR A 0 A_JumpIfCloser(150,"Dodge")
+	EXTR CCC 1 A_Chase("","",CHF_FASTCHASE)
+	EXTR A 0 A_JumpIfCloser(130,"Dodge")
+	EXTR D 1 A_Chase
+	EXTR A 0 A_JumpIfCloser(130,"Dodge")
+	EXTR DDD 1 A_Chase("","")
+	TNT1 A 0 A_SpawnItemEx("FootStep2",0,0,2,0,0,-20)
+	TNT1 A 0 A_JumpIfInTargetInventory("truelegendaryruneitem2",1,2)
+	TNT1 A 0 A_Jump(256,2)
+	TNT1 A 0 A_Jump(45,"Grenade")
+	EXTR A 0 A_JumpIfCloser(130,"Dodge")
+	loop
+  Heal:
+	EXTR A 5
+	TNT1 A 0 A_Jump(40,"Heal2")
+	TNT1 A 0 A_Jump(15,"Heal3")
+  Heal1:
+	TNT1 A 0 HealThing(10)
+	TNT1 A 0 A_PlaySound("pickups/flask",0,1.0,0)
+	GoTo Chase
+  Heal2:
+	TNT1 A 0
+	TNT1 A 0 HealThing(25)
+	TNT1 A 0 A_PlaySound("pickups/pstimpack",0,1.0,0)
+	GoTo Chase
+  Heal3:
+	TNT1 A 0
+	TNT1 A 0 HealThing(45)
+	TNT1 A 0 A_PlaySound("pmed/use",0,1.0,0)
+	GoTo Chase
+  SeeNoDodge:
+	EXTR AABB 2 A_Chase
+	TNT1 A 0 A_JumpIfInTargetInventory("truelegendaryruneitem2",1,2)
+	TNT1 A 0 A_Jump(256,2)
+	TNT1 A 0 A_Jump(45,"NoPitch")
+	TNT1 A 0 A_SpawnItemEx("FootStep2",0,0,2,0,0,-20)
+	EXTR CCDD 2 A_Chase
+	TNT1 A 0 A_SpawnItemEx("FootStep2",0,0,2,0,0,-20)
+	EXTR AABB 2 A_Chase
+	TNT1 A 0 A_SpawnItemEx("FootStep2",0,0,2,0,0,-20)
+	EXTR CCDD 2 A_Chase
+	TNT1 A 0 A_SpawnItemEx("FootStep2",0,0,2,0,0,-20)
+	EXTR AABB 2 A_Chase
+	TNT1 A 0 A_SpawnItemEx("FootStep2",0,0,2,0,0,-20)
+	EXTR CCDD 2 A_Chase
+	TNT1 A 0 A_SpawnItemEx("FootStep2",0,0,2,0,0,-20)
+	Goto Chase
+  Pain.Mine:
+  Dodge:
+	TNT1 A 0
+	EXTR A 1 A_FaceTarget
+	TNT1 A 0 ThrustThingZ(0,20,0,0)
+	TNT1 A 0 A_Jump(256,"DodgeRight","DodgeLeft")
+  DodgeLeft:
+	TNT1 A 0 ThrustThing(angle*256/360+192, 15, 0, 0)
+	TNT1 A 0 A_Jump(120,"Heal")
+	Goto SeeNoDodge
+  DodgeRight:
+	TNT1 A 0 ThrustThing(angle*256/360+64, 15, 0, 0)
+	TNT1 A 0 A_Jump(120,"Heal")
+	Goto SeeNoDodge
+  Melee:
+	EXTR C 4 A_FaceTarget
+	TNT1 A 0 A_Jump(20,"Heal")
+	EXTR H 8 A_CustomMeleeAttack(13, "Exterminator/Bladehit", "Exterminator/Swing")
+	TNT1 A 0 A_Jump(80,"Dodge")
+	EXTR A 8
+	Goto Chase
+  FullAuto:
+	EXTR A 0 A_PlaySound("Exterminator/Fire", CHAN_WEAPON)
+	EXTR F 2 Bright A_CustomBulletAttack(12,12,1,random(8,12),"ZBulletPuff",0,CBAF_NORANDOM)
+	TNT1 A 0 A_Jump(50,"Dodge")
+	EXTR E 2 A_FaceTarget
+	EXTR E 0 A_SentinelRefire
+	Goto Missile+1
+  Pain.Explosion:
+  Grenade:
+	TNT1 A 0 A_JumpIfCloser(200,"FullAuto")
+	TNT1 A 0 A_JumpIfCloser(550,"NoPitch")
+  Pitched:
+	TNT1 A 0 A_PlaySound("weapons/hgrenadepin",0,1.0,0)
+	EXTR CH 4 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/hgrenadethrow",0,1.0,0)
+	EXTR H 1 A_CustomMissile("ZGrenade",32,0,0,2,15)
+	GoTo Dodge
+  NoPitch:
+	TNT1 A 0 A_JumpIfCloser(200,"FullAuto")
+	TNT1 A 0 A_PlaySound("weapons/hgrenadepin",0,1.0,0)
+	EXTR CH 4 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/hgrenadethrow",0,1.0,0)
+	EXTR H 1 A_CustomMissile("ZGrenade",32,0,0)
+	GoTo Dodge
+  Missile:
+	EXTR E 12 A_FaceTarget
+	TNT1 A 0 A_JumpIfInTargetInventory("truelegendaryruneitem2",1,2)
+	TNT1 A 0 A_Jump(256,2)
+	TNT1 A 0 A_Jump(45,"Grenade")
+	TNT1 A 0 A_Jump(45,"Grenade")
+	EXTR A 0 A_JumpIfCloser(256, "FullAuto")
+	EXTR A 0 A_PlaySound("Exterminator/Fire", CHAN_WEAPON)
+	EXTR F 2 Bright A_CustomBulletAttack(8, 8, 1, 5, "ZBulletPuff")
+	TNT1 A 0 A_Jump(80,"Dodge")
+	EXTR E 2 A_FaceTarget
+	TNT1 A 0 A_Jump(20,"Heal")
+	EXTR A 0 A_PlaySound("Exterminator/Fire", CHAN_WEAPON)
+	EXTR F 2 Bright A_CustomBulletAttack(8, 8, 1, 5, "ZBulletPuff")
+	EXTR E 2 A_FaceTarget
+	TNT1 A 0 A_Jump(80,"Dodge")
+	EXTR A 0 A_PlaySound("Exterminator/Fire", CHAN_WEAPON)
+	EXTR F 2 Bright A_CustomBulletAttack(8, 8, 1, 5, "ZBulletPuff")
+	EXTR E 2 A_FaceTarget
+	TNT1 A 0 A_Jump(20,"Heal")
+	EXTR E 0 A_SentinelRefire
+	TNT1 A 0 A_JumpIfInTargetInventory("truelegendaryruneitem2",1,2)
+	TNT1 A 0 A_Jump(256,2)
+	TNT1 A 0 A_Jump(45,"Grenade")
+	Loop
+  Pain:
+	TNT1 A 0 A_Jump(20,"Dodge")
+	TNT1 A 0 A_JumpIfInTargetInventory("truelegendaryruneitem2",1,2)
+	TNT1 A 0 A_Jump(256,2)
+	TNT1 A 0 A_Jump(45,"Grenade")
+	EXTR G 4 A_Pain
+	TNT1 A 0 A_Jump(80,"Dodge")
+	GoTo See
+  Death:
+	TNT1 A 0 A_JumpIfInTargetInventory("truelegendaryruneitem2",1,2)
+	TNT1 A 0 A_Jump(256,2)
+	TNT1 A 0 A_Jump(45,"Martyrdom")
+	TNT1 A 0 A_Jump(40,"Martyrdom")
+	EXTR I 5 A_Scream
+	EXTR A 0 A_Jump(128, "Death2")
+	EXTR J 5 A_unsetsolid
+	EXTR KL 4
+	TNT1 A 0 A_Fall
+	TNT1 A 0 A_SpawnItem("BodyCrash",0,0,0,0)
+	EXTR M -1
+	Stop
+  Martyrdom:
+	EXTR CH 4 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/hgrenadethrow",0,1.0,0)
+	EXTR H 1 A_CustomMissile("ZGrenade",32,0,0)
+	EXTR I 5 A_Scream
+	EXTR A 0 A_Jump(128,"Death2")
+	EXTR J 5 A_unsetsolid
+	EXTR KL 4
+	TNT1 A 0 A_Fall
+	TNT1 A 0 A_SpawnItem("BodyCrash",0,0,0,0)
+	EXTR M -1
+	Stop
+  Death2:
+	TNT1 A 0
+	TNT1 A 0 A_Giveinventory("death2",1)
+	EXTR N 5 A_Fall
+	EXTR OP 4
+	EXTR Q -1
+	Stop
+  XDeath:
+	TNT1 A 0 A_GiveInventory("Xdeathcheck",1)
+	TNT1 A 0 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
+	EXTR R 4 A_XScream
+	EXTR S 4 A_Fall
+	POSS OPQRST 4
+	POSS U -1
+	Stop
+  Raise:
+	TNT1 A 0
+	  TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	TNT1 A 0 A_JumpIfInventory("Death2",1,"Raise2")
+	TNT1 A 0 A_JumPifInventory("XDeathCheck",1,"XRaise")
+	POSS MLKJI 5
+	GoTo See
+  Raise2:
+	TNT1 A 0 a_takeinventory("death2",1)
+	POSS QPONI 5
+	Goto see
+  XRaise:
+	TNT1 A 0 a_takeinventory("xdeathcheck",1)
+	POSS UTSRQPO 4
+	Goto see
+  }
+}
+
+
+Actor MarineSlayer2 : MarineSlayer
+{
+	States
+	{
+		See:
+		TNT1 A 0 
+		TNT1 A 0 A_FaceTarget
+		TNT1 A 0 A_Jump(255,"DodgeLeft","DodgeRight")
+		GoTo Chase
+  }
+}
+
+ACTOR ZGrenade
+{  
+  Radius 2
+  Height 2
+  Speed 30
+  Damage 8
+  Scale 0.4
+  SeeSound "weapons/hgrenadebounce"
+  +MTHRUSPECIES
+  +MISSILE
+  +DONTFALL
+  +CANBOUNCEWATER
+  +DOOMBOUNCE
+  +NOTELEPORT
+  WallBounceFactor 0.16
+  BounceFactor 0.36
+  Gravity 0.6
+  Mass 400
+  Decal "Scorch"
+  DamageType "Explosion"
+  Species "EliteZombies"
+  Damagetype "ZGrenade"
+  Obituary "%o was grenaded down by a Marine Slayer."
+  States
+   {
+   Spawn:
+	TNT1 A 0
+	HGN1 A 3 A_StopSound
+	HGN1 BCDEFGHABCDEFGHABCDEFGH 3
+	Goto Death	  
+   Death: 
+	TNT1 A 0
+	TNT1 A 0 A_Explode  
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 A_PlaySound("weapons/hgrenadeex")
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+	TNT1 AAA 0 A_CustomMissile("Kaboom3", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+	TNT1 A 1 A_SpawnItem("RocketEx")
+	Stop
+   }
+}
+
+Actor ZBulletPuff : ModdedBulletPuff
+{
++THRUSPECIES
++MTHRUSPECIES
++PUFFGETSOWNER
+Damagetype "ZExplosiveBullets"
+}

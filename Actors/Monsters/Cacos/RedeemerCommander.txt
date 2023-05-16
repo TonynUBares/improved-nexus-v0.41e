@@ -1,0 +1,617 @@
+Actor RedeemerCommander 23613
+{
+  Obituary "%o was vaporized by a Redeemer Commander."
+  HitObituary "%o became fresh meat for a Redeemer Commander."
+  Health 1500
+  Radius 31
+  Height 56
+  Mass 800
+  Speed 10
+  PainChance 20
+  MeleeDamage 30
+  PainChance "RCHS", 0
+  PainChance "PCerComDTBFGProjectileAttack", 0
+  DamageFactor "SoulToxic", 0.0
+  DamageFactor "BombBreath", 0.0
+  DamageFactor "SoapOpera" , 0.0
+  DamageFactor "CurseComet", 0.0
+  DamageFactor "HelementalComet", 0.0
+  DamageFactor "SoulToxic", 0.0
+  Damagefactor "EleSouls", 0.0
+  SeeSound "ImpRed/sight"
+  PainSound "ImpRed/pain"
+  DeathSound "ImpRed/death"
+  ActiveSound "ImpRed/active"
+  MeleeSound "caco/melee"
+  Species "EleSouls"
+  BloodColor "Purple"
+  DropItem "BossLifeEssence" 190
+  DropItem "BossArmorBonusMax" 190
+  DropItem "BossLifeEssence" 190
+  DropItem "BossArmorBonusMax" 190
+  DropItem "DemonAmmoBox" 256 
+  DropItem "NewCellPack" 256
+  DropItem "RedeemerCommanderRandomDrops" 80
+  DropItem "UltraSphere" 80
+  DropItem "CommanderDevastator" 60
+  Tag "$NERedeemComm"
+  Monster
+  +Float
+  +NoGravity
+  +MissileMore
+  +MissileEvenMore
+  +Notarget
+  +DontHarmSpecies
+  +NoRadiusDMG
+  var int user_lowlag;
+  States
+  {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
+	Goto Idle
+  Idle:
+    RDMP A 10 A_Look
+    Loop
+  See:
+	TNT1 A 0 A_JumpIf(user_lowlag == 1,"MoreSee")
+	TNT1 A 0 A_JumpIfTargetInLOS("MoreSee",0,0,0,0)
+	RDMP A 3 A_Chase
+	Loop
+  MoreSee:
+	TNT1 A 0 A_SetUserVar("user_lowlag",1)
+    RDMP A 0 A_SetShootable
+    RDMP AAAAAA 3 A_Chase
+    RDMP A 0 A_Jump(64,"Teleport")
+    Goto See+1
+  Teleport:
+    RDMP A 0 A_UnSetshootable
+    RDMP A 1
+    RDMP A 1 A_SetTranslucent(0.90)
+    RDMP A 1 A_SetTranslucent(0.80)
+    RDMP A 1 A_SetTranslucent(0.70)
+    RDMP A 1 A_SetTranslucent(0.60)
+    RDMP A 1 A_SetTranslucent(0.50)
+    RDMP A 1 A_SetTranslucent(0.40)
+    RDMP A 1 A_SetTranslucent(0.30)
+    RDMP A 1 A_SetTranslucent(0.20)
+    RDMP A 1 A_SetTranslucent(0.10)
+    TNT1 A 0 A_Jump(128,25)
+    TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+    TNT1 A 0 A_Jump(128,25)
+    TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 0 A_ExtChase(0,0,1,1)
+    RDMP A 1 A_PlaySound("Boss/Teleport")
+    RDMP A 1 A_SetTranslucent(0.10)
+    RDMP A 1 A_SetTranslucent(0.20)
+    RDMP A 1 A_SetTranslucent(0.30)
+    RDMP A 1 A_SetTranslucent(0.40)
+    RDMP A 1 A_SetTranslucent(0.50)
+    RDMP A 1 A_SetTranslucent(0.60)
+    RDMP A 1 A_SetTranslucent(0.70)
+    RDMP A 1 A_SetTranslucent(0.80)
+    RDMP A 1 A_SetTranslucent(0.90)
+    RDMP A 1 A_SetTranslucent(1.0)
+    RDMP A 0 A_SetShootable
+    Goto See
+  Missile:
+    RDMP A 0 A_Jump(200,"HadesSpheres","BFG9K","BFG10K","BFG15K","DTech10K","Devastetor")
+  Normal:
+    RDMP BC 5 Bright A_Facetarget
+    RDMP D 2 Bright A_CustomMissile("RedeeComBall",24,0,0)
+    RDMP D 0 Bright A_CustomMissile("RedeeComBall",24,0,-5)
+    RDMP D 2 Bright A_CustomMissile("RedeeComBall",24,0,5)
+    RDMP D 0 Bright A_CustomMissile("RedeeComBall",24,0,-10)
+    RDMP D 2 Bright A_CustomMissile("RedeeComBall",24,0,10)
+    RDMP BC 5 Bright A_Facetarget
+    RDMP D 2 Bright A_CustomMissile("RedeeComBall",24,0,0)
+    RDMP D 0 Bright A_CustomMissile("RedeeComBall",24,0,-5)
+    RDMP D 2 Bright A_CustomMissile("RedeeComBall",24,0,5)
+    RDMP D 0 Bright A_CustomMissile("RedeeComBall",24,0,-10)
+    RDMP D 2 Bright A_CustomMissile("RedeeComBall",24,0,10)
+    RDMP BC 5 Bright A_Facetarget
+    RDMP D 2 Bright A_CustomMissile("RedeeComBall",24,0,0)
+    RDMP D 0 Bright A_CustomMissile("RedeeComBall",24,0,-5)
+    RDMP D 2 Bright A_CustomMissile("RedeeComBall",24,0,5)
+    RDMP D 0 Bright A_CustomMissile("RedeeComBall",24,0,-10)
+    RDMP D 2 Bright A_CustomMissile("RedeeComBall",24,0,10)
+    Goto See
+  HadesSpheres:
+    RDMP BC 5 Bright A_Facetarget
+    RDMP D 5 Bright A_DualPainAttack("RCHS")
+    Goto See
+  BFG15K:
+	TNT1 A 0 A_PlaySound("weapons/charge15k")
+	RDMP EEEEFF 3 Bright A_FaceTarget
+	RDMP G 8 Bright A_CustomMissile("RedeeComBFG15k", 15, 0, random(-4,4))
+	RDMP F 4 Bright A_FaceTarget
+	RDMP G 8 Bright A_CustomMissile("RedeeComBFG15k", 15, 0, random(-4,4))
+	RDMP F 4 Bright A_FaceTarget
+	RDMP G 8 Bright A_CustomMissile("RedeeComBFG15k", 15, 0, random(-4,4))
+	RDMP F 4 Bright A_FaceTarget
+	RDMP G 8 Bright A_CustomMissile("RedeeComBFG15k", 15, 0, random(-4,4))
+	RDMP F 4 Bright A_FaceTarget
+	Goto See
+  BFG10K:
+	TNT1 A 0 A_PlaySound("weapons/charge15k")
+	RDMP EEEEFF 3 Bright A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	RDMP G 8 Bright A_CustomMissile("RedeeCom10K", 15, 0, random(-4,4))
+	RDMP F 4 Bright A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	RDMP G 8 Bright A_CustomMissile("RedeeCom10K", 15, 0, random(-4,4))
+	RDMP F 4 Bright A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	RDMP G 8 Bright A_CustomMissile("RedeeCom10K", 15, 0, random(-4,4))
+	RDMP F 4 Bright A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	RDMP G 8 Bright A_CustomMissile("RedeeCom10K", 15, 0, random(-4,4))
+	RDMP F 4 Bright A_FaceTarget
+	Goto See
+  BFG9K:
+	TNT1 A 0 A_PlaySound("weapons/bfgf")
+	RDMP E 15 A_FaceTarget
+	RDMP F 10 Bright A_FaceTarget
+	RDMP G 10 Bright A_CustomMissile("RedeeComBFGBall",24)
+	RDMP FE 15 A_FaceTarget
+	Goto See
+  DTech10K:
+	TNT1 A 0 A_PlaySound("Cardinal/9k")
+	TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+	RDMP E 20 A_FaceTarget
+	RDMP F 15 Bright A_FaceTarget
+	RDMP G 10 Bright A_CustomMissile("RedeeComDTBFG10kBall",15)
+	TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+	RDMP FE 15 A_FaceTarget
+	Goto See
+  Devastetor:
+	TNT1 A 0 A_JumpIfCloser(400,"HadesSpheres")
+	TNT1 A 0 A_Jump(128,"DTech10K")
+    RDMP E 0 Bright A_FaceTarget
+	TNT1 A 0 A_StopSound(6)
+    RDMP E 0 Bright A_PlaySound ("devastator/charge")
+	TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+    RDMP E 2 Bright A_FaceTarget
+	RDMP E 2 Bright A_FaceTarget
+	RDMP E 2 Bright A_FaceTarget
+	RDMP E 2 Bright A_FaceTarget
+	RDMP E 2 Bright A_FaceTarget
+	RDMP E 2 Bright A_FaceTarget
+	RDMP E 2 Bright A_FaceTarget
+	RDMP E 2 Bright A_FaceTarget
+	RDMP E 2 Bright A_FaceTarget
+	RDMP E 2 Bright A_FaceTarget
+	RDMP F 2 Bright A_FaceTarget
+	RDMP F 2 Bright A_FaceTarget
+	RDMP F 2 Bright A_FaceTarget
+	RDMP F 2 Bright A_FaceTarget
+	RDMP F 2 Bright A_FaceTarget
+	RDMP F 2 Bright A_FaceTarget
+	RDMP F 2 Bright A_FaceTarget
+	RDMP F 2 Bright A_FaceTarget
+	RDMP F 2 Bright A_FaceTarget
+	RDMP F 2 Bright A_FaceTarget
+	RDMP F 2 Bright A_FaceTarget
+	RDMP F 2 Bright A_FaceTarget
+	RDMP F 2 Bright A_FaceTarget
+	RDMP F 2 Bright A_FaceTarget
+	RDMP F 2 Bright A_FaceTarget
+	RDMP F 2 Bright A_FaceTarget
+	RDMP F 2 Bright A_FaceTarget
+	RDMP F 2 Bright A_FaceTarget
+	RDMP F 2 Bright A_FaceTarget
+	RDMP F 2 Bright A_FaceTarget
+	RDMP F 2 Bright A_FaceTarget
+	RDMP F 2 Bright A_FaceTarget
+	RDMP F 2 Bright A_FaceTarget
+	RDMP F 2 Bright A_FaceTarget
+	RDMP F 2 Bright A_FaceTarget
+	RDMP F 2 Bright A_FaceTarget
+	RDMP F 2 Bright A_FaceTarget
+	RDMP F 2 Bright A_FaceTarget
+	RDMP F 2 Bright A_FaceTarget
+	RDMP F 2 Bright A_FaceTarget
+	RDMP F 2 Bright A_FaceTarget
+	RDMP F 2 Bright A_FaceTarget
+	RDMP F 2 Bright A_FaceTarget
+	RDMP F 2 Bright A_FaceTarget
+	RDMP F 2 Bright A_FaceTarget
+	RDMP F 2 Bright A_FaceTarget
+	RDMP F 2 Bright A_FaceTarget
+	RDMP F 2 Bright A_FaceTarget
+	RDMP F 2 Bright A_FaceTarget
+	RDMP F 2 Bright A_FaceTarget
+    RDMP G 2 Bright
+	RDMP G 2 Bright
+	RDMP G 2 Bright
+	RDMP G 2 Bright
+	RDMP G 2 Bright
+    RDMP G 0 A_PlaySound ("devastator/fire")
+    RDMP G 10 Bright A_Custommissile("RedeeComDevastatorBall",15)
+	TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+    RDMP FE 15
+    goto See
+  Melee:
+    RDMP ABD 5 Bright A_Facetarget
+    RDMP C 5 Bright A_MeleeAttack
+    Goto See
+  Pain:
+	TNT1 A 0 A_JumpIfHealthLower(250,"PainSuicide")
+    RDMP H 3
+    RDMP H 3 A_Pain
+    RDMP H 6
+	TNT1 A 0 A_Jump(128,"Missile")
+    Goto See
+  PainSuicide:
+	TNT1 A 0 A_JumpIfCloser(1250,1)
+	Goto Pain+2
+	TNT1 A 0 A_Jump(18,"See")
+	TNT1 A 0 A_StopSound
+	TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+	TNT1 A 0 A_ChangeFlag(NOTARGET,1)
+	TNT1 A 0 A_SpawnItem("BombFireSpawner",0,0,0,0)
+	RDMP E 2 Bright A_FaceTarget
+	TNT1 A 0 A_SpawnItem("BombFireSpawner",0,0,0,0)
+	RDMP E 2 Bright A_FaceTarget
+	TNT1 A 0 A_SpawnItem("BombFireSpawner",0,0,0,0)
+	RDMP F 2 Bright A_FaceTarget
+	TNT1 A 0 A_SpawnItem("BombFireSpawner",0,0,0,0)
+	RDMP F 2 Bright A_FaceTarget
+	TNT1 A 0 A_SpawnItem("BombFireSpawner",0,0,0,0)
+	TNT1 A 0 A_CustomMissile("RedeeComSuicide",0,0,0,0) 
+	TNT1 A 1 A_ChangeFlag(COUNTKILL,0)
+	Stop
+  Death:
+    RDMP I 5 Bright A_Scream
+	TNT1 AAAA 0 A_SpawnItemEx("PurpleParticleSpawner", 0, 0, random(20,40), 0, 0, 0, 0, 128)  
+	TNT1 AAAA 0 A_CustomMissile("SmokeFX", random(20,40), 0, random(0,360), 2, random(0,360))
+	TNT1 AAAAAAA 0 A_CustomMissile("Kaboom18", random(20,40), 0, random(0,360), 2, random(0,360))	
+    RDMP JKL 5 Bright
+    RDMP M 5 Bright A_NoBlocking
+    RDMP M 0 Bright A_SpawnItemEx("RCHS",36,36)
+    RDMP M 0 Bright A_SpawnItemEx("RCHS",-36,36)
+    RDMP M 0 Bright A_SpawnItemEx("RCHS",-36,-36)
+    RDMP M 0 Bright A_SpawnItemEx("RCHS",36,-36)
+    RDMP NOP 5 Bright
+    RDMP QRSTU 5
+    RDMP V -1 A_SetFloorClip
+    Stop
+  Death.Suicide:
+	TNT1 A 0
+	TNT1 A 100 A_NoBlocking
+	Stop
+  }
+}
+
+ACTOR RedeeComSuicide : BombSuicide
+{
+Speed 35
+DeathSound "CBElem/Death"
+DropItem "BossLifeEssence" 190
+DropItem "BossArmorBonusMax" 190
+DropItem "BossLifeEssence" 190
+DropItem "BossArmorBonusMax" 190
+DropItem "DemonAmmoBox" 256 
+DropItem "NewCellPack" 256
+DropItem "RedeemerCommanderRandomDrops" 80
+DropItem "UltraSphere" 80
+DropItem "CommanderDevastator" 60
+States
+{
+Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_PlaySound("CBElem/Charge",7)
+	TNT1 A 0 A_SeekerMissile(10,0)
+	RDMP GG 1 Bright A_SpawnItem("BombFireSpawner",0,0,0,0)
+	TNT1 A 0 A_PlaySoundEx("bomb/suiciderush","Voice",1)	
+    Goto Spawn+2
+Death:
+	TNT1 A 0 A_Die
+Explode:
+	TNT1 A 0 A_ChangeFlag(NOBLOCKMAP,1)
+		TNT1 A 0 Bright A_SetTranslucent(0.75,1)
+		TNT1 A 0 Bright Radius_Quake(5,60,0,10,0)
+		TNT1 AAA 0 Bright A_CustomMissile("ZombieDTBFG10KTracerPurple",0,0,0,CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-90,90))
+		TNT1 AAA 0 Bright A_CustomMissile("ZombieDTBFG10KTracerPurple",0,0,10,CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-90,90))
+		TNT1 AAA 0 Bright A_CustomMissile("ZombieDTBFG10KTracerPurple",0,0,20,CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-90,90))
+		TNT1 AAA 0 Bright A_CustomMissile("ZombieDTBFG10KTracerPurple",0,0,30,CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-90,90))
+		TNT1 AAA 0 Bright A_CustomMissile("ZombieDTBFG10KTracerPurple",0,0,40,CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-90,90))
+		TNT1 AAA 0 Bright A_CustomMissile("ZombieDTBFG10KTracerPurple",0,0,50,CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-90,90))
+		TNT1 AAA 0 Bright A_CustomMissile("ZombieDTBFG10KTracerPurple",0,0,60,CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-90,90))
+		TNT1 AAA 0 Bright A_CustomMissile("ZombieDTBFG10KTracerPurple",0,0,70,CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-90,90))
+		TNT1 AAA 0 Bright A_CustomMissile("ZombieDTBFG10KTracerPurple",0,0,80,CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-90,90))
+		TNT1 AAA 0 Bright A_CustomMissile("ZombieDTBFG10KTracerPurple",0,0,90,CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-90,90))
+		TNT1 AAA 0 Bright A_CustomMissile("ZombieDTBFG10KTracerPurple",0,0,100,CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-90,90))
+		TNT1 AAA 0 Bright A_CustomMissile("ZombieDTBFG10KTracerPurple",0,0,110,CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-90,90))
+		TNT1 AAA 0 Bright A_CustomMissile("ZombieDTBFG10KTracerPurple",0,0,120,CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-90,90))
+		TNT1 AAA 0 Bright A_CustomMissile("ZombieDTBFG10KTracerPurple",0,0,130,CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-90,90))
+		TNT1 AAA 0 Bright A_CustomMissile("ZombieDTBFG10KTracerPurple",0,0,140,CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-90,90))
+		TNT1 AAA 0 Bright A_CustomMissile("ZombieDTBFG10KTracerPurple",0,0,150,CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-90,90))
+		TNT1 AAA 0 Bright A_CustomMissile("ZombieDTBFG10KTracerPurple",0,0,160,CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-90,90))
+		TNT1 AAA 0 Bright A_CustomMissile("ZombieDTBFG10KTracerPurple",0,0,170,CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-90,90))
+		TNT1 AAA 0 Bright A_CustomMissile("ZombieDTBFG10KTracerPurple",0,0,180,CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-90,90))
+		TNT1 AAA 0 Bright A_CustomMissile("ZombieDTBFG10KTracerPurple",0,0,190,CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-90,90))
+		TNT1 AAA 0 Bright A_CustomMissile("ZombieDTBFG10KTracerPurple",0,0,200,CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-90,90))
+		TNT1 AAA 0 Bright A_CustomMissile("ZombieDTBFG10KTracerPurple",0,0,210,CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-90,90))
+		TNT1 AAA 0 Bright A_CustomMissile("ZombieDTBFG10KTracerPurple",0,0,220,CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-90,90))
+		TNT1 AAA 0 Bright A_CustomMissile("ZombieDTBFG10KTracerPurple",0,0,230,CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-90,90))
+		TNT1 AAA 0 Bright A_CustomMissile("ZombieDTBFG10KTracerPurple",0,0,240,CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-90,90))
+		TNT1 AAA 0 Bright A_CustomMissile("ZombieDTBFG10KTracerPurple",0,0,250,CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-90,90))
+		TNT1 AAA 0 Bright A_CustomMissile("ZombieDTBFG10KTracerPurple",0,0,260,CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-90,90))
+		TNT1 AAA 0 Bright A_CustomMissile("ZombieDTBFG10KTracerPurple",0,0,270,CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-90,90))
+		TNT1 AAA 0 Bright A_CustomMissile("ZombieDTBFG10KTracerPurple",0,0,280,CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-90,90))
+		TNT1 AAA 0 Bright A_CustomMissile("ZombieDTBFG10KTracerPurple",0,0,290,CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-90,90))
+		TNT1 AAA 0 Bright A_CustomMissile("ZombieDTBFG10KTracerPurple",0,0,300,CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-90,90))
+		TNT1 AAA 0 Bright A_CustomMissile("ZombieDTBFG10KTracerPurple",0,0,310,CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-90,90))
+		TNT1 AAA 0 Bright A_CustomMissile("ZombieDTBFG10KTracerPurple",0,0,320,CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-90,90))
+		TNT1 AAA 0 Bright A_CustomMissile("ZombieDTBFG10KTracerPurple",0,0,330,CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-90,90))
+		TNT1 AAA 0 Bright A_CustomMissile("ZombieDTBFG10KTracerPurple",0,0,340,CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-90,90))
+		TNT1 AAA 0 Bright A_CustomMissile("ZombieDTBFG10KTracerPurple",0,0,350,CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-90,90))
+		TNT1 A 0 Bright A_SpawnItemEx("DTBFGLightningPurpleSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE)
+	TNT1 A 0 Bright A_Explode(480,240,0,0)
+	TNT1 A 0 A_StopSoundEx("Voice")
+	TNT1 A 0 Bright Radius_Quake(15,20,0,20,0)
+	TNT1 A 0 Bright A_PlaySound("weapons/dtech10kexplode",6)
+	RDMP I 5 Bright A_Scream
+	RDMP I 0 Bright A_SpawnItemEx("PurpleDTech10KShockwave",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE)
+	TNT1 A 0 Bright A_SpawnItemEx("PurpleDTech10KShockwave2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE)
+	TNT1 A 20 Bright A_SpawnItem("PurpleDTBFGEx",0,-10)
+    RDMP JK 5 Bright
+	TNT1 A 0 Bright A_SetTranslucent(1)
+	TNT1 A 0 A_NoBlocking
+    RDMP L 5 Bright A_Gravity
+	RDMP M 5 Bright A_NoBlocking
+    RDMP M 0 Bright A_SpawnItemEx("RCHS",36,36)
+    RDMP M 0 Bright A_SpawnItemEx("RCHS",-36,36)
+    RDMP M 0 Bright A_SpawnItemEx("RCHS",-36,-36)
+    RDMP M 0 Bright A_SpawnItemEx("RCHS",36,-36)
+    RDMP NOP 5 Bright
+    RDMP QRSTU 5
+    RDMP V -1 A_SetFloorClip
+	Stop
+    } 
+}
+
+ACTOR RedeeComBFGBall : BFG9500Ball
+{
+DamageType "BombBreath"
+Species "EleSouls"
+Obituary "%o was defeated of sudden by a Redeemer Commander."
++THRUSPECIES
+States
+	{
+Spawn:
+    BFP3 AAABBB 1 Bright A_SpawnItemEx("ProjectileTrailParticlePurple2",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+    Loop
+Death:
+	TNT1 A 0
+	TNT1 A 0 A_SpawnItemEx("BFGShockwavePurple2", 0, 0, 0, 0, 0, 0, 0, 128)
+    TNT1 AAAAAA 0 A_CustomMissile("Kaboom18Purple", 0, 0, random(0,360), 2, random(0,360))
+    BPE3 AB 8 Bright A_SpawnItemEx("PurpleParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+    BPE3 C 8 Bright A_BFGSpray("PurpleSpray")
+    BPE3 DEF 8 Bright
+    Stop    
+    }
+}
+
+ACTOR RedeeCom10K : Red10KProjectile
+{
+DamageType "BombBreath"
+Species "EleSouls"
+Obituary "%o was defeated of sudden by a Redeemer Commander."
++SEEKERMISSILE
++SCREENSEEKER
+States
+{
+Death:
+  Spawn:
+   TPA3 A 35 Bright
+  Fly:
+   TPA3 A 3 Bright A_SeekerMissile(4,5)
+   Loop
+  Death:
+  XDeath:  
+   TNT1 A 0
+   TNT1 A 1 A_SpawnItem("RedeeCom10KEx")
+   Stop  
+   }
+}
+
+ACTOR RedeeCom10KEx 
+{
+  Radius 11
+  Height 8
+  Damage 90
+  +NOBLOCKMAP
+  +NOGRAVITY
+  +NOTELEPORT 
+  +FORCERADIUSDMG
+  +BLOODLESSIMPACT
+  Renderstyle Add
+  Alpha 0.75
+  Scale 0.85
+  DamageType "BombBreath"
+  Species "EleSouls"
+  States
+  {
+  Spawn:
+    TNT1 A 0
+	TNT1 A 0 A_SpawnItemEx("BFGShockwavePurple", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 A 0 A_SpawnItemEx("PurpleParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AAA 0 A_CustomMissile("PurpleKaboom2", 0, 0, random(0,360), 2, random(0,360))
+    BPE3 A 4 Bright A_Detonate
+    BPE3 BCDEF 4 Bright
+    Stop
+  }
+}
+
+ACTOR RedeeComBFG15k : BFG15KBall
+{
+Damagetype "BombBreath"
+Species "EleSouls"
+FastSpeed 50
+-THRUSPECIES
+States
+	{
+Spawn:
+    PFS1 AB 2 Bright A_SpawnItemEx("BFGTrailParticlePurple",Random(-8,8),Random(-8,8),Random(-8,8),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+    Loop
+Death:
+	TNT1 A 0
+    TNT1 A 0 A_SpawnItemEx("PurpleBFGShockwave", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 A 0 A_SpawnItemEx("PurpleParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+	TNT1 AAA 0 A_CustomMissile("PurpleKaboom13", 0, 0, random(0,360), 2, random(0,360))      
+    PFE1 A 4 Bright A_Explode	
+    PFE1 BCDEF 4 Bright
+    Stop
+    }
+}
+
+ACTOR RedeeComDTBFG10kBall : ZombiePurpleDTBFG10KBall
+{
+Species "EleSouls"
+Obituary "%o was defeated of sudden by a Redeemer Commander."
+}
+
+ACTOR RedeeComDevastatorBall : ZombieCommanderDevastatorBall
+{
+Species "EleSouls"
+Obituary "%o was defeated of sudden by a Redeemer Commander."
+}
+
+Actor RedeeComBall : CacodemonBall
+{
+  Damage 6
+  Speed 25
+  Alpha 0.80
+  +ThruGhost
+  +ForceXYBillboard
+  SeeSound "HSphere/Tele"
+  DeathSound "HSphere/Sight"
+  Decal "CacoScorch"
+  States
+  {
+  Spawn:
+	PUHP AAA 0 A_SpawnItemEx("RedeeComBallTrail", Random(-6, 6), 0, Random(-6, 6), 0, 0, 0, 0, 160)
+    PUHP A 1 Bright
+	PUHP AAA 0 A_SpawnItemEx("RedeeComBallTrail", Random(-6, 6), 0, Random(-6, 6), 0, 0, 0, 0, 160)
+	PUHP A 1 Bright
+	PUHP AAA 0 A_SpawnItemEx("RedeeComBallTrail", Random(-6, 6), 0, Random(-6, 6), 0, 0, 0, 0, 160)
+	PUHP A 1 Bright
+	PUHP AAA 0 A_SpawnItemEx("RedeeComBallTrail", Random(-6, 6), 0, Random(-6, 6), 0, 0, 0, 0, 160)
+	PUHP A 1 Bright
+	PUHP AAA 0 A_SpawnItemEx("RedeeComBallTrail", Random(-6, 6), 0, Random(-6, 6), 0, 0, 0, 0, 160)
+	PUHP B 1 Bright
+	PUHP AAA 0 A_SpawnItemEx("RedeeComBallTrail", Random(-6, 6), 0, Random(-6, 6), 0, 0, 0, 0, 160)
+	PUHP B 1 Bright
+	PUHP AAA 0 A_SpawnItemEx("RedeeComBallTrail", Random(-6, 6), 0, Random(-6, 6), 0, 0, 0, 0, 160)
+	PUHP B 1 Bright
+	PUHP AAA 0 A_SpawnItemEx("RedeeComBallTrail", Random(-6, 6), 0, Random(-6, 6), 0, 0, 0, 0, 160)
+	PUHP B 1 Bright
+    Loop
+  Death:
+    PUHP CDEEFGH 3 bright
+    Stop
+  }
+}
+
+actor RedeeComBallTrail : ImpballTrail
+{
+  Radius 2
+  Height 2
+  Scale 0.4
+  Renderstyle Add
+  +NOINTERACTION
+  States
+  {
+  Spawn:
+    TNT1 A 0
+    TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+    TNT1 A 1
+    PZAP C 0 A_Jump(255, "Puff1", "Puff2", "Puff3", "Puff4")
+  Puff1:
+    PZAP C 1 Bright A_FadeOut(0.1)
+    Loop
+  Puff2:
+    PZAP D 1 Bright A_FadeOut(0.1)
+    Loop
+  Puff3:
+    PZAP E 1 Bright A_FadeOut(0.1)
+    Loop
+  Puff4:
+    PZAP F 1 Bright A_FadeOut(0.1)
+    Loop
+  }
+}
+
+ACTOR RCHS
+{
+  Health 50
+  Radius 24
+  Height 48
+  Mass 3000
+  Speed 25
+  Obituary "%o was blown apart by a Hades Sphere."
+  Monster
+  SeeSound "HSphere/Sight"
+  DeathSound "HSphere/Explode"
+  Species "EleSouls"
+  DamageFactor "BombBreath", 0.0
+  Tag "\c[j8]RC's Hades Sphere\c-"
+  MeleeRange 80
+  +LOOKALLAROUND
+  +DONTHURTSPECIES
+  +NOTARGET
+  +NOGRAVITY
+  +FLOAT
+  +DONTFALL
+  +NOICEDEATH
+  States
+  {
+  Spawn:
+    TNT1 A 1 Bright A_Look
+    Loop
+  See:
+    RCOT EFGH 4 Bright
+  SeeLoop:
+	TNT1 A 0 A_Playsound("HSphere/Active")
+    RCOT AABBCCDD 2 Bright A_Chase
+    //TNT1 A 0 A_Jump(16,"TeleportOut")
+    Loop
+  TeleportOut:
+    TNT1 A 0 A_UnSetShootable
+    RCOT H 3 Bright A_Playsound("HSphere/Tele")
+    RCOT GFEIJKL 2 Bright
+  SeeTeleport:
+    TNT1 AAAAAAAAAAA 1 A_Chase(0)
+    TNT1 A 0 A_Jump(96,"TeleportIn")
+    Loop
+  TeleportIn:
+    RCOT L 2 Bright A_Playsound("HSphere/Tele")
+    RCOT KJIEFG 2 Bright
+    TNT1 A 0 A_SetShootable
+    Goto SeeLoop
+  Melee:
+    TNT1 A 0 A_SetInvulnerable
+    TNT1 A 0 A_UnSetInvulnerable
+    TNT1 A 0 A_SetShootable
+    TNT1 A 0 A_Die
+    Stop
+  Death:
+    TNT1 A 0 A_NoBlocking
+	TNT1 A 0 A_SetTranslucent(0.9, 1)
+	TNT1 A 0 A_Scream
+	TNT1 AAA 0 A_SpawnItemEx("PurpleParticleSpawner", 0, 0, random(15,35), 0, 0, 0, 0, 128)  
+	TNT1 AAA 0 A_CustomMissile("SmokeFX", random(15,35), 0, random(0,360), 2, random(0,360))
+	TNT1 AAA 0 A_CustomMissile("Kaboom18",random(15,35),0,random(0,360),2,random(0,360))	
+	RCOT M 4 Bright A_Explode(132, 132)
+    RCOT NOPQ 5 Bright
+    Stop
+  }
+}
+
+Actor "RedeemerCommanderRandomDrops" : RandomSpawner
+{
+  DropItem "PhaseSphere" 108 1
+  DropItem "FearOrb" 128 1
+  DropItem "AbyssalSlaveOrb" 128 1
+  DropItem "ShadowSlaveOrb" 128 1
+}

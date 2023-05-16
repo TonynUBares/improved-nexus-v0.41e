@@ -1,0 +1,750 @@
+ACTOR Shirosphere : CustomInventory
+{
+ Inventory.Amount 1
+ Inventory.MaxAmount 1
+ Renderstyle Add
+ +INVENTORY.BIGPOWERUP
+ -INVENTORY.UNDROPPABLE //HDAN - dropable item
+ +INVENTORY.INVBAR
+ //+FLOATBOB
+ -FLOAT
+ Inventory.Icon SLVSL0
+ Inventory.PickupSound "touhou/sight"
+ Inventory.PickupMessage "Shirosphere! Call forth the power of Shinki's daughter!"
+ Tag "Shirosphere - Summons the daughter of Shinki"
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,8,15)
+	TNT1 A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,16)
+  SpawnLoop:
+	SLVS HIJKJI 6 Bright
+	Loop
+  Use:
+	TNT1 A 0 A_SpawnItemEx ("TeleportFog", 56, 0, 8, 0, 0, 0, 0, 1)
+	TNT1 A 1 A_SpawnItemEx ("ShirohimaYumikira", 56, 0, 8, 0, 0, 0, 0, 1)
+	Stop
+ }
+}
+
+ACTOR NemesisShirosphere : CustomInventory
+{
+ Inventory.Amount 1
+ Inventory.MaxAmount 1
+ Renderstyle Add
+ +INVENTORY.BIGPOWERUP
+ -INVENTORY.UNDROPPABLE //HDAN - dropable item
+ +INVENTORY.INVBAR
+ //+FLOATBOB
+ -FLOAT
+ Inventory.Icon SLVSO0
+ Inventory.PickupSound "touhou/sight"
+ Inventory.PickupMessage "NEMESIS Shirosphere! Call forth the power of Undead Shinki's daughter!"
+ Tag "Nemesis Shirosphere - Summons the daughter of Undead Shinki"
+ States
+  {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,8)
+  SpawnLoop:
+	SLVS NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN 1 Bright A_GiveInventory("NemesisSoulEvent",1)
+	Loop
+  Use:
+	TNT1 A 0 A_SpawnItemEx ("TeleportFog", 56, 0, 8, 0, 0, 0, 0, 1)
+	TNT1 A 1 A_SpawnItemEx ("NemesisShirohima", 56, 0, 8, 0, 0, 0, 0, 1)
+	Stop
+ }
+}
+
+ACTOR ShirohimaYumikira
+{
+ Monster
+ Health 5000
+ Radius 15
+ Height 30
+ Speed 13
+ mass 100000
+ PainChance 15
+ MaxDropOffHeight 32
+ MaxStepHeight 32
+ Species "Player"
+ DamageFactor "Player", 0.0
+ DamageFactor "Players", 0.0
+ DamageFactor "PlayerNemesisPlasma", 0.0
+ DamageFactor "PlayerDevBall", 0.0
+ DamageFactor "PlayerDevBall2", 0.0
+ DamageFactor "PlayerDevTracer", 0.0
+ DamageFactor "PlayerExplosive", 0.0
+ DamageFactor "PlayerDTRG", 0.0
+ DamageFactor "PDTBFG", 0.0
+ DamageFactor "PDTBFGTracer", 0.0
+ DamageFactor "LegendaryPlayer", 0.0
+ DamageFactor "LegendaryGuruPlayer", 0.0
+ //RM
+ DamageFactor "PlayerPyro", 0.0
+ DamageFactor "PlayerFireSword", 0.0
+ DamageFactor "PlayerBHole", 0.0
+ DamageFactor "PDTPuff", 0.0
+ //Ark
+ DamageFactor "PlayerTear", 0.0
+ DamageFactor "PlayerDBFG2", 0.0
+ //TXS
+ DamageFactor "VulcanPlasmaPuff", 0.0
+ DamageFactor "VulcanLazer", 0.0
+ DamageFactor "VulcanLazerEffect", 0.0
+ DamageFactor "Fire", 0.0
+ DamageFactor "PlayerExDTRifle", 0.0
+ damagefactor 0.5
+	//Some other DMFs
+	DamageFactor "SuperWeapon", 0.0
+	DamageFactor "Extreme", 0.0
+	DamageFactor "SatanGuard", 0.1
+	DamageFactor "AbyssalSatyr", 0.1
+	DamageFactor "Moloch", 0.1
+	DamageFactor "Exos", 0.2
+	DamageFactor "ZombieDev", 0.1
+	DamageFactor "Terminator", 0.1
+	DamageFactor "AdvancedImp", 0.1
+	DamageFactor "Legendary1", 0.1
+	DamageFactor "LegendaryGuru", 0.1
+	DamageFactor "UltimateLegendary", 0.0
+	DamageFactor "Nobles", 0.1
+	DamageFactor "VileFires", 0.1
+	DamageFactor "Shadow", 0.1
+	DamageFactor "DarkBruiserBFG10K", 0.1
+	DamageFactor "Cybers", 0.1
+	DamageFactor "Hell", 0.1
+	DamageFactor "Commander", 0.1
+	DamageFactor "Baby15K", 0.1
+	DamageFactor "Cyber10K", 0.1
+	DamageFactor "DemolisherEx", 0.1
+	DamageFactor "DarkDemoEx", 0.1
+	DamageFactor "CerChainguns", 0.1
+	DamageFactor "CerEnergyBall", 0.1
+	DamageFactor "LegMind", 0.1
+	DamageFactor "BeheComet", 0.1
+	DamageFactor "UBDTR", 0.1
+	DamageFactor "NobleComet", 0.1
+	DamageFactor "CacoComet", 0.1
+	DamageFactor "SoulToxic", 0.1
+	DamageFactor "Cacolich", 0.1
+	DamageFactor "CadaverRocket", 0.1
+	DamageFactor "HellComet", 0.1
+	DamageFactor "HFCyber", 0.1
+	DamageFactor "DBFG2", 0.1
+	DamageFactor "DBFG10K2", 0.1
+	DamageFactor "DBFGSplash2", 0.1
+	damagefactor "Terminator", 0.01
+	damagefactor "T3rm", 0.01
+	damagefactor "Term", 0.1
+  SEESOUND "touhou/sight"
+  PAINSOUND "touhou/pain"
+  deathsound "touhou/rekt"
+  Obituary "%o regret thinking Shirohima Yumikira was weak when she fucked %h up with her danmaku."
+  MinMissileChance 3000
+  +NODROPOFF
+  +FRIENDLY
+  +QUICKTORETALIATE
+  +DONTHARMSPECIES
+  +NOBLOCKMONST
+  +FLOORCLIP
+  +FLOAT
+  +NOGRAVITY
+  +NOCLIP //Screw walls, she can go ANYWHERE!
+  +BOSS
+  tag "\c[n6]Shirohima Yumikira-chan\c-"
+  States
+  {
+  Spawn:
+    FAR4 ABCD 3 A_Wander
+	TNT1 A 0 A_Look
+    Loop
+  See:
+	TNT1 A 0 A_JumpIfHealthLower(2500,"MoreAggressive")
+    FAR4 ABCD 3 A_Chase
+    Loop
+  Pain:
+    FAR4 E 3 A_Pain
+    Goto See
+  MoreAggressive:
+	TNT1 A 0 A_JumpIfHealthLower(1000,"EvenMOREAggressive")
+	TNT1 A 0 A_ChangeFlag("MISSILEMORE",1)
+    FAR4 ABCD 3 A_Chase
+	goto See
+  EvenMOREAggressive:
+	TNT1 A 0 A_ChangeFlag("MISSILEEVENMORE",1)
+    FAR4 ABCD 3 A_Chase
+	goto See
+  Melee:
+    FAR4 A 3
+    FAR4 B 2 A_CustomMeleeAttack(350,"touhou/hit","none")
+	FAR4 C 2
+	Goto See
+  Missile:
+	TNT1 A 0 A_Jump(256,"Attack1","Attack2","Attack3","Attack4","Attack5","Attack6")
+	goto see
+  Attack1:
+    FAR4 AB 3 A_FaceTarget
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,0)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,10)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,-10)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,15)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,5)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,-5)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,-15)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,20)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,-20)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,2)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,-2)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,3)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,-3)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,4)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,-5)
+	FAR4 C 12 A_FaceTarget
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,0)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,10)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,-10)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,15)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,5)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,-5)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,-15)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,20)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,-20)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,2)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,-2)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,3)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,-3)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,4)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,-5)
+	FAR4 C 12 A_FaceTarget
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,0)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,10)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,-10)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,15)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,5)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,-5)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,-15)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,20)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,-20)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,2)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,-2)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,3)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,-3)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,4)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBallF",30,0,-5)
+	FAR4 CD 6 A_FaceTarget
+	Goto See
+  Attack2:
+  	TNT1 A 0 A_SetInvulnerable
+	FAR4 AB 3 A_FaceTarget
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiSkullShotF",30,23,10)
+	MYS2 O 0 A_CustomMissile("ShinkiSkullShotF",30,23,30)
+	MYS2 O 0 A_CustomMissile("ShinkiSkullShotF",30,-23,-30)
+	FAR4 C 4 A_CustomMissile("ShinkiSkullShotF",30,-23,-10)
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiSkullShotF",30,23,10)
+	FAR4 C 4 A_CustomMissile("ShinkiSkullShotF",30,-23,-10)
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiSkullShotF",30,23,10)
+	FAR4 C 4 A_CustomMissile("ShinkiSkullShotF",30,-23,-10)
+	FAR4 D 5 A_FaceTarget
+	TNT1 A 0 A_UnSetInvulnerable
+	Goto See
+  Attack3:
+	FAR4 AB 4 A_FaceTarget
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnelF",30,0,0)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnelF",30,0,20)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnelF",30,0,40)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnelF",30,0,60)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnelF",30,0,80)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnelF",30,0,100)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnelF",30,0,120)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnelF",30,0,140)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnelF",30,0,160)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnelF",30,0,180)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnelF",30,0,200)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnelF",30,0,220)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnelF",30,0,240)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnelF",30,0,260)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnelF",30,0,280)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnelF",30,0,300)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnelF",30,0,320)
+	FAR4 C 35 A_CustomMissile("ShinkiLightTunnelF",30,0,340)
+	TNT1 A 0 A_FaceTarget
+	FAR4 D 5
+	goto see
+  Attack4:
+	FAR4 AB 3 A_FaceTarget
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnelF",30,0,20)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnelF",30,0,-20)
+	FAR4 C 12 A_FaceTarget
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnelF",30,0,20)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnelF",30,0,0)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnelF",30,0,-20)
+	FAR4 C 6 A_FaceTarget
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnelF",30,0,20)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnelF",30,0,-20)
+	FAR4 C 12 A_FaceTarget
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiOrbF",30,0,0)
+	MYS2 O 0 A_CustomMissile("ShinkiOrbF",30,0,45)
+	MYS2 O 0 A_CustomMissile("ShinkiOrbF",30,0,90)
+	MYS2 O 0 A_CustomMissile("ShinkiOrbF",30,0,135)
+	MYS2 O 0 A_CustomMissile("ShinkiOrbF",30,0,180)
+	MYS2 O 0 A_CustomMissile("ShinkiOrbF",30,0,225)
+	MYS2 O 0 A_CustomMissile("ShinkiOrbF",30,0,270)
+	MYS2 O 0 A_CustomMissile("ShinkiOrbF",30,0,315)
+	FAR4 C 6 A_FaceTarget
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnelF",30,0,20)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnelF",30,0,-20)
+	FAR4 C 12 A_FaceTarget
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnelF",30,0,20)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnelF",30,0,0)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnelF",30,0,-20)
+	FAR4 D 3
+	Goto See
+  Attack5:
+  	TNT1 A 0 A_SetInvulnerable
+	FAR4 ABC 7 A_FaceTarget
+	MYS2 O 0 A_CustomMissile("UroLaserF",30,0,-30)
+	MYS2 O 0 A_CustomMissile("UroLaserF",30,0,-15)
+	MYS2 O 0 A_CustomMissile("UroLaserF",30,0,0)
+	MYS2 O 0 A_CustomMissile("UroLaserF",30,0,15)
+	MYS2 O 0 A_CustomMissile("UroLaserF",30,0,30)
+	FAR4 D 5 A_FaceTarget
+	TNT1 A 0 A_UnSetInvulnerable
+	Goto See
+  Attack6:
+	FAR4 AB 3 A_FaceTarget
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiOrbF",30,0,random(-20,20),CMF_ABSOLUTEANGLE)
+	MYS2 O 0 A_CustomMissile("ShinkiOrbF",30,0,random(-20,20),CMF_ABSOLUTEANGLE)
+	MYS2 O 0 A_CustomMissile("ShinkiOrbF",30,0,random(70,110),CMF_ABSOLUTEANGLE)
+	MYS2 O 0 A_CustomMissile("ShinkiOrbF",30,0,random(70,110),CMF_ABSOLUTEANGLE)
+	MYS2 O 0 A_CustomMissile("ShinkiOrbF",30,0,random(-110,-70),CMF_ABSOLUTEANGLE)
+	MYS2 O 0 A_CustomMissile("ShinkiOrbF",30,0,random(-110,-70),CMF_ABSOLUTEANGLE)
+	MYS2 O 0 A_CustomMissile("ShinkiOrbF",30,0,random(160,200),CMF_ABSOLUTEANGLE)
+	FAR4 C 10 A_CustomMissile("ShinkiOrbF",30,0,random(160,200),CMF_ABSOLUTEANGLE)
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiOrbF",30,0,random(-20,20),CMF_ABSOLUTEANGLE)
+	MYS2 O 0 A_CustomMissile("ShinkiOrbF",30,0,random(-20,20),CMF_ABSOLUTEANGLE)
+	MYS2 O 0 A_CustomMissile("ShinkiOrbF",30,0,random(70,110),CMF_ABSOLUTEANGLE)
+	MYS2 O 0 A_CustomMissile("ShinkiOrbF",30,0,random(70,110),CMF_ABSOLUTEANGLE)
+	MYS2 O 0 A_CustomMissile("ShinkiOrbF",30,0,random(-110,-70),CMF_ABSOLUTEANGLE)
+	MYS2 O 0 A_CustomMissile("ShinkiOrbF",30,0,random(-110,-70),CMF_ABSOLUTEANGLE)
+	MYS2 O 0 A_CustomMissile("ShinkiOrbF",30,0,random(160,200),CMF_ABSOLUTEANGLE)
+	FAR4 C 10 A_CustomMissile("ShinkiOrbF",30,0,random(160,200),CMF_ABSOLUTEANGLE)
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiOrbF",30,0,random(-20,20),CMF_ABSOLUTEANGLE)
+	MYS2 O 0 A_CustomMissile("ShinkiOrbF",30,0,random(-20,20),CMF_ABSOLUTEANGLE)
+	MYS2 O 0 A_CustomMissile("ShinkiOrbF",30,0,random(70,110),CMF_ABSOLUTEANGLE)
+	MYS2 O 0 A_CustomMissile("ShinkiOrbF",30,0,random(70,110),CMF_ABSOLUTEANGLE)
+	MYS2 O 0 A_CustomMissile("ShinkiOrbF",30,0,random(-110,-70),CMF_ABSOLUTEANGLE)
+	MYS2 O 0 A_CustomMissile("ShinkiOrbF",30,0,random(-110,-70),CMF_ABSOLUTEANGLE)
+	MYS2 O 0 A_CustomMissile("ShinkiOrbF",30,0,random(160,200),CMF_ABSOLUTEANGLE)
+	FAR4 C 10 A_CustomMissile("ShinkiOrbF",30,0,random(160,200),CMF_ABSOLUTEANGLE)
+	FAR4 D 3
+	goto See
+  Death:
+    FAR4 E 70 A_Pain
+	TNT1 A 0 A_NoBlocking
+	TNT1 A 0 A_Scream
+	TNT1 AAAAAAAAAAAAAAA 0 A_SpawnItemEx("Red2huBossDeathFlame", Random(-8,8), Random(-8,8), Random(12,80), Random(8,38), 0, Random(3,43), Random(-180,180))
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("2huBossDeathFlame", Random(-8,8), Random(-8,8), Random(12,80), Random(8,38), 0, Random(3,43), Random(-180,180))
+    Stop
+  }
+}
+
+actor NemesisShirohima : ShirohimaYumikira
+{
+  tag "\c[v9]Nemesis Shirohima\c-"
+  health 7500
+  damagefactor 0.25
+  +FRIENDLY
+  Obituary "%o regret thinking Nemesis Shirohima was weak when she fucked %h up with her danmaku."
+  States
+  {
+  Spawn:
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+    NFAR A 3 A_Wander
+	TNT1 A 0 A_Look
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+    NFAR B 3 A_Wander
+	TNT1 A 0 A_Look
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+    NFAR C 3 A_Wander
+	TNT1 A 0 A_Look
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+    NFAR D 3 A_Wander
+	TNT1 A 0 A_Look
+    Loop
+  See:
+	TNT1 A 0 A_JumpIfHealthLower(5000,"MoreAggressive")
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+    NFAR A 3 A_Chase
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+    NFAR B 3 A_Chase
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+    NFAR C 3 A_Chase
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+    NFAR D 3 A_Chase
+    Loop
+  Pain:
+    NFAR E 3 A_Pain
+    Goto See
+  MoreAggressive:
+	TNT1 A 0 A_JumpIfHealthLower(2500,"EvenMOREAggressive")
+	TNT1 A 0 A_ChangeFlag("MISSILEMORE",1)
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+    NFAR A 3 A_Chase
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+    NFAR B 3 A_Chase
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+    NFAR C 3 A_Chase
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+    NFAR D 3 A_Chase
+	goto See
+  EvenMOREAggressive:
+	TNT1 A 0 A_ChangeFlag("MISSILEEVENMORE",1)
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+    NFAR A 3 A_Chase
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+    NFAR B 3 A_Chase
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+    NFAR C 3 A_Chase
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+    NFAR D 3 A_Chase
+	goto See
+  Melee:
+    NFAR A 3 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+    NFAR B 2 A_CustomMeleeAttack(800,"touhou/hit","none")
+	NFAR C 2 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+	Goto See
+  Missile:
+	TNT1 A 0 A_Jump(256,"Attack1","Attack2","Attack3","Attack4","Attack5","Attack6")
+	goto see
+  Attack1:
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+    NFAR AB 3 A_FaceTarget
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,0)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,10)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-10)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,15)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,5)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-5)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-15)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,20)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-20)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,2)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-2)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,3)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-3)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,4)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-5)
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+	NFAR C 6 A_FaceTarget
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,0)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,10)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-10)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,15)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,5)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-5)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-15)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,20)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-20)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,2)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-2)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,3)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-3)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,4)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-5)
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+	NFAR C 6 A_FaceTarget
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,0)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,10)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-10)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,15)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,5)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-5)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-15)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,20)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-20)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,2)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-2)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,3)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-3)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,4)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-5)
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+	NFAR C 6 A_FaceTarget
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,0)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,10)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-10)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,15)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,5)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-5)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-15)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,20)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-20)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,2)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-2)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,3)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-3)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,4)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-5)
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+	NFAR C 6 A_FaceTarget
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,0)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,10)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-10)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,15)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,5)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-5)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-15)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,20)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-20)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,2)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-2)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,3)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-3)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,4)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-5)
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+	NFAR C 6 A_FaceTarget
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,0)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,10)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-10)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,15)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,5)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-5)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-15)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,20)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-20)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,2)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-2)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,3)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-3)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,4)
+	MYS2 O 0 A_CustomMissile("ShinkiDIBall2F",30,0,-5)
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+	NFAR CD 6 A_FaceTarget
+	TNT1 A 0 A_Jump(64,"Attack2")
+	Goto See
+  Attack2:
+  	TNT1 A 0 A_SetInvulnerable
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+	NFAR AB 3 A_FaceTarget
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2F",30,23,10)
+	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2F",30,23,30)
+	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2F",30,-23,-30)
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+	NFAR C 4 A_CustomMissile("ShinkiSkullShot2F",30,-23,-10)
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2F",30,23,10)
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+	NFAR C 4 A_CustomMissile("ShinkiSkullShot2F",30,-23,-10)
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2F",30,23,10)
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+	NFAR C 4 A_CustomMissile("ShinkiSkullShot2F",30,-23,-10)
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2F",30,23,10)
+	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2F",30,23,30)
+	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2F",30,-23,-30)
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+	NFAR C 4 A_CustomMissile("ShinkiSkullShot2F",30,-23,-10)
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2F",30,23,10)
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+	NFAR C 4 A_CustomMissile("ShinkiSkullShot2F",30,-23,-10)
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2F",30,23,10)
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+	NFAR C 4 A_CustomMissile("ShinkiSkullShot2F",30,-23,-10)
+	NFAR D 5 A_FaceTarget
+	TNT1 A 0 A_UnSetInvulnerable
+	TNT1 A 0 A_Jump(56,"Attack3")
+	Goto See
+  Attack3:
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+	NFAR AB 4 A_FaceTarget
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnel2F",30,0,0)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnel2F",30,0,20)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnel2F",30,0,40)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnel2F",30,0,60)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnel2F",30,0,80)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnel2F",30,0,100)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnel2F",30,0,120)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnel2F",30,0,140)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnel2F",30,0,160)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnel2F",30,0,180)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnel2F",30,0,200)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnel2F",30,0,220)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnel2F",30,0,240)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnel2F",30,0,260)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnel2F",30,0,280)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnel2F",30,0,300)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnel2F",30,0,320)
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+	NFAR C 15 A_CustomMissile("ShinkiLightTunnel2F",30,0,340)
+	TNT1 A 0 A_FaceTarget
+	NFAR D 5
+	goto see
+  Attack4:
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+	NFAR AB 3 A_FaceTarget
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnel2F",30,0,20)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnel2F",30,0,-20)
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+	NFAR C 6 A_FaceTarget
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnel2F",30,0,20)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnel2F",30,0,0)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnel2F",30,0,-20)
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+	NFAR C 6 A_FaceTarget
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnel2F",30,0,20)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnel2F",30,0,-20)
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+	NFAR C 6 A_FaceTarget
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiOrb2F",30,0,0)
+	MYS2 O 0 A_CustomMissile("ShinkiOrb2F",30,0,45)
+	MYS2 O 0 A_CustomMissile("ShinkiOrb2F",30,0,90)
+	MYS2 O 0 A_CustomMissile("ShinkiOrb2F",30,0,135)
+	MYS2 O 0 A_CustomMissile("ShinkiOrb2F",30,0,180)
+	MYS2 O 0 A_CustomMissile("ShinkiOrb2F",30,0,225)
+	MYS2 O 0 A_CustomMissile("ShinkiOrb2F",30,0,270)
+	MYS2 O 0 A_CustomMissile("ShinkiOrb2F",30,0,315)
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+	NFAR C 6 A_FaceTarget
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnel2F",30,0,20)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnel2F",30,0,-20)
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+	NFAR C 6 A_FaceTarget
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnel2F",30,0,20)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnel2F",30,0,0)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnel2F",30,0,-20)
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnel2F",30,0,20)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnel2F",30,0,-20)
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+	NFAR C 6 A_FaceTarget
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnel2F",30,0,20)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnel2F",30,0,0)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnel2F",30,0,-20)
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+	NFAR C 6 A_FaceTarget
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnel2F",30,0,20)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnel2F",30,0,-20)
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+	NFAR C 6 A_FaceTarget
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiOrb2F",30,0,0)
+	MYS2 O 0 A_CustomMissile("ShinkiOrb2F",30,0,45)
+	MYS2 O 0 A_CustomMissile("ShinkiOrb2F",30,0,90)
+	MYS2 O 0 A_CustomMissile("ShinkiOrb2F",30,0,135)
+	MYS2 O 0 A_CustomMissile("ShinkiOrb2F",30,0,180)
+	MYS2 O 0 A_CustomMissile("ShinkiOrb2F",30,0,225)
+	MYS2 O 0 A_CustomMissile("ShinkiOrb2F",30,0,270)
+	MYS2 O 0 A_CustomMissile("ShinkiOrb2F",30,0,315)
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+	NFAR C 6 A_FaceTarget
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnel2F",30,0,20)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnel2F",30,0,-20)
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+	NFAR C 6 A_FaceTarget
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnel2F",30,0,20)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnel2F",30,0,0)
+	MYS2 O 0 A_CustomMissile("ShinkiLightTunnel2F",30,0,-20)
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+	NFAR D 3
+	Goto See
+  Attack5:
+  	TNT1 A 0 A_SetInvulnerable
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+	NFAR ABC 3 A_FaceTarget
+	MYS2 O 0 A_CustomMissile("UroLaserF",30,0,-30)
+	MYS2 O 0 A_CustomMissile("UroLaserF",30,0,-15)
+	MYS2 O 0 A_CustomMissile("UroLaserF",30,0,0)
+	MYS2 O 0 A_CustomMissile("UroLaserF",30,0,15)
+	MYS2 O 0 A_CustomMissile("UroLaserF",30,0,30)
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+	NFAR ABC 3 A_FaceTarget
+	MYS2 O 0 A_CustomMissile("UroLaserF",30,0,-15)
+	MYS2 O 0 A_CustomMissile("UroLaserF",30,0,-7.5)
+	MYS2 O 0 A_CustomMissile("UroLaserF",30,0,0)
+	MYS2 O 0 A_CustomMissile("UroLaserF",30,0,7.5)
+	MYS2 O 0 A_CustomMissile("UroLaserF",30,0,15)
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+	NFAR D 5 A_FaceTarget
+	TNT1 A 0 A_UnSetInvulnerable
+	Goto See
+  Attack6:
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+	NFAR AB 3 A_FaceTarget
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiOrb2F",30,0,random(-20,20),CMF_ABSOLUTEANGLE)
+	MYS2 O 0 A_CustomMissile("ShinkiOrb2F",30,0,random(-20,20),CMF_ABSOLUTEANGLE)
+	MYS2 O 0 A_CustomMissile("ShinkiOrb2F",30,0,random(70,110),CMF_ABSOLUTEANGLE)
+	MYS2 O 0 A_CustomMissile("ShinkiOrb2F",30,0,random(70,110),CMF_ABSOLUTEANGLE)
+	MYS2 O 0 A_CustomMissile("ShinkiOrb2F",30,0,random(-110,-70),CMF_ABSOLUTEANGLE)
+	MYS2 O 0 A_CustomMissile("ShinkiOrb2F",30,0,random(-110,-70),CMF_ABSOLUTEANGLE)
+	MYS2 O 0 A_CustomMissile("ShinkiOrb2F",30,0,random(160,200),CMF_ABSOLUTEANGLE)
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+	NFAR C 5 A_CustomMissile("ShinkiOrb2F",30,0,random(160,200),CMF_ABSOLUTEANGLE)
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiOrb2F",30,0,random(-20,20),CMF_ABSOLUTEANGLE)
+	MYS2 O 0 A_CustomMissile("ShinkiOrb2F",30,0,random(-20,20),CMF_ABSOLUTEANGLE)
+	MYS2 O 0 A_CustomMissile("ShinkiOrb2F",30,0,random(70,110),CMF_ABSOLUTEANGLE)
+	MYS2 O 0 A_CustomMissile("ShinkiOrb2F",30,0,random(70,110),CMF_ABSOLUTEANGLE)
+	MYS2 O 0 A_CustomMissile("ShinkiOrb2F",30,0,random(-110,-70),CMF_ABSOLUTEANGLE)
+	MYS2 O 0 A_CustomMissile("ShinkiOrb2F",30,0,random(-110,-70),CMF_ABSOLUTEANGLE)
+	MYS2 O 0 A_CustomMissile("ShinkiOrb2F",30,0,random(160,200),CMF_ABSOLUTEANGLE)
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+	NFAR C 5 A_CustomMissile("ShinkiOrb2F",30,0,random(160,200),CMF_ABSOLUTEANGLE)
+	MYS2 O 0 A_Playsound("remishot",0)
+	MYS2 O 0 A_CustomMissile("ShinkiOrb2F",30,0,random(-20,20),CMF_ABSOLUTEANGLE)
+	MYS2 O 0 A_CustomMissile("ShinkiOrb2F",30,0,random(-20,20),CMF_ABSOLUTEANGLE)
+	MYS2 O 0 A_CustomMissile("ShinkiOrb2F",30,0,random(70,110),CMF_ABSOLUTEANGLE)
+	MYS2 O 0 A_CustomMissile("ShinkiOrb2F",30,0,random(70,110),CMF_ABSOLUTEANGLE)
+	MYS2 O 0 A_CustomMissile("ShinkiOrb2F",30,0,random(-110,-70),CMF_ABSOLUTEANGLE)
+	MYS2 O 0 A_CustomMissile("ShinkiOrb2F",30,0,random(-110,-70),CMF_ABSOLUTEANGLE)
+	MYS2 O 0 A_CustomMissile("ShinkiOrb2F",30,0,random(160,200),CMF_ABSOLUTEANGLE)
+  	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+	NFAR C 5 A_CustomMissile("ShinkiOrb2F",30,0,random(160,200),CMF_ABSOLUTEANGLE)
+	NFAR D 3
+	goto See
+  Death:
+    NFAR E 70 A_Pain
+	TNT1 A 0 A_NoBlocking
+	TNT1 A 0 A_Scream
+	TNT1 AAAAAAAAAAAAAAA 0 A_SpawnItemEx("Red2huBossDeathFlame", Random(-8,8), Random(-8,8), Random(12,80), Random(8,38), 0, Random(3,43), Random(-180,180))
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("2huBossDeathFlame", Random(-8,8), Random(-8,8), Random(12,80), Random(8,38), 0, Random(3,43), Random(-180,180))
+    Stop
+  }
+}

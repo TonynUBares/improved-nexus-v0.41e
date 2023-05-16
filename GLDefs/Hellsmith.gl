@@ -1,0 +1,525 @@
+//SmithFire
+flickerlight SmithFireA
+{
+	color 1.0 0.75 0.0
+	offset 0 0 0
+	size 26
+	SecondarySize 30
+	chance 0.2
+}
+
+flickerlight SmithFireB
+{
+	color 1.0 0.75 0.0
+	offset 0 0 0
+	size 41
+	SecondarySize 45
+	chance 0.2
+}
+
+flickerlight SmithFireC
+{
+	color 1.0 0.75 0.0
+	offset 0 0 0
+	size 46
+	SecondarySize 50
+	chance 0.2
+}
+
+flickerlight SmithFireD
+{
+	color 1.0 0.75 0.0
+	offset 0 0 0
+	size 49
+	SecondarySize 54
+	chance 0.2
+}
+
+flickerlight SmithFireE
+{
+	color 1.0 0.75 0.0
+	offset 0 0 0
+	size 53
+	SecondarySize 58
+	chance 0.2
+}
+
+flickerlight SmithFireF
+{
+	color 1.0 0.75 0.0
+	offset 0 0 0
+	size 59
+	SecondarySize 65
+	chance 0.2
+}
+
+flickerlight SmithFireG
+{
+	color 1.0 0.75 0.0
+	offset 0 0 0
+	size 66
+	SecondarySize 72
+	chance 0.2
+}
+
+flickerlight SmithFireH
+{
+	color 1.0 0.75 0.0
+	offset 0 0 0
+	size 72
+	SecondarySize 78
+	chance 0.2
+}
+
+flickerlight SmithFireI
+{
+	color 1.0 0.75 0.0
+	offset 0 0 0
+	size 78
+	SecondarySize 84
+	chance 0.2
+}
+
+flickerlight SmithFireJ
+{
+	color 1.0 0.75 0.0
+	offset 0 0 0
+	size 83
+	SecondarySize 89
+	chance 0.2
+}
+
+flickerlight SmithFireK
+{
+	color 0.9 0.7 0.0
+	offset 0 0 0
+	size 88
+	SecondarySize 94
+	chance 0.2
+}
+
+flickerlight SmithFireL
+{
+	color 0.8 0.65 0.0
+	offset 0 0 0
+	size 90
+	SecondarySize 96
+	chance 0.2
+}
+
+flickerlight SmithFireM
+{
+	color 0.7 0.55 0.0
+	offset 0 0 0
+	size 66
+	SecondarySize 72
+	chance 0.2
+}
+
+flickerlight SmithFireN
+{
+	color 0.6 0.45 0.0
+	offset 0 0 0
+	size 48
+	SecondarySize 53
+	chance 0.2
+}
+
+flickerlight SmithFireO
+{
+	color 0.6 0.45 0.0
+	offset 0 0 0
+	size 42
+	SecondarySize 47
+	chance 0.2
+}
+
+flickerlight SmithFireP
+{
+	color 0.4 0.3 0.0
+	offset 0 0 0
+	size 31
+	SecondarySize 35
+	chance 0.2
+}
+
+flickerlight SmithFireQ
+{
+	color 0.2 0.15 0.0
+	offset 0 0 0
+	size 28
+	SecondarySize 32
+	chance 0.2
+}
+
+Object SmithFire
+{
+Frame MNSMA { Light SmithFireA }
+Frame MNSMS { Light SmithFireB }
+Frame MNSMC { Light SmithFireC }
+Frame MNSMD { Light SmithFireD }
+Frame MNSME { Light SmithFireE }
+Frame MNSMF { Light SmithFireF }
+Frame MNSMG { Light SmithFireG }
+Frame MNSMH { Light SmithFireH }
+Frame MNSMI { Light SmithFireI }
+Frame MNSMJ { Light SmithFireJ }
+Frame MNSMK { Light SmithFireK }
+Frame MNSML { Light SmithFireL }
+Frame MNSMM { Light SmithFireM }
+Frame MNSMN { Light SmithFireN }
+Frame MNSMO { Light SmithFireO }
+Frame MNSMP { Light SmithFireP }
+Frame MNSMQ { Light SmithFireQ }
+}
+
+//PentaFire
+flickerlight PentaFireAtoM
+{
+	color 1.0 0.75 0.0
+	offset 0 0 0
+	size 18
+	SecondarySize 22
+	chance 0.2
+}
+
+flickerlight PentaFireN
+{
+	color 0.8 0.6 0.0
+	offset 0 0 0
+	size 16
+	SecondarySize 20
+	chance 0.2
+}
+
+flickerlight PentaFireO
+{
+	color 0.6 0.3 0.0
+	offset 0 0 0
+	size 10
+	SecondarySize 13
+	chance 0.2
+}
+
+flickerlight PentaFireP
+{
+	color 0.3 0.0 0.0
+	offset 0 0 0
+	size 6
+	SecondarySize 9
+	chance 0.2
+}
+
+Object PentaFire
+{
+Frame CFCFA { Light PentafireAtoM }
+Frame CFCFB { Light PentafireAtoM }
+Frame CFCFC { Light PentafireAtoM }
+Frame CFCFD { Light PentafireAtoM }
+Frame CFCFE { Light PentafireAtoM }
+Frame CFCFF { Light PentafireAtoM }
+Frame CFCFG { Light PentafireAtoM }
+Frame CFCFH { Light PentafireAtoM }
+Frame CFCFI { Light PentafireAtoM }
+Frame CFCFJ { Light PentafireAtoM }
+Frame CFCFK { Light PentafireAtoM }
+Frame CFCFL { Light PentafireAtoM }
+Frame CFCFM { Light PentafireAtoM }
+Frame CFCFN { Light PentafireN }
+Frame CFCFO { Light PentafireO }
+Frame CFCFP { Light PentafireP }
+}
+
+Object PentaFire2
+{
+Frame CFCFA { Light PentafireAtoM }
+Frame CFCFB { Light PentafireAtoM }
+Frame CFCFC { Light PentafireAtoM }
+Frame CFCFD { Light PentafireAtoM }
+Frame CFCFE { Light PentafireAtoM }
+Frame CFCFF { Light PentafireAtoM }
+Frame CFCFG { Light PentafireAtoM }
+Frame CFCFH { Light PentafireAtoM }
+Frame CFCFI { Light PentafireAtoM }
+Frame CFCFJ { Light PentafireAtoM }
+Frame CFCFK { Light PentafireAtoM }
+Frame CFCFL { Light PentafireAtoM }
+Frame CFCFM { Light PentafireAtoM }
+Frame CFCFN { Light PentafireN }
+Frame CFCFO { Light PentafireO }
+Frame CFCFP { Light PentafireP }
+}
+
+//SmithDeathFire
+flickerlight SmithDeathFireA
+{
+	color 1.0 0.75 0.0
+	offset 0 0 0
+	size 9
+	SecondarySize 12
+	chance 0.2
+}
+
+flickerlight SmithDeathFireB
+{
+	color 1.0 0.75 0.0
+	offset 0 0 0
+	size 10
+	SecondarySize 13
+	chance 0.2
+}
+
+flickerlight SmithDeathFireC
+{
+	color 1.0 0.75 0.0
+	offset 0 0 0
+	size 13
+	SecondarySize 16
+	chance 0.2
+}
+
+flickerlight SmithDeathFireD
+{
+	color 1.0 0.75 0.0
+	offset 0 0 0
+	size 17
+	SecondarySize 20
+	chance 0.2
+}
+
+flickerlight SmithDeathFireE
+{
+	color 1.0 0.75 0.0
+	offset 0 0 0
+	size 19
+	SecondarySize 22
+	chance 0.2
+}
+
+flickerlight SmithDeathFireF
+{
+	color 1.0 0.75 0.0
+	offset 0 0 0
+	size 21
+	SecondarySize 24
+	chance 0.2
+}
+
+flickerlight SmithDeathFireG
+{
+	color 1.0 0.75 0.0
+	offset 0 0 0
+	size 28
+	SecondarySize 32
+	chance 0.2
+}
+
+flickerlight SmithDeathFireH
+{
+	color 1.0 0.75 0.0
+	offset 0 0 0
+	size 34
+	SecondarySize 38
+	chance 0.2
+}
+
+flickerlight SmithDeathFireI
+{
+	color 1.0 0.75 0.0
+	offset 0 0 0
+	size 40
+	SecondarySize 44
+	chance 0.2
+}
+
+flickerlight SmithDeathFireJ
+{
+	color 1.0 0.75 0.0
+	offset 0 0 0
+	size 41
+	SecondarySize 45
+	chance 0.2
+}
+
+flickerlight SmithDeathFireK
+{
+	color 1.0 0.75 0.0
+	offset 0 0 0
+	size 42
+	SecondarySize 46
+	chance 0.2
+}
+
+flickerlight SmithDeathFireL
+{
+	color 0.8 0.6 0.0
+	offset 0 0 0
+	size 31
+	SecondarySize 35
+	chance 0.2
+}
+
+flickerlight SmithDeathFireM
+{
+	color 0.6 0.45 0.0
+	offset 0 0 0
+	size 20
+	SecondarySize 23
+	chance 0.2
+}
+
+flickerlight SmithDeathFireN
+{
+	color 0.4 0.3 0.0
+	offset 0 0 0
+	size 18
+	SecondarySize 21
+	chance 0.2
+}
+
+flickerlight SmithDeathFireO
+{
+	color 0.2 0.15 0.0
+	offset 0 0 0
+	size 10
+	SecondarySize 12
+	chance 0.2
+}
+
+Object SmithDeathFire
+{
+Frame FRFXA { Light SmithDeathFireA }
+Frame FRFXB { Light SmithDeathFireB }
+Frame FRFXC { Light SmithDeathFireC }
+Frame FRFXD { Light SmithDeathFireD }
+Frame FRFXE { Light SmithDeathFireE }
+Frame FRFXF { Light SmithDeathFireF }
+Frame FRFXG { Light SmithDeathFireG }
+Frame FRFXH { Light SmithDeathFireH }
+Frame FRFXI { Light SmithDeathFireI }
+Frame FRFXJ { Light SmithDeathFireJ }
+Frame FRFXK { Light SmithDeathFireK }
+Frame FRFXL { Light SmithDeathFireL }
+Frame FRFXM { Light SmithDeathFireM }
+Frame FRFXN { Light SmithDeathFireN }
+Frame FRFXO { Light SmithDeathFireO }
+}
+
+//HellShot2 and HellFX
+flickerlight HellShot2AtoF
+{
+	color 1.0 0.4 0.0
+	offset 0 0 0
+	size 24
+	SecondarySize 28
+	chance 0.25
+}
+
+flickerlight HellFXA
+{
+	color 1.0 0.5 0.0
+	offset 0 0 0
+	size 20
+	SecondarySize 24
+	chance 0.2
+}
+
+flickerlight HellFXB
+{
+	color 1.0 1.0 0.0
+	offset 0 0 0
+	size 40
+	SecondarySize 44
+	chance 0.2
+}
+
+flickerlight HellFXC
+{
+	color 1.0 0.5 0.0
+	offset 0 0 0
+	size 47
+	SecondarySize 51
+	chance 0.2
+}
+
+flickerlight HellFXD
+{
+	color 1.0 0.4 0.0
+	offset 0 0 0
+	size 44
+	SecondarySize 49
+	chance 0.2
+}
+
+flickerlight HellFXE
+{
+	color 1.0 0.4 0.0
+	offset 0 0 0
+	size 46
+	SecondarySize 51
+	chance 0.2
+}
+
+flickerlight HellFXF
+{
+	color 0.8 0.3 0.0
+	offset 0 0 0
+	size 43
+	SecondarySize 48
+	chance 0.2
+}
+
+flickerlight HellFXG
+{
+	color 0.6 0.2 0.0
+	offset 0 0 0
+	size 46
+	SecondarySize 51
+	chance 0.2
+}
+
+flickerlight HellFXH
+{
+	color 0.4 0.15 0.0
+	offset 0 0 0
+	size 32
+	SecondarySize 36
+	chance 0.2
+}
+
+flickerlight HellFXI
+{
+	color 0.2 0.05 0.0
+	offset 0 0 0
+	size 23
+	SecondarySize 27
+	chance 0.2
+}
+
+Object HellShot2
+{
+Frame HEPA { Light HellShot2AtoF }
+Frame HSXPA { Light HellFXA }
+Frame HSXPB { Light HellFXB }
+Frame HSXPC { Light HellFXC }
+Frame HSXPD { Light HellFXD }
+Frame HSXPE { Light HellFXE }
+Frame HSXPF { Light HellFXF }
+Frame HSXPG { Light HellFXG }
+Frame HSXPH { Light HellFXH }
+Frame HSXPI { Light HellFXI }
+}
+
+Object HellFX
+{
+Frame HSXPA { Light HellFXA }
+Frame HSXPB { Light HellFXB }
+Frame HSXPC { Light HellFXC }
+Frame HSXPD { Light HellFXD }
+Frame HSXPE { Light HellFXE }
+Frame HSXPF { Light HellFXF }
+Frame HSXPG { Light HellFXG }
+Frame HSXPH { Light HellFXH }
+Frame HSXPI { Light HellFXI }
+}
+

@@ -1,0 +1,347 @@
+Actor LegendaryC4Giver : CustomInventory
+{
+  Scale 0.9
+  Inventory.Amount 1
+  Inventory.MaxAmount 0
+  Inventory.InterHubAmount 0
+   Inventory.PickupSound "misc/w_pkup"
+   Inventory.PickupMessage "You got the ultimate Legendary C4! straight out of DE_DUST!"
+  Tag "Legendary C4"
+  States
+  {
+  Spawn:
+	PUC4 A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",1,1)
+  SpawnLoop:
+	PUC4 A -1
+	Loop
+  Pickup:
+	TNT1 A 0 A_JumpIfInventory("Legendary C4",1,"JustAmmo")
+  All:
+	TNT1 A 0 A_GiveInventory("Legendary C4",1)
+	TNT1 A 0 A_JumpIfInventory("LegendaryC4GiverCheck",1,"HoldAndDestroy")
+	TNT1 A 0 A_GiveInventory("LegendaryC4GiverCheck",1)
+	TNT1 A 0 A_GiveInventory("LegendaryC4Ammo",40)
+	Stop
+  JustAmmo:
+    TNT1 A 0 A_JumpIfInventory("LegendaryC4GiverCheck",1,"Null")
+	TNT1 A 0 A_GiveInventory("LegendaryC4GiverCheck",1)
+	TNT1 A 0 A_GiveInventory("LegendaryC4Ammo",40)
+	TNT1 A 0 A_SpawnItemEx("Legendary C4")
+	Stop
+  }
+}
+
+Actor LegendaryC4SpawnerGiver : LegendaryC4Giver
+{
+  States
+  {
+  JustAmmo:
+    TNT1 A 0 A_JumpIfInventory("LegendaryC4GiverCheck",1,"Null")
+	TNT1 A 0 A_GiveInventory("LegendaryC4GiverCheck",1)
+	TNT1 A 0 A_GiveInventory("LegendaryC4Ammo",40)
+	Stop
+  }
+}
+
+Actor LegendaryC4GiverCheck : Inventory { Inventory.Amount 1 Inventory.MaxAmount 1 Inventory.InterHubAmount 0 }
+
+
+
+// --------------------------------------------------------------------------
+//
+// C4   -   Originally the R667 Pipebombs, credits to Xaser/Xim
+//
+// --------------------------------------------------------------------------
+
+ACTOR "Legendary C4" : Weapon //RUSH B RUSH B!!!
+{
+   Weapon.SelectionOrder 1
+   Inventory.PickupSound "misc/w_pkup"
+   Inventory.PickupMessage "You got the ultimate Legendary C4! straight out of DE_DUST!"
+   Weapon.AmmoType "LegendaryC4Ammo"
+   Weapon.AmmoGive 1
+   Weapon.AmmoUse 0
+Weapon.SlotNumber 1
+  Weapon.SlotPriority 6.1
+   Weapon.Kickback 1000
+   Scale 1
+   +NOALERT
+   +WEAPON.ALT_AMMO_OPTIONAL
+   Tag "Legendary C4"
+   States
+   {
+   Spawn:
+   	PUC4 A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",1,1)
+  SpawnLoop:
+      PUC4 A -1
+      Loop
+   Ready:
+	  TNT1 A 0 A_JumpIfInventory("legendaryC4Ammo",1,1)
+	  Goto ReadyUnarmed
+	  TNT1 A 0
+      BDC4 A 1 A_WeaponReady
+	  Loop
+   ReadyUnarmed:
+      DEC4 C 1 A_WeaponReady
+	  Loop
+    Deselect:
+	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",1)
+	  TNT1 A 0 A_JumpIfInventory("legendaryC4Ammo",1,1)
+	  Goto DeselectUnarmed
+	  TNT1 A 0 A_Lower
+      BDC4 A 1 A_Lower
+	  Goto Deselect+2
+   DeselectUnarmed:
+      TNT1 A 0 A_Lower
+      DEC4 C 1 A_Lower
+      Loop
+    Select:
+	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",0)
+	  TNT1 A 0 A_JumpIfInventory("legendaryC4Ammo",1,1)
+	  Goto SelectUnarmed
+	  TNT1 A 0 A_Raise
+      BDC4 A 1 A_Raise
+	  Goto Select+2
+   SelectUnarmed:
+      TNT1 A 0 A_Raise
+      DEC4 C 1 A_Raise
+      Loop
+   Fire:
+      TNT1 A 0 A_JumpIfInventory("LegendaryC4Ammo",1,1)
+	  Goto Ready
+	  TNT1 A 0
+      BDC4 BCDEFGH 1
+	  TNT1 A 0 A_TakeInventory("LegendaryC4Ammo",1)
+      BDC4 A 0 A_FireCustomMissile("LegendaryC4Charge",0,1,0,0)
+      BDC4 A 0 A_PlayWeaponSound("weapons/pbthrow")
+      NULL A 8
+	  TNT1 A 0 A_JumpIfInventory("legendaryC4Ammo",1,1)
+	  Goto SelectUnarmed
+      BDC4 HGFEDCB 1
+      BDC4 A 5
+      BDC4 A 4 A_ReFire
+      Goto Ready
+   AltFire:
+      TNT1 A 0
+	  TNT1 A 0 A_JumpIfInventory("legendaryC4Ammo",1,1)
+	  Goto AltFire2
+      BDC4 BCDEFGH 1
+      NULL AA 4
+      DEC4 GFEDC 1
+      DEC4 B 0 A_AlertMonsters
+      DEC4 B 0 Thing_Projectile(1999,201,0,0,0)
+      DEC4 B 0 A_PlayWeaponSound("weapons/pbarm")
+      DEC4 B 0 Thing_ReMove(1999)
+      DEC4 B 4
+      DEC4 A 9
+      DEC4 CDEFG 1
+      NULL AA 4
+      BDC4 HGFEDCB 1
+      goto Ready
+   AltFire2:
+      //TNT1 A 0
+      //NULL AA 4
+      //DEC4 GFEDC 1
+      DEC4 B 0 A_AlertMonsters
+      DEC4 B 0 Thing_Projectile(1999,201,0,0,0)
+      DEC4 B 0 A_PlayWeaponSound("weapons/pbarm")
+      DEC4 B 0 Thing_ReMove(1999)
+      DEC4 B 4
+      DEC4 A 9
+      //DEC4 CDEFG 1
+      //NULL AA 4
+      goto Ready
+   }
+}
+
+ACTOR LegendaryC4Charge
+{ 
+    -NOGRAVITY
+    +DOOMBOUNCE
+    +CANBOUNCEWATER
+    +NOTELEPORT
+    +BOUNCEONACTORS
+    +DROPOFF
+	+THRUSPECIES
+	+DontHurtSpecies
+    +DontHarmSpecies
+    Radius 14
+    Height 10
+	Speed 10
+    Damage 0
+    Mass 0x7FFFFFFF
+    SeeSound "weapons/minebounce"
+    Species "Player"
+    BounceCount 5
+    BounceFactor 0.15
+    States
+    {
+    Spawn:
+      ITC4 AB 8 Thing_ChangeTid(0,1999)
+      Loop
+    Death:
+      ITC4 A 1
+      ITC4 B 1 Thing_ChangeTid(0,1999)
+      ITC4 A 1 
+      Goto Death+2
+    }
+}
+
+ACTOR LegendaryC4Kaboom
+{
+    SpawnID 201
+    Radius 11
+    Height 8
+    Speed 0
+    Damagetype "LegendaryGuruPlayer"
+    States
+    {
+    Spawn:
+      ITC4 ABABAB 1
+      TNT1 A 1 Bright A_Explode(13684,1588)
+      TNT1 A 1 Bright A_ChangeFlag(FORCERADIUSDMG,1)
+      TNT1 A 0 Bright A_Explode(100,1588,0,0,1588)
+      TNT1 A 0 Bright A_CustomBulletAttack(0,0,1,10000,"LegSBomberAttack",1588)
+      TNT1 A 0 Bright Radius_Quake(7,105,0,140,0)
+      TNT1 A 0 Bright A_SpawnItemEx("BlueParticleSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE) 
+      TNT1 AAA 0 Bright A_CustomMissile("BlueKaboom3",0,0,random(0,360),CMF_AIMDIRECTION,random(0,360))
+      TNT1 AAA 0 A_CustomMissile("SmokeFX2",0,0,random(0,360),CMF_AIMDIRECTION,random(0,360))
+      TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,0)
+      TNT1 A 0 Bright A_PlaySoundEx("legendary/strike","Voice",0,2)
+      TNT1 A 70 Bright A_SpawnItemEx("C4TrueLegendaryNuke",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+      Stop
+    }
+}
+
+ACTOR LegendaryC4Ammo : Ammo
+{
+   Inventory.Amount 1
+   Inventory.MaxAmount 3
+   Ammo.BackpackAmount 0
+   Ammo.BackpackMaxAmount 5
+   Inventory.Icon PUC4A0
+   Inventory.PickupMessage ""
+   States
+   {
+   Spawn:
+      PUC4 A   -1     
+   }
+}
+
+Actor C4TrueLegendaryNuke : CFNuke
+{
+ PROJECTILE
+ Species "player"
+ ReactionTime 1
+ DamageType "LegendaryGuruPlayer"
+ +NOTIMEFREEZE
+ +THRUSPECIES
+ +DONTHURTSPECIES
+ States
+ {
+  Spawn:
+   TNT1 AAA 0 A_Countdown
+  Death:
+   TNT1 A 0
+   TNT1 A 0 A_PlaySoundEx("GoodGame/Mate", "Voice", 0, 2)
+   TNT1 A 0 Radius_Quake(7, 105, 0, 140, 0)
+   TNT1 A 0 A_SpawnItemEx("TLCFlyLandKaBoom", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE|SXF_TRANSFERPOINTERS, 0)
+   TNT1 A 0 A_SpawnItemEx("BlueNukeHyperFlare", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE|SXF_TRANSFERPOINTERS, 0)
+   TNT1 A 5 A_SpawnItemEx("C4TrueLegNukeHyperFloor", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE|SXF_TRANSFERPOINTERS, 0)
+   TNT1 AA 20 A_SpawnItemEx("C4TrueLegNukeHyperFloor", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE|SXF_TRANSFERPOINTERS, 0)
+   TNT1 A 0 A_SpawnItemEx("NukeHyperSmokeFloor", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE|SXF_TRANSFERPOINTERS, 0)
+   TNT1 AA 0 A_SpawnItemEx("C4TrueLegHyperPillar", 0, 0, 0, 0, 0, 10, 0, SXF_CLIENTSIDE|SXF_TRANSFERPOINTERS, 0)
+   TNT1 A 105 A_SpawnItemEx("NukeHyperSmokePillar", 0, 0, 0, 0, 0, 10, 0, SXF_CLIENTSIDE|SXF_TRANSFERPOINTERS, 0)
+   TNT1 AA 0 A_SpawnItemEx("C4TrueLegHyperMushroom", 0, 0, 1000, 0, 0, 0, 0, SXF_CLIENTSIDE|SXF_TRANSFERPOINTERS, 0)
+   TNT1 A 0 A_SpawnItemEx("NukeHyperSmokeMushroom", 0, 0, 1000, 0, 0, 0, 0, SXF_CLIENTSIDE|SXF_TRANSFERPOINTERS, 0)
+    TNT1 AAAAAAAA 0 A_CustomMissile("playertruelegbfgsmoke", 0, 0, random(0,360), 2, random(0,360))
+   Stop
+ }
+}
+
+Actor C4TrueLegHyperPillar : CFNuke
+{
+ +ClientSideOnly
+ +NoNetID
++NOTIMEFREEZE
+ Species "player"
+ DamageType "LegendaryGuruPlayer"
+ +THRUSPECIES
+ +DONTHURTSPECIES
+
+ States
+ {
+  Spawn:
+   TNT1 A 0
+   TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1  A_SpawnItemEx("C4TrueLegHyperFire", 0, 0, 0, 0.00001 * Random(0, 300000), 0.00001 * Random(0, 300000), 0.00001 * Random(0, -600000), Random(0, 359), SXF_CLIENTSIDE|SXF_TRANSFERPOINTERS, 0)
+   TNT1 A 0 A_SpawnItem("NukeHyperSmokering", 0, 0, 0)
+   TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("C4TrueLegHyperFire", 0, 0, 0, 0.00001 * Random(0, 300000), 0.00001 * Random(0, 300000), 0.00001 * Random(0, -600000), Random(0, 359), SXF_CLIENTSIDE|SXF_TRANSFERPOINTERS, 0)
+   Stop
+ }
+}
+Actor C4TrueLegHyperMushroom : CFNuke
+{
+ +ClientSideOnly
+ +NoNetID
++NOTIMEFREEZE
+ States
+ {
+  Spawn:
+   TNT1 A 0
+   TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("C4TrueLegHyperFire", 0, 0, 0, 0.00001 * Random(0, 600000), 0.00001 * Random(0, 900000), 0.00001 * Random(-400000, 400000), Random(0, 359), 128, 0)
+   Stop
+ }
+}
+Actor C4TrueLegNukeHyperFloor : CFNuke
+{
+ +ClientSideOnly
+ +NoNetID
+ +NOTIMEFREEZE
+ States
+ {
+  Spawn:
+   TNT1 A 0
+   TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("C4TrueLegHyperFire", 0, 0, 0, 0.00001 * Random(400000, 900000), 0.00001 * Random(400000, 900000), 0, Random(0, 359), 128, 0)
+   Stop
+ }
+}
+
+Actor C4TrueLegHyperFire : CFNuke
+{
+ RenderStyle Add
+ +NoInteraction
+ +ClientSideOnly
+ -ForceYBillBoard
+ +NOTIMEFREEZE
+ +THRUSPECIES
+ +DONTHURTSPECIES
+ +NODAMAGETHRUST
+ Scale 3
+ PROJECTILE
+ Species "player"
+ DamageType "LegendaryGuruPlayer"
+ States
+ {
+  Spawn:
+   TNT1 AA 0 A_Jump(196, "Spawn2", "Spawn3", "Spawn4")
+   TNT1 A 0 A_JumpIf(Alpha<0.3,2)
+   BFL1 A 0 A_Explode(100,1300)
+   BFL1 A 1 Bright A_FadeOut(0.015)
+   Wait
+  Spawn2:
+   TNT1 A 0 A_JumpIf(Alpha<0.3,2)
+   BFL2 A 0 A_Explode(100,1300)
+   BFL2 A 1 Bright A_FadeOut(0.015)
+   Wait
+  Spawn3:
+   TNT1 A 0 A_JumpIf(Alpha<0.3,2)
+   BFL3 A 0 A_Explode(100,1300)
+   BFL3 A 1 Bright A_FadeOut(0.015)
+   Wait
+  Spawn4:
+   TNT1 A 0 A_JumpIf(Alpha<0.3,2)
+   BFL4 A 0 A_Explode(100,1300)
+   BFL4 A 1 Bright A_FadeOut(0.015)
+   Wait
+ }
+}

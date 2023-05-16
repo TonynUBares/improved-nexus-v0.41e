@@ -1,0 +1,177 @@
+actor LoperComplex 27806
+{
+  Health 600
+  Radius 31
+  Height 56
+  Speed 12
+  Mass 1000
+  MeleeDamage 10 
+  MeleeRange 65
+  PainChance 50
+  DamageFactor "FiendFire", 0.0
+  DamageFactor "DTFiendEx", 0.0
+  MONSTER
+  DropItem "LifeEssence" 256
+  DropItem "ArmorBonusMax" 256
+  DropItem "BossLifeEssence" 180
+  DropItem "BossArmorBonusMax" 180
+  DropItem "NewCellPack" 250
+  Species "Fiends"
+  MELEESOUND "loper/elec"
+  SEESOUND "loper/sight"
+  painsound "loper/pain"
+  deathsound "loper/death"
+  Obituary "%o was electrically stomped on by a Loper."
+  Tag "$NELoperC"
+  +FLOORCLIP
+  var int user_lowlag;
+  States
+  {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
+	Goto Idle
+  Idle:
+    LMLO N 10 A_Look
+	LMLO Z 10 A_Look
+    loop
+  See:
+	TNT1 A 0 A_JumpIf(user_lowlag == 1,"MoreSee")
+	TNT1 A 0 A_JumpIfTargetInLOS("MoreSee",0,0,0,0)
+	LMLO ABCD 2 A_Chase
+	Loop
+  MoreSee:
+	TNT1 A 0 A_SetUserVar("user_lowlag",1)
+    TNT1 A 0 A_SetShootable
+    LMLO AA 2 A_Chase
+    LMLO A 0 A_Jump(30,"Dodge")
+    LMLO BB 2 A_Chase
+    LMLO CC 2 A_Chase
+    LMLO DD 2 A_Chase
+    Goto See
+  Dodge:
+    LML1 A 0 bright A_UnSetShootable
+    LML1 A 0 bright A_PlaySound("loper/tele")
+	LML1 A 0 bright	A_JumpIfCloser(130,"Dodge1")
+    LML2 A 1 bright A_Chase("","")
+	LML2 A 0 bright	A_JumpIfCloser(130,"Dodge2")
+    LML3 B 1 bright A_Chase("","")
+	LML3 A 0 bright	A_JumpIfCloser(130,"Dodge3")
+    LML4 C 1 bright A_Chase("","")
+	LML4 A 0 bright	A_JumpIfCloser(130,"Dodge4")
+    LMKK CCCCCCCCCCCCCCCCC 0 A_Chase("","")
+    LML3 A 1 bright A_Chase("","")
+	LML3 A 0 bright	A_JumpIfCloser(130,"Dodge3")
+    LML2 B 1 bright A_Chase("","")
+	LML2 A 0 bright	A_JumpIfCloser(130,"Dodge2")
+    LML2 B 1 bright A_Chase("","")
+    LML1 C 0 bright A_SetShootable
+    LML1 C 1 bright A_Chase("","")
+	LML1 A 0 bright	A_JumpIfCloser(130,"Dodge1")
+    LMLO D 2 A_Chase
+    loop
+  Dodge1:
+	LML1 A 1 A_FaceTarget
+	LML1 C 0 ThrustThingZ(0, 20, 0, 0)
+	LML1 A 0 A_Jump(256, "DodgeRight1", "DodgeLeft1")
+  DodgeLeft1:
+	LML1 C 0 ThrustThing(angle*256/360+192, 25, 0, 0)
+	Goto See
+  DodgeRight1:
+	LML1 C 0 ThrustThing(angle*256/360+64, 25, 0, 0)
+	Goto See
+  Dodge2:
+	LML2 A 1 A_FaceTarget
+	LML2 C 0 ThrustThingZ(0, 20, 0, 0)
+	LML2 A 0 A_Jump(256, "DodgeRight2", "DodgeLeft2")
+  DodgeLeft2:
+	LML2 C 0 ThrustThing(angle*256/360+192, 25, 0, 0)
+	Goto See
+  DodgeRight2:
+	LML2 C 0 ThrustThing(angle*256/360+64, 25, 0, 0)
+	Goto See
+  Dodge3:
+	LML3 A 1 A_FaceTarget
+	LML3 C 0 ThrustThingZ(0, 20, 0, 0)
+	LML3 A 0 A_Jump(256, "DodgeRight3", "DodgeLeft3")
+  DodgeLeft3:
+	LML3 C 0 ThrustThing(angle*256/360+192, 25, 0, 0)
+	Goto See
+  DodgeRight3:
+	LML3 C 0 ThrustThing(angle*256/360+64, 25, 0, 0)
+	Goto See
+  Dodge4:
+	LML4 A 1 A_FaceTarget
+	LML4 C 0 ThrustThingZ(0, 20, 0, 0)
+	LML4 A 0 A_Jump(256, "DodgeRight4", "DodgeLeft4")
+  DodgeLeft4:
+	LML4 C 0 ThrustThing(angle*256/360+192, 25, 0, 0)
+	Goto See
+  DodgeRight4:
+	LML4 C 0 ThrustThing(angle*256/360+64, 25, 0, 0)
+	Goto See
+  Melee:
+    LMLO N 0 A_SetShootable
+    LMLO N 0 A_Jump (127,3)
+    LMLO N 2 A_FaceTarget
+    LMLO P 2 A_MeleeAttack
+    LMLO N 2 A_MeleeAttack
+    goto See
+    LMLO O 2 A_MeleeAttack
+    LMLO Q 2 A_FaceTarget 
+    LMLO O 2 A_MeleeAttack
+    goto See
+  Elec:
+    LMLO P 2 bright  A_MeleeAttack
+    LMLO R 2 bright  A_MeleeAttack
+    LMLO P 2 bright  A_MeleeAttack
+    LMLO W 2 bright  A_MeleeAttack
+    LMLO P 2 bright  A_MeleeAttack
+    LMLO S 2 bright  A_MeleeAttack
+    LMLO Q 2 bright  A_MeleeAttack
+    LMLO R 2 bright  A_MeleeAttack
+    LMLO P 2 bright  A_MeleeAttack
+    LMLO R 2 bright  A_MeleeAttack
+    LMLO P 2 bright  A_MeleeAttack
+    LMLO U 2 bright  A_MeleeAttack
+    LMLO P 2 bright  A_MeleeAttack
+    LMLO S 2 bright  A_MeleeAttack
+    LMLO Q 2 bright  A_MeleeAttack
+    LMLO T 2 bright  A_MeleeAttack
+    LMLO Q 2 bright  A_MeleeAttack
+    LMLO V 2 bright  A_MeleeAttack
+    goto See
+  Pain:
+    TNT1 A 0 A_SetShootable
+	TNT1 A 0 A_Jump(87,"PainDodge")
+    LMLO E 2 A_Pain
+    Goto See
+  PainDodge:
+    LMLO E 2 A_Pain
+    Goto Dodge1
+  Death:
+    LMLO F 4 A_Scream
+	TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(30,60), 0, random(0,360), 2, random(0,360)) 
+    LMLO G 8 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
+    LMLO H 8
+	LMLO I 8 A_NoBlocking
+	LMLO J 8 A_SpawnItem("BodyCrash",0,0,0,0)
+	LMLO K 8
+	LMLO L 8
+    LMLO M -1
+    Stop
+  Raise:
+	TNT1 A 0
+	TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+    LMLO MLKJIHGF 5
+    goto See
+  }
+}
+
+ACTOR TransparentLoper : LoperComplex 21521
+{ 
++SHADOW
+RenderStyle Translucent
+Alpha 0.20
+Obituary "%o was electrically stomped on by an invisible Loper."
+Tag "\c[m8]Transparent Loper\c-"
+}

@@ -1,0 +1,254 @@
+ACTOR LukewarmElemental 28658
+{ 
+Health 1400
+Radius 31
+Height 56
+Mass 1000
+Speed 10
+PainChance 40
+Scale 0.75
+Obituary "%o was frozen and then thawed by a Lukewarm Elemental's temperature."
+Monster
++FLOAT
++NOGRAVITY
++DONTFALL
++MISSILEMORE
++DONTHARMSPECIES
++QUICKTORETALIATE
+PainChance "Souls", 0
+PainChance "ChaosSoul", 0
+DamageFactor "CurseComet", 0.0
+DamageFactor "HelementalComet", 0.0
+DamageFactor "SoulToxic", 0.0
+DamageFactor "BombBreath", 0.0
+DamageFactor "Ice", 0.0
+DamageFactor "FreezerBurn", 0.0
+DamageFactor "PyroShot", 0.0
+DamageFactor "Fire", 0.0
+DamageFactor "Souls", 0.0
+Damagefactor "EleSouls", 0.0
+DropItem "BossLifeEssence" 200 25
+DropItem "BossArmorBonusMax" 200 1
+DropItem "NewCellPack" 128 200
+DropItem "BigGas" 128 200
+DropItem "BigCFMana" 128 100
+DropItem "NewCell" 256 60
+DropItem "Gas" 256 60
+DropItem "CFMana" 256 30
+Bloodcolor "Red"
+SeeSound "Lukewarm/See"
+PainSound "Lukewarm/Pain"
+DeathSound "Lukewarm/Death"
+ActiveSound "Lukewarm/Active"
+Species "EleSouls"
+Tag "$NELukewarm"
+var int user_lowlag;
+States 
+{ 
+   Spawn: 
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
+	Goto Idle
+  Idle:
+     RAHO AA 10 A_Look 
+     Loop 
+  See:
+	TNT1 A 0 A_JumpIf(user_lowlag == 1,"MoreSee")
+	TNT1 A 0 A_JumpIfTargetInLOS("MoreSee",0,0,0,0)
+	RAHO A 2 A_Chase
+	Loop
+  MoreSee:
+	TNT1 A 0 A_SetUserVar("user_lowlag",1)
+     RAHO AA 2 A_Chase
+	 TNT1 A 0 A_Jump(22,"Evade")
+     Loop 
+   Evade:
+	 TNT1 A 0 A_Jump(128,7)
+	 TNT1 A 0 ThrustThing(Angle*256/360+64,14,0,0)
+	 RAHO AAA 3 A_Chase
+	 TNT1 A 0 A_Stop
+	 Goto See
+	 TNT1 A 0 ThrustThing(Angle*256/360+192,14,0,0)		 
+	 RAHO AAA 3 A_Chase
+	 TNT1 A 0 A_Stop		 
+	 Goto See
+   Missile:
+     TNT1 A 0 A_JumpIfCloser(500,"Breath")
+	 TNT1 A 0 A_Jump(150,"Lukewarm")
+   Normal:
+	  TNT1 A 0 A_Jump(50,"DualPyroSouls","DualCryoSouls")
+      RAHO BC 3 Bright A_FaceTarget
+      RAHO C 0 Bright A_PainAttack("PyroSoulEnemy",-45)
+	  RAHO C 3 Bright A_PainAttack("CryoSoulEnemy",45)
+      Goto See
+   Lukewarm:
+      RAHO BC 3 Bright A_FaceTarget 
+	  TNT1 A 0 A_CustomMissile("PyroSoulSeekingComet",-45,0,0)
+	  RAHO C 3 A_CustomMissile("LukeWarmFRZBomb",45,0,0)
+      Goto See
+   DualPyroSouls:
+      RAHO BC 3 Bright A_FaceTarget 
+      RAHO C 3 Bright A_DualPainAttack("PyroSoulEnemy")
+      Goto See
+   DualCryoSouls:
+      RAHO BC 3 Bright A_FaceTarget 
+      RAHO C 3 Bright A_DualPainAttack("CryoSoulEnemy")
+      Goto See
+   Breath:
+      RAHO A 3 Bright A_FaceTarget 
+	  TNT1 A 0 A_PlaySound("monster/psoattack")
+	  TNT1 A 0 A_CustomMissile("ToxicEleBreath",10,-45,Random(18,-18))
+	  RAHO BCC 2 A_CustomMissile("ZombieFlameShot",10,45,random(-4,4),0)
+	  RAHO C 1 Bright A_FaceTarget
+	  TNT1 A 0 A_CustomMissile("ToxicEleBreath",10,-45,Random(18,-18))
+	  RAHO CCC 2 A_CustomMissile("ZombieFlameShot",10,45,random(-4,4),0)
+	  RAHO C 1 Bright A_FaceTarget
+	  TNT1 A 0 A_CustomMissile("ToxicEleBreath",10,-45,Random(18,-18))
+	  RAHO CCC 2 A_CustomMissile("ZombieFlameShot",10,45,random(-4,4),0)
+	  RAHO C 1 Bright A_FaceTarget
+	  TNT1 A 0 A_CustomMissile("ToxicEleBreath",10,-45,Random(18,-18))
+	  RAHO CCC 2 A_CustomMissile("ZombieFlameShot",10,45,random(-4,4),0)
+	  RAHO C 1 Bright A_FaceTarget
+	  TNT1 A 0 A_CustomMissile("ToxicEleBreath",10,-45,Random(18,-18))
+	  RAHO CCC 2 A_CustomMissile("ZombieFlameShot",10,45,random(-4,4),0)
+	  RAHO C 1 Bright A_FaceTarget
+	  TNT1 A 0 A_CustomMissile("ToxicEleBreath",10,-45,Random(18,-18))
+	  RAHO CCC 2 A_CustomMissile("ZombieFlameShot",10,45,random(-4,4),0)
+	  RAHO C 1 Bright A_FaceTarget
+	  TNT1 A 0 A_CustomMissile("ToxicEleBreath",10,-45,Random(18,-18))
+	  RAHO CCC 2 A_CustomMissile("ZombieFlameShot",10,45,random(-4,4),0)
+	  RAHO C 1 Bright A_FaceTarget
+	  TNT1 A 0 A_CustomMissile("ToxicEleBreath",10,-45,Random(18,-18))
+	  RAHO CCC 2 A_CustomMissile("ZombieFlameShot",10,45,random(-4,4),0)
+	  RAHO C 3 Bright A_FaceTarget
+	  Goto See
+   Pain:
+      RAHO D 3 
+      RAHO D 3 A_Pain
+	  TNT1 A 0 A_Jump(87,"PainMissile")
+      Goto See 
+   PainMissile:
+	  RAHO D 3 Bright A_Pain
+	  Goto Missile	
+   Death: 
+	  TNT1 A 0 A_Jump(128,"Death2")
+      RAHO E 5 Bright
+      RAHO F 5 Bright A_Scream 
+      RAHO G 5 Bright A_NoBlocking 
+	  TNT1 A 0 A_SetTranslucent(0.75,1)
+	  TNT1 AAAA 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, random(20,40), 0, 0, 0, 0, 128)
+	  TNT1 AAAA 0 A_SpawnItemEx("BlueParticleSpawner", 0, 0, random(20,40), 0, 0, 0, 0, 128)
+	  TNT1 AAAA 0 A_CustomMissile("SmokeFX2", random(20,40), 0, random(0,360), 2, random(0,360))
+	  TNT1 AAAA 0 A_CustomMissile("Kaboom3", random(20,40), 0, random(0,360), 2, random(0,360))
+	  TNT1 AAA 0 A_SpawnItemEx("PyroSoulFlamethrowerShot",0,0,random(10,32),random(0,2),random(0,2),2,random(0,360),SXF_TRANSFERPOINTERS|SXF_SETMASTER,0)
+	  TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,15,CMF_AIMDIRECTION)
+	  TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,45,CMF_AIMDIRECTION)
+	  TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,65,CMF_AIMDIRECTION)
+	  TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,80,CMF_AIMDIRECTION)
+	  TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,105,CMF_AIMDIRECTION)
+	  TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,120,CMF_AIMDIRECTION)
+	  TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,145,CMF_AIMDIRECTION)
+	  TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,160,CMF_AIMDIRECTION)
+	  TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,185,CMF_AIMDIRECTION)
+	  TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,200,CMF_AIMDIRECTION)
+	  TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,220,CMF_AIMDIRECTION)
+	  TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,240,CMF_AIMDIRECTION)
+	  TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,260,CMF_AIMDIRECTION)
+	  TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,280,CMF_AIMDIRECTION)
+	  TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,300,CMF_AIMDIRECTION)
+	  RAHO H 6 Bright A_PainDie("PyroSoulEnemy")
+	  RAHO IJ 6 Bright
+      RAHO KLMN 6 Bright
+      Stop
+   Death2: 
+      RAHO E 5 
+      RAHO F 5 Bright A_Scream 
+      RAHO G 5 Bright A_NoBlocking 
+	  TNT1 A 0 A_SetTranslucent(0.75,1)
+	  TNT1 AAAA 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, random(20,40), 0, 0, 0, 0, 128)
+	  TNT1 AAAA 0 A_SpawnItemEx("BlueParticleSpawner", 0, 0, random(20,40), 0, 0, 0, 0, 128)
+	  TNT1 AAAA 0 A_CustomMissile("SmokeFX2", random(20,40), 0, random(0,360), 2, random(0,360))
+	  TNT1 AAAA 0 A_CustomMissile("Kaboom3", random(20,40), 0, random(0,360), 2, random(0,360))
+	  TNT1 AAA 0 A_SpawnItemEx("PyroSoulFlamethrowerShot",0,0,random(10,32),random(0,2),random(0,2),2,random(0,360),SXF_TRANSFERPOINTERS|SXF_SETMASTER,0)
+	  TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,15,CMF_AIMDIRECTION)
+	  TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,45,CMF_AIMDIRECTION)
+	  TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,65,CMF_AIMDIRECTION)
+	  TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,80,CMF_AIMDIRECTION)
+	  TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,105,CMF_AIMDIRECTION)
+	  TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,120,CMF_AIMDIRECTION)
+	  TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,145,CMF_AIMDIRECTION)
+	  TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,160,CMF_AIMDIRECTION)
+	  TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,185,CMF_AIMDIRECTION)
+	  TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,200,CMF_AIMDIRECTION)
+	  TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,220,CMF_AIMDIRECTION)
+	  TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,240,CMF_AIMDIRECTION)
+	  TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,260,CMF_AIMDIRECTION)
+	  TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,280,CMF_AIMDIRECTION)
+	  TNT1 A 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,300,CMF_AIMDIRECTION)
+	  RAHO H 6 Bright A_PainDie("CryoSoulEnemy")
+	  RAHO IJ 6 Bright
+      RAHO KLMN 6 Bright
+      Stop
+   } 
+}
+
+Actor LukeWarmFRZBomb : FRZRBehBomb
+{
+DamageType "EleSouls"
+DamageType "Ice"
+States
+{
+  Spawn:
+	TNT1 A 0 A_CustomMissile("FRZRBehBombTrail",Random(-2,2),Random(-2,2))
+	TNT1 A 0 A_CustomMissile("ProjectileTrailParticleBlue",Random(-2,2),Random(-2,2))
+	TNT1 A 0 A_CustomMissile("FRZRBehBombTrail",Random(-2,2),Random(-2,2))	
+	TNT1 A 0 A_CustomMissile("ProjectileTrailParticleBlue",Random(-2,2),Random(-2,2))
+	FX05 A 1 Bright
+	TNT1 A 0 A_CustomMissile("FRZRBehBombTrail",Random(-2,2),Random(-2,2))
+	TNT1 A 0 A_CustomMissile("ProjectileTrailParticleBlue",Random(-2,2),Random(-2,2))
+	TNT1 A 0 A_CustomMissile("FRZRBehBombTrail",Random(-2,2),Random(-2,2))	
+	TNT1 A 0 A_CustomMissile("ProjectileTrailParticleBlue",Random(-2,2),Random(-2,2))
+	FX05 B 1 Bright
+	TNT1 A 0 A_CustomMissile("FRZRBehBombTrail",Random(-2,2),Random(-2,2))
+	TNT1 A 0 A_CustomMissile("ProjectileTrailParticleBlue",Random(-2,2),Random(-2,2))
+	TNT1 A 0 A_CustomMissile("FRZRBehBombTrail",Random(-2,2),Random(-2,2))	
+	TNT1 A 0 A_CustomMissile("ProjectileTrailParticleBlue",Random(-2,2),Random(-2,2))
+	FX05 C 1 Bright	
+	Loop
+  Death:
+	TNT1 AAA 0 A_CustomMissile("Bluekaboom4",0,0,random(0,360),2,random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX4",0,0,random(0,360),2,random(0,360))	
+	SHEX G 0 A_Explode(32,102,0)
+	SHEX G 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,15,CMF_AIMDIRECTION)
+	SHEX G 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,45,CMF_AIMDIRECTION)
+	SHEX G 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,65,CMF_AIMDIRECTION)
+	SHEX G 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,80,CMF_AIMDIRECTION)
+	SHEX G 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,105,CMF_AIMDIRECTION)
+	SHEX G 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,120,CMF_AIMDIRECTION)
+	SHEX G 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,145,CMF_AIMDIRECTION)
+	SHEX G 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,160,CMF_AIMDIRECTION)
+	SHEX G 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,185,CMF_AIMDIRECTION)
+	SHEX G 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,200,CMF_AIMDIRECTION)
+	SHEX G 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,220,CMF_AIMDIRECTION)
+	SHEX G 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,240,CMF_AIMDIRECTION)
+	SHEX G 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,260,CMF_AIMDIRECTION)
+	SHEX G 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,280,CMF_AIMDIRECTION)
+	SHEX G 0 A_CustomMissile("CryoSoulFreezeBlast",0,0,300,CMF_AIMDIRECTION)
+	SHEX DCEFG 3 Bright
+	Stop
+    }
+}
+
+ACTOR LukeWarmFireBreath : PoisonEleBreath
+{ 
+	Speed 18
+	Species "EleSouls"
+	DamageType "SoulToxic"
+    States 
+    { 
+    Spawn: 
+        FIR1 LKJIHGFEDCB 2 A_Explode(11,95)
+    Death: 
+		FIR1 AA 2 A_FadeOut(0.25)
+        Stop 
+		} 
+}

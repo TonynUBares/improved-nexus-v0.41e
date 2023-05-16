@@ -1,0 +1,251 @@
+ACTOR Huntertron 29033
+{
+Health 900
+Radius 20
+Height 56
+Mass 500
+Speed 10
+PainChance 50
+PainChance "SoulToxic", 25
+PainChance "FatFlamer", 25
+PainChance "FiendFire", 25
+Scale 0.85
+GibHealth 75
+DamageFactor "CadaverRocket", 0.0
+BloodColor "Red"
+Obituary "The Huntertron hunted down %o."
+Hitobituary "%o was assassinated by a Huntertron."
+DropItem "Railgun " 128 1
+DropItem "ExplosiveRailgun" 64
+DropItem "BossLifeEssence" 128 25
+DropItem "BossArmorBonusMax" 128 1
+DropItem "LifeEssence" 200
+DropItem "ArmorBonusMax" 200
+DropItem "DemonAmmoBox" 128 200
+DropItem "NewCellPack" 128
+DropItem "RedArmor" 64
+DropItem "RadarItem" 10 1
+SeeSound "Huntertron/sight"
+ActiveSound "Huntertron/active"
+PainSound "Huntertron/pain"
+DeathSound "Huntertron/death"
+MeleeSound "baron/melee"
+Species "Skeletons"
+Tag "$NEHuntert"
+MONSTER
++FLOORCLIP
++LONGMELEERANGE
++MISSILEMORE
++FASTMELEE
+BloodColor Red
+States
+{
+Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
+	Goto Idle
+  Idle:
+    HUTR A 10 A_Look
+    Loop
+See:
+    TNT1 A 0 A_SpawnItem("BonyStep",0,0,0,0)
+    HUTR AAABBBCCC 2 A_Chase
+    TNT1 A 0 A_SpawnItem("BonyStep",0,0,0,0)
+    HUTR DDDEEEFFF 2 A_Chase
+    Loop
+Melee:
+    TNT1 A 0 A_FaceTarget
+    HUTR G 3 A_SkelWhoosh
+    HUTR H 3 A_FaceTarget
+    HUTR I 3 A_SkelFist
+    Goto See
+Missile:
+    TNT1 A 0 A_JumpIfCloser(275,"DashPunch")
+    TNT1 A 0 A_Jump(46,"RailgunStrong")
+	TNT1 A 0 A_Jump(32,"ExplosiveRailgun")
+Normal:
+	TNT1 A 0 A_PlaySound("weapons/rgcharge")
+    HUTR J 10 Bright A_FaceTarget
+	HUTR J 1 Bright
+	TNT1 A 0 A_PlaySound("railgunner/chargedshot")
+    TNT1 A 0 A_CustomMissile("RailgunImpactRed", 40, -12, 0)
+    TNT1 A 0 A_CustomMissile("RailgunImpactRed", 40, 12, 0)
+    HUTR K 0 Bright A_CustomRailgun(Random(40, 60),-12, "Red", None, 1, 1, 0, "HuntertronRailPuff")
+	HUTR K 10 Bright A_CustomRailgun(Random(40, 60),12, "Red", None, 1, 1, 0, "HuntertronRailPuff")
+	TNT1 A 0 A_Jump(64,"Pause")
+	TNT1 A 0 A_Jump(38,"RailgunStrong")
+	TNT1 A 0 A_Jump(22,"ExplosiveRailgun")
+	HUTR K 10
+	Goto Normal
+RailgunStrong:
+	TNT1 A 0 A_PlaySound("weapons/rgcharge")
+    HUTR JJ 15 Bright A_FaceTarget
+    HUTR K 0 Bright A_CustomMissile("HuntertronRail", 40, -12, 0)
+    HUTR K 10 Bright A_CustomMissile("HuntertronRail", 40, 12, 0)
+    HUTR K 10
+    Goto See
+ExplosiveRailgun:
+	TNT1 A 0 A_PlaySound("ExplosiveRailgun/Charge")
+	TNT1 A 0 A_PlaySound("InfernalCyberbaron/Attack",7)
+    HUTR RR 20 Bright A_FaceTarget
+	TNT1 A 0 A_PlaySound("ExplosiveRailgun/Fire")
+    TNT1 A 0 Bright A_CustomMissile("HuntertronExRail", 40, -12, 0)
+    TNT1 A 0 Bright A_CustomMissile("HuntertronExRail", 40, 12, 0)
+	HUTR K 0 Bright A_CustomRailgun(50,-12,None,None,RGF_SILENT,1,0,"HuntertronRailPuff",0,0,0,0,40,0,"ExplosiveRailgunTrail")
+	HUTR K 6 Bright A_CustomRailgun(50,12,None,None,RGF_SILENT,1,0,"HuntertronRailPuff",0,0,0,0,40,0,"ExplosiveRailgunTrail")
+    HUTR K 15
+    Goto See
+DashPunch:
+    TNT1 A 0 A_Jump(32,"Normal")
+	TNT1 A 0 A_FaceTarget
+    TNT1 A 0 A_Recoil(-40)
+    TNT1 A 0 A_SkelWhoosh	
+	HUTR GGGGG 1 A_SpawnItemEx("HuntertronDashGhostA",0,0,0,0,0,0,0,128)
+    TNT1 A 0 A_GiveInventory("HuntertronMeleeToken",1)
+	HUTR HHHHH 1 A_SpawnItemEx("HuntertronDashGhostA2",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_CustomMissile("FamineDashPunch",32,0,0,CMF_AIMDIRECTION)
+	HUTR III 1 A_SpawnItemEx("HuntertronDashGhostA3",0,0,0,0,0,0,0,128)
+	HUTR T 2 A_Stop	
+    Goto See
+Pause:
+	HUTR KK 10
+	Goto See
+Pain:
+	TNT1 A 0 A_Jump(87,"MissilePain")
+    HUTR L 10 A_Pain
+    Goto See
+MissilePain:
+	HUTR L 5 A_Pain
+    Goto Missile
+Death:
+    HUTR LM 7
+    HUTR N 7 A_Scream
+    HUTR O 7 A_NoBlocking
+    HUTR P 7 A_SpawnItem("BodyCrash",0,0,0,0)
+    HUTR Q -1
+    Stop
+XDeath:
+	HUTX A 5 A_XScream
+    HUTX B 4 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
+    HUTX C 4 A_NoBlocking
+    HUTX D 4 A_SpawnItem("BodyCrash",0,0,0,0)
+    HUTX E 4 
+    HUTX F -1
+    Stop
+Raise:
+	TNT1 A 0
+	TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+    HUTR PONML 5
+    Goto See
+    }
+}
+
+ACTOR HuntertronRailPuff : BulletPuff
+{
+DamageType "CadaverRocket"
+States
+{
+Spawn:
+	TNT1 A 0
+	Stop
+	}
+}
+
+ACTOR HuntertronRail : CardinalRail
+{
+DamageType "CadaverRocket"
+MissileType "CardinalRailTrail"
+Damage (Random(30,40))
+States
+{
+Spawn:
+    DCRP A 1 Bright
+    Loop
+Death:
+    TNT1 A 0
+	TNT1 A 0 A_SpawnItemEx("BFGShockwaveRed", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AAA 0 A_CustomMissile("Kaboom14", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 A 1 A_SpawnItem("RailgunImpactEffectRed")
+	Stop
+	}
+}
+
+ACTOR HuntertronExRail : ExplosiveRailgunImpact
+{
+MissileType "HuntertronExRailTrailExplodeSpawner"
+}
+
+ACTOR HuntertronExRailTrailExplodeSpawner
+{
+  States
+  {
+  Spawn:
+	TNT1 A 1 Nodelay A_SpawnItemEx("HuntertronExRailTrailExplode",random(0,4),0,0,random(0,4),0,random(-4,4),random(0,360))
+	Stop
+  }
+}
+
+ACTOR HuntertronExRailTrailExplode : ExplosiveRailgunTrailExplode
+{
+  Damagetype "CadaverRocket"
+  Species "Skeletons"
+  Tag "\c[Q3]Huntertron\c-"
+  Obituary "The Huntertron hunts %o."
+  States
+  {
+  Spawn:
+	TNT1 A 0
+	FXPO AB 2 Bright A_FadeOut(0.05)
+	TNT1 A 0 A_Explode(30,128,0,0,40)
+	FXPO CD 1 Bright A_FadeOut(0.05)
+	TNT1 A 0 A_Explode(30,128,0,0,40)
+	FXPO EF 1 Bright A_FadeOut(0.05)
+	TNT1 A 0 A_Explode(30,128,0,0,40)
+	FXPO GHIJKLM 1 Bright A_FadeOut(0.05)
+	Stop
+  }
+}
+
+ACTOR HuntertronMeleeToken : Inventory
+{
+Inventory.Amount 1
+Inventory.MaxAmount 1
+}
+
+ACTOR HuntertronDashGhostA
+{
+Scale 0.8
+RENDERSTYLE Translucent
+Alpha 0.75
++NOGRAVITY
++CLIENTSIDEONLY
++DONTSPLASH
++NOINTERACTION
++NOCLIP
+States
+{
+Spawn:
+    HUTR G 2 A_FadeOut(0.18)
+    Loop
+    }
+}
+
+
+ACTOR HuntertronDashGhostA2 : HuntertronDashGhostA
+{
+States
+{
+Spawn:
+    HUTR H 2 A_FadeOut(0.18)
+    Loop
+    }
+}
+
+ACTOR HuntertronDashGhostA3 : HuntertronDashGhostA
+{
+States
+{
+Spawn:
+    HUTR I 2 A_FadeOut(0.18)
+    Loop
+    }
+}

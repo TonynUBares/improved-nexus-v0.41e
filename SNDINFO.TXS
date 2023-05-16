@@ -1,0 +1,1095 @@
+//Glitch
+hack/glitch HCKSPWN
+
+//Hackroid Zombie
+HackroidZombie/see  HCZOSIT1
+HackroidZombie/Pain  HCZOPAI2
+HackroidZombie/Death HCZODHT1
+HackroidZombie/Active HCZOACT5
+HackroidZombie/Anger  HCZOACT4
+
+//Hackroid Imp
+HackroidImp/see  HCIMSIT1
+HackroidImp/Pain  HCIMPAI3
+HackroidImp/Death HCIMDHT1
+HackroidImp/Active HCIMACT3
+
+//Hackroid Kamikaze
+HackroidBK/see  HKBKDHTC
+
+//Hackroid Captain
+HackroidAC/see  HCASIG1
+HackroidAC/Pain  HCAPAI3
+HackroidAC/Death HCADETH
+HackroidAC/Active HCAACT1
+
+//Hackroid ???
+//Hqueen/sight HKMATSEE
+
+// Plasma Shotgun
+
+plasmashotgun/fire PLSGFIRE
+plasmashotgun/load PLSGLO4D
+weapons/plasmashotgun/pump PSGPUMP
+weapons/plasmashotgun/add PSGADD
+
+// Tech Vulcan
+
+vulcan/pickup VULPICK
+vulcan/fire VULGUN
+vulcan/altfire VULCFIR2
+
+// Tech Erasus
+
+erasus/load    ERALOAD
+erasus/fire    ERAFIRE
+erasus/fly     ERAFLY
+erasus/explode ERAEXP
+erasus/up	ERAGUP
+
+// (w/Demented) Flak Cannon
+
+Weapon/FLAKSLCT FKRELOAD
+Weapon/FLAKPKUP FKRELOAD
+Weapon/FLAKSNAP DSGROPEN
+Weapon/FLAKRELD FKRELOAD
+Weapon/FLAKFIRE FLAKFIRE
+Weapon/FLAKAFIR FLAKAFIR
+Weapon/FLAKEXPL FLAKEXPL
+
+Weapon/DFLAKFIRE DFLAKFIR
+Weapon/DFLAKLOAD DFLAKLOD
+Weapon/DFLAKALT DFLAKALT
+
+$random ricochet/hit 	{ flakhit/1 flakhit/2 }
+$random weapons/flak	{ flakhit/1 flakhit/2 }
+flakhit/1	FLAKHIT1
+flakhit/2   FLAKHIT2
+
+
+
+// Unmaker
+
+UnmakerGet			UNMGET
+UnmakerReady		UNMKLP
+UnmakerUp			UNUP
+UnBallShot			UNMAKER
+UnBallSplash		UNBEAMFR
+unmaker/hum			UNMKHUM
+
+// Barrel?
+
+barrel/destroy			BARRDEAD
+
+// Demon Tech Axe
+
+weapons/plasmashock	AXEHITDT
+weapons/hum	AXEPOWER
+weapons/axeswing AXESWING
+weapons/axehit AXENORMA
+
+// Fake Barrels
+
+legendary/fakestrike FAKELEGB
+enraged/fakestrike FAKEENRB
+
+// True Legendary Sphere/Armor/Time Freeze Sphere/ Ammo Sphere
+
+truelegsphere/pickup TLEGSGET
+$Volume TLEGSPH 1.0
+
+truelegarmor/pickup TLEGARMO
+$Volume TLEGARMO 1.0
+
+truelegtime/pickup TLEGTPIK
+truelegtime/use TLEGTUSE
+
+truelegammosphere/use TLEGASUS
+
+// Legendary Behemoth Cannon
+
+LegBeheCannon/up	LEGBCRDY
+
+// Nemesis Minigun
+
+NemesisMinigun/up		NEMIUP
+NemesisMinigun/start	NEMISTRT
+NemesisMinigun/loop		NEMILOOP
+NemesisMinigun/dloop	NEMIDLOP
+NemesisMinigun/stop		NEMISTOP
+NemesisMinigun/change	NEMICHAN
+
+// Baby Eraser Spider
+
+BabyEraser/sight	BERSPSIG
+BabyEraser/active	BERSPACT
+BabyEraser/pain		BERSPPAI
+BabyEraser/death	BERSPDTH
+
+// Loper
+
+loper/sight			LOPSITE
+loper/elec			elec1
+loper/death			lopdth
+loper/tele1			loptel1
+loper/tele2			loptel2
+loper/pain			LOPPAIN
+$random loper/tele 		{ loper/tele1  loper/tele2 }
+
+// Legendary General
+
+LEGESIG1	LEGESIG1
+LEGESIG2	LEGESIG2
+LEGESIG3	LEGESIG3
+LEGESIG4	LEGESIG4
+LEGEACT1	LEGEACT1
+LEGEACT2	LEGEACT2
+LEGEACT3	LEGEACT3
+lgeneral/pain	LEGEPAI1
+lgeneral/death	LEGEDHT1
+
+$random lgeneral/sight	{ LEGESIG1 LEGESIG2 LEGESIG3 LEGESIG4 }
+$random lgeneral/active	{ LEGEACT1 LEGEACT2 LEGEACT3 }
+
+// Enraged Legendary Cowboy
+
+$random ELegendaryCowboy/Pain { ELegendaryCowboy/Pain1 ELegendaryCowboy/Pain2 ELegendaryCowboy/Pain3 ELegendaryCowboy/Pain4 }
+
+$Volume ECOWIN 3.0
+$Volume ECODRAW 3.0
+$Volume ECOPAI1 3.0
+$Volume ECOPAI2 3.0
+$Volume ECOPAI3 3.0
+$Volume ECOPAI4 3.0
+$Volume ECOLOSE 3.0
+
+ELegendaryCowboy/See ECODRAW
+ELegendaryCowboy/HighNoon ECOWIN
+ELegendaryCowboy/Pain1 ECOPAI1
+ELegendaryCowboy/Pain2 ECOPAI2
+ELegendaryCowboy/Pain3 ECOPAI3
+ELegendaryCowboy/Pain4 ECOPAI4
+ELegendaryCowboy/Death ECOLOSE
+
+// Legendary Cybruiser
+
+lcbruiser/see1		LCBRSIT1
+lcbruiser/see2		LCBRSIT2
+lcbruiser/see3		LCBRSIT3
+lcbruiser/active1	LCBRACT1
+lcbruiser/active2	LCBRACT2
+lcbruiser/active3	LCBRACT3
+lcbruiser/pain1 	LCBRPAI1
+lcbruiser/pain2 	LCBRPAI2
+lcbruiser/pain3 	LCBRPAI3
+lcbruiser/pain4 	LCBRPAI4
+lcbruiser/death		LCBRDHT
+lcbruiser/rage1		LCBRRGE1
+lcbruiser/rage2		LCBRRGE2
+
+$random lcbruiser/see {	lcbruiser/see1 lcbruiser/see2 lcbruiser/see3 }
+$random lcbruiser/active { lcbruiser/active1 lcbruiser/active2 lcbruiser/active3 }
+$random lcbruiser/pain { lcbruiser/pain1 lcbruiser/pain2 lcbruiser/pain3 lcbruiser/pain4 }
+$random lcbruiser/rage { lcbruiser/rage1 lcbruiser/rage2 }
+
+// Hell Razer
+
+HellRazer/Sight		HERASIG
+HellRazer/Active	HERAACT
+HellRazer/Pain		HERAPAI
+HellRazer/Death		HERADHT
+
+//Empowered Demon Tech Rifle
+
+EDTR/Fire EDTRIFI
+EDTR/Idle EDTRIDL
+
+// Explosive Demon Tech Rifle
+
+explosivedtech/pickup	EDTRPIUP
+explosivedtech/idle		EDTRIDLE
+explosivedtech/fire		EDTREXPL
+explosivedtech/disable EDTRALT1
+explosivedtech/enable EDTRALT2
+
+// Tortured Soul
+
+torturedsoul/sight dstrtsit
+torturedsoul/pain dstrtpn
+torturedsoul/death dstrtdth
+torturedsoul/active dstrtact
+
+// Frost Demon
+
+frostdemon/sight	FRDESIT
+frostdemon/pain		FRDEPAI
+frostdemon/idle		FRDEACT
+
+// Carrier
+
+carrier/sight	CARRISIT
+carrier/pain	CARRIPAI
+carrier/melee	CARRIMEL
+carrier/death	CARRIDHT
+carrier/idle	CARRIACT
+carrier/land	CARRIGRD
+
+// Cyber Imp
+
+$random CyberImp/Sight { CIMPSIT1 CIMPSIT2 }
+CIMPSIT1	CIMPCIT1
+CIMPSIT2	CIMPSIT2
+$random CyberImp/Death { CIMPDTH1 CIMPDTH2 }
+CIMPDTH1	CIMPDTH1
+CIMPDTH2	CIMPDTH2
+CyberImp/Pain CIMPPAIN
+CyberImp/Act CIMPACT
+
+// Paladin
+
+Paladin/Sight	HPNASIT
+Paladin/Active	HPNAACT
+Paladin/Pain	HPNAPAIN
+Paladin/Death	HPNADTH
+Paladin/XDeath	HPNAXDTH
+Paladin/Swing	HPNASWG
+Paladin/Melee	HPNAHIT
+Paladin/Shoot	HPNAATK
+Paladin/Hit		HPNAHIT2
+Paladin/Grenade	HPNAGREN
+Paladin/Bounce	HPNABNC
+Paladin/Explode	HPNAEXPL
+Paladin/Step	HPNASTEP
+
+// Huntertron
+
+Huntertron/sight 	HUTRSIG
+$random Huntertron/active { HUNTER1 HUNTER2 HUNTER3 }
+HUNTER1		HUTRACT1
+HUNTER2		HUTRACT2
+HUNTER3		HUTRACT3
+$random Huntertron/death { HUNTERD1 HUNTERD2 HUNTERD3 }
+HUNTERD1	HUTRDHT1
+HUNTERD2	HUTRDHT2
+HUNTERD3	HUTRDHT3
+Huntertron/pain 	HUTRPAI
+
+// Enraged Famine
+
+EnragedFamine/sight		ENFASIT
+EnragedFamine/active	ENFAACT
+EnragedFamine/death		ENFADHT
+
+// Enraged Legendary Barrel
+
+enragedlegendary/strike	EB4RBOOM
+
+// Obliterator
+
+Obliterator/sight	OBILSIT
+Obliterator/active	OBILACT
+Obliterator/pain	OBILPAI
+Obliterator/death	OBILDTH
+
+// ITEMS
+
+NemesisArmor/Get	NARMOR
+NemesisSphere/Get	NSPHERE
+NemesisSuperSphere/Get	NSUPER
+NemesisUltraSphere/Get	NULTRA
+PhaseArmor/Get	PHARMOR
+HellfireArmor/Get	HFARMOR
+CrystalArmor/Pickup CRYSARMO
+Extreme/Idle	XTRIDLE
+BerserkSphere/Get	BRSKSPHR
+RegeneratorArmor/Get	REGEARMR
+LightNemesisArmor/Get	NLIGHT
+LightNemesisArmor/Use	NLIGUSE
+Syringe/Get	SYRGPICK
+WingsOfWrath/Use	WINGUSE
+TerminatorArtifact/Get	TERMGET
+MedCell/Pick	HCELPICK
+MedCell/Use		HCELLUSE
+MedCellPack/Use		HBCELUSE
+AllMapBroken/Get	MAPBRGET
+Radar/Get	RADARGET
+DTAllMap/GET	DTMAPGET
+NewAllMap/Get	MAPGET
+Devil/Get	DEVILPOW
+
+// Brimstone
+
+weapons/brimstonefly BRIMLAZ
+weapons/brimstonehit BRIMHIT
+weapons/brimstonefire BRIMFIRE
+weapons/brimstonebigfire OBEFIRE
+weapons/brimstonenope BRIMNOPE
+weapons/brimstonecharge BRIMCHR
+weapons/brimstoneready BRIMREDY
+weapons/brimstonestart BRIMSTRT
+weapons/brimstoneloop BRIMLOOP
+weapons/brimstonedead BRIMDEAD
+
+
+$random Weapons/BrimstoneExplode { Weapons/DeathheadExplode1 Weapons/DeathheadExplode2 Weapons/DeathheadExplode3 Weapons/DeathheadExplode4 Weapons/DeathheadExplode5 Weapons/DeathheadExplode6 Weapons/DeathheadExplode7 }
+Weapons/BrimstoneExplode1	BRIMEXP1
+Weapons/BrimstoneExplode2	BRIMEXP2
+Weapons/BrimstoneExplode3	BRIMEXP3
+Weapons/BrimstoneExplode4	BRIMEXP4
+Weapons/BrimstoneExplode5	BRIMEXP5
+Weapons/BrimstoneExplode6	BRIMEXP6
+Weapons/BrimstoneExplode7	BRIMEXP7
+
+$random Weapons/brimstonxExp { Weapons/brimstonxexp1 Weapons/brimstonxexp2 Weapons/brimstonxexp3 Weapons/brimstonxexp4 Weapons/brimstonxexp5 Weapons/brimstonxexp6 }
+Weapons/brimstonxexp1 BRIXEX01
+Weapons/brimstonxexp2 BRIXEX02
+Weapons/brimstonxexp3 BRIXEX03
+Weapons/brimstonxexp4 BRIXEX04
+Weapons/brimstonxexp5 BRIXEX05
+Weapons/brimstonxexp6 BRIXEX06
+
+
+// General Akhanov
+
+GAkhanov/Sight	AKHASIT1
+$random GAkhanov/Active	{ AKHAACT1 AKHAACT2 }
+AKHAACT1	AKHAACT1
+AKGAACT2	AKHAACT2
+$random GAkhanov/Attack { AKHAATK1 AKHAATK2 AKHAATK3 }
+AKHAATK1	AKHAATK1
+AKHAATK2	AKHAATK2
+AKHAATK3	AKHAATK3
+$random	GAkhanov/Rage { AKHARAG1 AKHARAG2 AKHARAG3 }
+AKHARAG1	AKHARAG1
+AKHARAG2	AKHARAG2
+AKHARAG3	AKHARAG3
+GAkhanov/Pain	AKHAPAI1
+GAkhanov/Death	AKHADTH1
+
+// Darko
+
+Darko/Sight	DAKOSIT1
+$random Darko/Active { DAKOACT1 DAKOACT2 }
+DAKOACT1	DAKOACT1
+DAKOACT2	DAKOACT2
+$random Darko/Taunt { DAKOTAU1 DAKOTAU2 DAKOTAU3 DAKOTAU4 DAKOTAU5 }
+DAKOTAU1	DAKOTAU1
+DAKOTAU2	DAKOTAU2
+DAKOTAU3	DAKOTAU3
+DAKOTAU4	DAKOTAU4
+DAKOTAU5	DAKOTAU5
+Darko/Pain	DAKOPAI1
+Darko/Death	DAKODHT1
+
+// Cyberhund
+
+$random Cyberhund/sight { DSD1A01 DSD1A02 DSD1A03 }
+DSD1A01	DSD1A01
+DSD1A02	DSD1A02
+DSD1A03	DSD1A03
+$random Cyberhund/bite { DSD1A04 DSD1A05 }
+DSD1A04	DSD1A04
+DSD1A05	DSD1A05
+Cyberhund/Pain DSD1P01
+$random Cyberhund/death { DSD1D03 DSD1D04 DSD1D05 }
+DSD1D03	DSD1D03
+DSD1D04	DSD1D04
+DSD1D05	DSD1D05
+
+// Enraged Legendary Krieger
+
+EnragedLegKrieger/Sight		EGKRSIG
+EnragedLegKrieger/Active	EGKRACT
+EnragedLegKrieger/Pain		EGKRPAI
+EnragedLegKrieger/Death		EGKRDTH
+$random EnragedLegKrieger/Attack { EGKATK1	EGKATK2	EGKATK3	EGKATK4	}
+EGKATK1	EGKATK1
+EGKATK2	EGKATK2
+EGKATK3	EGKATK3
+EGKATK4	EGKATK4
+$random EnragedLegKrieger/KillTaunt { EGKTAU1 EGKTAU2 EGKTAU3 EGKTAU4 EGKTAU5 EGKTAU6 EGKTAU7 }
+EGKTAU1	EGKTAU1
+EGKTAU2	EGKTAU2
+EGKTAU3	EGKTAU3
+EGKTAU4	EGKTAU4
+EGKTAU5	EGKTAU5
+EGKTAU6	EGKTAU6
+EGKTAU7	EGKTAU7
+EnragedLegKrieger/Missile1	EGKRMIS1
+EnragedLegKrieger/Missile2	EGKRMIS2
+
+$rolloff EnragedLegKrieger/Sight 600 2200
+$rolloff EnragedLegKrieger/Death 600 2200
+$rolloff EnragedLegKrieger/Pain 600 2200
+$rolloff EnragedLegKrieger/Active 600 2200
+
+// Dark Hell Razer
+
+DarkHellRazer/Sight		DRHRSIT
+DarkHellRazer/Active	DRHRACT
+DarkHellRazer/Attack	DRHRATK
+DarkHellRazer/Pain		DRHRPAI
+DarkHellRazer/Death		DRHRDHT
+
+// Variable Crates
+
+RandomCrate/pickup	CRATEGET
+WeaponCrate/use	WPCRUSE
+UtilyCrate/use	UTCRUSE
+HealthCrate/use	HLCRUSE
+SuperCrate/use	SUCRUSE
+jackpot/other	JACKPOT
+
+// Demon Tech Sentries
+
+DTechSentry/pickup	DTSENTRY
+DTechSentry/use		DTSENDPY
+DTechSentry/beep	DTSENIDL
+DTechSentry/sight	DTSENSIT
+DTechSentry/death	DTSENDHT
+DTechSentry/alert	DTSENDGR
+
+// Legendary Stalker
+
+LSTKSIT1	LSTKSIT1
+LSTKSIT2	LSTKSIT2
+LSTKSIT3	LSTKSIT3
+$random LStalker/sight	{ LSTKSIT1 LSTKSIT2 LSTKSIT3 }
+LSTKACT1	LSTKACT1
+LSTKACT2	LSTKACT2
+LSTKACT3	LSTKACT3
+LSTKACT4	LSTKACT4
+$random LStalker/active	{ LSTKACT1 LSTKACT2 LSTKACT3 LSTKACT4 }
+LSTKPAI1	LSTKPAI1
+LSTKPAI2	LSTKPAI2
+$random LStalker/pain { LSTKPAI1 LSTKPAI2 }
+LStalker/death	LSTKDHT1
+
+// Servants
+
+CServant/sight		CSERVSIT
+CServant/active		CSERVACT
+CServant/pain		CSERVPAI
+CServant/death		CSERVDTH
+BFGServant/sight	BSERVSIT
+BFGServant/pain		BSERVPAI
+
+// Wrathlord
+
+WRLOSIT1	WRLOSIT1
+WRLOSIT2	WRLOSIT2
+WRLOSIT3	WRLOSIT3
+$random Wrathlord/sight	{ WRLOSIT1 WRLOSIT2 WRLOSIT3 }
+WRLOACT1	WRLOACT1
+WRLOACT2	WRLOACT2
+WRLOACT3	WRLOACT3
+WRLOACT4	WRLOACT4
+WRLOACT5	WRLOACT5
+$random Wrathlord/active	{ WRLOACT1 WRLOACT2 WRLOACT3 WRLOACT4 WRLOACT5 }
+WRLORAI1	WRLORAI1
+WRLORAI2	WRLORAI2
+WRLORAI3	WRLORAI3
+WRLORAI4	WRLORAI4
+$random Wrathlord/raise	{ WRLORAI1 WRLORAI2 WRLORAI3 WRLORAI4 }
+
+// Arachhunters
+
+Arachhunter/sight	AHHRKSIT
+Arachhunter/active	AHHRKACT
+Arachhunter/pain	AHHRKPAI
+Arachhunter/death	AHHRKDTH
+
+// Panz Grosse
+
+PanzGrosse/Sight	PANSSIT
+PanzGrosse/Active	PANSACT
+PANSTAU1	PANSTAU1
+PANSTAU2	PANSTAU2
+PANSTAU3	PANSTAU3
+PANSTAU4	PANSTAU4
+PANSTAU5	PANSTAU5
+PANSTAU6	PANSTAU6
+PANSTAU7	PANSTAU7
+$random PanzGrosse/taunt	{ PANSTAU2 PANSTAU3 PANSTAU4 PANSTAU5 PANSTAU7 }
+$random PanzGrosse/killtaunt	{ PANSTAU1 PANSTAU4 PANSTAU6 }
+PanzGrosse/Pain		PANSPAI
+PanzGrosse/death	PANZDHT
+
+$rolloff PanzGrosse/Active 1000 2000
+$rolloff PanzGrosse/Pain 1000 2000
+
+// Downfall Hitler / True Hitler
+
+DOLFSIT1	DOLFSIT1
+DOLFSIT2	DOLFSIT2
+DOLFSIT3	DOLFSIT3
+DOLFSIT4	DOLFSIT4
+DOLFSIT5	DOLFSIT5
+$random TrueHitler/Sight	{ DOLFSIT1 DOLFSIT2 DOLFSIT3 DOLFSIT4 DOLFSIT5 }
+DOLFACT1	DOLFACT1
+DOLFACT2	DOLFACT2
+DOLFACT3	DOLFACT3
+DOLFACT4	DOLFACT4
+DOLFACT5	DOLFACT5
+DOLFACT6	DOLFACT6
+DOLFACT7	DOLFACT7
+DOLFACT8	DOLFACT8
+DOLFACT9	DOLFACT9
+$random TrueHitler/Active	{ DOLFACT1 DOLFACT2 DOLFACT3 DOLFACT4 DOLFACT5 DOLFACT6 DOLFACT7 DOLFACT8 DOLFACT9 }
+DOLFPAI1	DOLFPAI1
+DOLFPAI2	DOLFPAI2
+DOLFPAI3	DOLFPAI3
+$random TrueHitler/Pain		{ DOLFPAI1 DOLFPAI2 DOLFPAI3 }
+DOLFTA1		DOLFTA1
+DOLFTA2		DOLFTA2
+DOLFTA3		DOLFTA3
+DOLFTA4		DOLFTA4
+DOLFTA5		DOLFTA5
+DOLFTA6		DOLFTA6
+DOLFTA7		DOLFTA7
+DOLFTA8		DOLFTA8
+DOLFTA9		DOLFTA9
+DOLFTA10	DOLFTA10
+DOLFTA11	DOLFTA11
+DOLFTA12	DOLFTA12
+DOLFTA13	DOLFTA13
+$random TrueHitler/Taunt	{ DOLFTA1 DOLFTA2 DOLFTA3 DOLFTA4 DOLFTA5 DOLFTA6 DOLFTA7 DOLFTA8 DOLFTA9 DOLFTA10 DOLFTA11 DOLFTA12 DOLFTA13 }
+DOLFKTA1	DOLFKTA1
+DOLFKTA2	DOLFKTA2
+DOLFKTA3	DOLFKTA3
+DOLFKTA4	DOLFKTA4
+DOLFKTA5	DOLFKTA5
+DOLFKTA6	DOLFKTA6
+DOLFKTA7	DOLFKTA7
+$random TrueHitler/KillTaunt	{ DOLFKTA1 DOLFKTA2 DOLFKTA3 DOLFKTA4 DOLFKTA5 DOLFKTA6 DOLFKTA7 }
+DOLFPTU1	DOLFPTU1
+DOLFPTU2	DOLFPTU2
+DOLFPTU3	DOLFPTU3
+DOLFPTU4	DOLFPTU4
+DOLFPTU5	DOLFPTU5
+DOLFPTU6	DOLFPTU6
+DOLFPTU7	DOLFPTU7
+DOLFPTU8	DOLFPTU8
+DOLFPTU9	DOLFPTU9
+DOLFPT10	DOLFPT10
+DOLFPT11	DOLFPT11
+$random TrueHitler/PainTaunt	{ DOLFPTU1 DOLFPTU2 DOLFPTU3 DOLFPTU4 DOLFPTU5 DOLFPTU6 DOLFPTU7 DOLFPTU8 DOLFPTU9 DOLFPT10 DOLFPT11 }
+DOLFDTH1	DOLFDTH1
+DOLFDTH2	DOLFDTH2
+DOLFDTH3	DOLFDTH3
+DOLFDTH4	DOLFDTH4
+$random TrueHitler/Death	{ DOLFDTH1 DOLFDTH2 DOLFDTH3 DOLFDTH4 }
+DOLFXDT1	DOLFXDT1
+DOLFXDT2	DOLFXDT2
+DOLFXDT3	DOLFXDT3
+$random TrueHitler/XDeath	{ DOLFXDT1 DOLFXDT2 DOLFXDT3 }
+TrueHitler/VileAttack	DOLFDOOM
+TrueHitler/Melee		DOLFKICK
+
+$rolloff TrueHitler/active		1000 5000
+$rolloff TrueHitler/pain		1000 5000
+$rolloff TrueHitler/paintaunt	1000 5000
+
+// Dr. Schabbs (Original)
+
+OriginalSchabbs/Death	SBBSDTH
+OriginalSchabbs/Pain	SBBSPAI
+OriginalSchabbs/Sight	SBBSSIT
+OriginalSchabbs/Attack	SBBSATK
+
+// Dr. Schabbs (My customization)
+
+NSBSSIT1	NSBSSIT1
+NSBSSIT2	NSBSSIT2
+NSBSSIT3	NSBSSIT3
+NSBSSIT4	NSBSSIT4
+$random CustomSchabbs/Sight		{ NSBSSIT1 NSBSSIT2 NSBSSIT3 NSBSSIT4 }
+NSBSACT1	NSBSACT1
+NSBSACT2	NSBSACT2
+NSBSACT3	NSBSACT3
+NSBSACT4	NSBSACT4
+NSBSACT5	NSBSACT5
+NSBSACT6	NSBSACT6
+NSBSACT7	NSBSACT7
+NSBSACT8	NSBSACT8
+$random CustomSchabbs/Active	{ NSBSACT1 NSBSACT2 NSBSACT3 NSBSACT4 NSBSACT5 NSBSACT6 NSBSACT7 NSBSACT8 }
+NSBSPAI1	NSBSPAI1
+NSBSPAI2	NSBSPAI2
+NSBSPAI3	NSBSPAI3
+NSBSPAI4	NSBSPAI4
+NSBSPAI5	NSBSPAI5
+NSBSPAI6	NSBSPAI6
+NSBSPAI7	NSBSPAI7
+NSBSPAI8	NSBSPAI8
+NSBSPAI9	NSBSPAI9
+NSBSPAI0	NSBSPAI0
+$random CustomSchabbs/Pain		{ NSBSPAI1 NSBSPAI2 NSBSPAI3 NSBSPAI4 NSBSPAI5 NSBSPAI6 NSBSPAI7 NSBSPAI8 NSBSPAI9 NSBSPAI0 }
+NSBSPT1		NSBSPT1
+NSBSPT2		NSBSPT2
+NSBSPT3		NSBSPT3
+NSBSPT4		NSBSPT4
+NSBSPT5		NSBSPT5
+NSBSPT6		NSBSPT6
+NSBSPT7		NSBSPT7
+NSBSPT8		NSBSPT8
+NSBSPT9		NSBSPT9
+NSBSPT10	NSBSPT10
+NSBSPT11	NSBSPT11
+NSBSPT12	NSBSPT12
+NSBSPT13	NSBSPT13
+NSBSPT14	NSBSPT14
+NSBSPT15	NSBSPT15
+$random CustomSchabbs/PainTaunt	{ NSBSPT1 NSBSPT2 NSBSPT3 NSBSPT4 NSBSPT5 NSBSPT6 NSBSPT7 NSBSPT8 NSBSPT9 NSBSPT10 NSBSPT11 NSBSPT12 NSBSPT13 NSBSPT14 NSBSPT15 }
+NSBSDHT1	NSBSDHT1
+NSBSDHT2	NSBSDHT2
+NSBSDHT3	NSBSDHT3
+NSBSDHT4	NSBSDHT4
+NSBSDHT5	NSBSDHT5
+NSBSDHT6	NSBSDHT6
+NSBSDHT7	NSBSDHT7
+$random CustomSchabbs/Death		{ NSBSDHT1 NSBSDHT2 NSBSDHT3 NSBSDHT4 NSBSDHT5 NSBSDHT6 NSBSDHT7 }
+NSBSXDT1	NSBSXDT1
+NSBSXDT2	NSBSXDT2
+NSBSXDT3	NSBSXDT3
+NSBSXDT4	NSBSXDT4
+NSBSXDT5	NSBSXDT5
+$random CustomSchabbs/XDeath	{ NSBSXDT1 NSBSXDT2 NSBSXDT3 NSBSXDT4 NSBSXDT5 }
+NSMBMEL1	NSMBMEL1
+NSMBMEL2	NSMBMEL2
+NSMBMEL3	NSMBMEL3
+NSMBMEL4	NSMBMEL4
+$random CustomSchabbs/Throw		{ NSMBMEL1 NSMBMEL2 NSMBMEL3 NSMBMEL4 }
+
+$rolloff CustomSchabbs/Active 1000 5000
+$rolloff CustomSchabbs/Pain 1000 5000
+$rolloff CustomSchabbs/PainTaunt 1000 5000
+$rolloff CustomSchabbs/Throw 1000 5000
+
+// Dr. Schabbs
+
+Schabbs/XDeath	SHABXDTH
+
+// Atomic Soul
+
+AtomicSoul/See		ATSOSIT
+AtomicSoul/Attack	ATSOATK
+AtomicSoul/Pain		ATSOPAI
+AtomicSoul/Death	ATSODHT
+
+// Lukewarm Elemental
+
+Lukewarm/See	LUWRMSIT
+Lukewarm/Active	LUWRMACT
+Lukewarm/Pain	LUWRMPAI
+Lukewarm/Death	LUWRMDTH
+
+// Tech Ripper
+
+TechRipper/up				THRISELE
+TechRipper/idle				THRIIDLE
+TechRipper/fire				THRIFIRE
+TechRipper/altfire			THRIALTF
+
+RIBLMEX1	RIBLMEX1
+RIBLMEX2	RIBLMEX2
+RIBLMEX3	RIBLMEX3
+RIBLMEX4	RIBLMEX4
+
+$random PlasmaRazor/explosion	{ RIBLMEX1 RIBLMEX2 RIBLMEX3 RIBLMEX4 }
+PlasmaRazor/hit				RIBLMBCE
+PlasmaRazorAlt/explosion	RIBLEXPL
+PlasmaRazorAlt/hit	RIBLBNCE
+
+// Tech Blizzard
+
+TechBlizzard/up		THBZSELE
+TechBlizzard/idle	THBZIDLE
+blizzard/fire		THBZSART
+blizzard/loop		THBZLOOP
+blizzard/end		THBZEND
+
+// Brimsumo
+Brimsumo/See	BRSOSIT
+Brimsumo/Attack	BRSOATK
+Brimsumo/Pain	BRSOPAI
+Brimsumo/Death	BRSODTH
+
+// Rockebus
+
+Rockebus/See	RFATSIT
+Rockebus/Attack	RFATATK
+Rockebus/Pain	RFATPAI
+Rockebus/Death	RFATDHT
+
+// Phase Moon
+PHMOSIT1	PHMOSIT1
+PHMOSIT2	PHMOSIT2
+PHMOSIT3	PHMOSIT3
+$random PhaseMoon/sight		{ PHMOSIT1 PHMOSIT2 PHMOSIT3 }
+PhaseMoon/active	PHMOIDLE
+PhaseMoon/pain		PHMOPAIN
+PHMODTH1	PHMODTH1
+PHMODTH2	PHMODTH2
+$random PhaseMoon/death		{ PHMODTH1 PHMODTH2 }
+
+// 1337 Demon Tech Rifle
+
+1337DTR/up	1337DTRG
+1337DTR1 1337DTR1
+1337DTR2 1337DTR2
+1337DTR3 1337DTR3
+$random 1337DTR/Fire { 1337DTR1 1337DTR2 1337DTR3 }
+$rolloff 1337DTR/Fire	400 2200
+1337DTR/reload	1337DTRR
+1337DTR/idle	1337DTRI
+1337/bounce		1337DTRB
+
+// 1337 Automatic Shotgun
+
+HKASGFR1	HKASGFR1
+HKASGFR2	HKASGFR2
+HKASGFR3	HKASGFR3
+$random 1337ASG/Fire { HKASGFR1 HKASGFR2 HKASGFR3 }
+1337ASG/Fire2	HKASGFR4
+
+// Unknown Items
+
+UnknownSphere/pickup	1337SPHR
+UnknownArmor/pickup		1337ARMR
+UnknownArmor/idle		1337IDLE
+UnknownHyperSphere/pickup	1337ULTR
+UnknownHyperSphere/idle		UNMKLP
+$rolloff UnknownHyperSphere/idle	500 3000
+1337/Ammo		HKAMMO1
+1337/AmmoBox	HKAMMO2
+1337/Shell		HKSHELL1
+1337/ShellBox	HKSHELL2
+
+// Death Assassin
+
+deathassassin/sight	DASSSIT
+deathassassin/pain	DASSPAIN
+deathassassin/death	DASSDTH
+deathassassin/melee	DASSKNF
+
+// HellClone
+
+CLNESIT1	CLNESIT1
+CLNESIT2	CLNESIT2
+CLNESIT3	CLNESIT3
+$random HellClone/sight { CLNESIT1 CLNESIT2 CLNESIT3 }
+HellClone/active	CLNEIDLE
+HellClone/death		CLNEDETH
+CLNEPAI1	CLNEPAI1
+CLNEPAI2	CLNEPAI2
+$random HellClone/pain { CLNEPAI1 CLNEPAI2 }
+
+// Fallen Rune
+
+FallenRune/Idle		BLCKIDLE
+
+// Death Rune
+
+DeathRune/Idle		DRUNIDLE
+
+// Void Core
+
+VoidCore/Idle		VICOIDLE
+VoidCore/Idle2		VICOBOMB
+VoidCore/Death		VICOSHRT
+VoidCore/Pickup		VICOPICK
+VICOPAI1	VICOPAI1
+VICOPAI2	VICOPAI2
+VICOPAI3	VICOPAI3
+VICOPAI4	VICOPAI4
+$random VoidCore/Crack { VICOPAI1 VICOPAI2 VICOPAI3 VICOPAI4 }
+
+//Uranium Core
+
+UraniumCore/Idle	URCOIDLE
+UraniumCore/Pickup	URCOPICK
+UraniumCore/Idle2	URCOBOMB
+UraniumCore/Idle3	URCOB0MB
+
+// Caconite
+
+Caconite/sight	CATNSIT
+Caconite/pain	CATNPAI
+Caconite/death	CATNDHT
+
+// Baby Cacodemon
+
+BabyCaco/sight	CACOBSIT
+BabyCaco/active	BABYACT
+BabyCaco/melee	BABYBITE
+BabyCaco/pain	CACOBPAI
+BabyCaco/death	CACOBDTH
+
+// Abbandine
+
+Abbandine/pain	ABNIPAIN
+Abbandine/death	ABNIDTH
+
+// Cyberassault
+
+Cyberassault/Sight	ARRASIT
+ARRAPAI1	ARRAPAI1
+ARRAPAI2	ARRAPAI2
+$random Cyberassault/Pain 	{ ARRAPAI1 ARRAPAI2 }
+Cyberassault/Death	ARRADTH
+ARRAACT1	ARRAACT1
+ARRAACT2	ARRAACT2
+$random Cyberassault/Active 	{ ARRAACT1 ARRAACT2 }
+Cyberassault/Rage	ARRAATK
+Cyberassault/Taunt	ARRATALK
+
+// Brimstone Cannon
+
+BrimstoneCannon/Fire			BRIMFIRE
+BRIMFIRA	BRIMFIRA
+BRIMFIRB	BRIMFIRB
+$random BrimstoneCannon/Short	{ BRIMFIRA BRIMFIRB }
+
+// Cards
+
+Card/pickup	CARDPICK
+
+// Plan C
+
+PlanC/pickup	CPLANPIK
+
+// Chests
+
+devilchest/good		DVLSIN
+DevilChest/Bad		DVLBAD
+DevilChest/Worst	DVLWOR
+DevilChest/Luck		DVLLUK
+chest/drop CHSTDROP
+chest/open CHSTOPEN
+
+/*
+$random chest/open { CHSTOPN1 CHSTOPN2 CHSTOPN3 }
+CHSTOPN1 CHSTOPN1
+CHSTOPN2 CHSTOPN2
+CHSTOPN3 CHSTOPN3
+*/
+
+$rolloff DevilChest/Good 500 5000
+$rolloff DevilChest/Bad 500 5000
+$rolloff DevilChest/Worst 500 5000
+$rolloff DevilChest/Luck 500 5000
+$rolloff AngelChest/Luck 500 5000
+$rolloff Chest/Open 500 5000
+
+// Nightmare Pestilence
+
+NightmarePest/Sight		NPSTSIT
+NightmarePest/Active	NPSTACT
+NightmarePest/Pain		NPSTPAI
+NightmarePest/Death		NPSTDTH
+
+// Death
+
+Death/Sight		DEATHSIT
+Death/Pain		DEATHPAI
+Death/Active	DEATHACT
+Death/Death		DEATHDTH
+Death/Summon	DEATHATK
+Death/Resurrect	DEATHRES
+
+// Conquest
+
+Conquest/Sight	CQSTSIGT
+$random Conquest/Active	{ CQSTACT1 CQSTACT2 }
+CQSTACT1	CQSTACT1
+CQSTACT2	CQSTACT2
+Conquest/Pain	CQSTPAIN
+Conquest/Death	CQSTDETH
+Conquest/Vile	CQSTVILE
+Conquest/Teleport	CQSTTELE
+Conquest/Melee	CQSTCLAW
+
+// Drone
+
+$random bird/sight { birdsee1 birdsee2 birdsee3 birdsee4 birdsee5 birdsee6 birdsee7 }
+$random bird/active { birdidle1 birdidle2 birdidle3 birdidle4 birdidle5 }
+$random bird/pain { birdpain1 birdpain2 birdpain3 birdpain4 }
+$random bird/death { birddeath1 birddeath2 birddeath3 birddeath4 birddeath5 birddeath6 }
+
+birdsee1 BIRSEE1
+birdsee2 BIRSEE2
+birdsee3 BIRSEE3
+birdsee4 BIRSEE4
+birdsee5 BIRSEE5
+birdsee6 BIRSEE6
+birdsee7 BIRSEE7
+birdidle1 BIRIDL1
+birdidle2 BIRIDL2
+birdidle3 BIRIDL3
+birdidle4 BIRIDL4
+birdidle5 BIRIDL5
+birdpain1 BIRPAIN1
+birdpain2 BIRPAIN2
+birdpain3 BIRPAIN3
+birdpain4 BIRPAIN4
+birddeath1 BIRDTH1
+birddeath2 BIRDTH2
+birddeath3 BIRDTH3
+birddeath4 BIRDTH4
+birddeath5 BIRDTH5
+birddeath6 BIRDTH6
+
+// Saboteur, Anubian
+
+$random AdvancedImp/Sight	{ DSFIMSI1 DSFIMSI2 DSFIMSI3 }
+$random AdvancedImp/Death	{ DSFIMDT1 DSFIMDT2 }
+AdvancedImp/Pain	DSFIMPAI
+AdvancedImp/Active	DSFIMACT
+DSFIMSI1	DSFIMSI1
+DSFIMSI2	DSFIMSI2
+DSFIMSI3	DSFIMSI3
+DSFIMDT1	DSFIMDT1
+DSFIMDT2	DSFIMDT2
+
+// Blink
+
+Blink/Sight		BINKSIT
+Blink/Pain		BINKPAIN
+$random AdvancedImp/Active	{ BINKACT1 BINKACT2 }
+$random AdvancedImp/Death	{ BINKDTH1 BINKDTH2 }
+BINKACT1	BINKACT1
+BINKACT2	BINKACT2
+BINKDTH1	BINKDTH1
+BINKDTH2	BINKDTH2
+
+// Frost Serpent
+
+FrostSerpent/Sight	DESSIT
+FrostSerpent/Pain	DESPAIN
+FrostSerpent/Death	DESDTH
+
+// Revalation
+
+Revalation/Sight		REVALSIT
+Revalation/Active		REVALACT
+$random Revalation/Pain { REVALPAI1 REVALPAI2 }
+Revalation/Death		REVALDTH1
+Revalation/DeathSoul	REVALDTH2
+
+// Medivile
+
+Medivile/Sight	MEDISEE
+Medivile/Active	MEDIACT
+Medivile/Death	MEDIDTH
+Medivile/Pain	MEDIPAIN
+
+// Enesce
+
+Enesce/Sight	ENESSIT
+Enesce/Active	ENESACT
+Enesce/Attack	ENESATK
+Enesce/Pain		ENESPAI
+Enesce/Death	ENESDTH
+
+// Weatheveor
+
+Weatheveor/Sight	WHTVSIGT
+Weatheveor/Active	WHTVIDLE
+Weatheveor/Pain		WHTVPAIN
+Weatheveor/Death	WHTVDETH
+
+// Ice Wyvern
+
+$random	IceWyvern/Sight { ICEWSIT1 ICEWSIT2 }
+ICEWSIT1	ICEWSIT1
+ICEWSIT2	ICEWSIT2
+$random IceWyvern/Active { ICEWACT1 ICEWACT2 }
+ICEWACT1	ICEWACT1
+ICEWACT2	ICEWACT2
+$random IceWyvern/Attack { ICEWATK1 ICEWATK2 ICEWATK3 }
+ICEWATK1	ICEWATK1
+ICEWATK2	ICEWATK2
+ICEWATK3	ICEWATK3
+$random	IceWyvern/Death { ICEWDTH1 ICEWDTH2 }
+ICEWDTH1	ICEWDTH1
+ICEWDTH2	ICEWDTH2
+$random IceWyvern/Wings { ICEWFLY1 ICEWFLY2 ICEWFLY3 ICEWFLY4 ICEWFLY5 }
+ICEWFLY1	ICEWFLY1
+ICEWFLY2	ICEWFLY2
+ICEWFLY3	ICEWFLY3
+ICEWFLY4	ICEWFLY4
+ICEWFLY5	ICEWFLY5
+
+// Cubes
+
+monster/cubsit dscubsit
+weapons/bounc1 dsbounc1
+monster/cubfly dscubfly
+monster/cubdth dscubdth
+weapons/firsfi dsfirsfi
+weapons/maceex dsmaceex
+
+// Zombies (Ultra)
+
+UltraZombie/see1		SKZKSIG1
+UltraZombie/see2		SKZKSIG2
+UltraZombie/see3		SKZKSIG3
+$random UltraZombie/see		{ UltraZombie/see1 UltraZombie/see2 UltraZombie/see3 }
+UltraZombie/idle1		SKZKACT1
+UltraZombie/idle2		SKZKACT2
+UltraZombie/idle3		SKZKACT3
+$random UltraZombie/idle		{ UltraZombie/idle1 UltraZombie/idle2 UltraZombie/idle3 }
+UltraZombie/pain1		SKZKPAI1
+UltraZombie/pain2		SKZKPAI2
+UltraZombie/pain3		SKZKPAI3
+$random UltraZombie/pain		{ UltraZombie/pain1 UltraZombie/pain2 UltraZombie/pain3 }
+UltraZombie/die1		SKZKDEA1
+UltraZombie/die2		SKZKDEA2
+UltraZombie/die3		SKZKDEA3
+UltraZombie/die4		SKZKDEA4
+$random UltraZombie/die		{ UltraZombie/die1 UltraZombie/die2 UltraZombie/die3 UltraZombie/die4 }
+
+// Red Heavy
+
+HeavyGuy/Shoot			DSAUTOFI
+
+// Thamuz
+
+Thamuz/Sight1		THAMSIT1
+Thamuz/Sight2		THAMSIT2
+$random Thamuz/Sight		{ Thamuz/Sight1 Thamuz/Sight2 }
+Thamuz/Active	THAMACT
+Thamuz/Pain		THAMPAIN
+Thamuz/Death	THAMDETH
+Thamuz/RocketFire		THZROKTF
+Thamuz/RocketExplo		THZROKTX
+Thamuz/Floor			THZFLOOR
+Thamuz/FloorExplo		THZFLORX
+
+// Sentries
+
+sentry/see		SENTSEE
+sentry/beep		SENTACT
+sentry/attack	M60FIRE
+sentry/die		SENTDIE
+sentry/warn		SENTWRN
+sentry/sniper	SNIPFIRE
+sniper/clip		SNIPCLIP
+
+// Turrets
+
+turret/pickup	RTURPICK
+turret/use		RTURDPLY
+turret/see		RTURRSEE
+turret/beep		RTURRACT
+
+// Vexed Nemesis Tech Barrel
+
+Weapons/VexedNemesisNukeExp		VNUKEXP
+
+// Hell Paladin
+
+HellPaladin/sight	HEPLDSIT
+HellPaladin/active	HEPLDACT
+HellPaladin/pain	HEPLDPAI
+HellPaladin/death	HEPLDDHT

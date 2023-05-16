@@ -1,0 +1,45 @@
+iNexus-v0.x
+- Made Nexus fully compatible with GZdoom 
+- Made Nexus compatibile with CF4.2.4+ and all the available patches
+- Removed every single fucking blyat console error that these cursed addons had!
+- Included NemesisHellsmith addon
+- Made weapons use the Reload and Zoom keys (no more Altfire to reload and RailgunAction to zoom)
+- Reworked 95% of the ACS scripts 
+   Nexmas was blyat. Now it's fine and shouldn't annoy servers anymore
+   DemonHeart check, use and drop now work as intended (i.e. they work)
+   PowerRegenItems scripts were reworked to use the same system of CF4.2+ (items cooldowns listed in LANGUAGE.extra)
+   TXS crates scripts reworked to look better
+   Marines scripts reworked a bit better
+- Reworked OccultSpellbook
+    Added new interactive Altfire menu
+    Added two new sounds for the Altfire menu
+    Bound every mode to a different key (Altfire, Zoom, Reload, Grenade, Mine)
+- Reworked Skulltag runes
+   They are optional (via CVar option)
+   You can carry maximum 3 in your inventory (like in Pandemonia)
+   You can use only one per time
+   You can remove the one you're using by using twice another rune in your inventory
+- Reworked Armors to work like CF4.2+
+   Every armor has 25% absorption and custom DF
+   Picking up a better armor replaces the current one
+   Picking up an armor with more points than your current one doesn't replace it if yours is of a better type
+     (example: RedArmor would replenish up to 250 points your LegArmor that had only 100 points left, without replacing the armor type)
+   Armor can be dropped and it will "remember" how many points it had left
+   FFS don't overwrite or replace any armor with anything not working the same way. This system is cool AF
+   It's like Clusterfuck but in 2152; stop modding like you live in the Middle Age.
+- Made (some) weapons use CF4.2+ SpreadRune (working in gzdoom too)
+- Improv(ing)ed SBARINFO
+- Moved all monster tags to LANGUAGE.tags (helps for gzdoom hpbars, like crosshairhp, and CCards and for translations)
+- ^^^ Same for pickup messages, menu options, item tags (ongoing)
+- Added missing tags to some items
+- Killed every possible instance of SETSLOT inside KEYCONF lumps (DON'T EVER DARE GOING BACK TO KEYCONF)
+   Each weapon now has SlotNumber and Priority properties defined (helps with gzdoom weapon mods compatibility)
+- Added LANGUAGE.spawners (for CF4.2+ progressive spawners compatibility)
+- Added LANGUAGE.BSSpawners (original Nexus random spawn chances)
+- Added LANGUAGE.XMAS (so presents don't use a crappy-ish script and don't desynch online anymore)
+- Fixed whatever was breaking Eviternity's weather (100 rubles to whoever else finds the problem :D)
+- Removed Unmaker (it was reworked by TonynUBares and added to CF4.2+)
+   Also removed every instance of Unmaker (including the crates and shuffle drops)
+   Unmaker now has its own D64-inspired system
+- Added a CCARDS lump, because why not
+- Balanced (partially) Hackroid boys

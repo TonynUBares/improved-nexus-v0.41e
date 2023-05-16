@@ -1,0 +1,479 @@
+ACTOR HackroidZombie : LegendaryZombie
+{ 
+Health 4000
+Radius 20
+Height 56
+Speed 45
+Mass 100
+PainChance 25
+PainChance "ZombieDemonTech", 0
+BloodColor "Purple"
+DropItem "LegendaryBossLifeEssence" 256
+DropItem "LegendaryBossArmorBonusMax" 256
+DropItem "LegendaryBossLifeEssence" 256
+DropItem "LegendaryBossArmorBonusMax" 256
+DropItem "EnragedLegendaryArmor" 200
+DropItem "LegAmmoSphere" 256 1
+DropItem "HandGrenadeAmmo" 235 2
+DropItem "MineAmmo" 235 2
+DropItem "Backpack" 256 1
+DropItem "Armorplate" 205 1
+DropItem "Portablemedkit" 210 1
+DropItem "AgilityRune" 200 1
+DropItem "LegendaryRune" 200 1
+DropItem "LegendaryPowerShard" 200 1
+DropItem "EnragedLegendaryPowerShard" 200 1
+DropItem "HackroidRifle" 140 1
+DropItem "HCKAmmoBox" 120 90
+DropItem "HCKAmmo" 256 20
+DropItem "HCKShell" 200 4
+DropItem "HCKShellBox" 200
+DropItem "HackroidArmor" 20 1
+DropItem "HackroidSphere" 20 1
+DamageFactor 0.6
+DamageFactor "LegendaryZombie", 0.0
+DamageFactor "PDTBFG", 0.5
+DamageFactor "PDTBFGTracer", 0.4
+DamageFactor "PlayerDevBall", 0.8
+DamageFactor "PlayerDevBall2", 0.8
+DamageFactor "PlayerDTBFGRailgunSlug", 0.75
+DamageFactor "PlayerDevTracer", 0.75
+DamageFactor "DBFG10K2", 0.5
+DamageFactor "PlayerDBFG10K2", 0.5
+DamageFactor "DBFG2", 0.5
+DamageFactor "PlayerDBFG2", 0.5
+DamageFactor "PlayerPyro", 0.08
+DamageFactor "Legendary", 0.1
+DamageFactor "Superweapon", 0.1
+DamageFactor "LegendaryPlayer", 0.1
+DamageFactor "PlayerNemesisPlasma", 0.1
+DamageFactor "Hackroid", 0.0
+MONSTER 
++NOTIMEFREEZE
++NOFEAR
++BOSS
++BOSSDEATH
++FLOORCLIP
++MISSILEMORE
++MISSILEEVENMORE
++QUICKTORETALIATE
++NOICEDEATH
++NODROPOFF
+SeeSound "HackroidZombie/see"
+PainSound "HackroidZombie/Pain"
+DeathSound "HackroidZombie/Death"
+ActiveSound "HackroidZombie/Active"
+Obituary "%o was Deleted by Hackroid Zombie's supreme energy."
+
+Tag "$NEHackZomb"
+var int user_missile;
+ States
+{
+  Spawn:
+	HASG A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("GetCVar",57) == 0, "Remove")
+	TNT1 A 0 ACS_NamedExecuteAlways("WimpyMode",0,2)
+	TNT1 A 0 ACS_NamedExecuteAlways("ModifyMonster",0,2)
+	TNT1 A 0 ACS_NamedExecuteAlways("SpawnEffects",0)
+	TNT1 A 0 A_SetUserVar("user_effect_delay",6)
+	TNT1 A 0 A_SetUserVar("user_effect_quantity",1)
+	TNT1 A 0 A_SetUserVar("user_effect_type",103)
+	TNT1 A 0 A_PlaySoundEx("hack/glitch","Voice",0,2)
+  Idle:
+	HPOS A 10 Bright A_Look
+	Loop
+  Remove:
+	TNT1 A 1
+	TNT1 A 0 A_SpawnItemEx("Zombieman",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	TNT1 A 0 A_ChangeFlag("COUNTKILL", FALSE)
+	TNT1 A 0
+	Stop
+  See:
+	TNT1 A 0 A_SetUserVar("user_effect_type",103)
+	TNT1 A 0 A_JumpIf(user_lowlag == 1,"MoreSee")
+	TNT1 A 0 A_JumpIfTargetInLOS("MoreSee",0,0,0,0)
+	HPOS ABCD 3 A_Chase
+	Loop
+  MoreSee:
+	TNT1 A 0 A_SetUserVar("user_lowlag",1)
+	TNT1 A 0 A_JumpIf(user_music == 1,3)
+	TNT1 A 0 ACS_NamedExecuteAlways("CFMusic",0,3000)
+	TNT1 A 0 A_SetUserVar("user_music",1)
+	HPOS A 0 A_JumpIfTargetInLOS("Strafing")
+	HPOS AA 3 Bright A_Chase
+	HPOS BB 3 Bright A_Chase
+	TNT1 A 0 A_SpawnItem("FootStep")
+	HPOS A 0 A_JumpIfTargetInLOS("Strafing")
+	HPOS CC 3 Bright A_Chase
+	HPOS DD 3 Bright A_Chase
+	TNT1 A 0 A_Jump(30,"Teleport")
+	TNT1 A 0 A_Jump(80,"Rush")
+	TNT1 A 0 A_SpawnItem("FootStep")
+	Loop
+  Teleport:
+	HPOS A 1 Bright A_UnSetShootable
+	HPOS AAAAAAAAAA 1 Bright A_FadeOut(0.1,0)
+	HPOS A 2 Bright
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	HPOS A 1 Bright A_PlayWeaponSound("boss/teleport")
+	HPOS AAAAAAAAAA 1 Bright A_FadeIn(0.1)
+	HPOS A 1 Bright A_SetShootable
+	Goto See  
+  Rush:
+	HPOS A 0 A_JumpIfTargetInLOS("Strafing")
+	TNT1 A 0 A_SpawnItem("FootStep")
+	TNT1 A 0 A_SpawnItemEx("HLegZombieGhostAA",0,0,0,0,0,0,0,128)
+	HPOS A 1 Bright A_Chase
+	TNT1 A 0 A_SpawnItemEx("HLegZombieGhostAA",0,0,0,0,0,0,0,128)
+	HPOS A 1 Bright A_Chase
+	TNT1 A 0 A_SpawnItemEx("HLegendaryZombieGhostBB",0,0,0,0,0,0,0,128)
+	HPOS B 1 Bright A_Chase
+	TNT1 A 0 A_SpawnItemEx("HLegendaryZombieGhostBB",0,0,0,0,0,0,0,128)
+	HPOS B 1 Bright A_Chase
+	TNT1 A 0 A_SpawnItem("FootStep")
+	TNT1 A 0 A_SpawnItemEx("HLegZombieGhostCC",0,0,0,0,0,0,0,128)
+	HPOS C 1 Bright A_Chase
+	TNT1 A 0 A_SpawnItemEx("HLegZombieGhostCC",0,0,0,0,0,0,0,128)
+	HPOS C 1 Bright A_Chase
+	TNT1 A 0 A_SpawnItemEx("HLegendaryZombieGhostDD",0,0,0,0,0,0,0,128)
+	HPOS D 1 Bright A_Chase
+	TNT1 A 0 A_SpawnItemEx("HLegendaryZombieGhostDD",0,0,0,0,0,0,0,128)
+	HPOS D 1 Bright A_Chase
+	TNT1 A 0 A_SpawnItem("FootStep")
+	TNT1 A 0 A_Jump(84,"See")
+	Loop
+  Strafing:
+	TNT1 A 0 A_SpawnItem("FootStep")
+	TNT1 A 0 A_Chase("","Missile",CHF_DONTMOVE)
+	HPOS AA 3 Bright A_GiveInventory("LegZombieStrafingg",1)
+	TNT1 A 0 A_Chase("","Missile",CHF_DONTMOVE)
+	HPOS BB 3 Bright A_GiveInventory("LegZombieStrafingg",1)
+	TNT1 A 0 A_SpawnItem("FootStep")
+	TNT1 A 0 A_Chase("","Missile",CHF_DONTMOVE)
+	HPOS CC 3 Bright A_GiveInventory("LegZombieStrafingg",1)	
+	TNT1 A 0 A_Chase("","Missile",CHF_DONTMOVE)
+	HPOS DD 3 Bright A_GiveInventory("LegZombieStrafingg",1)
+	Goto See
+  Pause:
+	TNT1 A 0 A_SetUserVar(user_missile,0)
+	HPOS E 0 A_PlaySound("weapons/demontechsteam")
+	HPOS EEEEE 3 Bright A_GiveInventory("HLegZombieStrafingg",1)
+	Goto See	
+  Missile:
+	HPOS EEEE 3 Bright A_GiveInventory("HLegZombieStrafingg",1)
+	TNT1 A 0 A_Jump(20,"Rapid")
+	TNT1 A 0 A_Jump(20,"SpreadMissile")
+	TNT1 A 0 A_Jump(20,"Shotgun")
+	HPOS E 3 Bright A_GiveInventory("HLegZombieStrafingg",1)
+	TNT1 A 0 A_GiveInventory("HLegZombieStrafingg",1)
+	TNT1 A 0 A_CustomMissile("1337ProjZ",32,0,Frandom(-1,1),0)
+	HPOS F 3 Bright A_PlaySoundEx("1337DTR/up","Weapon")
+	TNT1 A 0 A_Jump(24,"Pause")
+	TNT1 A 0 A_SpidRefire
+	TNT1 A 0 A_PlayWeaponSound("1337DTR/Fire")
+	Goto Missile+4	
+  SpreadMissile:
+	HPOS EEEE 3 Bright A_GiveInventory("HLegZombieStrafingg",1)
+	HPOS E 6 Bright
+	HPOS F 6 Bright A_PlaySoundEx("1337DTR/up","Weapon")
+	TNT1 A 0 A_CustomMissile("1337ProjZ",32,20,Frandom(-1,1),0)
+	TNT1 A 0 A_CustomMissile("1337ProjZ2",32,15,Frandom(-1,1),0)
+	TNT1 A 0 A_CustomMissile("1337ProjZ2",32,10,Frandom(-1,1),0)
+	TNT1 A 0 A_CustomMissile("1337ProjZ2",32,5,Frandom(-1,1),0)
+	TNT1 A 0 A_CustomMissile("1337ProjZ",32,0,Frandom(-1,1),0)
+	TNT1 A 0 A_CustomMissile("1337ProjZ2",32,-5,Frandom(-1,1),0)
+	TNT1 A 0 A_CustomMissile("1337ProjZ2",32,-10,Frandom(-1,1),0)
+	TNT1 A 0 A_CustomMissile("1337ProjZ2",32,-15,Frandom(-1,1),0)
+	TNT1 A 0 A_CustomMissile("1337ProjZ",32,-20,Frandom(-1,1),0)
+	TNT1 A 0 A_PlayWeaponSound("1337DTR/Fire")
+	HPOS E 12 Bright
+	Goto Missile
+  Shotgun:
+	HPOS EEEE 3 Bright A_GiveInventory("HLegZombieStrafingg",1)
+	HPOS F 3 Bright A_PlaySoundEx("lasgguy/asgout","Weapon")
+	TNT1 AAAA 0 Bright A_CustomMissile("1337SGTracer",Random(28,34),0,Random(6,-6),0)
+	HPOS F 4 Bright A_CustomBulletAttack(22.5,18.3,4,Random(5,15)*6,"1337ModdedBulletPuff")		
+	TNT1 A 0 A_SpawnItemEx("RedShellCasing", -8, 7, 30, 4, 0, (0.1)*Random(30, 40), Random(-80, -90), 128)
+	TNT1 A 0 A_PlayWeaponSound("1337ASG/Fire")
+	HPOS F 8 Bright
+	TNT1 AAAA 0 Bright A_CustomMissile("1337SGTracer",Random(28,34),0,Random(6,-6),0)
+	HPOS F 2 Bright A_CustomBulletAttack(22.5,18.3,4,Random(5,15)*6,"1337ModdedBulletPuff")		
+	TNT1 A 0 A_SpawnItemEx("RedShellCasing", -8, 7, 30, 4, 0, (0.1)*Random(30, 40), Random(-80, -90), 128)
+	TNT1 A 0 A_PlayWeaponSound("1337ASG/Fire")
+	HPOS F 8 Bright
+	TNT1 AAAA 0 Bright A_CustomMissile("1337SGTracer",Random(28,34),0,Random(6,-6),0)
+	HPOS F 2 Bright A_CustomBulletAttack(22.5,18.3,4,Random(5,15)*6,"1337ModdedBulletPuff")		
+	TNT1 A 0 A_SpawnItemEx("RedShellCasing", -8, 7, 30, 4, 0, (0.1)*Random(30, 40), Random(-80, -90), 128)
+	TNT1 A 0 A_PlayWeaponSound("1337ASG/Fire")
+	HPOS F 8 Bright
+	TNT1 AAAA 0 Bright A_CustomMissile("1337SGTracer",Random(28,34),0,Random(6,-6),0)
+	HPOS F 2 Bright A_CustomBulletAttack(22.5,18.3,4,Random(5,15)*6,"1337ModdedBulletPuff")		
+	TNT1 A 0 A_SpawnItemEx("RedShellCasing", -8, 7, 30, 4, 0, (0.1)*Random(30, 40), Random(-80, -90), 128)
+	TNT1 A 0 A_PlayWeaponSound("1337ASG/Fire")
+	HPOS F 8 Bright
+	HPOS E 8 Bright
+	Goto Missile
+  Rapid:
+	TNT1 A 0 A_PlaySound("HackroidZombie/Anger",0,1,0,ATTN_NONE)
+	HPOS EEEEEEEE 3 Bright A_GiveInventory("HLegZombieStrafingg",1)
+  RapidLoop:
+	TNT1 A 0 A_JumpIf(user_missile >= 20,"Pause")
+	HPOS E 2 A_GiveInventory("HLegZombieStrafingg",1)
+	TNT1 A 0 A_CustomMissile("1337ProjZ",32,0,Frandom(-1,1),0)
+	HPOS F 3 A_PlaySoundEx("weapons/DemonTechRifle","Weapon")
+	TNT1 A 0 A_PlayWeaponSound("1337DTR/Fire")
+	TNT1 A 0 A_SetUserVar("user_missile",user_missile+1)
+	Loop
+  Pain:
+	TNT1 A 0 A_Jump(10,"Protection")
+  Pain2:
+	TNT1 A 0 A_Jump(192,"PainMissile")
+	HPOS G 3 Bright A_GiveInventory("HLegZombieStrafingg",1)
+	TNT1 A 0 A_Pain
+	HPOS G 3 Bright A_GiveInventory("HLegZombieStrafingg",1)
+	Goto See
+  PainMissile: 
+	HPOS G 3 Bright A_GiveInventory("LegZombieStrafingg",1)
+	TNT1 A 0 A_Pain
+	HPOS G 3 Bright A_GiveInventory("LegZombieStrafingg",1)
+	Goto Missile	
+  Protection:
+	TNT1 A 0 A_JumpIf(user_protection >= 3,"Pain2")
+	TNT1 A 0 A_JumpIf(user_protected == 1,"Pain2")
+	TNT1 A 0 A_PlaySound("legendary/defense")
+	TNT1 A 0 A_FaceTarget
+	HPOS E 2 Bright ACS_NamedExecuteAlways("EnragedLegendaryProtection")
+	Goto See	
+  Death:
+	TNT1 A 0 A_StopSound(6)
+	//TNT1 A 0 A_Jump(36,"LegendarySoul")
+	HPOS H 5 A_Scream
+	HPOS I 5 A_NoBlocking
+	HPOS J 5 A_SpawnItem("BodyCrash")
+	HPOS K 5 
+	HPOS L -1 
+	Stop
+  LegendarySoul:
+	TNT1 A 0 A_StopSound(6)
+	TNT1 A 0 A_SpawnItem("BHellionSmokeSpawner")
+	HPOS H 5 A_Scream
+	TNT1 A 0 A_SpawnItem("BHellionSmokeSpawner")
+	HPOS I 5 A_Fall
+	TNT1 A 0 A_SpawnItem("BHellionSmokeSpawner")
+	HPOS J 5 A_SpawnItem("BodyCrash")
+	TNT1 A 0 A_SpawnItem("BHellionSmokeSpawner")
+	HPOS KLL 5 A_SpawnItem("BHellionSmokeSpawner")
+	HPOS L 140
+	HPOS N 0 A_PlaySoundEx("brain/spit","Voice",0,2)
+	HPOS LLLLLLLLLLLLLLLLL 2 Bright A_GiveInventory("LegSoulEvent",1)
+	HPOS LLLLLLLLLLLLLLLLL 2 Bright A_SpawnItem("ELegSoulEventSmokeSpawner",0)
+	HPOS LLLLLLLLLLLLLLLLL 2 Bright A_GiveInventory("NemesisSoulEvent",1)
+	//TNT1 A 0 A_SpawnItemEx("HackroidSoul",0,0,16,0,0,0,0,32)
+	TNT1 A 0 A_SpawnItemEx("TeleportFog",0,0,16,0,0,0,0,32)
+	HPOS L -1
+	Stop	
+  XDeath:
+	TNT1 A 0 A_StopSound(6)
+	HPOS P 3 A_XScream
+	HPOS Q 3 A_NoBlocking
+	HPOS RSTUV 3 
+	HPOS W -1 
+	Stop
+ }
+}
+
+ACTOR HLegZombieGhostAA : LegZombieGhostA
+{
+ States
+ {
+ Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+  Fade:
+	HPOS A 2 A_FadeOut(0.10)
+	Loop
+  Toaster:
+	TNT1 A 0
+	Stop
+ }
+}
+
+ACTOR HLegendaryZombieGhostBB : LegZombieGhostAA
+{   
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+  Fade:
+	HPOS B 2 A_FadeOut(0.10)
+	Loop
+ }
+}
+
+ACTOR HLegZombieGhostCC : LegZombieGhostAA
+{   
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+  Fade:
+	HPOS C 2 A_FadeOut(0.10)
+	Loop
+ }
+}
+
+ACTOR HLegendaryZombieGhostDD : LegZombieGhostAA
+{   
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+  Fade:
+	HPOS D 2 A_FadeOut(0.10)
+	Loop
+ }
+}
+
+ACTOR HLegendaryZombieGhostEE : LegZombieGhostAA
+{   
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+  Fade:
+	HPOS E 2 A_FadeOut(0.10)
+	Loop
+ }
+}
+
+ACTOR HLegendaryZombieGhostFF : LegZombieGhostAA
+{   
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+  Fade:
+	HPOS F 2 A_FadeOut(0.10)
+	Loop
+ }
+}
+
+Actor HLegZombieStrafingg : LegZombieStrafing
+{
+ States
+ {
+  Pickup:
+	NULL A 1 
+	NULL A 1 A_SpawnItem("RandomHellionSmoke",0,0,0,0)
+	NULL A 1 A_Jump(188,2)
+	NULL A 1 A_GiveInventory("LegZombieJumping",1)
+	NULL A 1 A_JumpIf(velx != 0 || vely != 0,2)
+	NULL A 1 A_Jump(256,2)
+	NULL A 1 A_Jump(235,5)
+	NULL A 1 A_JumpIfInventory("LegZombieStrafeSens",1,3)
+	NULL A 1 A_GiveInventory("LegZombieStrafeSens",1)
+	NULL A 1 A_Jump(256,2)	
+	NULL A 1 A_TakeInventory("LegZombieStrafeSens",1)
+	NULL A 1 A_JumpIfInventory("LegZombieStrafeSens",1,3)
+	NULL A 1 ThrustThing(angle*256/360+38.7,3,0,0)
+	NULL A 1 A_Jump(256,2)	
+	NULL A 1 ThrustThing(angle*256/360+38.7,-3,0,0)
+	NULL A 1 A_FaceTarget
+	NULL A 1 A_Jump(24,2)
+	NULL A 1 A_JumpIfCloser(300,2)
+	NULL A 1 A_Recoil(-1)
+	Stop
+	NULL A 1 A_Recoil(1)
+	Stop	
+ }
+}
+
+Actor HLegZombieJumpingg : LegZombieStrafingg
+{
+  +NOTIMEFREEZE
+   States
+  {
+  Pickup:
+    NULL A 1 
+    NULL A 1 A_CheckFloor(1)
+	Stop
+	NULL A 1 A_Jump(242,2)
+	NULL A 1 ThrustThingZ(0,25,0,1)
+	Stop
+	NULL A 1
+	Stop
+  }
+}
+
+ACTOR 1337ProjZ
+{
+PROJECTILE
+Height 3
+Radius 3
+Speed 50
+Scale 0.5
+Alpha 0.95
+Decal "DoomImpScorch"
+Damage 40
+BounceSound "1337/bounce"
+Reactiontime 70
+BounceFactor 1
+WallBounceFactor 1
+BounceCount 5
++FORCERADIUSDMG
++FORCEXYBILLBOARD
++HEXENBOUNCE 
++DOOMBOUNCE
++DONTSPLASH
++CANBOUNCEWATER
++FORCERADIUSDMG
++NOTIMEFREEZE
++THRUSPECIES
++SKYEXPLODE
+DamageType "Hackroid"
+DeathSound "weapons/demontechex"
+ States
+	{
+	Spawn:
+		TNT1 A 0 Bright
+		TNT1 A 0 Bright A_Jump(128,"Spawn2")
+		Goto Normal
+	Normal:
+		HZP1 ABCDEF 1 Bright A_SpawnItemEx("1337ProjTrailZ",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		//HZP1 ABCDEF 1 A_SpawnItemEx("1337ProjTrail2",SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		Loop
+	Spawn2:
+		HZP1 ABCDEF 1 Bright A_SpawnItemEx("1337ProjTrailZ",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		//HZP1 ABCDEF 1 A_SpawnItemEx("1337ProjTrail2",SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		Loop	  
+	Death:
+		TNT1 A 0 Bright
+		TNT1 A 0 Bright A_SpawnItemEx("GreenParticleSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+		TNT1 AAA 0 A_CustomMissile("1337ADemonTechEx",0,0,random(0,360),CMF_AIMDIRECTION,random(0,360))
+		TNT1 AAA 0 A_CustomMissile("LegendarySmokeFX4",0,0,random(0,360),CMF_AIMDIRECTION,random(0,360))
+		TNT1 A 0 Bright A_SpawnItemEx("1337ADemonTechEx2",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 0, "DeathSFX")
+		Goto Toaster
+	DeathSFX:
+		TNT1 A 0 Bright A_SpawnItemEx("GreenParticleSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+		TNT1 AAA 0 A_CustomMissile("1337ADemonTechEx",0,0,random(0,360),CMF_AIMDIRECTION,random(0,360))
+		TNT1 AAA 0 A_CustomMissile("LegendarySmokeFX4",0,0,random(0,360),CMF_AIMDIRECTION,random(0,360))
+		TNT1 A 0 Bright A_SpawnItemEx("1337ADemonTechEx2",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+	Toaster:
+		TNT1 A 1 Bright A_CustomMissile("1337ProjExplosion",0,0,0,2)
+		TNT1 A 1 Bright A_CustomMissile("1337ProjMinor",0,0,random(0,360),CMF_TRACKOWNER,random(10,-10))
+		TNT1 A 1 Bright A_CustomMissile("1337ProjMinor",0,0,random(0,360),CMF_TRACKOWNER,random(10,-10))
+		TNT1 A 1 Bright A_CustomMissile("1337ProjMinor",0,0,random(0,360),CMF_TRACKOWNER,random(10,-10))
+		Stop
+	}
+}
+
+ACTOR 1337ProjZ2 : 1337ProjZ
+{
+Speed 20
+}

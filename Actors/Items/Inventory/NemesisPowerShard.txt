@@ -1,0 +1,170 @@
+Actor NexusRegenMsgCooldown : Inventory
+{
+ Inventory.Amount 1
+ Inventory.MaxAmount 1
+ States
+ {
+  Held:
+	TNT1 A 140
+	Stop
+ }
+}
+
+Actor NemesisPowerShard : CustomInventory  
+{
+  Inventory.PickupMessage "Nemesis Power Shard, can you feel the power of the dark?"
+  Inventory.PickupSound "legendarycrystal/take"
+  Inventory.UseSound "legendary/defense"
+  Inventory.Icon "NPOWZ0"
+  Inventory.MaxAmount 1
+  +DONTGIB
+  +INVBAR
+  +COUNTITEM
+  +INVENTORY.BIGPOWERUP
+  +NOTIMEFREEZE
+  +FLOAT
+  //+FLOATBOB
+  Scale 0.75
+  Tag "$NENemShard"
+  States
+  {
+  Spawn:
+    TNT1 A 0 NoDelay ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,28)
+  SpawnLoop:
+    NPOW ABCDEF 4 Bright 
+	Loop
+  Use:
+    TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ItemChecks") == 1,"Nope")
+	TNT1 A 0 A_RailWait
+	TNT1 A 1 A_GiveInventory("NemesisCrystalCooldown",1)
+	TNT1 A 0 ACS_NamedExecuteAlways("NexusRegen",0,0,450)
+    Stop
+  Nope:
+	TNT1 A 0 ACS_NamedExecuteAlways("NexusRegenMessage")
+	TNT1 A 1
+	Fail
+  }
+}
+
+Actor NemesisCrystalCooldown : PowerDamage { DamageFactor "notarealdamagetype", 1.0 Powerup.duration -30 }
+
+ACTOR NemesisPowerShardEffects : RedSparkleSpawner
+{
++NOTIMEFREEZE
+States
+{
+ Pickup:
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+		TNT1 A 0 A_CustomMissile("NBlackSparkleSpawner",0,0,frandom(0,-360),2,frandom(0,360))
+		TNT1 AA 3 A_SpawnItemEx("NBlackPowerLineSpawner",frandom(32,-32),frandom(32,-32),frandom(8,48),0,0,random(1,4),0,128,0)
+        Stop
+ }
+}
+
+Actor NLegCrystalSpeedGiver : PowerupGiver
+{
+  Inventory.MaxAmount 0
+  Powerup.Color Black 0.15
+  Powerup.Duration -60
+  Powerup.Type Speed
+  +INVENTORY.AUTOACTIVATE
+  +INVENTORY.ALWAYSPICKUP
+  States
+  {
+  Spawn:
+    ROWL A 1 Bright
+    Loop
+  }
+}
+
+Actor NLegendaryCrystalProtectEffect : PowerProtection { DamageFActor "Normal",0.2 }
+
+Actor NLegendaryCrystalProtect: PowerupGiver
+{
+  Inventory.MaxAmount 0
+  Powerup.Type NLegendaryCrystalProtectEffect
+  Powerup.Color Black 0.15
+  Powerup.Duration -60
+  +INVENTORY.AUTOACTIVATE
+  +INVENTORY.ALWAYSPICKUP
+  States
+  {
+  Spawn:
+    ROWL A 1 Bright
+    Loop
+  }
+}
+
+ACTOR NBlackSparkleSpawner : WhiteSparkleSpawner
+{
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 AA 2 A_SpawnItemEx("NBlackStar", frandom(-15, 15), frandom(-15, 15), frandom(28, 44), 0, 0, 0, 0, 128) 
+        Stop
+ }
+}
+
+ACTOR NBlackStar
+{
+Height 0
+Radius 0
+Speed 2
+Scale 0.16
+RenderStyle Subtract
+PROJECTILE
++CLIENTSIDEONLY
++DOOMBOUNCE
++DONTSPLASH
++NOTELEPORT
++NOGRAVITY
++FORCEXYBILLBOARD
+//+FLOATBOB
+States
+{
+Spawn:
+BLKS ABC 2 Bright A_FadeOut(0.05)
+Loop
+}
+}
+
+ACTOR NBlackPowerLineSpawner : BluePowerLineSpawner
+{
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 1 A_SpawnItemEx("NBlackPowerLine",frandom(12,-12),frandom(12,-12),0,0,0,2,0,128,0) 
+    Stop  
+ }
+}
+
+ACTOR NBlackPowerLine
+{
+Speed 1
+Radius 0
+Height 0
+Scale 0.28
+RenderStyle Subtract
+Alpha 0.8
++MISSILE
++NOGRAVITY
++NOBLOCKMAP
++NOINTERACTION
++NOTELEPORT
++DONTSPLASH
+-SOLID
+States
+{
+Spawn:
+   BLKL A 5 Bright
+   TNT1 A 0 A_Jump(128,"FadeOut2")
+Normal:
+   BLKL AAAAAAAA 1 Bright A_FadeOut(0.05)
+   Stop
+FadeOut2:
+   BLKL AAAAAAAA 1 Bright A_FadeOut(0.075)
+   Stop
+   }
+}

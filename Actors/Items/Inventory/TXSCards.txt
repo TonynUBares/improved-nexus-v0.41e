@@ -1,0 +1,334 @@
+ACTOR PlayingCard
+{
+ Health 100
+ Radius 16
+ Height 8
+ Mass 100000
+ DamageFactor "PlayerBHole", 0.0
+ DamageFactor "T3rm", 0.0
+ DamageFactor "Hell", 0.0
+ Damagefactor "Disintegrate", 0.0
+ Tag "Playing Card"
+ -SOLID
+ +SHOOTABLE
+ +NEVERRESPAWN
+ +DONTGIB
+ +CANBLAST
+ +NOICEDEATH
+ +NOBLOOD
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	PCRD A -1
+	Stop
+  Death:
+	TNT1 A 0 A_SpawnItem("RandomPlayingCards")
+	TNT1 A 1
+	Stop
+ }
+}
+
+ACTOR MagicCard: PlayingCard
+{
+ Tag "Magic Card"
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	PCRD B -1
+	Stop
+  Death:
+	TNT1 A 0 A_SpawnItem("RandomMagicCards")
+	TNT1 A 1
+	Stop
+ }
+}
+
+ACTOR AceOfSpades : CustomInventory 32426
+{
+ Inventory.Amount 1
+ Inventory.MaxAmount 5
+ Inventory.PickupSound "Card/pickup"
+ Inventory.UseSound ""
+ Inventory.PickupMessage "Ace of Spades"
+ Tag "Ace of Spades"
+ Inventory.Icon "SACEB0"
+ +INVENTORY.INVBAR
+ +INVENTORY.NEVERRESPAWN
+ +COUNTITEM
+ +FLOORCLIP
+ +NOTIMEFREEZE
+ States
+ {
+  Spawn:
+	SACE A 35
+	Loop
+  Use:
+	TNT1 A 1 A_SpawnItemEx("AceofSpadesActivate",0,0,16,8,0,4,0)
+	Stop
+ }
+}
+
+ACTOR AceofHearts : AceOfSpades 32427
+{
+ Inventory.PickupMessage "Ace of Hearts"
+ Tag "Ace of Hearts"
+ Inventory.Icon "HACEB0"
+ States
+ {
+  Spawn:
+	HACE A 35
+	Loop
+  Use:
+	TNT1 A 1 A_SpawnItemEx("AceofHeartsActivate",0,0,16,8,0,4,0)
+	Stop
+ }
+}
+
+ACTOR AceofClubs : AceOfSpades 32428
+{
+ Inventory.PickupMessage "Ace of Clubs"
+ Tag "Ace of Clubs"
+ Inventory.Icon "CACEB0"
+ States
+ {
+  Spawn:
+	CACE A 35
+	Loop
+  Use:
+	TNT1 A 1 A_SpawnItemEx("AceofClubsActivate",0,0,16,8,0,4,0)
+	Stop
+ }
+}
+
+ACTOR AceofDiamonds : AceOfSpades 32429
+{
+ Inventory.PickupMessage "Ace of Diamonds"
+ Tag "Ace of Diamonds"
+ Inventory.Icon "DACEB0"
+ States
+ {
+  Spawn:
+	DACE A 35
+	Loop
+  Use:
+	TNT1 A 1 A_SpawnItemEx("AceofDiamondsActivate",0,0,16,8,0,4,0)
+	Stop
+ }
+}
+
+Actor AceofSpadesActivate
+{
+ +FLOORCLIP
+ +NOBLOCKMAP
+ +FRIENDLY
+ +NOTELEPORT
+ +THRUSPECIES
+ +DONTHURTSPECIES
+ +DONTHARMSPECIES
+ +DONTHARMCLASS
+ +FORCERADIUSDMG
+ -COUNTKILL
+ -SOLID
+ -SHOOTABLE
+  Species "Player"
+ Damagetype "Normal"
+ States
+ {
+  Spawn:
+  Death:
+	SACE A 55
+	TNT1 A 0 A_SpawnItem("HellionSmokeAttack")
+	SACE AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItem("AceOfSpadesRandomizer")
+	SACE AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItem("AceOfSpadesRandomizer")
+	SACE A 50
+	TNT1 A 1 A_CustomMissile ("TeleportFog", 0, 0, 0, 0, 0)
+	Stop
+ }
+}
+
+ACTOR AceOfSpadesRandomizer
+{
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_Jump(30,"Box")
+	TNT1 A 1 A_SpawnItemEx("ChestAmmo",0,0,32,frandom(-5,5),frandom(-5,5),frandom(0,3),random(0,360))
+	Stop
+  Box:
+	TNT1 A 1 A_SpawnItemEx("ChestBox",0,0,32,frandom(-5,5),frandom(-5,5),frandom(0,3),random(0,360))
+	Stop
+ }
+}
+
+Actor AceofHeartsActivate: AceofSpadesActivate
+{
+ States
+  {
+  Spawn:
+  Death:
+	HACE A 55
+	TNT1 A 0 A_SpawnItem("SummonerDrainAttack")
+	HACE AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItem("AceOfHeartsRandomizer")
+	HACE AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItem("AceOfHeartsRandomizer")
+	HACE A 50
+	TNT1 A 1 A_CustomMissile ("TeleportFog", 0, 0, 0, 0, 0)
+	Stop
+  }
+}
+
+ACTOR AceOfHeartsRandomizer
+{
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 1 A_SpawnItemEx("HealthBonus",0,0,32,frandom(-5,5),frandom(-5,5),frandom(0,3),random(0,360))
+	Stop
+ }
+}
+
+Actor AceofClubsActivate: AceofSpadesActivate
+{
+ States
+ {
+  Spawn:
+  Death:
+	CACE A 55
+	TNT1 A 0 A_SpawnItem("HellionSmokeAttack")
+	CACE AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItem("AceOfClubsRandomizer")
+	CACE AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItem("AceOfClubsRandomizer")
+	CACE A 50
+	TNT1 A 1 A_CustomMissile ("TeleportFog", 0, 0, 0, 0, 0)
+	Stop
+ }
+}
+
+ACTOR AceOfClubsRandomizer
+{
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 1 A_SpawnItemEx("BombSpawner",0,0,32,frandom(-5,5),frandom(-5,5),frandom(0,3),random(0,360))
+	Stop
+ }
+}
+
+ACTOR BombSpawner : RandomSpawner
+{
+ +DROPPED
+ DropItem "HandGrenadeAmmo", 256, 10
+ DropItem "MineAmmo", 256, 10
+}
+
+Actor AceofDiamondsActivate: AceofSpadesActivate
+{
+ States
+ {
+  Spawn:
+  Death:
+	DACE A 55
+	TNT1 A 0 A_SpawnItem("SummonerDrainAttack")
+	DACE AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItem("AceOfDiamondsRandomizer")
+	DACE AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItem("AceOfDiamondsRandomizer")
+	DACE A 50
+	TNT1 A 1 A_CustomMissile ("TeleportFog", 0, 0, 0, 0, 0)
+	Stop
+ }
+}
+
+ACTOR AceOfDiamondsRandomizer
+{
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 1 A_SpawnItemEx("ArmorBonus",0,0,32,frandom(-5,5),frandom(-5,5),frandom(0,3),random(0,360))
+	Stop
+ }
+}
+
+ACTOR RandomPlayingCards : RandomSpawner
+{
+ +DROPPED
+ DropItem "AceofSpades", 256, 10
+ DropItem "AceofHearts", 256, 10
+ DropItem "AceofClubs", 256, 10
+ DropItem "AceofDiamonds", 256, 10
+ DropItem "JokerCard", 256, 8
+}
+
+ACTOR RandomMagicCards : RandomSpawner
+{
+ +DROPPED
+ DropItem "AceofHearts", 256, 10
+ DropItem "AceofClubs", 256, 8
+ DropItem "AceofDiamonds", 256, 7
+ DropItem "AncientRecall", 256, 7
+ DropItem "JokerCard", 256, 1
+}
+
+ACTOR JokerCard : AceOfSpades 32422
+{
+ Inventory.PickupMessage "Joker"
+ Tag "Joker"
+ Inventory.Icon "JKCRB0"
+ States
+ {
+  Spawn:
+	JKCR A 35
+	Loop
+  Use:
+	TNT1 A 0 A_Jump(128,"Angel")
+	TNT1 A 1
+  Devil:
+	TNT1 A 0 A_Jump(30,"Jackpot")
+	TNT1 A 1 A_SpawnItemEx("DevilChest",0,0,16,8,0,4,0)
+	Stop
+  Angel:
+	TNT1 A 0 A_Jump(30,"Jackpot")
+	TNT1 A 1 A_SpawnItemEx("AngelChest",0,0,16,8,0,4,0)
+	Stop
+ Jackpot:
+	TNT1 A 0 A_Print("JACKPOT")
+	TNT1 A 1 A_SpawnItemEx("SuperCrateActiveJackpot",0,0,16,8,0,4,0)
+	TNT1 A 1 A_PlaySound("jackpot/other",7)
+	Stop
+ }
+}
+
+ACTOR AncientRecall : AceOfSpades 32441
+{
+ Inventory.PickupMessage "Ancient Recall"
+ Tag "Ancient Recall"
+ Inventory.Icon "ARECB0"
+ States
+ {
+  Spawn:
+	AREC A 35
+	Loop
+  Use:
+	TNT1 A 1 A_SpawnItemEx("AncientRecallActivate",0,0,16,8,0,4,0)
+	Stop
+ }
+}
+
+Actor AncientRecallActivate: AceofSpadesActivate
+{
+ States
+ {
+  Spawn:
+  Death:
+	AREC A 85
+	AREC A 1 A_SpawnItemEx("RandomPlayingCards",0,0,2,random(1,8),0,2,random(0,360),0,0)
+	AREC A 30
+	AREC A 1 A_SpawnItemEx("RandomPlayingCards",0,0,2,random(1,8),0,2,random(0,360),0,0)
+	AREC A 30
+	AREC A 1 A_SpawnItemEx("RandomPlayingCards",0,0,2,random(1,8),0,2,random(0,360),0,0)
+	AREC A 50
+	TNT1 A 1 A_CustomMissile ("TeleportFog", 0, 0, 0, 0, 0)
+	Stop
+ }
+}

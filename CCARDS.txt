@@ -1,0 +1,75 @@
+// IT IS NOT NECESSARY TO COPY THE ENTIRE TEXT OF THIS LUMP!
+// CCARDS LUMPS STACK WITH EACHOTHER. JUST ADD WHAT LINES YOU NEED TO A NEW LUMP.
+//
+// Use the line "clearcards" to remove all the previously defined cards.
+// Use "addcard classname" to add a new card to the pool.
+// Use "removecard classname" to remove a specific card.
+// Use "excludemap mapname" to stop a specific map offering the player a card. Useful for hub maps.
+// Use "cleardeckmap " to tell the game to delete the player's deck on this map.
+// Use "excludeactor actorname" to ban an actor from generic card generation.
+// Use "addmonster actorname" to force an actor to be considered for monster card generation and effects.
+// Use "dontfreeze actorname" to prevent an actor from being frozen at the start of the game (as it breaks some monsters).
+// Use "allowdupicatemonstercards" to allow the hands that contain the same card with different monsters.
+// Use "useallenchantments" to allow cards that use random enchantments to pull enchantments from ALL existing cards, not just those in the current deck.
+// Use "monstergroup" to group monsters together for generic cards. Uses species by default. If defined this way, species will not be used. Example below.
+// Use "ungroup" to ungroup already defined monster groups, using the name of the group
+// Use "monstercardsprite" to change the graphic of the monster displayed on cards. The graphic should be 68 x 102 pixels in size. Example below.
+// Use "nodifficultyscaling" to stop the generator from disabling low tier cards at higher win streaks.
+// Use "setupdelay" to increase the amount of tics before the game starts.
+
+// Define how many extra tics to wait before card generation (after the initial built in 4 tics).
+// May be necessary to increase if your mod has monsters that spawn in after a few tics.
+
+// Clusterfuck 4.2.5+Nexus/TXS/HDAN/NemHellsmith Monster Groups
+
+monstergroup "\cgCF Arachnos\c-", Aracknight, BabyInsanitySpider, BabyOverseer, EnragedLegendaryBabySentient, InsaneWrithe, LaserSpider, LegendaryBabyDemolisher, NemesisBabySentient, BabySentient, BabyBFGMastermind, BabyDDemolisher, RMManipulator, TrueLegendaryBabySentient, Samael, LegendaryBabySentient, Dualachnotron, Arachnotron, Fusionite, BabyDemolisher, DTechSpider, SpiderMinimind, VexedNemesisBabySentient, ShotgunSpider, BabyMastermind, BabyEraserMastermind, ArachhunterMKII, Arachhunter
+
+monstergroup "\cgCF Barons\c-", CFBaronOfHell, BruiserDemon, CyberBelphegor, STBelphegor, Cybruiser, LesserCardinal, InsanityCyberNoble, InfernalCyberNoble, Heterodox, HellPaladin, HellfireIfrit, EnragedLegendaryCybruiser, DarkCydestroyer, DarkCybruiser, Damned, CyberBaron, Wrathlord, VexedNemesisCydestroyer, Shinenen, PlaguedBruiserDemon, PainLord, NemesisCyberNoble, RMAfrit, CorruptionServant, Cydestroyer, HellFireBaron, LegendaryCyberNoble, LordAsmodeus, PhaseOverlord, PhaseWarlord, TTKPhaseBaron, TTKCorruptedPhaseOverlord, CorruptedPhaseOverlord, PhaseBaronOfHell, PoisonousBruiserDemon, RictusIncarnate, ProtoDestroyer, LegendaryCybruiser, Hellspawn, FrostAfrit, BFGServant
+
+monstergroup "\cgCF Cacos\c-", CFCacodemon, Watcher, Cacomental, EnragedLegendaryRedeemer, EnragedLegendaryNecromancer, LegendaryNecromancer, EmpoweredBFGCacodemon, BFGCacodemon, DistortionDisciple, DarkCacoLich, DarkBishop, CerebralRedeemer, CerebralCaco, BloodyFlandre, Agathodemon, Yorihime, Uroboros, Tatsuya, Surrogate, PhazoDemon, PhaseCacodemon, NemesisDefiler, LegendaryRedeemer, Lamia, InsanityCacodemon, ImpureElemental, ImpureDefiler, Glaucoma, RMAbaddon, CacoLich, VexedNemesisRedeemer, TechDrone, RedeemerCommander, BabyCaco, CacolanternComplex, Abbandine
+
+monstergroup "\cgCF Fatsos\c-", Fatso, Hectebus, Daedabus, Behemoth, Barbatos, CerebralBehemoth, NemesisBehemoth, Mancutank, EnragedLegendaryBehemoth, LegendaryBehemoth, CrownedOne, Corpulant, CerebralBehemoth, Demobus, FlyingBehemoth, FreezerBehemoth, Ruffian, VexedNemesisGoliath, SuperCacobus, Rockebus, Cacobus
+
+monstergroup "\cgCF Imps\c-", Imp, VoidImp, Devil, PhaseImp, GoreImp, CFGhoul, Ghorul, EnragedLegendaryImp, LegendaryImp, DoomShadow, DarkCyberImp, DarkCatharsi, CyberImp, CerebralImp, BerserkerImp, AbyssalImp, WarlordImp, VexedNemesisImp, NemesisImp, CFStoneImp, Salamander, PainHarvester, Nightshade, NetherImp, LegendaryPhaseImp, InsanityTechImp, InsaneAnnihilatorImp, Hellion, AnnihilatorImp, CryoImp, ImpLord, ToxicImp, PyroImp, Poltergeist, CerebralShadowBoss, CSShadowMinion, ShadowMinion, HellRazer, Saboteur, Drone, DarkHellRazer, DAImp, CyberImpTXS, Anubian
+
+monstergroup "\cgCF HellKnights\c-", CFHellKnight, PyroDemon, CyberNoble, HellDuke, Styx, StoneKnight, NemesisHellKnight, LegendaryHellKnight, LegendaryArchon, LegendaryAfrit, InsanityKnight, HereticKnight, HellMonarch, HellGuardian, ForgottenWarrior, EnragedLegendaryHellKnight, EmpoweredDarkCybernoble, DarkCybernoble, DoomCaster, CryoDemon, ProtoDestroyer, RadiationKnight, SandSpirit, SummonedHellKnight, SummonedPyroDemon, SummonedHellGuardian, SummonedHellDuke, VexedNemesisArchon, Paladin, Cyberassault, KaguyaHouraisan
+
+monstergroup "\cgCF Pains\c-", SoulKeeper, Defiler, PoisonElemental, BombElemental, LegendaryTormentor, NemesisTormentor, EnragedLegendaryTormentor, ChaosElemental, Broat, BloodElemental, PhaseElemental, TorturedSoul, LukewarmElemental, GrossElemental, Carrier
+
+monstergroup "\cgCF Pinkies\c-", BullFiend, CyberFiend, MagmaFiend, DTechFiend, CFSpectre, Lurker, Spook, VoidFiend, RabidFiend, NemesisSuicideBomber, LegendarySuicideBomber, NemesisFiend, LegendaryFiend, Mechtre, LegendaryApparition, EnragedLegendarySuicideBomber, EnragedLegendaryFiend, DTechSpectre, CorruptFiend, CFStoneFiend, AbyssalHound, ColdNightmare, FacelessSpectre, RMSuicideBomber, PhaseNightmare, StoneDemon, ToxicFiend, ChaingunFiend, NemesisChainsawZombie, VexedNemesisChainsawZombie, VexedNemesisFiend, LoperComplex, LegendaryBeheadedKamikaze
+
+monstergroup "\cgCF Revenants\c-", Guardian, Cadaver, HellfireRevenant, Famine, War, VexedNemesisRevenant, NemesisRevenant, PhaseGhoul, FreezerRevenant, Pestilence, LegendaryRevenant, InsanityRevenant, EnragedLegendaryRevenant, Draugr, CerebralIncarnate, WidowMaker, ToxicRevenant, NightmarePestilence, NightmareFamine, Infected, Huntertron, DeathRev, SanaeKochiya
+
+monstergroup "\cgCF Souls\c-", TerrorSoul, ForgottenOne, PoisonSoul, Rictus, Cruel, Wicked, VexedNemesisSoul, NemesisSoul, LegendarySoul, PhaseSoul, LegendaryHeroSoul, ImpureSoul, Fallen, EnragedLegendarySoul, ChaosSoul, BloodSkull, BabyWatcher, EnragedLegendaryHusk, NemesisUmbra, PyroSoulEnemy, CryoSoulEnemy, AtomicSoul, GuardianCube, DTGuardianCube, PhaseGuardianCube
+
+monstergroup "\cgCF Viles\c-", Exile, Diabolist, DarkHellion, VexedNemesisExile, NemesisExile, Summoner, PhaseExile, LegendaryVile, LegendaryVessel, Deathknight, LegendaryCrusader, Infernalist, ImpureVile, Illusionist, Hierophant, Velocirator, MakaiSlut, DarkVile
+
+monstergroup "\cgCF Nazis\c-", HitlerNoSuit, Hitler, NaziDog, Officer, Mutant, SSNazi, Guard, SSUberSoldat, SSSuperSoldierPyroCannon, Schabbs, RocketDoge, LegendaryKrieger, CFDeathKnight, SSRocketMan, SSSuperSoldier, TrueHitler, SSUberSoldierExMinigun, SSDualRocketMan, PanzGrosse, OriginalSchabbs, IncubusKaiser, Darko, Cyberhund, CustomSchabbs
+
+monstergroup "\cgCF Zombies\c-", PlasmaGunner, RailGunner, DemonTechZombie, RocketZombie, ShotgunZombie, AssaultShotgunZombie, SuperShotgunZombie, QuadShotgunZombie, AssaultRifleZombie, Chaingunner, Minigunner, BFGZombieman, FormerAdmiral, ExplosiveShotgunZombie, EnragedLegendaryZombie, LegendaryZombie, EnragedLegendaryStealthTrooper, LegendaryStealthTrooper, EnragedLegendaryCommando, LegendaryCommando, EnragedLegendaryAssaultCaptain, LegendaryAssaultCaptain, EmpoweredProShotgunCommando, ProShotgunCommando, DTShotgunZombie, CyZombie, CyberBrute, CorruptedGeneral, InsaneChaingunner, NemesisZombie, NemesisStealthTrooper, NemesisCommando, NemesisAssaultCaptain, MRLZombie, MarineSlayer, LegendaryLieutenant, JetpackZombie, InsaneZombie, InsaneSergeant, VexedNemesisZombie, VexedNemesisCommando, VexedNemesisAssaultCaptain, TrueLegendaryZombie, ToxicZombie, SpecOpsShotgunner, SpecOpsRailgunner, SpecOpsMachinegunner, SniperRifleGuy, RepeaterZombie, ProShotgunCommando, PGNZombie, BFG10KGeneral, CommanderDevastatorZombie, DTDevastatorZombie, EraserZombie, RMExplosiveMinigunner, DemonicZombie, BFG15KMajor, ExplosiveMinigunner, PistolZombie, HomingRocketZombie, Hexa-ShotgunZombie, NailgunCommando, GeneralRoasterock, FreezerZombie, ShotgunCommando, CFLegendaryDoomguy, LegendaryRevolverZombie, LegChainsawZombie, LegendaryCowboy, LegendarySuperShotgunZombie, DemonTechBallistaZombie, HellClone, HeavySpecOpsRailgunner, HellStormGeneral, LegendaryGeneral, HackroidZombie, HackroidAssaultCaptain, FormerLieutenant, FlakCannonZombie, EnragedLegendaryLieutenant, EFGLunatic, DeathAssassin, CyborgShotgunner, VexedNemesisStealthTrooper, TRCZombie, TechErasusZombie, PyroZombie, PhaseShotgunCommando, PhaseMoon, NemesisSuperShotgunZombie, MarineSlayer, M79Zombie
+
+monstergroup "\cgCF Cybers\c-", CFAnnihilator, DarkCyberdemon, Cardinal, TrueLegendaryCyberdemonNormal, RMTerminator, LegendaryCyberdemon, LegendaryCardinal, TrueLegendaryCardinal, LegendaryAnnihilator, Infernodemon1, Infernodemon2, HellFireCyberdemon, Arcradimus, DementedTerminator, DarkAnnihilator, Corruption, CorruptedCyberLord, CerebralCardinal, Cardihilator, TrueLegendaryCyberdemon, LordArchon, LegendaryTerminator, HellfrostCardihilator, Exos, EmpoweredDarkCyberdemon, Desolator, DeathLord, Cyberdemon2, ClockworkCyberdemon, ClockworkCardinal, ClockworkAnnihilator, CardihilatorDemolisher, TerminatorPrototype, Plamexis, PhaseCyberdemon, CorruptedCardinal, NemesisCyberdemon, Mainyu, MagaReimu, LordOfInsanity, CFHeresiarch, Moloch, FreezedCyberDemon, AbyssalSatyr, MiniLegendaryCardinal, Utsuho, Hibachi, NexusObliterator, Maephisto, HellsMinister, HellFireCardinal, HellfrostCyberdemon, CorruptedLegendaryCardinal, Thamuz, ThamuzLord, Frostdemon, EnragedLegendaryCyberdemon, Supremotaur, NemHellsmith, Hellsmith, Freezemotaur, fakeApprentice, Apprentice
+
+monstergroup "\cgCF Masterminds\c-", Demolisher, DarkDemolisher, CerebralSentient, CerebralCommander, BFGMastermind, TrueLegendarySentient, LegendarySentient, SpiderMasterspark, Overseer, SacrosanctOverseer, SacrosanctObserver, SacrosanctOverseer2, NemesisSentient, InsanitySpider, InsanitySentient, InsanityDemolisher, InsanityArachnophyte, InsaneWritheQueen, EnragedLegendarySentient, EmpoweredBFGArachnophyte, DemolisherMkII, DemolisherMkIIRevenge, CorruptedSentient, CFOverlord, GoreCarrier, EbonHound, VexedNemesisSentient, EvaccanniaDOOM
+
+//monstergroup "\cgCF Bosses\c-", LegendaryImp, EnragedLegendaryImp, LegendaryPhaseImp, NemesisImp, LegendaryFiend, EnragedLegendaryFiend, LegendaryApparition, NemesisFiend, LegendaryRedeemer, LegendaryNecromancer, EnragedLegendaryRedeemer, EnragedLegendaryNecromancer, NemesisDefiler, LegendaryTormentor, EnragedLegendaryTormentor, NemesisTormentor, LegendarySoul, EnragedLegendarySoul, LegendaryHeroSoul, NemesisSoul, LegendaryRevenant, EnragedLegendaryRevenant, NemesisRevenant, LegendaryBehemoth, EnragedLegendaryBehemoth, NemesisBehemoth, LegendaryBabySentient, LegendaryBabyDemolisher, EnragedLegendaryBabySentient, NemesisBabySentient, LegendaryHellKnight, LegendaryAfrit, LegendaryArchon, EnragedLegendaryHellKnight, NemesisHellKnight, LegendaryCyberNoble, EnragedLegendaryCybruiser, NemesisCyberNoble, LegendaryCrusader, LegendaryVessel, LegendaryVile, NemesisExile, LegendaryAnnihilator, LegendaryCyberdemon, LegendaryCardinal, NemesisCyberdemon, LegendaryTerminator, LegendarySentient, EnragedLegendarySentient, NemesisSentient, LegChainsawZombie, LegendaryCowboy, LegendarySuperShotgunZombie, LegendaryChair, LegendaryCybruiser, NemesisChainsawZombie, LegendaryBeheadedKamikaze, LegendaryGeneral, HackroidZombie, HackroidAssaultCaptain, EnragedLegendaryLieutenant, NemesisSuperShotgunZombie
+
+
+// CF MONSTERGROUP SPRITES
+
+monstergroupsprite "\cgCF Arachnos\c-", CF_ARAC
+monstergroupsprite "\cgCF Barons\c-", CF_BARO
+monstergroupsprite "\cgCF Cacos\c-", CF_CACO
+monstergroupsprite "\cgCF Fatsos\c-", CF_MANC
+monstergroupsprite "\cgCF Imps\c-", CF_IMPS
+monstergroupsprite "\cgCF Knights\c-", CF_KNIG
+monstergroupsprite "\cgCF Pains\c-", CF_PAIN
+monstergroupsprite "\cgCF Pinkies\c-", CF_PINK
+monstergroupsprite "\cgCF Revenants\c-", CF_REVS
+monstergroupsprite "\cgCF Souls\c-", CF_SOUL
+monstergroupsprite "\cgCF Viles\c-", CF_VILE
+monstergroupsprite "\cgCF Nazis\c-", CF_NAZI
+monstergroupsprite "\cgCF Zombies\c-", CF_ZOMB
+monstergroupsprite "\cgCF Cybers\c-", CF_CYBE
+monstergroupsprite "\cgCF Masterminds\c-", CF_MAST
+monstergroupsprite "\cgCF Bosses\c-", CF_BOSS

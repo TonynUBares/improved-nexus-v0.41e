@@ -1,0 +1,1039 @@
+FLICKERLIGHT NemHellsmithLight
+{
+	Color 1.0 1.0 1.0
+	OffSet 0 0 0
+	Size 120
+	SecondarySize 135
+	Chance 0.2
+	Subtractive 1
+	DontLightSelf 1
+}
+
+OBJECT NemHellsmith
+{
+Frame NHTHA { Light NemHellsmithLight }
+Frame NHTHB { Light NemHellsmithLight }
+Frame NHTHC { Light NemHellsmithLight }
+Frame NHTHD { Light NemHellsmithLight }
+Frame NHTHE { Light NemHellsmithLight }
+Frame NHTHF { Light NemHellsmithLight }
+Frame NHTHG { Light NemHellsmithLight }
+Frame NHTHH { Light NemHellsmithLight }
+Frame NHTHI { Light NemHellsmithLight }
+Frame NHTHJ { Light NemHellsmithLight }
+Frame NHTHK { Light NemHellsmithLight }
+Frame NHTHL { Light NemHellsmithLight }
+Frame NHTHM { Light NemHellsmithLight }
+Frame NHTHN { Light NemHellsmithLight }
+Frame NHTHO { Light NemHellsmithLight }
+Frame NHTHP { Light NemHellsmithLight }
+Frame NHTHQ { Light NemHellsmithLight }
+Frame NHTHR { Light NemHellsmithLight }
+Frame NHTHS { Light NemHellsmithLight }
+Frame NHTHZ { Light NemHellsmithLight }
+}
+
+// NemMeteor
+flickerlight HSMeteor
+{
+	color 0.8 0.8 0.8
+	offset 0 0 0
+	size 56
+	SecondarySize 64
+	chance 0.2
+}
+
+flickerlight HSMeteorExpA
+{
+	color 0.4 0.4 0.4
+	offset 0 0 0
+	size 78
+	SecondarySize 84
+	chance 0.2
+}
+
+flickerlight HSMeteorExpB
+{
+	color 0.6 0.6 0.6
+	offset 0 0 0
+	size 108
+	SecondarySize 114
+	chance 0.2
+}
+
+flickerlight HSMeteorExpC
+{
+	color 0.7 0.7 0.7
+	offset 0 0 0
+	size 120
+	SecondarySize 126
+	chance 0.2
+}
+
+flickerlight HSMeteorExpD
+{
+	color 0.8 0.8 0.8
+	offset 0 0 0
+	size 132
+	SecondarySize 138
+	chance 0.2
+}
+
+flickerlight HSMeteorExpE
+{
+	color 0.9 0.9 0.9
+	offset 0 0 0
+	size 138
+	SecondarySize 144
+	chance 0.2
+}
+
+flickerlight HSMeteorExpF
+{
+	color 1.0 1.0 1.0
+	offset 0 0 0
+	size 144
+	SecondarySize 150
+	chance 0.2
+}
+
+flickerlight HSMeteorExpG
+{
+	color 1.0 1.0 1.0
+	offset 0 0 0
+	size 156
+	SecondarySize 162
+	chance 0.2
+}
+
+flickerlight HSMeteorExpH
+{
+	color 1.0 1.0 1.0
+	offset 0 0 0
+	size 168
+	SecondarySize 174
+	chance 0.2
+}
+
+flickerlight HSMeteorExpI
+{
+	color 1.0 1.0 1.0
+	offset 0 0 0
+	size 174
+	SecondarySize 180
+	chance 0.2
+}
+
+flickerlight HSMeteorExpJ
+{
+	color 1.0 1.0 1.0
+	offset 0 0 0
+	size 186
+	SecondarySize 192
+	chance 0.2
+}
+
+flickerlight HSMeteorExpK
+{
+	color 0.9 0.9 0.9
+	offset 0 0 0
+	size 198
+	SecondarySize 204
+	chance 0.2
+}
+
+flickerlight HSMeteorExpL
+{
+	color 0.6 0.6 0.6
+	offset 0 0 0
+	size 186
+	SecondarySize 192
+	chance 0.2
+}
+
+flickerlight HSMeteorExpM
+{
+	color 0.4 0.4 0.4
+	offset 0 0 0
+	size 174
+	SecondarySize 180
+	chance 0.2
+}
+
+object NemMeteor
+{
+Frame NNCM { Light HSMeteor }
+Frame FXPWA { Light HSMeteorExpA }
+Frame FXPWB { Light HSMeteorExpB }
+Frame FXPWC { Light HSMeteorExpC }
+Frame FXPWD { Light HSMeteorExpD }
+Frame FXPWE { Light HSMeteorExpE }
+Frame FXPWF { Light HSMeteorExpF }
+Frame FXPWG { Light HSMeteorExpG }
+Frame FXPWH { Light HSMeteorExpH }
+Frame FXPWI { Light HSMeteorExpI }
+Frame FXPWJ { Light HSMeteorExpJ }
+Frame FXPWK { Light HSMeteorExpK }
+Frame FXPWL { Light HSMeteorExpL }
+Frame FXPWM { Light HSMeteorExpM }
+}
+
+// NemMeteor2
+flickerlight HSMeteor2
+{
+	color 0.8 0.8 0.8
+	offset 0 0 0
+	size 19
+	SecondarySize 23
+	chance 0.2
+	Subtractive 1
+	DontLightSelf 0
+}
+
+flickerlight HSMeteor2ExpA
+{
+	color 0.4 0.4 0.4
+	offset 0 0 0
+	size 26
+	SecondarySize 30
+	chance 0.2
+	Subtractive 1
+	DontLightSelf 0
+}
+
+flickerlight HSMeteor2ExpB
+{
+	color 0.6 0.6 0.6
+	offset 0 0 0
+	size 36
+	SecondarySize 40
+	chance 0.2
+	Subtractive 1
+	DontLightSelf 0
+}
+
+flickerlight HSMeteor2ExpC
+{
+	color 0.7 0.7 0.7
+	offset 0 0 0
+	size 40
+	SecondarySize 44
+	chance 0.2
+	Subtractive 1
+	DontLightSelf 0
+}
+
+flickerlight HSMeteor2ExpD
+{
+	color 0.8 0.8 0.8
+	offset 0 0 0
+	size 44
+	SecondarySize 48
+	chance 0.2
+	Subtractive 1
+	DontLightSelf 0
+}
+
+flickerlight HSMeteor2ExpE
+{
+	color 0.9 0.9 0.9
+	offset 0 0 0
+	size 46
+	SecondarySize 50
+	chance 0.2
+	Subtractive 1
+	DontLightSelf 0
+}
+
+flickerlight HSMeteor2ExpF
+{
+	color 1.0 1.0 1.0
+	offset 0 0 0
+	size 48
+	SecondarySize 52
+	chance 0.2
+	Subtractive 1
+	DontLightSelf 0
+}
+
+flickerlight HSMeteor2ExpG
+{
+	color 1.0 1.0 1.0
+	offset 0 0 0
+	size 52
+	SecondarySize 56
+	chance 0.2
+	Subtractive 1
+	DontLightSelf 0
+}
+
+flickerlight HSMeteor2ExpH
+{
+	color 1.0 1.0 1.0
+	offset 0 0 0
+	size 56
+	SecondarySize 60
+	chance 0.2
+	Subtractive 1
+	DontLightSelf 0
+}
+
+flickerlight HSMeteor2ExpI
+{
+	color 1.0 1.0 1.0
+	offset 0 0 0
+	size 58
+	SecondarySize 62
+	chance 0.2
+	Subtractive 1
+	DontLightSelf 0
+}
+
+flickerlight HSMeteor2ExpJ
+{
+	color 1.0 1.0 1.0
+	offset 0 0 0
+	size 62
+	SecondarySize 66
+	chance 0.2
+	Subtractive 1
+	DontLightSelf 0
+}
+
+flickerlight HSMeteor2ExpK
+{
+	color 0.9 0.9 0.9
+	offset 0 0 0
+	size 66
+	SecondarySize 70
+	chance 0.2
+	Subtractive 1
+	DontLightSelf 0
+}
+
+flickerlight HSMeteor2ExpL
+{
+	color 0.6 0.6 0.6
+	offset 0 0 0
+	size 62
+	SecondarySize 66
+	chance 0.2
+	Subtractive 1
+	DontLightSelf 0
+}
+
+flickerlight HSMeteor2ExpM
+{
+	color 0.4 0.4 0.4
+	offset 0 0 0
+	size 58
+	SecondarySize 62
+	chance 0.2
+	Subtractive 1
+	DontLightSelf 0
+}
+
+object NemMeteor2
+{
+Frame NNCM { Light HSMeteor2 }
+Frame FXPWA { Light HSMeteor2ExpA }
+Frame FXPWB { Light HSMeteor2ExpB }
+Frame FXPWC { Light HSMeteor2ExpC }
+Frame FXPWD { Light HSMeteor2ExpD }
+Frame FXPWE { Light HSMeteor2ExpE }
+Frame FXPWF { Light HSMeteor2ExpF }
+Frame FXPWG { Light HSMeteor2ExpG }
+Frame FXPWH { Light HSMeteor2ExpH }
+Frame FXPWI { Light HSMeteor2ExpI }
+Frame FXPWJ { Light HSMeteor2ExpJ }
+Frame FXPWK { Light HSMeteor2ExpK }
+Frame FXPWL { Light HSMeteor2ExpL }
+Frame FXPWM { Light HSMeteor2ExpM }
+}
+
+//NemesisFireball1
+flickerlight NFBallABC
+{
+	color 0.8 0.8 0.8
+	offset 0 0 0
+	size 48
+	SecondarySize 54
+	chance 0.2
+	Subtractive 1
+}
+
+
+flickerlight NFBallD
+{
+	color 1.0 1.0 1.0
+	offset 0 0 0
+	size 72
+	SecondarySize 78
+	chance 0.2
+	Subtractive 1
+}
+
+flickerlight NFBallE
+{
+	color 0.9 0.9 9.0
+	offset 0 0 0
+	size 72
+	SecondarySize 78
+	chance 0.2
+	Subtractive 1
+}
+
+flickerlight NFBallF
+{
+	color 0.8 0.8 0.8
+	offset 0 0 0
+	size 66
+	SecondarySize 72
+	chance 0.2
+	Subtractive 1
+}
+
+flickerlight NFBallG
+{
+	color 0.6 0.6 0.6
+	offset 0 0 0
+	size 66
+	SecondarySize 72
+	chance 0.2
+	Subtractive 1
+}
+
+flickerlight NFBallH
+{
+	color 0.4 0.4 0.4
+	offset 0 0 0
+	size 63
+	SecondarySize 69
+	chance 0.2
+	Subtractive 1
+}
+
+flickerlight NFBallI
+{
+	color 0.2 0.2 0.2
+	offset 0 0 0
+	size 54
+	SecondarySize 60
+	chance 0.2
+	Subtractive 1
+}
+
+Object NemesisFireball1
+{
+Frame AR1BA { Light NFBallABC }
+Frame AR1BB { Light NFBallABC }
+Frame AR1BC { Light NFBallABC }
+Frame AR1BD { Light NFBallD }
+Frame AR1BE { Light NFBallE }
+Frame AR1BF { Light NFBallF }
+Frame AR1BG { Light NFBallG }
+Frame AR1BH { Light NFBallH }
+Frame AR1BI { Light NFBallI }
+}
+
+//NHTComet
+flickerlight NHTCometABC
+{
+	color 0.6 0.6 0.6
+	offset 0 0 0
+	size 48
+	SecondarySize 54
+	chance 0.2
+}
+
+flickerlight NHTCometD
+{
+	color 0.8 0.8 0.8
+	offset 0 0 0
+	size 50
+	SecondarySize 56
+	chance 0.2
+}
+
+flickerlight NHTCometE
+{
+	color 1.0 1.0 1.0
+	offset 0 0 0
+	size 72
+	SecondarySize 78
+	chance 0.2
+}
+
+flickerlight NHTCometF
+{
+	color 0.8 0.8 0.8
+	offset 0 0 0
+	size 84
+	SecondarySize 90
+	chance 0.2
+}
+
+flickerlight NHTCometG
+{
+	color 0.6 0.6 0.6
+	offset 0 0 0
+	size 102
+	SecondarySize 108
+	chance 0.2
+}
+
+flickerlight NHTCometH
+{
+	color 0.4 0.4 0.4
+	offset 0 0 0
+	size 100
+	SecondarySize 106
+	chance 0.2
+}
+
+flickerlight NHTCometI
+{
+	color 0.2 0.2 0.2
+	offset 0 0 0
+	size 93
+	SecondarySize 99
+	chance 0.2
+}
+
+Object NHTComet
+{
+Frame NNCMA { Light NHTCometABC }
+Frame NNCMB { Light NHTCometABC }
+Frame NNCMC { Light NHTCometABC }
+Frame NNCMD { Light NHTCometD }
+Frame NNCME { Light NHTCometE }
+Frame NNCMF { Light NHTCometF }
+Frame NNCMG { Light NHTCometG }
+Frame NNCMH { Light NHTCometH }
+Frame NNCMI { Light NHTCometI }
+}
+
+//Nemesis Hit Scan Shot
+flickerlight NHHitscanA
+{
+	color 0.8 0.8 0.8
+	offset 0 0 0
+	size 64
+	SecondarySize 70
+	chance 0.2
+}
+
+flickerlight NHHitscanB
+{
+	color 0.9 0.9 0.9
+	offset 0 0 0
+	size 80
+	SecondarySize 86
+	chance 0.2
+}
+
+flickerlight NHHitscanC
+{
+	color 1.0 1.0 1.0
+	offset 0 0 0
+	size 144
+	SecondarySize 150
+	chance 0.2
+}
+
+flickerlight NHHitscanD
+{
+	color 0.6 0.6 0.6
+	offset 0 0 0
+	size 136
+	SecondarySize 142
+	chance 0.2
+}
+
+flickerlight NHHitscanE
+{
+	color 0.4 0.4 0.4
+	offset 0 0 0
+	size 128
+	SecondarySize 134
+	chance 0.2
+}
+
+flickerlight NHHitscanF
+{
+	color 0.2 0.2 0.2
+	offset 0 0 0
+	size 100
+	SecondarySize 106
+	chance 0.2
+}
+
+object NemesisHitScanShot
+{
+Frame NFE3A { Light NHHitscanA }
+Frame NFE3B { Light NHHitscanB }
+Frame NFE3C { Light NHHitscanC }
+Frame NFE3D { Light NHHitscanD }
+Frame NFE3E { Light NHHitscanE }
+Frame NFE3F { Light NHHitscanF }
+}
+
+//Nemesis H Explosion
+flickerlight NHExpA
+{
+	color 0.8 0.8 0.8
+	offset 0 0 0
+	size 32
+	SecondarySize 36
+	chance 0.2
+}
+
+flickerlight NHExpB
+{
+	color 0.9 0.9 0.9
+	offset 0 0 0
+	size 40
+	SecondarySize 44
+	chance 0.2
+}
+
+flickerlight NHExpC
+{
+	color 1.0 1.0 1.0
+	offset 0 0 0
+	size 72
+	SecondarySize 76
+	chance 0.2
+}
+
+flickerlight NHExpD
+{
+	color 0.6 0.6 0.6
+	offset 0 0 0
+	size 68
+	SecondarySize 72
+	chance 0.2
+}
+
+flickerlight NHExpE
+{
+	color 0.4 0.4 0.4
+	offset 0 0 0
+	size 64
+	SecondarySize 68
+	chance 0.2
+}
+
+flickerlight NHExpF
+{
+	color 0.2 0.2 0.2
+	offset 0 0 0
+	size 50
+	SecondarySize 54
+	chance 0.2
+}
+
+object NemesisHExplosion
+{
+Frame NFE3A { Light NHExpA }
+Frame NFE3B { Light NHExpB }
+Frame NFE3C { Light NHExpC }
+Frame NFE3D { Light NHExpD }
+Frame NFE3E { Light NHExpE }
+Frame NFE3F { Light NHExpF }
+}
+
+//NemesisHBall2
+pointlight NHBall
+{
+    color 0.8 0.8 0.8
+    size 64
+}
+
+flickerlight NHBall_X1
+{
+    color 0.6 0.6 0.6
+    size 80
+    secondarySize 88
+    chance 0.25
+}
+
+flickerlight NHBall_X2
+{
+    color 0.4 0.4 0.4
+    size 96
+    secondarySize 104
+    chance 0.25
+}
+
+flickerlight NHBall_X3
+{
+    color 0.2 0.2 0.2
+    size 112
+    secondarySize 120
+    chance 0.25
+}
+
+object NemesisHBall2
+{
+    frame VMFLA { light NHBall    }
+    frame VMFLB { light NHBall    }
+
+    frame VMFLC { light NHBall_X1 }
+    frame VMFLD { light NHBall_X2 }
+    frame VMFLE { light NHBall_X3 }
+}
+
+//NemTracer and NemTracerPuff
+flickerlight NemTracerAM
+{
+    color 0.6 0.6 0.6
+    size 24
+    secondarySize 30
+    chance 0.25
+	Subtractive 1
+}
+
+flickerlight NemTracerN
+{
+    color 0.4 0.4 0.4
+    size 16
+    secondarySize 22
+    chance 0.25
+	offset 0 8 0
+	Subtractive 1
+}
+
+flickerlight NemTracerO
+{
+    color 0.2 0.2 0.2
+    size 12
+    secondarySize 16
+    chance 0.25
+	offset 0 12 0
+	Subtractive 1
+}
+
+Object NemTracer
+{
+Frame WFCFK { Light NemTracerAM }
+Frame WFCFL { Light NemTracerAM }
+Frame WFCFM { Light NemTracerAM }
+Frame WFCFN { Light NemTracerN }
+Frame WFCFO { Light NemTracerO }
+}
+
+Object NemTracerPuff
+{
+Frame WFCF { Light NemTracerAM }
+}
+
+//NemesisSmithFlame and NeAmesisSmithFlame2
+flickerlight NemSmithFlameA
+{
+    color 0.4 0.4 0.4
+    size 128
+    secondarySize 134
+    chance 0.25
+}
+
+flickerlight NemSmithFlameB
+{
+    color 0.4 0.4 0.4
+    size 120
+    secondarySize 126
+    chance 0.25
+}
+
+flickerlight NemSmithFlameC
+{
+    color 0.4 0.4 0.4
+    size 112
+    secondarySize 118
+    chance 0.25
+}
+
+flickerlight NemSmithFlameD
+{
+    color 0.4 0.4 0.4
+    size 104
+    secondarySize 110
+    chance 0.25
+}
+
+flickerlight NemSmithFlameE
+{
+    color 0.4 0.4 0.4
+    size 96
+    secondarySize 102
+    chance 0.25
+}
+
+flickerlight NemSmithFlameF
+{
+    color 0.4 0.4 0.4
+    size 88
+    secondarySize 94
+    chance 0.25
+}
+
+flickerlight NemSmithFlameG
+{
+    color 0.4 0.4 0.4
+    size 80
+    secondarySize 86
+    chance 0.25
+}
+
+flickerlight NemSmithFlameH
+{
+    color 0.4 0.4 0.4
+    size 72
+    secondarySize 78
+    chance 0.25
+}
+
+flickerlight NemSmithFlameI
+{
+    color 0.4 0.4 0.4
+    size 64
+    secondarySize 70
+    chance 0.25
+}
+
+flickerlight NemSmithFlameJ
+{
+    color 0.4 0.4 0.4
+    size 56
+    secondarySize 62
+    chance 0.25
+}
+
+flickerlight NemSmithFlameK
+{
+    color 0.4 0.4 0.4
+    size 48
+    secondarySize 54
+    chance 0.25
+}
+
+flickerlight NemSmithFlameL
+{
+    color 0.4 0.4 0.4
+    size 40
+    secondarySize 46
+    chance 0.25
+}
+
+Object NemesisSmithFlame
+{
+Frame FIW1A { Light NemSmithFlameA }
+Frame FIW1B { Light NemSmithFlameB }
+Frame FIW1C { Light NemSmithFlameC }
+Frame FIW1D { Light NemSmithFlameD }
+Frame FIW1E { Light NemSmithFlameE }
+Frame FIW1F { Light NemSmithFlameF }
+Frame FIW1G { Light NemSmithFlameG }
+Frame FIW1H { Light NemSmithFlameH }
+Frame FIW1I { Light NemSmithFlameI }
+Frame FIW1J { Light NemSmithFlameJ }
+Frame FIW1K { Light NemSmithFlameK }
+Frame FIW1L { Light NemSmithFlameL }
+}
+
+Object NemesisSmithFlame2
+{
+Frame FIW1A { Light NemSmithFlameA }
+Frame FIW1B { Light NemSmithFlameB }
+Frame FIW1C { Light NemSmithFlameC }
+Frame FIW1D { Light NemSmithFlameD }
+Frame FIW1E { Light NemSmithFlameE }
+Frame FIW1F { Light NemSmithFlameF }
+Frame FIW1G { Light NemSmithFlameG }
+Frame FIW1H { Light NemSmithFlameH }
+Frame FIW1I { Light NemSmithFlameI }
+Frame FIW1J { Light NemSmithFlameJ }
+Frame FIW1K { Light NemSmithFlameK }
+Frame FIW1L { Light NemSmithFlameL }
+}
+
+//NemPentaFire and NemPentaFire2
+Object NemPentaFire
+{
+Frame WFCFA { Light NemTracerAM }
+Frame WFCFB { Light NemTracerAM }
+Frame WFCFC { Light NemTracerAM }
+Frame WFCFD { Light NemTracerAM }
+Frame WFCFE { Light NemTracerAM }
+Frame WFCFF { Light NemTracerAM }
+Frame WFCFG { Light NemTracerAM }
+Frame WFCFH { Light NemTracerAM }
+Frame WFCFI { Light NemTracerAM }
+Frame WFCFJ { Light NemTracerAM }
+Frame WFCFK { Light NemTracerAM }
+Frame WFCFL { Light NemTracerAM }
+Frame WFCFM { Light NemTracerAM }
+Frame WFCFN { Light NemTracerN }
+Frame WFCFO { Light NemTracerO }
+}
+
+Object NemPentaFire2
+{
+Frame WFCFA { Light NemTracerAM }
+Frame WFCFB { Light NemTracerAM }
+Frame WFCFC { Light NemTracerAM }
+Frame WFCFD { Light NemTracerAM }
+Frame WFCFE { Light NemTracerAM }
+Frame WFCFF { Light NemTracerAM }
+Frame WFCFG { Light NemTracerAM }
+Frame WFCFH { Light NemTracerAM }
+Frame WFCFI { Light NemTracerAM }
+Frame WFCFJ { Light NemTracerAM }
+Frame WFCFK { Light NemTracerAM }
+Frame WFCFL { Light NemTracerAM }
+Frame WFCFM { Light NemTracerAM }
+Frame WFCFN { Light NemTracerN }
+Frame WFCFO { Light NemTracerO }
+}
+
+//NemesisShot2
+Object NemesisShot2
+{
+Frame WNCM { Light HSMeteor2 }
+}
+
+Object NemesisFX
+{
+Frame FXPWA { Light HSMeteor2ExpA }
+Frame FXPWB { Light HSMeteor2ExpB }
+Frame FXPWC { Light HSMeteor2ExpC }
+Frame FXPWD { Light HSMeteor2ExpD }
+Frame FXPWE { Light HSMeteor2ExpE }
+Frame FXPWF { Light HSMeteor2ExpF }
+Frame FXPWG { Light HSMeteor2ExpG }
+Frame FXPWH { Light HSMeteor2ExpH }
+Frame FXPWI { Light HSMeteor2ExpI }
+Frame FXPWJ { Light HSMeteor2ExpJ }
+}
+
+//NemHellsmithLightningBolt
+flickerlight NemSmithBolt
+{
+    color 0.0 1.0 1.0
+    size 56
+    secondarySize 64
+    chance 0.25
+}
+
+object NemHellsmithLightningBolt
+{
+Frame LFX2 { Light NemSmithBolt }
+}
+
+//NemHellsmithLightning2
+flickerlight NHSLightning
+{
+    color 0.8 0.8 0.8
+    size 384
+    secondarySize 400
+    chance 0.25
+	subtractive 1
+	dontlightself 1
+}
+
+flickerlight NHSLightningA
+{
+    color 0.8 0.8 0.8
+    size 128
+    secondarySize 136
+    chance 0.25
+}
+
+flickerlight NHSLightningB
+{
+    color 0.8 0.8 0.8
+    size 96
+    secondarySize 104
+    chance 0.25
+}
+
+flickerlight NHSLightningC
+{
+    color 0.8 0.8 0.8
+    size 64
+    secondarySize 72
+    chance 0.25
+}
+
+object NemHellsmithLightning2
+{
+Frame DV10 { Light NHSLightning }
+Frame DV10A { Light NHSLightningA }
+Frame DV10B { Light NHSLightningB }
+Frame DV10C { Light NHSLightningC }
+}
+
+//NemHSLightningSpark
+flickerlight NHSSparkABC
+{
+    color 0.8 0.8 0.8
+    size 24
+    secondarySize 28
+    chance 0.25
+}
+
+flickerlight NHSSparkD
+{
+    color 40.6 0.6 0.6
+    size 2
+    secondarySize 28
+    chance 0.25
+}
+
+flickerlight NHSSparkE
+{
+    color 0.4 0.4 0.4
+    size 12
+    secondarySize 15
+    chance 0.25
+}
+
+flickerlight NHSSparkF
+{
+    color 0.2 0.2 0.2
+    size 6
+    secondarySize 8
+    chance 0.25
+}
+
+object NemHSLightningSpark
+{
+Frame SWPKA { Light NHSSparkABC }
+Frame SWPKB { Light NHSSparkABC }
+Frame SWPKC { Light NHSSparkABC }
+Frame SWPKD { Light NHSSparkD }
+Frame SWPKE { Light NHSSparkE }
+Frame SWPKF { Light NHSSparkF }
+}
+
+//CubeSpawner (and 2,3,4)
+pointlight SpawnCube
+{
+	color 0.4 0.4 0.4
+	size 32
+}
+
+object CubeSpawner
+{
+Frame GCUB { Light SpawnCube }
+}
+
+object CubeSpawner2
+{
+Frame GCUB { Light SpawnCube }
+}
+
+object CubeSpawner3
+{
+Frame GCUB { Light SpawnCube }
+}

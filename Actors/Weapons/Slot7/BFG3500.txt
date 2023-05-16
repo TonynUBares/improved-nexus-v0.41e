@@ -1,0 +1,319 @@
+Actor BFG3500Giver : CustomInventory
+{
+  Scale 0.9
+  Inventory.Amount 1
+  Inventory.MaxAmount 0
+  Inventory.InterHubAmount 0
+  Inventory.PickupSound "misc/w_pkup2"
+  Inventory.PickupMessage "You got the BFG 3500"
+  Obituary "%o was turned into a blue crisp thanks to %k's BFG 3500"
+  Tag "BFG 3500"
+  States
+  {
+  Spawn:
+	BOG9 A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",7,0)
+  SpawnLoop:
+	BOG9 A -1
+	Loop
+  Pickup:
+	TNT1 A 0 A_JumpIfInventory("BFG3500",1,"JustAmmo")
+  All:
+	TNT1 A 0 A_GiveInventory("BFG3500",1)
+	TNT1 A 0 A_JumpIfInventory("BFG3500GiverCheck",1,"HoldAndDestroy")
+	TNT1 A 0 A_GiveInventory("BFG3500GiverCheck",1)
+	TNT1 A 0 A_GiveInventory("DCell",40)
+	Stop
+  JustAmmo:
+    TNT1 A 0 A_JumpIfInventory("BFG3500GiverCheck",1,"Null")
+	TNT1 A 0 A_GiveInventory("BFG3500GiverCheck",1)
+	TNT1 A 0 A_GiveInventory("DCell",40)
+	TNT1 A 0 A_SpawnItemEx("BFG3500")
+	Stop
+  }
+}
+
+Actor BFG3500SpawnerGiver : BFG3500Giver
+{
+  States
+  {
+  JustAmmo:
+    TNT1 A 0 A_JumpIfInventory("BFG3500GiverCheck",1,"Null")
+	TNT1 A 0 A_GiveInventory("BFG3500GiverCheck",1)
+	TNT1 A 0 A_GiveInventory("DCell",40)
+	Stop
+  }
+}
+
+Actor BFG3500GiverCheck : Inventory { Inventory.Amount 1 Inventory.MaxAmount 1 Inventory.InterHubAmount 0 }
+
+
+
+Actor BFG3500 : Weapon 2969
+{
+//$Category Weapons/BFG20K
+//$Sprite BFC9H0
+//$Title "The BFG 3500"
+  Weapon.PreferredSkin "BFG9500-Marine"
+  Weapon.AmmoUse 10
+  Weapon.AmmoGive 40
+  Weapon.AmmoType "DCell"
+  Weapon.AmmoType2 "DCell"
+  Weapon.SlotNumber 7
+  Weapon.SlotPriority 9.1
+  Weapon.UpSound "freeze/up"
+  Inventory.Icon "BOG9H0"
+  +INVENTORY.UNDROPPABLE
+  +WEAPON.NOAUTOFIRE
+  Inventory.PickupSound "misc/w_pkup2"
+  Inventory.PickupMessage "You got the BFG 3500"
+  Weapon.PreferredSkin "BFG-Marine"
+  Obituary "%o was turned into a blue crisp thanks to %k's BFG 3500"
+  Tag "BFG 3500"
+  States
+  {
+  Ready:
+	B350 A 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfNoAmmo("Ready2")
+    TNT1 A 0 A_PlayWeaponSound("weapons/bfg15kidle")
+    BFC9 BBBBB 1 A_WeaponReady
+    BFC9 CCCCC 1 A_WeaponReady
+    BFC9 DDDDD 1 A_WeaponReady
+    BFC9 EEEEE 1 A_WeaponReady
+	BFC9 FFFFF 1 A_WeaponReady
+	BFC9 EEEEE 1 A_WeaponReady
+	BFC9 DDDDD 1 A_WeaponReady
+	BFC9 CCCCC 1 A_WeaponReady
+	Loop
+  Ready2:
+    TNT1 A 0 A_JumpIfInventory("DCell",10,"Ready")
+    B350 A 1 A_WeaponReady
+	Loop
+   Deselect:
+	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",1)
+    TNT1 A 0 A_Lower
+	B350 A 1 A_Lower
+	Goto Deselect+1
+   Select:
+	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",0)
+	B350 A 1 A_Raise
+	B350 A 1 Offset(-90,69)
+	B350 A 1 Offset(-70,60)
+	B350 A 1 Offset(-55,52)
+	B350 A 1 Offset(-35,45)
+	B350 A 1 Offset(-15,39)
+	B350 A 1 Offset(-1,35)
+SelectRaise:
+    TNT1 A 0 A_Raise
+	B350 A 1 A_Raise
+	Loop
+  Fire:
+	B350 A 0 A_PlayWeaponSound("bfg3500/fire")
+	B350 A 0 A_GunFlash
+	B350 B 1 Bright Radius_Quake(1,2,0,1,0)
+	B350 BBBBBB 1 Bright
+	B350 C 1 Bright Radius_Quake(2,2,0,1,0)
+	B350 CCCCCC 1 Bright
+	B350 D 1 Bright Radius_Quake(4,2,0,1,0)
+	B350 DDDDDD 1 Bright
+	B350 E 1 Bright Radius_Quake(6,2,0,1,0)
+	B350 EEEEEE 1 Bright
+	B350 F 1 Bright Radius_Quake(8,2,0,1,0)
+	B350 FFFFFF 1 Bright
+	B350 A 0 Radius_Quake(10,4,0,1,0)
+	B350 A 0 A_Recoil(10)	
+	B350 A 0 Radius_Quake(10,6,0,1,0)
+	TNT1 A 0 A_SetBlend("Blue", 0.03, 4)
+	B350 G 1 Bright A_FireCustomMissile("BFG3500Ball")
+	TNT1 A 1 A_PlaySound ("Weapons/dbfgcooldown2")
+	B350 GGGHHHGG 1 Bright
+	B350 FEDCB 2
+	B350 A 0 A_Light0
+	B350 A 0 Radius_Quake(3,10,0,1,0)
+	B350 A 0 A_PlaySound("weapons/dtech10ksteam")
+	B350 AAAAAAAAAAAA 1 A_FireCustomMissile("DTech10KSteam",-58+Random(-4,4),0,0,0)
+	B350 A 20
+	B350 A 3 A_Refire
+	Goto Ready
+  Spawn:
+  	BOG9 A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",7,0)
+  SpawnLoop:
+	BOG9 H -1
+	Loop
+	}
+}
+
+Actor BFG3500Ball
+{
+  Radius 13
+  Height 8 
+  Speed 25
+  PROJECTILE
+  Damage (1200)
+  +RANDOMIZE
+  +FORCERADIUSDMG
+  +NODAMAGETHRUST
+  +FORCEPAIN
+  +NOEXTREMEDEATH
+  +MTHRUSPECIES
+  DamageType "DBFG"
+  Species "player"
+  Renderstyle Add
+  Alpha 0.8
+  DeathSound ""
+  States
+  {
+  Spawn:
+    TNT1 A 0
+    TNT1 A 0 A_AlertMonsters
+    TNT1 A 0 A_PlaySoundEx("weapons/dtech10kball","Voice",1)
+    BFS9 ABCD 1 Bright A_SpawnItemEx("BFGTrailParticleBlue",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+    Loop
+  Death:	
+    TNT1 A 0
+	TNT1 A 0 A_SetTranslucent(0.75,1)	
+	TNT1 A 0 A_RadiusGive("BFG3500BallEffect",584,RGF_MONSTERS,1) //TNT1 A 0 A_RadiusGive("BFG3500BallEffect",584,RGF_MONSTERS|RGF_PLAYERS,1)
+	TNT1 A 0 A_Explode((500),584,0)
+	TNT1 A 0 A_SpawnItemEx("BFG3500ShockWave",0,0,24,0,0,0,0,128)
+	BFS9 ABCDABCDABCDABCDABCDABCDABCDABCDABCD 1 Bright A_SpawnItemEx("BFGTrailParticleBlue",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	//TNT1 A 0 A_Explode(8,512,0)
+	TNT1 A 0 A_RadiusGive("BFG3500BallEffect",584,RGF_MONSTERS,1)
+	TNT1 A 0 A_Explode((500),584,0)
+	TNT1 A 0 A_SpawnItemEx("BFG3500ShockWave",0,0,24,0,0,0,0,128)
+	BFS9 ABCDABCDABCDABCDABCDABCDABCDABCDABCD 1 Bright A_SpawnItemEx("BFGTrailParticleBlue",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	TNT1 A 0 A_RadiusGive("BFG3500BallEffect",584,RGF_MONSTERS,1)
+	TNT1 A 0 A_Explode((500),584,0)
+	TNT1 A 0 A_SpawnItemEx("BFG3500ShockWave",0,0,24,0,0,0,0,128)
+	BFS9 ABCDABCDABCDABCDABCDABCDABCDABCDABCD 1 Bright A_SpawnItemEx("BFGTrailParticleBlue",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	TNT1 A 0 A_RadiusGive("BFG3500BallEffect",584,RGF_MONSTERS,1)
+	TNT1 A 0 A_Explode((500),584,0)
+	TNT1 A 0 A_SpawnItemEx("BFG3500ShockWave",0,0,24,0,0,0,0,128)
+	BFS9 ABCDABCDABCDABCDABCDABCDABCDABCDABCD 1 Bright A_SpawnItemEx("BFGTrailParticleBlue",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	TNT1 A 0 A_RadiusGive("BFG3500BallEffect",584,RGF_MONSTERS,1)
+	TNT1 A 0 A_Explode((500),584,0)
+	TNT1 A 0 A_SpawnItemEx("BFG3500ShockWave",0,0,24,0,0,0,0,128)
+	BFS9 ABCDABCDABCDABCDABCDABCDABCDABCDABCD 1 Bright A_SpawnItemEx("BFGTrailParticleBlue",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	TNT1 A 0 A_RadiusGive("BFG3500BallEffect",584,RGF_MONSTERS,1)
+	TNT1 A 0 A_Explode((500),584,0)
+	TNT1 A 0 A_SpawnItemEx("BFG3500ShockWave",0,0,24,0,0,0,0,128)
+	BFS9 ABCDABCDABCDABCDABCDABCDABCDABCDABCD 1 Bright A_SpawnItemEx("BFGTrailParticleBlue",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	TNT1 A 0 A_RadiusGive("BFG3500BallEffect",584,RGF_MONSTERS,1)
+	TNT1 A 0 A_Explode((500),584,0)
+	TNT1 A 0 A_SpawnItemEx("BFG3500ShockWave",0,0,24,0,0,0,0,128)
+	BFS9 ABCDABCDABCDABCDABCDABCDABCDABCDABCD 1 Bright A_SpawnItemEx("BFGTrailParticleBlue",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	TNT1 A 0 A_RadiusGive("BFG3500BallEffect",584,RGF_MONSTERS,1)
+	TNT1 A 0 A_Explode((500),584,0)
+	TNT1 A 0 A_SpawnItemEx("BFG3500ShockWave",0,0,24,0,0,0,0,128)
+	BFS9 ABCDABCDABCDABCDABCDABCDABCDABCDABCD 1 Bright A_SpawnItemEx("BFGTrailParticleBlue",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	TNT1 A 0 A_Explode((250),584,0)
+	TNT1 A 0 Radius_Quake(3,35,0,10,0)
+	TNT1 A 0 A_RadiusGive("BFG3500BallEffect",584,RGF_MONSTERS,1)
+	TNT1 A 0 A_SpawnItemEx("BFG3500ShockWave",0,0,24,0,0,0,0,128)
+	TNT1 A 0 A_StopSoundEx("Voice")
+	TNT1 A 0 Radius_Quake(20,12,0,12,0)
+	TNT1 A 0 A_PlaySound("bfg3500/explode")
+	BFE9 A 8 Bright A_SpawnItem("BFG3500BallEx",0,-10)
+	BFE9 BCD 8 Bright
+    Stop 
+    }
+}
+
+Actor BFG3500BallEffect : CustomInventory
+{  
+  +INVENTORY.QUIET
+  +INVENTORY.UNDROPPABLE
+  +INVENTORY.ALWAYSPICKUP
+  +INVENTORY.AUTOACTIVATE       
+  Inventory.Amount 1
+  Inventory.MaxAmount 0
+  States
+  {
+  PickUp:
+    NULL A 1
+	NULL A 1 //A_Jump(80,3)
+	//NULL A 1 ACS_NamedExecuteAlways("",0,0,random(64,388),0)
+    NULL A 1 A_SpawnItemEx("BFG3500Spray",0,0,36)   
+	NULL A 1
+    Stop
+  }
+}
+
+ACTOR BFG3500Spray
+{
++NOBLOCKMAP
++NOGRAVITY
++ACTIVATEPCROSS
++ACTIVATEIMPACT
++NOTELEPORT
++DROPOFF
++EXTREMEDEATH
+RENDERSTYLE ADD
+Radius 1
+Height 1
+Damage 0
+Speed 0
+States
+{
+Spawn:
+   TNT1 A 0
+   BSS9 A 6 Bright A_SpawnItemEx("BlueParticleSpawnerDT", 0, 0, 0, 0, 0, 0, 0, 128)
+   BSS9 BCD 6 Bright 
+   Stop
+   }
+}
+
+ACTOR BFG3500ShockWave
+{
+Speed 0
+Scale 1
+Radius 1
+Height 1
+Speed 2
+Damage 0
+Renderstyle Translucent
+Alpha 0.75
+PROJECTILE
++NOBLOCKMAP
++NOTELEPORT
++DONTSPLASH
++NOGRAVITY
++MISSILE
++FORCEXYBILLBOARD
++CLIENTSIDEONLY
++NOINTERACTION
++NOCLIP
+Scale 2.5
+States
+{
+Spawn:
+SHK9 ABCDEFGHIJKLMNOPQR 2 Bright A_FadeOut(0.015)
+Stop
+}
+}
+
+ACTOR BFG3500BallEx
+{
+RenderStyle Add
+Alpha 0.85
++CLIENTSIDEONLY
++NOGRAVITY
+States
+{
+Spawn:
+TNT1 AAAAAAAAAAAAAAAAAAAAAAAAA 1 Bright A_CustomMissile("Kaboom15Blue", 0, 0, random(0,360), 2, random(0,360))
+Stop
+}
+}
+
+ACTOR Kaboom15Blue : CFKaboom
+{
+Speed 6
+Scale 1.15
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+FXPB AABBCDEFGHIJKLM 2 Bright A_FadeOut(0.05)
+Stop
+}
+}

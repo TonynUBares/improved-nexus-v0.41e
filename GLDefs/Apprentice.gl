@@ -1,0 +1,207 @@
+//STracer and STracerPuff
+Flickerlight STracerA
+{
+    color 1.0 0.7 0.0
+    size 8
+    secondarySize 10
+    chance 0.25
+}
+
+Flickerlight STracerB
+{
+    color 1.0 0.7 0.0
+    size 15
+    secondarySize 18
+    chance 0.25
+}
+
+Flickerlight STracerC
+{
+    color 1.0 0.7 0.0
+    size 28
+    secondarySize 32
+    chance 0.25
+}
+
+Flickerlight STracerD
+{
+    color 1.0 0.7 0.0
+    size 24
+    secondarySize 28
+    chance 0.25
+}
+
+Flickerlight STracerE
+{
+    color 1.0 0.7 0.0
+    size 20
+    secondarySize 24
+    chance 0.25
+}
+
+Flickerlight STracerF
+{
+    color 1.0 0.7 0.0
+    size 16
+    secondarySize 20
+    chance 0.25
+}
+
+Flickerlight STracerG
+{
+    color 1.0 0.7 0.0
+    size 14
+    secondarySize 17
+    chance 0.25
+}
+
+Flickerlight STracerH
+{
+    color 1.0 0.7 0.0
+    size 10
+    secondarySize 13
+    chance 0.25
+}
+
+Flickerlight STracerI
+{
+    color 1.0 0.7 0.0
+    size 8
+    secondarySize 10
+    chance 0.25
+}
+
+Flickerlight STracerJ
+{
+    color 1.0 0.7 0.0
+    size 6
+    secondarySize 8
+    chance 0.25
+}
+
+Flickerlight STracerK
+{
+    color 1.0 0.7 0.0
+    size 40
+    secondarySize 44
+    chance 0.25
+}
+
+Flickerlight STracerL
+{
+    color 1.0 0.4 0.0
+    size 40
+    secondarySize 44
+    chance 0.25
+}
+
+Flickerlight STracerM
+{
+    color 1.0 0.0 0.0
+    size 36
+    secondarySize 40
+    chance 0.25
+}
+
+Flickerlight STracerN
+{
+    color 0.9 0.0 0.0
+    size 34
+    secondarySize 38
+    chance 0.25
+}
+
+Flickerlight STracerO
+{
+    color 0.8 0.0 0.0
+    size 34
+    secondarySize 38
+    chance 0.25
+}
+
+Object STracer
+{
+Frame FTRAK {Light STracerK }
+Frame FTRAL {Light STracerL }
+Frame FTRAM {Light STracerM }
+Frame FTRAN {Light STracerN }
+Frame FTRAO {Light STracerO }
+}
+
+Object STracerPuff
+{
+Frame FTRAA {Light STracerA }
+Frame FTRAB {Light STracerB }
+Frame FTRAC {Light STracerC }
+Frame FTRAD {Light STracerD }
+Frame FTRAE {Light STracerE }
+Frame FTRAF {Light STracerF }
+Frame FTRAG {Light STracerG }
+Frame FTRAH {Light STracerH }
+Frame FTRAI {Light STracerI }
+Frame FTRAJ {Light STracerJ }
+}
+
+//HellShot
+Flickerlight HellShotABCD
+{
+    color 1.0 0.3 0.0
+    size 24
+    secondarySize 28
+    chance 0.25
+}
+
+Flickerlight HellShotE
+{
+    color 1.0 0.5 0.0
+    size 16
+    secondarySize 19
+    chance 0.25
+}
+
+Flickerlight HellShotF
+{
+    color 1.0 0.5 0.0
+    size 40
+    secondarySize 44
+    chance 0.25
+}
+
+Flickerlight HellShotG
+{
+    color 1.0 0.5 0.0
+    size 64
+    secondarySize 68
+    chance 0.25
+}
+
+Flickerlight HellShotH
+{
+    color 1.0 0.5 0.0
+    size 36
+    secondarySize 40
+    chance 0.25
+	offset 0 8 0
+}
+
+Flickerlight HellShotI
+{
+    color 1.0 0.5 0.0
+    size 16
+    secondarySize 19
+    chance 0.25
+	offset 0 20 0
+}
+
+Object HellShot
+{
+Frame HSBLA { Light HellShotABCD }
+Frame HSBLB { Light HellShotABCD }
+Frame HSBLC { Light HellShotABCD }
+Frame HSBLD { Light HellShotABCD }
+Frame HSBLE { Light HellShotE }
+Frame HSBLF { Light HellShotF }
+Frame HSBLG { Light HellShotG }
+Frame HSBLH { Light HellShotH }
+Frame HSBLI { Light HellShotI }
+}

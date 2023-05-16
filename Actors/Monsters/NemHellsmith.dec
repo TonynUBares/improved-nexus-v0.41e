@@ -1,0 +1,1752 @@
+ACTOR NemHellsmith : LegendaryCyberdemon 31999
+{
+ Tag "\c[v9]Nemesis Hellsmith\c-"
+ BloodColor "Black"
+ Health 16666
+ Speed 40
+ Radius 40
+ Height 110
+ Scale 1.1
+ Mass 100000
+ species "Cybers"
+ MONSTER
+ +QUICKTORETALIATE
+ +NORADIUSDMG
+ +PIERCEARMOR
+ +MISSILEEVENMORE
+ +NOTARGET
+ +BOSS
+ +MISSILEMORE
+ +FIRERESIST
+ +FLOORCLIP
+ +DONTMORPH
+ +BOSSDEATH
+ +NOICEDEATH
+ +LOOKALLAROUND
+ +DONTGIB
+ +NOTELEFRAG
+ +NOTIMEFREEZE
+ +DONTRIP
+ +DONTHURTSPECIES
+ +DONTHARMSPECIES
+ +CANTSEEK
+ +NODROPOFF
+ +AVOIDMELEE
+ +NODAMAGETHRUST
+ +NOFEAR
+ +BRIGHT
+ DropItem "NemesisUnmaker", 256
+ DropItem "NemesisUltraSphere" 215
+ DropItem "TrueLegendaryRune" 25 1
+ DropItem "CFSpreadRune", 110, 1 
+ DropItem "NemesisHealthBonusMax", 256, 64
+ DropItem "NemesisArmorBonus64", 256
+ DropItem "NemesisHealthBonusMax", 256, 64
+ DropItem "NemesisArmorBonus64", 256
+ DropItem "LegAmmoSphere", 128, 5
+ DropItem "LegDemonRune", 80, 1
+ DropItem "LegendaryRune", 256, 1
+ DropItem "NemesisRuneSpawnerTier4", 256, 1
+ DropItem "DemonicChalice", 256, 2
+ DropItem "SkullOfPower", 256, 2
+ DropItem "NLDemonAmmo", 256
+ DropItem "NLDemonAmmoBox", 256
+ DropItem "Terminator", 70, 1
+ DropItem "NemesisShell", 256
+ DropItem "NemesisShellBox", 130
+ DropItem "Nemesis Rifle", 200
+ DropItem "BlurSphere", 256
+ DropItem "Nemesis Plasmatic Cannon", 200
+ DropItem "Nemesis Assault Shotgun", 200
+ DropItem "Nemesis Sawed-Off Shotgun", 200
+ DropItem "SalvationSphere", 256
+ DropItem "FuelCore" 256 1
+ DropItem "FuelCore" 256 1
+ DropItem "FuelCore" 256 1
+ DropItem "FuelCore" 256 1
+ Damage 0
+ MeleeRange 86
+ DamageFactor "PlayerNemesisPlasma", 0.0
+ DamageFactor "Explosion", 0.05
+ DamageFactor "DTRailgun", 0.4
+ DamageFactor "PDTPuff", 0.4
+ DamageFactor "RailG", 0.3
+ DamageFactor 0.3
+ DamageFactor "T3rm", 0.0
+ DamageFactor "MinotaurDamage", 0.0
+ DamageType "MinotaurDamage"
+ PainChance "Explosion", 255
+ PainChance 32
+ Painchance "LegendaryPlayer", 4
+ PainChance "PlayerDBFG2", 256
+ PainChance "DBFG2", 256
+ PainChance "PlayerDBFG10K2", 256
+ SeeSound "monster/smithr"
+ ActiveSound "monster/smitha"
+ PainSound "monster/smithp"
+ DeathSound "monster/smithd"
+ Obituary "%o Got Gored, Smashed, Hit and Destroyed by the Nemesis Hellsmith!"
+ var int user_rage;
+ var int user_missile;
+ States
+ {	
+  Spawn:
+	NHTH A 0
+	TNT1 A 0 ACS_NamedExecuteAlways("WimpyMode",0,2)
+	TNT1 A 0 ACS_NamedExecuteAlways("ModifyMonster",0,2,6)
+  Idle:
+	NHTH AB 10 A_Look
+	Loop
+  See:
+	TNT1 A 0 A_JumpIf(user_lowlag == 1,"MoreSee")
+	TNT1 A 0 A_JumpIfTargetInLOS("MoreSee",0,0,0,0)
+	NHTH ABCD 2 A_Chase
+	Loop
+  MoreSee:
+	TNT1 A 0 A_SetUserVar("user_lowlag",1)
+	TNT1 A 0 A_JumpIf(user_music == 1,3)
+	TNT1 A 0 ACS_NamedExecuteAlways("CFMusic",0,777)
+	TNT1 A 0 A_SetUserVar("user_music",1)
+	TNT1 A 0 A_Jump(100,"Rush")
+	NHTH A 3 Bright A_Hoof
+	NHTH ABB 3 Bright A_Chase
+	NHTH C 3 Bright A_Hoof
+	NHTH CDD 3 Bright A_Chase
+	TNT1 A 0 A_Jump(50,"Teleport")
+	Loop 
+
+  Rush:
+	TNT1 A 0 A_SetShootable
+	TNT1 A 0 A_unsetInvulnerable
+	NHTH E 0 A_unSetReflectiveInvulnerable
+	TNT1 A 0 A_UnSetReflective
+	TNT1 A 0 A_SetTranslucent(1)
+	TNT1 A 0 A_Hoof
+	NHTH AAABCC 2 Bright A_Chase
+	TNT1 A 0 A_Hoof
+	NHTH DD 2 Bright A_Chase
+	TNT1 A 0 A_Jump(25,"Teleport")
+	TNT1 A 0 A_Jump(75,"See")	
+	Loop  
+  Teleport:
+	TNT1 A 0 A_JumpIf(user_rage == 1,"TeleportRage")
+	TNT1 A 0 A_SetInvulnerable
+	NHTH A 1 Bright A_UnSetShootable
+	NHTH AAAAAAAAAA 1 Bright A_FadeOut(0.1,0)
+	TNT1 A 2 Bright
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	TNT1 A 1 Bright A_PlaySound("boss/teleport",6)
+	NHTH AAAAAAAAAA 1 Bright A_FadeIn(0.1)
+	TNT1 A 0 A_UnSetInvulnerable
+	NHTH A 1 Bright A_SetShootable
+	Goto See
+  TeleportRage:
+	NHTH A 1 Bright A_UnSetShootable
+	NHTH AAAAA 1 Bright A_FadeOut(0.2,0)
+	TNT1 A 2 Bright
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	TNT1 A 1 Bright A_PlaySound("boss/teleport",6)
+	NHTH AAAAA 1 Bright A_FadeIn(0.2)
+	TNT1 A 0 A_UnSetInvulnerable
+	NHTH A 1 Bright A_SetShootable
+	Goto See
+  StartRage:
+	TNT1 A 0 A_SetInvulnerable
+	TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+	NHTH G 10 Bright A_PlaySound("NemesisCyber/Enraged",2,1.0,0,ATTN_NONE)
+	NHTH GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 2 Bright A_SpawnItemEx("NemesisSmithFlame")
+	TNT1 A 0 A_SpawnItemEx("NemesisCyberRageRing",0,0,0,0,0,0,0,SXF_SETMASTER)
+	TNT1 A 0 A_Playsound("brain/spit",6,1.0,0,ATTN_NONE)
+	TNT1 A 0 A_SetUserVar("user_rage",1)
+	TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+	NHTH GGGGGGGGGGGGGGGGGGGGGGG 2 Bright A_SpawnItemEx("NemesisSmithFlame")
+	Goto See //Rage	
+
+  Taunt:
+	TNT1 A 0 A_SetInvulnerable
+	TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+	TNT1 A 0 A_ChangeFlag("NODAMAGE",1)
+	NHTH AA 3 A_SpawnItemEx("NemesisSmithFlameSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_PlaySound("NemesisMotaur/Taunt",2,1.0,0,ATTN_NONE)
+	TNT1 A 0 A_TakeInventory("MarineKilled",1)
+	NHTH AAAAAAAA 3 A_SpawnItemEx("NemesisSmithFlameSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+	TNT1 A 0 A_ChangeFlag("NODAMAGE",0)
+	Goto see
+  Melee:
+	NHTH E 6 A_FaceTarget
+	NHTH F 1 A_Playsound ("monster/hamswg")
+	NHTH F 5 A_FaceTarget
+	NHTH G 10 A_CustomMeleeAttack (150*Random(1,8),"monster/hamhit","monster/hamflr","MinotaurDamage")
+	NHTH B 0 A_Jump (192,1)
+	Goto See
+	NHTH J 6 A_FaceTarget
+	NHTH K 1 A_Playsound ("monster/hamswg")
+	NHTH K 5 A_FaceTarget
+	NHTH L 10 A_CustomMeleeAttack (150*Random(1,8),"monster/hamhit","monster/hamflr","MinotaurDamage")
+	LFX2 G 0 Bright A_CustomMissile("NemHellsmithLightning3",0,0,0,6,90)
+	Goto See
+
+  Missile:
+	TNT1 A 0 A_SetShootable
+	TNT1 A 0 A_UnSetInvulnerable
+	TNT1 A 0 A_SetTranslucent(1)
+	TNT1 A 0 A_Jump(100,"NHSComet","NemComets","Charge","NemesisShot")
+	TNT1 A 0 A_Jump(128,"Charge","NemTracer1","NemTracer2","NemMeteor")
+	TNT1 A 0 A_Jump(192,"NemMeteorStorm","NemBFG","NemComets","LightningStorm","Charge","NemesisRain")
+	goto see
+
+  NemMeteor:
+	NHTH EF 8 A_FaceTarget
+	TNT1 A 0 A_CustomBulletAttack(0,0,1,0,"NemMeteorTarget")
+	TNT1 A 0 A_Playsound ("monster/hamswg")
+	TNT1 A 0 A_Playsound ("monster/hamswg")
+	NHTH G 7 Bright 
+	NHTH JK 8 A_FaceTarget
+	TNT1 A 0 A_CustomBulletAttack(0,0,1,0,"NemMeteorTarget")
+	TNT1 A 0 A_Playsound ("monster/hamswg")
+	TNT1 A 0 A_Playsound ("monster/hamswg")
+	NHTH L 7 Bright 
+	NHTH EF 8 A_FaceTarget
+	TNT1 A 0 A_CustomBulletAttack(0,0,1,0,"NemMeteorTarget")
+	TNT1 A 0 A_Playsound ("monster/hamswg")
+	TNT1 A 0 A_Playsound ("monster/hamswg")
+	NHTH G 7 Bright
+	NHTH JK 8 A_FaceTarget
+	TNT1 A 0 A_CustomBulletAttack(0,0,1,0,"NemMeteorTarget")
+	TNT1 A 0 A_Playsound ("monster/hamswg")
+	TNT1 A 0 A_Playsound ("monster/hamswg")
+	NHTH L 7 Bright 
+	TNT1 A 0 A_Jump(128,"NemComets","Charge","NemesisShot","NemTracer1","NemTracer2")
+	TNT1 A 0 A_Jump(100,"NHSComet","NemMeteorStorm","lightningStorm","NemesisRain","NHSComet","Charge","NemBFG","NemComets")
+  NemMeteorStorm:
+	NHTH E 10 Bright A_FaceTarget
+	TNT1 A 0 A_SetInvulnerable
+	TNT1 A 0 A_PlaySound("NemesisMotaur/Attack",2)
+	NHTH EEEEEEEEEEE 3 Bright A_SpawnItem("NemesisSmithFlameSpawner",0,0,0,0)
+	NHTH EEEEEEEEEEE 3 Bright A_SpawnItem("NemesisSmithFlameSpawner2",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	TNT1 A 0 A_UnsetInvulnerable
+	NHTH EF 8 A_FaceTarget
+	TNT1 A 0 A_CustomBulletAttack(0,0,1,0,"NemMeteorStormTarget")
+	TNT1 A 0 A_Playsound ("monster/hamswg")
+	TNT1 A 0 A_Playsound ("monster/hamswg")
+	NHTH G 7 Bright 
+	TNT1 A 0 A_Playsound ("monster/hamflr")
+	TNT1 A 0 A_Jump(128,"NemComets","Charge","NemesisShot","NemTracer1","NemTracer2")
+	TNT1 A 0 A_Jump(100,"NHSComet","LightningStorm","NemesisRain","NemMeteor","NHSComet","Charge","NemBFG","NemComets")
+
+  NemBFG:
+	TNT1 A 0 A_SetInvulnerable
+	NHTH JK 8 A_FaceTarget
+	NHTH L 10 Bright A_CustomBulletAttack(5,5,10,0,"NemesisHitScanShot")
+	TNT1 A 0 A_Playsound ("weapons/rocklx")
+	TNT1 A 0 A_Playsound ("weapons/rocklx")
+	NHTH L 9 Bright A_CustomBulletAttack(5,5,10,0,"NemesisHitScanShot")
+	TNT1 A 0 A_Playsound ("weapons/rocklx")
+	TNT1 A 0 A_Playsound ("weapons/rocklx")
+	NHTH L 8 Bright A_CustomBulletAttack(5,5,10,0,"NemesisHitScanShot")
+	TNT1 A 0 A_Playsound ("weapons/rocklx")
+	TNT1 A 0 A_Playsound ("weapons/rocklx")
+	NHTH L 7 Bright A_CustomBulletAttack(5,5,10,0,"NemesisHitScanShot")
+	TNT1 A 0 A_Playsound ("weapons/rocklx")
+	TNT1 A 0 A_Playsound ("weapons/rocklx")
+	NHTH L 6 Bright A_CustomBulletAttack(5,5,10,0,"NemesisHitScanShot")
+	TNT1 A 0 A_Playsound ("weapons/rocklx")
+	TNT1 A 0 A_Playsound ("weapons/rocklx")
+	NHTH L 5 Bright A_CustomBulletAttack(5,5,10,0,"NemesisHitScanShot")
+	TNT1 A 0 A_Playsound ("weapons/rocklx")
+	TNT1 A 0 A_Playsound ("weapons/rocklx")
+	NHTH L 4 Bright A_CustomBulletAttack(5,5,10,0,"NemesisHitScanShot")
+	TNT1 A 0 A_Playsound ("weapons/rocklx")
+	TNT1 A 0 A_Playsound ("weapons/rocklx")
+	NHTH L 3 Bright A_CustomBulletAttack(5,5,10,0,"NemesisHitScanShot")
+	TNT1 A 0 A_Playsound ("weapons/rocklx")
+	TNT1 A 0 A_Playsound ("weapons/rocklx")
+	NHTH L 2 Bright A_CustomBulletAttack(5,5,10,0,"NemesisHitScanShot")
+	TNT1 A 0 A_Playsound ("weapons/rocklx")
+	TNT1 A 0 A_Playsound ("weapons/rocklx")
+	NHTH L 1 Bright A_CustomBulletAttack(5,5,10,0,"NemesisHitScanShot")
+	TNT1 A 0 A_Playsound ("weapons/rocklx")
+	TNT1 A 0 A_Playsound ("weapons/rocklx")
+	NHTH L 1 Bright A_CustomBulletAttack(5,5,10,0,"NemesisHitScanShot")
+	TNT1 A 0 A_Playsound ("weapons/rocklx")
+	TNT1 A 0 A_Playsound ("weapons/rocklx")
+	NHTH L 1 Bright A_CustomBulletAttack(5,5,10,0,"NemesisHitScanShot")
+	TNT1 A 0 A_Playsound ("weapons/rocklx")
+	TNT1 A 0 A_Playsound ("weapons/rocklx")
+	NHTH L 1 Bright A_CustomBulletAttack(5,5,10,0,"NemesisHitScanShot")
+	TNT1 A 0 A_Playsound ("weapons/rocklx")
+	TNT1 A 0 A_Playsound ("weapons/rocklx")
+	NHTH L 1 Bright A_CustomBulletAttack(5,5,10,0,"NemesisHitScanShot")
+	TNT1 A 0 A_Playsound ("monster/rocklx")
+	TNT1 A 0 A_Playsound ("monster/rocklx")
+	NHTH L 1 Bright A_CustomBulletAttack(5,5,10,0,"NemesisHitScanShot")
+	TNT1 A 0 A_Playsound ("weapons/rocklx")
+	TNT1 A 0 A_Playsound ("weapons/rocklx")
+	NHTH L 1 Bright A_CustomBulletAttack(5,5,10,0,"NemesisHitScanShot")
+	TNT1 A 0 A_Playsound ("weapons/rocklx")
+	TNT1 A 0 A_Playsound ("weapons/rocklx")
+	NHTH L 1 Bright A_CustomBulletAttack(5,5,10,0,"NemesisHitScanShot")
+	TNT1 A 0 A_Playsound ("weapons/rocklx")
+	TNT1 A 0 A_Playsound ("weapons/rocklx")
+	NHTH L 1 Bright A_CustomBulletAttack(5,5,10,0,"NemesisHitScanShot")
+	TNT1 A 0 A_Playsound ("weapons/rocklx")
+	TNT1 A 0 A_Playsound ("weapons/rocklx")
+	NHTH L 1 Bright A_CustomBulletAttack(5,5,10,0,"NemesisHitScanShot")
+	TNT1 A 0 A_UnsetInvulnerable
+	TNT1 A 0 A_Jump(128,"NemComets","Charge","NemesisShot","NemTracer1","NemTracer2")
+	TNT1 A 0 A_Jump(100,"NHSComet","NemMeteorStorm","LightningStorm","NemesisRain","NemMeteor","NHSComet","Charge","NemComets")
+  NHSComet:
+	NHTH A 0 A_Jump (128,16)
+	NHTH E 6 Bright A_FaceTarget
+	NHTH H 6 A_PlaySound ("monster/hamswg")
+	NHTH N 0 A_PLaySound ("weapons/crtrail") 
+	NHTH M 1 Bright
+	TNT1 A 0 A_FaceTarget
+	NHTH NNNNNN 1 Bright
+	TNT1 A 0 A_FaceTarget
+	NHTH NN 1 Bright
+	NHTH I 0 A_Custommissile("NemesisFireball1",32,0,0)
+	TNT1 A 0 A_FaceTarget
+	NHTH NN 1 Bright
+	NHTH I 0 A_Custommissile("NemesisFireball1",32,0,0)
+	TNT1 A 0 A_FaceTarget
+	NHTH I 0 A_Jump (128,8)
+	NHTH B 6
+	NHTH J 6 A_FaceTarget
+	NHTH M 6 A_PlaySound ("monster/hamswg")
+	NHTH N 1 A_PLaySound ("weapons/crtrail") 
+	NHTH NN 1 Bright
+	NHTH N 0 A_Custommissile("NemesisFireball1",32,0,0)
+	NHTH NN 1 Bright
+	NHTH N 0 A_Custommissile("NemesisFireball1",32,0,0)
+	NHTH NNNNN 1 Bright
+	TNT1 A 0 A_Jump(128,"NemComets","Charge","NemesisShot","NemTracer1","NemTracer2")
+	TNT1 A 0 A_Jump(100,"NemMeteorStorm","LightningStorm","NemesisRain","NemMeteor","NHSComet","Charge","NemBFG","NemComets")
+	Goto See
+  NemComets:
+	NHTH A 0 A_Jump (128,16)
+	NHTH E 6 Bright A_FaceTarget
+	NHTH H 6 A_PlaySound ("monster/hamswg")
+	NHTH N 0 A_PLaySound ("weapons/crtrail") 
+	NHTH I 1 Bright A_CustomMissile("NHTComet",64,0,0)  
+	NHTH I 0 A_CustomMissile("NHTComet",64,0,-4)
+	NHTH I 1 Bright A_CustomMissile("NHTComet",64,0,4)
+	NHTH I 0 A_CustomMissile("NHTComet",64,0,-8)
+	NHTH I 1 Bright A_CustomMissile("NHTComet",64,0,8)
+	NHTH I 0 A_CustomMissile("NHTComet",64,0,-12)
+	NHTH I 7 Bright A_CustomMissile("NHTComet",64,0,12)
+	NHTH J 6 A_FaceTarget
+	NHTH M 6 A_PlaySound ("monster/hamswg")
+	NHTH N 1 A_PLaySound ("weapons/crtrail") 
+	NHTH I 0 A_Jump (128,8)
+	NHTH B 6
+	NHTH N 0 Bright A_CustomMissile("NHTComet",64,0,0)  
+	//NHTH N 0 A_CustomMissile("MiniNemesisBFGBall",64,0,-4)
+	NHTH N 1 Bright A_CustomMissile("MiniNemesisBFGBall",64,0,4)
+	//NHTH N 0 A_CustomMissile("MiniNemesisBFGBall",64,0,-8)
+	NHTH N 1 Bright A_CustomMissile("NHTComet",64,0,8)
+	//NHTH N 0 A_CustomMissile("MiniNemesisBFGBall",64,0,-12)
+	NHTH N 5 Bright A_CustomMissile("MiniNemesisBFGBall",64,0,12)   
+	NHTH MN 6 Bright A_FaceTarget
+	TNT1 A 0 A_UnSetInvulnerable
+	NHTH N 0 A_Jump (128,1)
+	TNT1 A 0 A_Jump(128,"Charge","NemesisShot","NemTracer1","NemTracer2")
+	TNT1 A 0 A_Jump(100,"NHSComet","NemMeteorStorm","LightningStorm","NemesisRain","NemMeteor","NHSComet","Charge","NemBFG","NemComets")
+	Goto See 	   
+
+  NemTracer1:
+	NHTH E 6 A_FaceTarget
+	NHTH F 1 A_Playsound ("monster/hamswg")
+	NHTH F 5 A_FaceTarget
+	NHTH G 0 A_CustomMissile("NemTracer",0,0,30,0)
+	NHTH G 0 A_CustomMissile("NemTracer",0,0,60,0)
+	NHTH G 0 A_CustomMissile("NemTracer",0,0,90,0)
+	NHTH G 0 A_CustomMissile("NemTracer",0,0,120,0)
+	NHTH G 0 A_CustomMissile("NemTracer",0,0,150,0)
+	NHTH G 0 A_CustomMissile("NemTracer",0,0,180,0)
+	NHTH G 0 A_CustomMissile("NemTracer",0,0,210,0)
+	NHTH G 0 A_CustomMissile("NemTracer",0,0,240,0)
+	NHTH G 0 A_CustomMissile("NemTracer",0,0,270,0)
+	NHTH G 0 A_CustomMissile("NemTracer",0,0,300,0)
+	NHTH G 0 A_CustomMissile("NemTracer",0,0,330,0)
+	NHTH G 0 A_CustomMissile("NemTracer",0,0,0,0)
+	NHTH G 10 A_Playsound("monster/hamflr")
+	NHTH B 0 A_Jump (128,1)
+	NHTH N 0
+	TNT1 A 0 A_Jump(100,"NHSComet","Charge")
+	Goto See
+  NemTracer2:
+	NHTH J 6 A_FaceTarget
+	NHTH K 1 A_Playsound ("monster/hamswg")
+	NHTH K 5 A_FaceTarget
+	NHTH L 0 A_CustomMissile("NemTracer",0,0,30,0)
+	NHTH L 0 A_CustomMissile("NemTracer",0,0,60,0)
+	NHTH L 0 A_CustomMissile("NemTracer",0,0,90,0)
+	NHTH L 0 A_CustomMissile("NemTracer",0,0,120,0)
+	NHTH L 0 A_CustomMissile("NemTracer",0,0,150,0)
+	NHTH L 0 A_CustomMissile("NemTracer",0,0,180,0)
+	NHTH L 0 A_CustomMissile("NemTracer",0,0,210,0)
+	NHTH L 0 A_CustomMissile("NemTracer",0,0,240,0)
+	NHTH L 0 A_CustomMissile("NemTracer",0,0,270,0)
+	NHTH L 0 A_CustomMissile("NemTracer",0,0,300,0)
+	NHTH L 0 A_CustomMissile("NemTracer",0,0,330,0)
+	NHTH L 0 A_CustomMissile("NemTracer",0,0,0,0)
+	NHTH L 10 A_Playsound("monster/hamflr")
+	NHTH B 0 A_Jump (128,1)
+	NHTH N 0
+	TNT1 A 0 A_Jump(100,"NemComets","Charge")
+	Goto See
+
+  NemesisShot:
+	NHTH E 6 A_FaceTarget
+	NHTH H 6 A_PlaySound ("monster/hamswg")
+	NHTH N 0 A_PLaySound ("weapons/hellfi") 
+	NHTH I 0 A_CustomMissile ("Nemesisshot2",52,0,0)
+	NHTH I 0 A_CustomMissile ("Nemesisshot2",52,0,8)
+	NHTH I 12 A_CustomMissile ("Nemesisshot2",52,0,-8)
+	NHTH I 0 A_Jump (128,8)
+	NHTH B 6
+	NHTH J 6 A_FaceTarget
+	NHTH M 6 A_PlaySound ("monster/hamswg")
+	NHTH N 1 A_PLaySound ("weapons/hellfi") 
+	NHTH N 0 A_CustomMissile ("Nemesisshot2",52,0,0)
+	NHTH N 0 A_CustomMissile ("Nemesisshot2",52,0,8)
+	NHTH N 11 A_CustomMissile ("Nemesisshot2",52,0,-8)
+    TNT1 A 0 A_UnSetInvulnerable
+	NHTH N 0 A_Jump (128,1)
+	TNT1 A 0 A_Jump(128,"NemComets","Charge","NemTracer1","NemTracer2")
+	TNT1 A 0 A_Jump(100,"NHSComet","NemMeteorStorm","lightningStorm","NemesisRain","NemMeteor","NHSComet","Charge","NemBFG","NemComets")
+	Goto See
+
+  LightningStorm:
+	NHTH E 10 Bright A_FaceTarget
+	NHTH E 0 A_SetReflectiveInvulnerable
+	TNT1 A 0 A_PlaySound("NemesisMotaur/Attack",2)
+	NHTH EEEEEEEEEEEEEEE 3 Bright A_SpawnItem("NemesisSmithFlameSpawner",0,0,0,0)
+	NHTH EEEEEEEEEEEEEEE 3 Bright A_SpawnItem("NemesisSmithFlameSpawner2",0,0,0,0)
+	NHTH A 1 Bright A_FaceTarget
+	TNT1 A 0 A_SetUserVar("user_missile",0)
+  LightningStormLoop:
+	TNT1 A 0 A_JumpIf(user_missile >= 20,"See")	 
+	TNT1 A 0 A_SetUserVar("user_missile",user_missile+1)
+	TNT1 A 0 A_CustomMissile("NemHellsmithLightningBolt",30,0,random(0,360))
+	NHTH C 5 Bright A_FaceTarget
+	TNT1 A 0 Radius_Quake(40,10,0,40,0)	
+	NHTH D 2 Bright A_PlaySound("monster/hamswg")
+	TNT1 A 0 A_CustomMissile("NemHellsmithLightningBolt",30,0,random(0,360))
+	TNT1 A 0 A_SpawnItemEx("NemHellsmithLightning2",Random(1250,-1250),Random(1250,-1250),-1000,0,0,0,SXF_NOCHECKPOSITION,0)
+	NHTH D 8 Bright A_FaceTarget
+	TNT1 A 0 A_CustomMissile("NemHellsmithLightningBolt",30,0,random(0,360))
+	NHTH D 8 Bright A_FaceTarget
+	Loop
+  LightningStormRage:
+	NHTH E 10 Bright A_FaceTarget
+	NHTH E 0 A_SetReflectiveInvulnerable
+	TNT1 A 0 A_PlaySound("NemesisMotaur/Attack",2)
+	NHTH EEEEEEEEE 3 Bright A_SpawnItem("NemesisSmithFlameSpawner",0,0,0,0)
+	NHTH EEEEEEEEE 3 Bright A_SpawnItem("NemesisSmithFlameSpawner2",0,0,0,0)
+	NHTH A 1 Bright A_FaceTarget
+	TNT1 A 0 A_SetUserVar("user_missile",0)
+  LightningStormLoopRage:
+	TNT1 A 0 A_JumpIf(user_missile >= 25,"See")	 
+	TNT1 A 0 A_SetUserVar("user_missile",user_missile+1)
+	TNT1 A 0 A_CustomMissile("NemHellsmithLightningBolt",30,0,random(0,360))
+	NHTH C 5 Bright A_FaceTarget
+	TNT1 A 0 Radius_Quake(40,10,0,40,0)	
+	NHTH D 2 Bright A_PlaySound("monster/hamswg")
+	TNT1 A 0 A_CustomMissile("NemHellsmithLightningBolt",30,0,random(0,360))
+	TNT1 A 0 A_SpawnItemEx("NemHellsmithLightning2",Random(1250,-1250),Random(1250,-1250),-1000,0,0,0,SXF_NOCHECKPOSITION,0)
+	NHTH D 6 Bright A_FaceTarget
+	TNT1 A 0 A_CustomMissile("NemHellsmithLightningBolt",30,0,random(0,360))
+	NHTH D 6 Bright A_FaceTarget
+	NHTH E 0 A_unSetReflectiveInvulnerable
+	TNT1 A 0 A_Jump(128,"Charge","NemTracer1","NemTracer2")
+	TNT1 A 0 A_Jump(100,"NemMeteorStorm","NemesisRain","NemMeteor","NHSComet","Charge","NemBFG","NemComets")
+	Loop
+
+  NemesisRain:
+	NHTH E 2 Bright A_FaceTarget
+	NHTH EEEEEEE 2 Bright A_SpawnItem("NemesisSmithFlameSpawner",0,0,0,0)
+	NHTH G 2 Bright A_FaceTarget
+	NHTH GGGGGGG 2 Bright A_SpawnItem("NemesisSmithFlameSpawner",0,0,0,0)
+	NHTH G 2 Bright A_FaceTarget
+	TNT1 A 0 A_PlaySound("NemesisMotaur/Attack",2)
+	NHTH G 0 A_CustomMissile("NemesisHKSuperBall",32,0,200)
+	TNT1 A 0 A_CustomMissile("NemesisHKCometRain",32,0,90)
+	NHTH G 0 A_CustomMissile("NemesisHKSuperBall",32,0,90)
+	TNT1 A 0 A_CustomMissile("NemesisHKCometRain",32,0,45)
+	NHTH G 0 A_CustomMissile("NemesisHKSuperBall",32,0,-90)	
+	TNT1 A 0 A_CustomMissile("NemesisHKCometRain",32,0,135)
+	NHTH G 8 Bright A_CustomMissile("NemesisGuruBall",32,0,0)
+	TNT1 A 0 A_SetInvulnerable
+	NHTH G 2 Bright A_FaceTarget
+	NHTH GGGGGGGG 2 Bright A_SpawnItem("NemesisSmithFlameSpawner",0,0,0,0)
+	NHTH G 2 Bright A_FaceTarget
+	NHTH GGGGGGGG 2 Bright A_SpawnItem("NemesisSmithFlameSpawner",0,0,0,0)
+	NHTH G 2 Bright A_FaceTarget
+	NHTH GGGGGGGG 2 Bright A_SpawnItem("NemesisSmithFlameSpawner",0,0,0,0)
+	NHTH G 2 Bright A_FaceTarget
+	NHTH GGGGGGGG 2 Bright A_SpawnItem("NemesisSmithFlameSpawner",0,0,0,0)
+	NHTH G 2 Bright A_FaceTarget
+	NHTH GGGGGGGG 2 Bright A_SpawnItem("NemesisSmithFlameSpawner",0,0,0,0)
+	NHTH G 2 Bright A_FaceTarget
+	NHTH GGGGGGGG 2 Bright A_SpawnItem("NemesisSmithFlameSpawner",0,0,0,0)
+	NHTH G 2 Bright A_FaceTarget
+	NHTH GGGGGGGG 2 Bright A_SpawnItem("NemesisSmithFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_UnSetInvulnerable
+	TNT1 A 0 A_Jump(128,"Charge","NemTracer1","NemTracer2")
+	TNT1 A 0 A_Jump(100,"NemMeteorStorm","LightningStorm","NHSComet","Charge","NemBFG","NemComets","NemMeteor")
+	Goto See
+
+  Charge:
+    NHTH E 0 A_SetReflective
+	NHTH O 1 A_Playsound ("weapons/suldth")
+	NHTH O 0 A_CustomMissile("NemesisHBall2",32,0,18)
+	NHTH O 4 A_SkullAttack
+	NHTH O 0 A_Explode(450,64,0)
+	NHTH O 0 A_SpawnItemEx("NemesisGhost1",0,0,0,0,0,0,0,128,0)
+	NHTH O 0 A_CustomMissile("NemesisHBall2",32,0,18)
+	NHTH O 4 A_SkullAttack
+	NHTH O 0 A_Explode(450,64,0)
+	NHTH O 0 A_SpawnItemEx("NemesisGhost1",0,0,0,0,0,0,0,128,0)
+	NHTH O 0 A_CustomMissile("NemesisHBall2",32,0,18)
+	NHTH O 4 A_SkullAttack
+	NHTH O 0 A_Explode(450,64,0)
+	NHTH O 0 A_SpawnItemEx("NemesisGhost1",0,0,0,0,0,0,0,128,0)
+	NHTH O 0 A_CustomMissile("NemesisHBall2",32,0,18)
+	NHTH O 4 A_SkullAttack
+	NHTH O 0 A_Explode(450,64,0)
+	NHTH O 0 A_SpawnItemEx("NemesisGhost1",0,0,0,0,0,0,0,128,0)
+	NHTH O 0 A_CustomMissile("NemesisHBall2",32,0,18)
+	NHTH O 4 A_SkullAttack
+	NHTH O 0 A_Explode(450,64,0)
+	NHTH O 0 A_SpawnItemEx("NemesisGhost1",0,0,0,0,0,0,0,128,0)
+	NHTH O 0 A_CustomMissile("NemesisHBall2",32,0,18)
+	NHTH O 4 A_SkullAttack
+	NHTH O 0 A_Explode(450,64,0)
+	NHTH O 0 A_SpawnItemEx("NemesisGhost1",0,0,0,0,0,0,0,128,0)
+	NHTH O 0 A_CustomMissile("NemesisHBall2",32,0,18)
+	NHTH O 4 A_SkullAttack
+	NHTH O 0 A_Explode(450,64,0)
+	NHTH O 0 A_SpawnItemEx("NemesisGhost1",0,0,0,0,0,0,0,128,0)
+	NHTH O 0 A_CustomMissile("NemesisHBall2",32,0,18)
+	NHTH O 4 A_SkullAttack
+	NHTH O 0 A_Explode(450,64,0)
+	NHTH O 0 A_SpawnItemEx("NemesisGhost1",0,0,0,0,0,0,0,128,0)
+	NHTH E 0 A_UnSetReflective
+	NHTH O 0 A_Stop
+	NHTH O 1
+	TNT1 A 0 A_Jump(128,"NemTracer1","NemTracer2")
+	TNT1 A 0 A_Jump(100,"NemMeteorStorm","NemesisRain","LightningStorm","NHSComet","NemBFG","NemComets","NemMeteor")
+	Goto See	
+  MinotaurSpawner:
+	NHTH E 1 Bright A_ChangeFlag("Invulnerable",1)
+	TNT1 A 0 A_PlaySound("monster/smithw")
+	NHTH EEEEEEEEEEEEEEEEE 2 Bright A_SpawnItem("NemesisSmithFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_ChangeFlag("Reflective",1)
+	TNT1 A 0 A_Playsound ("brain/spit")
+	TNT1 A 0 A_SpawnItemEx("CubeSpawner",0,100,20,30,0,0,0,0)
+	TNT1 A 0 A_SpawnItemEx("CubeSpawner",0,100,20,30,0,0,180,0)
+	TNT1 A 0 A_SpawnItemEx("CubeSpawner2",0,100,20,30,0,0,225,0)
+	TNT1 A 0 A_SpawnItemEx("CubeSpawner3",0,100,20,30,0,0,305,0)
+	NHTH E 25 Bright
+	TNT1 AAA 0 A_SpawnItem("NemesisSmithFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_ChangeFlag("Invulnerable",0)
+	TNT1 A 0 A_ChangeFlag("Reflective",0)
+	Goto See	   
+  Pain:   
+	NHTH P 10 A_Pain
+	NHTH P 0 A_Jump(64,"SelfHeal")
+	NHTH P 0 A_Jump(16,"MinotaurSpawner")
+	Goto See
+  SelfHeal:  
+	NHTH E 0 A_SetReflectiveInvulnerable
+	NHTH E 6 A_FaceTarget
+	NHTH F 1 A_Playsound ("monster/hamswg")
+	NHTH F 5 A_FaceTarget
+	TNT1 A 0 A_ChangeFlag(Invulnerable,0)
+	TNT1 A 0 A_ChangeFlag(Reflective,1)
+	NHTH F 0 A_CustomMissile("NemPentaLine1",0,0,-72,2)
+	NHTH F 0 A_CustomMissile("NemPentaLine1",0,0,-144,2)
+	NHTH F 0 A_CustomMissile("NemPentaLine1",0,0,-216,2)
+	NHTH F 0 A_CustomMissile("NemPentaLine1",0,0,-288,2)
+	NHTH F 0 A_CustomMissile("NemPentaLine1",0,0,0,2)
+	NHTH G 1 A_Playsound ("monster/hamflr")
+	NHTH G 1 A_Playsound ("monster/smithp",0,1.0,False,ATTN_NONE)
+	NHTH GGGGGGGGGG 7 HealThing(100)
+	NHTH B 0 A_UnSetReflectiveInvulnerable
+	TNT1 A 0 A_ChangeFlag(Invulnerable,0)
+	TNT1 A 0 A_ChangeFlag(Reflective,0)
+	Goto See
+  Death:
+    NHTH F 0 A_CustomMissile("NemPentaLine3",0,0,-72,2)
+       NHTH F 0 A_CustomMissile("NemPentaLine3",0,0,-144,2)
+       NHTH F 0 A_CustomMissile("NemPentaLine3",0,0,-216,2)
+       NHTH F 0 A_CustomMissile("NemPentaLine3",0,0,-288,2)
+       NHTH F 0 A_CustomMissile("NemPentaLine3",0,0,0,2)
+       NHTH F 0 Radius_Quake(6,250,2,64,8)
+       NHTH P 120 A_CustomMissile("NemSmithDFSpawner",0,0,0,0)
+	TNT1 AAAAAAAA 0 A_CustomMissile("NemesisCyberBouncyBFG",0,0,random(0,360),2,random(-5,30))
+    TNT1 A 0 A_SpawnItem("NemesisDeathBall")
+	NHTH Q 6 A_CustomMissile("NemSmithHammer",128,-40,-30,0)
+	//TNT1 A 0 ACS_NamedExecuteAlways("CF_LightOnMap",0,2,64)
+	NHTH R 6 A_Scream
+	NHTH STU 6 
+	NHTH V 6 A_NoBlocking 
+	NHTH XX 6 
+	NHTH Y -1 A_BossDeath 
+ } 
+}//NemHellsmith
+
+ACTOR NemMeteorTarget
+{
+ Species "Cybers"
+ +DONTHARMSPECIES
+ +PUFFGETSOWNER
+ +PUFFONACTORS
+ +ALWAYSPUFF
+ States
+ {
+  Melee:
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_CustomMissile("NemMeteorSpawner",0,0,0,CMF_TRACKOWNER)
+	Stop
+  Crash:
+	TNT1 A 1
+	stop
+ }
+}
+
+ACTOR NemMeteorSpawner
+{
+ Projectile
+ species "Cybers"
+ +DONTHARMSPECIES
+ +CEILINGHUGGER
+ +NOCLIP
+ Radius 0
+ Height 0
+ Speed 0
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_SpawnItemEx("NemMeteor",0,0,-48,0,0,-100,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION)
+	stop
+ }
+}
+
+ACTOR NemMeteor
+{
+ Radius 18
+ height 48
+ scale 3
+ damage 500
+ Speed 100
+ species "Cybers"
+ RENDERSTYLE ADD
+ DONTHURTSHOOTER
+ DamageType "MinotaurDamage"
+ DeathType "Fire"
+ +DONTHARMSPECIES
+ Projectile
+ +ThruGhost
+ +MTHRUSPECIES
+ +NODAMAGETHRUST
+ +FORCERADIUSDMG
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_PlaySound ("hellsmith/meteorfly",7,1.0,False,ATTN_NONE)
+  SpawnLoop:
+	NNCM ABCB 2 Bright
+	Loop
+  Death:
+	TNT1 A 0 A_SetTranslucent (0.67,1)
+	TNT1 A 0 A_NoGravity
+	TNT1 A 0 A_UnsetSolid
+	TNT1 A 0 A_UnsetFloorClip
+	TNT1 A 0 A_StopSound(7)
+	TNT1 A 0 A_PlaySound("hellsmith/meteorexp",0,0.5,False,ATTN_NONE)
+	TNT1 A 0 A_PlaySound("hellsmith/meteorexp",0,0.5)
+	FXPW A 2 Bright A_Explode(1500,512,0)
+	TNT1 AAAAAAAAAAAAA 0 A_SpawnItemEx("NemMeteorSmoke",0,0,0,Random(-15,20),Random(-15,15),Random(0,15))
+	FXPW BCDEFGHIJKLM 2 Bright  A_SpawnItemEx("NemMeteorSmoke",0,0,0,Random(-25,25),Random(-25,25),Random(0,25))
+	Stop
+ }
+}
+
+ACTOR NemMeteorSmoke
+{
+ +THRUACTORS
+ -NOGRAVITY
+ Scale 4.0
+ RenderStyle "Translucent"
+ Alpha 0.3
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	FIW1 ABCDEFGHIJKL 4
+	stop
+ }
+}
+
+ACTOR MeteorCount : Inventory
+{
+ Inventory.Amount 1
+ Inventory.MaxAmount 100
+}
+
+ACTOR NemMeteorStormTarget : NemMeteorTarget
+{
+ States
+ {
+  Melee:
+  Spawn:
+	TNT1 A 0 NoDelay A_TakeInventory("MeteorCount",100)//not needed, but just in case
+	TNT1 A 4 A_CustomMissile("NemMeteorSpawner3",0,0,0,CMF_TRACKOWNER)
+  SpawnLoop:
+	TNT1 A 4 A_CustomMissile("NemMeteorSpawner2",0,0,0/*Random(0,359)*/,CMF_TRACKOWNER)
+	TNT1 A 0 A_JumpIfInventory("MeteorCount",30,"ExitLoop")
+	TNT1 A 0 A_GiveInventory ("MeteorCount")
+	loop
+  ExitLoop:
+	TNT1 A 0
+	stop
+ }
+}
+
+ACTOR NemMeteorSpawner3 : NemMeteorSpawner
+{
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_SpawnItemEx("NemMeteor2",0,0,-10,0,0,-100,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION)
+	stop
+ }
+}
+
+ACTOR NemMeteorSpawner2 : NemMeteorSpawner
+{
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_SpawnItemEx("NemMeteor2",Random(-256,256),Random(-256,256),-10,0,0,-100,0,SXF_TRANSFERPOINTERS/*|SXF_NOCHECKPOSITION*/)
+	stop
+ }
+}
+
+Actor NemMeteor2 : NemMeteor
+{
+ Radius 0
+ height 10
+ scale 1
+ damage 500
+ DamageType "MinotaurDamage"
+ species "Cybers"
+ DeathType "Fire"
+ RenderStyle Stencil
+ StencilColor Black
+ States
+ {
+  Spawn:
+	NNCM AB 0
+	TNT1 A 0 A_PlaySound ("hellsmith/meteorfly",7,1.0,True)
+  SpawnLoop:
+	NNCM ABC 2 Bright
+	loop
+  Death:
+	TNT1 A 0 A_NoGravity
+	TNT1 A 0 A_UnsetSolid
+	TNT1 A 0 A_UnsetFloorClip
+	TNT1 A 0 A_StopSound(7)
+	TNT1 A 0 A_PlaySound("hellsmith/meteorexp",0,0.35)
+	TNT1 A 0 A_PlaySound("hellsmith/meteorexp",0,0.35,False,ATTN_NONE)
+	FXPW A 2 Bright A_Explode(300,512,0)
+	TNT1 AAAAAAAAAAAAA 0 A_SpawnItemEx("NemMeteorSmoke2",0,0,0,Random(-4,4),Random(-4,4),Random(0,4))
+	FXPW BCDEFGHIJKLM 2 Bright  A_SpawnItemEx("NemMeteorSmoke2",0,0,0,Random(-6,6),Random(-6,6),Random(0,6))
+	Stop
+ }
+}
+
+ACTOR NemMeteorSmoke2 : NemMeteorSmoke
+{
+	Scale 1.5
+	RenderStyle Subtract
+}
+
+ACTOR NemesisGhost1
+{
+	Radius 40
+	Height 70
+	Speed 1
+	Damage 0
+	RenderStyle Translucent
+	Alpha 0.5
+	PROJECTILE
+	states
+	{
+	Spawn:
+		NHTH O 35
+		NHTH O 2 A_FadeOut(0.10)
+		goto Spawn+1
+	}
+}
+
+ACTOR NemesisGhost2
+{
+	Radius 40
+	Height 70
+	Speed 1
+	Damage 0
+	RenderStyle Translucent
+	Alpha 0.5
+	PROJECTILE
+	states
+	{
+	Spawn:
+		NHTH A 35
+		NHTH A 2 A_FadeOut(0.10)
+		goto Spawn+1
+   }
+}
+
+ACTOR NemesisFireball1
+{
+	Radius 8
+	Height 16
+	Speed 25
+	Damage 650
+	Scale 1.6
+	PROJECTILE
+	RenderStyle Stencil
+	StencilColor Black
+	+SeekerMissile
+	SeeSound "weapons/firbfi"
+	DeathSound "weapons/hellex"
+	species "Cybers"
+	+DONTHARMSPECIES
+	+NODAMAGETHRUST
+	DONTHURTSHOOTER
+	DamageType "MinotaurDamage"
+	DeathType "Fire"
+	States
+	{
+	Spawn:
+		AR1B AAAABBBBCCCC 1
+		loop
+	Death:
+		AR1B DE 3
+		AR1B FG 3
+		AR1B H 3 A_Explode(650,0,0)
+		AR1B I 3 
+		stop
+	}
+}
+
+Actor NHTComet
+{
+	Radius 6
+	Height 12
+	Speed 40
+	Damage 500
+	Scale 1.6
+	SpawnID 251
+	species "Cybers"
+	+DONTHARMSPECIES
+	Projectile
+	+ThruGhost
+	+MTHRUSPECIES
+	+NODAMAGETHRUST
+	DontHurtShooter
+	SeeSound "Afrit/CometFire"
+	DeathSound "Afrit/CometHit"
+	DamageType "MinotaurDamage"
+	DeathType "Fire"
+	States
+	{
+	Spawn: 
+		NNCM AAAABBBBCCCC 1 Bright// A_SpawnItemEx(0, 0, 0, 0, 0, 0, 0, 0, 128)
+		Loop
+	Death:
+		NNCM D 0 Bright A_SetTranslucent (0.67,1)
+		NNCM E 3 Bright
+		NNCM FG 3 Bright A_Explode(500,64,0)
+		NNCM HI 3 Bright
+		Stop
+	}
+}	
+
+
+ACTOR NemesisHitScanShot
+{
+	Game Doom
+	SpawnID 217
+	Radius 4
+	Height 8
+	Speed 20
+	DamageType "MinotaurDamage"
+	DeathType "BFG10K"
+	species "Cybers"
+	+DONTHARMSPECIES
+	+NOBLOCKMAP
+	+NOGRAVITY
+	+ACTIVATEIMPACT
+	+ACTIVATEPCROSS
+	+NOTELEPORT 
+	+PUFFONACTORS
+	+FORCERADIUSDMG
+    +NODAMAGETHRUST
+    +PUFFGETSOWNER
+	Renderstyle Add
+	Alpha 0.75
+	SeeSound "weapons/rocklx"
+	AttackSound "weapons/rocklx"
+	Obituary "%o was blasted by the Nemesis Hellsmith."
+	States
+	{
+	Spawn:
+		NFE3 A 0 bright
+		NFE3 A 3 bright A_Explode(200*Random(1,4),200,0)
+		NFE3 BCDEF 3 bright
+		Stop
+	}
+}
+
+actor NemesisHExplosion
+{
+	Scale 0.5
+	Alpha 0.95
+	Radius 4
+	height 8
+	speed 85
+	DamageType "MinotaurDamage"
+	species "Cybers"
+	+DONTHARMSPECIES
+	PROJECTILE
+	+NoBlockMap
+	+NoGravity
+	+ActivateImpact
+	+ActivatePCross
+	+NoTeleport
+	+PuffOnActors
+	+ForceRadiusDmg
+	+FORCEXYBILLBOARD
+	+EXTREMEDEATH
+	+SKYEXPLODE
+	+THRUSPECIES
+	states
+	{
+	Spawn:
+		NFE3 A 0
+		NFE3 A 0 bright A_PlaySound("weapons/bfgx")
+		NFE3 ABCDEF 3 bright
+		stop
+	}
+}
+
+
+ACTOR NemesisHBall2 : BaronBall
+{
+ Damage 250
+ DamageType "MinotaurDamage"
+ DeathType "NobleComet"
+ Speed 28
+ FastSpeed 36
+ Renderstyle Add
+ species "Cybers"
+ +DONTHARMSPECIES
+ +NOTIMEFREEZE
+ States
+ {
+  Spawn:
+	VMFL AB 1 Bright A_SpawnItemEx("NemHNobleBall2Trail",0,0,0,0,0,0,0,128,0)
+	Loop
+  Death:
+	TNT1 A 0 A_SpawnItemEx("LegendaryBlueParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+	TNT1 AAA 0 A_CustomMissile("LegendaryKaboom6", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAA 0 A_CustomMissile("LegendarySmokeFX4", 0, 0, random(0,360), 2, random(0,360))	
+	VMFL CDE 3 Bright
+	Stop
+ }
+}
+
+ACTOR NemHNobleBall2Trail : BFG9500Trail
+{
+ Scale 0.85
+ +NOTIMEFREEZE
+ States
+ {
+ Spawn:
+	TNT1 A 0 NoDelay A_CheckSight("Vanilla")
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 1
+	VMFL AB 1 A_FadeOut(0.25)
+	Stop
+ }
+}
+
+ACTOR NemTracer
+{
+	Radius 11
+	Height 5
+	Speed 15
+	Damage 300
+	RenderStyle Stencil
+	StencilColor Black
+	DamageType "MinotaurDamage"
+	DeathType "Fire"
+	Alpha 0.67
+	species "Cybers"
+	PROJECTILE
+	+FLOORHUGGER
+	-NOGRAVITY
+	+DONTSPLASH
+	+NODAMAGETHRUST
+	+MTHRUSPECIES
+	+DONTHARMSPECIES
+	Seesound "weapons/dspsyic1"
+	DeathSound "weapons/firex3" 
+	States
+	{
+	Spawn:
+		TNT1 A 1 Bright A_CStaffMissileSlither
+		TNT1 A 0 Bright A_SpawnItem("NemTracerPuff",0,0)
+		loop
+	Death:
+		WFCF K 4 Bright
+		WFCF L 4 Bright A_Explode(300,32,0)
+		WFCF MNO 3 Bright
+		stop
+	}
+}
+
+ACTOR NemTracerPuff
+{
+	Radius 1
+	Height 1
+	Speed 0
+	RenderStyle Stencil
+	StencilColor Black
+	DamageType "MinotaurDamage"
+	DeathType "Fire"
+	ALPHA 0.67
+	PROJECTILE
+	species "Cybers"
+	+DONTHARMSPECIES
+	+FLOORHUGGER
+	-NOGRAVITY
+	+DONTSPLASH
+	+NODAMAGETHRUST
+	States
+	{
+	Spawn:
+		WFCF ABCDEFGHIJ 3 Bright A_Explode(250,32)
+		stop
+	}
+}
+
+ACTOR WhitePuff
+{   
+	Radius 0
+	Height 1
+	Speed 0
+	PROJECTILE
+	RENDERSTYLE ADD
+	ALPHA 0.85
+	States
+	{
+	Spawn:
+		TNT1 A 3
+		WPUF ABCDE 3 Bright
+		Stop 
+	}
+}
+
+ACTOR BlackPuff2 : WhitePuff {RenderStyle Subtract}
+
+ACTOR NemSmithHammer
+{
+ Translation "104:111=160:167", "96:103=224:231"
+ Radius 5
+ Height 5
+ Speed 2
+ Damage 0
+ RenderStyle NORMAL
+ PROJECTILE
+ -NOGRAVITY
+ +LOWGRAVITY
+ DeathSound "monsters/hamflr"   
+ States
+ {
+  Spawn:
+	MAUL A 3  
+	MAUL B 4
+	MAUL C -1
+	Stop
+  Death:
+	MAUL D -1 
+	stop
+ }
+}
+
+
+ACTOR NemesisSmithFlame
+{
+	Scale 0.9
+	RenderStyle ADD
+	+MISSILE
+	+NOGRAVITY
+	+NOBLOCKMAP
+	+DONTSPLASH
+	+NOTELEPORT
+	+NOTIMEFREEZE
+	+FORCEXYBILLBOARD
+	+CLIENTSIDEONLY
+	+NONETID
+	States
+	{
+	Spawn:
+		TNT1 A 0 Bright
+		FIW1 ABCDEFGHIJKL 2 Bright A_FadeOut(0.1,1)
+		Stop
+	}
+}
+
+ACTOR NemesisSmithFlameSpawner 
+{
+	Height 110
+	Radius 1
+	States
+	{
+	Spawn:
+		TNT1 A 0 Bright
+		TNT1 AAAAAA 0 Bright A_SpawnItemEx("NemesisSmithFlame",random(48,-48),random(48,-48),random(0,96),0,0,random(2,6),0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		TNT1 A 1 Bright
+		Stop
+	}
+}
+
+ACTOR NemesisSmithFlame2 : NemesisSmithFlame
+{
+	Scale 1.0
+	RenderStyle Normal
+	-CLIENTSIDEONLY
+}
+
+ACTOR NemesisSmithFlameSpawner2 
+{
+	Height 110
+	Radius 1
+	States
+	{
+	Spawn:
+		TNT1 A 0 Bright
+		TNT1 AAAAAA 0 A_SpawnItemEx("NemesisSmithFlame2",random(48,-48),random(48,-48),random(0,96),0,0,random(2,6),0,128,0)
+		TNT1 A 1 Bright
+		Stop
+	}
+}
+
+ACTOR NemesisSmithFlameSpawner3 
+{
+	+NONETID
+	+NOTIMEFREEZE
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 AAAAAA 0 A_SpawnItemEx("NemesisSmithFlame2",random(48,-48),random(48,-48),random(0,96),0,0,random(2,6),0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		TNT1 AAAAAA 0 A_SpawnItemEx("NemesisSmithFlame",random(48,-48),random(48,-48),random(0,96),0,0,random(2,6),0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		TNT1 A 1
+		Stop
+	Toaster:
+		TNT1 A 1
+		Stop
+	}
+}
+
+
+ACTOR NemPentaLine1
+{
+ Radius 0
+ Height 32
+ Speed 200
+ RenderStyle NONE
+ Alpha 0.85
+ PROJECTILE
+ species "Cybers"
+ +DONTHARMSPECIES
+ +FLOORHUGGER
+ +NOCLIP
+ SeeSound "weapons/diasht"
+ States
+ {
+  Spawn:
+	TNT1 A 1
+	TNT1 A 0 A_CustomMissile("NemPentaLine2",0,0,-198,2)
+	TNT1 A 0 A_CustomMissile("NemPentaLine2",0,0,198,2)
+	Stop
+ }
+}
+
+ACTOR NemPentaLine2 : NemPentaLine1
+{
+ Speed 16
+ States
+ {
+  Spawn:
+	TNT1 AAAAAAAAAAAAAAAA 1 A_SpawnItem("NemPentaFire",0,0)
+	Stop
+ }
+}
+
+ACTOR NemPentaFire
+{
+ Radius 0
+ Height 32
+ Speed 0
+ species "Cybers"
+ +DONTHARMSPECIES
+ DamageType "MinotaurDamage"
+ DeathType "Fire"
+ RenderStyle Add
+ Alpha 0.85
+ ReactionTime 2
+ PROJECTILE
+ +FLOORHUGGER
+ +DONTSPLASH
+ -NOGRAVITY
+ +NODAMAGETHRUST
+ States
+ {
+  Spawn:
+	WFCF A 1 Bright A_Explode(8,32,0)
+	WFCF A 2 Bright A_PlaySound("weapons/onfire")
+        WFCF BCDEFGHIJKLM 3 Bright A_Explode(8,32,0)
+        WFCF A 0 Bright A_CountDown
+	loop
+  Death:
+	WFCF NOP 3 Bright A_Explode(32,32,0)
+        stop
+ }
+}
+
+ACTOR NemSmithDFSpawner
+{
+	Radius 0
+	Height 1
+	Speed 0
+	Damage 0
+	RenderStyle None
+    ReactionTime 300
+	Alpha 0.5
+	PROJECTILE
+	species "Cybers"
+	+DONTHARMSPECIES
+    +NOEXPLODEFLOOR
+    States
+	{
+	Spawn:
+		TNT1 A 1 A_CustomMissile("NemSmithDeathFire",0,0,0,2,90)
+	    TNT1 A 0 A_CountDown
+        Loop
+    Death:
+        TNT1 A 1
+        stop
+	}
+}
+
+ACTOR NemSmithDeathFire
+{
+ Radius 2
+ Height 2
+ Speed 16
+ Damage 8
+ PROJECTILE
+ RENDERSTYLE ADD
+ DamageType "MinotaurDamage"
+ DeathType "Fire"
+ ALPHA 0.67
+ Scale 2.0
+ SeeSound "weapons/bigbrn"
+ species "Cybers"
+ +DONTHARMSPECIES
+ +NOCLIP
+ +DONTSPLASH
+ States
+ {
+  Spawn:
+	FZRX JKLMNOP 2 Bright
+	stop
+  Death:
+	TNT1 A 1
+	stop
+ }
+}
+
+ACTOR NemPentaLine3 : NemPentaLine1
+{
+ States
+ {
+  Spawn:
+	TNT1 A 1
+        TNT1 A 0 A_CustomMissile("NemPentaLine4",0,0,-198,2)
+        TNT1 A 0 A_CustomMissile("NemPentaLine4",0,0,198,2)
+	stop
+ }
+}
+
+ACTOR NemPentaLine4 : NemPentaLine2
+{
+ States
+ {
+  Spawn:
+	TNT1 AAAAAAAAAAAAAAAA 1 A_SpawnItem("NemPentaFire2",0,0)
+	stop
+ }
+}
+
+ACTOR NemPentaFire2 : NemPentaFire {ReactionTime 7}
+ 
+ 
+ACTOR NemesisShot2
+{
+  
+	Height 12
+	Speed 25
+	FastSpeed 40
+	Damage 400
+	PROJECTILE
+	Translation "80:111=80:90", "5:7=86:89"
+	RenderStyle Stencil
+	StencilColor Black
+	DamageType "MinotaurDamage"
+	DeathType "Fire"
+	ALPHA 0.95
+	DeathSound "weapons/hellex"
+	DONTHURTSHOOTER
+	species "Cybers"
+	+DONTHARMSPECIES
+	+THRUGHOST
+	States
+	{
+	Spawn: 
+		WNCM AAABBBCCC 1  A_SpawnItemEx("BlackPuff2",0,0,0,0,0,0,0,8)
+		loop
+	Death:
+		TNT1 A 0
+		TNT1 A 0  A_CustomMissile("NemesisBoom2",0,0,0,6)
+		TNT1 A 0  A_CustomMissile("NemesisBoom2",0,0,45,6)
+		TNT1 A 0  A_CustomMissile("NemesisBoom2",0,0,90,6)
+		TNT1 A 0  A_CustomMissile("NemesisBoom2",0,0,135,6)
+		TNT1 A 0  A_CustomMissile("NemesisBoom2",0,0,180,6)
+		TNT1 A 0  A_CustomMissile("NemesisBoom2",0,0,225,6)
+		TNT1 A 0  A_CustomMissile("NemesisBoom2",0,0,270,6)
+		TNT1 A 0  A_CustomMissile("NemesisBoom2",0,0,315,6)
+		WNCM DEF 3  A_Explode
+		stop
+	}
+}
+
+ACTOR NemesisFX
+{   
+	Height 5
+	Speed 0
+	Damage 500
+	species "Cybers"
+	+DONTHARMSPECIES
+	+NODAMAGETHRUST
+	PROJECTILE
+	RENDERSTYLE ADD
+	DamageType "MinotaurDamage"
+	DeathType "Fire"
+	ALPHA 0.80
+	SeeSound "weapons/firex3"
+	States
+	{
+	Spawn:
+		FXPW A 3 Bright
+		FXPW B 3 Bright A_Explode(500)
+		FXPW CDEFGHIJ 3 Bright
+		stop
+	}
+}
+ 
+
+
+ACTOR NemesisFX2 : NemesisFX
+{
+	RenderStyle Stencil
+	StencilColor Black
+}
+
+ACTOR NemesisBoom
+{
+	Height 8
+	Speed 6
+	Damage 500
+	PROJECTILE
+	RENDERSTYLE ADD
+	DONTHURTSHOOTER
+	DamageType "MinotaurDamage"
+	species "Cybers"
+	+DONTHARMSPECIES
+	+RIPPER
+	+THRUGHOST
+	+BLOODLESSIMPACT
+	SeeSound "weapons/firex3"
+	ALPHA 0.80
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 AAAAA 6 A_SpawnItem("NemesisFX",0,0)
+		Stop
+	}
+}
+
+ACTOR NemesisBoom2 : NemesisBoom
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 AAAAA 6 A_SpawnItem("NemesisFX2",0,0)
+		Stop
+	}
+}
+
+
+Actor NemHellsmithLightningBolt 
+{
+	ReactionTime 35
+	DamageType "MinotaurDamage"
+	DeathType "Legendary"
+	species "Cybers"
+	RENDERSTYLE ADD
+	+FoilInvul
+	+EXTREMEDEATH
+	+DONTHARMSPECIES
+	+NODAMAGETHRUST
+	+NOGRAVITY
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_Jump(64,"Homing")
+		LFX2 F 1 Bright A_Explode(300)
+		LFX2 F 0 Bright A_CustomMissile("NemHellsmithBolt2",0,0,0,6,90)
+		LFX2 F 0 ThrustThing(random(0,255),1,0,0)
+		LFX2 G 1 Bright A_Explode(300)
+		LFX2 G 0 Bright A_CustomMissile("NemHellsmithBolt2",0,0,0,6,90)
+		LFX2 H 1 Bright A_Explode(300)
+		LFX2 H 0 Bright A_CustomMissile("NemHellsmithBolt2",0,0,0,6,90)
+		LFX2 I 1 Bright A_Explode(300)
+		LFX2 I 0 Bright A_CustomMissile("NemHellsmithBolt2",0,0,0,6,90)
+		LFX2 J 1 Bright A_Explode(300)
+		LFX2 J 0 Bright A_CustomMissile("NemHellsmithBolt2",0,0,0,6,90)
+		LFX2 J 0 Bright A_CountDown
+		Goto Spawn+2
+	Homing:
+		LFX2 F 1 Bright A_Explode(300)
+		LFX2 F 0 Bright A_CustomMissile("NemHellsmithBolt2",0,0,0,6,90)
+		LFX2 F 0 A_SeekerMissile(2,2)
+		LFX2 G 1 Bright A_Explode(300)
+		LFX2 G 0 Bright A_CustomMissile("NemHellsmithBolt2",0,0,0,6,90)
+		LFX2 F 0 A_SeekerMissile(2,2)
+		LFX2 H 1 Bright A_Explode(300)
+		LFX2 H 0 Bright A_CustomMissile("NemHellsmithBolt2",0,0,0,6,90)
+		LFX2 F 0 A_SeekerMissile(2,2)
+		LFX2 I 1 Bright A_Explode(300)
+		LFX2 I 0 Bright A_CustomMissile("NemHellsmithBolt2",0,0,0,6,90)
+		LFX2 F 0 A_SeekerMissile(2,2)
+		LFX2 J 1 Bright A_Explode(300)
+		LFX2 J 0 Bright A_CustomMissile("NemHellsmithBolt2",0,0,0,6,90)
+		LFX2 F 0 A_SeekerMissile(2,2)
+		LFX2 J 0 Bright A_CountDown
+		Loop
+	Death:
+		TNT1 A 0 A_FadeOut(0.2)
+		LFX2 F 2 Bright A_Explode(300)
+		TNT1 A 0 A_FadeOut(0.2)
+		LFX2 G 2 Bright A_Explode(300)
+		TNT1 A 0 A_FadeOut(0.2)
+		LFX2 H 2 Bright A_Explode(300)
+		TNT1 A 0 A_FadeOut(0.2)
+		LFX2 I 2 Bright A_Explode(300)
+		TNT1 A 0 A_FadeOut(0.2)
+		LFX2 J 2 Bright A_Explode(300)
+		Stop
+	}
+}
+ 
+Actor NemHellsmithLightning2 
+{
+	DamageType "MinotaurDamage"
+	DeathType "Legendary"
+	species "Cybers"
+	RENDERSTYLE ADD
+	+FOILINVUL
+	+EXTREMEDEATH
+	+DONTHARMSPECIES
+	+NODAMAGETHRUST
+	+NOGRAVITY
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_PlaySoundEx("BFlan/Lightning",CHAN_AUTO,false,ATTN_NONE)
+		TNT1 AAA 0 A_CustomMissile("NemHellsmithLightningBolt",30,0,random(0,360),2)
+		TNT1 AAA 0 A_CustomMissile("SmokeFX3",0,0,random(0,360),2,random(0,360))
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("NemHSLightningSpark",0,0,0,random(1,10),0,random(1,15),random(0,359),129)
+		DV10 ABCBCAB 3 Bright
+		Stop
+    }     
+}
+
+Actor NemHellsmithLightning3 
+{
+	DamageType "MinotaurDamage"
+	DeathType "Legendary"
+	species "Cybers"
+	RENDERSTYLE ADD
+	+FOILINVUL
+	+EXTREMEDEATH
+	+DONTHARMSPECIES
+	+NODAMAGETHRUST
+	+NOGRAVITY
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_PlaySoundEx("BFlan/Lightning",CHAN_AUTO,false,ATTN_NONE)
+		TNT1 A 0 A_Explode(10000000,225,0,1)
+		TNT1 AAA 0 A_CustomMissile("NemHellsmithLightningBolt",30,0,random(0,360),2)
+		TNT1 AAA 0 A_CustomMissile("SmokeFX3",0,0,random(0,360),2,random(0,360))
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("NemHSLightningSpark",0,0,0,random(1,10),0,random(1,15),random(0,359),129)
+		DV10 ABCBCAB 3 Bright
+		Stop
+    }     
+}
+
+
+Actor NemHSLightningSpark 
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_Jump(80,4)
+		SWPK ABC 2 Bright
+		Loop
+		SWPK DEF 4 Bright A_FadeOut(0.25)
+		Stop
+	Death:
+		SWPK DEF 4 Bright A_FadeOut(0.25)
+		Stop	
+	}
+}
+
+Actor NemHellsmithBolt2 : CacodemonBall
+{
+	Damage 0
+	DamageType "MinotaurDamage"
+	Speed 184
+	RenderStyle None
+	+Ripper
+	+NOTIMEFREEZE
+	SeeSound "HSphere/Tele"
+	DeathSound "HSphere/Sight"
+	States
+	{
+	Spawn:
+		TNT1 A 1 Bright A_Explode(16,64,0)
+		Loop
+	Death:
+		TNT1 A 1 Bright
+		Stop
+	}
+}
+
+Actor NemesisRainCometNull
+{
+	Radius 10
+	Height 10
+	Speed 8
+	DamageType "MinotaurDamage"
+	species "Cybers"
+	+DONTHARMSPECIES
+	Projectile
+	+FloorClip
+	+Ripper
+	+CeilingHugger
+	+NOTIMEFREEZE
+	ReactionTime 80
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_Countdown
+		Z4P5 A 1 Bright A_Wander
+		Z4P5 A 8 Bright A_CustomMissile("NemFallingComet",-24,random(0,128),random(0,360),2,random(1,89))
+		Loop
+	Death:
+		Z4P5 A 0
+		Stop
+	}
+}
+
+Actor NemFallingComet
+{
+	Radius 6
+	Height 6
+	Speed 5
+	Damage 450
+	DamageType "MinotaurDamage"
+	DeathType "Fire"
+	Scale 0.55
+	species "Cybers"
+	+DONTHARMSPECIES
+	Projectile
+	SeeSound "comet/launch"
+	DeathSound "comet/explosion"
+	+MTHRUSPECIES
+	-NoGravity
+	-Float
+	+FloorClip
+	+SpawnCeiling
+	+NOTIMEFREEZE
+	+NODAMAGETHRUST
+	MissileType NemCometDeath
+	MissileHeight 0
+	States
+	{
+	Spawn:
+		NNCT ABC 2 Bright A_MissileAttack
+		Loop
+	Death:
+		TNT1 A 0 A_Explode(230)
+		TNT1 A 0 A_SetTranslucent(0.75,1)
+		TNT1 A 0 A_SpawnItemEx("LegendaryBlueParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+		TNT1 AAAA 0 A_SpawnItemEx("LegendaryDebris",0,0,Random(20,40),Random(4,-4),Random(4,-4),Random(4,8),0,128)
+		TNT1 AAA 0 A_CustomMissile("LegendaryKaboom6", 0, 0, random(0,360), 2, random(0,360))	
+		TNT1 AAA 0 A_CustomMissile("NemesisBoom", 0, 0, random(0,360), 2, random(0,360))
+		NNCT DEFGHI 3 Bright 
+		Stop	
+	}
+}
+
+
+ACTOR NemCometDeath 
+{
+ species "Cybers"
+ +DONTHARMSPECIES
+ +NOTIMEFREEZE
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 AAAA 0 A_SpawnItemEx("LegendaryDebris",0,0,Random(20,40),Random(4,-4),Random(4,-4),Random(4,8),0,128)
+	TNT1 AAA 0 A_CustomMissile("NemesisBoom", 0, 0, random(0,360), 2, random(0,360))
+	NNCM JJJKKKLLMMNN 1 Bright A_FadeOut(0.065)
+	Stop
+ }
+}
+
+ACTOR NemCometTail : BFG9500Trail
+{
+ Scale 1.15
+ +NOTIMEFREEZE
+ +CLIENTSIDEONLY
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_CheckSight("Vanilla")
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 2 Bright
+	BLUR DEFGHI 2 Bright
+	Stop	
+ }
+}
+
+actor CubeSpawner 
+{
+ Radius 40
+ Height 80
+ SeeSound "brain/spit"
+ DeathSound "brain/cubeboom"
+ RenderStyle Normal
+ Speed 9
+ +NOBLOCKMAP
+ +NOGRAVITY
+ +DROPOFF
+ +MISSILE
+ +NOTELEPORT
+ +NOTELEFRAG
+ +SOLID
+ Scale 0.6
+ BounceType Hexen
+ States
+ {
+  Spawn:
+	GCUB ABCABCABC 6 
+	GCUB A 0 A_Stop
+	GCUB ABCABC 6 
+	Goto Death
+  Crash:
+  XDeath:
+  Death:
+	GCUB C 1 A_SpawnItemEx("NemesisLightning")
+	TNT1 AAAAAAAAA 2 A_SpawnItem("VexedNemesisFlameSpawner")
+	TNT1 A 0 A_SpawnItem("FakeApprentice",0,0) 
+	Stop
+ }
+}
+
+
+actor CubeSpawner2 : CubeSpawner 
+{
+ States
+ {
+  Spawn:
+	GCUB ABCABCABC 6 
+	GCUB A 0 A_Stop
+	GCUB ABCABC 6 
+	Goto Death
+  Crash:
+  XDeath:
+  Death:
+	GCUB C 1 A_SpawnItemEx("NemesisLightning")
+	TNT1 AAAAAAAAA 2 A_SpawnItem("VexedNemesisFlameSpawner")
+	TNT1 A 0 A_SpawnItem("FakeFreezemotaur",0,0)
+	Stop
+ }
+}
+
+
+actor CubeSpawner3 : CubeSpawner 
+{
+ States
+ {
+  Spawn:
+	GCUB ABCABCABC 6 
+	GCUB A 0 A_Stop
+	GCUB ABCABC 6 
+	Goto Death
+  Crash:
+  XDeath:
+  Death:
+	GCUB C 1 A_SpawnItemEx("NemesisLightning")
+	TNT1 AAAAAAAAA 2 A_SpawnItem("VexedNemesisFlameSpawner")
+	TNT1 A 0 A_SpawnItemEx("FakeSupremotaur",0,0)
+	Stop
+ }
+}

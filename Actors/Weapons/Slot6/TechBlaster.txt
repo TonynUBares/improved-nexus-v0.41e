@@ -1,0 +1,363 @@
+Actor TechBlasterGiver : CustomInventory
+{
+  Scale 0.9
+  Inventory.Amount 1
+  Inventory.MaxAmount 0
+  Inventory.InterHubAmount 0
+   Inventory.PickupMessage "Tech Blaster" 
+   Inventory.PickupSound "TechBlaster/PickUp"
+   Obituary "%o was turned into maccarroni by %k's Tech Blaster"
+   Tag "Tech Blaster"
+  States
+  {
+  Spawn:
+	DTNG A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",6,0)
+  SpawnLoop:
+	DTNG A -1
+	Loop
+  Pickup:
+	TNT1 A 0 A_JumpIfInventory("Tech Blaster",1,"JustAmmo")
+  All:
+	TNT1 A 0 A_GiveInventory("Tech Blaster",1)
+	TNT1 A 0 A_JumpIfInventory("TechBlasterGiverCheck",1,"HoldAndDestroy")
+	TNT1 A 0 A_GiveInventory("TechBlasterGiverCheck",1)
+	TNT1 A 0 A_GiveInventory("DemonAmmo",40)
+	Stop
+  JustAmmo:
+    TNT1 A 0 A_JumpIfInventory("TechBlasterGiverCheck",1,"Null")
+	TNT1 A 0 A_GiveInventory("TechBlasterGiverCheck",1)
+	TNT1 A 0 A_GiveInventory("DemonAmmo",40)
+	TNT1 A 0 A_SpawnItemEx("Tech Blaster")
+	Stop
+  }
+}
+
+Actor TechBlasterSpawnerGiver : TechBlasterGiver
+{
+  States
+  {
+  JustAmmo:
+    TNT1 A 0 A_JumpIfInventory("TechBlasterGiverCheck",1,"Null")
+	TNT1 A 0 A_GiveInventory("TechBlasterGiverCheck",1)
+	TNT1 A 0 A_GiveInventory("DemonAmmo",90)
+	Stop
+  }
+}
+
+Actor TechBlasterGiverCheck : Inventory { Inventory.Amount 1 Inventory.MaxAmount 1 Inventory.InterHubAmount 0 }
+
+
+Actor "Tech Blaster" : Weapon 18799
+{
+ Height 12
+ Weapon.PreferredSkin "DemonTechRifle-Marine"
+ Weapon.SelectionOrder 7980
+ Weapon.KickBack 60
+ Weapon.AmmoUse 3
+ Weapon.AmmoGive 90
+ Weapon.AmmoGive2 180
+ Weapon.SlotNumber 6
+ Weapon.SlotPriority 8.2
+ Scale 1
+ Weapon.AmmoType "TechBlasterMagazine"   
+ Weapon.AmmoType2 "DemonAmmo"
+ Inventory.PickupMessage "Tech Blaster" 
+ Inventory.PickupSound "TechBlaster/PickUp"
+ Obituary "%o was turned into maccarroni by %k's Tech Blaster"
+ Tag "Tech Blaster"
+ +WEAPON.AMMO_OPTIONAL
+ +WEAPON.NOALERT
+ +INVENTORY.UNDROPPABLE
+ States
+ {
+  Ready:
+	TNT1 A 0 A_PlayWeaponSound("weapons/demontechload")
+	DTGL ONBHV 1
+  ReadyLoop:
+	TNT1 A 0 A_JumpIfInventory("TechBlasterMagazine",1,2)
+	TNT1 A 0
+	Goto NoBuzzing
+	DTGA AAA 1 A_WeaponReady(WRF_ALLOWRELOAD)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	DTGA AAA 1 A_WeaponReady(WRF_ALLOWRELOAD)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	DTGA AAA 1 A_WeaponReady(WRF_ALLOWRELOAD)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	DTGA AAA 1 A_WeaponReady(WRF_ALLOWRELOAD)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	DTGA AAA 1 A_WeaponReady(WRF_ALLOWRELOAD)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	DTGA AAA 1 A_WeaponReady(WRF_ALLOWRELOAD)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	DTGA AAA 1 A_WeaponReady(WRF_ALLOWRELOAD)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	DTGA AAA 1 A_WeaponReady(WRF_ALLOWRELOAD)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	DTGA AAA 1 A_WeaponReady(WRF_ALLOWRELOAD)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	DTGA AAA 1 A_WeaponReady(WRF_ALLOWRELOAD)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	DTGA AAA 1 A_WeaponReady(WRF_ALLOWRELOAD)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	DTGA AAA 1 A_WeaponReady(WRF_ALLOWRELOAD)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	DTGA AAA 1 A_WeaponReady(WRF_ALLOWRELOAD)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	DTGA AAA 1 A_WeaponReady(WRF_ALLOWRELOAD)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	DTGA AAA 1 A_WeaponReady(WRF_ALLOWRELOAD)
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	TNT1 A 0 A_PlaySound("TechBlaster/Idle")
+	Goto ReadyLoop
+  NoBuzzing:
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	DTGA A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+	Loop
+  Deselect:
+	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",1)
+	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown")
+	TNT1 A 0 A_Lower
+	DTGA A 1 A_Lower
+     Goto Deselect+2
+  Select:
+	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",0)
+	TNT1 A 1 A_Raise
+	TNT1 A 0 A_Raise
+	Wait
+  Fire:
+	TNT1 A 0 A_JumpIfNoAmmo("Empty")
+	TNT1 A 0 A_JumpIfInventory("PowerSpreadRune",1,"FireSpread")
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 Radius_Quake(6,4,0,2,0)
+	TNT1 A 0 A_Light1
+	TNT1 A 0 A_PlaySound("TechBlaster/Fire")
+	DTGA B 4 Bright A_FireCustomMissile("TBlasterProjectile",0,0)
+	TNT1 A 0 A_TakeInventory("TechBlasterMagazine",3,TIF_NOTAKEINFINITE)
+	DTGA C 2 Bright
+	DTGB N 1 Bright
+	TNT1 A 0 A_ReFire
+	Goto ReadyLoop
+   FireSpread:
+	TNT1 A 0 A_JumpIfNoAmmo("Empty")
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 Radius_Quake(6,4,0,2,0)
+	TNT1 A 0 A_Light1
+	TNT1 A 0 A_PlaySound("TechBlaster/Fire")
+	DTGA B 4 Bright A_FireCustomMissile("TBlasterProjectile",0,0)
+	TNT1 A 0 A_FireCustomMissile("TBlasterProjectile",15.0,0)
+	TNT1 A 0 A_FireCustomMissile("TBlasterProjectile",-15.0,0)
+	TNT1 A 0 A_TakeInventory("TechBlasterMagazine",3,TIF_NOTAKEINFINITE)
+	DTGA C 2 Bright
+	DTGB N 1 Bright
+	TNT1 A 0 A_ReFire
+	Goto ReadyLoop
+  Empty:
+	DTGA A 10 A_PlayWeaponSound("weapons/click2")	
+  Reload:
+  	TNT1 A 0 A_JumpIfInventory("TechBlasterMagazine",0,"ReadyLoop")
+	TNT1 A 0 A_JumpIfInventory("DemonAmmo",1,1)
+	Goto ReadyLoop
+	DTGA D 4
+	DTGA L 5
+	DTGA I 5 A_PlayWeaponSound("weapons/demontecheject")
+	DTGA I 1 A_PlayWeaponSound("TechBlaster/Steam")
+	DTGA J 2 Radius_Quake(2,2,0,1,0)
+	DTGA O 2 Radius_Quake(2,2,0,1,0)
+	DTGA E 3 Radius_Quake(2,2,0,1,0)
+	DTGA R 4 A_FireCustomMissile("RocketEmptyDrumSpawner", 0, 0, 0, 1)
+	DTGA MN 3
+	DTGA P 25
+	DTGA Z 3
+	DTGA X 3 A_PlayWeaponSound("weapons/demontechload")
+	TNT1 A 0 A_JumpIfInventory("DemonAmmo",1,"ActualReload")	
+	DTGA V 9
+	DTGA T 3 A_PlayWeaponSound("weapons/demontechclick")
+	DTGA F 4
+	DTGA KU 5
+	DTGA A 2
+	Goto ReadyLoop
+   ActualReload:
+	TNT1 A 0 A_TakeInventory("DemonAmmo",1)
+	TNT1 A 0 A_GiveInventory("TechBlasterMagazine",1)
+	TNT1 A 0 A_JumpIfInventory("TechBlasterMagazine",90,"Full")
+	TNT1 A 0 A_JumpIfInventory("DemonAmmo",1,"ActualReload")
+	Goto Reload+19
+   Full:
+	TNT1 A 0
+	Goto Reload+19
+   GrenadeCheck:
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAmmo",1,"GrenadeToss")
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	Goto Ready+25
+   GrenadeToss:
+  	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown") 
+	DTGL VHBNO 1
+	TNT1 A 4
+	HGRN ABC 1
+	HGRN D 2
+	HGRN EFG 1
+	HGRN HI 2
+	TNT1 A 15 A_PlayWeaponSound("weapons/hgrenadepin")
+	TNT1 A 0 A_PlayWeaponSound("weapons/hgrenadethrow")
+	TNT1 A 0 A_TakeInventory("HandGrenadeAmmo",1)
+	HGNE A 1 A_FireCustomMissile("ThrownGrenade",0,0,0,0)
+	HGRN J 1
+	HGRN KLM 2
+	HGRN NO 1
+	TNT1 A 6
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAmmo",1,2)
+     TNT1 A 0 A_TakeInventory("Hand Grenade",1)
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	DTGL ONBHV 1
+	Goto Ready+25
+   MineCheck:
+	TNT1 A 0 A_JumpIfInventory("MineAmmo",1,"MineToss")
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	Goto Ready+25
+   MineToss:
+  	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown") 
+	DTGL VHBNO 1
+	TNT1 A 8
+	TNT1 A 0 A_PlayWeaponSound("weapons/hgrenadethrow")
+	MINE ABCDEF 1		
+	TNT1 A 0 A_TakeInventory("MineAmmo",1)	 
+	MINE G 1 A_FireCustomMissile("ThrownMine",0,0,0,0)
+	MINE HI 1
+	MINE JK 2
+	TNT1 A 0 A_JumpIfInventory("MineAmmo",1,2)
+	TNT1 A 0 A_TakeInventory("Land Mine",1)
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	TNT1 A 5
+	DTGL ONBHV 1
+	Goto Ready+25	
+  Spawn:
+   	DTNG A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",6,0)
+  SpawnLoop:
+     DTNG A -1
+     Stop
+ }
+}
+
+ACTOR TechBlasterMagazine : Ammo
+{
+Inventory.Amount 0
+Inventory.MaxAmount 90
+Ammo.BackpackAmount 0
+Ammo.BackpackMaxAmount 90
+Inventory.Icon "HUDGA0"
++IGNORESKILL
+}
+
+ACTOR TBlasterProjectile : FastProjectile
+{
+Speed 420
+Radius 8
+Height 6
+Damage (75)
+Renderstyle Add
+Scale 0.4
+PROJECTILE
+-CANNOTPUSH
++NODAMAGETHRUST
++EXTREMEDEATH
++MTHRUSPECIES
+DamageType "Normal"
+DeathSound "weapons/StachanovHit"
+MissileType "TBlasterProjectileTrail"
+Decal Scorch
+States
+{
+  Spawn:
+    TNT1 A 0
+	YAE4 A 0 A_SpawnItemEx("TBlasterProjectileTrail",5,1.0,1)
+    TNT1 A 1 A_PlaySound("weapons/brimstonefly",5,1.0,1)
+    Loop
+  Death:
+    TNT1 A 0 A_PlaySound("TechBlaster/Explode",5)
+    TNT1 AAAAAAAAAA 0 A_SpawnItemEx("TBlasterProjectileTrailSparks",random(19,-19),random(19,-19),random(19,-19),0,0,0,0,128,0)
+    TNT1 A 0 A_SpawnItemEx("TBlasterExplode",0,0,0,0,0,0,0,128,0)
+	TNT1 A 0 A_Explode(300,32,0)
+    TNT1 A 0 A_Explode(175,80,0)
+    TNT1 BCD 4
+    stop
+  }
+}
+
+ACTOR TBlasterProjectileTrail
+{
+RenderStyle Add
+Scale 0.1
+Alpha 1
++NOINTERACTION
++NOGRAVITY
+  States
+  {
+  Spawn:
+    TNT1 A 0
+    TNT1 A 0 //A_SetScale(ScaleX,ScaleY-0.0875)
+    YAE4 A 2 Bright A_SpawnItemEx("TBlasterProjectileTrailSparks",random(4,-4),random(4,-4),random(4,-4),0,0,0,0,128,0)
+    YAE4 A 2 Bright
+  Fly:
+    YAE4 A 0 //A_SetScale(ScaleX-0.01,ScaleY-0.01)
+    YAE4 A 1 Bright A_FadeOut(0.295)
+    Loop
+  }
+}
+
+//ClientSideEffect
+ACTOR TBlasterProjectileTrailSparks : FastProjectile
+{ 
+RenderStyle Add
+Scale 0.01
+Alpha 0.95
++NOINTERACTION
++NOGRAVITY
++CLIENTSIDEONLY
+States
+{
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+    YAE4 A 3 Bright A_ChangeVelocity(frandom(-0.8,0.8),frandom(-0.8,0.8),frandom(-0.8,0.8),0)
+    YAE4 A 1 Bright A_FadeOut(0.05)
+    Loop
+	Vanilla:
+	TNT1 A 0
+    Stop    
+}
+}
+
+ACTOR TBlasterExplode
+{
+Radius 8
+Height 6
+Renderstyle Add
+Scale 0.25
++CLIENTSIDEONLY
++NOINTERACTION
++NOGRAVITY
+States
+  {
+  Spawn:
+    YAE3 ABCDEFGHIJKLMNOPQRS 1 Bright A_FadeOut(0.05)
+    Stop
+  }
+}

@@ -1,0 +1,339 @@
+//Carrier infinite loop fix
+ACTOR Carrier
+{
+	Health 2100
+	Radius 31
+	Height 63
+	Mass 1000
+	Speed 13
+	Species "EleSouls"
+	PainChance 20
+	PainChance "Souls", 0
+	PainChance "ChaosSoul", 0
+	PainChance "ImpureSoul", 0
+	DamageFactor "CurseComet", 0.0
+	DamageFactor "HelementalComet", 0.0
+	DamageFactor "SoulToxic", 0.0
+	DamageFactor "BombBreath", 0.0
+	Damagefactor "EleSouls", 0.0
+	DamageFactor "SatanGuard", 0.0
+	DropItem "NemesisHealthBonusMax", 200, 16
+	DropItem "NemesisArmorBonus16", 200
+	DropItem "BigCFMana" 128 100
+	DropItem "CFMana" 256 30
+	DropItem "CFMana" 256 30
+	DropItem "LifeSphere" 60
+	DropItem "FantasyStaff" 50
+	DropItem "OccultSpellbook" 30
+	MeleeDamage 60
+	MeleeRange 72
+	Scale 0.85
+	Monster
+	+MISSILEMORE
+	+MISSILEEVENMORE
+	+FLOAT 
+	+NOGRAVITY 
+	+DONTFALL 
+	+NOICEDEATH
+	+NOBLOOD
+	+DONTHARMSPECIES
+	SeeSound "carrier/sight"
+	PainSound "carrier/pain"
+	DeathSound "carrier/death"
+	ActiveSound "carrier/active"
+	MeleeSound "carrier/melee"
+	HitObituary "%o was crushed by the Carrier's sharp teeth."
+	Obituary "%o couldn't evade a Carrier's swarm of destruction."
+	Tag "$NECarrier"
+	var int user_missile;
+	var int user_lowlag;
+	States
+	{
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
+	Goto Idle
+  Idle:
+	CARR A 10 Bright A_Look
+	Loop
+  See:
+	TNT1 A 0 A_JumpIf(user_lowlag == 1,"MoreSee")
+	TNT1 A 0 A_JumpIfTargetInLOS("MoreSee",0,0,0,0)
+	CARR A 3 A_Chase
+	Loop
+  MoreSee:
+	TNT1 A 0 A_SetUserVar("user_lowlag",1)
+	CARR A 0 Bright A_SetShootable
+	CARR AAAAAAAAAAAA 3 Bright A_Chase
+	TNT1 A 0 A_Jump(26,"Evade")
+	Loop
+  Evade:
+	TNT1 A 0 A_Jump(128,7)
+	TNT1 A 0 ThrustThing(Angle*256/360+64,18,0,0)
+	CARR BB 3 A_Chase
+	TNT1 A 0 A_Stop
+	Goto See
+	TNT1 A 0 ThrustThing(Angle*256/360+192,18,0,0)		 
+	CARR BB 3 A_Chase
+	TNT1 A 0 A_Stop		 
+	Goto See
+  Missile:
+    CARR A 1 A_FaceTarget
+	TNT1 A 0 A_Jump(256,"Beam","Soul","FantasySeal","Souls","Elemental","Comet","Comet2")
+    Goto See
+  Soul:
+    CARR BC 8 Bright A_FaceTarget
+    CARR DD 8 Bright A_DualPainAttack("RandomSoulLaunch")
+	CARR DD 8 Bright A_DualPainAttack("RandomSoulLaunch")
+    CARR CB 8 Bright A_FaceTarget
+    Goto See
+  Souls:
+    TNT1 A 0 A_Jump(106,"Beam","Soul","FantasySeal","Comet","Comet2")
+	CARR BC 6 Bright A_FaceTarget
+    CARR DD 6 Bright A_PainAttack("RandomSoulLaunch")
+	CARR DD 6 Bright A_PainAttack("RandomSoulLaunch")
+	CARR DD 6 Bright A_PainAttack("RandomSoulLaunch")
+	CARR DD 6 Bright A_PainAttack("RandomSoulLaunch")
+    CARR CB 6 Bright A_FaceTarget
+  Elemental:
+	TNT1 A 0 A_Jump(106,"Beam","Soul","FantasySeal","Comet","Comet2")
+	CARR BC 8 Bright A_FaceTarget
+    CARR DD 8 Bright A_PainAttack("RandomElementalLaunch")
+    CARR CB 8 Bright A_FaceTarget
+  Beam:
+    TNT1 A 0 A_SpawnItem("HierophantBlueSmokeSpawner",0,0,0,0)
+    CARR B 8 Bright A_FaceTarget 
+    TNT1 A 0 A_SpawnItem("HierophantBlueSmokeSpawner",0,0,0,0)
+    CARR C 8 Bright A_FaceTarget 
+    TNT1 A 0 A_PlaySound("FantasyStaff/Fire",7) 
+	TNT1 A 0 A_SetUserVar("user_missile",0)	
+  BeamLoop:
+	TNT1 A 0 A_JumpIf(user_missile >= 10,"BeamEnd")	 
+	TNT1 A 0 A_SetUserVar("user_missile",user_missile+1)
+	TNT1 A 0 A_FaceTarget
+    CARR DDD 1 Bright A_CustomMissile("CarrierFantasyStaffBeam",24,0,0,0,0)
+    TNT1 A 0 A_PlaySound("FantasyStaff/FireLoop",6)
+	Loop
+  BeamEnd:
+    CARR C 10 Bright
+    CARR B 10 Bright
+    Goto See
+  FantasySeal:
+    TNT1 A 0 A_PlaySound("FantasyStaff/Charge",7)
+    TNT1 A 0 A_SpawnItem("HierophantBlueSmokeSpawner",0,0,0,0)
+    CARR B 8 Bright A_FaceTarget 
+    TNT1 A 0 A_SpawnItem("HierophantBlueSmokeSpawner",0,0,0,0)
+    CARR B 8 Bright A_FaceTarget 
+    TNT1 A 0 A_SpawnItem("HierophantBlueSmokeSpawner",0,0,0,0)
+    CARR B 8 Bright A_FaceTarget 
+    TNT1 A 0 A_SpawnItem("HierophantBlueSmokeSpawner",0,0,0,0)
+    CARR B 8 Bright A_FaceTarget 
+    TNT1 A 0 A_SpawnItem("HierophantBlueSmokeSpawner",0,0,0,0)
+    CARR C 8 Bright A_FaceTarget 
+    TNT1 A 0 A_SpawnItem("HierophantBlueSmokeSpawner",0,0,0,0)
+    CARR C 8 Bright A_FaceTarget 
+    TNT1 A 0 A_SpawnItem("HierophantBlueSmokeSpawner",0,0,0,0)
+    CARR C 8 Bright A_FaceTarget 
+	TNT1 A 0 A_FaceTarget
+    TNT1 A 0 Bright A_PlaySound("FantasyStaff/Fire2",6)
+    TNT1 A 0 Bright A_PlaySound("FantasyStaff/Meltdown",7)
+    CARR D 15 Bright A_CustomMissile("CarrierFantasySeal",24,0,0,0,0)
+    CARR C 15 Bright
+    CARR B 10 Bright
+    Goto See
+  Charge:
+	TNT1 A 0 A_Jump(142,1)
+	Goto Missile
+	TNT1 A 0 A_ScaleVelocity(0)
+	TNT1 A 0 A_PlaySound("carrier/pain")
+	CARR B 6 Bright A_FaceTarget
+	TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,1)
+	CARR C 4 Bright A_Recoil(-8)
+	CARR D 4 Bright A_SkullAttack(40)
+	CARR DCB 4 Bright
+	Goto Melee
+  Comet: 
+    CARR BC 6 A_FaceTarget
+    CARR D 2 Bright A_FaceTarget
+	CARR D 1 Bright A_CustomMissile("CarrierComet",24,0,0,0,0)
+    TNT1 A 0 A_CustomMissile("CarrierComet",24,0,6,0,0)
+    CARR D 1 Bright A_CustomMissile("CarrierComet",24,0,-6,0,0)
+	CARR CB 4 A_FaceTarget
+	Goto See
+  Comet2: 
+    CARR BC 6 A_FaceTarget
+    CARR D 2 Bright A_FaceTarget
+	CARR D 1 Bright A_CustomMissile("CurseComet",24,0,0,0,0)
+    TNT1 A 0 A_CustomMissile("CurseComet",24,0,6,0,0)
+    CARR D 1 Bright A_CustomMissile("CurseComet",24,0,-6,0,0)
+	CARR CB 4 A_FaceTarget
+	Goto See
+  Melee:
+	CARR BC 5 Bright A_FaceTarget
+	CARR D 5 Bright A_MeleeAttack
+	CARR CB 5 Bright A_FaceTarget
+	Goto See
+  Pain:
+	CARR E 0 A_Jump(128,"PainMissile")
+	TNT1 A 0 A_Jump(106,"PainEvade")
+	CARR E 5
+	CARR E 5 A_Pain
+	Goto See
+  PainMissile:
+	CARR E 5
+	CARR E 5 A_Pain
+	Goto Missile
+  PainEvade:
+	TNT1 A 0 A_Jump(128,7)
+	TNT1 A 0 ThrustThing(Angle*256/360+64,24,0,0)
+	CARR BB 3 A_Chase
+	TNT1 A 0 A_Stop
+	Goto See
+	TNT1 A 0 ThrustThing(Angle*256/360+192,24,0,0)		 
+	CARR BB 3 A_Chase
+	TNT1 A 0 A_Stop		 
+	Goto See
+  Death:
+	TNT1 A 0 A_PlaySound("carrier/death",7)
+	CARR F 7 Bright A_NoBlocking
+	CARR G 5 Bright A_Scream
+	CARR H 5 Bright
+	CARR I 5 Bright
+	CARR I 0 Bright A_SpawnItemEx("CarrierDeath",0,0,0,velx,vely,velz,angle,SXF_ABSOLUTEVELOCITY)
+	TNT1 A 0
+	TNT1 A 0 A_CustomMissile("FantasySealExplosion",0,0,0,CMF_AIMDIRECTION,0)
+	TNT1 A 0 A_CustomMissile("FantasySealExplosion",0,0,60,CMF_AIMDIRECTION,0)
+	TNT1 A 0 A_CustomMissile("FantasySealExplosion",0,0,120,CMF_AIMDIRECTION,0)
+	TNT1 A 0 A_CustomMissile("FantasySealExplosion",0,0,180,CMF_AIMDIRECTION,0)
+	TNT1 A 0 A_CustomMissile("FantasySealExplosion",0,0,240,CMF_AIMDIRECTION,0)
+	TNT1 A 0 A_CustomMissile("FantasySealExplosion",0,0,300,CMF_AIMDIRECTION,0)
+	TNT1 A 0 A_CustomMissile("FantasySealExplosion2",0,0,0,CMF_AIMDIRECTION,0)
+	TNT1 A 0 A_SpawnItem("BlueProjExplodeLarge")
+	TNT1 A 0 A_Explode(30,200)
+	TNT1 AAAAAAAAA 0 A_SpawnItemEx("BlueProjParticleSuperLarge",0,0,0,frandom(-7,7),frandom(-7,7),frandom(-7,7),random(0,359))
+	CARR O 0 A_Gravity
+  Falling:
+	CARR O 1 A_CheckFloor("Crunchy")
+	loop
+  Crunchy:
+	CARR P 0 A_PlaySound("wrath/ground")
+	CARR P -1
+	Stop
+  //Raise:
+	//CARR NMLKJIHGFD 5 BRIGHT
+	//goto See
+		
+	}
+}
+
+actor CarrierDeath
+{
+	scale 0.75
+	+NOGRAVITY
+	States
+	{
+		Spawn:
+			CARR JKLMN 5 BRIGHT
+			stop
+	}
+}
+
+ACTOR CarrierFantasyStaffBeam : FantasyStaffBeam
+{
+  Damagetype "BombBreath"
+  Species "EleSouls"
+}
+
+ACTOR CarrierFantasySeal : FantasySeal
+{
+  Damagetype "BombBreath"
+  Species "EleSouls"
+}
+
+Actor CarrierComet
+{
+PROJECTILE
+Height 10
+Radius 10
+Speed 21
+FastSpeed 25
+Scale 0.85
+Reactiontime 29
+Damage 4
++SEEKERMISSILE
++DONTHARMSPECIES
+Species "EleSouls"
+Damagetype "BombBreath"
+SeeSound "comet/launch"
+DeathSound "comet/explosion"
+States
+	{
+    Spawn:
+		TNT1 A 0 Bright
+		TNT1 A 0 Bright A_Jump(135,"Homing")
+		TNT1 A 1 Bright A_Jump(256,"Normal")
+		Loop
+	Normal:
+		TNT1 A 0 Bright A_Jump(20,"Homing")
+		HPCM AAABBBCCCAAABBBCCC 1 Bright A_SpawnItemEx("BlueCometTail",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,0)
+		Loop
+	Homing:
+		HPCM AABB 1 Bright A_SpawnItemEx("BlueCometTail",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,0)
+		TNT1 AAA 0 Bright A_Jump(256,"Travel")
+		Loop
+	Travel:
+		TNT1 A 0 Bright A_SeekerMissile(6,9)
+		HPCM AA 1 Bright A_SpawnItemEx("BlueCometTail",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,0)
+		TNT1 A 0 Bright A_SeekerMissile(6,9)
+		HPCM AB 1 Bright A_SpawnItemEx("BlueCometTail",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,0)
+		TNT1 A 0 Bright A_SeekerMissile(6,9)
+		HPCM BB 1 Bright A_SpawnItemEx("BlueCometTail",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,0)
+		TNT1 A 0 Bright A_SeekerMissile(6,9)
+		HPCM BC 1 Bright A_SpawnItemEx("BlueCometTail",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,0)
+		TNT1 A 0 Bright A_SeekerMissile(6,9)
+		HPCM CC 1 Bright A_SpawnItemEx("BlueCometTail",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,0)
+		TNT1 A 0 Bright A_SeekerMissile(6,9)
+		HPCM DD 1 Bright A_SpawnItemEx("BlueCometTail",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,0)
+		TNT1 A 0 Bright A_SeekerMissile(6,9)
+		HPCM DA 1 Bright A_SpawnItemEx("BlueCometTail",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,0)
+		TNT1 A 0 Bright A_SeekerMissile(6,9)
+		HPCM AA 1 Bright A_SpawnItemEx("BlueCometTail",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,0)
+		TNT1 A 0 Bright A_SeekerMissile(6,9)
+		HPCM BB 1 Bright A_SpawnItemEx("BlueCometTail",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,0)
+		TNT1 A 0 Bright A_Countdown
+		Loop
+	Death:
+		TNT1 A 0 Bright
+		TNT1 A 0 Bright A_Explode(Damage*random(1,8),Damage*16,0,0)
+		TNT1 A 0 Bright A_SetTranslucent(0.75,1)
+		TNT1 A 0 Bright A_SpawnItemEx("BlueParticleSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+		HPCM D 3 Bright A_SpawnItemEx("BlueCometDeathGlow",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+		HPCM E 3 Bright A_SpawnItemEx("BlueCometDeath",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+		Stop
+	}
+}
+
+Actor RandomSoulLaunch : RandomSpawner
+{
+DropItem "TerrorSoul", 256, 20
+DropItem "ForgottenOne", 256, 20
+DropItem "PhaseSoul", 256, 10
+DropItem "PoisonSoul", 256, 10
+DropItem "Rictus", 256, 10
+DropItem "BabyWatcher", 256, 10
+DropItem "Wicked", 256, 10
+DropItem "Cruel", 256, 10
+DropItem "BloodSkull", 256, 5
+DropItem "ChaosSoul", 256, 5
+DropItem "ImpureSoul", 256, 5
+}
+
+Actor RandomElementalLaunch : RandomSpawner
+{
+DropItem "SoulKeeper", 256, 20
+DropItem "Defiler", 256, 20
+DropItem "PhaseElemental", 256, 10
+DropItem "PoisonElemental", 256, 10
+DropItem "BombElemental", 256, 10
+DropItem "BloodElemental", 256, 5
+DropItem "Broat", 256, 5
+}

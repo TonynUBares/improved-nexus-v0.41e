@@ -1,0 +1,891 @@
+//Shuffle Spheres
+
+actor ShuffleSpawner : RandomSpawner
+{
++DROPPED
+DropItem "Legendary Railgun", 256, 1
+DropItem "Legendary Revolver", 256, 1
+DropItem "Nailgun", 256, 1
+DropItem "FreezerBFG", 256, 1
+DropItem "LegChainsawUpgrade", 256, 1
+DropItem "Demon Tech Ballista", 256, 1
+DropItem "BFG15KGiver", 256, 1
+DropItem "M79 Gas Grenade Launcher", 256, 1
+DropItem "LifeSphere", 256, 1
+DropItem "SalvationSphere", 256, 1
+DropItem "BerserkSphere", 256, 1
+DropItem "LegendarySphere", 256, 1
+DropItem "LegendarySalvationSphere", 256, 1
+DropItem "EnragedLegendarySphere", 256, 1
+DropItem "UltraSphere", 256, 1
+DropItem "LegendaryUltraSphere", 256, 1
+DropItem "HellFireUltraSphere", 256, 1
+DropItem "EnragedLegendaryUltraSphere", 256, 1
+DropItem "TrueLegendaryUltraSphere", 256, 1
+DropItem "ModdedInvulnerabilitySphere", 256, 1
+DropItem "DoomSphereDust", 256, 1
+DropItem "UnbelieveabilitySphere", 256, 1
+DropItem "UnstabilitySphere", 256, 1
+DropItem "PhaseArmor", 256, 1
+DropItem "CrystalArmor", 256, 1
+DropItem "LegendaryArmor", 256, 1
+DropItem "HellfireArmor", 256, 1
+DropItem "EnragedLegendaryArmor", 256, 1
+DropItem "LegendaryRune", 256, 2
+DropItem "VitalityRune", 256, 2
+DropItem "AgilityRune", 256, 2
+DropItem "LegendaryRandomSphere", 256, 1
+DropItem "FlameSword", 256, 1
+DropItem "Explosive Shotgun", 256, 1
+//DropItem "HeavyChaingun", 256, 1
+DropItem "Legendary Assault Shotgun", 256, 1
+DropItem "EnragedLegendaryASG", 256, 1
+DropItem "ExplosiveSSG", 256, 1
+DropItem "Hexa-Shotgun", 256, 1
+DropItem "Demon Tech Shotgun", 256, 1
+DropItem "LegendaryCoachgun", 256, 1
+DropItem "Explosive Minigun", 256, 1
+DropItem "ExplosiveRifle", 256, 1
+DropItem "Legendary Light Machine Gun", 256, 1
+DropItem "Enraged Legendary Light Machine Gun", 256, 1
+DropItem "Improved Minigun", 256, 1
+DropItem "BehemothCannon", 256, 1
+DropItem "BarbatosCannon", 256, 1
+DropItem "HomingRocketLauncher", 256, 1
+DropItem "ProxLauncher", 256, 1
+DropItem "RuffianCannon", 256, 1
+DropItem "RapidRocketlauncher", 256, 1
+DropItem "HellStormBFG", 256, 1
+DropItem "Legendary Plasmatic Cannon", 256, 1
+DropItem "EFG9000", 256, 1
+DropItem "EnragedLegendaryPlasmaticCannon", 256, 1
+DropItem "Freezer Rifle", 256, 1
+DropItem "Demon Tech Rifle", 256, 1
+DropItem "Railgun ", 256, 1
+DropItem "HellStaff", 256, 1
+DropItem "PlasmaRepeater", 256, 1
+DropItem "Welder", 256, 1
+DropItem "Demon Tech Railgun", 256, 1
+DropItem "Legendary Plasmatic Rifle", 256, 1
+DropItem "LegendarySaber", 256, 1
+DropItem "Enraged Legendary Plasmatic Rifle", 256, 1
+DropItem "BFG9500", 256, 1
+DropItem "BFG10K ", 256, 1
+DropItem "Demon Tech BFG10K", 256, 1
+DropItem "Demon Tech Devastator", 256, 1
+DropItem "CommanderDevastator", 256, 1
+DropItem "BFG2704", 256, 1
+DropItem "Legendary BFG 10K", 256, 1 
+DropItem "Legendary BFG", 256, 1
+DropItem "PyroCannon", 256, 1
+DropItem "BlackHole Generator", 256, 1
+DropItem "Vilestaff", 256, 1
+DropItem "HackroidRifle", 256, 1
+DropItem "HackroidASG", 256, 1
+DropItem "FantasyStaff", 256, 1
+DropItem "Nemesis Rifle", 256, 1
+DropItem "Nemesis Plasmatic Cannon", 256, 1
+DropItem "Nemesis Sawed-Off Shotgun", 256, 1
+DropItem "Nemesis Assault Shotgun", 256, 1
+DropItem "Tech Vulcan", 256, 1
+DropItem "Flak Cannon", 256, 1 //Hellsmith only
+DropItem "Legendary Behemoth Cannon", 256, 1
+DropItem "EnragedLegendaryPowerShard", 256, 1
+DropItem "LegendaryPowerShard", 256, 1
+DropItem "LegendaryPowerSphere", 256, 1
+DropItem "LegAmmoSphere", 256, 1
+DropItem "LegDemonRune", 256, 1
+DropItem "OccultSpellbook", 256, 1
+DropItem "LegTimeFreezeSphere", 256, 1
+DropItem "TrueLegendaryBFGUpgrade" 256, 1 //This one is
+DropItem "ExplosiveRailgun", 256, 1
+DropItem "AntimatterRepeater", 256, 1
+DropItem "TechRipper", 256, 1
+DropItem "Beacon", 256, 1
+DropItem "AmmoSphere", 256, 1
+DropItem "CFMegaMap", 256, 1
+DropItem "ArmorSphere", 256, 1
+DropItem "SuperArmorSphere", 256, 1
+DropItem "NemesisArmorSphere", 256, 1
+DropItem "LightNemesisArmor", 256, 1
+DropItem "PowerStimpack", 256, 1
+DropItem "FearOrb", 256, 1 //CHANGED
+DropItem "PhaseSphere", 256, 1
+DropItem "ShadowSlaveOrb", 256, 1
+DropItem "AbyssalSlaveOrb", 256, 1
+DropItem "LegendaryInvulnerabilitySphere", 256, 1
+DropItem "LegendaryInvisibilitySphere", 256, 1
+DropItem "ElusiveSphere", 256, 1
+DropItem "RingOfRegeneration", 256, 1
+DropItem "PartialKakuhou", 256, 1
+DropItem "NemesisSphere", 256, 1
+DropItem "NemesisArmor", 256, 1
+DropItem "NemesisUltraSphere", 256, 1
+DropItem "TrueLegendarySphere", 256, 1
+DropItem "TrueLegendaryArmor", 256, 1
+DropItem "TrueLegAmmoSphere", 256, 1
+DropItem "TrueLegTimeFreezeSphere" 256 1
+DropItem "SkullOfPower", 256, 1
+DropItem "DemonicChalice", 256, 1
+//DropItem "ExplosiveDTechUpgrade", 256, 1
+DropItem "DemonTechSentryBox", 256, 1
+DropItem "PhaseDemonTechSentryBox", 256, 1
+DropItem "ExplosiveDemonTechSentryBox", 256, 1
+DropItem "SuperChargedDemonTechSentryBox", 256, 1
+DropItem "BfgUpgrade", 256, 1
+DropItem "NemesisPowerShard", 256, 1
+DropItem "NemesisPowerSphere", 256, 1
+DropItem "VengefulNemesisArmor", 256, 1
+DropItem "NemesisSphere", 256, 1
+DropItem "WingsOfAscension", 256, 1
+DropItem "MarineDispensersBeacon", 256, 1 //BLOOD
+DropItem "MarineMedicBeacon", 256, 1 //BLOOD
+DropItem "MarineDBFGBeacon", 256, 1 //BLOOD
+DropItem "Stingray", 256, 1
+DropItem "BLG", 256, 1
+DropItem "Legendary C4", 256, 1
+DropItem "HellStormLauncher", 256, 1
+DropItem "EnragedLegendaryCoachgun", 256, 1
+DropItem "Tech Blaster", 256, 1
+DropItem "BFG3500", 256, 1
+DropItem "D-BFG", 256, 1
+DropItem "CannongunSphere", 256, 2
+DropItem "Chainsaw ", 256, 3 //Unlucky Prize
+DropItem "Combat Shotgun", 256, 3
+DropItem "Assault Shotgun", 256, 3
+DropItem "Double Barrel Shotgun", 256, 3
+DropItem "Quad Barrel Shotgun", 256, 3
+DropItem "Plasma Shotgun", 256, 3
+DropItem "Assault Rifle", 256, 3
+DropItem "MP-40", 256, 3
+DropItem "Minigun ", 256, 3
+DropItem "Rocket Launcher", 256, 3
+DropItem "Grenade Launcher", 256, 3
+DropItem "Plasma Rifle", 256, 3
+}
+
+ACTOR DeathPrise : RifleGrenade
+{
+FastSpeed 0
+Damage 20
+-THRUSPECIES
+DamageType "Shuffle"
+}
+
+
+actor LegShuffleSpawner : RandomSpawner
+{
++DROPPED
+DropItem "LegendarySphere", 256, 1
+DropItem "LegendarySalvationSphere", 256, 1
+DropItem "EnragedLegendarySphere", 256, 1
+DropItem "LegendaryUltraSphere", 256, 1
+DropItem "TrueLegendaryUltraSphere", 256, 1
+DropItem "TrueLegendarySphere", 256, 1
+DropItem "TrueLegendaryArmor", 256, 1
+DropItem "TrueLegAmmoSphere", 256, 1
+DropItem "TrueLegTimeFreezeSphere" 256 1
+DropItem "UnbelieveabilitySphere", 256, 1
+DropItem "UnstabilitySphere", 256, 1
+DropItem "LegendaryArmor", 256, 1
+DropItem "EnragedLegendaryArmor", 256, 1
+DropItem "LegendaryRandomSphere", 256, 1
+DropItem "LegendaryRune", 256, 1
+DropItem "VitalityRune", 256, 1
+DropItem "AgilityRune", 256, 1
+DropItem "Legendary Assault Shotgun", 256, 2
+DropItem "LegendarySaber", 256, 1
+DropItem "Legendary Light Machine Gun", 256, 2
+DropItem "LegendaryCoachgun", 256, 2
+DropItem "Legendary Plasmatic Cannon", 256, 2
+DropItem "Legendary Plasmatic Rifle", 256, 2
+DropItem "Legendary BFG 10K", 256, 1
+DropItem "Legendary BFG", 256, 1
+DropItem "Legendary Behemoth Cannon", 256, 1
+DropItem "LegendaryInvulnerabilitySphere", 256 1
+DropItem "SkullOfPower", 256, 1
+DropItem "DemonicChalice", 256, 1
+DropItem "SuperArmorSphere", 256, 1
+DropItem "LegendaryPowerShard", 256, 1
+DropItem "LegendaryPowerSphere", 256, 1
+DropItem "LegAmmoSphere", 256, 1
+DropItem "LegDemonRune", 256, 1
+DropItem "LegTimeFreezeSphere", 256, 1
+DropItem "TrueLegendaryBFGUpgrade" 256, 1
+DropItem "CFMegaMap", 256, 1
+DropItem "PowerStimpack", 256, 1
+DropItem "LegendaryInvisibilitySphere", 256, 1
+DropItem "Legendary C4", 256, 1
+DropItem "Legendary Railgun", 256, 1
+DropItem "Legendary Revolver", 256, 1
+DropItem "LegChainsawUpgrade", 256, 1
+}
+
+
+actor ELegShuffleSpawner : RandomSpawner
+{
++DROPPED
+DropItem "EnragedLegendarySphere", 256, 1
+DropItem "EnragedLegendaryUltraSphere", 256, 1
+DropItem "DoomSphereDust", 256, 2
+DropItem "UnbelieveabilitySphere", 256, 1
+DropItem "UnstabilitySphere", 256, 1
+DropItem "LegendaryInvulnerabilitySphere", 256, 1
+DropItem "EnragedLegendaryArmor", 256, 1
+DropItem "SuperArmorSphere", 256, 1
+DropItem "LegendaryRandomSphere", 256, 2
+DropItem "LegendaryRune", 256, 2
+DropItem "AgilityRune", 256, 2
+DropItem "VitalityRune", 256, 2
+DropItem "EnragedLegendaryASG", 256, 2
+DropItem "Enraged Legendary Light Machine Gun", 256, 2
+DropItem "Enraged Legendary Plasmatic Rifle", 256, 2
+DropItem "EnragedLegendaryPlasmaticCannon", 256, 2
+DropItem "EnragedLegendaryCoachgun", 256, 2
+DropItem "LegendarySalvationSphere", 256, 2
+DropItem "SalvationSphere", 256, 3
+DropItem "Legendary BFG", 256, 1
+DropItem "LightNemesisArmor", 256, 1
+DropItem "LegendaryInvisibilitySphere", 256, 1
+DropItem "RingOfRegeneration", 256, 1
+DropItem "EnragedLegendaryPowerShard", 256, 1
+}
+
+actor TLegShuffleSpawner : RandomSpawner
+{
++DROPPED
+DropItem "TrueLegendaryUltraSphere", 256, 1
+DropItem "TrueLegendarySphere", 256, 2
+DropItem "TrueLegendaryArmor", 256, 2
+DropItem "TrueLegAmmoSphere", 256, 2
+DropItem "TrueLegTimeFreezeSphere", 256, 2
+DropItem "LegendaryInvulnerabilitySphere", 256, 1
+DropItem "DoomSlayerPower", 256, 1
+DropItem "ClusterfuckSlayerPower", 256, 1
+DropItem "HackroidRifle", 256, 2
+DropItem "HackroidASG", 256, 2
+DropItem "Legendary BFG", 256, 2
+DropItem "TrueLegendaryBFGUpgrade" 256, 1
+DropItem "TrueLegendaryRune", 256, 2
+DropItem "SubliminationSword", 256, 1
+DropItem "Nemesis BFG", 256, 1
+DropItem "Nemesis", 256, 1
+}
+
+actor NemesisShuffleSpawner : RandomSpawner
+{
++DROPPED
+DropItem "TerminatorItem", 256, 1
+DropItem "TrueLegendaryRune", 256, 1
+DropItem "NemesisSphere", 256, 1
+DropItem "NemesisArmor", 256, 1
+DropItem "NemesisUltraSphere", 256, 1
+DropItem "NemesisPowerShard", 256, 1
+DropItem "NemesisPowerSphere", 256, 1
+DropItem "WingsOfAscension", 256, 1
+DropItem "VengefulNemesisArmor", 256, 1
+DropItem "NemesisSphere", 256, 1
+DropItem "Nemesis", 256, 1
+DropItem "NemesisOmegaSphere", 256, 1
+DropItem "Improved Minigun", 256, 1
+DropItem "Nemesis BFG", 256, 1
+DropItem "DoomSlayerPower", 256, 1
+DropItem "BlackHole Generator", 256, 1
+DropItem "Vilestaff", 256, 1
+DropItem "SubliminationSword", 256, 1
+DropItem "HackroidRifle", 256, 1
+DropItem "HackroidASG", 256, 1
+DropItem "Nemesis Rifle", 256, 2
+DropItem "Nemesis Plasmatic Cannon", 256, 2
+DropItem "Nemesis Sawed-Off Shotgun", 256, 2
+DropItem "Nemesis Assault Shotgun", 256, 2
+}
+
+actor WShuffleSpawner : RandomSpawner
+{
++DROPPED
+DropItem "Legendary Railgun", 256, 1
+DropItem "Legendary Revolver", 256, 1
+DropItem "Nailgun", 256, 1
+DropItem "FreezerBFG", 256, 1
+DropItem "LegChainsawUpgrade", 256, 1
+DropItem "Demon Tech Ballista", 256, 1
+DropItem "BFG15KGiver", 256, 1
+DropItem "M79 Gas Grenade Launcher", 256, 1
+DropItem "FlameSword", 256, 1
+DropItem "Explosive Shotgun", 256, 1
+//DropItem "HeavyChaingun", 256, 1
+DropItem "Legendary Assault Shotgun", 256, 1
+DropItem "EnragedLegendaryASG", 256, 1
+DropItem "ExplosiveSSG", 256, 1
+DropItem "Hexa-Shotgun", 256, 1
+DropItem "Demon Tech Shotgun", 256, 1
+DropItem "LegendaryCoachgun", 256, 1
+DropItem "Explosive Minigun", 256, 1
+DropItem "ExplosiveRifle", 256, 1
+DropItem "Legendary Light Machine Gun", 256, 1
+DropItem "Enraged Legendary Light Machine Gun", 256, 1
+DropItem "Improved Minigun", 256, 1
+DropItem "BehemothCannon", 256, 1
+DropItem "BarbatosCannon", 256, 1
+DropItem "HomingRocketLauncher", 256, 1
+DropItem "ProxLauncher", 256, 1
+DropItem "RuffianCannon", 256, 1
+DropItem "RapidRocketlauncher", 256, 1
+DropItem "HellStormBFG", 256, 1
+DropItem "Legendary Plasmatic Cannon", 256, 1
+DropItem "EnragedLegendaryPlasmaticCannon", 256, 1
+DropItem "EFG9000", 256, 1
+DropItem "ExplosiveRailgun", 256, 1
+DropItem "Legendary Behemoth Cannon", 256, 1
+DropItem "Freezer Rifle", 256, 1
+DropItem "Demon Tech Rifle", 256, 1
+DropItem "LegendarySaber", 256, 1
+DropItem "Railgun ", 256, 1
+DropItem "HellStaff", 256, 1
+DropItem "PlasmaRepeater", 256, 1
+DropItem "Welder", 256, 1
+DropItem "Demon Tech Railgun", 256, 1
+DropItem "Legendary Plasmatic Rifle", 256, 1
+DropItem "Enraged Legendary Plasmatic Rifle", 256, 1
+DropItem "Nemesis Rifle", 256, 1
+DropItem "Nemesis Plasmatic Cannon", 256, 1
+DropItem "Nemesis Sawed-Off Shotgun", 256, 1
+DropItem "Nemesis Assault Shotgun", 256, 1
+DropItem "BFG9500", 256, 1
+DropItem "BFG10K ", 256, 1
+DropItem "Demon Tech BFG10K", 256, 1
+DropItem "Demon Tech Devastator", 256, 1
+DropItem "CommanderDevastator", 256, 1
+DropItem "BFG2704", 256, 1
+DropItem "Legendary BFG 10K", 256, 1
+DropItem "Legendary BFG", 256, 1
+DropItem "PyroCannon", 256, 1
+DropItem "BlackHole Generator", 256, 1
+DropItem "Vilestaff", 256, 1
+DropItem "HackroidRifle", 256, 1
+DropItem "HackroidASG", 256, 1
+DropItem "Legendary Behemoth Cannon", 256, 1
+DropItem "FantasyStaff", 256, 1
+DropItem "OccultSpellbook", 256, 1
+DropItem "AntimatterRepeater", 256, 1
+DropItem "TechRipper", 256, 1
+DropItem "D-BFG", 256, 1
+DropItem "Tech Vulcan", 256, 1
+DropItem "Stingray", 256, 1
+DropItem "BLG", 256, 1
+DropItem "Legendary C4", 256, 1
+DropItem "HellStormLauncher", 256, 1
+DropItem "EnragedLegendaryCoachgun", 256, 1
+DropItem "Flak Cannon", 256, 1
+DropItem "Tech Blaster", 256, 1
+DropItem "BFG3500", 256, 1
+DropItem "CannongunSphere", 256, 2
+DropItem "Chainsaw ", 256, 2 //Unlucky Prize
+DropItem "Combat Shotgun", 256, 3
+DropItem "Assault Shotgun", 256, 3
+DropItem "Double Barrel Shotgun", 256, 3
+DropItem "Quad Barrel Shotgun", 256, 3
+DropItem "Plasma Shotgun", 256, 3
+DropItem "Assault Rifle", 256, 3
+DropItem "MP-40", 256, 3
+DropItem "Minigun ", 256, 3
+DropItem "Rocket Launcher", 256, 3
+DropItem "Grenade Launcher", 256, 3
+DropItem "Plasma Rifle", 256, 3 //
+}
+
+actor IShuffleSpawner : RandomSpawner
+{
++DROPPED
+DropItem "EnragedLegendaryPowerShard", 256, 1
+DropItem "LegendaryPowerShard", 256, 1
+DropItem "LegendaryPowerSphere", 256, 1
+DropItem "LegAmmoSphere", 256, 1
+DropItem "LegDemonRune", 256, 1
+DropItem "LegTimeFreezeSphere", 256, 1
+DropItem "SalvationSphere", 256, 1
+DropItem "LegendarySalvationSphere", 256, 1
+DropItem "LegendaryInvulnerabilitySphere", 256, 1
+DropItem "PhaseArmor", 256, 1
+DropItem "CrystalArmor", 256, 1
+DropItem "LegendaryArmor", 256, 1
+DropItem "HellfireArmor", 256, 1
+DropItem "EnragedLegendaryArmor", 256, 1
+DropItem "LegendaryRune", 256, 1
+DropItem "VitalityRune", 256, 1
+DropItem "AgilityRune", 256, 1
+DropItem "Beacon", 256, 1
+DropItem "AmmoSphere", 256, 1
+DropItem "HellfireArmor", 256, 1
+DropItem "CFMegaMap", 256, 1
+DropItem "ArmorSphere", 256, 1
+DropItem "SuperArmorSphere", 256, 1
+DropItem "NemesisArmorSphere", 256, 1
+DropItem "LightNemesisArmor", 256, 1
+DropItem "PowerStimpack", 256, 1
+DropItem "FearOrb", 256, 1
+DropItem "PhaseSphere", 256, 1
+DropItem "ShadowSlaveOrb", 256, 1
+DropItem "AbyssalSlaveOrb", 256, 1
+DropItem "AbyssalSlaveOrb", 256, 1
+DropItem "PartialKakuhou", 256, 1
+DropItem "LegendaryInvisibilitySphere", 256, 1
+DropItem "ElusiveSphere", 256, 1
+DropItem "RingOfRegeneration", 256, 1
+DropItem "LegendaryRandomSphere", 256, 1
+DropItem "NemesisSphere", 256, 1
+DropItem "NemesisArmor", 256, 1
+DropItem "SkullOfPower", 256, 1
+DropItem "DemonicChalice", 256, 1
+//DropItem "ExplosiveDTechUpgrade", 256, 1
+DropItem "DemonTechSentryBox", 256, 1
+DropItem "PhaseDemonTechSentryBox", 256, 1
+DropItem "ExplosiveDemonTechSentryBox", 256, 1
+DropItem "SuperChargedDemonTechSentryBox", 256, 1
+DropItem "WingsOfAscension", 256, 1
+DropItem "NemesisPowerShard", 256, 1
+DropItem "NemesisPowerSphere", 256, 1
+DropItem "VengefulNemesisArmor", 256, 1
+DropItem "NemesisSphere", 256, 1
+DropItem "MarineDispensersBeacon", 256, 1 //BLOOD
+DropItem "MarineMedicBeacon", 256, 1 //BLOOD
+DropItem "MarineDBFGBeacon", 256, 1 //BLOOD
+}
+
+//Fake barrels
+Actor RandomLegDrops : RandomSpawner
+{
++DROPPED
+DropItem "LegendarySphere", 256, 40
+DropItem "LegendaryArmor", 256, 40
+DropItem "LegendaryShuffleSphere", 256, 30
+DropItem "LegendaryRune", 256, 20
+DropItem "RandomLegDropsMKII", 256, 20
+DropItem "LegendaryUltrasphere", 256, 20
+DropItem "LegTimeFreezeSphere", 256, 25
+DropItem "LegAmmoSphere", 256, 25
+}
+
+Actor RandomLegDropsMKII : RandomSpawner
+{
++DROPPED
+DropItem "LegDemonRune", 256, 10
+DropItem "TrueLegendaryUltraSphere", 256, 10
+DropItem "TrueLegendarySphere", 256, 20
+DropItem "TrueLegendaryArmor", 256, 20
+DropItem "TrueLegAmmoSphere", 256, 20
+}
+
+Actor RandomLegAmmos : RandomSpawner
+{
++DROPPED
+DropItem "LDemonAmmo", 256, 10
+DropItem "LegendaryShell" 256, 10
+DropItem "LegendaryLMGBulletMag" 256, 10
+DropItem "DCell" 256, 5
+}
+
+Actor RandomLegBoxes : RandomSpawner
+{
++DROPPED
+DropItem "LDemonAmmoBox", 256, 10
+DropItem "LegendaryShellBox" 256, 10
+DropItem "LegendaryBulletBox" 256, 10
+DropItem "DCellPack" 256, 5
+}
+
+Actor RandomELegDrops : RandomSpawner
+{
++DROPPED
+DropItem "EnragedLegendarySphere", 256, 40
+DropItem "EnragedLegendaryArmor", 256, 40
+DropItem "EnragedLegendaryShuffleSphere", 256, 30
+DropItem "LegendaryRune", 256, 20
+DropItem "RandomLegDropsMKII", 256, 25
+DropItem "EnragedLegendaryUltrasphere", 256, 15
+DropItem "EnragedLegendaryPowerShard", 256, 25
+DropItem "LegAmmoSphere", 256, 25
+}
+
+Actor RandomELegAmmos : RandomSpawner
+{
++DROPPED
+DropItem "ILDemonAmmo", 256, 10
+DropItem "EnragedLegendaryShell" 256, 10
+DropItem "ELegendaryLMGBulletMag" 256, 10
+DropItem "DCell" 256, 6
+}
+
+Actor RandomELegBoxes : RandomSpawner
+{
++DROPPED
+DropItem "ILDemonAmmoBox", 256, 10
+DropItem "EnragedLegendaryShellBox" 256, 10
+DropItem "ELegendaryBulletBox" 256, 10
+DropItem "DCellPack" 256, 6
+}
+
+//Crates
+Actor WeaponCrateGot : RandomSpawner
+{
++DROPPED
+DropItem "Legendary Railgun", 256, 1
+DropItem "Legendary Revolver", 256, 1
+DropItem "Nailgun", 256, 1
+DropItem "FreezerBFG", 256, 1
+DropItem "LegChainsawUpgrade", 256, 1
+DropItem "Demon Tech Ballista", 256, 1
+DropItem "BFG15KGiver", 256, 1
+DropItem "M79 Gas Grenade Launcher", 256, 1
+DropItem "FlameSword", 256, 1
+DropItem "Explosive Shotgun", 256, 1
+//DropItem "HeavyChaingun", 256, 1
+DropItem "Legendary Assault Shotgun", 256, 1
+DropItem "EnragedLegendaryASG", 256, 1
+DropItem "ExplosiveSSG", 256, 1
+DropItem "Hexa-Shotgun", 256, 1
+DropItem "Demon Tech Shotgun", 256, 1
+DropItem "LegendaryCoachgun", 256, 1
+DropItem "Explosive Minigun", 256, 1
+DropItem "ExplosiveRifle", 256, 1
+DropItem "Legendary Light Machine Gun", 256, 1
+DropItem "Enraged Legendary Light Machine Gun", 256, 1
+DropItem "Improved Minigun", 256, 1
+DropItem "BehemothCannon", 256, 1
+DropItem "BarbatosCannon", 256, 1
+DropItem "HomingRocketLauncher", 256, 1
+DropItem "ProxLauncher", 256, 1
+DropItem "RuffianCannon", 256, 1
+DropItem "RapidRocketlauncher", 256, 1
+DropItem "Legendary Plasmatic Cannon", 256, 1
+DropItem "EnragedLegendaryPlasmaticCannon", 256, 1
+DropItem "EFG9000", 256, 1
+DropItem "ExplosiveRailgun", 256, 1
+DropItem "Legendary Behemoth Cannon", 256, 1
+DropItem "Freezer Rifle", 256, 1
+DropItem "Demon Tech Rifle", 256, 1
+DropItem "Railgun ", 256, 1
+DropItem "HellStaff", 256, 1
+DropItem "PlasmaRepeater", 256, 1
+DropItem "Welder", 256, 1
+DropItem "Demon Tech Railgun", 256, 1
+DropItem "Legendary Plasmatic Rifle", 256, 1
+DropItem "Enraged Legendary Plasmatic Rifle", 256, 1
+DropItem "Nemesis Rifle", 256, 1
+DropItem "Nemesis Plasmatic Cannon", 256, 1
+DropItem "Nemesis Sawed-Off Shotgun", 256, 1
+DropItem "Nemesis Assault Shotgun", 256, 1
+DropItem "BFG9500", 256, 1
+DropItem "BFG10K ", 256, 1
+DropItem "Demon Tech BFG10K", 256, 1
+DropItem "Demon Tech Devastator", 256, 1
+DropItem "CommanderDevastator", 256, 1
+DropItem "BFG2704", 256, 1
+DropItem "Legendary BFG 10K", 256, 1
+DropItem "Legendary Behemoth Cannon", 256, 1
+DropItem "LegendarySaber", 256, 1
+DropItem "FantasyStaff", 256, 1
+DropItem "OccultSpellbook", 256, 1
+DropItem "Tech Vulcan", 256, 1
+DropItem "ExplosiveSSG", 256, 1
+DropItem "HellStormBFG", 256, 1
+DropItem "Legendary C4", 256, 1
+DropItem "HellStormLauncher", 256, 1
+DropItem "EnragedLegendaryCoachgun", 256, 1
+DropItem "Tech Blaster", 256, 1
+DropItem "BFG3500", 256, 1
+DropItem "D-BFG", 256, 1
+DropItem "Chainsaw ", 256, 2 //Unlucky Prize
+DropItem "Combat Shotgun", 256, 3
+DropItem "Assault Shotgun", 256, 3
+DropItem "Double Barrel Shotgun", 256, 3
+DropItem "Quad Barrel Shotgun", 256, 3
+DropItem "Assault Rifle", 256, 3
+DropItem "MP-40", 256, 3
+DropItem "Minigun ", 256, 3
+DropItem "Rocket Launcher", 256, 3
+DropItem "Plasma Shotgun", 256, 3
+DropItem "Grenade Launcher", 256, 3
+DropItem "Plasma Rifle", 256, 3 //
+}
+
+Actor HealthCrateGot : RandomSpawner
+{
++DROPPED
+DropItem "LifeSphere", 256, 1
+DropItem "SalvationSphere", 256, 1
+DropItem "BerserkSphere", 256, 1
+DropItem "LegendarySphere", 256, 1
+DropItem "LegendarySalvationSphere", 256, 1
+DropItem "EnragedLegendarySphere", 256, 1
+DropItem "UltraSphere", 256, 1
+DropItem "LegendaryUltraSphere", 256, 1
+DropItem "HellFireUltraSphere", 256, 1
+DropItem "DoomSphereDust", 256, 1
+DropItem "PhaseArmor", 256, 1
+DropItem "CrystalArmor", 256, 1
+DropItem "LegendaryArmor", 256, 1
+DropItem "HellfireArmor", 256, 1
+DropItem "EnragedLegendaryArmor", 256, 1
+DropItem "VengefulNemesisArmor", 256, 1
+DropItem "NemesisSphere", 256, 1
+}
+
+Actor UtilyCrateGot : RandomSpawner
+{
++DROPPED
+DropItem "EnragedLegendaryPowerShard", 256, 1
+DropItem "LegendaryPowerShard", 256, 1
+DropItem "LegendaryPowerSphere", 256, 1
+DropItem "LegAmmoSphere", 256, 1
+DropItem "LegDemonRune", 256, 1
+DropItem "LegTimeFreezeSphere", 256, 1
+DropItem "SalvationSphere", 256, 1
+DropItem "PhaseArmor", 256, 1
+DropItem "CrystalArmor", 256, 1
+DropItem "LegendaryArmor", 256, 1
+DropItem "EnragedLegendaryArmor", 256, 1
+DropItem "LegendaryRune", 256, 1
+DropItem "Beacon", 256, 1
+DropItem "AmmoSphere", 256, 1
+DropItem "LightNemesisArmor", 256, 1
+DropItem "PowerStimpack", 256, 1
+DropItem "FearOrb", 256, 1
+DropItem "PhaseSphere", 256, 1
+DropItem "ShadowSlaveOrb", 256, 1
+DropItem "AbyssalSlaveOrb", 256, 1
+DropItem "AbyssalSlaveOrb", 256, 1
+DropItem "PartialKakuhou", 256, 1
+DropItem "ElusiveSphere", 256, 1
+DropItem "RingOfRegenerationHalf", 256, 1 //RingOfRegeneration
+DropItem "LegendaryRandomSphere", 256, 1
+DropItem "VengefulNemesisArmor", 256, 1
+DropItem "NemesisSphere", 256, 1
+DropItem "NemesisSphere", 256, 1
+DropItem "NemesisArmor", 256, 1
+DropItem "SkullOfPower", 256, 1
+DropItem "DemonicChalice", 256, 1
+//DropItem "ExplosiveDTechUpgrade", 256, 1
+DropItem "DemonTechSentryBox", 256, 1
+DropItem "PhaseDemonTechSentryBox", 256, 1
+DropItem "ExplosiveDemonTechSentryBox", 256, 1
+DropItem "SuperChargedDemonTechSentryBox", 256, 1
+DropItem "WingsOfAscension", 256, 1
+DropItem "MarineDispensersBeacon", 256, 1 //BLOOD
+DropItem "MarineMedicBeacon", 256, 1 //BLOOD
+DropItem "MarineDBFGBeacon", 256, 1 //BLOOD
+}
+
+//Chests
+Actor ChestAmmo : RandomSpawner
+{
++DROPPED
+DropItem "BulletMag", 256 ,15
+DropItem "NewShell", 256 ,15
+DropItem "Missile", 256 ,15
+DropItem "NewCell", 256 ,15
+DropItem "DemonAmmo", 256 ,13
+DropItem "Gas", 256 ,13
+DropItem "CFMana", 256 ,13
+DropItem "LDemonAmmo", 256 ,12
+DropItem "LegendaryShell", 256 ,12
+DropItem "LegendaryLMGBulletMag", 256 ,12
+DropItem "ILDemonAmmo", 256 ,11
+DropItem "EnragedLegendaryShell", 256 ,11
+DropItem "ELegendaryLMGBulletMag", 256 ,11
+DropItem "DCell", 256 ,10
+DropItem "NLDemonAmmo", 256 ,10
+DropItem "NemesisShell", 256 ,10
+DropItem "HCKAmmo", 256 ,10
+DropItem "HCKShell", 256 ,10
+DropItem "HandGrenadeAmmo", 256 ,14
+DropItem "MineAmmo", 256 ,14
+}
+
+Actor ChestBox : RandomSpawner
+{
++DROPPED
+DropItem "ClipBox", 256 ,15
+DropItem "NewShellBox", 256 ,15
+DropItem "MissileBox", 256 ,15
+DropItem "NewCellPack", 256 ,15
+DropItem "DemonAmmoBox", 256 ,13
+DropItem "BigGas", 256 ,13
+DropItem "BigCFMana", 256 ,13
+DropItem "LDemonAmmoBox", 256 ,12
+DropItem "LegendaryShellBox", 256 ,12
+DropItem "LegendaryBulletBox", 256 ,12
+DropItem "ILDemonAmmoBox", 256 ,11
+DropItem "EnragedLegendaryShellBox", 256 ,11
+DropItem "ELegendaryBulletBox", 256 ,11
+DropItem "DCellPack", 256 ,10
+DropItem "NLDemonAmmoBox", 256 ,10
+DropItem "NemesisShellBox", 256 ,10
+DropItem "HCKAmmoBox", 256 ,10
+DropItem "HCKShellBox", 256 ,10
+}
+
+Actor ChestWeapon : RandomSpawner
+{
++DROPPED
+DropItem "Legendary Railgun", 256, 1
+DropItem "Legendary Revolver", 256, 1
+DropItem "Nailgun", 256, 1
+DropItem "FreezerBFG", 256, 1
+DropItem "LegChainsawUpgrade", 256, 1
+DropItem "Demon Tech Ballista", 256, 1
+DropItem "BFG15KGiver", 256, 1
+DropItem "M79 Gas Grenade Launcher", 256, 1
+DropItem "FlameSword", 256, 1
+DropItem "Explosive Shotgun", 256, 1
+//DropItem "HeavyChaingun", 256, 1
+DropItem "Legendary Assault Shotgun", 256, 1
+DropItem "EnragedLegendaryASG", 256, 1
+DropItem "ExplosiveSSG", 256, 1
+DropItem "Hexa-Shotgun", 256, 1
+DropItem "Demon Tech Shotgun", 256, 1
+DropItem "LegendaryCoachgun", 256, 1
+DropItem "Explosive Minigun", 256, 1
+DropItem "ExplosiveRifle", 256, 1
+DropItem "Legendary Light Machine Gun", 256, 1
+DropItem "Enraged Legendary Light Machine Gun", 256, 1
+DropItem "Improved Minigun", 256, 1
+DropItem "BehemothCannon", 256, 1
+DropItem "BarbatosCannon", 256, 1
+DropItem "HomingRocketLauncher", 256, 1
+DropItem "ProxLauncher", 256, 1
+DropItem "RuffianCannon", 256, 1
+DropItem "RapidRocketlauncher", 256, 1
+DropItem "Legendary Plasmatic Cannon", 256, 1
+DropItem "EnragedLegendaryPlasmaticCannon", 256, 1
+DropItem "ExplosiveRailgun", 256, 1
+DropItem "Legendary Behemoth Cannon", 256, 1
+DropItem "Freezer Rifle", 256, 1
+DropItem "Demon Tech Rifle", 256, 1
+DropItem "Railgun ", 256, 1
+DropItem "HellStaff", 256, 1
+DropItem "Welder", 256, 1
+DropItem "Demon Tech Railgun", 256, 1
+DropItem "Legendary Plasmatic Rifle", 256, 1
+DropItem "Enraged Legendary Plasmatic Rifle", 256, 1
+DropItem "Nemesis Rifle", 256, 1
+DropItem "Nemesis Plasmatic Cannon", 256, 1
+DropItem "Nemesis Sawed-Off Shotgun", 256, 1
+DropItem "Nemesis Assault Shotgun", 256, 1
+DropItem "Legendary Behemoth Cannon", 256, 1
+DropItem "FantasyStaff", 256, 1
+DropItem "OccultSpellbook", 256, 1
+DropItem "CannongunSphere", 256, 2
+DropItem "Chainsaw ", 256, 1
+DropItem "Combat Shotgun", 256, 1
+DropItem "Assault Shotgun", 256, 1
+DropItem "Double Barrel Shotgun", 256, 1
+DropItem "Quad Barrel Shotgun", 256, 1
+DropItem "Assault Rifle", 256, 1
+DropItem "MP-40", 256, 1
+DropItem "Minigun ", 256, 1
+DropItem "Rocket Launcher", 256, 1
+DropItem "Grenade Launcher", 256, 1
+DropItem "Plasma Rifle", 256, 1
+DropItem "Tech Vulcan", 256, 1
+DropItem "LegendarySaber", 256, 1
+DropItem "Flak Cannon", 256, 1
+DropItem "Legendary C4", 256, 1
+DropItem "HellStormLauncher", 256, 1
+DropItem "EnragedLegendaryCoachgun", 256, 1
+DropItem "Tech Blaster", 256, 1
+}
+
+Actor RareChestWeapon : RandomSpawner
+{
++DROPPED
+DropItem "BFG9500", 256, 3
+DropItem "BFG10K ", 256, 3
+DropItem "Demon Tech BFG10K", 256, 3
+DropItem "Demon Tech Devastator", 256, 3
+DropItem "CommanderDevastator", 256, 3
+DropItem "BFG2704", 256, 2
+DropItem "Legendary BFG 10K", 256, 2
+DropItem "Legendary BFG", 256, 2
+DropItem "PyroCannon", 256, 2
+DropItem "BlackHole Generator", 256, 2
+DropItem "Vilestaff", 256, 2
+DropItem "BFG3500", 256, 2
+DropItem "Nemesis BFG", 256, 1
+DropItem "Stingray", 256, 1
+DropItem "BLG", 256, 1
+DropItem "SubliminationSword", 256, 1
+}
+
+Actor ChestWeaponFromTXS : RandomSpawner
+{
++DROPPED
+DropItem "Plasma Shotgun", 256, 4
+DropItem "Tech Vulcan", 256, 3
+DropItem "DemonTechAxe", 256, 3
+DropItem "TechRipper", 256, 2
+DropItem "AntimatterRepeater", 256, 2
+DropItem "Legendary Behemoth Cannon", 256, 2
+//DropItem "ExplosiveDTechUpgrade", 256, 1
+DropItem "HackroidRifle", 256, 1
+DropItem "HackroidASG", 256, 1
+DropItem "LegendaryQuadShotgun", 256, 1
+}
+
+Actor NemesisAmmoSpawner : RandomSpawner
+{
++DROPPED
+DropItem "NLDemonAmmo", 256 ,20
+DropItem "NemesisShell", 256 ,20
+DropItem "HCKAmmo", 256 ,5
+DropItem "HCKShell", 256 ,5
+}
+
+Actor NemesisBoxSpawner : RandomSpawner
+{
++DROPPED
+DropItem "NLDemonAmmoBox", 256 ,20
+DropItem "NemesisShellBox", 256 ,20
+DropItem "HCKAmmoBox", 256 ,5
+DropItem "HCKShellBox", 256 ,5
+}
+
+ACTOR SuperLuckSpawner : RandomSpawner
+{
++DROPPED
+DropItem "LegendaryInvisibilitySphere", 256, 1
+DropItem "TrueLegendaryUltraSphere", 256, 1
+DropItem "NemesisUltraSphere", 256, 1
+DropItem "NemesisOmegaSphere", 256, 1
+DropItem "LegendarySalvationSphere", 256, 1
+DropItem "RingOfRegeneration", 256, 1
+DropItem "BFGUpgrade", 256, 1
+DropItem "TrueLegendaryBFGUpgrade", 256, 1
+DropItem "WingsOfAscension", 256, 1
+DropItem "MarineDBFGBeacon", 256, 1
+}
+
+ACTOR SuperWeaponLuckSpawner : RandomSpawner
+{
++DROPPED
+DropItem "LegendarySaber", 256, 1
+DropItem "CommanderDevastator", 256, 1
+DropItem "Nemesis BFG", 256, 1
+DropItem "Legendary BFG", 256, 1
+DropItem "Vilestaff", 256, 1
+DropItem "PyroCannon", 256, 1
+DropItem "Stingray", 256, 1
+DropItem "BLG", 256, 1
+DropItem "SubliminationSword", 256, 1
+}
+
+Actor UnmakerSurprise : RandomSpawner
+{
++DROPPED
+DropItem "HackroidArmor", 256 ,10
+DropItem "HackroidSphere", 256 ,10
+DropItem "HackroidHyperSphere", 256 ,7
+DropItem "DoomSlayerPower", 256 ,5
+DropItem "ClusterfuckSlayerPower", 256 ,1
+}

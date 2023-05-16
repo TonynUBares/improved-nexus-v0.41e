@@ -1,0 +1,5 @@
+:NemesisDoor
+	Door 40
+	PlayUntilDone DustDoor/Start
+	StopSound DustDoor/Stop
+End

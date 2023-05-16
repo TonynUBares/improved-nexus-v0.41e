@@ -1,0 +1,333 @@
+Actor EnragedLegendaryLieutenant : EnragedLegendaryAssaultCaptain
+{
+  Health 1350
+  Speed 20
+  PainChance 20
+  +BRIGHT
+  DropItem "LegendaryBossLifeEssence" 256
+  DropItem "LegendaryBossArmorBonusMax" 256
+  DropItem "EnragedLegendaryCoachgun" 202
+  DropItem "EnragedLegendaryShell" 256 4
+  DropItem "EnragedLegendaryShellBox" 130
+  DropItem "EnragedLegendaryPowerShard" 30 1
+  DropItem "EnragedLegendaryArmor" 92 1
+  DropItem "LegAmmoSphere" 95 1
+  DropItem "HandGrenadeAmmo" 237 2
+  DropItem "MineAmmo" 242 2
+  DropItem "Backpack" 202 1
+  DropItem "Armorplate" 212 1
+  DropItem "Portablemedkit" 217 1
+  DropItem "StimKit" 222 3
+  DropItem "HealthFlask" 227 5
+  DropItem "LegendaryRune" 40 1
+  SeeSound "enragedleglie/sight"
+  AttackSound " "
+  PainSound "enragedleglie/pain"
+  DeathSound "enragedleglie/death"
+  Obituary "%o met certain death by the Enraged Legendary Lieutenant."
+  var int user_reload;
+  Tag "$NEEnrLieu"
+  States
+  {
+  Spawn:
+	ESSZ A 0
+	TNT1 A 0 ACS_NamedExecuteAlways("WimpyMode",0,1)
+	TNT1 A 0 ACS_NamedExecuteAlways("ModifyMonster",0,2,2)
+  Spawnloop:
+	ESSZ A 10 A_Look
+	TNT1 A 0 A_SpawnItemEx("EnragedHellionSmokeSpawner")
+	Loop
+  Idle:
+	TNT1 A 0 A_SetShootable
+	TNT1 A 0 A_SetTranslucent(1)
+	TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+	TNT1 A 0 A_SpawnItemEx("EnragedHellionSmokeSpawner")
+	ESSZ AA 3 A_Wander
+	TNT1 A 0 A_Look
+	TNT1 A 0 A_SpawnItemEx("EnragedHellionSmokeSpawner")
+	ESSZ BB 3 A_Wander
+	TNT1 A 0 A_Look
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_SpawnItemEx("EnragedHellionSmokeSpawner")
+	ESSZ CC 3 A_Wander
+	TNT1 A 0 A_Look
+	TNT1 A 0 A_SpawnItemEx("EnragedHellionSmokeSpawner")
+	ESSZ DD 3 A_Wander
+	TNT1 A 0 A_Look
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	Loop
+  Remove:
+	TNT1 A 1
+	TNT1 A 0 A_SpawnItemEx("Shotgunguy",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	TNT1 A 0 A_ChangeFlag("COUNTKILL", FALSE)
+	TNT1 A 0
+	Stop
+  See:
+	TNT1 A 0 A_JumpIf(user_lowlag == 1,"MoreSee")
+	TNT1 A 0 A_JumpIfTargetInLOS("MoreSee",0,0,0,0)
+	ESSZ ABCD 3 A_Chase
+	Loop
+  MoreSee:
+	TNT1 A 0 A_SetUserVar("user_lowlag",1)
+	TNT1 A 0 A_SetShootable
+	TNT1 A 0 A_SetTranslucent(1)
+	TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+    TNT1 A 0 A_JumpIf(user_music == 1,3)
+    TNT1 A 0 ACS_NamedExecuteAlways("CFMusic",0,2007)
+	TNT1 A 0 A_SetUserVar("user_music",1)
+	TNT1 A 0 A_JumpIfTargetInLOS("Strafing")
+	TNT1 A 0 A_SpawnItemEx("EnragedHellionSmokeSpawner")
+	ESSZ AA 3 A_Chase
+	TNT1 A 0 A_SpawnItemEx("EnragedHellionSmokeSpawner")
+	ESSZ BB 3 A_Chase
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_JumpIfTargetInLOS("Strafing")
+	TNT1 A 0 A_SpawnItemEx("EnragedHellionSmokeSpawner")
+	ESSZ CC 3 A_Chase
+	TNT1 A 0 A_SpawnItemEx("EnragedHellionSmokeSpawner")
+	ESSZ DD 3 A_Chase
+	TNT1 A 0 A_Jump(80,"Rush")
+	TNT1 A 0 A_Jump(64,"Dodge")
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	Loop
+  Rush:
+	TNT1 A 0 A_JumpIfTargetInLOS("Strafing")
+	TNT1 A 0 A_SpawnItemEx("EnragedHellionSmokeSpawner")
+	TNT1 A 0 A_SpawnItemEx("ELegLieutenantGhostA",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE)
+	ESSZ A 1 A_Chase
+	TNT1 A 0 A_SpawnItemEx("ELegLieutenantGhostA",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE)
+	ESSZ A 1 A_Chase
+	TNT1 A 0 A_SpawnItemEx("ELegLieutenantGhostB",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE)
+	ESSZ B 1 A_Chase
+	TNT1 A 0 A_SpawnItemEx("ELegLieutenantGhostB",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE)
+	ESSZ B 1 A_Chase
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_SpawnItemEx("EnragedHellionSmokeSpawner")
+	TNT1 A 0 A_SpawnItemEx("ELegLieutenantGhostC",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE)
+	ESSZ C 1 A_Chase
+	TNT1 A 0 A_SpawnItemEx("ELegLieutenantGhostC",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE)
+	ESSZ C 1 A_Chase
+	TNT1 A 0 A_SpawnItemEx("ELegLieutenantGhostD",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE)
+	ESSZ D 1 A_Chase
+	TNT1 A 0 A_SpawnItemEx("ELegLieutenantGhostD",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE)
+	ESSZ D 1 A_Chase
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_Jump(84,"See")
+	TNT1 A 0 A_Jump(64,"Dodge")
+	Loop
+  Strafing:
+	TNT1 A 0
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_Chase("","Missile",CHF_DONTMOVE)
+	TNT1 A 0 A_SpawnItemEx("EnragedHellionSmokeSpawner")
+	ESSZ AA 3 A_GiveInventory("LegZombieStrafingg",1)
+	TNT1 A 0 A_Chase("","Missile",CHF_DONTMOVE)
+	TNT1 A 0 A_SpawnItemEx("EnragedHellionSmokeSpawner")
+	ESSZ BB 3 A_GiveInventory("LegZombieStrafingg",1)
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_Chase("","Missile",CHF_DONTMOVE)
+	TNT1 A 0 A_SpawnItemEx("EnragedHellionSmokeSpawner")
+	ESSZ CC 3 A_GiveInventory("LegZombieStrafingg",1)	
+	TNT1 A 0 A_Chase("","Missile",CHF_DONTMOVE)
+	TNT1 A 0 A_SpawnItemEx("EnragedHellionSmokeSpawner")
+	ESSZ DD 3 A_GiveInventory("LegZombieStrafingg",1)
+	Goto See
+  Dodge:
+	TNT1 A 0 A_SpawnItemEx("EnragedHellionSmokeSpawner")
+	ESSZ A 1 A_FaceTarget
+	TNT1 A 0 A_SpawnItemEx("EnragedHellionSmokeSpawner")
+	ESSZ E 0 ThrustThingZ(0,20,0,0)
+	ESSZ A 0 A_Jump(256,"DodgeRight","DodgeLeft")
+  DodgeLeft:
+	ESSZ E 0 ThrustThing(angle*256/360+192, 15, 0, 0)
+	Goto See
+  DodgeRight:
+	ESSZ E 0 ThrustThing(angle*256/360+64, 15, 0, 0)
+	Goto See
+  Missile:
+	TNT1 A 0 A_SetShootable
+	TNT1 A 0 A_SetTranslucent(1)
+	TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+	TNT1 A 0 A_JumpIf(user_reload == 2,"Reload")
+	TNT1 A 0 A_Jump(40,"Grenade")
+	TNT1 A 0 A_FaceTarget
+	TNT1 A 0 A_JumpIfCloser(300,"Double")
+  Normal:
+	ESSZ EE 4 A_GiveInventory("LegZombieStrafingg",1)
+	TNT1 A 0 A_GiveInventory("LegZombieStrafingg",1)
+	TNT1 A 0 A_PlaySound("Coachgun/Fire2",CHAN_WEAPON)
+	TNT1 AAAA 0 A_CustomMissile("PlayerDragonTracerBad",Random(28,34),0,Random(6,-6),0)
+	TNT1 A 0 A_SetUserVar(user_reload,1)
+	ESSZ F 4 A_CustomBulletAttack(18,10,10,Random(20,28),"EnragedBulletPuff")
+	ESSZ EE 4 A_GiveInventory("LegZombieStrafingg",1)
+	TNT1 A 0 A_GiveInventory("LegZombieStrafingg",1)
+	TNT1 A 0 A_JumpIf(user_reload == 2,"Reload")
+	TNT1 A 0 A_PlaySound("Coachgun/Fire2",CHAN_WEAPON)
+	TNT1 AAAA 0 A_CustomMissile("PlayerDragonTracerBad",Random(28,34),0,Random(6,-6),0)
+	TNT1 A 0 A_SetUserVar(user_reload,2)
+	ESSZ F 4 A_CustomBulletAttack(18,10,10,Random(20,28),"EnragedBulletPuff")
+	ESSZ EE 4 A_GiveInventory("LegZombieStrafingg",1)
+	Goto Reload
+  Double:
+	TNT1 A 0 A_JumpIf(user_reload == 1,"Normal")
+	TNT1 A 0 A_FaceTarget(45)
+	ESSZ E 5 A_GiveInventory("LegZombieStrafingg",1)
+	TNT1 A 0 A_FaceTarget(45)
+	ESSZ E 5 A_GiveInventory("LegZombieStrafingg",1)
+	TNT1 A 0 A_FaceTarget(45)
+	ESSZ E 5 A_GiveInventory("LegZombieStrafingg",1)
+	TNT1 A 0 A_FaceTarget
+	TNT1 A 0 A_GiveInventory("LegZombieStrafingg",1)
+	TNT1 A 0 A_PlaySound("Coachgun/Fire1",CHAN_WEAPON)
+	TNT1 AAAAAAAA 0 A_CustomMissile("PlayerDragonTracerBad",Random(28,34),0,Random(6,-6),0)
+	TNT1 AAAAAAAA 0 A_CustomMissile("LegendaryRedTracer",Random(28,34),0,Random(6,-6),0)
+	TNT1 A 0 A_SetUserVar(user_reload,2)
+	ESSZ F 5 A_CustomBulletAttack(30,20,24,Random(20,28),"EnragedBulletPuff") 
+	ESSZ EEE 5 A_GiveInventory("LegZombieStrafingg",1)
+	TNT1 A 0 A_Jump(64,"Grenade")
+	Goto Reload
+  Grenade:
+	TNT1 A 0 A_PlaySound("weapons/hgrenadepin",0,1.0,0)
+	ESSZ CE 4 Bright A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/hgrenadethrow",0,1.0,0)
+	ESSZ E 1 Bright A_CustomMissile("ELieutenantGrenade",32,0,0,2,4)
+	TNT1 A 0 A_JumpIf(user_reload == 2,"Reload")
+	Goto Dodge
+  Reload:
+	ESSZ E 3 A_GiveInventory("LegZombieStrafingg",1)
+	TNT1 A 0 A_GiveInventory("LegZombieStrafingg",1)
+	ESSZ A 6 A_PlaySound("Coachgun/Open")
+	TNT1 A 0 A_GiveInventory("LegZombieStrafingg",1)
+	TNT1 A 0 A_SpawnItemEx("RedShellCasing",-8,6,36,Random(2,6),0,random(1,3),random(-80,-90),128)
+	ESSZ B 1 A_SpawnItemEx("RedShellCasing",-10,6,36,Random(2,6),0,random(1,3),random(-80,-90),128)
+	ESSZ B 6 A_PlaySound("Coachgun/Load")
+	TNT1 A 0 A_SetUserVar(user_reload,0)
+	TNT1 A 0 A_GiveInventory("LegZombieStrafingg",1)
+	ESSZ C 6 A_PlaySound("Coachgun/Close")
+	TNT1 A 0 A_GiveInventory("LegZombieStrafingg",1)
+	ESSZ D 6
+	Goto See
+  Pain:
+	TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+	TNT1 A 0 A_Jump(10,"Protection")
+	TNT1 A 0 A_Jump(20,"Dodge")
+	ESSZ G 3
+	ESSZ G 3 A_Pain
+	TNT1 A 0 A_Jump(192,"Missile")
+	Goto See
+  Protection:
+	TNT1 A 0 A_JumpIf(user_protection >= 3,"Pain")
+	TNT1 A 0 A_JumpIf(user_protected == 1,"Pain")
+	TNT1 A 0 A_PlaySound("legendary/defense")
+	TNT1 A 0 A_FaceTarget
+	ESSZ E 2 ACS_NamedExecuteAlways("EnragedLegendaryProtection",0,0,0,0)
+	TNT1 A 0 A_SpawnItemEx("EnragedHellionSmokeSpawner")
+	Goto See	
+  Death:
+	TNT1 A 0 A_Jump(36,"LegendarySoul")
+	ESSZ H 6 A_Scream
+	ESSZ I 6 A_ChangeFlag("BRIGHT",0)
+	ESSZ J 6 A_Fall
+	ESSZ K 6 A_SpawnItem("BodyCrash",0,0,0,0)
+	ESSZ L -1
+	Stop
+  LegendarySoul:
+	TNT1 A 0 A_SpawnItem("EnragedHellionSmokeSpawner",0,0,0,0)
+	ESSZ H 6
+	TNT1 A 0 A_SpawnItem("EnragedHellionSmokeSpawner",0,0,0,0)
+	ESSZ I 6 A_Scream
+	TNT1 A 0 A_SpawnItem("EnragedHellionSmokeSpawner",0,0,0,0)
+	TNT1 A 0 A_SpawnItemEx("LegSSGGuyGib",0,0,12,frandom(0.1,1.0),frandom(0.1,1.0),frandom(0.1,1.0),random(0,360),SXF_CLIENTSIDE)
+	ESSZ J 6 A_Fall
+	TNT1 A 0 A_SpawnItem("EnragedHellionSmokeSpawner",0,0,0,0)
+	ESSZ K 6 A_SpawnItem("BodyCrash",0,0,0,0)			
+	TNT1 A 0 A_SpawnItem("EnragedHellionSmokeSpawner",0,0,0,0)
+	ESSZ L 6
+	TNT1 A 0 A_SpawnItem("EnragedHellionSmokeSpawner",0,0,0,0)
+	ESSZ L 140
+	TNT1 A 0 A_PlaySoundEx("brain/spit","Voice",0,2)
+	ESSZ LLLLLLLLLLLLLLLLL 2 Bright A_SpawnItem("ELegSoulEventSmokeSpawner",1)
+	ESSZ LLLLLLLLLLLLLLLLL 2 Bright A_SpawnItem("ELegSoulEventSmokeSpawner",1)
+	ESSZ LLLLLLLLLLLLLLLLL 2 Bright A_SpawnItem("ELegSoulEventSmokeSpawner",1)
+	TNT1 A 0 A_SpawnItemEx("EnragedLegendarySoul",0,0,16,0,0,0,0,32)
+	TNT1 A 0 A_SpawnItemEx("TeleportFog",0,0,16,0,0,0,0,32)
+	ESSZ L -1
+    Stop
+  XDeath:
+	TNT1 A 0 A_ChangeFlag("BRIGHT",0)
+	ESSZ M 5 A_SpawnItemEx("EnragedGibbedGenerator",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+	ESSZ N 5 A_XScream
+	ESSZ O 5 A_Fall
+	ESSZ PQRST 5
+	ESSZ U -1
+	Stop
+	}
+}
+
+ACTOR ELegLieutenantGhostA
+{
+  Alpha 0.7
+  Renderstyle Translucent
+  +NOTIMEFREEZE
+  +NOINTERACTION
+  +CLIENTSIDEONLY
+  States
+  {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 1 Bright
+	Goto Fade
+  Fade:
+	ESSZ A 2 A_FadeOut(0.1,1)
+	Goto Spawn+3
+  Vanilla:
+	TNT1 A 1 Bright
+	Stop
+	}
+}
+
+ACTOR ELegLieutenantGhostB : ELegLieutenantGhostA
+{   
+States
+	{
+	Fade:
+	ESSZ B 2 A_FadeOut(0.1,1)
+	Loop
+    }
+}
+
+ACTOR ELegLieutenantGhostC : ELegLieutenantGhostA
+{   
+States
+	{
+	Fade:
+	ESSZ C 2 A_FadeOut(0.1,1)
+	Loop
+    }
+}
+
+ACTOR ELegLieutenantGhostD : ELegLieutenantGhostA
+{   
+States
+	{
+	Fade:
+	ESSZ D 2 A_FadeOut(0.1,1)
+	Loop
+    }
+}
+
+ACTOR ELegLieutenantGhostE : ELegLieutenantGhostA
+{   
+States
+	{
+	Fade:
+	ESSZ E 2 A_FadeOut(0.1,1)
+	Loop
+	}
+}
+
+Actor ELieutenantGrenade : ELACGrenade
+{
+Obituary "%o was surprised by the grenade of a Enraged Legendary Lieutenant."
+}

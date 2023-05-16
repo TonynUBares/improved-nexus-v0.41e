@@ -1,0 +1,595 @@
+//IceTracerPuff
+flickerlight IceTracerAJ
+{
+	color 0.5 0.9 1.0
+	offset 0 0 0
+	size 7
+	SecondarySize 10
+	chance 0.2
+}
+
+flickerlight IceTracerBI
+{
+	color 0.5 0.9 1.0
+	offset 0 0 0
+	size 13
+	SecondarySize 16
+	chance 0.2
+}
+
+flickerlight IceTracerCH
+{
+	color 0.5 0.9 1.0
+	offset 0 0 0
+	size 16
+	SecondarySize 19
+	chance 0.2
+}
+
+flickerlight IceTracerDG
+{
+	color 0.5 0.9 1.0
+	offset 0 0 0
+	size 20
+	SecondarySize 24
+	chance 0.2
+}
+
+flickerlight IceTracerEF
+{
+	color 0.5 0.9 1.0
+	offset 0 0 0
+	size 24
+	SecondarySize 28
+	chance 0.2
+}
+
+Object IceTracerPuff
+{
+Frame ICYAA { Light IceTracerAJ }
+Frame ICYAB { Light IceTracerBI }
+Frame ICYAC { Light IceTracerCH }
+Frame ICYAD { Light IceTracerDG }
+Frame ICYAE { Light IceTracerEF }
+Frame ICYAF { Light IceTracerEF }
+Frame ICYAG { Light IceTracerDG }
+Frame ICYAH { Light IceTracerCH }
+Frame ICYAI { Light IceTracerBI }
+Frame ICYAJ { Light IceTracerAJ }
+}
+
+//IceShot
+flickerlight IceShotAtoE
+{
+	color 0.2 0.7 1.0
+	offset 0 0 0
+	size 24
+	SecondarySize 28
+	chance 0.2
+}
+
+flickerlight IceShotF
+{
+	color 0.1 0.3 0.8
+	offset 0 0 0
+	size 19
+	SecondarySize 22
+	chance 0.2
+}
+
+flickerlight IceShotG
+{
+	color 0.1 0.3 0.8
+	offset 0 0 0
+	size 25
+	SecondarySize 29
+	chance 0.2
+}
+
+flickerlight IceShotH
+{
+	color 0.05 0.2 0.6
+	offset 0 0 0
+	size 32
+	SecondarySize 36
+	chance 0.2
+}
+
+flickerlight IceShotI
+{
+	color 0.02 0.15 0.4
+	offset 0 0 0
+	size 28
+	SecondarySize 32
+	chance 0.2
+}
+
+Object IceShot
+{
+Frame SBALA { Light IceShotAtoE }
+Frame SBALB { Light IceShotAtoE }
+Frame SBALC { Light IceShotAtoE }
+Frame SBALD { Light IceShotAtoE }
+Frame SBALE { Light IceShotAtoE }
+Frame SBALF { Light IceShotF }
+Frame SBALG { Light IceShotG }
+Frame SBALH { Light IceShotH }
+Frame SBALI { Light IceShotI }
+}
+
+//BigIceSpike
+pointlight IceSpikeBase
+{
+	color 0.1 0.3 1.0
+	offset 0 0 0
+	size 43
+}
+
+pointlight IceSpikeC
+{
+	color 0.1 0.3 1.0
+	offset 0 24 0
+	size 43
+}
+
+pointlight IceSpikeD
+{
+	color 0.1 0.3 1.0
+	offset 0 40 0
+	size 43
+}
+
+pointlight IceSpikeE
+{
+	color 0.1 0.3 1.0
+	offset 0 56 0
+	size 43
+}
+
+pointlight IceSpikeF
+{
+	color 0.1 0.3 1.0
+	offset 0 72 0
+	size 43
+}
+
+pointlight IceSpikeG
+{
+	color 0.1 0.3 1.0
+	offset 0 88 0
+	size 43
+}
+
+pointlight IceSpikeH
+{
+	color 0.1 0.3 1.0
+	offset 0 104 0
+	size 43
+}
+
+pointlight IceSpikeI
+{
+	color 0.1 0.3 1.0
+	offset 0 128 0
+	size 43
+}
+
+Object BigIceSpike
+{
+Frame TCPL { Light IceSpikeBase }
+Frame TCPLC { Light IceSpikeC }
+Frame TCPLD { Light IceSpikeD }
+Frame TCPLE { Light IceSpikeE }
+Frame TCPLF { Light IceSpikeF }
+Frame TCPLG { Light IceSpikeG }
+Frame TCPLH { Light IceSpikeH }
+Frame TCPLI { Light IceSpikeI }
+}
+
+//FreezmoComet
+flickerlight FCometABC
+{
+	color 0.3 0.8 1.0
+	offset 0 0 0
+	size 36
+	SecondarySize 40
+	chance 0.2
+}
+
+flickerlight FCometD
+{
+	color 0.5 0.9 1.0
+	offset 0 0 0
+	size 54
+	SecondarySize 58
+	chance 0.2
+}
+
+flickerlight FCometE
+{
+	color 0.4 0.85 1.0
+	offset 0 0 0
+	size 48
+	SecondarySize 52
+	chance 0.2
+}
+
+flickerlight FCometF
+{
+	color 0.25 0.6 0.8
+	offset 0 0 0
+	size 42
+	SecondarySize 46
+	chance 0.2
+}
+
+flickerlight FCometG
+{
+	color 0.2 0.4 0.6
+	offset 0 0 0
+	size 36
+	SecondarySize 40
+	chance 0.2
+}
+
+flickerlight FCometH
+{
+	color 0.15 0.3 0.4
+	offset 0 0 0
+	size 30
+	SecondarySize 34
+	chance 0.2
+}
+
+flickerlight FCometI
+{
+	color 0.05 0.15 0.2
+	offset 0 0 0
+	size 24
+	SecondarySize 28
+	chance 0.2
+}
+
+Object FreezmoComet
+{
+Frame BCMTA { Light FCometA }
+Frame BCMTB { Light FCometB }
+Frame BCMTC { Light FCometC }
+Frame BCMTD { Light FCometD }
+Frame BCMTE { Light FCometE }
+Frame BCMTF { Light FCometF }
+Frame BCMTG { Light FCometG }
+Frame BCMTH { Light FCometH }
+Frame BCMTI { Light FCometI }
+}
+/*
+//SPCometTail
+flickerlight SPCometTailABC
+{
+	color 0.3 0.8 1.0
+	offset 0 0 0
+	size 28
+	SecondarySize 32
+	chance 0.2
+}
+
+flickerlight SPCometTailD
+{
+	color 0.5 0.9 1.0
+	offset 0 0 0
+	size 41
+	SecondarySize 45
+	chance 0.2
+}
+
+flickerlight SPCometTailE
+{
+	color 0.4 0.85 1.0
+	offset 0 0 0
+	size 37
+	SecondarySize 41
+	chance 0.2
+}
+
+flickerlight SPCometTailF
+{
+	color 0.25 0.6 0.8
+	offset 0 0 0
+	size 32
+	SecondarySize 36
+	chance 0.2
+}
+
+flickerlight SPCometTailG
+{
+	color 0.2 0.4 0.6
+	offset 0 0 0
+	size 28
+	SecondarySize 32
+	chance 0.2
+}
+
+flickerlight SPCometTailH
+{
+	color 0.15 0.3 0.4
+	offset 0 0 0
+	size 23
+	SecondarySize 27
+	chance 0.2
+}
+
+flickerlight SPCometTailI
+{
+	color 0.05 0.15 0.2
+	offset 0 0 0
+	size 18
+	SecondarySize 22
+	chance 0.2
+}
+
+Object SPCometTail
+{
+Frame BCMTA { Light SPCometTailA }
+Frame BCMTB { Light SPCometTailB }
+Frame BCMTC { Light SPCometTailC }
+Frame BCMTD { Light SPCometTailD }
+Frame BCMTE { Light SPCometTailE }
+Frame BCMTF { Light SPCometTailF }
+Frame BCMTG { Light SPCometTailG }
+Frame BCMTH { Light SPCometTailH }
+Frame BCMTI { Light SPCometTailI }
+}
+*/
+//SPCometDeath
+flickerlight SPCometDeathJ
+{
+	color 0.7 0.9 1.0
+	offset 0 0 0
+	size 64
+	SecondarySize 68
+	chance 0.2
+}
+
+flickerlight SPCometDeathK
+{
+	color 0.5 0.8 1.0
+	offset 0 0 0
+	size 60
+	SecondarySize 64
+	chance 0.2
+}
+
+flickerlight SPCometDeathL
+{
+	color 0.4 0.7 1.0
+	offset 0 0 0
+	size 59
+	SecondarySize 63
+	chance 0.2
+}
+
+flickerlight SPCometDeathM
+{
+	color 0.2 0.5 1.0
+	offset 0 0 0
+	size 57
+	SecondarySize 61
+	chance 0.2
+}
+
+flickerlight SPCometDeathN
+{
+	color 0.1 0.25 1.0
+	offset 0 0 0
+	size 48
+	SecondarySize 52
+	chance 0.2
+}
+
+Object SPCometDeath
+{
+Frame BCMTJ { Light SPCometDeathJ }
+Frame BCMTK { Light SPCometDeathK }
+Frame BCMTL { Light SPCometDeathL }
+Frame BCMTM { Light SPCometDeathM }
+Frame BCMTN { Light SPCometDeathN }
+}
+
+//FreezeWalkFire
+flickerlight FWalkFireA
+{
+	color 0.2 0.55 0.6
+	offset 0 0 0
+	size 14
+	SecondarySize 17
+	chance 0.2
+}
+
+flickerlight FWalkFireB
+{
+	color 0.2 0.55 0.6
+	offset 0 0 0
+	size 15
+	SecondarySize 18
+	chance 0.2
+}
+
+flickerlight FWalkFireC
+{
+	color 0.2 0.55 0.6
+	offset 0 0 0
+	size 15
+	SecondarySize 18
+	chance 0.2
+}
+
+flickerlight FWalkFireD
+{
+	color 0.2 0.55 0.6
+	offset 0 0 0
+	size 16
+	SecondarySize 19
+	chance 0.2
+}
+
+flickerlight FWalkFireE
+{
+	color 0.2 0.55 0.6
+	offset 0 0 0
+	size 18
+	SecondarySize 21
+	chance 0.2
+}
+
+flickerlight FWalkFireF
+{
+	color 0.2 0.55 0.6
+	offset 0 0 0
+	size 17
+	SecondarySize 20
+	chance 0.2
+}
+
+flickerlight FWalkFireG
+{
+	color 0.2 0.55 0.6
+	offset 0 0 0
+	size 17
+	SecondarySize 20
+	chance 0.2
+}
+
+flickerlight FWalkFireH
+{
+	color 0.2 0.55 0.6
+	offset 0 0 0
+	size 17
+	SecondarySize 20
+	chance 0.2
+}
+
+flickerlight FWalkFireI
+{
+	color 0.2 0.55 0.6
+	offset 0 0 0
+	size 16
+	SecondarySize 19
+	chance 0.2
+}
+
+flickerlight FWalkFireJ
+{
+	color 0.2 0.55 0.6
+	offset 0 0 0
+	size 15
+	SecondarySize 18
+	chance 0.2
+}
+
+flickerlight FWalkFireK
+{
+	color 0.2 0.55 0.6
+	offset 0 0 0
+	size 14
+	SecondarySize 17
+	chance 0.2
+}
+
+flickerlight FWalkFireL
+{
+	color 0.2 0.55 0.6
+	offset 0 0 0
+	size 12
+	SecondarySize 14
+	chance 0.2
+}
+
+flickerlight FWalkFireM
+{
+	color 0.2 0.55 0.6
+	offset 0 0 0
+	size 8
+	SecondarySize 10
+	chance 0.2
+}
+
+Object FreezeWalkFire
+{
+Frame BRTFA { Light FWalkFireA }
+Frame BRTFB { Light FWalkFireB }
+Frame BRTFC { Light FWalkFireC }
+Frame BRTFD { Light FWalkFireD }
+Frame BRTFE { Light FWalkFireE }
+Frame BRTFF { Light FWalkFireF }
+Frame BRTFG { Light FWalkFireG }
+Frame BRTFH { Light FWalkFireH }
+Frame BRTFI { Light FWalkFireI }
+Frame BRTFJ { Light FWalkFireJ }
+Frame BRTFK { Light FWalkFireK }
+Frame BRTFL { Light FWalkFireL }
+Frame BRTFM { Light FWalkFireM }
+}
+ //MOFComet
+flickerlight MOFCometABC
+{
+	color 0.1 0.5 1.0
+	offset 0 0 0
+	size 36
+	SecondarySize 40
+	chance 0.2
+}
+
+flickerlight MOFCometD
+{
+	color 0.2 0.7 1.0
+	offset 0 0 0
+	size 38
+	SecondarySize 42
+	chance 0.2
+}
+
+flickerlight MOFCometE
+{
+	color 0.4 0.9 1.0
+	offset 0 0 0
+	size 52
+	SecondarySize 56
+	chance 0.2
+}
+
+flickerlight MOFCometF
+{
+	color 0.4 0.9 1.0
+	offset 0 0 0
+	size 64
+	SecondarySize 68
+	chance 0.2
+}
+
+flickerlight MOFCometG
+{
+	color 0.2 0.7 1.0
+	offset 0 0 0
+	size 52
+	SecondarySize 56
+	chance 0.2
+}
+
+flickerlight MOFCometH
+{
+	color 0.1 0.5 1.0
+	offset 0 0 0
+	size 38
+	SecondarySize 42
+	chance 0.2
+}
+
+Object MOFComet
+{
+Frame LNCMABC { Light MOFCometABC }
+Frame LNCMD { Light MOFCometD }
+Frame LNCME { Light MOFCometE }
+Frame LNCMF { Light MOFCometF }
+Frame LNCMG { Light MOFCometG }
+Frame LNCMH { Light MOFCometH }
+}

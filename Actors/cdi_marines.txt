@@ -1,0 +1,2977 @@
+Actor UACBaseMarine
+{
+ Monster
+ Health 350
+ Radius 9
+ Height 56
+ Speed 13
+ PainChance 127
+ MaxDropOffHeight 32
+ MaxStepHeight 32
+ Species "Player"
+ DamageFactor "Player", 0.0
+ DamageFactor "Players", 0.0
+ DamageFactor "PlayerNemesisPlasma", 0.0
+ DamageFactor "PlayerDevTracer", 0.0
+ DamageFactor "PlayerExplosive", 0.0
+ DamageFactor "PlayerDTRG", 0.0
+ DamageFactor "DTRailgun", 0.0
+ DamageFactor "PDTBFGTracer", 0.0
+ DamageFactor "LegendaryPlayer", 0.0
+ DamageFactor "LegendaryGuruPlayer", 0.0
+ DamageFactor "PDTPuff", 0.0
+ DamageFactor "PlayerTear", 0.0
+ DamageFactor "PlayerDBFG2", 0.0
+ DamageFactor "PlayerDBFG10K2", 0.0
+ DamageFactor "PlayerDevBall", 0.0
+ DamageFactor "PlayerDevBall2", 0.0
+ DamageFactor "PDTBFG", 0.0
+ DamageFactor "DiscoBFG", 0.0 
+ SeeSound "marine/see"
+ ActiveSound "marine/active"
+ PainSound "marine/pain"
+ DeathSound "marine/death"
+ Obituary "%o was killed by a friendly marine."
+ MinMissileChance 1
+ DamageFactor 0.55
+ RadiusDamageFactor 0.55
+ +NODROPOFF
+ +FRIENDLY
+ +QUICKTORETALIATE
+ +DONTHARMSPECIES
+ +DONTHARMCLASS
+ +MISSILEMORE
+ +MISSILEEVENMORE
+ +NOBLOCKMONST
+ +FLOORCLIP
+ +NOTIMEFREEZE
+ +THRUSPECIES
+ var int user_minefield;
+ States
+ {
+  Spawn:
+	TNT1 A 1
+	Stop
+  See:
+	TNT1 A 1
+	Stop
+  Idle:
+	TNT1 A 1 
+	Stop
+  Missile:
+	TNT1 A 1
+	Stop
+  Strafing:
+	"####" A 0 A_SpawnItem("FootStep",0,0,0,0)
+	"####" A 0 A_Chase("","Missile",CHF_DONTMOVE)
+	"####" A 3 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_Chase("","Missile",CHF_DONTMOVE)
+	"####" A 3 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_Chase("","Missile",CHF_DONTMOVE)
+	"####" B 3 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_Chase("","Missile",CHF_DONTMOVE)
+	"####" B 3 A_GiveInventory("AIStrafing",1)
+	"####" C 0 A_SpawnItem("FootStep",0,0,0,0)
+	"####" A 0 A_Chase("","Missile",CHF_DONTMOVE)
+	"####" C 3 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_Chase("","Missile",CHF_DONTMOVE)
+	"####" C 3 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_Chase("","Missile",CHF_DONTMOVE)
+	"####" D 3 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_Chase("","Missile",CHF_DONTMOVE)
+	"####" D 3 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_Jump(256,"See")
+  FragGrenade:
+	PLA1 E 1 A_JumpIfCloser(1000,2)
+	TNT1 A 0 A_Jump(256,"Missile")
+	PLA1 E 0 A_JumpIfCloser(280,"LandMine")
+	PLA1 E 6 A_GiveInventory("AIStrafing",1)
+	PLA1 EEE 4 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	PLA1 E 6 A_CustomMissile("MThrownGrenade",32,0,0,2,10)
+	PLA1 E 1
+	TNT1 A 0 A_Jump(256,"See")
+  LandMine:
+	PLA1 E 1 A_JumpIfCloser(500,1)
+	Goto FragGrenade
+	PLA1 E 0 A_Jump(127,"SpringMine")
+	PLA1 E 3 A_GiveInventory("AIStrafing",1)
+	PLA1 EE 4 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	PLA1 E 6 A_CustomMissile("MarineThrownMine",32,0,0,2,10)
+	PLA1 E 1
+	TNT1 A 0 A_Jump(256,"See")
+  SpringMine:
+	PLA1 E 3 A_GiveInventory("AIStrafing",1)
+	PLA1 EE 4 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	PLA1 E 6 A_CustomMissile("MarineSpringMineSet",32,0,0,2,10)
+	PLA1 E 1
+	TNT1 A 0 A_Jump(256,"See")
+  MineField:
+	PLA1 E 1
+	PLA1 E 1 A_SetUserVar("user_minefield",0)
+	PLA1 E 0 A_SetUserVar("user_minefield",user_minefield+1)
+	PLA1 E 0 A_Jump(127,3)
+	PLA1 E 12 A_CustomMissile("MarineThrownMine",32,0,0,2,15)
+	PLA1 E 0 A_Jump(256,2)
+	PLA1 E 12 A_CustomMissile("MarineSpringMineSet",32,0,0,2,22)
+	PLA1 A 12 A_SetAngle(random(0,360))
+	PLA1 A 3 A_JumpIf(user_minefield >= 4,"See")
+	PLA1 A 3 A_Jump(192,"See")
+	Goto MineField+2
+	PLA1 A 1
+	TNT1 A 0 A_Jump(256,"See")
+  Find:
+	TNT1 A 0 ACS_NamedExecuteAlways("Find Master Player",0)
+	TNT1 A 0 A_Jump(256,"Idle")
+  GiveUp:
+	PLA1 A 0 A_SpawnItemEx("TeleportFog",0,0,0,0,0,0,0)
+	PLA1 A 10 A_ClearTarget
+	TNT1 A 0 A_Jump(256,"Idle")
+  Death:
+	PLA1 I 10 A_Scream
+	PLA1 J 10 A_NoBlocking
+	PLA1 KLM 10
+	PLA1 N -1
+	Stop
+  XDeath:
+	PLAY O 5
+	PLAY P 5 A_XScream
+	PLAY Q 0 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
+	PLAY Q 5 A_NoBlocking
+	PLAY RSTUV 5
+	PLAY W -1
+	Stop
+ }
+}
+
+Actor UACHeavyMarine : UACBaseMarine
+{
+  DamageFactor 0.35
+  RadiusDamageFactor 0.35
+  Health 500
+  var int user_protection;
+}
+
+
+Actor AIPatroling : AIStrafing
+{
+ States
+ {
+  Pickup:
+	NULL A 1
+	NULL A 1 NoiseAlert(0,0)
+	NULL A 1 A_JumpIf(velx != 0 || vely != 0,2)
+	NULL A 1 A_Jump(256,2)
+	NULL A 1 A_Jump(235,5)
+	NULL A 1 A_JumpIfInventory("StrafeSens",1,3)
+	NULL A 1 A_GiveInventory("StrafeSens",1)
+	NULL A 1 A_Jump(256,2)
+	NULL A 1 A_TakeInventory("StrafeSens",1)
+	NULL A 1 A_JumpIfInventory("StrafeSens",1,3)
+	NULL A 1 ThrustThing(angle*256/360+38.7,4,0,0)
+	NULL A 1 A_Jump(256,2)
+	NULL A 1 ThrustThing(angle*256/360+38.7,-4,0,0)
+	NULL A 1 A_Jump(200,2)
+	NULL A 1 A_SetAngle(random(0,359))
+	NULL A 1 A_Jump(90,2)
+	NULL A 1 A_Recoil(-1)
+	Stop
+	NULL A 1 A_Recoil(1)
+	Stop
+ }
+}
+
+Actor StrafeSens : Inventory{Inventory.MaxAmount 1}
+
+Actor MarineBulletPuff : ModdedBulletPuff Replaces ModdedBulletPuff {DamageType "Marine" +MTHRUSPECIES}
+Actor MThrownGrenade : ThrownGrenade {Damagetype "Players"}
+
+ACTOR MarineThrownMine
+{
+ Scale 0.85
+ Radius 14
+ Height 10
+ Speed 15
+ Damage 1
+ Mass 0x7FFFFFFF
+ SeeSound "weapons/minebounce"
+ Species "Player"
+ +MISSILE
+ +THRUSPECIES
+ +MTHRUSPECIES
+ +CANBOUNCEWATER
+ +HEXENBOUNCE
+ +NOTELEPORT
+ +BOUNCEONACTORS
+ +DONTHARMSPECIES
+ +DROPOFF
+ BounceCount 3
+ BounceFactor 0.18
+ WallBounceFactor 0.22
+ Damagetype "Players"
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_StopSound
+	Goto Thrown
+  Thrown:
+	LMIN A 30
+	LMIN B 10 Bright
+	Loop
+  Death:
+	LMIN A 1
+	LMIN A 1 A_SpawnItem("MarineLiveMine")
+	Stop
+ }
+}
+
+ACTOR MarineLiveMine
+{
+ Scale 0.85
+ Radius 10
+ Height 8
+ Damage 1
+ Health 1
+ Mass 0x7FFFFFFF
+ Species "Player"
+ Damagetype "Players"
+ +MISSILE
+ +THRUSPECIES
+ +FORCERADIUSDMG
+ +MOVEWITHSECTOR
+ +DONTHARMSPECIES
+ +NOBLOOD
+ +SHOOTABLE
+ var int user_counter;
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIf(user_counter >= 35,"Death")
+	TNT1 A 0 A_SetUserVar("user_counter",user_counter + 1)
+	LMIN A 30 A_ChangeFlag(NOBLOCKMAP,0)
+	LMIN B 10 Bright A_ChangeFlag(NOBLOCKMAP,1)
+	Loop
+  Death:
+	TNT1 A 0 A_Die
+  Explode:
+	LMIN B 15 Bright A_PlaySound("weapons/minebeep")
+	TNT1 A 0 A_AlertMonsters
+	//TNT1 A 0 A_Explode(186,162)
+	TNT1 A 0 A_CustomMissile("MarineLiveMineBomb",0,0,0,CMF_AIMDIRECTION)
+	TNT1 A 0 A_PlaySound("weapons/mineexplode")
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AAAA 0 A_CustomMissile("Kaboom3", 0, 0, random(0,360), 2, random(20,160))
+	TNT1 AAAA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(20,160))
+	TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+	TNT1 A 1 A_SpawnItem("RocketEx")
+	Stop
+ }
+}
+
+Actor MarineLiveMineBomb
+{
+ Projectile
+ Speed 0
+ Damage 0
+ +NOCLIP
+ +FORCERADIUSDMG
+ DamageType "Players"
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_Explode(186,162)
+	Stop
+ }
+}
+
+Actor MarineSpringMineSet
+{
+Radius 12
+Height 9
+Speed 7
++MOVEWITHSECTOR
++MISSILE
++DROPOFF
++NOBLOCKMAP
++NOTELEPORT
++THRUACTORS
++CANBOUNCEWATER
+Damagetype "Players"
+BounceType "Grenade"
+BounceCount 3
+Reactiontime 525
+BounceSound "MINBNC"
+States
+{
+  Spawn:
+	SPMN A 1 Bright A_CountDown
+	Loop
+  Death:
+	TNT1 A 1 A_JumpIf(ACS_NamedExecuteWithResult("InfiniteInventoryCheck") == 2,"Cheater")
+	TNT1 A 1 Bright A_CustomMissile("MarineSpringMineActive",0,0,0,CMF_AIMDIRECTION|CMF_TRACKOWNER)
+	Stop
+  Cheater:
+	TNT1 A 1 Bright A_CustomMissile("CheaterSpringMineActive",0,0,0,CMF_AIMDIRECTION|CMF_TRACKOWNER)
+	Stop
+ }
+}
+
+Actor MarineSpringMineActive
+{
+ Projectile
+ Radius 12
+ Height 9
+ Mass 1000000
+ Speed 0
+ WallBounceFactor 0.16
+ BounceFactor 0.36
+ BounceType "Grenade"
+ +DROPOFF
+ +FLOORCLIP
+ +NOTELEPORT
+ +FRIENDLY
+ +NODAMAGE
+ +BRIGHT
+ +FORCEPAIN
+ -NOGRAVITY
+ +MOVEWITHSECTOR
+ +FORCERADIUSDMG
+ +DONTHARMSPECIES
+ +THRUACTORS
+ +CANBOUNCEWATER
+ Species "Player"
+ Damagetype "Players"
+ Obituary "$DrMarineSprintMineObit"
+ Tag "$DrMarineSprintMine"
+ var int user_counter;
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_RearrangePointers(AAPTR_NULL, AAPTR_TARGET, AAPTR_NULL)
+	TNT1 A 0 A_PlaySound("SMNSET1")
+	SPMN A 20
+	TNT1 A 0 A_PlaySound("SMNSET2")
+	SPMN AD 1
+  SpawnLoop:
+	SPMN ADAD 1 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND,0,100,0,360,"Attack")
+	TNT1 A 0 A_JumpIf(user_counter >= 300,"Attack")
+	TNT1 A 0 A_SetUserVar("user_counter",user_counter + 1)
+	Loop
+  Attack:
+	SPMN ABC 2
+	TNT1 A 0 A_RearrangePointers(AAPTR_MASTER, AAPTR_DEFAULT, AAPTR_DEFAULT)
+	TNT1 A 0 ThrustThingZ(0,45,0,0)
+	TNT1 A 0 A_PlaySound("MINLNCH")
+	SPMN A 21
+	TNT1 A 0 A_PlaySound("SPRNMNXP")
+	TNT1 A 0 A_CustomMissile("MarineSpringMineActiveBomb",0,0,0,CMF_AIMDIRECTION)
+	//TNT1 A 0 A_Explode(Random(350,400),200,0,1,100)
+	TNT1 A 10 A_SpawnItemEx("WhiteProjExplodeLarge",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+	Stop
+  Vanish:
+	SPMN ADADADADADAD 1 A_FadeOut(0.1,1)
+	Stop
+ }
+}
+
+Actor MarineSpringMineActiveBomb : MarineLiveMineBomb
+{
+States
+{
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_Explode(Random(350,400),200,0,1,100)
+    Stop
+  }
+}
+
+Actor UACGuyAR : UACBaseMarine
+{
+ AttackSound "weapons/assaultrifle"
+ Tag "$DrUACGuyAR"
+ Translation "112:127=80:111"
+ DropItem "Assault Rifle" 256 1
+ DropItem "BulletBox" 256 100
+ DropItem "PortableMedkit" 200 1
+ DropItem "ArmorPlate" 200 1
+ DropItem "HandGrenadeAmmo" 200 1
+ DropItem "MineAmmo" 200 1
+ DropItem "SpringMine" 200 1
+ DropItem "AmmoPack" 200 1
+ DropItem "LiteBeaconSupplyPickup" 16 1  
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	TNT1 A 0 ACS_NamedExecuteAlways("Marine Healing Script",0)
+	PLAY A 10 A_Look
+	Goto Idle
+  See:
+	PLAY A 0 A_JumpIfTargetInLOS("Strafing")
+	PLAY AABB 3 A_Chase
+	TNT1 A 0 A_Jump(16,"GiveUp")
+	TNT1 A 0 A_Jump(6,"MineField")
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	PLAY CCDD 3 A_Chase
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	Loop
+  Idle:
+	PLAY A 0 A_Jump(48,"Find")
+	PLAY A 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PLAY AABB 3 A_GiveInventory("AIPatroling",1)
+	TNT1 A 0 A_Jump(6,"MineField")
+	PLAY C 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PLAY CCDD 3 A_GiveInventory("AIPatroling",1)
+	Loop
+  Missile:
+	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine")
+	TNT1 A 0 A_JumpIfCloser(750,"Close")
+  Far:
+	PLAY EE 5 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	PLAY F 2 Bright A_CustomBulletAttack(15.4,0,1,5,"MarineBulletPuff")
+	PLAY E 2 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	PLAY F 2 Bright A_CustomBulletAttack(15.4,0,1,5,"MarineBulletPuff")
+	PLAY E 2 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	PLAY F 2 Bright A_CustomBulletAttack(15.4,0,1,5,"MarineBulletPuff")
+	TNT1 A 0 A_Jump(16,"See")
+	TNT1 A 0 A_CPosRefire
+	PLAY EE 5 A_GiveInventory("AIStrafing",1)
+	Goto Far+2
+  Close:
+	PLAY EE 5 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	PLAY F 2 Bright A_CustomBulletAttack(22.5,0,1,random(1,5)*3,"MarineBulletPuff")
+	TNT1 A 0 A_Jump(16,"See")
+	TNT1 A 0 A_CPosRefire
+	PLAY E 3 A_GiveInventory("AIStrafing",1)
+	Goto Close+2
+  Pain:
+	PLAY G 3 A_GiveInventory("AIStrafing",1)
+	PLAY G 3 A_Pain
+	Goto See
+ }
+}
+
+Actor UACGuyMachinegun : UACBaseMarine
+{
+ AttackSound "SpecOpsZombie/Machinegun"
+ Tag "$DrUACGuyMachinegun"
+ Translation "112:127=80:111"
+ DropItem "Assault Rifle" 256 1
+ DropItem "BulletBox" 256 100
+ DropItem "PortableMedkit" 200 1
+ DropItem "ArmorPlate" 200 1
+ DropItem "HandGrenadeAmmo" 200 1
+ DropItem "MineAmmo" 200 1
+ DropItem "SpringMine" 200 1
+ DropItem "AmmoPack" 200 1
+ DropItem "LiteBeaconSupplyPickup" 16 1  
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
+	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	PSMG A 10 A_Look
+	Goto Idle
+  See:
+	MGMR A 0 A_JumpIfTargetInLOS("Strafing")
+	MGMR AABB 3 A_Chase
+	TNT1 A 0 A_Jump(16,"GiveUp")
+	TNT1 A 0 A_Jump(6,"MineField")
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	MGMR CCDD 3 A_Chase
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	Loop
+  Idle:
+	MGMR A 0 A_Jump(48,"Find")
+	MGMR A 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	MGMR AABB 3 A_GiveInventory("AIPatroling",1)
+	TNT1 A 0 A_Jump(6,"MineField")
+	MGMR C 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	MGMR CCDD 3 A_GiveInventory("AIPatroling",1)
+	Loop
+  Missile:
+	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine")
+	TNT1 A 0 A_JumpIfCloser(750,"Close")
+  Far:
+	MGMR EE 5 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	MGMR F 2 Bright A_CustomBulletAttack(6,4,1,Random(1,5)*3,"MarineBulletPuff")
+	MGMR E 2 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	MGMR F 2 Bright A_CustomBulletAttack(6,4,1,Random(1,5)*3,"MarineBulletPuff")
+	MGMR E 2 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	MGMR F 2 Bright A_CustomBulletAttack(6,4,1,Random(1,5)*3,"MarineBulletPuff")
+	MGMR E 2 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	MGMR F 2 Bright A_CustomBulletAttack(6,4,1,Random(1,5)*3,"MarineBulletPuff")
+	MGMR E 2 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_Jump(16,"See")
+	TNT1 A 0 A_CPosRefire
+	MGMR E 5 A_GiveInventory("AIStrafing",1)
+	Goto Far+2
+     Close:
+	MGMR EE 5 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	MGMR F 2 Bright A_CustomBulletAttack(11,8,1,random(1,5)*3,"MarineBulletPuff")
+	TNT1 A 0 A_Jump(16,"See")
+	TNT1 A 0 A_CPosRefire
+	MGMR E 3 A_GiveInventory("AIStrafing",1)
+	Goto Close+2
+  Pain:
+	MGMR G 3 A_GiveInventory("AIStrafing",1)
+	MGMR G 3 A_Pain
+	Goto See
+ }
+}
+
+Actor UACGuyMP40 : UACBaseMarine
+{
+ AttackSound "MP40/Fire"
+ Tag "$DrUACGuyMP40"
+ Translation "112:127=80:111"
+ DropItem "MP-40" 256 1
+ DropItem "BulletBox" 256 100
+ DropItem "PortableMedkit" 200 1
+ DropItem "ArmorPlate" 200 1
+ DropItem "HandGrenadeAmmo" 200 1
+ DropItem "MineAmmo" 200 1
+ DropItem "SpringMine" 200 1
+ DropItem "AmmoPack" 200 1
+ DropItem "LiteBeaconSupplyPickup" 16 1  
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
+	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	PSMG A 10 A_Look
+	Goto Idle
+  See:
+	PSMG A 0 A_JumpIfTargetInLOS("Strafing")
+	PSMG AABB 3 A_Chase
+	TNT1 A 0 A_Jump(16,"GiveUp")
+	TNT1 A 0 A_Jump(6,"MineField")
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	PSMG CCDD 3 A_Chase
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	Loop
+  Idle:
+	PSMG A 0 A_Jump(48,"Find")
+	PSMG A 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PSMG AABB 3 A_GiveInventory("AIPatroling",1)
+	TNT1 A 0 A_Jump(6,"MineField")
+	PSMG C 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PSMG CCDD 3 A_GiveInventory("AIPatroling",1)
+	Loop
+  Missile:
+	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine")
+  Normal:
+	PSMG EE 5 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	PSMG F 2 Bright A_CustomBulletAttack(11,8,1,random(3,7)*3,"MarineBulletPuff")
+	TNT1 A 0 A_Jump(16,"See")
+	TNT1 A 0 A_CPosRefire
+	PSMG E 3 A_GiveInventory("AIStrafing",1)
+	Goto Normal+2
+  Pain:
+	PSMG G 3 A_GiveInventory("AIStrafing",1)
+	PSMG G 3 A_Pain
+	Goto See
+ }
+}
+
+Actor UACGuyPistols : UACBaseMarine
+{
+ AttackSound "weapons/tpfire"
+ Tag "$DrUACGuyPistols"
+ Translation "112:127=80:111"
+ DropItem "Handgun" 256 1
+ DropItem "Handgun" 128 1
+ DropItem "BulletBox" 256 100
+ DropItem "PortableMedkit" 200 1
+ DropItem "ArmorPlate" 200 1
+ DropItem "HandGrenadeAmmo" 200 1
+ DropItem "MineAmmo" 200 1
+ DropItem "SpringMine" 200 1
+ DropItem "AmmoPack" 200 1
+ DropItem "LiteBeaconSupplyPickup" 16 1  
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
+	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	DU3L A 10 A_Look
+	Goto Idle
+  See:
+	DU3L A 0 A_JumpIfTargetInLOS("Strafing")
+	DU3L AABB 3 A_Chase
+	TNT1 A 0 A_Jump(16,"GiveUp")
+	TNT1 A 0 A_Jump(6,"MineField")
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	DU3L CCDD 3 A_Chase
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	Loop
+  Idle:
+	DU3L A 0 A_Jump(48,"Find")
+	DU3L A 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	DU3L AABB 3 A_GiveInventory("AIPatroling",1)
+	TNT1 A 0 A_Jump(6,"MineField")
+	DU3L C 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	DU3L CCDD 3 A_GiveInventory("AIPatroling",1)
+	Loop
+  Missile:
+	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine")
+  Normal:
+	DU3L EE 5 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	TNT1 AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	DU3L F 4 Bright A_CustomBulletAttack(22.5,0,2,random(1,5)*3,"MarineBulletPuff")
+	DU3L E 3 A_GiveInventory("AIStrafing",2)
+	TNT1 AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	DU3L F 4 Bright A_CustomBulletAttack(22.5,0,2,random(1,5)*3,"MarineBulletPuff")
+	DU3L E 3 A_GiveInventory("AIStrafing",2)
+	TNT1 AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	DU3L F 4 Bright A_CustomBulletAttack(22.5,0,2,random(1,5)*3,"MarineBulletPuff")
+	DU3L E 3 A_GiveInventory("AIStrafing",2)
+	TNT1 AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	DU3L F 4 Bright A_CustomBulletAttack(22.5,0,2,random(1,5)*3,"MarineBulletPuff")
+	DU3L E 3 A_GiveInventory("AIStrafing",2)
+	TNT1 AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	DU3L F 4 Bright A_CustomBulletAttack(22.5,0,2,random(1,5)*3,"MarineBulletPuff")
+	DU3L E 3 A_GiveInventory("AIStrafing",2)
+	TNT1 AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	DU3L F 4 Bright A_CustomBulletAttack(22.5,0,2,random(1,5)*3,"MarineBulletPuff")
+	DU3L E 3 A_GiveInventory("AIStrafing",1)
+	Goto See
+  Pain:
+	DU3L G 3 A_GiveInventory("AIStrafing",1)
+	DU3L G 3 A_Pain
+	Goto See
+ }
+}
+
+Actor UACGuyASG : UACBaseMarine
+{
+ AttackSound "AShotgun/Fire"
+ Tag "$DrUACGuyASG"
+ Translation "112:127=80:111"
+ DropItem "Assault Shotgun" 256 1
+ DropItem "NewShellBox" 256 40
+ DropItem "PortableMedkit" 200 1
+ DropItem "ArmorPlate" 200 1
+ DropItem "HandGrenadeAmmo" 200 1
+ DropItem "MineAmmo" 200 1
+ DropItem "SpringMine" 200 1
+ DropItem "AmmoPack" 200 1
+ DropItem "LiteBeaconSupplyPickup" 16 1  
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
+	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	PASG A 10 A_Look
+	Goto Idle
+  See:
+	PASG A 0 A_JumpIfTargetInLOS("Strafing")
+	PASG AABB 3 A_Chase
+	TNT1 A 0 A_Jump(16,"GiveUp")
+	TNT1 A 0 A_Jump(6,"MineField")
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	PASG CCDD 3 A_Chase
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	Loop
+  Idle:
+	PASG A 0 A_Jump(48,"Find")
+	PASG A 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PASG AABB 3 A_GiveInventory("AIPatroling",1)
+	TNT1 A 0 A_Jump(6,"MineField")
+	PASG C 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PASG CCDD 3 A_GiveInventory("AIPatroling",1)
+	Loop
+  Missile:
+	PASG E 0 A_Jump(65,"FragGrenade","LandMine")
+	PASG EE 5 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_SpawnItemEx("ShellCasing", -8, 7, 30, 4, 0, (0.1)*Random(30, 40), Random(-80, -90), 128)
+	TNT1 AAAA 0 A_CustomMissile("MonsterTracer2",Random(28,34),0,Random(6,-6),0)
+	PASG F 4 Bright A_CustomBulletAttack(22.5,0,5,Random(1,4)*3,"MarineBulletPuff")
+	TNT1 A 0 A_Jump(40,"Pause")
+	TNT1 A 0 A_CPosRefire
+	PASG EE 4 A_GiveInventory("AIStrafing",1)
+	Goto Missile+3
+	Pause:
+	PASG EEEE 5 A_GiveInventory("AIStrafing",1)
+	Goto See
+	FragGrenade:
+	PLA1 E 1 A_JumpIfCloser(1000,1)
+	Goto Missile
+	PLA1 E 0 A_JumpIfCloser(280,"Missile")
+	PLA1 E 6 A_GiveInventory("AIStrafing",1)
+	PLA1 EEE 4 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	PLA1 E 6 A_CustomMissile("MThrownGrenade",32,0,0,2,10)
+	PLA1 E 1
+	Goto See
+  LandMine:
+	PLA1 E 1 A_JumpIfCloser(500,1)
+	Goto FragGrenade
+	PLA1 E 0 A_Jump(127,"SpringMine")
+	PLA1 E 3 A_GiveInventory("AIStrafing",1)
+	PLA1 EE 4 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	PLA1 E 6 A_CustomMissile("MarineThrownMine",32,0,0,2,10)
+	PLA1 E 1
+	Goto See
+    SpringMine:
+	PLA1 E 3 A_GiveInventory("AIStrafing",1)
+	PLA1 EE 4 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	PLA1 E 6 A_CustomMissile("MarineSpringMineSet",32,0,0,2,10)
+	PLA1 E 1
+	Goto See
+  Pain:
+	PASG G 3 A_GiveInventory("AIStrafing",1)
+	PASG G 3 A_Pain
+	Goto See
+ }
+}
+
+Actor UACGuySSG : UACBaseMarine
+{
+ AttackSound ""
+ Tag "$DrUACGuySSG"
+ Translation "112:127=80:111"
+ DropItem "Double Barrel Shotgun" 256 1
+ DropItem "NewShellBox" 256 40
+ DropItem "PortableMedkit" 200 1
+ DropItem "ArmorPlate" 200 1
+ DropItem "HandGrenadeAmmo" 200 1
+ DropItem "MineAmmo" 200 1
+ DropItem "SpringMine" 200 1
+ DropItem "AmmoPack" 200 1
+ DropItem "LiteBeaconSupplyPickup" 16 1  
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
+	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	PLA9 A 10 A_Look
+	Goto Idle
+  See:
+	PLA9 A 0 A_JumpIfTargetInLOS("Strafing")
+	PLA9 AABB 3 A_Chase
+	TNT1 A 0 A_Jump(16,"GiveUp")
+	TNT1 A 0 A_Jump(6,"MineField")
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	PLA9 CCDD 3 A_Chase
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	Loop
+  Idle:
+	PLA9 A 0 A_Jump(48,"Find")
+	PLA9 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PLA9 AABB 3 A_GiveInventory("AIPatroling",1)
+	TNT1 A 0 A_Jump(6,"MineField")
+	PLA9 C 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PLA9 CCDD 3 A_GiveInventory("AIPatroling",1)
+	Loop
+  Missile:
+	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine")
+	TNT1 A 0 A_JumpIfCloser(275,"Double")
+	Normal:
+	PLA9 EE 4 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_PlaySound("weapons/ssgsingleshot")
+	TNT1 AAAA 0 A_CustomMissile("MonsterTracer2",Random(28,34),0,Random(6,-6),0)
+	PLA9 F 4 Bright A_CustomBulletAttack(22.5,0,3,Random(1,5)*3,"MarineBulletPuff")
+	PLA9 EE 4 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_PlaySound("weapons/ssgsingleshot")
+	TNT1 AAAA 0  A_CustomMissile("MonsterTracer2",Random(28,34),0,Random(6,-6),0)
+	PLA9 F 4 Bright A_CustomBulletAttack(22.5,0,3,Random(1,5)*3,"MarineBulletPuff")
+	PLA9 EE 4 A_GiveInventory("AIStrafing",1)
+	Goto Reload
+	Double:
+	PLA9 EEE 5 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_PlaySound("weapons/sshotf")
+	TNT1 AAAAAAAA 0 Bright A_CustomMissile("MonsterTracer2",Random(28,34),0,Random(6,-6),0)
+	PLA9 F 5 Bright A_CustomBulletAttack(13.8,9.6,10,Random(1,4)*3,"MarineBulletPuff")
+	PLA9 EEE 5 A_GiveInventory("AIStrafing",1)
+	Goto Reload
+	Reload:
+	PLA9 E 3 A_GiveInventory("AIStrafing",2)
+	PLA9 E 6 A_PlaySound("weapons/sawedopen")
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_SpawnItemEx("ShellCasing", -8, 6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	PLA9 E 1 A_SpawnItemEx("ShellCasing", -10, 6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	PLA9 E 6 A_PlaySound("weapons/shellslide")
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	PLA9 E 6 A_PlaySound("weapons/sawedclose")
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_Jump(40,"See")
+	PLA9 E 6 A_CPosRefire
+	Goto Missile
+  Pain:
+	PLA9 G 3 A_GiveInventory("AIStrafing",1)
+	PLA9 G 3 A_Pain
+	Goto See
+ }
+}
+
+Actor UACGuyQSG : UACBaseMarine
+{
+ AttackSound ""
+ Tag "$DrUACGuyQSG"
+ Translation "112:127=80:111"
+ DropItem "Quad Barrel Shotgun" 256 1
+ DropItem "NewShellBox" 256 40
+ DropItem "PortableMedkit" 200 1
+ DropItem "ArmorPlate" 200 1
+ DropItem "HandGrenadeAmmo" 200 1
+ DropItem "MineAmmo" 200 1
+ DropItem "SpringMine" 200 1
+ DropItem "AmmoPack" 200 1
+ DropItem "LiteBeaconSupplyPickup" 16 1  
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
+	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	PQST A 10 A_Look
+	Goto Idle
+  See:
+	PQST A 0 A_JumpIfTargetInLOS("Strafing")
+	PQST AABB 3 A_Chase
+	TNT1 A 0 A_Jump(16,"GiveUp")
+	TNT1 A 0 A_Jump(6,"MineField")
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	PQST CCDD 3 A_Chase
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	Loop
+  Idle:
+	PLA9 A 0 A_Jump(48,"Find")
+	PQST A 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PQST AABB 3 A_GiveInventory("AIPatroling",1)
+	TNT1 A 0 A_Jump(6,"MineField")
+	PQST C 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PQST CCDD 3 A_GiveInventory("AIPatroling",1)
+	Loop
+  Missile:
+	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine")
+	TNT1 A 0 A_JumpIfCloser(325,"Quad")
+	Normal:
+	PQST EEE 5 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_PlaySound("weapons/qsgdoublefire")
+	TNT1 AAAAAA 0 A_CustomMissile("MonsterTracer2",Random(28,34),0,Random(6,-6),0)
+	PQST F 5 Bright A_CustomBulletAttack(13.8,9.6,10,Random(1,4)*3,"MarineBulletPuff")
+	PQST EE 4 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_PlaySound("weapons/qsgdoublefire")
+	TNT1 AAAAAA 0 A_CustomMissile("MonsterTracer2",Random(28,34),0,Random(6,-6),0)
+	PQST F 5 Bright A_CustomBulletAttack(13.8,9.6,10,Random(1,4)*3,"MarineBulletPuff")
+	PQST EEE 5 A_GiveInventory("AIStrafing",1)
+	Goto Reload
+	Quad:
+	PQST EEE 5 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_PlaySound("weapons/qsgfire")
+	TNT1 AAAAAAAAAAAA 0 Bright A_CustomMissile("MonsterTracer2",Random(28,34),0,Random(6,-6),0)
+	PQST F 5 Bright A_CustomBulletAttack(15.4,10.6,24,Random(1,4)*3,"MarineBulletPuff")
+	PQST EEEEE 5 A_GiveInventory("AIStrafing",1)
+	Goto Reload
+	Reload:
+	TNT1 A 0 A_PlaySound("weapons/qsgopen")
+	PQST EEE 5 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_SpawnItemEx("ShellCasing", -8, 6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	PQST E 1 A_SpawnItemEx("ShellCasing", -10, 6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	TNT1 A 0 A_SpawnItemEx("ShellCasing", -8, 6, 38, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	PQST E 2 A_SpawnItemEx("ShellCasing", -10, 6, 38, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	PQST E 0 A_PlaySound("weapons/qsgshellslide")
+	PQST EE 3 A_GiveInventory("AIStrafing",1)
+	PQST EE 4 A_GiveInventory("AIStrafing",1)
+	PQST E 0 A_PlaySound("weapons/qsgshellslide")
+	PQST EEEE 3 A_GiveInventory("AIStrafing",1)
+	PQST EE 4 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	PQST E 5 A_PlaySound("weapons/qsgclose")
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_Jump(40,"See")
+	PQST E 5 A_CPosRefire
+	Goto Missile
+  Pain:
+	PQST G 3 A_GiveInventory("AIStrafing",1)
+	PQST G 3 A_Pain
+	Goto See
+ }
+}
+
+ACTOR UACGuyHSG : UACBaseMarine
+{
+ AttackSound ""
+ Tag "$DrUACGuyHSG"
+ Translation "112:127=80:111"
+ DropItem "Hexa-Shotgun" 256 1
+ DropItem "NewShellBox" 256 40
+ DropItem "PortableMedkit" 200 1
+ DropItem "ArmorPlate" 200 1
+ DropItem "HandGrenadeAmmo" 200 1
+ DropItem "MineAmmo" 200 1
+ DropItem "SpringMine" 200 1
+ DropItem "AmmoPack" 200 1
+ DropItem "LiteBeaconSupplyPickup" 16 1  
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
+	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	PHET A 10 A_Look
+	Goto Idle
+  See:
+	PHET A 0 A_JumpIfTargetInLOS("Strafing")
+	PHET AABB 3 A_Chase
+	TNT1 A 0 A_Jump(16,"GiveUp")
+	TNT1 A 0 A_Jump(6,"MineField")
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	PHET CCDD 3 A_Chase
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	Loop
+  Idle:
+	PHET A 0 A_Jump(48,"Find")
+	PHET A 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PHET AABB 3 A_GiveInventory("AIPatroling",1)
+	TNT1 A 0 A_Jump(6,"MineField")
+	PHET C 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PHET CCDD 3 A_GiveInventory("AIPatroling",1)
+	Loop
+	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine")
+	TNT1 A 0 A_JumpIfCloser(325,"Hexa")
+	Normal:
+	PHET EEE 5 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_PlaySound("weapons/qsgdoublefire")
+	TNT1 AAAAAA 0 A_CustomMissile("MonsterTracer2",Random(28,34),0,Random(6,-6),0)
+	PHET F 5 Bright A_CustomBulletAttack(13.8,9.6,10,Random(1,4)*3,"MarineBulletPuff")
+	PHET EE 4 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_PlaySound("weapons/qsgdoublefire")
+	TNT1 AAAAAA 0 A_CustomMissile("MonsterTracer2",Random(28,34),0,Random(6,-6),0)
+	PHET F 5 Bright A_CustomBulletAttack(13.8,9.6,10,Random(1,4)*3,"MarineBulletPuff")
+	PHET EE 4 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_PlaySound("weapons/qsgdoublefire")
+	TNT1 AAAAAA 0 A_CustomMissile("MonsterTracer2",Random(28,34),0,Random(6,-6),0)
+	PHET F 5 Bright A_CustomBulletAttack(13.8,9.6,10,Random(1,4)*3,"MarineBulletPuff")
+	PHET EEE 5 A_GiveInventory("AIStrafing",1)
+	Goto Reload
+	Hexa:
+	PHET EEE 5 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_PlaySound("weapons/qsgfire")
+	TNT1 AAAAAAAAAAAA 0 A_CustomMissile("MonsterTracer2",Random(28,34),0,Random(6,-6),0)
+	PHET F 5 Bright A_CustomBulletAttack(15.4,10.6,78,Random(1,4)*3,"MarineBulletPuff")
+	PHET EEEEE 5 A_GiveInventory("AIStrafing",1)
+	Goto Reload
+	Reload:
+	TNT1 A 0 A_PlaySound("weapons/qsgopen")
+	PHET EEE 5 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_SpawnItemEx("ShellCasing", -8, 6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	PHET E 1 A_SpawnItemEx("ShellCasing", -10, 6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	TNT1 A 0 A_SpawnItemEx("ShellCasing", -8, 6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	PHET E 1 A_SpawnItemEx("ShellCasing", -10, 6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	TNT1 A 0 A_SpawnItemEx("ShellCasing", -8, 6, 38, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	PHET E 1 A_SpawnItemEx("ShellCasing", -10, 6, 38, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	PHET E 0 A_PlaySound("weapons/qsgshellslide")
+	PHET EE 3 A_GiveInventory("AIStrafing",1)
+	PHET EE 4 A_GiveInventory("AIStrafing",1)
+	PHET E 0 A_PlaySound("weapons/qsgshellslide")
+	PHET EE 3 A_GiveInventory("AIStrafing",1)
+	PHET EE 4 A_GiveInventory("AIStrafing",1)
+	PHET E 0 A_PlaySound("weapons/qsgshellslide")
+	PHET EEEE 3 A_GiveInventory("AIStrafing",1)
+	PHET EE 4 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	PHET E 5 A_PlaySound("weapons/qsgclose")
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_Jump(40,"See")
+	PHET E 5 A_CPosRefire
+	Goto Missile
+  Pain:
+	PHET G 3 A_GiveInventory("AIStrafing",1)
+	PHET G 3 A_Pain
+	Goto See
+ }
+}
+
+Actor UACGuyRapidShotgun : UACBaseMarine
+{
+ AttackSound ""
+ Tag "$DrUACGuyRapidShotgun"
+ Translation "112:127=80:111"
+ DropItem "ModdedBackpack" 128 1
+ DropItem "RapidShotgun" 128 1
+ DropItem "NewShellBox" 256 100
+ DropItem "PortableMedkit" 200 1
+ DropItem "ArmorPlate" 200 1
+ DropItem "HandGrenadeAmmo" 200 1
+ DropItem "MineAmmo" 200 1
+ DropItem "SpringMine" 200 1
+ DropItem "AmmoPack" 200 1
+ DropItem "LiteBeaconSupplyPickup" 16 1  
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
+	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	PSUC A 10 A_Look
+	Goto Idle
+  See:
+	PSUC A 0 A_JumpIfTargetInLOS("Strafing")
+	PSUC AABB 3 A_Chase
+	TNT1 A 0 A_Jump(16,"GiveUp")
+	TNT1 A 0 A_Jump(6,"MineField")
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	PSUC CCDD 3 A_Chase
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	Loop
+  Idle:
+	PSUC A 0 A_Jump(48,"Find")
+	PSUC A 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PSUC AABB 3 A_GiveInventory("AIPatroling",1)
+	TNT1 A 0 A_Jump(6,"MineField")
+	PSUC C 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PSUC CCDD 3 A_GiveInventory("AIPatroling",1)
+	Loop
+  Missile:
+	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine")
+	PSUC EE 5 A_GiveInventory("AIStrafing",1)
+	//PLRP A 0 A_PlaySound("HeavyChaingun/Loop",CHAN_WEAPON,1.0,1)
+	PSUC AAAA 0 A_CustomMissile("MonsterTracer2",random(28,34),0,random(-6,6),CMF_OFFSETPITCH,frandom(-3.0,3.0))
+	PSUC A 0 A_SpawnItemEx("ShellCasing",12,-6,36,random(2,6),0,random(1,3),random(-80,-90),SXF_NOCHECKPOSITION|SXF_CLIENTSIDE)
+	PSUC A 0 A_PlayWeaponSound("weapons/12gaugefire")
+	PSUC E 0 A_GiveInventory("AIStrafing",1)
+	PSUC E 0 A_CustomBulletAttack(22.5,18.3,4,random(1,5)*3,"MarineBulletPuff",2048,CBAF_NORANDOM)
+	PSUC E 4 Bright A_CustomBulletAttack(0,0,1,random(1,5)*3,"MarineBulletPuff",2048,CBAF_NORANDOM)
+	PSUC A 0 A_FaceTarget
+	PSUC AAAA 0 A_CustomMissile("MonsterTracer2",random(28,34),0,random(-6,6),CMF_OFFSETPITCH,frandom(-3.0,3.0))
+	PSUC A 0 A_SpawnItemEx("ShellCasing",12,-6,36,random(2,6),0,random(1,3),random(-80,-90),SXF_NOCHECKPOSITION|SXF_CLIENTSIDE)
+	PSUC A 0 A_PlayWeaponSound("weapons/12gaugefire")
+	PSUC E 0 A_GiveInventory("AIStrafing",1)
+	PSUC A 0 A_CustomBulletAttack(22.5,18.3,4,random(1,5)*3,"MarineBulletPuff",2048,CBAF_NORANDOM)
+	PSUC F 4 Bright A_CustomBulletAttack(0,0,1,random(1,5)*3,"MarineBulletPuff",8192,CBAF_NORANDOM)
+	TNT1 A 0 A_Jump(7,"See")
+	TNT1 A 0 A_CPosRefire
+	Goto Missile+3
+  Pain:
+	PSUC G 3 A_GiveInventory("AIStrafing",1)
+	PSUC G 3 A_Pain
+	Goto See
+ }
+}
+
+Actor UACGuyExplosiveShotgun : UACBaseMarine
+{
+ AttackSound ""
+ Tag "$DrUACGuyExplosiveShotgun"
+ Translation "112:127=5:8"
+ DropItem "ModdedBackpack" 128 1
+ DropItem "Explosive Shotgun" 128 1
+ DropItem "NewShellBox" 256 100
+ DropItem "PortableMedkit" 200 1
+ DropItem "ArmorPlate" 200 1
+ DropItem "HandGrenadeAmmo" 200 1
+ DropItem "MineAmmo" 200 1
+ DropItem "SpringMine" 200 1
+ DropItem "AmmoPack" 200 1
+ DropItem "LiteBeaconSupplyPickup" 16 1  
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
+	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	PL32 A 10 A_Look
+	Goto Idle
+  See:
+	PL32 A 0 A_JumpIfTargetInLOS("Strafing")
+	PL32 AABB 3 A_Chase
+	TNT1 A 0 A_Jump(16,"GiveUp")
+	TNT1 A 0 A_Jump(6,"MineField")
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	PL32 CCDD 3 A_Chase
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	Loop
+  Idle:
+	PL32 A 0 A_Jump(48,"Find")
+	PL32 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PL32 AABB 3 A_GiveInventory("AIPatroling",1)
+	TNT1 A 0 A_Jump(6,"MineField")
+	PL32 C 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PL32 CCDD 3 A_GiveInventory("AIPatroling",1)
+	Loop
+  Missile:
+	PL32 E 0 A_Jump(65,"FragGrenade","LandMine")
+	PL32 EE 5 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_PlaySound("weapons/ExplosiveSG/fire",7)
+	TNT1 AAAAAA 0 A_CustomMissile("MExplosiveTracer",Random(30,34),0,Random(15,-15),0)
+	PL32 F 5 Bright A_CustomBulletAttack(18,6,6,Random(5,7),"MarineBulletPuff")
+	PL32 EE 5 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_PlaySound("weapons/ExplosiveSG/pump",7)
+	PL32 EE 4 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_SpawnItemEx("OrangeShellCasing", -8, 0, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	TNT1 A 0 A_Jump(40,"Pause")
+	TNT1 A 0 A_CPosRefire
+	PL32 EE 4 A_GiveInventory("AIStrafing",1)
+	Goto Missile+3
+  Pause:
+	PL32 EEEE 5 A_GiveInventory("AIStrafing",1)
+	Goto See
+  Pain:
+	PL32 G 3 A_GiveInventory("AIStrafing",1)
+	PL32 G 3 A_Pain
+	Goto See
+ }
+}
+
+Actor UACGuyExpSSG : UACBaseMarine
+{
+ AttackSound ""
+ Tag "$DrUACGuyExpSSG"
+ Translation "112:127=5:8"
+ DropItem "ExplosiveSSG" 256 1
+ DropItem "NewShellBox" 256 40
+ DropItem "PortableMedkit" 200 1
+ DropItem "ArmorPlate" 200 1
+ DropItem "HandGrenadeAmmo" 200 1
+ DropItem "MineAmmo" 200 1
+ DropItem "SpringMine" 200 1
+ DropItem "AmmoPack" 200 1
+ DropItem "LiteBeaconSupplyPickup" 16 1  
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
+	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	PNLG A 10 A_Look
+	Goto Idle
+  See:
+	PNLG A 0 A_JumpIfTargetInLOS("Strafing")
+	PNLG AABB 3 A_Chase
+	TNT1 A 0 A_Jump(16,"GiveUp")
+	TNT1 A 0 A_Jump(6,"MineField")
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	PNLG CCDD 3 A_Chase
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	Loop
+  Idle:
+	PNLG A 0 A_Jump(48,"Find")
+	PNLG A 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PNLG AABB 3 A_GiveInventory("AIPatroling",1)
+	TNT1 A 0 A_Jump(6,"MineField")
+	PNLG C 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PNLG CCDD 3 A_GiveInventory("AIPatroling",1)
+	Loop
+  Missile:
+	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine")
+	TNT1 A 0 A_JumpIfCloser(275,"Double")
+  Normal:
+	PNLG EE 4 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_PlaySound("ExpSSG/Fire2")
+	TNT1 AAAAA 0 A_CustomMissile("MExplosiveTracer",Random(26,29),0,Random(5,-5),0)
+	PNLG F 4 Bright A_CustomBulletAttack(13.8,5.7,5,Random(1,5)*3,"MarineBulletPuff")
+	PNLG EE 4 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_PlaySound("ExpSSG/Fire2")
+	TNT1 AAAAA 0 A_CustomMissile("MExplosiveTracer",Random(26,29),0,Random(5,-5),0)
+	PNLG F 4 Bright A_CustomBulletAttack(13.8,5.7,5,Random(1,5)*3,"MarineBulletPuff")
+	PNLG EE 4 A_GiveInventory("AIStrafing",1)
+	Goto Reload
+  Double:
+	PNLG EEE 5 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_PlaySound("ExpSSG/Fire")
+	TNT1 AAAAAAAAAA 0 A_CustomMissile("MExplosiveTracer",Random(26,29),0,Random(8,-8),0)
+	PNLG F 5 Bright A_CustomBulletAttack(17.8,9.6,10,Random(1,4)*3,"MarineBulletPuff")
+	PNLG EEE 5 A_GiveInventory("AIStrafing",1)
+	Goto Reload
+  Reload:
+	PNLG EE 3 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	PNLG E 6 A_PlaySound("weapons/sawedopen")
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_SpawnItemEx("OrangeShellCasing", -8, 6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	PNLG E 1 A_SpawnItemEx("OrangeShellCasing", -10, 6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	PNLG E 6 A_PlaySound("weapons/shellslide")
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	PNLG E 6 A_PlaySound("weapons/sawedclose")
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_Jump(40,"See")
+	PNLG E 6 A_CPosRefire
+	Goto Missile
+  Pain:
+	PNLG G 3 A_GiveInventory("AIStrafing",1)
+	PNLG G 3 A_Pain
+	Goto See
+ }
+}
+
+ACTOR UACGuySniper : UACBaseMarine
+{
+ AttackSound "sniper/fire2"
+ Tag "$DrUACGuySniper"
+ Translation "112:127=80:111"
+ DropItem "ModdedBackpack" 256 1
+ DropItem "BulletBox" 256 100
+ DropItem "PortableMedkit" 200 1
+ DropItem "ArmorPlate" 200 1
+ DropItem "HandGrenadeAmmo" 200 1
+ DropItem "MineAmmo" 200 1
+ DropItem "SpringMine" 200 1
+ DropItem "AmmoPack" 200 1
+ DropItem "LiteBeaconSupplyPickup" 16 1  
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
+	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	PSNP A 10 A_Look
+	Goto Idle
+  See:
+	PSNP A 0 A_JumpIfTargetInLOS("Strafing")
+	PSNP AABB 3 A_Chase
+	TNT1 A 0 A_Jump(16,"GiveUp")
+	TNT1 A 0 A_Jump(6,"MineField")
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	PSNP CCDD 3 A_Chase
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	Loop
+  Idle:
+	PSNP A 0 A_Jump(48,"Find")
+	PSNP A 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PSNP AABB 3 A_GiveInventory("AIPatroling",1)
+	TNT1 A 0 A_Jump(6,"MineField")
+	PSNP C 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PSNP CCDD 3 A_GiveInventory("AIPatroling",1)
+	Loop
+  Missile:
+	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine")
+	PSNP EE 4 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	PSNP F 0 A_SpawnItemEx("RifleCasing",30,3,25,Random(2,4),Random(3,6),Random(3,6),0)
+	PSNP F 3 Bright A_CustomBulletAttack(1,1,1,125,"MarineBulletPuff")
+	PSNP EEEE 4 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_Jump(40,"See")
+	PSNP E 6 A_CPosRefire
+	Goto Missile+1
+  Pain:
+	PSNP G 3 A_GiveInventory("AIStrafing",1)
+	PSNP G 3 A_Pain
+	Goto See
+ }
+}
+
+Actor UACGuyChaingun : UACBaseMarine
+{
+ AttackSound "doublecger/fire"
+ Tag "$DrUACGuyChaingun"
+ Translation "112:127=80:111"
+ DropItem "ModdedBackpack" 256 1
+ DropItem "BulletBox" 256 100
+ DropItem "PortableMedkit" 200 1
+ DropItem "ArmorPlate" 200 1
+ DropItem "HandGrenadeAmmo" 200 1
+ DropItem "MineAmmo" 200 1
+ DropItem "SpringMine" 200 1
+ DropItem "AmmoPack" 200 1
+ DropItem "LiteBeaconSupplyPickup" 16 1  
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
+	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	PLR4 A 10 A_Look
+	Goto Idle
+  See:
+	PLR4 A 0 A_JumpIfTargetInLOS("Strafing")
+	PLR4 AABB 3 A_Chase
+	TNT1 A 0 A_Jump(16,"GiveUp")
+	TNT1 A 0 A_Jump(6,"MineField")
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	PLR4 CCDD 3 A_Chase
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	Loop
+  Idle:
+	PLR4 A 0 A_Jump(48,"Find")
+	PLR4 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PLR4 AABB 3 A_GiveInventory("AIPatroling",1)
+	TNT1 A 0 A_Jump(6,"MineField")
+	PLR4 C 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PLR4 CCDD 3 A_GiveInventory("AIPatroling",1)
+	Loop
+  Missile:
+	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine")
+	PLR4 EE 5 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_CustomMissile("MonsterTracer",Random(30,34),0,Random(5,-5),0)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing", 12, -6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	PLR4 E 3 Bright A_CustomBulletAttack(22.5,0,1,random(1,5)*3,"MarineBulletPuff")
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_CustomMissile("MonsterTracer",Random(30,34),0,Random(5,-5),0)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing", 12, -6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	PLR4 F 4 Bright A_CustomBulletAttack(22.5,0,1,random(1,5)*3,"MarineBulletPuff")
+	TNT1 A 0 A_Jump(7,"See")
+	TNT1 A 0 A_CPosRefire
+	Goto Missile+3
+  Pain:
+	PLR4 G 3 A_GiveInventory("AIStrafing",1)
+	PLR4 G 3 A_Pain
+	Goto See
+ }
+}
+
+Actor UACGuyMinigun : UACBaseMarine
+{
+ AttackSound "weapons/minigunfire"
+ Tag "$DrUACGuyMinigun"
+ Translation "112:127=80:111"
+ DropItem "Minigun " 256 1
+ DropItem "BulletBox" 256 100
+ DropItem "PortableMedkit" 200 1
+ DropItem "ArmorPlate" 200 1
+ DropItem "HandGrenadeAmmo" 200 1
+ DropItem "MineAmmo" 200 1
+ DropItem "SpringMine" 200 1
+ DropItem "AmmoPack" 200 1
+ DropItem "LiteBeaconSupplyPickup" 16 1  
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
+	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	PL42 A 10 A_Look
+	Goto Idle
+  See:
+	PL42 A 0 A_JumpIfTargetInLOS("Strafing")
+	PL42 AABB 3 A_Chase
+	TNT1 A 0 A_Jump(16,"GiveUp")
+	TNT1 A 0 A_Jump(6,"MineField")
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	PL42 CCDD 3 A_Chase
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	Loop
+  Idle:
+	PL42 A 0 A_Jump(48,"Find")
+	PL42 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PL42 AABB 3 A_GiveInventory("AIPatroling",1)
+	TNT1 A 0 A_Jump(6,"MineField")
+	PL42 C 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PL42 CCDD 3 A_GiveInventory("AIPatroling",1)
+	Loop
+  Missile:
+	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine")
+	TNT1 A 0 A_PlaySound("weapons/mgunspinstart")
+	PL42 EE 5 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_PlaySoundEx("weapons/mgunspin","Voice")
+	TNT1 A 0 A_CustomMissile("MonsterTracer",Random(30,34),0,Random(5,-5),0)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing", 12, 6, 28, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	PL42 E 2 Bright A_CustomBulletAttack(22.5,0,1,random(1,5)*3,"MarineBulletPuff")
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_CustomMissile("MonsterTracer",Random(30,34),0,Random(5,-5),0)
+	TNT1 A 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	PL42 F 3 Bright A_CustomBulletAttack(22.5,0,1,random(1,5)*3,"MarineBulletPuff")
+	TNT1 A 0 A_StopSoundEx("Voice")
+	TNT1 A 0 A_Jump(4,"See")
+	TNT1 A 0 A_CPosRefire
+	Goto Missile+4
+  Pain:
+	PL42 G 3 A_GiveInventory("AIStrafing",1)
+	PL42 G 3 A_Pain
+	Goto See
+ }
+}
+
+Actor UACGuyExpMinigun : UACBaseMarine
+{
+ AttackSound ""
+ Tag "$DrUACGuyExpMinigun"
+ Translation "112:127=5:8"
+ DropItem "ModdedBackpack" 128 1
+ DropItem "Explosive Minigun" 128 1
+ DropItem "BulletBox" 256 100
+ DropItem "PortableMedkit" 200 1
+ DropItem "ArmorPlate" 200 1
+ DropItem "HandGrenadeAmmo" 200 1
+ DropItem "MineAmmo" 200 1
+ DropItem "SpringMine" 200 1
+ DropItem "AmmoPack" 200 1
+ DropItem "LiteBeaconSupplyPickup" 16 1  
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
+	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	XPMS A 10 A_Look
+	Goto Idle
+  See:
+	XPMS A 0 A_JumpIfTargetInLOS("Strafing")
+	XPMS AABB 3 A_Chase
+	TNT1 A 0 A_Jump(16,"GiveUp")
+	TNT1 A 0 A_Jump(6,"MineField")
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	XPMS CCDD 3 A_Chase
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	Loop
+  Idle:
+	XPMS A 0 A_Jump(48,"Find")
+	XPMS A 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	XPMS AABB 3 A_GiveInventory("AIPatroling",1)
+	TNT1 A 0 A_Jump(6,"MineField")
+	XPMS C 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	XPMS CCDD 3 A_GiveInventory("AIPatroling",1)
+	Loop
+  Missile:
+	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine")
+	TNT1 A 0 A_PlaySound("weapons/expmgunspinstart")
+	XPMS EEE 5 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_PlaySoundEx("weapons/expmgunspin","Voice")
+	TNT1 A 0 A_PlaySound("sentient/fire")
+	XPMS E 4 Bright A_CustomMissile("MExplosiveTracer",Random(30,34),0,Random(5,-5),0)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_SpawnItemEx("OrangeShellCasing", 12, 6, 28, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	TNT1 A 0 A_PlaySound("sentient/fire")
+	XPMS F 4 Bright A_CustomMissile("MExplosiveTracer",Random(30,34),0,Random(5,-5),0)
+	TNT1 A 0 A_SpawnItemEx("OrangeShellCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	TNT1 A 0 A_StopSoundEx("Weapon")
+	TNT1 A 0 A_Jump(4,"See")
+	TNT1 A 0 A_CPosRefire
+	Goto Missile+5
+  Pain:
+	XPMS G 3 A_GiveInventory("AIStrafing",1)
+	XPMS G 3 A_Pain
+	Goto See
+ }
+}
+
+Actor MExplosiveTracer : PlayerExplosiveTracer
+{
++MTHRUSPECIES
+Damagetype "Players"
+}
+
+Actor UACGuyRocket : UACBaseMarine
+{
+ AttackSound ""
+ Tag "$DrUACGuyRocket"
+ Translation "112:127=176:191"
+ DropItem "ModdedBackpack" 128 1
+ DropItem "Rocket Launcher" 128 1
+ DropItem "MissileBox" 256 20
+ DropItem "PortableMedkit" 200 1
+ DropItem "ArmorPlate" 200 1
+ DropItem "HandGrenadeAmmo" 200 1
+ DropItem "MineAmmo" 200 1
+ DropItem "SpringMine" 200 1
+ DropItem "AmmoPack" 200 1
+ DropItem "LiteBeaconSupplyPickup" 16 1  
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
+	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	PLA5 A 10 A_Look
+	Goto Idle
+  See:
+	PLA5 A 0 A_JumpIfTargetInLOS("Strafing")
+	PLA5 AABB 3 A_Chase
+	TNT1 A 0 A_Jump(16,"GiveUp")
+	TNT1 A 0 A_Jump(6,"MineField")
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	PLA5 CCDD 3 A_Chase
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	Loop
+  Idle:
+	PLA5 A 0 A_Jump(48,"Find")
+	PLA5 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PLA5 AABB 3 A_GiveInventory("AIPatroling",1)
+	TNT1 A 0 A_Jump(6,"MineField")
+	PLA5 C 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PLA5 CCDD 3 A_GiveInventory("AIPatroling",1)
+	Loop
+  Missile:
+	PLA5 EEE 4 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	PLA5 F 3 Bright A_CustomMissile("MRocket",30,0,random(-2,2))
+	PLA5 F 3 Bright A_GiveInventory("AIStrafing",1)
+	PLA5 E 0 A_PlaySound("rocket/drumspin")
+	PLA5 EEE 5 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_Jump(48,"See")
+	TNT1 A 0 A_CPosRefire
+	Goto Missile+4
+  Pain:
+	PLA5 G 3 A_GiveInventory("AIStrafing",1)
+	PLA5 G 3 A_Pain
+	Goto See
+ }
+}
+
+Actor MRocket : NewRocket
+{
++MTHRUSPECIES
+Damagetype "Players"
+}
+
+Actor UACGuyHRL : UACBaseMarine
+{
+ AttackSound ""
+ Tag "$DrUACGuyHRL"
+ Translation "112:127=176:191"
+ DropItem "ModdedBackpack" 128 1
+ DropItem "HomingRocketLauncher" 128 1
+ DropItem "MissileBox" 256 20
+ DropItem "PortableMedkit" 200 1
+ DropItem "ArmorPlate" 200 1
+ DropItem "HandGrenadeAmmo" 200 1
+ DropItem "MineAmmo" 200 1
+ DropItem "SpringMine" 200 1
+ DropItem "AmmoPack" 200 1
+ DropItem "LiteBeaconSupplyPickup" 16 1  
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
+	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	PHRL A 10 A_Look
+	Goto Idle
+  See:
+	PHRL A 0 A_JumpIfTargetInLOS("Strafing")
+	PHRL AABB 3 A_Chase
+	TNT1 A 0 A_Jump(16,"GiveUp")
+	TNT1 A 0 A_Jump(6,"MineField")
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	PHRL CCDD 3 A_Chase
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	Loop
+  Idle:
+	PHRL A 0 A_Jump(48,"Find")
+	PHRL A 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PHRL AABB 3 A_GiveInventory("AIPatroling",1)
+	TNT1 A 0 A_Jump(6,"MineField")
+	PHRL C 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PHRL CCDD 3 A_GiveInventory("AIPatroling",1)
+	Loop
+  Missile:
+	PHRL EEE 4 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	PHRL F 0 A_CustomMissile("MHomRocket",30,6,0)
+	PHRL F 3 Bright A_CustomMissile("MHomRocket",30,-6,0)
+	PHRL F 3 Bright A_GiveInventory("AIStrafing",1)
+	PHRL EEEE 5 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_Jump(48,"See")
+	TNT1 A 0 A_CPosRefire
+	Goto Missile+4
+  Pain:
+	PHRL G 3 A_GiveInventory("AIStrafing",1)
+	PHRL G 3 A_Pain
+	Goto See
+ }
+}
+
+Actor MHomRocket
+{
+ Radius 9
+ Height 7
+ Scale 0.75
+ Speed 38
+ Damage 10
+ Damagetype "Players"
+ +SEEKERMISSILE
+ +MTHRUSPECIES
+ ExplosionDamage 64
+ ExplosionRadius 128
+ SeeSound "monster/homingrockfire"
+ DeathSound "weapons/rocklx"
+ PROJECTILE
+ States
+ {
+  Spawn:
+	TNT1 A 0 A_SeekerMissile(25,35)
+	TNT1 A 0 A_CustomMissile("MissileTrail",Random(0,2),Random(-2,2))
+	HMIS A 2 Bright A_CustomMissile("ProjectileTrailParticleOrange",Random(0,2),Random(-2,2))
+	TNT1 A 0 A_SeekerMissile(25,35)
+	TNT1 A 0 A_CustomMissile("MissileTrail",Random(0,2),Random(-2,2))
+	HMIS A 3 Bright A_CustomMissile("ProjectileTrailParticleOrange",Random(0,2),Random(-2,2))
+	TNT1 A 0 A_SeekerMissile(25,35)
+	TNT1 A 0 A_CustomMissile("MissileTrail",Random(0,2),Random(-2,2))
+	HMIS A 2 Bright A_CustomMissile("ProjectileTrailParticleOrange",Random(0,2),Random(-2,2))
+	TNT1 A 0 A_SeekerMissile(25,35)
+	TNT1 A 0 A_CustomMissile("MissileTrail",Random(0,2),Random(-2,2))
+	HMIS A 3 Bright A_CustomMissile("ProjectileTrailParticleOrange",Random(0,2),Random(-2,2))
+	TNT1 A 0 A_SeekerMissile(25,35)
+	TNT1 A 0 A_CustomMissile("MissileTrail",Random(0,2),Random(-2,2))
+	HMIS A 2 Bright A_CustomMissile("ProjectileTrailParticleOrange",Random(0,2),Random(-2,2))
+	TNT1 A 0 A_SeekerMissile(25,35)
+	TNT1 A 0 A_CustomMissile("MissileTrail",Random(0,2),Random(-2,2))
+	HMIS A 3 Bright A_CustomMissile("ProjectileTrailParticleOrange",Random(0,2),Random(-2,2))
+	TNT1 A 0 A_SeekerMissile(25,35)
+	TNT1 A 0 A_CustomMissile("MissileTrail",Random(0,2),Random(-2,2))
+	HMIS A 2 Bright A_CustomMissile("ProjectileTrailParticleOrange",Random(0,2),Random(-2,2))
+	TNT1 A 0 A_SeekerMissile(25,35)
+	TNT1 A 0 A_CustomMissile("MissileTrail",Random(0,2),Random(-2,2))
+	HMIS A 3 Bright A_CustomMissile("ProjectileTrailParticleOrange",Random(0,2),Random(-2,2))
+	TNT1 A 0 A_PlaySound("monster/homingrockbeep")
+	Loop
+  Death:
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AAA 0 A_CustomMissile("Kaboom3", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+	TNT1 A 0 A_Explode
+	TNT1 A 1 A_SpawnItem("RocketEx")
+	Stop
+ }
+}
+
+Actor UACGuyMRL : UACBaseMarine
+{
+ AttackSound ""
+ Tag "$DrUACGuyMRL"
+ Translation "112:127=176:191"
+ DropItem "ModdedBackpack" 256 1
+ DropItem "MissileBox" 256 20
+ DropItem "PortableMedkit" 200 1
+ DropItem "ArmorPlate" 200 1
+ DropItem "HandGrenadeAmmo" 200 1
+ DropItem "MineAmmo" 200 1
+ DropItem "SpringMine" 200 1
+ DropItem "AmmoPack" 200 1
+ DropItem "LiteBeaconSupplyPickup" 16 1  
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
+	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	PBAZ A 10 A_Look
+	Goto Idle
+  See:
+	PBAZ A 0 A_JumpIfTargetInLOS("Strafing")
+	PBAZ AABB 3 A_Chase
+	TNT1 A 0 A_Jump(16,"GiveUp")
+	TNT1 A 0 A_Jump(6,"MineField")
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	PBAZ CCDD 3 A_Chase
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	Loop
+  Idle:
+	PBAZ A 0 A_Jump(48,"Find")
+	PBAZ A 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PBAZ AABB 3 A_GiveInventory("AIPatroling",1)
+	TNT1 A 0 A_Jump(6,"MineField")
+	PBAZ C 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PBAZ CCDD 3 A_GiveInventory("AIPatroling",1)
+	Loop
+  Missile:
+	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine")
+	PBAZ EE 5 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",2)
+	PBAZ F 5 Bright A_CustomMissile("MMiniRocket",40,10,random(-2,2),CMF_TRACKOWNER)
+	TNT1 A 0 A_Jump(8,"See")
+	TNT1 A 0 A_CPosRefire
+	Goto Missile+2
+  Pain:
+	PBAZ G 3 A_GiveInventory("AIStrafing",1)
+	PBAZ G 3 A_Pain
+	Goto See
+ }
+}
+
+Actor MMiniRocket
+{
+Projectile
+Height 5
+Radius 6
+Speed 40
+Damage 24
+-STRIFEDAMAGE
++THRUSPECIES
++MTHRUSPECIES
++DONTHARMSPECIES
+Species "Player"
+Damagetype "Players"
+SeeSound ""
+DeathSound "MiniRocketExpl"
+States
+ {
+  Spawn:
+	MICR A 1 Bright A_SpawnItemEx("MissileTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_PlaySound("MiniRocketFly",6,1.0,1)
+	Loop
+  Death:
+	TNT1 AAA 0 A_StopSound(6)
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner",0,0,1,0,0,0,0,SXF_CLIENTSIDE,0)
+	TNT1 AAAA 0 A_CustomMissile("Kaboom9",0,0,random(0,360),CMF_AIMDIRECTION,random(0,360))
+	TNT1 AAAA 0 A_CustomMissile("SmokeFX4",0,0,random(0,360),CMF_AIMDIRECTION,random(0,360))
+	TNT1 A 0 A_Explode(10,30,1,1)
+	TNT1 A 0 A_SetTranslucent(0.85,1)
+	H2BL JKLMN 4 Bright
+	Stop
+ }
+}
+
+Actor UACGuyGuardian : UACBaseMarine
+{
+ AttackSound ""
+ Tag "$DrUACGuyGuardian"
+ Translation "112:127=168:191"
+ DropItem "ModdedBackpack" 256 1
+ DropItem "MissileBox" 256 20
+ DropItem "PortableMedkit" 200 1
+ DropItem "ArmorPlate" 200 1
+ DropItem "HandGrenadeAmmo" 200 1
+ DropItem "MineAmmo" 200 1
+ DropItem "SpringMine" 200 1
+ DropItem "AmmoPack" 200 1
+ DropItem "LiteBeaconSupplyPickup" 16 1  
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
+	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	PR3V A 10 A_Look
+	Goto Idle
+  See:
+	PR3V A 0 A_JumpIfTargetInLOS("Strafing")
+	PR3V AABB 3 A_Chase
+	TNT1 A 0 A_Jump(16,"GiveUp")
+	TNT1 A 0 A_Jump(6,"MineField")
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	PR3V CCDD 3 A_Chase
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	Loop
+  Idle:
+	PR3V A 0 A_Jump(48,"Find")
+	PR3V A 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PR3V AABB 3 A_GiveInventory("AIPatroling",1)
+	TNT1 A 0 A_Jump(6,"MineField")
+	PR3V C 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PR3V CCDD 3 A_GiveInventory("AIPatroling",1)
+	Loop
+  Missile:
+	PR3V EEE 4 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	PR3V F 0 A_CustomMissile("MGuardianTracer",42,-9,0)
+	PR3V F 3 Bright A_CustomMissile("MGuardianTracer",42,9,0)
+	PR3V F 3 Bright A_GiveInventory("AIStrafing",1)
+	PR3V EE 5 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_Jump(48,"See")
+	TNT1 A 0 A_CPosRefire
+	Goto Missile+4
+  Pain:
+	PR3V G 3 A_GiveInventory("AIStrafing",1)
+	PR3V G 3 A_Pain
+	Goto See
+ }
+}
+
+ACTOR MGuardianTracer : GuardianTracer
+{
+ +MTHRUSPECIES
+ Damagetype "Players"
+ Speed 22
+ States
+ {
+  Death:
+	TNT1 A 0 A_Explode(6,64)
+	TNT1 A 0 A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AAA 0 A_CustomMissile("Kaboom10", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX4", 0, 0, random(0,360), 2, random(0,360))
+	FBXP ABC 3 Bright A_SetTranslucent(0.5,1)
+	Stop
+ }
+}
+
+Actor UACGuyBehemoth : UACBaseMarine
+{
+ AttackSound ""
+ Tag "$DrUACGuyBehemoth"
+ Translation "112:127=168:191"
+ DropItem "ModdedBackpack" 128 1
+ DropItem "BehemothCannon" 128 1
+ DropItem "DemonAmmoBox" 256 20
+ DropItem "PortableMedkit" 200 1
+ DropItem "ArmorPlate" 200 1
+ DropItem "HandGrenadeAmmo" 200 1
+ DropItem "MineAmmo" 200 1
+ DropItem "SpringMine" 200 1
+ DropItem "AmmoPack" 200 1
+ DropItem "LiteBeaconSupplyPickup" 16 1  
+ States
+ {
+  Spawn:
+	PUNM A 10 A_Look
+	Goto Idle
+  See:
+	PUNM A 0 A_JumpIfTargetInLOS("Strafing")
+	PUNM AABB 3 A_Chase
+	TNT1 A 0 A_Jump(16,"GiveUp")
+	TNT1 A 0 A_Jump(6,"MineField")
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	PUNM CCDD 3 A_Chase
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	Loop
+  Idle:
+	PUNM A 0 A_Jump(48,"Find")
+	PUNM A 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PUNM AABB 3 A_GiveInventory("AIPatroling",1)
+	TNT1 A 0 A_Jump(6,"MineField")
+	PUNM C 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PUNM CCDD 3 A_GiveInventory("AIPatroling",1)
+	Loop
+  Missile:
+	TNT1 A 0 A_Jump(64,"Homing")
+  Normal:
+	PUNM EEE 4 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	PUNM F 0 A_PlayWeaponSound("cannon/fire")
+	PUNM F 0 A_CustomMissile("BehemothCometPlayer",30,0,-2)
+	PUNM F 0 A_CustomMissile("BehemothCometPlayer",30,0,2)
+	PUNM F 0 A_CustomMissile("BehemothCometPlayer",30,0,0)
+	PUNM FFF 5 Bright A_GiveInventory("AIStrafing",1)
+	PUNM EEE 5 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_Jump(48,"See","See","Homing")
+	TNT1 A 0 A_CPosRefire
+	Goto Normal+4
+ 	Homing:
+	PUNM EEE 4 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	PUNM F 0 A_PlayWeaponSound("cannon/fire")
+	PUNM F 0 A_CustomMissile("BehemothSeekingCometPlayer",30,0,-10)
+	PUNM F 0 A_CustomMissile("BehemothSeekingCometPlayer",30,0,10)
+	PUNM FFF 5 Bright A_GiveInventory("AIStrafing",1)
+	PUNM EEE 5 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_Jump(48,"See","See","Normal")
+	TNT1 A 0 A_CPosRefire
+	Goto Homing+4
+  Pain:
+	PUNM G 3 A_GiveInventory("AIStrafing",1)
+	PUNM G 3 A_Pain
+	Goto See
+ }
+}
+
+Actor UACGuyPlasma : UACBaseMarine
+{
+ AttackSound ""
+ Tag "$DrUACGuyPlasma"
+ Translation "112:127=240:247"
+ DropItem "ModdedBackpack" 128 1
+ DropItem "Plasma Rifle" 128 1
+ DropItem "NewCellPack" 256 200
+ DropItem "PortableMedkit" 200 1
+ DropItem "ArmorPlate" 200 1
+ DropItem "HandGrenadeAmmo" 200 1
+ DropItem "MineAmmo" 200 1
+ DropItem "SpringMine" 200 1
+ DropItem "AmmoPack" 200 1
+ DropItem "LiteBeaconSupplyPickup" 16 1  
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
+	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	PLA6 A 10 A_Look
+	Goto Idle
+  See:
+	PLA6 A 0 A_JumpIfTargetInLOS("Strafing")
+	PLA6 AABB 3 A_Chase
+	TNT1 A 0 A_Jump(16,"GiveUp")
+	TNT1 A 0 A_Jump(6,"MineField")
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	PLA6 CCDD 3 A_Chase
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	Loop
+  Idle:
+	PLA6 A 0 A_Jump(48,"Find")
+	PLA6 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PLA6 AABB 3 A_GiveInventory("AIPatroling",1)
+	TNT1 A 0 A_Jump(6,"MineField")
+	PLA6 C 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PLA6 CCDD 3 A_GiveInventory("AIPatroling",1)
+	Loop
+  Missile:
+	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine")
+	PLA6 EE 5 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	PLA6 F 2 Bright A_CustomMissile("NewPlasmaBall",32,0,0)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	PLA6 F 3 Bright A_CustomMissile("NewPlasmaBall",32,0,0)
+	TNT1 A 0 A_Jump(16,"See")
+	TNT1 A 0 A_CPosRefire
+	Goto Missile+3
+  Pain:
+	PLA6 G 3 A_GiveInventory("AIStrafing",1)
+	PLA6 G 3 A_Pain
+	Goto See
+ }
+}
+
+Actor UACGuyPlasmaRepeater : UACBaseMarine
+{
+ AttackSound ""
+ Tag "$DrUACGuyPlasmaRepeater"
+ Translation "112:127=%[0.00,0.00,0.00]:[0.00,0.5,0.00]"
+ DropItem "ModdedBackpack" 128 1
+ DropItem "PlasmaRepeater" 128 1
+ DropItem "NewCellPack" 256 200
+ DropItem "PortableMedkit" 200 1
+ DropItem "ArmorPlate" 200 1
+ DropItem "HandGrenadeAmmo" 200 1
+ DropItem "MineAmmo" 200 1
+ DropItem "SpringMine" 200 1
+ DropItem "AmmoPack" 200 1
+ DropItem "LiteBeaconSupplyPickup" 16 1  
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
+	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	PREP A 10 A_Look
+	Goto Idle
+  See:
+	PREP A 0 A_JumpIfTargetInLOS("Strafing")
+	PREP AABB 3 A_Chase
+	TNT1 A 0 A_Jump(16,"GiveUp")
+	TNT1 A 0 A_Jump(6,"MineField")
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	PREP CCDD 3 A_Chase
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	Loop
+  Idle:
+	PREP A 0 A_Jump(48,"Find")
+	PREP A 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PREP AABB 3 A_GiveInventory("AIPatroling",1)
+	TNT1 A 0 A_Jump(6,"MineField")
+	PREP C 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PREP CCDD 3 A_GiveInventory("AIPatroling",1)
+	Loop
+  Missile:
+	TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+	TNT1 A 0 A_GiveInventory("RepeaterZombieFiring",1)
+	TNT1 A 0 A_PlaySound("PlasmaRepeater/Spin",7)
+	PREP EEEEEEEEEE 3 A_GiveInventory("AIStrafing",1)
+  Normal:
+	PREP F 1 Bright A_CustomMissile("MarineRepeaterPlasma",32,0,random(-8,8))
+	PREP F 1 A_FaceTarget
+	PREP F 1 Bright A_CustomMissile("MarineRepeaterPlasma",32,0,random(-8,8))
+	PREP F 1 A_FaceTarget
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_Monsterrefire(36,"See")
+	Loop
+  SpinDown:
+	TNT1 A 0 A_PlaySound("PlasmaRepeater/Down",7)
+	TNT1 A 0 A_TakeInventory("RepeaterZombieFiring",1)
+	PREP EEEEEE 3 A_GiveInventory("AIStrafing",1)
+	Goto See
+  Pain:
+	PREP G 3 A_GiveInventory("AIStrafing",1)
+	PREP G 3 A_Pain
+	Goto See
+ }
+}
+
+ACTOR MarineRepeaterPlasma : PlayerRepeaterPlasma
+{
+ -THRUSPECIES
+ +MTHRUSPECIES
+ Damagetype "Player"
+}
+
+Actor UACGuyFreezer : UACBaseMarine
+{
+ AttackSound ""
+ Tag "$DrUACGuyFreezer"
+ Translation "112:127=240:247"
+ DropItem "ModdedBackpack" 128 1
+ DropItem "Freezer Rifle" 128 1
+ DropItem "NewCellPack" 256 200
+ DropItem "PortableMedkit" 200 1
+ DropItem "ArmorPlate" 200 1
+ DropItem "HandGrenadeAmmo" 200 1
+ DropItem "MineAmmo" 200 1
+ DropItem "SpringMine" 200 1
+ DropItem "AmmoPack" 200 1
+ DropItem "LiteBeaconSupplyPickup" 16 1  
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
+	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	PION A 10 A_Look
+	Goto Idle
+  See:
+	PION A 0 A_JumpIfTargetInLOS("Strafing")
+	PION AABB 3 A_Chase
+	TNT1 A 0 A_Jump(16,"GiveUp")
+	TNT1 A 0 A_Jump(6,"MineField")
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	PION CCDD 3 A_Chase
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	Loop
+  Idle:
+	PION A 0 A_Jump(48,"Find")
+	PION A 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PION AABB 3 A_GiveInventory("AIPatroling",1)
+	TNT1 A 0 A_Jump(6,"MineField")
+	PION C 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PION CCDD 3 A_GiveInventory("AIPatroling",1)
+	Loop
+  Missile:
+	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine")
+	PION EE 5 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	PION F 0 A_PlayWeaponSound("weapons/iceshot")
+	PION F 3 Bright A_CustomMissile("NewFreezeBlast",30,4,0)
+	PION E 3 Bright A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_Jump(10,"See")
+	TNT1 A 0 A_CPosRefire
+	Goto Missile+3
+  Pain:
+	PION G 3 A_GiveInventory("AIStrafing",1)
+	PION G 3 A_Pain
+	Goto See
+ }
+}
+
+Actor UACGuyRailgun : UACBaseMarine
+{
+ AttackSound ""
+ Tag "$DrUACGuyRailgun"
+ Translation "112:127=240:247"
+ DropItem "ModdedBackpack" 128 1
+ DropItem "Railgun " 128 1
+ DropItem "NewCellPack" 256 200
+ DropItem "PortableMedkit" 200 1
+ DropItem "ArmorPlate" 200 1
+ DropItem "HandGrenadeAmmo" 200 1
+ DropItem "MineAmmo" 200 1
+ DropItem "SpringMine" 200 1
+ DropItem "AmmoPack" 200 1
+ DropItem "LiteBeaconSupplyPickup" 16 1  
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
+	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	SRPL A 10 A_Look
+	Goto Idle
+  See:
+	PDTR A 0 A_JumpIfTargetInLOS("Strafing")
+	PDTR AABB 3 A_Chase
+	TNT1 A 0 A_Jump(16,"GiveUp")
+	TNT1 A 0 A_Jump(6,"MineField")
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	SRPL CCDD 3 A_Chase
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	Loop
+  Idle:
+	SRPL A 0 A_Jump(48,"Find")
+	SRPL A 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	SRPL AABB 3 A_GiveInventory("AIPatroling",1)
+	TNT1 A 0 A_Jump(6,"MineField")
+	SRPL C 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	SRPL CCDD 3 A_GiveInventory("AIPatroling",1)
+	Loop
+  Missile:
+	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine")
+	SRPL EEE 6 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_PlaySound("railgunner/chargedshot")
+	TNT1 A 0 A_CustomMissile("RailgunImpact",30)
+	SRPL F 5 Bright A_CustomRailgun(250,0,"00 85 FF","None",1,1,0,"MarineRailPuff")
+	SRPL EEEEEEEEEE 5 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_Jump(48,"See")
+	TNT1 A 0 A_CPosRefire
+	Goto Missile+4
+  Pain:
+	SRPL G 3 A_GiveInventory("AIStrafing",1)
+	SRPL G 3 A_Pain
+	Goto See
+ }
+}
+
+Actor UACGuyExplosiveRailgun : UACBaseMarine
+{
+ AttackSound ""
+ Tag "$DrUACGuyExplosiveRailgun"
+ Translation "112:127=%[0.0,0.0,0.0]:[2,0.9,0]"
+ DropItem "ModdedBackpack" 128 1
+ DropItem "ExplosiveRailgun" 128 1
+ DropItem "NewCellPack" 256 200
+ DropItem "PortableMedkit" 200 1
+ DropItem "ArmorPlate" 200 1
+ DropItem "HandGrenadeAmmo" 200 1
+ DropItem "MineAmmo" 200 1
+ DropItem "SpringMine" 200 1
+ DropItem "AmmoPack" 200 1
+ DropItem "LiteBeaconSupplyPickup" 16 1  
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
+	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	PSTN A 10 A_Look
+	Goto Idle
+  See:
+	PSTN A 0 A_JumpIfTargetInLOS("Strafing")
+	PSTN AABB 3 A_Chase
+	TNT1 A 0 A_Jump(16,"GiveUp")
+	TNT1 A 0 A_Jump(6,"MineField")
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	PSTN CCDD 3 A_Chase
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	Loop
+  Idle:
+	PSTN A 0 A_Jump(48,"Find")
+	PSTN A 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PSTN AABB 3 A_GiveInventory("AIPatroling",1)
+	TNT1 A 0 A_Jump(6,"MineField")
+	PSTN C 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PSTN CCDD 3 A_GiveInventory("AIPatroling",1)
+	Loop
+  Missile:
+	TNT1 A 0 //A_Jump(65,"FragGrenade","LandMine")
+	PSTN EEE 6 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_PlaySound("ExplosiveRailgun/Fire")
+	TNT1 A 0 A_CustomMissile("MarineExplosiveRailgunImpact",30)
+	//PSTN F 5 Bright A_CustomRailgun(250,0,"None","None",1,1,0,"MarineRailPuff")
+	PSTN F 5 Bright A_CustomRailgun(50,20,"None","None",RGF_SILENT,1,0,"MarineRailPuff",0,0,0,0,40,0,"ExplosiveRailgunTrail")
+	PSTN EEEEEEEEEE 5 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_Jump(48,"See")
+	TNT1 A 0 A_CPosRefire
+	Goto Missile+4
+  Pain:
+	PSTN G 3 A_GiveInventory("AIStrafing",1)
+	PSTN G 3 A_Pain
+	Goto See
+ }
+}
+
+ACTOR MarineExplosiveRailgunImpact : ExplosiveRailgunImpact
+{
+ Damagetype "Players"
+ MissileType "MarineExplosiveRailgunTrailExplodeSpawner"
+}
+
+ACTOR MarineExplosiveRailgunTrailExplodeSpawner : ExplosiveRailgunTrailExplodeSpawner
+{
+ States
+  {
+  Spawn:
+	TNT1 A 1 Nodelay A_SpawnItemEx("MarineExplosiveRailgunTrailExplode",random(0,4),0,0,random(0,4),0,random(-4,4),random(0,360))
+	Stop
+  }
+}
+
+ACTOR MarineExplosiveRailgunTrailExplode : ExplosiveRailgunTrailExplode {Damagetype "Players"}
+
+Actor UACGuyDTRifle : UACBaseMarine
+{
+ AttackSound ""
+ Tag "$DrUACGuyDTRifle"
+ Translation "112:127=%[0.00,0.00,0.00]:[0.00,0.5,0.00]"
+ DropItem "ModdedBackpack" 128 1
+ DropItem "Demon Tech Rifle" 128 1
+ DropItem "DemonAmmoBox" 256 200
+ DropItem "PortableMedkit" 200 1
+ DropItem "ArmorPlate" 200 1
+ DropItem "HandGrenadeAmmo" 200 1
+ DropItem "MineAmmo" 200 1
+ DropItem "SpringMine" 200 1
+ DropItem "AmmoPack" 200 1
+ DropItem "LiteBeaconSupplyPickup" 16 1  
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
+	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	PRAI A 10 A_Look
+	Goto Idle
+  See:
+	PRAI A 0 A_JumpIfTargetInLOS("Strafing")
+	PRAI AABB 3 A_Chase
+	TNT1 A 0 A_Jump(16,"GiveUp")
+	TNT1 A 0 A_Jump(6,"MineField")
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	PRAI CCDD 3 A_Chase
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	Loop
+  Idle:
+	PRAI A 0 A_Jump(48,"Find")
+	PRAI A 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PRAI AABB 3 A_GiveInventory("AIPatroling",1)
+	TNT1 A 0 A_Jump(6,"MineField")
+	PRAI C 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PRAI CCDD 3 A_GiveInventory("AIPatroling",1)
+	Loop
+  Missile:
+	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine")
+	PRAI EE 5 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	PRAI E 3 Bright A_FaceTarget
+	PRAI F 0 A_PlayWeaponSound("weapons/demontechfire")
+	PRAI F 3 Bright A_CustomMissile("MDTProj",32,0,random(-3,3))
+	TNT1 A 0 A_StopSoundEx("Voice")
+	TNT1 A 0 A_Jump(6,"See")
+	TNT1 A 0 A_CPosRefire
+	Goto Missile+3
+  Pain:
+	PRAI G 3 A_GiveInventory("AIStrafing",1)
+	PRAI G 3 A_Pain
+	Goto See
+ }
+}
+
+Actor MDTProj : DemonTechProjectile{+MTHRUSPECIES Damagetype "Players"}
+
+Actor UACGuyDTRailgun : UACBaseMarine
+{
+ AttackSound "weapons/dtrailf"
+ Tag "$DrUACGuyDTRailgun"
+ Translation "112:127=%[0.00,0.00,0.00]:[0.00,0.5,0.00]"
+ DropItem "ModdedBackpack" 128 1
+ DropItem "Demon Tech Railgun" 128 1
+ DropItem "DemonAmmoBox" 256 200
+ DropItem "PortableMedkit" 200 1
+ DropItem "ArmorPlate" 200 1
+ DropItem "HandGrenadeAmmo" 200 1
+ DropItem "MineAmmo" 200 1
+ DropItem "SpringMine" 200 1
+ DropItem "AmmoPack" 200 1
+ DropItem "LiteBeaconSupplyPickup" 16 1  
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
+	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	PDTR A 10 A_Look
+	Goto Idle
+  See:
+	PDTR A 0 A_JumpIfTargetInLOS("Strafing")
+	PDTR AABB 3 A_Chase
+	TNT1 A 0 A_Jump(16,"GiveUp")
+	TNT1 A 0 A_Jump(6,"MineField")
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	PDTR CCDD 3 A_Chase
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	Loop
+  Idle:
+	PDTR A 0 A_Jump(48,"Find")
+	PDTR A 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PDTR AABB 3 A_GiveInventory("AIPatroling",1)
+	TNT1 A 0 A_Jump(6,"MineField")
+	PDTR C 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PDTR CCDD 3 A_GiveInventory("AIPatroling",1)
+	Loop
+  Missile:
+	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine")
+	PDTR EEE 6 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_CustomMissile("DTRail")
+	PDTR F 5 Bright A_CustomRailgun(450,0,"00 85 FF","None",0,1,0,"MarineRailPuffGreen",0,0,0,0,35.0,0.0,"DTRailCoreTrail")
+	PDTR EEEEEEEEEE 5 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_Jump(48,"See")
+	TNT1 A 0 A_CPosRefire
+	Goto Missile+4
+  Pain:
+	PDTR G 3 A_GiveInventory("AIStrafing",1)
+	PDTR G 3 A_Pain
+	Goto See
+ }
+}
+
+Actor UACGuyDTShotgun : UACBaseMarine
+{
+ AttackSound ""
+ Tag "$DrUACGuyDTShotgun"
+ Translation "112:127=168:191"
+ DropItem "ModdedBackpack" 128 1
+ DropItem "Demon Tech Shotgun" 128 1
+ DropItem "DemonAmmoBox" 256 200
+ DropItem "PortableMedkit" 200 1
+ DropItem "ArmorPlate" 200 1
+ DropItem "HandGrenadeAmmo" 200 1
+ DropItem "MineAmmo" 200 1
+ DropItem "SpringMine" 200 1
+ DropItem "AmmoPack" 200 1
+ DropItem "LiteBeaconSupplyPickup" 16 1  
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
+	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	P2TS A 10 A_Look
+	Goto Idle
+  See:
+	P2TS A 0 A_JumpIfTargetInLOS("Strafing")
+	P2TS AABB 3 A_Chase
+	TNT1 A 0 A_Jump(16,"GiveUp")
+	TNT1 A 0 A_Jump(6,"MineField")
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	P2TS CCDD 3 A_Chase
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	Loop
+  Idle:
+	P2TS A 0 A_Jump(48,"Find")
+	P2TS A 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	P2TS AABB 3 A_GiveInventory("AIPatroling",1)
+	TNT1 A 0 A_Jump(6,"MineField")
+	P2TS C 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	P2TS CCDD 3 A_GiveInventory("AIPatroling",1)
+	Loop
+  Missile:
+	P2TS E 0 //A_Jump(65,"FragGrenade","LandMine")
+	P2TS EEE 5 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_JumpIfCloser(350,"BurstShot")
+	Spread:
+	TNT1 A 0 A_FaceTarget
+	TNT1 A 0 A_PlaySound("Weapons/ErasusFire",CHAN_WEAPON)
+	TNT1 AAAAAAAAA 0 A_CustomMissile("RedDemonTechTracer",Random(28,34),0,Random(5,-5),CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("MarineRedZDemonTechProjectile",28,0,0,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("MarineRedZDemonTechProjectile",28,0,2,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("MarineRedZDemonTechProjectile",28,0,-2,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("MarineRedZDemonTechProjectile",28,0,3,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("MarineRedZDemonTechProjectile",28,0,-3,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("MarineRedZDemonTechProjectile",28,0,4,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("MarineRedZDemonTechProjectile",28,0,-4,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("MarineRedZDemonTechProjectile",28,0,5,CMF_TRACKOWNER)
+	TNT1 A 0 A_CustomMissile("MarineRedZDemonTechProjectile",28,0,-5,CMF_TRACKOWNER)
+	P2TS F 5 Bright A_GiveInventory("AIStrafing",1)
+	P2TS EE 5 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_PlaySound("Weapons/ErasusPump")
+	P2TS EE 4 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_SpawnItemEx("ShellCasing",-8,0,30,Random(2,6),0,Random(1,3),Random(-80,-90),SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+	P2TS EE 4 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_Jump(40,"Pause")
+	TNT1 A 0 A_CPosRefire
+	Goto Missile+4
+  BurstShot:
+	TNT1 A 0 A_FaceTarget
+	TNT1 A 0 A_PlaySound("Weapons/ErasusFire",CHAN_WEAPON)
+	TNT1 AAAAAAAA 0 A_CustomMissile("RedDemonTechTracer",Random(28,34),0,Random(6,-6),CMF_TRACKOWNER)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	P2TS F 5 Bright A_CustomBulletAttack(15.4,10.6,24,Random(1,4)*3,"MarineDemonShotgunPuff")
+	P2TS EE 5 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_PlaySound("Weapons/ErasusPump")
+	P2TS EE 4 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_SpawnItemEx("ShellCasing",-8,0,30,Random(2,6),0,Random(1,3),Random(-80,-90),SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+	P2TS EE 4 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_Jump(40,"Pause")
+	TNT1 A 0 A_CPosRefire
+	Goto Missile+4
+	Pause:
+	P2TS EEEE 5 A_GiveInventory("AIStrafing",1)
+	Goto See
+  Pain:
+	P2TS G 3 A_GiveInventory("AIStrafing",1)
+	P2TS G 3 A_Pain
+	Goto See
+ }
+}
+
+Actor MarineDemonShotgunPuff : DemonShotgunPuff {+MTHRUSPECIES Damagetype "Players"}
+
+ACTOR MarineRedZDemonTechProjectile
+{
+ PROJECTILE
+ Height 4
+ Radius 4
+ Speed 40
+ Scale 0.06
+ Decal "RedDTRScorch"
+ Damage 5
+ +FORCERADIUSDMG
+ +MTHRUSPECIES
+ Damagetype "Players"
+ DeathSound "weapons/demontechex"
+ Obituary "%o was pulverised by a Demon Tech Shotgunner."
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_Jump(128,"Spawn2")
+	Goto Normal
+  Normal:
+	TNT1 A 0 A_Jump(128,"NormalFX")
+	RDTR A 1 Bright A_SpawnItemEx("RedDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,0)
+	Loop
+  NormalFX:
+	TNT1 A 0 A_SpawnItemEx("RDTechLightning",Random(-1,1),Random(-1,1),Random(-1,1),0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,0)
+	RDTR A 1 Bright A_SpawnItemEx("RedDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,0)
+	TNT1 A 0 A_SpawnItemEx("RDTechLightning2",Random(-1,1),Random(-1,1),Random(-1,1),0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,0)
+	RDTR A 1 Bright A_SpawnItemEx("RedDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,0)
+	Goto Normal
+  Spawn2:
+	TNT1 A 0 A_Jump(128,"Spawn2FX")
+	RDTR A 1 Bright A_SpawnItemEx("RedDemonTechTrail2",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,0)
+	Loop
+  Spawn2FX:
+	TNT1 A 0 A_SpawnItemEx("RDTechLightning",Random(-1,1),Random(-1,1),Random(-1,1),0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,0)
+	RDTR A 1 Bright A_SpawnItemEx("RedDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,0)
+	TNT1 A 0 A_SpawnItemEx("RDTechLightning2",Random(-1,1),Random(-1,1),Random(-1,1),0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,0)
+	RDTR A 1 Bright A_SpawnItemEx("RedDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,0)
+	Goto Spawn2
+  Death:
+	TNT1 A 0 A_SpawnItemEx("RedParticleSpawnerDT",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+	TNT1 A 0 A_SpawnItemEx("RedDemonTechEx",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+	TNT1 AAA 0 Bright A_CustomMissile("RedDTKaboom",0,0,random(0,360),CMF_AIMDIRECTION,random(0,360))
+	TNT1 AAAA 0 Bright A_CustomMissile("SmokeFX4",0,0,random(0,360),CMF_AIMDIRECTION,random(0,360))
+	TNT1 A 1 Bright A_Explode(18,48)
+	Stop
+ }
+}
+
+Actor UACGuyMiner : UACBaseMarine
+{
+ AttackSound ""
+ Tag "$DrUACGuyMine"
+ Translation "112:127=64:79"
+ DropItem "MineAmmo" 256 1
+ DropItem "MineAmmo" 256 1
+ DropItem "MineAmmo" 256 1
+ DropItem "MineAmmo" 128 1
+ DropItem "MineAmmo" 128 1
+ DropItem "MineAmmo" 128 1
+ DropItem "PortableMedkit" 200 1
+ DropItem "ArmorPlate" 200 1
+ DropItem "HandGrenadeAmmo" 200 1
+ DropItem "MineAmmo" 200 1
+ DropItem "SpringMine" 200 1
+ DropItem "AmmoPack" 200 1
+ DropItem "LiteBeaconSupplyPickup" 16 1  
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
+	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	PMNE A 10 A_Look
+	Goto Idle
+  See:
+	TNT1 A 0 A_JumpIfTargetInLOS("Strafing")
+	PMNE AABB 3 A_Chase
+	TNT1 A 0 A_Jump(16,"GiveUp")
+	TNT1 A 0 A_Jump(40,"MineField")
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	PMNE CCDD 3 A_Chase
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	Loop
+  Idle:
+	PMNE A 0 A_Jump(48,"Find")
+	PMNE A 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PMNE AABB 3 A_GiveInventory("AIPatroling",1)
+	TNT1 A 0 A_Jump(40,"MineField")
+	PMNE C 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PMNE CCDD 3 A_GiveInventory("AIPatroling",1)
+	Loop
+  Missile:
+	PMNE A 1
+	PMNE A 1 A_Jump(220,"LandMine")
+  FragGrenade:
+	PLA1 E 1 A_JumpIfCloser(1000,1)
+	Goto SpringMine
+	PLA1 E 0 A_JumpIfCloser(280,"LandMine")
+	PLA1 E 6 A_GiveInventory("AIStrafing",1)
+	PLA1 EEE 4 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	PLA1 E 6 A_CustomMissile("MThrownGrenade",32,0,0,2,10)
+	TNT1 A 0 A_Jump(80,"See")
+	TNT1 A 0 A_CPosRefire
+	PLA1 E 1
+	Goto Missile+1
+  LandMine:
+	PMNE E 1 A_JumpIfCloser(500,1)
+	Goto FragGrenade
+	PMNE E 0 A_Jump(127,"SpringMine")
+	PMNE E 3 A_GiveInventory("AIStrafing",1)
+	PMNE EE 4 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	PMNE E 6 A_CustomMissile("MinerThrownMine",32,0,0,2,10)
+	TNT1 A 0 A_Jump(80,"See")
+	TNT1 A 0 A_CPosRefire
+	PMNE E 1
+	Goto Missile+1
+  SpringMine:
+	PMNE E 3 A_GiveInventory("AIStrafing",1)
+	PMNE EE 4 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	PMNE E 6 A_CustomMissile("MarineSpringMineSet",32,0,0,2,10)
+	TNT1 A 0 A_Jump(80,"See")
+	TNT1 A 0 A_CPosRefire
+	PMNE E 1
+	Goto Missile+1
+  Pain:
+	PMNE G 3 A_GiveInventory("AIStrafing",1)
+	PMNE G 3 A_Pain
+	Goto See
+ }
+}
+
+ACTOR MinerThrownMine : MarineThrownMine {Speed 25}
+Actor MinerSpringMineSet : MarineSpringMineSet{Speed 18}
+
+Actor UACGuyDBFG : UACHeavyMarine
+{
+ AttackSound "weapons/dtrailf"
+ Tag "$DrUACGuyDBFG"
+ Translation "112:127=192:207"
+ DropItem "ModdedBackpack" 128 1
+ DropItem "D-BFG" 128 1
+ DropItem "DCell" 256 40
+ DropItem "ShieldSphere", 100, 1
+ DropItem "PortableMedkit" 200 1
+ DropItem "ArmorPlate" 200 1
+ DropItem "HandGrenadeAmmo" 200 1
+ DropItem "MineAmmo" 200 1
+ DropItem "SpringMine" 200 1
+ DropItem "AmmoPack" 200 1
+ DropItem "LiteBeaconSupplyPickup" 16 1  
+ var int user_effect_delay;
+ var int user_effect_quantity;
+ var int user_effect_type;
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
+	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	PBDB A 0 ACS_NamedExecuteAlways("SpawnEffects",0)
+	TNT1 A 0 A_SetUserVar("user_effect_delay",2)
+	TNT1 A 0 A_SetUserVar("user_effect_quantity",1)
+	TNT1 A 0 A_SetUserVar("user_effect_type",103)
+	PBDB A 10 A_Look
+	Goto Idle
+  See:
+       TNT1 A 0 A_JumpIf(user_protection == 1,3)
+       TNT1 A 0 A_SetUserVar("user_protection",1)
+	PBDB A 0 A_JumpIfTargetInLOS("Strafing")
+	TNT1 A 0 A_ChangeFlag(NOPAIN,FALSE)
+	PBDB AABB 3 A_Chase
+	TNT1 A 0 A_Jump(16,"GiveUp")
+	TNT1 A 0 A_Jump(6,"MineField")
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	PBDB CCDD 3 A_Chase
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	Loop
+ Idle:
+	PBDB A 0 A_Jump(48,"Find")
+	PBDB A 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PBDB AABB 3 A_GiveInventory("AIPatroling",1)
+	TNT1 A 0 A_Jump(6,"MineField")
+	PBDB C 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PBDB CCDD 3 A_GiveInventory("AIPatroling",1)
+	Loop
+  Missile:
+	//TNT1 A 0 A_Jump(65,"FragGrenade","LandMine")
+	TNT1 A 0 A_Jump(55,"DBFG")
+  Normal:
+	TNT1 A 0 A_ChangeFlag(NOPAIN,TRUE)
+	TNT1 A 0 A_PlayWeaponSound("Weapons/dbfgcharge2")
+	PBDB EEEEE 5 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_PlaySound("Weapons/dbfgfire2")
+	PBDB F 3 Bright A_CustomMissile("MarineT3DBFG10kShot",30,0,random(-4,4))
+	PBDB EE 3 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_PlaySound("Weapons/dbfgfire2")
+	PBDB F 3 Bright A_CustomMissile("MarineT3DBFG10kShot",30,0,random(-4,4))
+	PBDB EE 3 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_Jump(48,"Cooling","DBFG")
+	TNT1 A 0 A_MonsterRefire(40,"Cooling")
+	Goto Normal+7
+  Cooling:
+	PBDB E 0 A_PlaySound("Weapons/dbfgcooldown2")
+	PBDB EEEEEEE 5 A_GiveInventory("AIStrafing",1)
+	Goto See
+  DBFG:
+	TNT1 A 0 A_ChangeFlag(NOPAIN,TRUE)
+	TNT1 A 0 A_PlaySound("Weapons/dbfgcharge")
+	PBDB EEEEEEEEEEEEEEEEEEEEEEE 5 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_PlaySound("Weapons/dbfgfire",CHAN_AUTO)
+	PBDB F 8 Bright A_CustomMissile("MarineT3DBFGBall",32,0,0)
+	PBDB EEEEE 5 A_GiveInventory("AIStrafing",1)
+	Goto See
+  Pain:
+	PBDB G 3 A_GiveInventory("AIStrafing",1)
+	PBDB G 3 A_Pain
+	Goto See
+ }
+}
+
+ACTOR MarineT3DBFG10kShot : PlayerT3DBFG10kShot
+{
+ DamageType "Players"
+ States
+ {
+  Death:
+  XDeath:
+	TNT1 A 0 A_SpawnItemEx("T3DBFG10kDeathParticleSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+	TNT1 A 0 A_SpawnItemEx("T3DBFGShotShockwave",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+	TNT1 A 0 A_Explode(Random(80,98),128,0,1)
+	BG3X A 3 Bright A_SpawnItemEx("MarinePlayerT3DBFGShotShockwaveDmg",16,16,0,0,0,0,0,SXF_SETMASTER,0)
+	BG3X B 3 Bright A_SpawnItemEx("MarinePlayerT3DBFGShotShockwaveDmg",-16,16,0,0,0,0,0,SXF_SETMASTER,0)
+	BG3X C 3 Bright A_SpawnItemEx("MarinePlayerT3DBFGShotShockwaveDmg",16,-16,0,0,0,0,0,SXF_SETMASTER,0)
+	BG3X D 3 Bright A_SpawnItemEx("MarinePlayerT3DBFGShotShockwaveDmg",-16,-16,0,0,0,0,0,SXF_SETMASTER,0)
+	BG3X E 3 Bright A_SpawnItemEx("MarinePlayerT3DBFGShotShockwaveDmg",0,0,16,0,0,0,0,SXF_SETMASTER,0)
+	BG3X F 3 Bright A_SpawnItemEx("MarinePlayerT3DBFGShotShockwaveDmg",0,0,-16,0,0,0,0,SXF_SETMASTER,0)
+	Stop
+ }
+}
+
+ACTOR MarinePlayerT3DBFGShotShockwaveDmg : PlayerT3DBFGShotShockwaveDmg { DamageType "Players" }
+
+ACTOR MarineT3DBFGBall : PlayerT3DBFGBall
+{
+ States
+ {
+  Death:
+	TNT1 A 0 A_SpawnItemEx("PlayerT3DBFGBoltExp")
+	TNT1 A 0 A_Explode(256,256,0,false,128)
+	TNT1 A 0 A_Quake(4,35*2,0,4096, "None")
+	TNT1 AAAAA 8 A_Explode(256,384,0,false,128) //7 A_Explode 896 damage
+	TNT1 A 10
+	Stop
+ }
+}
+
+Actor UACGuyMedic : UACBaseMarine
+{
+ AttackSound "weapons/tpfire"
+ Tag "$DrUACGuyMedic"
+ Translation "112:127=%[0.00,0.00,0.00]:[2.00,2.00,2.00]"
+ DropItem "Handgun" 128 1
+ DropItem "BulletBox" 256 100
+ DropItem "PortableMedkit" 256
+ DropItem "PortableMedkit" 175
+ DropItem "PortableMedkit" 128
+ DropItem "StimKit" 256
+ DropItem "StimKit" 175
+ DropItem "StimKit" 128
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
+	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	PM3D A 10 A_Look
+	Goto Idle
+  See:
+	PM3D A 0 A_JumpIfTargetInLOS("Strafing")
+	PM3D AABB 3 A_Chase
+	TNT1 A 0 A_Jump(16,"GiveUp")
+	TNT1 A 0 A_Jump(60,"Healing")
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	PM3D CCDD 3 A_Chase
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	Loop
+ Idle:
+	PM3D A 0 A_Jump(48,"Find")
+	PM3D A 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PM3D AABB 3 A_GiveInventory("AIPatroling",1)
+	TNT1 A 0 A_Jump(58,"Healing")
+	PM3D C 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PM3D CCDD 3 A_GiveInventory("AIPatroling",1)
+	Loop
+  Healing:
+	PM3D E 1
+	PM3D E 12 A_RadiusGive("MarineHealingItem",512,RGF_GIVESELF|RGF_MONSTERS|RGF_PLAYERS,1)
+	Goto See
+  Missile:
+	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine","FightHealing")
+  Normal:
+	PM3D EE 5 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	TNT1 AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	PM3D F 4 Bright A_CustomBulletAttack(22.5,0,1,random(1,5)*3,"MarineBulletPuff")
+	PM3D E 3 A_GiveInventory("AIStrafing",2)
+	TNT1 AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	PM3D F 4 Bright A_CustomBulletAttack(22.5,0,1,random(1,5)*3,"MarineBulletPuff")
+	PM3D E 3 A_GiveInventory("AIStrafing",2)
+	TNT1 AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	PM3D F 4 Bright A_CustomBulletAttack(22.5,0,1,random(1,5)*3,"MarineBulletPuff")
+	PM3D E 3 A_GiveInventory("AIStrafing",2)
+	TNT1 AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	PM3D F 4 Bright A_CustomBulletAttack(22.5,0,1,random(1,5)*3,"MarineBulletPuff")
+	PM3D E 3 A_GiveInventory("AIStrafing",2)
+	TNT1 AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	PM3D F 4 Bright A_CustomBulletAttack(22.5,0,1,random(1,5)*3,"MarineBulletPuff")
+	PM3D E 3 A_GiveInventory("AIStrafing",2)
+	TNT1 AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	PM3D F 4 Bright A_CustomBulletAttack(22.5,0,1,random(1,5)*3,"MarineBulletPuff")
+	PM3D E 3 A_GiveInventory("AIStrafing",1)
+	Goto See
+  FightHealing:
+	PM3D E 1
+	PM3D E 0 A_RadiusGive("MarineHealingItem",512,RGF_GIVESELF|RGF_MONSTERS|RGF_PLAYERS,1)
+	PM3D EEEE 4 A_GiveInventory("AIStrafing",1)
+	Goto See
+  FragGrenade:
+	PM3D E 1 A_JumpIfCloser(1000,1)
+	Goto Missile
+	PM3D E 0 A_JumpIfCloser(280,"Missile")
+	PM3D E 6 A_GiveInventory("AIStrafing",1)
+	PM3D EEE 4 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	PM3D E 6 A_CustomMissile("MThrownGrenade",32,0,0,2,10)
+	PM3D E 1
+	Goto See
+  LandMine:
+	PM3D E 1 A_JumpIfCloser(500,1)
+	Goto FragGrenade
+	PM3D E 0 A_Jump(127,"SpringMine")
+	PM3D E 3 A_GiveInventory("AIStrafing",1)
+	PM3D EE 4 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	PM3D E 6 A_CustomMissile("MarineThrownMine",32,0,0,2,10)
+	PM3D E 1
+	Goto See
+  SpringMine:
+	PM3D E 3 A_GiveInventory("AIStrafing",1)
+	PM3D EE 4 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	PM3D E 6 A_CustomMissile("MarineSpringMineSet",32,0,0,2,10)
+	PM3D E 1
+	Goto See
+  Pain:
+	PM3D G 3 A_GiveInventory("AIStrafing",1)
+	PM3D G 3 A_Pain
+	Goto See
+ }
+}
+
+Actor MarineHealingItemActive : Inventory{Inventory.MaxAmount 1}
+Actor MarineHealingItem : AIStrafing
+{
+ States
+ {
+  Pickup:
+	TNT1 A 0 ACS_NamedExecuteAlways("Marine Healing",0,0,0,0)
+	Stop
+ }
+}
+
+Actor MarineHealingEffect
+{
+ +NOGRAVITY
+ +CLIENTSIDEONLY
+ +NOTIMEFREEZE
+ Renderstyle Add
+ Alpha 1.0
+ Scale 0.15
+ States
+ {
+  Spawn:
+	PLUS A 2 Bright A_FadeOut
+	Wait
+ }
+}
+
+Actor UACGuyDispenser : UACBaseMarine
+{
+ AttackSound "weapons/tpfire"
+ Tag "$DrUACGuyDispenser"
+ Translation "112:127=96:111"
+ DropItem "Handgun" 128 1
+ DropItem "BulletBox" 256 100
+ DropItem "ModdedBackpack" 256
+ DropItem "ModdedBackpack" 175
+ DropItem "ModdedBackpack" 128
+ DropItem "AmmoPack" 256
+ DropItem "AmmoPack" 175
+ DropItem "AmmoPack" 128
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
+	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	PB4K A 10 A_Look
+	Goto Idle
+  See:
+	PB4K A 0 A_JumpIfTargetInLOS("Strafing")
+	PB4K AABB 3 A_Chase
+	TNT1 A 0 A_Jump(16,"GiveUp")
+	TNT1 A 0 A_Jump(60,"Healing")
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	PB4K CCDD 3 A_Chase
+	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	Loop
+  Idle:
+	PB4K A 0 A_Jump(48,"Find")
+	PB4K A 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PB4K AABB 3 A_GiveInventory("AIPatroling",1)
+	TNT1 A 0 A_Jump(58,"Healing")
+	PB4K C 0 A_SpawnItem("FootStep",0,0,0,0)
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	PB4K CCDD 3 A_GiveInventory("AIPatroling",1)
+	Loop
+  Healing:
+	PB4K E 1
+	PB4K E 12 A_RadiusGive("MarineAmmoItem",512,RGF_PLAYERS,1)
+	Goto See
+  Missile:
+	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine","FightHealing")
+  Normal:
+	PB4K EE 5 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	TNT1 AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	PB4K F 4 Bright A_CustomBulletAttack(22.5,0,1,random(1,5)*3,"MarineBulletPuff")
+	PB4K E 3 A_GiveInventory("AIStrafing",2)
+	TNT1 AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	PB4K F 4 Bright A_CustomBulletAttack(22.5,0,1,random(1,5)*3,"MarineBulletPuff")
+	PB4K E 3 A_GiveInventory("AIStrafing",2)
+	TNT1 AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	PB4K F 4 Bright A_CustomBulletAttack(22.5,0,1,random(1,5)*3,"MarineBulletPuff")
+	PB4K E 3 A_GiveInventory("AIStrafing",2)
+	TNT1 AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	PB4K F 4 Bright A_CustomBulletAttack(22.5,0,1,random(1,5)*3,"MarineBulletPuff")
+	PB4K E 3 A_GiveInventory("AIStrafing",2)
+	TNT1 AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	PB4K F 4 Bright A_CustomBulletAttack(22.5,0,1,random(1,5)*3,"MarineBulletPuff")
+	PB4K E 3 A_GiveInventory("AIStrafing",2)
+	TNT1 AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	PB4K F 4 Bright A_CustomBulletAttack(22.5,0,1,random(1,5)*3,"MarineBulletPuff")
+	PB4K E 3 A_GiveInventory("AIStrafing",1)
+	Goto See
+  FightHealing:
+	PB4K E 1
+	PB4K E 0 A_RadiusGive("MarineAmmoItem",512,RGF_PLAYERS,1)
+	PB4K EEEE 4 A_GiveInventory("AIStrafing",1)
+	Goto See
+  FragGrenade:
+	PB4K E 1 A_JumpIfCloser(1000,1)
+	Goto Missile
+	PB4K E 0 A_JumpIfCloser(280,"Missile")
+	PB4K E 6 A_GiveInventory("AIStrafing",1)
+	PB4K EEE 4 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	PB4K E 6 A_CustomMissile("MThrownGrenade",32,0,0,2,10)
+	PB4K E 1
+	Goto See
+  LandMine:
+	PB4K E 1 A_JumpIfCloser(500,1)
+	Goto FragGrenade
+	PB4K E 0 A_Jump(127,"SpringMine")
+	PB4K E 3 A_GiveInventory("AIStrafing",1)
+	PB4K EE 4 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	PB4K E 6 A_CustomMissile("MarineThrownMine",32,0,0,2,10)
+	PB4K E 1
+	Goto See
+  SpringMine:
+	PB4K E 3 A_GiveInventory("AIStrafing",1)
+	PB4K EE 4 A_GiveInventory("AIStrafing",1)
+	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	PB4K E 6 A_CustomMissile("MarineSpringMineSet",32,0,0,2,10)
+	PB4K E 1
+	Goto See
+  Pain:
+	PB4K G 3 A_GiveInventory("AIStrafing",1)
+	PB4K G 3 A_Pain
+	Goto See
+ }
+}
+
+Actor MarineAmmoItemActive : Inventory{Inventory.MaxAmount 1}
+Actor MarineAmmoItem : AIStrafing
+{
+ States
+ {
+  Pickup:
+	NULL A 0 ACS_NamedExecuteAlways("Marine Ammunition",0,0,0,0)
+	Stop
+ }
+}
+
+Actor MarineAmmoEffect : MarineHealingEffect
+{
+ Scale 0.10
+ States
+ {
+  Spawn:
+	BULP A 2 Bright A_FadeOut
+	Wait
+ }
+}

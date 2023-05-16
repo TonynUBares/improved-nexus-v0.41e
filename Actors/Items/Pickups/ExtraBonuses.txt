@@ -1,0 +1,212 @@
+ACTOR LegendaryRedStar : RedStar { +NOTIMEFREEZE }
+ACTOR LegendaryRedSparkleSpawner : redSparkleSpawner
+{
+ +NOTIMEFREEZE
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 AA 2 A_SpawnItemEx("LegendaryRedStar", random(-15, 15), random(-15, 15), random(0, 16), 0, 0, 0, 0, 128)
+	Stop
+ }
+}
+
+ACTOR LegendaryOrangeStar : OrangeStar { +NOTIMEFREEZE }
+ACTOR LegendaryOrangeSparkleSpawner : OrangeSparkleSpawner
+{
+ +NOTIMEFREEZE
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 AA 2 A_SpawnItemEx("LegendaryOrangeStar", random(-15, 15), random(-15, 15), random(0, 16), 0, 0, 0, 0, 128)
+	Stop
+ }
+}
+
+ACTOR LegendaryRedSphereFlare : RedSphereFlare { +NOTIMEFREEZE }
+
+Actor HellfireLifeEssence : NewHealthBonus
+{
+ Scale 0.8
+ Inventory.Amount 30
+ Inventory.MaxAmount 666
+ Inventory.PickupMessage "Hellfire Health Bonus"
+ +INVENTORY.BIGPOWERUP
+ +NOTIMEFREEZE
+ -FLOAT
+ States
+ {
+  Spawn:
+	HHBZ A 0
+	TNT1 A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,4)
+  SpawnLoop:
+	HHBZ ABC 4
+	Loop
+ }
+}
+
+Actor HellfireArmorBonus : ComplexArmorBonus
+{
+ Armor.SaveAmount 1
+ Armor.MaxSaveAmount 666
+ DamageFactor "Normal", 0.4
+ DamageFactor "PDTBFG", 0.3
+ DamageFactor "PDTBFGTracer", 0.3
+ DamageFactor "Cyber10K", 0.05
+ DamageFactor "Legendary", 0.3
+ DamageFactor "LegendaryGuru", 0.3
+ DamageFactor "BFGSplash", 0.3
+ DamageFactor "BFGSpray", 0.3
+ DamageFactor "Fire", 0.2
+ DamageFactor "SatanGuard", 0.35
+ Inventory.Icon "HABZC0"
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,4)
+  SpawnLoop:
+	HABZ CDEF 4 Bright
+	Loop
+ }
+}
+
+Actor HellfireArmorBonusMax : CustomInventory 
+{
+ Scale 1.0
+ Inventory.Pickupmessage "$CFLegendaryArmorBonusMaxPickup"
+ Inventory.PickupSound "pickups/armorbonusmax"
+ +NOTIMEFREEZE
+ -INVENTORY.ALWAYSPICKUP
+ -COUNTITEM
+ +INVENTORY.BIGPOWERUP
+ States
+ {
+  Spawn:
+	HABZ A 0
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ArmorFlags") == 1,"HoldAndDestroy")
+	TNT1 A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,4)
+  SpawnLoop:
+	HABZ CDEF 4 Bright
+	Loop
+  Pickup:
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ArmorBonus",40,25,500) == 0, "Null")
+	TNT1 A 0 A_RailWait
+	TNT1 A 0 ACS_NamedExecuteWithResult("GiveArmorBonus",40,25,500)
+    Stop
+  }
+}
+
+
+Actor EnragedLegendaryLifeEssence : NewHealthBonus 
+{
+ Scale 0.7
+ Inventory.Amount 35
+ Inventory.MaxAmount 750
+ Inventory.PickupMessage "Enraged Health Bonus"
+ +INVENTORY.BIGPOWERUP
+ +NOTIMEFREEZE
+ -FLOAT
+ States
+ {
+  Spawn:
+	BEXF A 0
+	TNT1 A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,54)
+  SpawnLoop:
+	BEXF ABCD 3 Bright
+	Loop
+ }
+}
+
+Actor EnragedLegendaryArmorBonus : ComplexArmorBonus
+{
+  Armor.SaveAmount 1
+  Armor.MaxSaveAmount 750
+  Inventory.Icon "ELGAA0"
+  DamageFactor "Normal", 0.4
+  DamageFactor "PDTBFG", 0.3
+  DamageFactor "PDTBFGTracer", 0.3
+  DamageFactor "Cyber10K", 0.4
+  DamageFactor "Legendary", 0.3
+  DamageFactor "Legendary1", 0.3
+  DamageFactor "LegendaryGuru", 0.3
+  DamageFactor "BFGSplash", 0.3
+  DamageFactor "BFGSpray", 0.3
+  DamageFactor "SatanGuard", 0.35
+  DamageFactor "PlayerLegendary", 0.1
+  States
+  {
+  Spawn:
+	TNT1 A 0
+	Stop
+  }
+}
+
+ACTOR EnragedLegendaryArmorBonusMax : CustomInventory
+{
+ scale 0.75
+ Inventory.Pickupmessage "Enraged Armor Bonus"
+  +NOTIMEFREEZE
+  -INVENTORY.ALWAYSPICKUP
+  -COUNTITEM
+  +INVENTORY.BIGPOWERUP
+ States
+ {
+  Spawn:
+	BXXF A 0
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ArmorFlags") == 1,"HoldAndDestroy")
+	TNT1 A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,55)
+  SpawnLoop:
+	BXXF ABCDEFGHIJKJIHGFEDCB 2 Bright
+	Loop
+  Pickup:
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ArmorBonus",35,26,750) == 0, "Null")
+	TNT1 A 0 A_RailWait
+	TNT1 A 0 ACS_NamedExecuteWithResult("GiveArmorBonus",35,26,750)
+	Stop
+ }
+}
+
+
+/*Actor SuperHealthBonus : HellfireHealthBonus
+{
+ Scale 0.8
+ Inventory.Amount 128
+ Inventory.PickupSound "Pickups/LichSkull"
+ Inventory.PickupMessage "Mysterious Health Bonus filled with Pure Rage"
+ Inventory.MaxAmount 6666
+ +INVENTORY.BIGPOWERUP
+ +NOTIMEFREEZE
+ +BIGPOWERUP
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,55,107)
+  SpawnLoop:
+	EHLZ A 5 Bright
+	Loop
+ }
+}
+
+Actor SuperArmorBonus : ComplexArmorBonus 
+{
+ +NORADIUSDMG
+ +NOTIMEFREEZE
+ +BIGPOWERUP
+ -INVENTORY.QUIET
+ +INVENTORY.BIGPOWERUP
+ Scale 0.8
+ Armor.SaveAmount 128
+ Armor.MaxSaveAmount 6666
+ Inventory.PickupMessage "Mysterious Armor Bonus Filled with Pure Rage"
+ DamageFactor  0.01
+ Inventory.Icon "EHLXA0"
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,55,108)
+  SpawnLoop:
+	EHLX A 5 Bright
+	Loop
+ }
+}

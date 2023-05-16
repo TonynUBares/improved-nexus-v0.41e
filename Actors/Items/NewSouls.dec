@@ -1,0 +1,196 @@
+Actor PainLordSoul : CustomInventory 17756
+{
+  //$Category Powerups/CF
+  //$Sprite SOITA0
+  //$Title "Pain Lord Soul"
+  Inventory.Amount 1
+  Inventory.MaxAmount 2
+  Inventory.PickupSound "Soul/Fire"
+  Inventory.PickupMessage "You have acquired the Pain Lord's soul!"
+  Inventory.Icon SOITA0
+  Tag "Pain Lord Soul - Acts as a portable Soulsphere, or upgrades a certain weapon..."
+  +INVBAR
+  +FLOORCLIP
+  States
+  {
+  Spawn:
+    TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckMods",3) == 1,"HoldAndDestroy")
+  SpawnLoop:
+	TNT1 A 1 A_SpawnItemEx("PainLordSoulItemFX",0,0,18,frandom(-1,1),frandom(-1,1),frandom(-1,1),0,SXF_CLIENTSIDE)
+    Loop
+  Pickup:
+    TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckMods",3) == 1,"Null")
+	TNT1 A 0 A_RailWait
+	Stop
+  Use:
+    TNT1 A 0 A_JumpIfInventory("PlayerMorphed",1,"Null")
+	TNT1 A 0 A_JumpIfInventory("OccultDarkMatterToken",1,"GiveItem")
+    TNT1 A 0 A_JumpIfInventory("OccultSpellbook",1,"SpellbookUpgrade")
+  GiveItem:
+	TNT1 A 0 A_Playsound("Soul/Hit")
+	TNT1 A 0 A_GiveInventory("ModdedSoulSphere")
+    Stop
+  SpellbookUpgrade:
+	TNT1 A 0 A_Print("The Occult Spellbook now has the ability to use Dark Matter!")
+	TNT1 A 0 A_Playsound("Soul2/Hit")
+	TNT1 A 0 A_GiveInventory("OccultCanUpgrade")
+	TNT1 A 0 A_GiveInventory("OccultDarkMatterToken")
+	Stop
+  } 
+}
+Actor PainLordSoulItemFX
+{
+  +CLIENTSIDEONLY
+  +NOINTERACTION
+  RenderStyle Add
+  Alpha 0.45
+  Scale 0.6
+  States
+  {
+  Spawn:
+	TNT1 A 2
+	PUF6 BDFHJLNPRTVXZ 1
+	PUF7 B 1 A_FadeOut(0.2)
+	Wait
+  }
+}
+
+Actor ChaosEssence : PainLordSoul 17757
+{
+  //$Category Powerups/CF
+  //$Sprite SOITD0
+  //$Title "Chaos Essence"
+  Inventory.PickupMessage "You have acquired an essence of Chaos!"
+  Inventory.Icon SOITD0
+  Tag "Chaos Essence - Acts as a portable Life Sphere, or upgrades a certain weapon..."
+  States
+  {
+  Spawn:
+    TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckMods",3) == 1,"HoldAndDestroy")
+  SpawnLoop:
+	TNT1 A 1 A_SpawnItemEx("ChaosEssenceItemFX",0,0,18,frandom(-1,1),frandom(-1,1),frandom(-1,1),0,SXF_CLIENTSIDE)
+    Loop
+  Pickup:
+    TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckMods",3) == 1,"Null")
+	TNT1 A 0 A_RailWait
+	Stop
+  Use:
+    TNT1 A 0 A_JumpIfInventory("PlayerMorphed",1,"Null")
+	TNT1 A 0 A_JumpIfInventory("OccultChaosLightningToken",1,"GiveItem")
+    TNT1 A 0 A_JumpIfInventory("OccultSpellbook",1,"SpellbookUpgrade")
+  GiveItem:
+	TNT1 A 0 A_Playsound("Soul/Hit")
+	TNT1 A 0 A_GiveInventory("LifeSphere")
+    Stop
+  SpellbookUpgrade:
+	TNT1 A 0 A_Print("The Occult Spellbook now has the ability to use Chaos Lightning!")
+	TNT1 A 0 A_Playsound("Soul2/Hit")
+	TNT1 A 0 A_GiveInventory("OccultCanUpgrade")
+	TNT1 A 0 A_GiveInventory("OccultChaosLightningToken")
+	Stop
+  } 
+}
+Actor ChaosEssenceItemFX : PainLordSoulItemFX
+{
+  States
+  {
+  Spawn:
+	TNT1 A 2
+	GSL1 BDFHJLNPRTVXZ 1
+	GSL2 B 1 A_FadeOut(0.2)
+	Wait
+  }
+}
+
+
+ACTOR DarkvileEnergy : PainLordSoul
+{
+   Inventory.InterHubAmount 2
+   Inventory.PickupMessage "You have acquired the Darkvile's Energy!"
+   Inventory.Icon "SOITE0"
+   Tag "Darkvile Energy - Acts as a portable Life Sphere, or upgrades a certain weapon..."
+   States
+   {
+   Spawn:
+      TNT1 A 1 A_SpawnItemEx("DarkvileEnergyItemFX",0,0,18,frandom(-1,1),frandom(-1,1),frandom(-1,1))
+      Loop
+   Use:
+      TNT1 A 0 A_JumpIfInventory("SlicerUpgradeToken",1,"GiveItem")
+      TNT1 A 0 A_JumpIfInventory("OccultSpellbook",1,"SpellbookUpgrade")
+   GiveItem:
+	  TNT1 A 0 A_Playsound("Soul/Hit")
+	  TNT1 A 0 A_GiveInventory("LifeSphere")
+      Stop
+   SpellbookUpgrade:
+      TNT1 A 0 A_JumpIfInventory("OccultSlicerToken",1,"SpellbookUpgrade2")
+	  TNT1 A 0 A_Print("The Occult Spellbook now has the ability to use Slicer!")
+	  TNT1 A 0 A_Playsound("Soul2/Hit")
+	  TNT1 A 0 A_GiveInventory("OccultCanUpgrade")
+	  TNT1 A 0 A_GiveInventory("OccultSlicerToken")
+	  Stop
+   SpellbookUpgrade2:
+      TNT1 A 0 A_Print("The Slicer spell has been upgraded!")
+	  TNT1 A 0 A_Playsound("Soul2/Hit")
+	  TNT1 A 0 A_GiveInventory("SlicerUpgradeToken")
+	  Stop
+   } 
+}
+
+Actor DarkvileEnergyItemFX : PainLordSoulItemFX
+{
+	States
+	{
+	Spawn:
+	   TNT1 A 2
+	   RSL1 BDFHJLNPRTVXZ 1
+	   RSL2 B 1 A_FadeOut(0.2)
+	   Wait
+	}
+}
+
+ACTOR VileEssence : PainLordSoul
+{
+   Inventory.InterHubAmount 2
+   Inventory.PickupMessage "You have acquired an Archvile's soul!"
+   Inventory.Icon "SOITV0"
+   Tag "Archvile's Essence - Acts as a portable Life Sphere, or upgrades a certain weapon..."
+   States
+   {
+   Spawn:
+      TNT1 A 1 A_SpawnItemEx("VileEssenceItemFX",0,0,18,frandom(-1,1),frandom(-1,1),frandom(-1,1))
+      Loop
+   Use:
+      TNT1 A 0 A_JumpIfInventory("SummonerUpgradeToken",1,"GiveItem")
+      TNT1 A 0 A_JumpIfInventory("OccultSpellbook",1,"SpellbookUpgrade")
+   GiveItem:
+	  TNT1 A 0 A_Playsound("Soul/Hit")
+	  TNT1 A 0 A_GiveInventory("LifeSphere")
+      Stop
+   SpellbookUpgrade:
+      TNT1 A 0 A_JumpIfInventory("SummonerToken",1,"SpellbookUpgrade2")
+	  TNT1 A 0 A_Print("The Occult Spellbook now has the ability to use Necro Summoner!")
+	  TNT1 A 0 A_Playsound("Soul2/Hit")
+	  TNT1 A 0 A_GiveInventory("OccultCanUpgrade")
+	  TNT1 A 0 A_GiveInventory("SummonerToken")
+	  Stop
+   SpellbookUpgrade2:
+      TNT1 A 0 A_Print("The Necro Summoner spell has been upgraded!")
+	  TNT1 A 0 A_Playsound("Soul2/Hit")
+	  TNT1 A 0 A_GiveInventory("SummonerUpgradeToken")
+	  Stop
+   } 
+}
+
+Actor VileEssenceItemFX : PainLordSoulItemFX
+{
+	States
+	{
+	Spawn:
+	   TNT1 A 2
+	   VSL1 BDFHJLNPRTVXZ 1
+	   VSL2 B 1 A_FadeOut(0.2)
+	   Wait
+	}
+}

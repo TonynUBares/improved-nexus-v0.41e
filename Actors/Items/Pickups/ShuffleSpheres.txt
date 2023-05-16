@@ -1,0 +1,130 @@
+//-----------Shuffle Sphere
+
+ACTOR ShuffleSphere : CustomInventory
+{
+  +COUNTITEM
+  +INVENTORY.AUTOACTIVATE
+  +INVENTORY.ALWAYSPICKUP
+  +INVENTORY.BIGPOWERUP
+  //+FLOATBOB
+  -FLOAT
+  Inventory.PickupMessage "A Shuffle Sphere! Let's see what you've won..." 
+  States
+  {
+  Spawn:
+ 	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("TTKGetCVar",55,1) != 0,"Remove")
+	SHUF A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,105)
+	Goto SpawnLoop
+  Spawnloop:
+	"####" A 1 Bright
+	Loop
+ Remove:
+	TNT1 A 0 A_SpawnItemEx("CFBlurSphereSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	Stop
+ Pickup:
+	TNT1 A 1 A_SpawnItemEx ("ShuffleSpawner")
+	Stop
+  }
+}
+
+//-----------Leg. Shuffle Sphere
+
+ACTOR LegendaryShuffleSphere : ShuffleSphere
+{
+  Inventory.PickupMessage "A Legendary Shuffle Sphere! Let's see what you get!!!" 
+  States
+  {
+  Spawn:
+ 	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("TTKGetCVar",55,1) != 0,"Remove")
+	LSHU A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,13,20)
+	Goto SpawnLoop
+  Pickup:
+	TNT1 A 1 A_SpawnItemEx ("LegShuffleSpawner")
+	Stop
+ }
+}
+
+//-----------Enraged Leg. Shuffle Sphere
+
+ACTOR EnragedLegendaryShuffleSphere : ShuffleSphere
+{
+  Inventory.PickupMessage "An Enraged Legendary Shuffle Sphere! Keep Calm and Get a gift..." 
+  States
+  {
+  Spawn:
+ 	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("TTKGetCVar",55,1) != 0,"Remove")
+	ESHU A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,10,37)
+	Goto SpawnLoop
+  Pickup:
+	TNT1 A 1 A_SpawnItemEx ("ELegShuffleSpawner")
+	stop
+  }
+}
+
+//-----------True Leg. Shuffle Sphere
+
+ACTOR TrueLegendaryShuffleSphere : ShuffleSphere
+{
+  Inventory.PickupMessage "\c[l5]A True Legendary Shuffle Sphere! Feelin lucky, son?" 
+  States
+  {
+  Spawn:
+ 	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("TTKGetCVar",55,1) != 0,"Remove")
+	TSHU A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,6,19)
+	Goto SpawnLoop
+  Pickup:
+	TNT1 A 1 A_SpawnItemEx ("TLegShuffleSpawner")
+	Stop
+ }
+}
+
+//-----------Nemesis Shuffle Sphere
+
+ACTOR NemesisShuffleSphere : ShuffleSphere
+{
+  Inventory.PickupMessage "A Nemesis Shuffle Sphere! Heavy stuff, what could this possibly give?!" 
+  States
+  {
+  Spawn:
+ 	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("TTKGetCVar",55,1) != 0,"Remove")
+	NSHU A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,28,109)
+	Goto SpawnLoop
+  Pickup:
+    TNT1 A 1 A_SpawnItemEx ("NemesisShuffleSpawner")
+    stop
+  }
+}
+
+//-----------Weapon Shuffle Sphere
+
+ACTOR WeaponShuffleSphere : ShuffleSphere
+{
+  Inventory.PickupMessage "A weapon Shuffle Sphere! Random Weaponry, nuff said!" 
+  States
+  {
+  Spawn:
+ 	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("TTKGetCVar",55,1) != 0,"Remove")
+	WSHU A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,110)
+	Goto SpawnLoop
+  Pickup:
+	TNT1 A 1 A_SpawnItemEx ("WShuffleSpawner")
+	Stop
+ }
+}
+
+//-----------Item Shuffle Sphere
+
+ACTOR ItemShuffleSphere : ShuffleSphere
+{
+  Inventory.PickupMessage "A item Shuffle Sphere! Feeling lucky?" 
+  States
+  {
+  Spawn:
+ 	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("TTKGetCVar",55,1) != 0,"Remove")
+	ISHU A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,111)
+	Goto SpawnLoop
+  Pickup:
+	TNT1 A 1 A_SpawnItemEx ("IShuffleSpawner")
+	Stop
+ }
+}

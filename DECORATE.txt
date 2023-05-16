@@ -1,0 +1,294 @@
+//NemesisHellsmith
+#INCLUDE "Actors/Weapons/NemUnmaker.dec"
+#INCLUDE "Actors/Weapons/Slot8/Stingray.dec"
+#INCLUDE "Actors/Weapons/Slot7/BLG.dec"
+#INCLUDE "Actors/Weapons/FlakCannon.dec"
+#INCLUDE "Actors/HellsmithAmmo.txt"
+#INCLUDE "Actors/Monsters/NemHellsmith.dec"
+#INCLUDE "Actors/Monsters/ApprenticeOfHell.dec"
+#INCLUDE "Actors/Monsters/Hellsmith.dec"
+#INCLUDE "Actors/Monsters/Freezemotaur.dec"
+#INCLUDE "Actors/Monsters/Supremotaur.dec"
+#INCLUDE "Actors/Monsters/Fakeminotaurs.dec"
+
+
+ACTOR NemHSCounter : Inventory
+{
+Inventory.Amount 1
+Inventory.MaxAmount 255
+-INVBAR
+}
+
+//Nexus
+//
+#include "Actors/DatPlayer.txt"
+#include "Actors/ExDTRifleshit.txt"
+#include "Actors/FreezeBFGInheritance.txt"
+#include "Actors/Misc.txt"
+#include "Actors/Spawners/DecentSpawner.txt"
+#include "Actors/Spawners/TXSShuffleSpawners.txt"
+
+//Effects
+#include "Actors/Effects/TXSPowerLines.txt"
+#include "Actors/Effects/TXSSparkles.txt"
+#include "Actors/Effects/TXSSpecials.txt"
+#include "Actors/Effects/SHIROEffects.txt"
+
+//Weapons
+#include "Actors/Weapons/Slot0/TrueLegendaryRailgun.txt"
+#include "Actors/Weapons/Slot0/TrueLegendaryPlasmaticCannon.txt"
+#include "Actors/Weapons/Slot0/TrueLegendaryIonStriker.txt"
+#include "Actors/Weapons/Slot0/TrueLegendaryPulverizer.txt"
+
+#include "Actors/Weapons/Slot1/DemonTechAxe.txt"
+#include "Actors/Weapons/Slot1/LegendaryC4.txt"
+
+#include "Actors/Weapons/Slot3/PlasmaShotgun.txt"
+#include "Actors/Weapons/Slot3/LegendaryQuadShotgun.txt"
+#include "Actors/Weapons/Slot3/EnragedLegendaryCoachgun.txt"
+#include "Actors/Weapons/Slot3/HackroidASG.txt"
+
+#include "Actors/Weapons/Slot5/LegendaryBehemothCannon.txt"
+#include "Actors/Weapons/Slot5/HellstormCannon.txt"
+
+#include "Actors/Weapons/Slot6/HackroidRifle.txt"
+#include "Actors/Weapons/Slot6/TechBlaster.txt"
+#include "Actors/Weapons/Slot6/TechVulcan.txt"
+#include "Actors/Weapons/Slot6/AntimatterRepeater.txt"
+#include "Actors/Weapons/Slot6/TechRipper.txt"
+#include "Actors/Weapons/Slot6/TechErasus.txt"
+
+#include "Actors/Weapons/Slot7/LegendaryDemonTechDevastator.txt"
+#include "Actors/Weapons/Slot7/BFG3500.txt"
+
+#include "Actors/Weapons/Slot8/LegendaryFusionCannon.txt"
+#include "Actors/Weapons/Slot8/Welder.txt"
+
+#include "Actors/Weapons/Slot9/Redeemer.txt"
+
+#include "Actors/Weapons/SphereOfPowerWeapons/EmpoweredFlakCannon.txt"
+
+//CDI Marines
+#include "Actors/cdi_marines.txt"
+
+//Monsters
+
+#include "Actors/Monsters/Zombies/TRCZombie.txt"
+#include "Actors/Monsters/Zombies/M79Zombie.txt"
+#include "Actors/Monsters/Zombies/HackroidZombie.txt"
+#include "Actors/Monsters/Zombies/PhaseShotgunCommando.txt"
+#include "Actors/Monsters/Zombies/PhaseMoon.txt"
+#include "Actors/Monsters/Zombies/DeathAssassin.txt"
+#include "Actors/Monsters/Zombies/FormerLieutenant.txt"
+#include "Actors/Monsters/Zombies/FlakCannonZombie.txt"
+#include "Actors/Monsters/Zombies/PyroZombie.txt"
+#include "Actors/Monsters/Zombies/CyborgShotgunner.txt"
+#include "Actors/Monsters/Zombies/HackroidAssaultCaptain.txt"
+#include "Actors/Monsters/Zombies/NemesisSSGZombie.txt"
+#include "Actors/Monsters/Zombies/EnragedLegendaryLieutenant.txt"
+#include "Actors/Monsters/Zombies/TechErasusZombie.txt"
+#include "Actors/Monsters/Zombies/HellStormGeneral.txt"
+#include "Actors/Monsters/Zombies/EFGLunatic.txt"
+#include "Actors/Monsters/Zombies/LegendaryGeneral.txt"
+#include "Actors/Monsters/Zombies/VexedNemesisStealthTrooper.txt"
+
+#include "Actors/Monsters/Imps/HellRazers.txt"
+#include "Actors/Monsters/Imps/DarkHellRazer.txt"
+#include "Actors/Monsters/Imps/Drone.txt"
+#include "Actors/Monsters/Imps/Saboteur.txt"
+#include "Actors/Monsters/Imps/Anubian.txt"
+#include "Actors/Monsters/Imps/DarkAnniImp.txt"
+
+#include "Actors/Monsters/Pinkys/Loper.txt"
+#include "Actors/Monsters/Pinkys/LegendaryBeheadedKamikaze.txt"
+#include "Actors/Monsters/Pinkys/NemSaw.txt"
+#include "Actors/Monsters/Pinkys/VexedNemesisFiend.txt"
+
+#include "Actors/Monsters/Souls/3Souls.txt"
+#include "Actors/Monsters/Souls/3Cubes.txt"
+
+#include "Actors/Monsters/Cacos/RedeemerCommander.txt"
+#include "Actors/Monsters/Cacos/Cacolatern.txt"
+#include "Actors/Monsters/Cacos/Caconite.txt"
+#include "Actors/Monsters/Cacos/Abbandine.txt"
+#include "Actors/Monsters/Cacos/TechDrone.txt"
+#include "Actors/Monsters/Cacos/VexedNemesisRedeemer.txt"
+
+#include "Actors/Monsters/Pains/TorturedSoul.txt"
+#include "Actors/Monsters/Pains/GrossElemental.txt"
+#include "Actors/Monsters/Pains/Carrier.txt"
+#include "Actors/Monsters/Pains/LukewarmElemental.txt"
+
+
+#include "Actors/Monsters/Arachnos/BabyEraserSpider.txt"
+#include "Actors/Monsters/Arachnos/Arachhunter.txt"
+#include "Actors/Monsters/Arachnos/ArachhunterMKII.txt"
+#include "Actors/Monsters/Arachnos/BabyMastermind.txt"
+#include "Actors/Monsters/Arachnos/ShotgunSpider.txt"
+#include "Actors/Monsters/Arachnos/VexedNemesisBabySentient.txt"
+
+
+#include "Actors/Monsters/Fatsos/RocketFatty.txt"
+#include "Actors/Monsters/Fatsos/Cacobus.txt"
+#include "Actors/Monsters/Fatsos/SuperCacobus.txt"
+#include "Actors/Monsters/Fatsos/VexedNemesisGoliath.txt"
+
+#include "Actors/Monsters/Revs/Huntertron.txt"
+#include "Actors/Monsters/Revs/NightmareFamine.txt"
+#include "Actors/Monsters/Revs/NightmarePestilence.txt"
+#include "Actors/Monsters/Revs/Death.txt"
+#include "Actors/Monsters/Revs/ToxicRevenant.txt"
+#include "Actors/Monsters/Revs/Infected.txt" //Buggy
+
+#include "Actors/Monsters/Knights/Cyberassault.txt"
+#include "Actors/Monsters/Knights/Paladin.txt"
+#include "Actors/Monsters/Knights/VexedNemesisArchon.txt"
+
+#include "Actors/Monsters/Touhous/Kaguya.txt"
+#include "Actors/Monsters/Touhous/Sanae.txt"
+#include "Actors/Monsters/Touhous/Shinki.txt"
+#include "Actors/Monsters/Touhous/Hibachi.txt"
+#include "Actors/Monsters/Touhous/Utsuho.txt"
+#include "Actors/Monsters/Touhous/sin-genjitsu3.txt"
+
+
+#include "Actors/Monsters/Barons/Hellspawn.txt"
+#include "Actors/Monsters/Barons/FrostAfrit.txt"
+#include "Actors/Monsters/Barons/BFGServant.txt"
+#include "Actors/Monsters/Barons/LegendaryCybruiser.txt"
+
+#include "Actors/Monsters/Masterminds/VexedNemesisSentient.txt"
+
+
+#include "Actors/Monsters/Cybers/FrostDemon.txt"
+#include "Actors/Monsters/Cybers/Thamuz.txt"
+#include "Actors/Monsters/Cybers/ThamuzLord.txt"
+#include "Actors/Monsters/Cybers/EnragedLegendaryCyberDemon.txt"
+
+#include "Actors/Monsters/Nazis/Cyberhund.txt"
+#include "Actors/Monsters/Nazis/SSUberSoldierExMinigun.txt"
+#include "Actors/Monsters/Nazis/Darko.txt"
+#include "Actors/Monsters/Nazis/IncubusKaiser.txt"
+#include "Actors/Monsters/Nazis/PanzGrosse.txt"
+#include "Actors/Monsters/Nazis/TrueHitler.txt"
+#include "Actors/Monsters/Nazis/SSDualRocketMan.txt"
+
+#Include "Actors/Monsters/Bosses/CorruptLegCard.txt"
+#Include "Actors/Monsters/Bosses/HellFireCardinal.txt"
+#include "Actors/Monsters/Bosses/HellsMinister.txt"
+#include "Actors/Monsters/Bosses/Maephisto.txt"
+#include "Actors/Monsters/Bosses/doom.txt"
+#include "Actors/Monsters/Bosses/NexusObliterator.txt"
+
+#include "Actors/Monsters/Others/Xmas.txt"
+#include "Actors/Monsters/Others/LegendaryChair.txt"
+#include "Actors/Monsters/Others/HeavySpecOps.txt"
+#include "Actors/Monsters/Others/HellClone.txt"
+
+//Items
+
+#include "Actors/Items/Edits/TXSEdits.txt"
+#include "Actors/Items/Runes/VoidRune.txt"
+#include "Actors/Items/Runes/SkulltagRunes.dec"
+
+#include "Actors/Items/Pickups/DoomSphere.txt"
+#include "Actors/Items/Pickups/VengefulNemesisArmor.txt"
+#include "Actors/Items/Pickups/ExtraBonuses.txt"
+#include "Actors/Items/Pickups/ShuffleSpheres.txt"
+#include "Actors/Items/Pickups/TrueLegSphere.txt"
+#include "Actors/Items/Pickups/CrystalArmor.txt"
+#include "Actors/Items/Pickups/HackedItemPickups.txt"
+#include "Actors/Items/Pickups/SlayerPower.txt"
+#include "Actors/Items/Pickups/AutoMaps.txt"
+#include "Actors/Items/Pickups/TrueLegendaryArmor.txt"
+
+#include "Actors/Items/Inventory/NemesisPowerShard.txt"
+#include "Actors/Items/Inventory/NemesisPowerSphere.txt"
+#include "Actors/Items/Inventory/DemonHearts.txt"
+#include "Actors/Items/Inventory/Shirosphere.txt"
+#include "Actors/Items/Inventory/WingsOfAscension.txt"
+#include "Actors/Items/Inventory/XmasPresents.txt"
+#include "Actors/Items/Inventory/TalismanOfChaos.txt"
+#include "Actors/Items/Inventory/TrueLegAmmoSphere.txt"
+#include "Actors/Items/Inventory/TrueLegTimeSphere.txt"
+#include "Actors/Items/Inventory/ArmageddonChalice.txt"
+#include "Actors/Items/Inventory/TXSCrates.txt"
+#include "Actors/Items/Inventory/TXSTurrets.txt"
+#include "Actors/Items/Inventory/TXSCards.txt"
+#include "Actors/Items/Inventory/VoidCore.txt"
+#include "Actors/Items/Inventory/UraniumCore.txt"
+#include "Actors/Items/Inventory/BrimstoneItem.txt"
+
+#include "Actors/Items/Inventory/cdi_marines_items.txt"
+
+//HDAN
+#include "Actors/HDAN/DarkVile.txt"
+
+#include "Actors/Items/HDANBeacons.dec"
+#include "Actors/Items/NewSouls.dec"
+#include "Actors/Weapons/Slot8/NewOccultSpellbook.dec"
+
+//Spawners
+#include "Actors/Spawners/WeaponEntitySpawner.txt"
+#include "Actors/Spawners/EnemySpawner.txt"
+
+//Barrels
+#include "Actors/Barrels/NemBarrel.txt"
+#include "Actors/Barrels/VNemBarrel.txt"
+#include "Actors/Barrels/TrueLegBarrel.txt"
+#include "Actors/Barrels/BlackHoleBarrel.txt"
+#include "Actors/Barrels/NuclearBarrel.txt"
+#include "Actors/Barrels/InsNukeBarrel.txt"
+#include "Actors/Barrels/FakeLegBarrel.txt"
+#include "Actors/Barrels/HellFireBarrel.txt"
+#include "Actors/Barrels/LegendaryTechBarrel.txt"
+#include "Actors/Barrels/EnragedLegendaryBarrel.txt"
+#include "Actors/Barrels/NemesisTechBarrel.txt"
+#include "Actors/Barrels/VexedNemesisTechBarrel.txt"
+#include "Actors/Barrels/EmpoweredOilBarrel.txt"
+#include "Actors/Barrels/Chest.txt"
+#include "Actors/Barrels/DevilChest.txt"
+#include "Actors/Barrels/AngelChest.txt"
+#include "Actors/Barrels/UnmakerChest.txt"
+
+
+Actor NexusLoadCheck2 : CustomInventory {}
+
+Actor NexStartWeaponCheck : Inventory {inventory.maxamount 1}
+Actor NexStartItemCheck : Inventory {inventory.maxamount 1}
+
+Actor ZandronumMultiplayerInconsistenciesMakeMeVomitBlood : CustomInventory
+{  
+  -COUNTITEM
+  +INVENTORY.QUIET
+  +INVENTORY.UNDROPPABLE
+  +INVENTORY.ALWAYSPICKUP
+  +INVENTORY.AUTOACTIVATE
+  inventory.amount 1
+  inventory.maxamount 0
+  States
+  {
+  Pickup:
+	TNT1 A 1
+	TNT1 A 1 A_TakeInventory("Armor",999999)
+	Stop
+  }
+}
+
+ACTOR NewRailgunTrail : BaseProjectileEffect
+{
++CLIENTSIDEONLY
++NOTIMEFREEZE
+  Scale 0.11
+  States
+  {
+  Spawn:
+	TNT1 A 2
+	CLBA C 1 Bright
+	Goto Spawn2
+  Spawn2:
+	"####" "#" 1 Bright A_FadeOut(0.05)
+	"####" "#" 0 A_SetScale(ScaleX-0.004)
+    Loop
+  }
+}

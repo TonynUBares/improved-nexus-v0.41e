@@ -1,0 +1,298 @@
+Actor DemonTechAxeGiver : CustomInventory
+{
+  Scale 0.9
+  Inventory.Amount 1
+  Inventory.MaxAmount 0
+  Inventory.InterHubAmount 0
+	Inventory.Pickupmessage "You've picked up the Demon Tech Axe!"
+	Tag "Demon Tech Axe"
+	Obituary "%o was ripped to shreds by %k's axe."
+  States
+  {
+  Spawn:
+	WFAX A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",1,0)
+  SpawnLoop:
+	WFAX A -1
+	Loop
+  Pickup:
+	TNT1 A 0 A_JumpIfInventory("DemonTechAxe",1,"JustAmmo")
+  All:
+	TNT1 A 0 A_GiveInventory("DemonTechAxe",1)
+	TNT1 A 0 A_JumpIfInventory("DemonTechAxeGiverCheck",1,"HoldAndDestroy")
+	TNT1 A 0 A_GiveInventory("DemonTechAxeGiverCheck",1)
+	TNT1 A 0 A_GiveInventory("DemonAmmo",40)
+	Stop
+  JustAmmo:
+    TNT1 A 0 A_JumpIfInventory("DemonTechAxeGiverCheck",1,"Null")
+	TNT1 A 0 A_GiveInventory("DemonTechAxeGiverCheck",1)
+	TNT1 A 0 A_GiveInventory("DemonAmmo",40)
+	TNT1 A 0 A_SpawnItemEx("DemonTechAxe")
+	Stop
+  }
+}
+
+Actor DemonTechAxeSpawnerGiver : DemonTechAxeGiver
+{
+  States
+  {
+  JustAmmo:
+    TNT1 A 0 A_JumpIfInventory("DemonTechAxeGiverCheck",1,"Null")
+	TNT1 A 0 A_GiveInventory("DemonTechAxeGiverCheck",1)
+	TNT1 A 0 A_GiveInventory("DemonAmmo",40)
+	Stop
+  }
+}
+
+Actor DemonTechAxeGiverCheck : Inventory { Inventory.Amount 1 Inventory.MaxAmount 1 Inventory.InterHubAmount 0 }
+
+
+
+ACTOR "DemonTechAxe" : FWeapAxe
+{
+	Weapon.YAdjust 0
+	Weapon.AmmoType "DemonAmmo"
+	weapon.Ammogive 120
+	Weapon.AmmoUse 30
+Weapon.SlotNumber 1
+  Weapon.SlotPriority 3.1
+	Inventory.Pickupmessage "You've picked up the Demon Tech Axe!"
+	Tag "Demon Tech Axe"
+	Obituary "%o was ripped to shreds by %k's axe."
+	Weapon.PreferredSkin "Chainsaw-Marine"
+	states
+	{
+		Spawn:
+			WFAX A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",1,0)
+		SpawnLoop:
+		WFAX A 3
+		loop
+		
+		 Select:
+	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",0)
+		TNT1 A 0 A_Raise
+		FAXE A 1 A_FAxeCheckUp
+		Goto Select+1
+		
+		 Deselect:
+	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",1)
+		TNT1 A 0 A_Lower
+		FAXE A 1 A_Lower
+		Goto Deselect+1
+		
+		Ready:
+		TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+		TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+		FAXE A 1 A_FAxeCheckReady
+		Loop
+		
+		Fire:
+		FAXE B 3 Offset(24, 32) A_FAxeCheckAtk
+		TNT1 A 0 A_PlaySound("weapons/axeswing")
+		FAXE C 1 Offset(23, 32)
+		FAXE C 1 Offset(21, 32)
+		FAXE C 1 Offset(19, 32)
+		FAXE D 1 Offset(15, 32)
+		FAXE D 1 Offset(13, 32)
+		TNT1 A 0 A_JumpIfInventory("PowerStrength", 1, "PowerSmash")
+		FAXE D 1 Offset(-5, 70) A_CustomPunch(5*Random(20,30), true, 0, "HitWallPuff", 70)
+		FAXE D 1 Offset(-25, 90)
+		FAXE D 1 Offset(-27, 90)
+		FAXE E 1 Offset(15, 32)
+		FAXE E 2 Offset(10, 54)
+		FAXE E 7 Offset(10, 150)
+		FAXE A 1 Offset(0, 60)
+		FAXE A 1 Offset(0, 52)
+		FAXE A 1 Offset(0, 44)
+		FAXE A 1 Offset(0, 36)
+		FAXE A 10 A_ReFire
+		Goto Ready
+		
+		PowerSmash:
+		FAXE D 1 Offset(-5, 70) A_CustomPunch(30*Random(20,30), true, 0, "HitWallPuff", 70)
+		FAXE D 1 Offset(-25, 90)
+		FAXE D 1 Offset(-27, 90)
+		FAXE E 1 Offset(15, 32)
+		FAXE E 2 Offset(10, 54)
+		FAXE E 7 Offset(10, 150)
+		FAXE A 1 Offset(0, 60)
+		FAXE A 1 Offset(0, 52)
+		FAXE A 1 Offset(0, 44)
+		FAXE A 1 Offset(0, 36)
+		FAXE A 12 A_ReFire
+		Goto Ready
+		
+		SelectGlow:
+		TNT1 A 0 A_Raise
+		FAXE A 1 A_FAxeCheckUpG
+		TNT1 A 0 A_Raise
+		FAXE Y 1 A_FAxeCheckUpG
+		TNT1 A 0 A_Raise
+		FAXE Z 1 A_FAxeCheckUpG
+		TNT1 A 0 A_Raise
+		FAXE Y 1 A_FAxeCheckUpG
+		Loop
+		
+		DeselectGlow:
+		TNT1 A 0 A_Lower
+		FAXE A 1 A_Lower
+		TNT1 A 0 A_Lower
+		FAXE Y 1 A_Lower
+		TNT1 A 0 A_Lower
+		FAXE Z 1 A_Lower
+		TNT1 A 0 A_Lower
+		FAXE Y 1 A_Lower
+		Loop
+		
+		ReadyGlow:
+		TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+		TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+		TNT1 A 0 A_PlaySound("weapons/hum")
+		FAXE AYZY 6 A_FAxeCheckReadyG
+		Loop
+		
+		FireGlow:
+		FAXE B 3 Offset(48, 16)
+		TNT1 A 0 A_PlaySound("weapons/axeswing")
+		FAXE C 1 Offset(23, 32)
+		FAXE C 1 Offset(21, 32)
+		FAXE C 1 Offset(19, 32)
+		
+		FAXE D 1 Offset(15, 32)
+		FAXE D 1 Offset(13, 32)
+		TNT1 A 0 A_JumpIfInventory("PowerStrength", 1, "PowerSmashGlow")
+		FAXE D 1 Offset(-5, 70) A_CustomPunch(10*Random(30,50), true, CPF_USEAMMO, "DemonTechPuff", 70)
+		FAXE D 1 Offset(-25, 90)
+		FAXE D 1 Offset(-27, 90)
+		FAXE E 1 Offset(15, 32)
+		FAXE E 2 Offset(10, 54)
+		FAXE E 7 Offset(10, 150)
+		FAXE A 1 Offset(0, 60)
+		FAXE A 1 Offset(0, 52)
+		FAXE A 1 Offset(0, 44)
+		FAXE A 1 Offset(0, 36)
+		FAXE A 10 A_ReFire
+		Goto ReadyGlow
+		
+		PowerSmashGlow:
+		FAXE D 1 Offset(-5, 70) A_CustomPunch(40*Random(30,50), true, CPF_USEAMMO, "DemonTechPuff", 70)
+		FAXE D 1 Offset(-25, 90)
+		FAXE D 1 Offset(-27, 90)
+		FAXE E 1 Offset(15, 32)
+		FAXE E 2 Offset(10, 54)
+		FAXE E 7 Offset(10, 150)
+		FAXE A 1 Offset(0, 60)
+		FAXE A 1 Offset(0, 52)
+		FAXE A 1 Offset(0, 44)
+		FAXE A 1 Offset(0, 36)
+		FAXE A 12 A_ReFire
+		Goto ReadyGlow
+		
+ GrenadeCheck:
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAmmo",1,"GrenadeToss")
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	Goto Ready
+	
+ GrenadeToss:
+  	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown") 
+	FAXE A 1 Offset(0,30)
+	FAXE A 1 Offset(0,40)
+	FAXE A 1 Offset(0,50)
+	FAXE A 1 Offset(0,60)
+	FAXE A 1 Offset(0,70)
+	TNT1 A 4 Offset(0,10)
+	HGRN ABC 1 
+	HGRN D 2
+	HGRN EFG 1
+	HGRN HI 2
+	TNT1 A 15 A_PlayWeaponSound("weapons/hgrenadepin")
+	TNT1 A 0 A_PlayWeaponSound("weapons/hgrenadethrow")
+	TNT1 A 0 A_TakeInventory("HandGrenadeAmmo",1)
+	HGNE A 1 A_FireCustomMissile("ThrownGrenade",0,0,0,0)
+	HGRN J 1
+	HGRN KLM 2
+	HGRN NO 1
+	TNT1 A 6
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAmmo",1,2)
+    TNT1 A 0 A_TakeInventory("Hand Grenade",1)
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	TNT1 A 0
+	FAXE A 1 Offset(0,70)
+	FAXE A 1 Offset(0,60)
+	FAXE A 1 Offset(0,50)
+	FAXE A 1 Offset(0,40)
+	FAXE A 1 Offset(0,30)
+	Goto Ready
+	
+ MineCheck:
+	TNT1 A 0 A_JumpIfInventory("MineAmmo",1,"MineToss")
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	Goto Ready
+	
+ MineToss:
+  	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown") 
+	FAXE A 1 Offset(0,30)
+	FAXE A 1 Offset(0,40)
+	FAXE A 1 Offset(0,50)
+	FAXE A 1 Offset(0,60)
+	FAXE A 1 Offset(0,70)
+	TNT1 A 8 Offset(0,10)
+	TNT1 A 0 A_PlayWeaponSound("weapons/hgrenadethrow")
+	MINE ABCDEF 1		
+	TNT1 A 0 A_TakeInventory("MineAmmo",1)	  
+	MINE G 1 A_FireCustomMissile("ThrownMine",0,0,0,0)
+	MINE HI 1
+	MINE JK 2
+	TNT1 A 0 A_JumpIfInventory("MineAmmo",1,2)
+    TNT1 A 0 A_TakeInventory("Land Mine",1)
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	TNT1 A 0
+	TNT1 A 5
+	FAXE A 1 Offset(0,70)
+	FAXE A 1 Offset(0,60)
+	FAXE A 1 Offset(0,50)
+	FAXE A 1 Offset(0,40)
+	FAXE A 1 Offset(0,30)
+	Goto Ready
+	}
+}
+ACTOR HitWallPuff : AxePuff replaces AxePuff
+{
+  +NOBLOCKMAP
+  +NOGRAVITY
+  -PUFFONACTORS
+  RenderStyle Translucent
+  Alpha 1.0
+  SeeSound "weapons/axehit"
+  AttackSound "weapons/axehit"
+  ActiveSound "FighterHammerMiss"
+  States
+  {
+  Spawn:
+	//TNT1 AAA 0 A_CustomMissile("Kaboom7", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAAAA 0 A_CustomMissile("SmokeFX4", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 A 1 Bright
+    Stop
+  }
+}
+ACTOR DemonTechPuff : AxePuffGlow replaces AxePuffGlow
+{
+  +NOBLOCKMAP
+  +NOGRAVITY
+  +PUFFONACTORS
+  RenderStyle Translucent
+  Alpha 1.0
+  
+  SeeSound "weapons/plasmashock"
+  AttackSound "weapons/plasmashock"
+  ActiveSound "FighterHammerMiss"
+  States
+  {
+  Spawn:
+    TNT1 A 0 A_SpawnItemEx("GreenParticleSpawnerDT", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 A 0 A_SpawnItemEx("DemonTechEx",0,0,0,0,0,0,0,128,0)
+	TNT1 AAA 0 A_CustomMissile("Kaboom7", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX4", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 A 1 Bright
+    Stop
+  }
+}

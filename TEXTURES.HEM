@@ -1,0 +1,417 @@
+//Hackroid ASG
+Sprite "HGSGA0", 105, 112
+{
+	Offset -97, -79
+	Patch "HGASG1", 0, 0
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite "HGSGB0", 105, 150
+{
+	XScale 0.970
+	YScale 0.970
+	Offset -92, -42
+	Patch "HGASG2", 0, 0
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite "HGSGC0", 105, 150
+{
+	XScale 0.930
+	YScale 0.930
+	Offset -86, -43
+	Patch "HGASG3", 0, 0
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite "HGSGD0", 105, 112
+{
+	XScale 0.900
+	YScale 0.900
+	Offset -81, -82
+	Patch "HGASG1", 0, 0
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite "HGSGE0", 105, 112
+{
+	XScale 0.930
+	YScale 0.930
+	Offset -86, -90
+	Patch "HGASG1", 0, 0
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite "HGSGF0", 105, 112
+{
+	XScale 0.950
+	YScale 0.950
+	Offset -89, -93
+	Patch "HGASG1", 0, 0
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite "HGSGG0", 105, 112
+{
+	XScale 0.970
+	YScale 0.970
+	Offset -92, -93
+	Patch "HGASG1", 0, 0
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite "HGSGH0", 105, 112
+{
+	Offset -97, -90
+	Patch "HGASG1", 0, 0
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite "HGSGI0", 105, 112
+{
+	Offset -97, -85
+	Patch "HGASG1", 0, 0
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite "HGSGJ0", 250, 111
+{
+	Offset 20, -69
+	Patch "HGASG4", 175, 0
+	{
+		Style CopyAlpha
+	}
+	Patch "HGASG8", 135, 45
+}
+
+Sprite "HGSGK0", 250, 111
+{
+	Offset 2, -65
+	Patch "HGASG4", 175, 0
+	{
+		Style CopyAlpha
+	}
+	Patch "HGASG8", 135, 45
+}
+
+Sprite "HGSGL0", 250, 111
+{
+	Offset -12, -62
+	Patch "HGASG4", 175, 0
+	{
+		Style CopyAlpha
+	}
+	Patch "HGASG7", 118, 65
+}
+
+Sprite "HGSGM0", 250, 111
+{
+	Offset -23, -60
+	Patch "HGASG4", 175, 0
+	{
+		Style CopyAlpha
+	}
+	Patch "HGASG7", 112, 88
+}
+
+Sprite "HGSGN0", 250, 132
+{
+	Offset -51, -48
+	Patch "HGASG6", 107, 109
+	Patch "HGASG5", 140, 0
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite "HGSGO0", 250, 132
+{
+	Offset -59, -44
+	Patch "HGASG6", 107, 109
+	Patch "HGASG5", 140, 0
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite "HGSGP0", 250, 132
+{
+	Offset -66, -40
+	Patch "HGASG6", 84, 109
+	Patch "HGASG5", 140, 0
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite "HGSGQ0", 250, 132
+{
+	Offset -71, -37
+	Patch "HGASG6", 52, 103
+	Patch "HGASG5", 140, 0
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite "HGSGR0", 250, 132
+{
+	Offset -71, -37
+	Patch "HGASG6", 18, 102
+	Patch "HGASG5", 140, 0
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite "HGSGS0", 250, 132
+{
+	Offset -71, -37
+	Patch "HGASG6", -17, 107
+	Patch "HGASG5", 140, 0
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite "HGSGT0", 250, 132
+{
+	Offset -71, -37
+	Patch "HGASG6", -40, 114
+	Patch "HGASG5", 140, 0
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite "HGSGU0", 250, 132
+{
+	Offset -71, -37
+	Patch "HGASG5", 140, 0
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite "HGSGV0", 250, 132
+{
+	Offset -115, -38
+	Patch "HGASG6", 107, 109
+	Patch "HGASG5", 140, 0
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite "HGSGW0", 250, 132
+{
+	Offset -88, -40
+	Patch "HGASG6", 107, 109
+	Patch "HGASG5", 140, 0
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite "HGSGX0", 250, 132
+{
+	Offset -61, -48
+	Patch "HGASG6", 107, 109
+	Patch "HGASG5", 140, 0
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite "HGSGY0", 250, 111
+{
+	Offset -22, -57
+	Patch "HGASG4", 175, 0
+	{
+		Style CopyAlpha
+	}
+	Patch "HGASG7", 118, 65
+}
+
+Sprite "HGSGZ0", 250, 111
+{
+	Offset 6, -59
+	Patch "HGASG7", 138, 56
+	Patch "HGASG4", 175, 0
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite "HGSRA0", 250, 132
+{
+	Offset -66, -40
+	Patch "HGASG6", 103, 114
+	Patch "HGASG5", 140, 0
+	{
+		Style CopyAlpha
+	}
+}
+
+Sprite "HGSRB0", 250, 132
+{
+	Offset -71, -37
+	Patch "HGASG6", 117, 118
+	Patch "HGASG5", 140, 0
+	{
+		Style CopyAlpha
+	}
+}
+
+
+//TXS
+
+//TXS
+
+Sprite PSGAA0, 600, 200
+{
+	Offset 125, 0
+	Patch PSG01, 220, 90
+}
+
+Sprite PSGFA0, 600, 200
+{
+	XScale 0.950
+	YScale 0.950
+	Offset 125, 0
+	Patch PSG06, 212, 71
+}
+
+Sprite PSGFB0, 600, 200
+{
+	XScale 0.900
+	YScale 0.900
+	Offset 125, 0
+	Patch PSG07, 204, 57
+}
+
+Sprite PSGFC0, 600, 200
+{
+	XScale 0.850
+	YScale 0.850
+	Offset 125, 0
+	Patch PSG01, 196, 76
+}
+
+Sprite PSGFD0, 600, 200
+{
+	XScale 0.900
+	YScale 0.900
+	Offset 125, 0
+	Patch PSG01, 204, 87
+}
+
+Sprite PSGFE0, 600, 200
+{
+	XScale 0.950
+	YScale 0.950
+	Offset 125, 0
+	Patch PSG01, 212, 90
+}
+
+Sprite PSGRA0, 600, 200
+{
+	Offset 125, 0
+	Patch PSG01, 211, 95
+}
+
+Sprite PSGRB0, 600, 200
+{
+	Offset 125, 0
+	Patch PSG02, 160, 15
+}
+
+Sprite PSGRC0, 600, 200
+{
+	Offset 125, 0
+	Patch PSG02, 145, 7
+}
+
+Sprite PSGRD0, 600, 200
+{
+	Offset 125, 0
+	Patch PSG02, 131, 1
+}
+
+Sprite PSGRE0, 600, 200
+{
+	Offset 125, 0
+	Patch PSG02, 110, -7
+}
+
+Sprite PSGRF0, 600, 200
+{
+	Offset 125, 0
+	Patch PSG03, 145, -40
+}
+
+Sprite PSGRG0, 600, 200
+{
+	Offset 125, 0
+	Patch PSG03, 131, -50
+}
+
+Sprite PSGRH0, 600, 200
+{
+	Offset 125, 0
+	Patch PSG03, 122, -54
+}
+
+Sprite PSGRI0, 600, 200
+{
+	Offset 125, 0
+	Patch PSG03, 117, -46
+}
+
+Sprite PSGRJ0, 600, 200
+{
+	Offset 125, 0
+	Patch PSG03, 113, -39
+}
+
+Sprite PSGRK0, 600, 200
+{
+	Offset 125, 0
+	Patch PSG04, 108, -32
+}
+
+Sprite PSGRL0, 600, 200
+{
+	Offset 125, 0
+	Patch PSG04, 103, -25
+}
+
+Sprite PSGRM0, 600, 200
+{
+	Offset 125, 0
+	Patch PSG05, 96, -17
+}
+
+Sprite PSGRN0, 600, 200
+{
+	Offset 125, 0
+	Patch PSG05, 90, -8
+}

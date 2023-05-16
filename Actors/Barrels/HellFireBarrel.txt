@@ -1,0 +1,26 @@
+ACTOR HellFireBarrel : ModdedExplosiveBarrel
+{
+ Scale 1.2
+ -FORCERADIUSDMG
+ DamageFactor "PyroShot", 0.0
+ DamageFactor "PlayerPyro", 0.0
+ DamageFactor "Ice", 0.0
+ DamageFactor "FreezerBurn", 0.0
+ DeathSound "Weapons/PCnnEx"
+ Obituary "%o got melted for touching a Hellfire Barrel."
+ Tag "Hellfire Barrel"
+ States
+ {
+  Spawn:
+ 	HFBR A 6 Bright A_SpawnItem("HellFireBaronFlameSpawner",0,0,0,0)
+	Loop
+  Death:
+	TNT1 A 0
+	TNT1 A 0 A_Scream
+	TNT1 A 0 A_Explode(600,64,0,1)
+	TNT1 AAA 0 Bright A_StopSound(5)
+	TNT1 A 0 Bright A_Mushroom("HFCyberMushroomFireballs2",12)
+	TNT1 A 1 A_SpawnItemEx("HFCyberPyroBoom2",0,0,32)
+	Stop
+ }
+}

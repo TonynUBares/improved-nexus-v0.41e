@@ -1,0 +1,523 @@
+Actor IncubusKaiser
+{
+Monster
+Scale 1.25
+Health 3200
+Height 64
+Radius 30
+Mass 5000
+Speed 8
+MaxStepHeight 32
+MaxDropOffHeight 32
+Reactiontime 24
+PainChance 64
+PainChance "Explosion", 100
+PainChance "Mine", 100
+PainChance "NuclearFire", 100
+MeleeRange 150
++BOSS
++BOSSDEATH
++NOICEDEATH
++NOTIMEFREEZE
++DONTMORPH
++DONTRIP
++NORADIUSDMG
+-NOINFIGHTING
+-NOPAIN
++NoFear
++NOBLOOD
++NODROPOFF
++DONTGIB
++FLOORCLIP
++NOTARGET
++LOOKALLAROUND
+//+ALWAYSFAST
++MISSILEMORE
++MISSILEEVENMORE
++QUICKTORETALIATE
++DONTHARMSPECIES
++DONTHURTSPECIES
++BRIGHT
+BloodColor "Red"
+Species "SS"
+Damagetype "SS"
+DamageFactor "SS", 0.0
+DamageFactor "Extreme", 0.0
+DamageFactor "LegendaryPlayer", 0.5
+DamageFactor "LegendaryGuruPlayer", 0.5
+DamageFactor "PDTBFG", 0.20
+DamageFactor "PDTBFGTracer", 0.20
+DamageFactor "PlayerDevBall", 0.120
+DamageFactor "PlayerDevBall2", 0.120
+DamageFactor "PlayerDTBFGRailgunSlug", 0.120
+DamageFactor "PlayerDevTracer", 0.120
+DamageFactor "DBFG10K2", 0.1
+DamageFactor "PlayerDBFG10K2", 0.1
+DamageFactor "DBFG2", 0.1
+DamageFactor "PlayerDBFG2", 0.1
+DamageFactor "PlayerDTRG", 0.5
+DamageFactor 0.3
+DamageFactor "Legendary", 0.5
+DamageFactor "LegendaryGuru", 0.5
+DamageFactor "LACGrenade", 0.0
+DamageFactor "LSSGGrenade", 0.0
+DamageFactor "LegendaryZombie", 0.0
+DropItem "NemesisSphere", 90
+DropItem "LegAmmoSphere", 100, 1
+DropItem "LegAmmoSphere", 100, 1
+DropItem "SpringMine", 100, 1
+DropItem "SpringMine", 100, 1
+DropItem "SpringMine", 100, 1
+DropItem "SpringMine", 100, 1
+DropItem "LegendaryRune", 110, 1
+DropItem "PortableMedCell", 256, 1
+DropItem "PortableMedCellPack", 256, 1
+DropItem "PortableMedCell", 256, 1
+DropItem "PortableMedCellPack", 256, 1
+DropItem "PortableMedCell", 256, 1
+DropItem "PortableMedCellPack", 256, 1
+DropItem "DoomsphereDust" 256
+//DropItem "TerminatorItem", 20
+DropItem "RingOfRegeneration", 100
+SeeSound "EnragedLegKrieger/Sight"
+ActiveSound "EnragedLegKrieger/Active"
+PainSound "EnragedLegKrieger/Pain"
+DeathSound "EnragedLegKrieger/Death"
+Tag "$NEIncKaiser"
+Obituary "%o saw the Incubus Kaiser and died from PTSD."
+HitObituary "%o's body wasn't able to be identified after being shot by Incubus Kaiser."
+var int user_counter;
+var int user_music;
+var int user_taunt;
+var int user_lowlag;
+States
+	{
+	Spawn:
+	EHMF A 0
+	TNT1 A 0 ACS_NamedExecuteAlways("ModifyMonster",0,2,6)
+	TNT1 A 0 A_GiveInventory("SchabbsSpawnAmount",2)
+  SpawnLoop:
+		EHMF A 3 Bright A_Look
+		Loop
+	Idle:
+		TNT1 A 0 A_GiveInventory("ResetMonsterInvul",1)
+		TNT1 A 0 A_ChangeFlag("FRIGHTENED",0)
+		TNT1 A 0 A_ChangeFlag("NOFEAR",1)
+		TNT1 A 0 A_ChangeFlag("FRIENDLY",0)
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		TNT1 A 0 A_JumpIfInventory("MarineKilled",1,"Taunt")
+	Idle2:
+		EHMF AAAA 3 Bright A_Wander
+		TNT1 A 0 A_Look
+		EHMF BBBB 3 Bright A_Wander
+		TNT1 A 0 A_Look
+		TNT1 A 0 A_SpawnItemEx("DeathKnightStep",0,0,5,0,0,-20)
+		EHMF CCCC 3 Bright A_Wander
+		TNT1 A 0 A_Look
+		EHMF DDDD 3 Bright A_Wander
+		TNT1 A 0 A_Look
+		TNT1 A 0 A_SpawnItemEx("DeathKnightStep",0,0,5,0,0,-20)
+		Loop
+	Taunt:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_ChangeFlag("NODAMAGE",1)
+		TNT1 A 0 A_PlaySound("EnragedLegKrieger/KillTaunt",2,1.0,0,ATTN_NONE)
+		TNT1 A 0 A_TakeInventory("MarineKilled",1)
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		TNT1 A 0 A_ChangeFlag("NODAMAGE",0)
+		Goto Idle2
+  See:
+	TNT1 A 0 A_JumpIf(user_lowlag == 1,"MoreSee")
+	TNT1 A 0 A_JumpIfTargetInLOS("MoreSee",0,0,0,0)
+	EHMF ABCD 3 A_Chase
+	Loop
+  MoreSee:
+	TNT1 A 0 A_SetUserVar("user_lowlag",1)
+		TNT1 A 0 A_GiveInventory("ResetMonsterInvul",1)
+		TNT1 A 0 A_ChangeFlag("FRIGHTENED",0)
+		TNT1 A 0 A_ChangeFlag("NOFEAR",1)
+		TNT1 A 0 A_ChangeFlag("FRIENDLY",0)
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		TNT1 A 0 A_JumpIf(user_music == 1,3)
+		TNT1 A 0 ACS_NamedExecuteAlways("CFMusic",0,3012)
+		TNT1 A 0 A_SetUserVar("user_music",1)
+		EHMF AAAA 3 Bright A_Chase
+		EHMF BBBB 3 Bright A_Chase
+		TNT1 A 0 A_SpawnItemEx("DeathKnightStep",0,0,5,0,0,-20)
+		EHMF CCCC 3 Bright A_Chase
+		EHMF DDDD 3 Bright A_Chase
+		TNT1 A 0 A_SpawnItemEx("DeathKnightStep",0,0,5,0,0,-20)
+		TNT1 A 0 A_JumpIfInventory("MarineKilled",1,"Taunt")
+		Loop
+	Melee:
+		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+		EHMF F 4 Bright A_FaceTarget
+		EHMF G 1 Bright A_PlaySound("weapons/hsgfire",CHAN_WEAPON,1.0,0)
+		EHMF G 4 Bright A_PlaySound("weapons/hsgfire",7,1.0,0)
+		TNT1 AAAAAAAAAAAA 0 Bright A_CustomMissile("LegendaryRedTracer",Random(36,44),24,Random(6,-6),0)
+		TNT1 AAAAAAAAAAAA 0 Bright A_CustomMissile("LegendaryRedTracer",Random(36,44),-24,Random(6,-6),0)
+		TNT1 A 0 A_CustomBulletAttack(15.4,10.6,78,Random(5,15)*6,"LegModdedBulletPuff")
+		EHMF I 1 Bright A_CustomBulletAttack(15.4,10.6,78,Random(5,15)*6,"LegModdedBulletPuff")
+		TNT1 A 0 A_CustomBulletAttack(15.4,10.6,78,Random(5,15)*6,"LegModdedBulletPuff")
+		EHMF I 4 Bright A_CustomBulletAttack(15.4,10.6,78,Random(5,15)*6,"LegModdedBulletPuff")
+		EHMF F 4 Bright A_FaceTarget
+		TNT1 AAAAAA 0 A_SpawnItemEx("RedShellCasing",10,24,40,Random(2,4),Random(-3,-6),Random(3,6),0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		TNT1 AAAAAA 0 A_SpawnItemEx("RedShellCasing",10,-24,40,Random(2,4),Random(-3,-6),Random(3,6),0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		EHMF F 4 Bright A_FaceTarget
+		EHMF G 1 Bright A_PlaySound("weapons/hsgfire",CHAN_WEAPON,1.0,0)
+		EHMF G 4 Bright A_PlaySound("weapons/hsgfire",7,1.0,0)
+		TNT1 AAAAAAAAAAAA 0 Bright A_CustomMissile("LegendaryRedTracer",Random(36,44),24,Random(6,-6),0)
+		TNT1 AAAAAAAAAAAA 0 Bright A_CustomMissile("LegendaryRedTracer",Random(36,44),-24,Random(6,-6),0)
+		TNT1 A 0 A_CustomBulletAttack(15.4,10.6,78,Random(5,15)*6,"LegModdedBulletPuff")
+		EHMF I 1 Bright A_CustomBulletAttack(15.4,10.6,78,Random(5,15)*6,"LegModdedBulletPuff")
+		TNT1 A 0 A_CustomBulletAttack(15.4,10.6,78,Random(5,15)*6,"LegModdedBulletPuff")
+		EHMF I 4 Bright A_CustomBulletAttack(15.4,10.6,78,Random(5,15)*6,"LegModdedBulletPuff")
+		EHMF F 2 Bright A_FaceTarget
+		TNT1 AAAAAA 0 A_SpawnItemEx("RedShellCasing",10,24,40,Random(2,4),Random(-3,-6),Random(3,6),0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		TNT1 AAAAAA 0 A_SpawnItemEx("RedShellCasing",10,-24,40,Random(2,4),Random(-3,-6),Random(3,6),0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		EHMF FFF 1 A_Facetarget
+		TNT1 A 0 A_Jump(100,3)
+		TNT1 A 0 A_PlaySound("EnragedLegKrieger/Attack",CHAN_VOICE,1.0,0)
+		TNT1 A 0 A_SetUserVar("user_taunt",0)
+		EHMF E 7 A_FaceTarget
+		Goto See
+	Missile:
+		TNT1 A 0
+		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+		TNT1 A 0 A_Jump(256,"Missile1","Missile2")
+		TNT1 A 0 A_PlaySound("DeathKnight/action",CHAN_VOICE,1.0,0,ATTN_NONE)
+		TNT1 A 0 A_SetUserVar("user_taunt",0)
+		Goto See
+	Missile1:
+		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+		TNT1 A 0 A_PlaySound("EnragedLegKrieger/Missile1",CHAN_WEAPON)
+		EHMF FFFFF 7 Bright A_Facetarget
+	Refire1:
+		TNT1 A 0 A_PlaySound("ELegChaingun/fire",CHAN_WEAPON,1.0,0)
+		TNT1 A 0 A_CustomMissile("ELegKriegerRail",62,-18,random(8,-8),CMF_TRACKOWNER)
+		TNT1 A 0 A_CustomMissile("ELegKriegerRail",62,18,random(8,-8),CMF_TRACKOWNER)
+		TNT1 AA 0 A_CustomMissile("ELegKriegerExplosiveTracer",random(36,44),0,Random(5,-5),0)
+		TNT1 A 0 A_SpawnItemEx("RifleCasing",10,24,40,Random(2,6),0,Random(1,3),Random(80,90),SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		EHMF H 2 Bright A_Facetarget
+		TNT1 A 0 A_PlaySound("ELegChaingun/fire",CHAN_WEAPON,1.0,0)
+		TNT1 A 0 A_CustomMissile("ELegKriegerRail",59,26,random(14,-14),CMF_TRACKOWNER)
+		TNT1 A 0 A_CustomMissile("ELegKriegerRail",59,-26,random(14,-14),CMF_TRACKOWNER)
+		TNT1 AA 0 A_CustomMissile("ELegKriegerExplosiveTracer",random(36,44),0,Random(5,-5),0)
+		TNT1 A 0 A_SpawnItemEx("RifleCasing",10,-24,40,Random(2,6),0,Random(1,3),Random(-80,-90),SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		EHMF J 2 Bright A_Facetarget
+		TNT1 A 0 A_MonsterRefire(230,"MissileEnd")
+		Loop
+	Missile2:
+		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+		TNT1 A 0 A_PlaySound("EnragedLegKrieger/Missile2",CHAN_WEAPON)
+		EHMF FFFFF 7 Bright A_Facetarget
+	Refire2:
+		TNT1 A 0 A_PlaySound("weapons/bfg15kfire",CHAN_WEAPON,1.0,0)
+		TNT1 A 0 A_CustomMissile("IncuKaiserMissile",62,-18,random(20,-20),CMF_TRACKOWNER)
+		TNT1 A 0 A_CustomMissile("IncuKaiserMissile",62,18,random(20,-20),CMF_TRACKOWNER)
+		TNT1 AA 0 A_CustomMissile("ELegKrieger10KProjectile",random(36,44),0,Random(15,-15),0)
+		EHMF H 2 Bright A_Facetarget
+		TNT1 A 0 A_PlaySound("weapons/bfg15kfire",CHAN_WEAPON,1.0,0)
+		TNT1 A 0 A_CustomMissile("IncuKaiserMissile",59,-26,random(20,-20),CMF_TRACKOWNER)
+		TNT1 A 0 A_CustomMissile("IncuKaiserMissile",59,26,random(20,-20),CMF_TRACKOWNER)
+		TNT1 AA 0 A_CustomMissile("ELegKrieger10KProjectile",random(36,44),0,Random(15,-15),0)
+		EHMF J 2 Bright A_Facetarget
+		TNT1 A 0 A_MonsterRefire(230,"MissileEnd")
+		Loop
+	MissileEnd:
+		EHMF FFFFF 4 Bright A_Facetarget
+		TNT1 A 0 A_SetUserVar("user_taunt",1)
+		TNT1 A 0 A_Jump(128,"DoubleHexa2")
+		Goto See
+	DoubleHexa:
+		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+		EHMF E 5 A_FaceTarget
+		EHMF E 1 A_PlaySound("weapons/hsgfire",CHAN_WEAPON,1.0,0)
+		EHMF E 4 A_PlaySound("weapons/hsgfire",7,1.0,0)
+		TNT1 AAAAAAAAAAAA 0 Bright A_CustomMissile("LegendaryRedTracer",Random(36,44),24,Random(6,-6),0)
+		TNT1 AAAAAAAAAAAA 0 Bright A_CustomMissile("LegendaryRedTracer",Random(36,44),-24,Random(6,-6),0)
+		EHMF G 1 Bright A_CustomBulletAttack(15.4,10.6,78,Random(5,15)*6,"LegModdedBulletPuff")
+		EHMF I 4 Bright A_CustomBulletAttack(15.4,10.6,78,Random(5,15)*6,"LegModdedBulletPuff")
+		EHMF E 10 A_FaceTarget
+		TNT1 AAAAAA 0 A_SpawnItemEx("RedShellCasing",10,24,40,Random(2,4),Random(-3,-6),Random(3,6),0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		TNT1 AAAAAA 0 A_SpawnItemEx("RedShellCasing",10,-24,40,Random(2,4),Random(-3,-6),Random(3,6),0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		EHMF E 5
+		EHMF A 0 A_Jump(192,3)
+		TNT1 A 0 A_PlaySound("EnragedLegKrieger/Attack",CHAN_VOICE,1.0,0)
+		TNT1 A 0 A_SetUserVar("user_taunt",0)
+		TNT1 A 0
+		Goto See
+	DoubleHexa2:
+		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+		EHMF E 5 A_FaceTarget
+		EHMF E 1 A_PlaySound("weapons/hsgfire",CHAN_WEAPON,1.0,0)
+		EHMF E 4 A_PlaySound("weapons/hsgfire",7,1.0,0)
+		TNT1 AAAAAAAAAAAA 0 Bright A_CustomMissile("LegendaryRedTracer",Random(36,44),24,Random(6,-6),0)
+		TNT1 AAAAAAAAAAAA 0 Bright A_CustomMissile("LegendaryRedTracer",Random(36,44),-24,Random(6,-6),0)
+		EHMF G 1 Bright A_CustomBulletAttack(15.4,10.6,78,Random(5,15)*6,"LegModdedBulletPuff")
+		EHMF I 4 Bright A_CustomBulletAttack(15.4,10.6,78,Random(5,15)*6,"LegModdedBulletPuff")
+		EHMF E 10 A_FaceTarget	
+		TNT1 AAAAAA 0 A_SpawnItemEx("RedShellCasing",10,24,40,Random(2,4),Random(-3,-6),Random(3,6),0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		TNT1 AAAAAA 0 A_SpawnItemEx("RedShellCasing",10,-24,40,Random(2,4),Random(-3,-6),Random(3,6),0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		EHMF E 5
+		Goto See
+	Pain:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_Pain
+		EHMF E 6 Bright
+		TNT1 A 0 A_Jump(165,"PainAttack")
+		TNT1 A 0 A_SetUserVar("user_taunt",1)
+		Goto See
+	PainAttack:
+		TNT1 A 0
+		TNT1 A 0 A_FaceTarget
+		TNT1 A 0 A_PlaySound("DeathKnight/jump",CHAN_BODY,1.0,0)
+		EHMF E 10 A_Recoil(-40)
+		TNT1 A 0 A_SetUserVar("user_taunt",1)
+		Goto DoubleHexa
+	Death:
+		TNT1 A 0
+		TNT1 A 0 A_TakeInventory("Tic",999999)
+		EHMF A 35 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
+		TNT1 A 0 A_PlaySound("DeathKnight/step",5,1.0,0)
+		EHMF E 105 A_Scream
+		EHMF E 4 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
+		EHMF K 4 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
+		TNT1 A 0 A_PlaySound("DeathKnight/step",6,1.0,0)
+		EHMF L 4 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
+		EHMF M 4 A_Fall
+		TNT1 A 0 A_BossDeath
+		TNT1 A 0 A_RemoveChildren
+		TNT1 A 0 A_SpawnItemEx("PowerStimpack",0,0,8,random(0,8),random(0,8),2,random(0,360),0,32)
+		TNT1 A 0 A_SpawnItemEx("AmmoSphere",0,0,8,random(0,8),random(0,8),2,random(0,360),0,32)
+		TNT1 A 0 A_SpawnItemEx("RadarItem",0,0,8,random(0,8),random(0,8),2,random(0,360),0,32)
+		TNT1 A 0 A_SpawnItemEx("NemesisArmorSphere",0,0,8,random(0,8),random(0,8),2,random(0,360),0,32)
+		EHMF N -1
+		Stop
+	}
+}
+
+ACTOR ELegKriegerRail : DarkCyberRail
+{
+Speed 320
+Damage (Random(75,85))
+RenderStyle Add
++THRUSPECIES
++EXTREMEDEATH
++BLOODLESSIMPACT
++NOTIMEFREEZE
+MissileType "CardinalRailTrail"
+Species "Legendary"
+DamageType "SS"
+DamageType "Legendary"
+Decal MummyScorch
+States
+{
+Spawn:
+    CCRP AB 1 Bright
+	TNT1 A 0 A_Jump(64,"Pause")
+Fly:
+    CCRP AB 1 Bright
+    Loop
+Pause:
+    TNT1 A 0 A_Stop
+    CCRP ABABABABABABAB 2 Bright
+	TNT1 A 0 A_RearrangePointers(AAPTR_MASTER,AAPTR_TARGET)
+	TNT1 A 0 A_FaceTarget
+	TNT1 A 0 A_CustomMissile("ELegKriegerRail2")
+	Stop
+Death:
+	TNT1 A 0
+	TNT1 A 0 A_PlayWeaponSound("cyberrail/impact")
+	TNT1 A 0 A_SpawnItemEx("ELegendaryRedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+	TNT1 AAAAAAAA 0 A_SpawnItemEx("EKaboomLN",random(-32,32),random(-40,40),random(8,16),random(-4,4),random(-4,4),random(0,4),0,SXF_TRANSFERPOINTERS)
+	TNT1 AAA 0 A_CustomMissile("LegendarySmokeFX4", 0, 0, random(0,360), 2, random(0,360))   
+	TNT1 A 0 A_Explode(128,128,0)
+	Stop
+	}
+}
+
+ACTOR ELegKriegerRail2 : ELegKriegerRail
+{
+States
+{
+Spawn:
+    CCRP AB 1 Bright
+    Loop
+Death:
+	TNT1 A 0
+	TNT1 A 0 A_PlayWeaponSound("cyberrail/impact")
+	TNT1 A 0 A_SpawnItemEx("ELegendaryRedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+	TNT1 AAAAAAAA 0 A_SpawnItemEx("EKaboomLN",random(-32,32),random(-40,40),random(8,16),random(-4,4),random(-4,4),random(0,4),0,SXF_TRANSFERPOINTERS)
+	TNT1 AAA 0 A_CustomMissile("LegendarySmokeFX4", 0, 0, random(0,360), 2, random(0,360))   
+	TNT1 A 0 A_Explode(128,128,0)
+	Stop
+	}
+}
+
+ACTOR ELegKriegerExplosiveTracer : LegSentientExplosiveTracer
+{
+DamageType "SS"
+DamageType "Legendary"
+States
+{
+  Spawn:
+    TRA3 A 1 Bright
+	Loop
+  Death:
+	TNT1 A 0
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+	TNT1 A 0 A_SpawnItem("EKaboomLN2")
+    TNT1 B 4 Bright A_Explode(Random(8,12)*5,72)
+    EISL BCD 3 Bright
+    Stop
+  }
+}
+
+ACTOR ELegKrieger10KProjectile : Legendary10KProjectile
+{
+   Height 1
+   Radius 1
+   Speed 200
+   Scale 0.15
+   RenderStyle Add
+   Alpha 0.85
+   DECAL BFG9500LightningGold
+   PROJECTILE
+   -THRUSPECIES
+   +NOEXTREMEDEATH
+   -MTHRUSPECIES
+   +NOTIMEFREEZE
+   DeathSound "weapons/bfg95explode"
+   States
+   {
+   Spawn:
+      TRA3 A 1 Bright
+      Loop
+   Death:
+   XDeath:  
+      TNT1 A 0
+      TNT1 A 1 A_SpawnItem("ELegKriegerCyber10KEx")
+      Stop
+	  }
+}
+
+ACTOR ELegKriegerCyber10KEx : LegCyber10KEx
+{
+  Radius 11
+  Height 8
+  DamageType "SS"
+  DamageType "Legendary"
+  Damage 300
+  +NOBLOCKMAP
+  +NOGRAVITY
+  +NOTELEPORT 
+  +FORCERADIUSDMG
+  -MTHRUSPECIES
+  -THRUSPECIES
+  +NOTIMEFREEZE
+  Renderstyle Add
+  Alpha 0.75
+  Scale 0.85
+  States
+  {
+  Spawn:
+    TNT1 A 0
+	TNT1 A 0 A_SpawnItemEx("ELegBFGShockwaveRed", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AA 0 A_SpawnItemEx("ELegendaryRedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+    TNT1 AAAA 0 A_CustomMissile("KaboomRed2", 0, 0, random(0,360), 2, random(0,360))
+    EFE3 A 4 Bright A_Detonate
+    EFE3 BDEFG 4 Bright
+    Stop
+  }
+}
+
+ACTOR ELegBFGShockwaveRed : BFGShockwave2 
+{
+Scale 1.1
++NOTIMEFREEZE
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+EHOG ABCDEFGHIJKLMNOPQR 2 Bright A_FadeOut(0.04)
+Stop
+}
+}
+
+ACTOR KaboomRed2 : KaboomGold
+{
+Speed 1
+Scale 0.9
++NOTIMEFREEZE
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+EXPO AABBCDEFGHIJKLM 1 Bright A_FadeOut(0.05)
+Stop
+}
+}
+
+ACTOR ELegendaryRedParticleSpawner : RedParticleSpawner
+{
+  +CLIENTSIDEONLY
+  +NOGRAVITY
+  +NOBLOCKMAP
+  +NOTELEPORT
+  +DONTSPLASH
+  +NOTIMEFREEZE
+  States
+  {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+    TNT1 A 0 A_SpawnItemEx("EPSR1",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+	TNT1 A 0 A_SpawnItemEx("EPSR2",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+    TNT1 A 0 A_SpawnItemEx("EPSR3",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+	TNT1 A 0 A_SpawnItemEx("EPSR4",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+    TNT1 A 0 A_SpawnItemEx("EPSR5",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+	TNT1 A 0 A_SpawnItemEx("EPSR6",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+    TNT1 A 1
+    Stop
+	}
+}
+
+Actor IncuKaiserMissile : Rocket
+{
+Speed 30
+Damage 15
+FastSpeed 40
+-ThruSpecies
++DONTHARMSPECIES
++DONTHURTSPECIES
+Species "SS"
+Damagetype "SS"
+SeeSound "rocket/fire"
+States
+	{
+	Spawn:
+		TNT1 A 0 Bright A_CustomMissile("MissileTrail",Random(4,6),Random(-2,2)) 
+		TNT1 A 0 Bright A_CustomMissile("ProjectileTrailParticleOrange",Random(4,6),Random(-2,2))
+		MIS2 A 1 Bright
+		Loop
+	Death:
+		TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE) 
+		TNT1 AAA 0 A_CustomMissile("Kaboom3",0,0,random(0,360),CMF_AIMDIRECTION,random(0,360))
+		TNT1 AAA 0 A_CustomMissile("SmokeFX2",0,0,random(0,360),CMF_AIMDIRECTION,random(0,360))
+		TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,Random(-4,4),Random(-4,4),Random(4,8),0,SXF_CLIENTSIDE)
+		TNT1 A 0 A_Explode(Damage*random(2,10),Damage*5,0)
+		TNT1 A 1 A_SpawnItem("RocketEx")
+		Stop
+	}
+}
+
+Actor SSMissileIK : IncuKaiserMissile
+{
+Damagetype ""
+Damagetype "SS"
+DeathType "Extreme"
+Obituary "%o ate Incubus Kaiser's Rocket."
+}

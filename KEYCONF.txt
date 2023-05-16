@@ -1,0 +1,20 @@
+CLEARPLAYERCLASSES
+ADDPLAYERCLASS ComplexNexusPlayer
+
+ALIAS UseDemonChalice "Use NexusDemonicChalice"
+ALIAS UsePowerSkull "Use NexusSkullOfPower"
+
+//Actions
+ADDKEYSECTION "Nexus Actions" NexusActions
+
+ADDMENUKEY "Regroup Nearby Marines" RegroupMarines
+ALIAS RegroupMarines "Pukename MarineCalling"
+
+ADDMENUKEY "Use All Presents in inventory" UsePresents
+ALIAS UsePresents "Pukename XmasMorning"
+
+ADDMENUKEY "Drop Heart" DropCurrentHeart
+ALIAS DropCurrentHeart "Pukename HeartDropping"
+
+ADDMENUKEY "Occult menu 1" +User1
+ADDMENUKEY "Occult menu 2" +User2

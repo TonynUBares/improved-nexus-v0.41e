@@ -1,0 +1,340 @@
+Actor FlakCannonGiver : CustomInventory
+{
+  Scale 0.9
+  Inventory.Amount 1
+  Inventory.MaxAmount 0
+  Inventory.InterHubAmount 0
+  Inventory.PickupSound "DTShotgun/Pickup"
+  Inventory.PickupMessage "You got the Flak Cannon!"
+  Obituary "imagine playing deathmatch."
+  Tag "Flak Cannon"
+  States
+  {
+  Spawn:
+  HFCW Z 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",3,0)
+  SpawnLoop:
+  HFCW Z -1
+  Loop
+  Pickup:
+  TNT1 A 0 A_JumpIfInventory("Flak Cannon",1,"JustAmmo")
+  All:
+  TNT1 A 0 A_GiveInventory("Flak Cannon",1)
+  TNT1 A 0 A_JumpIfInventory("FlakCannonGiverCheck",1,"HoldAndDestroy")
+  TNT1 A 0 A_GiveInventory("FlakCannonGiverCheck",1)
+  TNT1 A 0 A_GiveInventory("NewShell",40)
+  Stop
+  JustAmmo:
+    TNT1 A 0 A_JumpIfInventory("FlakCannonGiverCheck",1,"Null")
+  TNT1 A 0 A_GiveInventory("FlakCannonGiverCheck",1)
+  TNT1 A 0 A_GiveInventory("NewShell",40)
+  TNT1 A 0 A_SpawnItemEx("Flak Cannon")
+  Stop
+  }
+}
+
+Actor FlakCannonSpawnerGiver : FlakCannonGiver
+{
+  States
+  {
+  JustAmmo:
+    TNT1 A 0 A_JumpIfInventory("FlakCannonGiverCheck",1,"Null")
+  TNT1 A 0 A_GiveInventory("FlakCannonGiverCheck",1)
+  TNT1 A 0 A_GiveInventory("NewShell",40)
+  Stop
+  }
+}
+
+Actor FlakCannonGiverCheck : Inventory { Inventory.Amount 1 Inventory.MaxAmount 1 Inventory.InterHubAmount 0 }
+
+
+
+ACTOR "Flak Cannon" : Weapon 2052
+{
+  Tag "Flak Cannon"
+  Game Doom
+  Decal "FlakChip"
+  Radius 20
+  Weapon.Kickback 50
+  Weapon.SelectionOrder 400
+  Weapon.AmmoGive1 10
+  Weapon.AmmoType1 "NewShell"
+  Weapon.AmmoUse1 2
+  Weapon.AmmoGive2 5
+  Weapon.AmmoType2 "Missile"
+  Weapon.AmmoUse2 1
+  Weapon.KickBack 5
+  Weapon.SlotNumber 3
+  Weapon.SlotPriority 6.1
+  +WEAPON.NOAUTOAIM
+  +FORCEXYBILLBOARD
+  Inventory.PickupMessage "You found a flak cannon!"
+  Obituary "%k caught %o in a flak attack"
+  Inventory.PickupSound "flak/get"
+  DamageType SSG
+  States
+  {
+  Spawn:
+	HFCW Z 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",3,0)
+    SpawnLoop:
+	HFCW Z -1
+	Stop
+  Steady:
+	TNT1 A 1
+	Goto Ready
+  Ready:
+    HFCW A 1 A_WeaponReady
+    Loop
+   Deselect:
+	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",1)
+    HFCW A 1 A_Lower
+    Goto Deselect+1
+   Select:
+	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",0)
+    TNT1 AAAAAAAAAAAA 0 A_Raise
+    HFCW LMN 2
+    TNT1 A 0 A_PlaySound("flak/select")
+    HFCW A 8
+    Goto Ready
+  NoAmmo:
+    HFCW A 4 A_PlaySound("Weapon/Empty", 2)
+    Goto Ready
+  Fire:
+	TNT1 A 0 A_JumpIfInventory("PowerSpreadRune",1,"FireSpread")
+    TNT1 A 0 A_Recoil(3)
+    HFCW B 1 BRIGHT A_playsound("flak/fire", 5)
+    TNT1 A 0 Radius_Quake(4,4,0,1,0)
+    TNT1 A 0 A_GunFlash
+      TNT1 A 0 A_Light1
+    TNT1 AAAAAAAAAAAAAAA 0 A_FireCustomMissile("NHSFlakShard", FRandom(-12.0, 12.0), false, 0, 0, 0, FRandom(-5.0, 5.0)) 
+    HFCW B 1 BRIGHT
+    TNT1 A 0 A_FireBullets (24, 6, 8, 8, "BulletPuff")
+    TNT1 A 0
+        HFCW B 1 BRIGHT
+        HFCW C 10
+    //Don't go through reload if we don't have any ammo!
+    TNT1 A 0 A_CheckReload
+    HFCW DDEEFF 1
+    HFCW G 1 A_PlaySound("Weapon/FLAKSNAP")
+    HFCW HHOOII 1
+    HFCW I 3
+    HFCW A 3 A_PlaySound("flak/loaded",CHAN_AUTO,3.0)
+    TNT1 A 0 A_ReFire
+    HFCW A 2
+    Goto Ready
+  FireSpread:
+    TNT1 A 0 A_Recoil(3)
+    HFCW B 1 BRIGHT A_playsound("flak/fire", 5)
+    TNT1 A 0 Radius_Quake(4,4,0,1,0)
+    TNT1 A 0 A_GunFlash
+      TNT1 A 0 A_Light1
+    TNT1 AAAAAAAAAAAAAAA 0 A_FireCustomMissile("NHSFlakShard", FRandom(-12.0, 12.0), false, 0, 0, 0, FRandom(-5.0, 5.0)) 
+    TNT1 AAAAAAAAAAAAAAA 0 A_FireCustomMissile("NHSFlakShard", FRandom(-12.0, 12.0)+15.0, false, 0, 0, 0, FRandom(-5.0, 5.0)) 
+    TNT1 AAAAAAAAAAAAAAA 0 A_FireCustomMissile("NHSFlakShard", FRandom(-12.0, 12.0)-15.0, false, 0, 0, 0, FRandom(-5.0, 5.0)) 
+    HFCW B 1 BRIGHT
+    TNT1 A 0 A_FireBullets (24+15.0, 6, 8*3, 8, "BulletPuff")
+    TNT1 A 0
+        HFCW B 1 BRIGHT
+        HFCW C 10
+    //Don't go through reload if we don't have any ammo!
+    TNT1 A 0 A_CheckReload
+    HFCW DDEEFF 1
+    HFCW G 1 A_PlaySound("Weapon/FLAKSNAP")
+    HFCW HHOOII 1
+    HFCW I 3
+    HFCW A 3 A_PlaySound("flak/loaded",CHAN_AUTO,3.0)
+    TNT1 A 0 A_ReFire("Fire")
+    HFCW A 2
+    Goto Ready
+  AltFire:
+	TNT1 A 0 A_JumpIfInventory("PowerSpreadRune",1,"AltFireSpread")
+    TNT1 A 0 A_Recoil(3)
+    HFCW B 1 BRIGHT A_playsound("flak/alt", 5)
+    TNT1 A 0 Radius_Quake(4,4,0,1,0)
+      TNT1 A 0 A_GunFlash
+      TNT1 A 0 A_Light1
+    HFCW B 1 BRIGHT A_FireCustomMissile("NHSFlakSlug",0,True,0,0,0,5)
+        HFCW B 1 BRIGHT
+        HFCW C 10
+    //Don't go through reload if we don't have any ammo!
+    TNT1 A 0 A_CheckReload
+    HFCW DDEEFF 1
+    HFCW G 1 A_PlaySound("Weapon/FLAKSNAP")
+    HFCW HHOOII 1
+    HFCW I 3
+    HFCW A 3 A_PlaySound("flak/loaded",CHAN_AUTO,3.0)
+    TNT1 A 0 A_ReFire
+    HFCW A 2
+    Goto Ready
+  AltFireSpread:
+    TNT1 A 0 A_Recoil(3)
+    HFCW B 1 BRIGHT A_playsound("flak/alt", 5)
+    TNT1 A 0 Radius_Quake(4,4,0,1,0)
+      TNT1 A 0 A_GunFlash
+      TNT1 A 0 A_Light1
+    HFCW B 1 BRIGHT A_FireCustomMissile("NHSFlakSlug",0,0,0,0,0,5)
+    TNT1 A 0 A_FireCustomMissile("NHSFlakSlug",15.0,0,0,0,0,5)
+    TNT1 A 0 A_FireCustomMissile("NHSFlakSlug",-15.0,0,0,0,0,5)
+    TNT1 A 0 A_TakeInventory("Missile",1,TIF_NOTAKEINFINITE)
+        HFCW B 1 BRIGHT
+        HFCW C 10
+    //Don't go through reload if we don't have any ammo!
+    TNT1 A 0 A_CheckReload
+    HFCW DDEEFF 1
+    HFCW G 1 A_PlaySound("Weapon/FLAKSNAP")
+    HFCW HHOOII 1
+    HFCW I 3
+    HFCW A 3 A_PlaySound("flak/loaded",CHAN_AUTO,3.0)
+    TNT1 A 0 A_ReFire("AltFire")
+    HFCW A 2
+    Goto Ready
+  }
+}
+
+ACTOR NHSFlakShard
+{
+  Projectile
+  +RANDOMIZE
+  +FORCEXYBILLBOARD
+  +BOUNCEONFLOORS
+  +BOUNCEONCEILINGS
+  +NOGRAVITY
+  +THRUSPECIES
+  BounceType Grenade
+  bouncefactor 1
+  BounceSound "flak/hit"
+  wallbouncefactor 1
+  damage (5*random(1,5))
+  radius 2
+  height 2
+  speed 45
+  alpha 0.9
+  scale 0.4
+  Decal "BulletChip"
+  DamageType "NULL"
+  states
+  {
+  Spawn:
+    HFSH ABCDABCD 1 BRIGHT Light("NHSFLAKHI")
+    HFSH EFGHEFGHEFGH 1 BRIGHT Light("NHSFLAKLO")
+    TNT1 A 1 A_CustomMissile("NHSFlakResidue",-5,0,0,CMF_AIMDIRECTION)
+  Death:
+    Stop
+  XDeath:
+    TNT1 A 0
+    Stop
+  }
+}
+
+ACTOR NHSFlakResidue 
+{
+  +FORCEXYBILLBOARD
+  +BOUNCEONFLOORS
+  +BOUNCEONCEILINGS
+  +THRUACTORS
+  BounceType Grenade
+  bouncefactor 0.5
+  wallbouncefactor 0.5
+  BounceSound "flak/hit"
+  radius 2
+  height 2
+  speed 45
+  alpha 0.9
+  scale 0.4
+  states
+  {
+  Spawn:
+    TNT1 AAAA 0 A_Jump(256, "Type1", "Type2", "Type3", "Type4")
+    Type1:
+    HFSH I 60
+    Stop
+  Type2:
+    HFSH J 62
+    Stop
+  Type3:
+    HFSH K 55
+    Stop
+  Type4:
+    HFSH L 57
+    Stop
+  Death:
+    Stop
+  XDeath:
+    TNT1 A 0
+    Stop
+  }
+}
+
+actor NHSFlakSlug
+{
+  radius 8
+  height 8
+  speed 30
+  damage 34
+  deathsound "flak/expl"
+  PROJECTILE
+  scale 0.4
+  Reactiontime 8
+  Decal "FadingScorch"
+  -NOGRAVITY
+  Gravity 0.25
+  states
+  {
+  Spawn:
+    HFSL A 5
+    HFSL A 6 A_SpawnItemEx("NHSFlakSmoke",0,0,0,0,0,2,0,128,0)
+    goto Spawn+1
+  Death:
+    TNT1 A 0 A_Explode(110,140)
+    TNT1 A 0 A_NoGravity
+    TNT1 A 0 A_SpawnItemEx("NHSFlakExplosion", 0, 0, 0, 0, 0, 0, 0, 128, 0)
+    TNT1 AAAAAAAAAA 0 A_CustomMissile("NHSFlakShard",0,0,random(0,359),6,random(-90,90)) //10 shards, Flags 6 = AimDirection and TrackOwner
+    TNT1 AAAAAAAAAAAAA 8 A_SpawnItemEx("NHSFlakSmoke",0,0,0,0,0,2,0,128,0)
+    stop
+  }
+}
+
+actor NHSFlakExplosion
+{
+  RenderStyle Add
+  alpha 0.9
+  +RANDOMIZE
+  +NOCLIP
+  +NOGRAVITY
+  Scale 1.0
+  states
+  {
+  Spawn:
+    HFCX ABCDEFGHIJKLMNOP 1 bright
+    stop
+  }
+}
+
+actor NHSFlakSmoke
+{
+  RenderStyle Add
+  alpha 0.95
+  +RANDOMIZE
+  +NOCLIP
+  PROJECTILE
+  Speed 1
+  Damage 0
+  Scale 1.3
+  Translation "112:127=96:111"
+  states
+  {
+  Spawn:
+    TNT1 A 1
+    TNT1 A 0 A_Jump(156,"Spawn2","Spawn3","Spawn4")
+    1HFP ABCDE 5 
+    stop
+  Spawn2:
+    2HFP ABCDEFGH 4 
+    stop
+  Spawn3:
+    3HFP ABCDEFG 4 
+    stop
+  Spawn4:
+    4HFP ABCDEF 4 
+    stop
+  }
+}

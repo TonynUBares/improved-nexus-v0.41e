@@ -1,0 +1,122 @@
+ACTOR UraniumCore : NemesisSphere
+{
+ Alpha 0.8
+ Scale 1.0
+ Renderstyle Add
+ Inventory.Amount 1
+ Inventory.MaxAmount 1
+ Inventory.Icon "URCOB0"
+ Inventory.PickupSound "UraniumCore/Pickup"
+ Inventory.PickupMessage "$NEUCorePickup"
+ +INVENTORY.INVBAR
+ +INVENTORY.UNDROPPABLE
+ +INVENTORY.HUBPOWER
+ +INVENTORY.PERSISTENTPOWER
+ +INVENTORY.BIGPOWERUP
+ +INVENTORY.INVBAR
+ //+FLOATBOB
+ +COUNTITEM
+ +FLOORCLIP
+ +NOTIMEFREEZE
+ Tag "$NEUCore"
+ States
+ {
+  Spawn:
+	URCO A 0 NoDelay ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,118,119)
+	TNT1 A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,120)
+  SpawnLoop:
+	TNT1 A 0 A_PlaySound("UraniumCore/Idle",7,1.0,True)
+	URCO A 20 Bright
+	Loop
+  Pickup:
+	TNT1 A 0 A_StopSound(7)
+	Stop
+  Use:
+	TNT1 A 1 A_SpawnItemEx("UraniumCoreActive",0,0,16,8,0,4,0)
+	Stop
+ }
+}
+
+
+Actor UraniumCoreActive : ExplosiveBarrel
+{
+ Health 600
+ Radius 16
+ Height 38
+ Mass 100000
+ Renderstyle Add
+ -SOLID
+ +SHOOTABLE
+ +NEVERRESPAWN
+ +FLOATBOB
+ +DONTGIB
+ +CANBLAST
+ +NOICEDEATH
+ +NOBLOOD
+ +PUSHABLE
+ +ISMONSTER
+ +BOSS
+ DeathSound "VoidCore/Death"
+ PainSound "VoidCore/Crack"
+ Obituary "$NEUCoreObituary"
+ Tag "$NEUCoreActive"
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,118,119)
+  SpawnLoop:
+	TNT1 A 0 A_PlaySound("UraniumCore/Idle3",6,5.0,True)
+	URCO AAAAA 5 Bright A_Jump(20,"CrackSound")
+	Loop
+  CrackSound:
+	TNT1 A 0 DamageThing(random(30,60))
+	TNT1 A 0 A_PlaySound("VoidCore/Crack",7)
+	URCO A 1 A_Pain
+	TNT1 AAAAA 0 A_CustomMissile ("UHellionSmokeSpawner", -20, 0, frandom(0,-360), 2, random(0,360))
+	Goto Spawn
+  Death: 
+	TNT1 A 0 A_Scream
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+	TNT1 AAA 0 A_CustomMissile("Kaboom3", 0, 0, frandom(0,360), 2, frandom(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX2", 0, 0, frandom(0,360), 2, frandom(0,360))
+	TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,fRandom(4,-4),fRandom(4,-4),fRandom(4,8),0,128)
+	TNT1 A 0 A_Explode
+	TNT1 A 1 A_SpawnItemEx("InstantNukeBarrelExplosion",0,0,32)
+    Stop
+  }
+}
+
+Actor UHellionSmokeSpawner : RandomSpawner
+{
+DropItem "LHellionSmokeSpawner", 256, 1
+DropItem "GHellionSmokeSpawner", 256, 1
+}
+
+ACTOR UraniumSparkleSpawner : WhiteSparkleSpawner
+{
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 AA 2 A_SpawnItemEx("UraniumStar", random(-15, 15), frandom(-15, 15), frandom(28, 44), 0, 0, 0, 0, 128) 
+	Stop
+ }
+}
+
+ACTOR UraniumStar : RandomSpawner
+{
+ DropItem "YellowStar", 256, 1
+ DropItem "GreenStar", 256, 1
+}
+
+ACTOR UraniumSphereFlare : BlueSphereFlare
+{
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	LENU A 1 Bright
+	Stop
+ }
+}

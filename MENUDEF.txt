@@ -1,0 +1,128 @@
+ListMenu "MainMenu"
+{
+	IfGame (DOOM)
+	{
+	  ifOption(OpenAL) { StaticPatch 80,-20, "NEGZDOOM" Position 93,96 Font "MENUFONT", "Red", "Black" Linespacing  14 }
+	  else { StaticPatch 80,-25, "NEDOOM" Position 93,90 Font "BIGFONT", "Red", "Black" }
+	}
+	 //BIGFONT, "DarkGrey", White"
+	TextItem "$CFNewGame",			"n",	"PlayerClassMenu"
+	TextItem "$ModOptions",			"c",	"OptionsCF"
+	TextItem "$MainCredits",			"h",	"ReadThisMenu"
+	TextItem "$Options",				"o",	"OptionsMenu"
+	TextItem "$Load",				"l",	"LoadGameMenu"
+	TextItem "$Save",				"s",	"SaveGameMenu"
+	TextItem "$Exit",				"q",	"QuitMenu"
+	Position 1, 1
+}
+
+OptionMenu "OptionsCF"
+{
+	Title "$ModOptions"
+	SubMenu "$ComplexDoomOptions","CDOptions"
+	StaticText " "
+	SubMenu "$MusicOptions","MusicOptions"
+	StaticText " "
+	SubMenu "$DustOptions","DustOptions"
+	StaticText " "
+	SubMenu "$ClusterfuckOptions","CFOptions"
+	StaticText " "
+	SubMenu "$TrueCFOptions","TCFOptions"
+	StaticText " "
+	SubMenu "$HPBarOptions","HPBar"
+	StaticText " "
+	SubMenu "$SurvivalOptions","Survival"
+	StaticText " "
+	SubMenu "$DamageNumbersOptions","DamageNumbers"
+	StaticText " "
+	SubMenu "$Mapwich2Options","Special Wads"
+	StaticText " "
+	ifOption(OpenAL)
+	{ 
+	SubMenu "$CorruptionCardOptions","CF CCards"
+	StaticText " "
+	}
+	Slider "$ScreenShakeOption",	"r_quakeintensity", 0.0, 1.0, 0.05, 2
+	StaticText " "
+	SubMenu "$NexusOptions","NXOptions"
+	StaticText " "
+}
+
+
+
+
+OptionMenu "NXOptions"
+{
+    Title "$NexusOptions"
+    
+	StaticText " "
+	SubMenu "$TXSOptions","TXSOptions"
+	StaticText " "
+	SubMenu "$NXMonsters","NXMonster"
+	StaticText " "
+	Option "$NXOptionFirstLongTitleDamn","nx_startingarmor","OnOff"
+	StaticText "$NXOptO011"
+	StaticText " "
+	Option "$NXOptO02","nx_welder","OnOff"
+	StaticText " "
+	Option "$NexmasOpt","nx_xmas","Nexmas"
+	StaticText "$Nexmas0"
+	StaticText "$Nexmas1"
+	StaticText "$Nexmas2"
+	StaticText "$Nexmas3"
+	StaticText "$Nexmas4"
+	StaticText " "
+	StaticText "$NXOptO030"
+	StaticText " "
+	Control "$NXOptO03","RegroupMarines"
+	StaticText "$NXOptO031"
+	StaticText "$NXOptO032"
+	StaticText " "
+	Option "$NXOptO04","dr_marine_beacon","OnOff"
+	StaticText "$NXOptO041"
+	StaticText " "
+	Option "$NXOptO05","dr_marine_tele","OnOff"
+	StaticText "$NXOptO051"
+	StaticText " "
+}
+
+OptionMenu "TXSOptions"
+{
+	Title "$TXSOptions"
+	
+	Option "$TXSOptionDisableAtomicSoul","txs_noatomic","OnOff"
+	StaticText " "
+	Option "$TXSOpt02","txs_noshufflecrates","ShuffleCrates"
+}
+
+OptionValue "ShuffleCrates"
+{
+ 0, "Off"
+ 1, "Shuffle spheres"
+ 2, "Inventory Crates"
+ 3, "Both"
+}
+
+OptionValue "Nexmas"
+{
+ 0, "Off"
+ 1, "On"
+ 2, "Override"
+}
+
+OptionMenu "NXMonster"
+{
+    Title "$NXMonsters"
+   
+	StaticText " "
+	Option "$NXMonstersEFGLunaticNuclearMode","nx_lunatic","OnOff"
+	StaticText "$NXMonO011"
+	StaticText "$NXMonO012"
+	StaticText " "
+	Option "$NXMonO02","nx_shinki","OnOff"
+	StaticText "$NXMonO021"
+	StaticText " "
+	Option "$NXMonO03","nx_agony","OnOff"
+	StaticText "$NXMonO031"
+	StaticText " "
+}

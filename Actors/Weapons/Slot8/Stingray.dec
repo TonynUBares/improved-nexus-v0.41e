@@ -1,0 +1,459 @@
+Actor StingrayGiver : CustomInventory
+{
+  Scale 0.9
+  Inventory.Amount 1
+  Inventory.MaxAmount 0
+  Inventory.InterHubAmount 0
+  Inventory.PickupSound "Weapons/StingrayGet"
+  Inventory.PickupMessage "You got the Stingray!"
+  Obituary "%o was obliterated by %k's Stingray."
+  Tag "Stingray"
+  States
+  {
+  Spawn:
+	WLDP A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",8,0)
+  SpawnLoop:
+	WLDP A -1
+	Loop
+  Pickup:
+	TNT1 A 0 A_JumpIfInventory("Stingray",1,"JustAmmo")
+  All:
+	TNT1 A 0 A_GiveInventory("Stingray",1)
+	TNT1 A 0 A_JumpIfInventory("StingrayGiverCheck",1,"HoldAndDestroy")
+	TNT1 A 0 A_GiveInventory("StingrayGiverCheck",1)
+	TNT1 A 0 A_GiveInventory("Gas",40)
+	Stop
+  JustAmmo:
+	TNT1 A 0 A_JumpIfInventory("StingrayGiverCheck",1,"Null")
+	TNT1 A 0 A_GiveInventory("StingrayGiverCheck",1)
+	TNT1 A 0 A_GiveInventory("Gas",40)
+	TNT1 A 0 A_SpawnItemEx("Stingray")
+	Stop
+  }
+}
+
+Actor StingraySpawnerGiver : StingrayGiver
+{
+  States
+  {
+  JustAmmo:
+    TNT1 A 0 A_JumpIfInventory("StingrayGiverCheck",1,"Null")
+	TNT1 A 0 A_GiveInventory("StingrayGiverCheck",1)
+	TNT1 A 0 A_GiveInventory("Gas",40)
+	Stop
+  }
+}
+
+Actor StingrayGiverCheck : Inventory { Inventory.Amount 1 Inventory.MaxAmount 1 Inventory.InterHubAmount 0 }
+
+
+ACTOR Stingray : Weapon 
+{
+Inventory.PickupSound "Weapons/StingrayGet"
+Weapon.UpSound "Weapons/StingrayUp"
+Inventory.PickupMessage "You got the Stingray!"
+Obituary "%o was obliterated by %k's Stingray."
+Weapon.AmmoType "FuelCore"
+Weapon.AmmoGive 4
+Weapon.AmmoUse 0
+Weapon.AmmoType2 "Gas"
+Weapon.AmmoGive2 120
+Weapon.AmmoUse2 60
+Weapon.SlotNumber 8
+Weapon.SlotPriority 7.1
+Scale 1.0
++WEAPON.NOAUTOAIM
++WEAPON.NOAUTOFIRE
+Tag "Stingray"
+States
+{
+ Spawn:
+	FLHT Z -1
+	Loop
+ Ready:
+	FLHX ABCDE 1
+	FLHX FGH 3
+ Readyloop:
+	FLHT A 1 A_WeaponReady(WRF_ALLOWZOOM)
+	Loop
+ Deselect:
+	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",1)
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+ Deselectloop:
+	FLHT A 1 A_Lower
+	loop
+ Select:
+	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",0)
+	TNT1 A 0 A_Raise
+	FLHT A 1 A_Raise
+	Goto Select+1
+ Fire:
+	TNT1 A 0 A_JumpIfInventory("FuelCore",1,1)
+	Goto Readyloop
+	FLHT A 4
+	TNT1 A 0 A_PlaySound("Weapons/StingrayFire",CHAN_WEAPON)
+	TNT1 A 0 A_Recoil(25)
+	TNT1 A 0 A_TakeInventory("FuelCore",1)
+	TNT1 A 0 A_FireCustomMissile("StingrayShot",0,0,0,0)
+	FLHT BCDEF 2 Bright
+	FLHT G 20
+	FLHT G 14 A_PlaySound("Weapons/StingrayCharge",CHAN_5)
+	FLHT HIJKLMN 4
+	FLHT N 20
+	FLHT A 7 A_PlaySound("Weapons/StingrayReady",CHAN_5)
+	Goto Readyloop
+ FireNoAmmo:
+ AltFire:
+	TNT1 A 0 A_JumpIfInventory("Gas",60,1)
+	Goto ReadyLoop
+	TNT1 A 0 A_JumpIfInventory("StingrayMode",1,"AltFire2")
+	FLHT A 4
+	TNT1 A 0 A_Quake(6,8,0,1024)
+	TNT1 A 0 A_Quake(4,16,0,2048)
+	TNT1 A 0 A_Quake(2,24,0,4096)
+	TNT1 A 0 A_Quake(1,32,0,8192)
+	TNT1 A 0 A_PlaySound ("Weapons/Stingray/Swoosh",CHAN_WEAPON,1.0,0,ATTN_NONE)
+	TNT1 A 0 A_PlaySound ("Weapons/Stingray/Wave",CHAN_6,1.0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 0, 1, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 10, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 20, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 30, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 40, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 50, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 60, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 70, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 80, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 90, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 100, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 110, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 120, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 130, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 140, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 150, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 160, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 170, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 180, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 190, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 200, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 210, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 220, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 230, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 240, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 250, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 260, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 270, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 280, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 290, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 300, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 310, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 320, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 330, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 340, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 350, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayGlobe",0,0)
+	FLHZ ABCDD 1 Bright
+	FLHZ D 5
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 0, 1, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 10, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 20, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 30, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 40, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 50, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 60, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 70, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 80, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 90, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 100, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 110, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 120, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 130, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 140, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 150, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 160, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 170, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 180, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 190, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 200, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 210, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 220, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 230, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 240, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 250, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 260, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 270, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 280, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 290, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 300, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 310, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 320, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 330, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 340, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave2", 350, 0, -48, 0)
+	FLHZ D 40
+	FLHZ DCBA 2
+	Goto Readyloop
+ AltFire2:
+	FLHT A 4
+	TNT1 A 0 A_Quake(6,8,0,1024)
+	TNT1 A 0 A_Quake(4,16,0,2048)
+	TNT1 A 0 A_Quake(2,24,0,4096)
+	TNT1 A 0 A_Quake(1,32,0,8192)
+	TNT1 A 0 A_PlaySound ("Weapons/Stingray/Swoosh",CHAN_WEAPON,1.0,0,ATTN_NONE)
+	TNT1 A 0 A_PlaySound ("Weapons/Stingray/Wave",CHAN_6,1.0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave", 0, 1, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave", 10, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave", 20, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave", 30, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave", 40, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave", 50, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave", 60, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave", 70, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave", 80, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave", 90, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave", 100, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave", 110, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave", 120, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave", 130, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave", 140, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave", 150, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave", 160, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave", 170, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave", 180, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave", 190, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave", 200, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave", 210, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave", 220, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave", 230, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave", 240, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave", 250, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave", 260, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave", 270, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave", 280, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave", 290, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave", 300, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave", 310, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave", 320, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave", 330, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave", 340, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayWave", 350, 0, -48, 0)
+	TNT1 A 0 A_FireCustomMissile("StingrayGlobe",0,0)
+	TNT1 A 0 ThrustThingZ(0, 140, 0, 0)
+	FLHZ ABCDD 1 Bright
+	FLHZ D 20
+	FLHZ DCBA 2
+	Goto Readyloop
+ Zoom:
+	TNT1 A 0 A_JumpIfInventory("StingrayMode",1,"ChangeMode2")
+	TNT1 A 0 A_Print("Boost Jump Enabled",1)
+	TNT1 A 0 A_GiveInventory("StingrayMode")
+	FLHT A 4 A_PlayWeaponSound("Stingray/Switch")
+	FLHT A 2 Offset(0,34)
+	FLHT A 2 Offset(0,37)
+	FLHT A 2 Offset(0,40)
+	FLHT A 2 Offset(0,37)
+	FLHT A 2 Offset(0,34)
+	FLHT A 1
+	Goto Readyloop
+ ChangeMode2:
+	TNT1 A 0 A_Print("Boost Jump Disabled",1)
+	TNT1 A 0 A_TakeInventory("StingrayMode")
+	FLHT A 4 A_PlayWeaponSound("Stingray/Switch")
+	FLHT A 2 Offset(0,34)
+	FLHT A 2 Offset(0,37)
+	FLHT A 2 Offset(0,34)
+	FLHT A 1
+	Goto Readyloop
+ }
+}
+
+ACTOR StingrayMode : Inventory { Inventory.MaxAmount 1 }
+
+ACTOR StingrayShot : Fastprojectile
+{
+	Speed 200
+	Radius 4
+	Height 8
+	DamageType "PlayerDTRG"
+	Damage 16
+	Scale 1.0
+	Projectile
+	+RIPPER
+	+NODAMAGETHRUST
+	+FORCERADIUSDMG
+	+THRUACTORS
+	+SKYEXPLODE
+	+MTHRUSPECIES
+	Translation "112:127=208:223"
+	RenderStyle Translucent
+	Alpha 0.75
+	MissileType "StingrayTrail"
+	MissileHeight 8
+	Obituary "%o was obliterated by %k's Stingray!"
+	States
+	{
+	Spawn:
+		BFSH AABB 1 Bright A_Explode(1536,256,0,0,256)
+		Loop
+	Death:
+		TNT1 A 1 A_SpawnItem("StingrayBlast")
+		Stop
+	}
+}
+
+ACTOR StingrayTrail
+{
+	Projectile
+	+NOBLOCKMAP
+	+NOGRAVITY
+	+SHADOW
+	+NOTELEPORT
+	+CANNOTPUSH
+	RenderStyle Translucent
+	Alpha 0.25
+	Scale 1.25
+	States
+	{
+	Spawn:
+		HBRY ABCDEFGHIKJLMNOPQR 2 Bright
+		Stop
+	}
+}
+
+ACTOR StingrayBlast
+{
+	Radius 4
+	Height 8
+	Scale 3.0
+	RenderStyle Add
+	Alpha 1.0
+	Projectile
+	States
+	{
+	Spawn:
+	Crash:
+	XDeath:
+		TNT1 A 0 A_PlaySound("Weapons/GuruStruck",CHAN_WEAPON,1.0,False,ATTN_NONE)
+		TNT1 A 0 A_Quake(8,8,0,1024)
+		TNT1 A 0 A_Quake(6,16,0,2048)
+		TNT1 A 0 A_Quake(4,24,0,4096)
+		TNT1 A 0 A_Quake(2,32,0,8192)
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("StingrayPuff",0,0,0,Random(-5,5),Random(-5,5),Random(-5,5)) //50
+		TNT1 A 1
+		Stop
+	}
+}
+
+ACTOR StingrayPuff
+{
+	Radius 2
+	Height 4
+	Scale 2.0
+	DamageType "PlayerDTRG"
+	Projectile
+	+NODAMAGETHRUST
+	+FORCERADIUSDMG
+	+FoilInvul
+	Obituary "%o was utterly destroyed by %k's Stingray!"
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_Jump(128,2)
+		TNT1 A 0 A_SetScale(-2.0,2.0)
+		FXPO ABCDEFGHIJKLM 3 Bright A_Explode(32,768,1,0,768)
+		Stop
+	}
+}
+
+ACTOR StingrayWave
+{
+	Speed 40
+	DamageType "PlayerDTRG"
+	Damage 0
+	Radius 12
+	Height 16
+	RenderStyle Translucent
+	Alpha 0.1
+	PROJECTILE
+	+DROPOFF
+	-NOGRAVITY
+	+BLOODLESSIMPACT
+	+FLOORHUGGER
+	+THRUACTORS
+	+MTHRUSPECIES
+	+NODAMAGETHRUST
+	+FORCERADIUSDMG
+	+FOILINVUL
+	SeeSound "Weapons/Stingray/Swoosh"
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		IDGA CCCCAAAABBBBCCCCCC 1 A_Explode(16,512,0)
+	Death:
+		IDGA C 1
+		Stop
+	}
+}
+
+ACTOR StingrayWave2
+{
+	Speed 60
+	DamageType "PlayerDTRG"
+	Damage 0
+	Radius 12
+	Height 16
+	RenderStyle Translucent
+	Alpha 0.1
+	PROJECTILE
+	+DROPOFF
+	-NOGRAVITY
+	+BLOODLESSIMPACT
+	+FLOORHUGGER
+	+THRUACTORS
+	+MTHRUSPECIES
+	+NODAMAGETHRUST
+	+FORCERADIUSDMG
+	+FOILINVUL
+	SeeSound "Weapons/Stingray/Swoosh"
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		IDGA CCCCAAAABBBBCCCCCC 1 A_Explode(16,512,0)
+	Death:
+		IDGA C 1
+		Stop
+	}
+}
+
+
+ACTOR StingrayGlobe
+{
+	Scale 0.1
+	Speed 0
+	DamageType "PlayerDTRG"
+	Damage 0
+	Radius 1
+	Height 2
+	Renderstyle Add
+	Alpha 0.25
+	Projectile
+	+NODAMAGETHRUST
+	+FORCERADIUSDMG
+	+FOILINVUL
+	SeeSound "Weapons/Stingray/Wave"
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		BSW2 A 1 A_SetScale (scaleX + 0.1)
+		TNT1 A 0 A_Explode (32, 512 * scaleX, 0)
+		TNT1 A 0 A_JumpIf(scaleX >= 2.0,"Death")
+		Loop
+	Death:
+		TNT1 A 1
+		Stop
+	}
+}

@@ -1,0 +1,75 @@
+/*Actor NexusNemesisRune : CustomInventory Replaces NemesisRune
+{
++FloatBob
++DONTGIB
++Inventory.InvBar
++Inventory.PickupFlash
++Inventory.FancyPickupSound
++INVENTORY.HUBPOWER
++INVENTORY.PERSISTENTPOWER
++Inventory.AUTOACTIVATE
+Inventory.Amount 1
+Inventory.MaxAmount 0
+Inventory.Icon "NMRZA0"
+ActiveSound "VoidRune/Idle"
+Inventory.PickupMessage "Nemesis Rune: Your nemesis weapons have faster fire rate and projectile speed"
+States
+	{
+	Spawn:
+	    TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("GetCVar",13) == 1, "HoldAndDestroy")
+		TNT1 A 0 A_PlaySound("nemesisrune/sex",7,1.0,1)
+		TNT1 A 0 A_SpawnItemEx("NemesisRuneLineSpawner")
+		NMRZ ABC 4 Bright A_SpawnItemEx("NemesisArmorSoul",random(-30,30),random(-30,30),random(3,10),frandom(-0.2,0.2),frandom(-0.2,0.2),frandom(0.5,2),random(0,360),0,128)
+		TNT1 A 0 A_SpawnItemEx("NemesisRuneLineSpawner")
+		NMRZ DED 4 Bright A_SpawnItemEx("NemesisArmorSoul",random(-30,30),random(-30,30),random(3,10),frandom(-0.2,0.2),frandom(-0.2,0.2),frandom(0.5,2),random(0,360),0,128)
+		TNT1 A 0 A_SpawnItemEx("NemesisRuneLineSpawner")
+		NMRZ CBA 4 Bright A_SpawnItemEx("NemesisArmorSoul",random(-30,30),random(-30,30),random(3,10),frandom(-0.2,0.2),frandom(-0.2,0.2),frandom(0.5,2),random(0,360),0,128)
+		Loop
+	Pickup:
+		TNT1 A 0 A_JumpIfInventory("NemesisRuneToken",1,"Nope")
+		TNT1 A 0 A_PlaySound("nemesisrune/consoom",6)
+		TNT1 A 0 A_GiveInventory("NemesisRuneToken")
+		TNT1 A 1 A_StopSound(7)
+		Stop
+	Nope:
+	    BLRN A 1
+	    Fail
+	}
+}*/
+
+
+ACTOR NemesisRuneSpawnerTier1 : RandomSpawner
+{
+DropItem "LegendaryRune", 256, 55
+DropItem "VitalityRune", 256, 55
+DropItem "AgilityRune", 256, 55
+DropItem "LegendaryRandomSphere", 256, 20
+DropItem "NemesisRune", 256, 10
+}
+
+ACTOR NemesisRuneSpawnerTier2 : RandomSpawner
+{
+DropItem "LegendaryRune", 256, 55
+DropItem "VitalityRune", 256, 55
+DropItem "AgilityRune", 256, 55
+DropItem "LegendaryRandomSphere", 256, 20
+DropItem "NemesisRune", 256, 17
+}
+
+ACTOR NemesisRuneSpawnerTier3 : RandomSpawner
+{
+DropItem "LegendaryRune", 256, 55
+DropItem "VitalityRune", 256, 55
+DropItem "AgilityRune", 256, 55
+DropItem "NemesisRune", 256, 25
+DropItem "LegendaryRandomSphere", 256, 20
+}
+
+ACTOR NemesisRuneSpawnerTier4 : RandomSpawner
+{
+DropItem "LegendaryRune", 256, 55
+DropItem "VitalityRune", 256, 55
+DropItem "AgilityRune", 256, 55
+DropItem "NemesisRune", 256, 40
+DropItem "LegendaryRandomSphere", 256, 20
+}

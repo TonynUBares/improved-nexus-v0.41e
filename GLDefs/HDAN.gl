@@ -1,0 +1,67 @@
+//Monstros
+
+//OBJECT FirewallTrail { Frame FLMV { Light FirewallFire } }
+
+FLICKERLIGHT FirewallFire
+{
+Color 1.0 0.7 0
+OffSet 0 0 0
+Size 16
+SecondarySize 20
+Chance 0.2
+}
+
+/*OBJECT DarkThunderBolt
+{
+Frame VCFT { Light DarkThunderBoltLight }
+Frame FRME { Light DarkThunderBoltLight }
+}*/
+
+pointlight DarkThunderBoltLight
+{
+color 1.0 0.7 0
+size 150
+}
+
+//OBJECT ThunderRunner { Frame VCBA { Light InfernalistFire1 } }
+
+//OBJECT PlayerMiniVileFloorFireTrail { Frame FTR0 { Light InfernalistFire1 } }
+
+//AmmoBeacons
+Object LiteBeaconSupply { frame BELTR { light TurquoiseBeaconLight }}
+Object FullBeaconSupply { frame BEFLR { light RedBeaconLight }}
+Object RandomBeaconSupply { frame BERDR { light GreenBeaconLight }}
+
+pointlight RedBeaconLight
+{
+color 0.8 0.0 0.0
+size 28
+}
+
+pointlight GreenBeaconLight
+{
+color 0.0 0.8 0.0
+size 28
+}
+
+pointlight TurquoiseBeaconLight
+{
+color 0.0 0.8 0.8
+size 28
+}
+
+//SpringMineActive
+OBJECT SpringMineActive { Frame SPMND { Light MineLight1 }}
+OBJECT CheaterSpringMineActive { Frame SPMND { Light MineLight1 }}
+
+//Weps
+
+// OccultSpeelBook > Slicer OBJECT Slicer { Frame SLIC { Light Slicer1 } }
+
+FLICKERLIGHT Slicer1
+{
+Color 0.8 0.4 0
+Size 40
+SecondarySize 46
+Chance 0.2
+}

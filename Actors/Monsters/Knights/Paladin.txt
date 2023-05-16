@@ -1,0 +1,471 @@
+Actor Paladin 23612
+{
+	Health 1600
+	Radius 24
+	Height 64
+	Mass 1000
+	PainChance 65
+	Speed 12
+	Scale 1.1
+	Monster
+	+FloorClip
+	+DontHarmSpecies
+	+QUICKTORETALIATE
+	+NORADIUSDMG
+	+MissileMore
+	+AvoidMelee
+	Species "Nobles"
+	DamageFactor "NobleComet", 0.0
+	Obituary "%o played dodgeball with a Paladin and lost."
+	HitObituary "A Paladin blew %o away."
+	SeeSound "Paladin/Sight" 
+	PainSound "Paladin/Pain" 
+	DeathSound "Paladin/Death" 
+	ActiveSound "Paladin/Active" 
+	DropItem "BossLifeEssence" 200 25
+    DropItem "BossArmorBonusMax" 200 1
+    DropItem "NewCellPack" 128
+    DropItem "DemonAmmoBox" 128 200
+    DropItem "Railgun " 100
+    DropItem "Grenade Launcher" 100
+	DropItem "HomingRocketLauncher" 50
+	Tag "$NEPalad"
+	var int user_shield;
+	var int user_lowlag;
+States
+{
+	Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
+	Goto Idle
+  Idle:
+	   HPAL AA 10 A_Look
+       Loop
+  See:
+	TNT1 A 0 A_JumpIf(user_lowlag == 1,"MoreSee")
+	TNT1 A 0 A_JumpIfTargetInLOS("MoreSee",0,0,0,0)
+	HPAL ABCD 6 A_Chase
+	Loop
+  MoreSee:
+	TNT1 A 0 A_SetUserVar("user_lowlag",1)
+	   TNT1 A 0 A_ChangeFlag("NORADIUSDMG",0)
+	   TNT1 A 0 A_JumpIfCloser(128,"SeePanic")
+       HPAL AABB 3 A_Chase
+	   TNT1 A 0 A_PlaySound("monster/bruwlk")
+	   HPAL CCDD 3 A_Chase
+	   TNT1 A 0 A_PlaySound("monster/bruwlk")
+	   TNT1 A 0 A_Jump(64,"SeeShield")
+	   Loop
+	SeeShield:
+	   TNT1 A 0 A_SpawnItemEx("PaladinShieldHitbox",25,0,10,0,0,0,0,SXF_NOCHECKPOSITION)
+       HPAL EE 4 A_Chase
+	   TNT1 A 0 A_SpawnItemEx("PaladinShieldHitbox",25,0,10,0,0,0,0,SXF_NOCHECKPOSITION)
+       HPAL FF 4 A_Chase
+	   TNT1 A 0 A_PlaySound("monster/bruwlk")
+	   TNT1 A 0 A_SpawnItemEx("PaladinShieldHitbox",25,0,10,0,0,0,0,SXF_NOCHECKPOSITION)
+	   HPAL GG 4 A_Chase
+	   TNT1 A 0 A_SpawnItemEx("PaladinShieldHitbox",25,0,10,0,0,0,0,SXF_NOCHECKPOSITION)
+	   HPAL HH 4 A_Chase
+	   TNT1 A 0 A_PlaySound("monster/bruwlk")
+	   TNT1 A 0 A_Jump(96,"See")
+	   Goto SeeShield
+	SeePanic:
+		TNT1 A 0 A_ChangeFlag("FRIGHTENED",1)
+		HPAL AABB 2 A_Chase
+		TNT1 A 0 A_PlaySound("monster/bruwlk")
+		HPAL CCDD 2 A_Chase
+		TNT1 A 0 A_PlaySound("monster/bruwlk")
+		TNT1 A 0 A_JumpIfCloser(128,"SeePanic")
+		TNT1 A 0 A_ChangeFlag("FRIGHTENED",0)
+		Goto See
+	Melee:
+		TNT1 A 0 A_ChangeFlag("FRIGHTENED",0)
+		HPAL MN 6 A_FaceTarget
+		HPAL O 6 A_CustomMeleeAttack(random(1,10)*4,"Paladin/Melee","Paladin/Swing")
+		Goto See
+	Missile:
+		TNT1 A 0 A_ChangeFlag("FRIGHTENED",0)
+		TNT1 A 0 A_ChangeFlag("NORADIUSDMG",0)
+		HPAL A 1 A_JumpIfCloser(300,"Grenadier")
+		TNT1 A 0 A_Jump(128,"Rocket","Seeker","Railgun","BFG15K")
+	Normal:
+		TNT1 A 0 A_ChangeFlag("NORADIUSDMG",1)
+		TNT1 A 0 A_SpawnItemEx("PaladinShieldHitbox2",25,0,10,0,0,0,0,SXF_NOCHECKPOSITION)
+		HPAL KK 5 A_FaceTarget
+		TNT1 A 0 A_SpawnItemEx("PaladinShieldHitbox3",25,0,10,0,0,0,0,SXF_NOCHECKPOSITION)
+		HPAL L 2 Bright A_CustomMissile("PaladinBallOriginal",38,0,random(-4,4))
+		HPAL K 2 A_FaceTarget
+		TNT1 A 0 A_SpawnItemEx("PaladinShieldHitbox3",25,0,10,0,0,0,0,SXF_NOCHECKPOSITION)
+		HPAL L 2 Bright A_CustomMissile("PaladinBallOriginal",38,0,random(-4,4))
+		HPAL K 2 A_FaceTarget
+		TNT1 A 0 A_SpawnItemEx("PaladinShieldHitbox3",25,0,10,0,0,0,0,SXF_NOCHECKPOSITION)
+		HPAL L 2 Bright A_CustomMissile("PaladinBallOriginal",38,0,random(-4,4))
+		HPAL K 2 A_FaceTarget
+		TNT1 A 0 A_SpawnItemEx("PaladinShieldHitbox3",25,0,10,0,0,0,0,SXF_NOCHECKPOSITION)
+		HPAL L 2 Bright A_CustomMissile("PaladinBallOriginal",38,0,random(-4,4))
+		HPAL K 2 A_FaceTarget
+		TNT1 A 0 A_SpawnItemEx("PaladinShieldHitbox3",25,0,10,0,0,0,0,SXF_NOCHECKPOSITION)
+		HPAL L 2 Bright A_CustomMissile("PaladinBallOriginal",38,0,random(-4,4))
+		HPAL K 2 A_FaceTarget
+		TNT1 A 0 A_SpawnItemEx("PaladinShieldHitbox3",25,0,10,0,0,0,0,SXF_NOCHECKPOSITION)
+		HPAL L 2 Bright A_CustomMissile("PaladinBallOriginal",38,0,random(-4,4))
+		HPAL K 2 A_FaceTarget
+		TNT1 A 0 A_SpawnItemEx("PaladinShieldHitbox3",25,0,10,0,0,0,0,SXF_NOCHECKPOSITION)
+		HPAL L 2 Bright A_CustomMissile("PaladinBallOriginal",38,0,random(-4,4))
+		HPAL K 2 A_FaceTarget
+		TNT1 A 0 A_SpawnItemEx("PaladinShieldHitbox3",25,0,10,0,0,0,0,SXF_NOCHECKPOSITION)
+		HPAL L 2 Bright A_CustomMissile("PaladinBallOriginal",38,0,random(-4,4))
+		HPAL K 2 A_FaceTarget
+		TNT1 A 0 A_SpawnItemEx("PaladinShieldHitbox3",25,0,10,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Jump(128,"Rocket")
+		Goto See
+	Grenadier:
+		HPAL I 8 A_FaceTarget
+		TNT1 A 0 A_PlaySound("Weapons/GrenadeFire")
+		HPAL J 7 Bright A_CustomMissile("CydestroyerGrenade",35,20,Random(4,-4))
+		HPAL I 4 A_FaceTarget
+		TNT1 A 0 A_PlaySound("Weapons/GrenadeFire")
+		HPAL J 7 Bright A_CustomMissile("CydestroyerGrenade",35,20,Random(4,-4))
+		HPAL I 4 A_FaceTarget
+		TNT1 A 0 A_PlaySound("Weapons/GrenadeFire")
+		HPAL J 7 Bright A_CustomMissile("CydestroyerGrenade",35,20,Random(4,-4))
+		HPAL I 4 A_FaceTarget
+		Goto See
+	Rocket:
+		TNT1 A 0 A_ChangeFlag("NORADIUSDMG",0)
+		HPAL I 12 A_FaceTarget
+		HPAL J 8 Bright A_CustomMissile("CyNobleRocket",35,20,Random(-2,2))
+		HPAL I 8 A_FaceTarget
+		HPAL J 8 Bright A_CustomMissile("CyNobleRocket",35,20,Random(-2,2))
+		HPAL I 8 A_FaceTarget
+		HPAL J 8 Bright A_CustomMissile("CyNobleRocket",35,20,Random(-2,2))
+		HPAL I 8 A_FaceTarget
+		HPAL J 8 Bright A_CustomMissile("CyNobleRocket",35,20,Random(-2,2))
+		HPAL I 8 A_FaceTarget
+		HPAL J 8 Bright A_CustomMissile("CyNobleRocket",35,20,Random(-2,2))
+		HPAL I 8 A_FaceTarget
+		TNT1 A 0 A_Jump(128,"Railgun")
+		Goto See
+	Seeker:
+		TNT1 A 0 A_ChangeFlag("NORADIUSDMG",0)
+		HPAL I 12 A_FaceTarget
+		HPAL J 8 Bright A_CustomMissile("BruiserMissile",35,20,2)	
+		HPAL I 8 A_FaceTarget
+		HPAL J 8 Bright A_CustomMissile("BruiserMissile",35,20,2)	
+		HPAL I 8 A_FaceTarget
+		HPAL J 8 Bright A_CustomMissile("BruiserMissile",35,20,2)	
+		HPAL I 8 A_FaceTarget
+		HPAL J 8 Bright A_CustomMissile("BruiserMissile",35,20,2)	
+		HPAL I 8 A_FaceTarget
+		HPAL J 8 Bright A_CustomMissile("BruiserMissile",35,20,2)	
+		HPAL I 8 A_FaceTarget	
+		TNT1 A 0 A_Jump(128,"Railgun")
+		Goto See
+	Railgun:
+		TNT1 A 0 A_PlaySound("weapons/rgcharge")
+		HPAL IIIIIIIIIIIIIII 2 A_FaceTarget
+		HPAL J 7 Bright A_CustomMissile("CydestroyerRail",50,20,Random(4,-4))
+		HPAL III 4 A_FaceTarget
+		TNT1 A 0 A_Jump(128,"BFG15K")
+		Goto See
+	BFG15K:
+		TNT1 A 0 A_PlaySound("weapons/charge15k")
+		HPAL I 18 A_FaceTarget
+		HPAL I 6 A_FaceTarget
+		HPAL J 0 A_PlaySound("weapons/bfg15kfire")
+		HPAL J 4 Bright A_CustomMissile("Cybruiser15K",35,20,Random(4,-4))
+		HPAL I 4 A_FaceTarget
+		HPAL J 0 A_PlaySound("weapons/bfg15kfire")
+		HPAL J 4 Bright A_CustomMissile("Cybruiser15K",35,20,Random(4,-4))
+		HPAL I 4 A_FaceTarget
+		HPAL J 0 A_PlaySound("weapons/bfg15kfire")
+		HPAL J 4 Bright A_CustomMissile("Cybruiser15K",35,20,Random(4,-4))
+		HPAL I 4 A_FaceTarget
+		HPAL J 0 A_PlaySound("weapons/bfg15kfire")
+		HPAL J 4 Bright A_CustomMissile("Cybruiser15K",35,20,Random(4,-4))
+		HPAL I 20 A_PlaySound("weapons/bfg15kcooldown",CHAN_AUTO)
+		Goto See
+	Pain:
+		TNT1 A 0 A_ChangeFlag("FRIGHTENED",0)
+		HPAL P 3
+		HPAL P 3 A_Pain
+		TNT1 A 0 A_Jump(128,"ShieldUp")
+		Goto See 
+	PainMissile:
+		TNT1 A 0 A_ChangeFlag("FRIGHTENED",0)
+		HPAL P 3
+		HPAL P 6 A_Pain
+		Goto Missile 
+	ShieldUp:
+		TNT1 A 0 A_ChangeFlag("NORADIUSDMG",1)
+		TNT1 A 0 A_SetUserVar("user_shield",random(0,10))
+		TNT1 A 0 A_JumpIf(user_shield >= 25,"ShieldDown")	 
+		TNT1 A 0 A_SetUserVar("user_shield",user_shield+1)
+		TNT1 A 0 A_SpawnItemEx("ShieldHitbox3",25,0,10,0,0,0,0,SXF_NOCHECKPOSITION)
+		HPAL K 6 A_FaceTarget
+        Goto ShieldUp+2
+	ShieldDown:
+	    TNT1 A 0 A_Jump(128,"See")
+		TNT1 A 0 A_Jump(160,"SeeShield")
+	    Goto Missile
+	Death:
+		HPAL Q 20 A_Scream
+		TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
+		TNT1 AA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
+		HPAL R 0 A_SpawnItemEx("PaladinShield",0,0,25,6,0,0,60,SXF_SETMASTER|SXF_CLIENTSIDE)
+		HPAL RRRR 2 Bright A_CustomMissile("Kaboom17", Random(10,50), 0, random(0,360), 2, random(0,360))
+		HPAL SSSS 2 Bright A_CustomMissile("Kaboom17", Random(10,50), 0, random(0,360), 2, random(0,360))
+		TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
+		TNT1 AA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
+		HPAL TTTUUU 2 Bright A_CustomMissile("Kaboom17", Random(10,50), 0, random(0,360), 2, random(0,360))
+		TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
+		TNT1 AA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
+		HPAL VVVWWW 2 Bright A_CustomMissile("Kaboom17", Random(10,50), 0, random(0,360), 2, random(0,360))
+		TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
+		TNT1 AAAA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
+		HPAL X 4 Bright A_NoBlocking
+		HPAL Y 3
+		HPAL Z -1 A_KillMaster
+		Stop
+	Raise:
+		TNT1 A 0
+	    TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		HPAL W 4
+		HPAL ZYXWVUTSRQ 4
+		Goto See 
+	} 
+}
+
+Actor ShieldHitboxMain
+{
+  Radius 20
+  Height 42
+  Mass 0x7FFFFFFF
+  +SHOOTABLE
+  +INVULNERABLE
+  +NOGRAVITY
+  +NOBLOOD
+  +DONTRIP
+  Species "Nobles"
+  Tag "Shield Hitbox"
+  States
+  {
+  Spawn:
+	TNT1 A 6 NoDelay
+	Stop
+  }
+}
+
+Actor PaladinBall23
+{
+	Radius 6
+	Height 8
+	Speed 28
+	Damage 5
+	Projectile
+	RenderStyle Add
+	Alpha 0.55
+	+THRUGHOST
+	+FORCEXYBILLBOARD
+	SeeSound "Paladin/Shoot"
+	DeathSound "Paladin/Hit"
+	Species "NobleComet"
+	DamageType "NobleComet"
+	+THRUACTORS
+	States
+	{
+	Spawn:
+		PAL1 A 2 Bright
+		PAL1 A 0 A_SpawnItemEx("PaladinBallTrail",0,0,0,0,0,0,0,128)
+		PAL1 B 2 Bright
+		PAL1 B 0 A_SpawnItemEx("PaladinBallTrail",0,0,0,0,0,0,0,128)
+		PAL1 C 2 Bright
+		PAL1 C 0 A_SpawnItemEx("PaladinBallTrail",0,0,0,0,0,0,0,128)
+		PAL1 D 2 Bright
+		PAL1 D 0 A_SpawnItemEx("PaladinBallTrail",0,0,0,0,0,0,0,128)
+		Loop
+	Death:
+		PAL1 EFHIJ 3 Bright
+		Stop
+	}
+}
+
+Actor PaladinBallTrail : BFG9500Trail
+{   
+	Radius 3
+	Height 3
+	Scale 1
+	Speed 0
+	Projectile
+	+FORCEXYBILLBOARD
+	+CLIENTSIDEONLY
+	RenderStyle Add
+	Alpha 0.67
+	States
+	{
+	Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 2
+	PAL1 KLMNOP 2 Bright A_FadeOut(0.35)
+	Stop 
+	}
+}
+
+Actor PaladinShield
+{
+	Radius 8
+	Height 8
+	Scale 1.2
+	Speed 6
+	Bouncetype Doom
+	+DROPOFF
+	+MISSILE
+	+REFLECTIVE
+	States
+	{
+	Spawn:
+		PDSH ABCDEFGH 3
+		Loop
+	Death:
+		PDSH I -1
+		Loop
+	}
+}
+
+ACTOR PaladinGrenade : RifleGrenade
+{
+FastSpeed 24
+Damage 20
+-THRUSPECIES
+DamageType "NobleComet"
+}
+
+ACTOR PaladinRocket : CyNobleRocket
+{
+DamageType "NobleComet"
+}
+
+ACTOR PaladinSeeker : BruiserMissile 
+{
+DamageType "NobleComet"
+}
+
+ACTOR PaladinRailgun : CardinalRail
+{
+DamageType "NobleComet"
+MissileType "CardinalRailTrail"
+States
+	{
+Spawn:
+    DCRP A 1 Bright
+    Loop
+Death:
+    TNT1 A 0
+	TNT1 A 0 A_SpawnItemEx("BFGShockwaveRed", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AAA 0 A_CustomMissile("Kaboom14", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 A 1 A_SpawnItem("RailgunImpactEffectRed")
+	Stop
+	}
+}
+
+ACTOR Paladin10K : Red10KProjectile
+{
+Obituary "%o played dodgeball with a paladin and lost."
+States
+{
+Death:
+XDeath:  
+   TNT1 A 0
+   TNT1 A 1 A_SpawnItem("Paladin10KEx")
+   Stop
+   }
+}
+
+ACTOR Paladin10KEx : Red10KEx
+{
+DamageType "NobleComet"
+}
+
+Actor PaladinShieldHitbox
+{
+  Radius 20
+  Height 40
+  Mass 0x7FFFFFFF
+  +SHOOTABLE
+  +NOTELEPORT
+  +INVULNERABLE
+  +NOGRAVITY
+  +DONTRIP
+  +REFLECTIVE
+  +NOBLOOD
+  -SOLID
+  +NODAMAGETHRUST
+  -THRUGHOST
+  +NORADIUSDMG
+  Species "NobleComet"
+  Tag "\c[m8]Paladin's Shield\c-"
+  States
+  {
+  Spawn:
+	TNT1 AAA 4 NoDelay
+	Stop
+  }
+}
+
+Actor PaladinShieldHitbox2 : PaladinShieldHitbox
+{
+  Tag "\c[m8]Paladin's Shield\c-"
+  States
+  {
+  Spawn:
+	TNT1 AA 5 NoDelay
+	Stop
+  }
+}
+
+Actor ShieldHitbox3 : ShieldHitboxMain
+{
+  Tag "\c[m8]Paladin's Shield\c-"
+}
+
+
+Actor PaladinShieldHitbox3 : ShieldHitbox3
+{
+  Tag "\c[m8]Paladin's Shield\c-"
+  States
+  {
+  Spawn:
+	TNT1 AA 2 NoDelay
+	Stop
+  }
+}
+
+Actor PaladinBallOriginal
+{
+	Radius 6
+	Height 8
+	Speed 28
+	Damage 5
+	Projectile
+	RenderStyle Add
+	Alpha 0.67
+	+SeekerMissile
+	+THRUGHOST
+	+FORCEXYBILLBOARD
+	+BLOODLESSIMPACT
+    +THRUSPECIES
+    Species "Nobles"
+	DamageType "NobleComet"
+	SeeSound "Paladin/Shoot"
+	DeathSound "Paladin/Hit"
+	Decal DoomImpScorch
+	States
+	{
+	Spawn:
+		PAL1 ABCD 2 Bright A_SpawnItemEx("PaladinBallTrail",0,0,0,0,0,0,0,128)
+		Loop
+	Death:
+		PAL1 EFHIJ 3 Bright
+		Stop
+	}
+}

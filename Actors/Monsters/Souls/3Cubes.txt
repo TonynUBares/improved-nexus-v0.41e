@@ -1,0 +1,314 @@
+Actor GuardianCube 20102 
+{
+  Health 80
+  Radius 16
+  Height 32
+  Mass 150
+  Speed 10
+  PainChance "SoulToxic", 0
+  PainChance "Souls", 0
+  PainChance "ChaosSoul", 0
+  PainChance 64
+  Species "EleSouls"
+  Damagefactor 0.8
+  Damagefactor "Souls", 0.0
+  DamageFactor "SoulToxic", 0.0
+  DamageFactor "Ice", 0.0
+  DamageFactor "BombBreath", 0.0
+  Damagefactor "EleSouls", 0.0
+  DamageFactor "CacoComet", 0.0
+  DamageFactor "WeakenerBall", 0.0
+  Monster
+  Obituary "%o got fried by a Guardian Cube."
+  +NOGRAVITY
+  +FLOAT
+  +NOFEAR
+  +DONTFALL
+  +SEEINVISIBLE
+  +NOBLOOD
+  +DONTGIB
+  +DONTHURTSPECIES
+  +LOOKALLAROUND
+  SeeSound "monster/cubsit"
+  PainSound "weapons/bounc1"
+  ActiveSound "monster/cubfly"
+  DeathSound "monster/cubdth"
+  Tag "$NEGuardCube"
+  States 
+  { 
+  Spawn: 
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
+	Goto Idle
+  Idle:
+    CUBE ABC 4 A_Look 
+    Loop 
+  See: 
+    CUBE ABC 4 A_Chase
+    Loop 
+  Missile: 
+    CUBE D 5 Bright A_FaceTarget 
+    CUBE E 0 Bright A_CustomMissile("CubeShot",10,4,0,1)
+    CUBE E 4 Bright A_CustomMissile("CubeShot",10,-4,0,1)
+    CUBE D 4 Bright A_FaceTarget 
+    CUBE E 0 Bright A_CustomMissile("CubeShot",10,4,0,1)
+    CUBE E 4 Bright A_CustomMissile("CubeShot",10,-4,0,1)
+    CUBE D 4 Bright A_FaceTarget  
+    CUBE E 0 Bright A_CustomMissile("CubeShot",10,4,0,1)
+    CUBE E 4 Bright A_CustomMissile("CubeShot",10,-4,0,1)
+    CUBE D 4 Bright A_FaceTarget
+    Goto See 
+  Pain: 
+    CUBE D 1 
+    CUBE D 1 A_Pain 
+    Goto See 
+  Death:
+	TNT1 A 0
+	TNT1 A 0 A_playsound("weapons/rocklx")
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+    TNT1 AAA 0 A_CustomMissile("Kaboom3", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
+    TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+    TNT1 A 0 A_Explode
+    CUBE E 1 Bright A_NoBlocking
+    CUBE E 1 Bright A_SetFloorClip
+    CUBE E 1 Bright A_Scream 
+    CUBE FGH 2 Bright
+    Stop 
+  } 
+}
+
+Actor CubeShot
+{
+  Radius 5
+  Height 5
+  Speed 15
+  Damage 1
+  Damagetype "Souls"
+  Species "Souls"
+  RenderStyle Add
+  Alpha 0.85
+  Projectile
+  +ThruGhost
+  Seesound "weapons/firsfi"
+  DeathSound "weapons/maceex"
+  Obituary "%o got fried by a Guardian Cube."
+  States
+  {
+  Spawn:
+    CBAL AB 1 Bright A_SpawnItemEx("CubeShotTrail",0,0,0,0,0,0,0,128,0)
+    Loop
+  Death:
+	TNT1 A 0
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AAA 0 A_CustomMissile("MiniKaboom9", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX4", 0, 0, random(0,360), 2, random(0,360))
+    CBAL CDEFG 3 Bright
+    Stop
+  }
+}
+
+ACTOR CubeShotTrail : BFG9500Trail
+{
+Scale 1
+States
+{
+Spawn:
+    TNT1 A 0
+    TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 1
+    CBAL HIJ 1 A_FadeOut(0.1)
+	Stop
+    }
+}
+
+ACTOR MiniKaboom9 : Kaboom6
+{
+Scale 0.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+FXPO AABBCDEFGHIJKLM 1 Bright A_FadeOut(0.05)
+Stop
+}
+}
+
+Actor DTGuardianCube : GuardianCube
+{
+  Health 120
+  Monster
+  Obituary "%o got burned by a Demon Tech Guardian Cube."
+  Tag "$NEDTGuardCube"
+  States 
+  { 
+  Spawn: 
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
+	Goto Idle
+  Idle:
+    DTCB ABC 4 A_Look 
+    Loop 
+  See: 
+    DTCB ABC 4 A_Chase
+    Loop 
+  Missile: 
+    DTCB D 5 Bright A_FaceTarget 
+    DTCB E 0 Bright A_CustomMissile("DTCubeShot",10,4,0,1)
+    DTCB E 4 Bright A_CustomMissile("DTCubeShot",10,-4,0,1)
+    DTCB D 4 Bright A_FaceTarget 
+    DTCB E 0 Bright A_CustomMissile("DTCubeShot",10,4,0,1)
+    DTCB E 4 Bright A_CustomMissile("DTCubeShot",10,-4,0,1)
+    DTCB D 4 Bright A_FaceTarget  
+    DTCB E 0 Bright A_CustomMissile("DTCubeShot",10,4,0,1)
+    DTCB E 4 Bright A_CustomMissile("DTCubeShot",10,-4,0,1)
+    DTCB D 4 Bright A_FaceTarget
+    Goto See 
+  Pain: 
+    DTCB D 1 
+    DTCB D 1 A_Pain 
+    Goto See 
+  Death:
+	TNT1 A 0
+	TNT1 A 0 A_playsound("weapons/clrocketexplode")
+	TNT1 A 0 A_SpawnItemEx("GreenParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+    TNT1 AAA 0 A_CustomMissile("Kaboom4", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+	TNT1 A 0 Bright A_Explode
+    DTCB E 1 Bright A_NoBlocking
+    DTCB E 1 Bright A_SetFloorClip
+    DTCB E 1 Bright A_Scream 
+    DTCB FGH 2 Bright
+    Stop 
+  } 
+}
+
+ACTOR DTCubeShot : ZDemonTechProjectile
+{
+   SeeSound "weapons/demontechfire"
+   Damagetype "Souls"
+   Species "Souls"
+   Decal DTRScorch
+}
+
+Actor PhaseGuardianCube : GuardianCube 20104 
+{
+  Health 150
+  Monster
+  Obituary "%o was taken over by a Phase Guardian Cube."
+  Tag "$NEPhGuardCube"
+  States 
+  { 
+  Spawn: 
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
+	Goto Idle
+  Idle:
+    PHCB ABC 4 A_Look 
+    Loop 
+  See: 
+    PHCB ABC 4 A_Chase
+	TNT1 A 0 A_Jump(46,"Phase")	
+    Loop
+  Phase:
+    TNT1 A 0 A_PlaySound("phaseimp/teleport")
+    PHCB A 2 A_FaceTarget
+    PHCB B 1 A_SetTranslucent(0.75)
+    PHCB C 1 A_SetTranslucent(0.55)
+    PHCB A 1 A_SetTranslucent(0.35)
+	PHCB B 1 A_SetTranslucent(0.15)
+    Goto Phased
+	UnPhase:
+    TNT1 A 0 A_PlaySound("phaseimp/teleport")
+	PHCB A 1 A_SetTranslucent(0.15)
+    PHCB B 1 A_SetTranslucent(0.35)
+    PHCB C 1 A_SetTranslucent(0.55)
+    PHCB A 1 A_SetTranslucent(0.75)
+	TNT1 A 0 A_SetTranslucent(1)
+    PHCB B 2 A_FaceTarget		
+    Goto See
+  Phased:
+    PHCB AABBCCAABBCCAABBCCAABBCC 1 A_ExtChase(0,0)
+    PHCB AABBCCDDAABBCC 1 A_Chase
+    TNT1 A 0 A_Jump(24,"UnPhase")
+    Goto Phased+32
+  Missile:
+	TNT1 A 0 A_SetTranslucent(1)
+    PHCB D 5 Bright A_FaceTarget 
+    PHCB E 0 Bright A_CustomMissile("PhaseCubeShot",10,4,0,1)
+    PHCB E 4 Bright A_CustomMissile("PhaseCubeShot",10,-4,0,1)
+    PHCB D 4 Bright A_FaceTarget 
+    PHCB E 0 Bright A_CustomMissile("PhaseCubeShot",10,4,0,1)
+    PHCB E 4 Bright A_CustomMissile("PhaseCubeShot",10,-4,0,1)
+    PHCB D 4 Bright A_FaceTarget  
+    PHCB E 0 Bright A_CustomMissile("PhaseCubeShot",10,4,0,1)
+    PHCB E 4 Bright A_CustomMissile("PhaseCubeShot",10,-4,0,1)
+    PHCB D 4 Bright A_FaceTarget
+    Goto See 
+  Pain: 
+    PHCB D 1 
+    PHCB D 1 A_Pain 
+    Goto See 
+  Death:
+	TNT1 A 0 A_SetTranslucent(1)
+	TNT1 A 0
+	TNT1 A 0 A_playsound("weapons/clrocketexplode")
+	TNT1 A 0 A_SpawnItemEx("PurpleParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+    TNT1 AAA 0 A_CustomMissile("PurpleKaboom4", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAAA 0 A_SpawnItemEx("Debris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
+	TNT1 A 0 Bright A_Explode
+    PHCB E 1 Bright A_NoBlocking
+    PHCB E 1 Bright A_SetFloorClip
+    PHCB E 1 Bright A_Scream 
+    PHCB FGH 2 Bright
+    Stop 
+  } 
+}
+
+Actor PhaseCubeShot 
+{
+   Height 4
+   Radius 4
+   Speed 50
+   Damage 3
+   Scale 0.06
+   PROJECTILE
+   +FORCERADIUSDMG
+   DamageType "Souls"
+   Species "Souls"
+   SeeSound "weapons/demontechfire"
+   DeathSound "weapons/demontechex"
+   Decal DTRScorch
+   States
+   {
+   Spawn:
+	  TNT1 A 0 A_SeekerMissile(12,0)
+	  TNT1 A 0
+	  TNT1 A 0 A_Jump(128,"Spawn2")
+   Normal:
+	  TNT1 A 0 A_SeekerMissile(12,0)
+   	  TNT1 A 0 A_Jump(128,"NormalFX")
+      PTPR A 1 Bright A_SpawnItemEx("PhaseSentryDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+      Loop
+   NormalFX:
+      PTPR A 1 Bright A_SpawnItemEx("PhaseSentryDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+      PTPR A 1 Bright A_SpawnItemEx("PhaseSentryDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+      Goto Normal
+   Spawn2:
+	  TNT1 A 0 A_SeekerMissile(12,0)
+	  TNT1 A 0 A_Jump(128,"Spawn2FX")
+      PTPR A 1 Bright A_SpawnItemEx("PhaseSentryDemonTechTrail2",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+      Loop
+   Spawn2FX:
+      PTPR A 1 Bright A_SpawnItemEx("PhaseSentryDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+      PTPR A 1 Bright A_SpawnItemEx("PhaseSentryDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+      Goto Spawn2
+   Death:
+   	  TNT1 A 0
+	  TNT1 A 0 A_SpawnItemEx("PhaseSentryDemonTechEx",0,0,0,0,0,0,0,128,0)
+	  TNT1 AAA 0 A_CustomMissile("Kaboom8", 0, 0, random(0,360), 2, random(0,360))
+	  TNT1 AAA 0 A_CustomMissile("SmokeFX4", 0, 0, random(0,360), 2, random(0,360))
+	  TNT1 A 1 Bright A_Explode(6,48)
+      Stop
+	}
+}

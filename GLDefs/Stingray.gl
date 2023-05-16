@@ -1,0 +1,338 @@
+Flickerlight StingShot
+{
+	Color 1.0 0.5 0.0
+	Size 24
+	SecondarySize 30
+	Chance 0.3
+}
+
+Object StingrayShot
+{
+	Frame BFSH { Light StingShot }
+}
+
+Flickerlight StingTrailA
+{
+	Color 0.2 0.2 0.0
+	Size 12
+	SecondarySize 16
+	Chance 0.3
+}
+
+Flickerlight StingTrailB
+{
+	Color 0.25 0.25 0.0
+	Size 12
+	SecondarySize 16
+	Chance 0.3
+}
+
+Flickerlight StingTrailC
+{
+	Color 0.3 0.3 0.0
+	Size 16
+	SecondarySize 20
+	Chance 0.3
+}
+
+Flickerlight StingTrailD
+{
+	Color 0.35 0.35 0.0
+	Size 24
+	SecondarySize 30
+	Chance 0.3
+}
+
+Flickerlight StingTrailE
+{
+	Color 0.4 0.4 0.0
+	Size 32
+	SecondarySize 38
+	Chance 0.3
+}
+
+Flickerlight StingTrailF
+{
+	Color 0.5 0.5 0.0
+	Size 38
+	SecondarySize 46
+	Chance 0.3
+}
+
+Flickerlight StingTrailG
+{
+	Color 0.5 0.5 0.0
+	Size 48
+	SecondarySize 56
+	Chance 0.3
+}
+
+Flickerlight StingTrailH
+{
+	Color 0.45 0.45 0.0
+	Size 56
+	SecondarySize 64
+	Chance 0.3
+}
+
+Flickerlight StingTrailI
+{
+	Color 0.35 0.35 0.0
+	Size 64
+	SecondarySize 72
+	Chance 0.3
+}
+
+Flickerlight StingTrailJ
+{
+	Color 0.3 0.3 0.0
+	Size 72
+	SecondarySize 80
+	Chance 0.3
+}
+
+Flickerlight StingTrailK
+{
+	Color 0.25 0.25 0.0
+	Size 80
+	SecondarySize 88
+	Chance 0.3
+}
+
+Flickerlight StingTrailL
+{
+	Color 0.25 0.25 0.0
+	Size 88
+	SecondarySize 96
+	Chance 0.3
+}
+
+Flickerlight StingTrailM
+{
+	Color 0.23 0.23 0.0
+	Size 96
+	SecondarySize 104
+	Chance 0.3
+}
+
+Flickerlight StingTrailN
+{
+	Color 0.2 0.2 0.0
+	Size 106
+	SecondarySize 114
+	Chance 0.3
+}
+
+Flickerlight StingTrailO
+{
+	Color 0.18 0.18 0.0
+	Size 112
+	SecondarySize 120
+	Chance 0.3
+}
+
+Flickerlight StingTrailP
+{
+	Color 0.15 0.15 0.0
+	Size 120
+	SecondarySize 128
+	Chance 0.3
+}
+
+Flickerlight StingTrailQ
+{
+	Color 0.1 0.1 0.0
+	Size 128
+	SecondarySize 136
+	Chance 0.3
+}
+
+Flickerlight StingTrailR
+{
+	Color 0.07 0.07 0.0
+	Size 128
+	SecondarySize 136
+	Chance 0.3
+}
+
+Object StingrayTrail
+{
+	Frame HBRYA { Light StingTrailA }
+	Frame HBRYB { Light StingTrailB }
+	Frame HBRYC { Light StingTrailC }
+	Frame HBRYD { Light StingTrailD }
+	Frame HBRYE { Light StingTrailE }
+	Frame HBRYF { Light StingTrailF }
+	Frame HBRYG { Light StingTrailG }
+	Frame HBRYH { Light StingTrailH }
+	Frame HBRYI { Light StingTrailI }
+	Frame HBRYJ { Light StingTrailJ }
+	Frame HBRYK { Light StingTrailK }
+	Frame HBRYL { Light StingTrailL }
+	Frame HBRYM { Light StingTrailM }
+	Frame HBRYN { Light StingTrailN }
+	Frame HBRYO { Light StingTrailO }
+	Frame HBRYP { Light StingTrailP }
+	Frame HBRYQ { Light StingTrailQ }
+	Frame HBRYR { Light StingTrailR }
+}
+
+Flickerlight StingPuffA
+{
+	Color 1.0 0.25 0.0
+	Size 48
+	SecondarySize 56
+	Chance 0.3
+}
+
+Flickerlight StingPuffB
+{
+	Color 1.0 0.75 0.0
+	Size 70
+	SecondarySize 78
+	Chance 0.3
+}
+
+Flickerlight StingPuffC
+{
+	Color 1.0 0.85 0.0
+	Size 80
+	SecondarySize 88
+	Chance 0.3
+}
+
+Flickerlight StingPuffD
+{
+	Color 1.0 0.9 0.0
+	Size 86
+	SecondarySize 94
+	Chance 0.3
+}
+
+Flickerlight StingPuffE
+{
+	Color 1.0 0.95 0.0
+	Size 92
+	SecondarySize 100
+	Chance 0.3
+}
+
+Flickerlight StingPuffF
+{
+	Color 1.0 1.0 0.0
+	Size 98
+	SecondarySize 106
+	Chance 0.3
+}
+
+Flickerlight StingPuffG
+{
+	Color 1.0 1.0 0.0
+	Size 104
+	SecondarySize 112
+	Chance 0.3
+}
+
+Flickerlight StingPuffH
+{
+	Color 1.0 1.0 0.0
+	Size 116
+	SecondarySize 124
+	Chance 0.3
+}
+
+Flickerlight StingPuffI
+{
+	Color 1.0 0.9 0.0
+	Size 118
+	SecondarySize 126
+	Chance 0.3
+}
+
+Flickerlight StingPuffJ
+{
+	Color 1.0 0.8 0.0
+	Size 124
+	SecondarySize 132
+	Chance 0.3
+}
+
+Flickerlight StingPuffK
+{
+	Color 1.0 0.7 0.0
+	Size 126
+	SecondarySize 134
+	Chance 0.3
+}
+
+Flickerlight StingPuffL
+{
+	Color 1.0 0.4 0.0
+	Size 80
+	SecondarySize 88
+	Chance 0.3
+}
+
+Flickerlight StingPuffM
+{
+	Color 1.0 0.0 0.0
+	Size 40
+	SecondarySize 48
+	Chance 0.3
+}
+
+Object StingrayPuff
+{
+	Frame FXPOA { Light StingPuffA }
+	Frame FXPOB { Light StingPuffB }
+	Frame FXPOC { Light StingPuffC }
+	Frame FXPOD { Light StingPuffD }
+	Frame FXPOE { Light StingPuffE }
+	Frame FXPOF { Light StingPuffF }
+	Frame FXPOG { Light StingPuffG }
+	Frame FXPOH { Light StingPuffH }
+	Frame FXPOI { Light StingPuffI }
+	Frame FXPOJ { Light StingPuffJ }
+	Frame FXPOK { Light StingPuffK }
+	Frame FXPOL { Light StingPuffL }
+	Frame FXPOM { Light StingPuffM }
+}
+
+//Alt-fire
+Pointlight StingWaveA
+{
+	Color 0.4 0.4 0.4
+	Size 48
+}
+
+Pointlight StingWaveB
+{
+	Color 0.2 0.2 0.2
+	Size 48
+}
+
+Pointlight StingWaveC
+{
+	Color 0.1 0.1 0.1
+	Size 48
+}
+
+Object StingrayWave
+{
+	Frame IDGAA { Light StingWaveA }
+	Frame IDGAB { Light StingWaveB }
+	Frame IDGAC { Light StingWaveC }
+}
+
+Pulselight StingGlobe
+{
+	Color 0.4 1.0 1.0
+	Size 64
+	SecondarySize 1024
+	Interval 0.4
+}
+
+Object StingrayGlobe
+{
+	Frame BSW2 { Light StingGlobe }
+}

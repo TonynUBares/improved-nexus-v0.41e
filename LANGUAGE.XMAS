@@ -1,0 +1,135 @@
+//how to work with this:
+//if you want to add other monster in Santa's list, just create a new string like
+// XMAS*monsterClassName* = int(droppingChance)
+//Side notes: droppingChance is going to be divided by 256 
+// all monsters that are not in this list, are getting a chance of 4/256
+
+
+[enu default]
+
+//LegGang
+
+XMASLegendaryZombie = 32;
+XMASLegendaryRevolverZombie = 32;
+XMASLegendaryAssaultCaptain = 32;
+XMASLegendaryLieutenant = 32;
+XMASLegendaryStealthTrooper = 32;
+XMASLegendaryCommando = 32;
+XMASLegendaryGeneral = 32;
+XMASLegendaryImp = 32;
+XMASLegendaryFiend = 32;
+XMASLegChainsawZombie = 32;
+XMASLegendarySuicideBomber = 32;
+XMASLegendaryBeheadedKamikaze = 32;
+XMASLegendaryApparition = 32;
+XMASLegendaryPhaseImp = 32;
+XMASLegendarySoul = 32;
+XMASLegendaryHeroSoul = 32;
+
+//LegBigGang
+XMASLegendaryRedeemer = 64;
+XMASLegendaryNecromancer = 64;
+XMASLegendaryTormentor = 64;
+XMASLegendaryBabySentient = 64;
+XMASLegendaryBabyDemolisher = 64;
+XMASLegendaryBehemoth = 64;
+XMASLegendaryRevenant = 64;
+XMASLegendaryHellKnight = 64;
+XMASLegendaryCybruiser = 64;
+XMASLegendaryCyberNoble = 64;
+XMASLegendaryAfrit = 64;
+XMASLegendaryArchon = 64;
+XMASLegendaryVile = 64;
+XMASLegendaryCrusader = 64;
+XMASLegendaryVessel = 64;
+
+
+//LegSuperGang
+XMASLegendarySentient = 128;
+XMASLegendaryCyberdemon = 128;
+XMASLegendaryAnnihilator = 128;
+XMASLegendaryCardinal = 128;
+XMASLegendaryTerminator = 128;
+XMASCorruptedLegendaryCardinal = 128;
+
+
+// MadGang
+XMASEnragedLegendaryZombie = 32;
+XMASEnragedLegendaryAssaultCaptain = 32;
+XMASEnragedLegendaryLieutenant = 32;
+XMASEnragedLegendaryCommando = 32;
+XMASEnragedLegendaryStealthTrooper = 32;
+XMASEnragedLegendaryImp = 32;
+XMASEnragedLegendaryFiend = 32;
+XMASEnragedLegendarySuicideBomber = 32;
+XMASEnragedLegendarySoul = 32;
+
+
+//MadBigGang
+XMASEnragedLegendaryRedeemer = 64;
+XMASEnragedLegendaryNecromancer = 64;
+XMASEnragedLegendaryTormentor = 64;
+XMASEnragedLegendaryBabySentient = 64;
+XMASEnragedLegendaryBehemoth = 64;
+XMASEnragedLegendaryRevenant = 64;
+XMASEnragedLegendaryHellKnight = 64;
+XMASEnragedLegendaryCybruiser = 64;
+
+
+//MadSuperGang
+XMASEnragedLegendarySentient = 128;
+XMASEnragedLegendaryCyberdemon = 128;
+
+
+
+//NemesisGang
+XMASNemesisZombie = 32;
+XMASNemesisAssaultCaptain = 32;
+XMASNemesisSuperShotgunZombie = 32;
+XMASNemesisCommando = 32;
+XMASNemesisStealthTrooper = 32;
+XMASNemesisImp = 32;
+XMASNemesisSuicideBomber = 32;
+XMASNemesisFiend = 32;
+XMASNemesisChainsawZombie = 32;
+XMASNemesisSoul = 32;
+
+
+//NemesisBigGang
+XMASNemesisDefiler = 64;
+XMASNemesisTormentor = 64;
+XMASNemesisBabySentient = 64;
+XMASNemesisBehemoth = 64;
+XMASNemesisRevenant = 64;
+XMASNemesisHellKnight = 64;
+XMASNemesisCyberNoble = 64;
+XMASNemesisExile = 64;
+
+
+//NemesisSuperGang
+XMASNemesisSentient = 128;
+XMASNemesisCyberdemon = 128;
+
+
+//PhaseGang
+XMASPhaseShotgunCommando = 16;
+XMASPhaseImp = 16;
+XMASPhaseGuardianCube = 16;
+XMASPhaseCacodemon = 16;
+XMASPhaseElemental = 16;
+
+
+//PhaseBigGang
+XMASPhasemoon = 32;
+XMASPhaseNightmare = 32;
+XMASPhaseGhoul = 32;
+XMASPhaseOverlord = 32;
+XMASPhaseWarlord = 32;
+XMASRMManipulator = 32;
+XMASPhaseExile = 32;
+XMASPhaseCyberdemon = 32;
+
+
+//PhaseSuperGang
+XMASsingenjitsu3 = 128;
+XMASAbyssalSatyr = 128;

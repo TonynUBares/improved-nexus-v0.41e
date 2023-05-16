@@ -1,0 +1,705 @@
+KazumisComplexAddonPack-Alpha-Ver.0.6 Changelog:
+
+-Brought back Utsuho with significant changes
+-Added EXPLOSIONS (Armageddon Cannon, hem grenades)
+-Added a new item
+-Fixed a small Undead Shinki invul bug and additionally fixed some touhous not reacting to the disabler
+-Removed SANIC (for now)
+-A standalone option to disable Legendary Chair
+
+0.61 Changelog:
+
+-Made Hibachi not spawn with touhous disabled
+
+//TXS Changelog
+//        V1.1.1
+
+By Fluffy:
+-Replaced the sprites for Hackroid Rifle due to a request from the creator of said sprites
+-Removed some unused monster sprites (7deadlysins)
+
+
+//        V1.1
+
+By ParadoX:
+-Added Hackroid Assault Captain.
+-New Sprites for hackroid rifle and ammo
+-Tech Ripper damage and ammo usage rebalance, alt fire ignores ammo spheres
+-Added a trail to tech rippers alt fire projectile
+-Tech rippers primary fire balls now bounce 12 times instead of 8 and are faster
+-Changed Hackroid Rifle's Trails, new trail effects for hackroid rifle projectiles
+-Incubus kaiser no longer drops terminator spheres
+-Obliterators now have a small chance to drop a terminator sphere
+-Buffed Obliterator's health from 3950 to 4700
+-Increased obliterators drop chances
+-Resprited Leg Behemoth Cannon (from nexus)
+-Overhauled Leg Quad Shotgun with new sprites from TSF
+-Reduced unmaker life usage
+-Unmaker can spawn from bfg map spawns (**Fluffy: I forgot to do that for some reason**)
+-Buffed antimatter reapeater
+-Nerfed demon tech axe damage and speed
+
+By Fluffy:
+-Some rebalance to loot drops from loot boxes
+-Explosive Demon tech Rifle is now a direct upgrade to the Demon Tech Rifle (Can be disabled by using the railgun zoom key)
+-Explosive DTech now also does self damage (more than the normal dtech) be careful to use it too close
+-Inventory crates (except super crates) are ACS based to fix text issues in multiplayer (I hope)
+-Added options to disable atomic soul, crates and shuffle spheres (txs_noatomic txs_noshuffle txs_nocrates) (from todo list)
+-Fixed items respawning from fake barrels
+-New monster obituaries (Extra help from DissyEX)
+-Fixed Legendary General having the wrong obituaries from particles
+-Fixed a sprite conflict with Thamuz
+-Fixes and improvements from Nexus 1.8
+-Complex chests aren't as tanky
+-Added explosive damagetype to nuclear barrels, reducing damage to top tier bosses
+
+-Homodox and Nonexistent Fiend has been cut
+
+
+//        V1.0
+
+By ParadoX:
+-Changed the unmaker:
+*its slower              *
+*uses more ammo           *
+*uses your health as ammo.*
+
+-Changed the Hackroid weapons.
+*they are slower          *
+*they use more ammo       *
+*they damage everything   *
+*does a lot more damage   *
+
+-Added hackroid zombie.
+-SBARINFO updated.
+-removed sprites of cut content.
+-music files renamed to LEGM3000 and up.
+-cleaned up GLDEFS for scrapped stuff.
+-renamed 1337 weapons to hackeroid weapons
+-resprited true leg ammo, true leg time sphere, armageddon chalice and hackeroid asg
+
+
+By fluffy:
+-Compatibility with CF 4.1
+-Recoded sentry guns and turrets
+-Brimstone fires a friendly obelisk
+-Legendary General now fires and drops the Leg BFG10K
+-Fixed shuffle rewards, reworked chests
+-Fixed sound bug with exploding cores
+
+-LordOfThePit, TimeWalk, HugeGrowth, Chaoscard, Executioner, RedHeavy, TechErasus, LegBFG15K, Flak/Demented cannon
+and Armor Regenerator has been cut
+
+
+By Titanium:
+-Replacing Obliterator's Nuclear Missile and Catastrophic Missiles with EFG attack 
+and drops EFG9000
+-Added Cyborg Shotgunner
+-Added Toxic Revenant and Infected from CF 3.0
+-Added Homodox from CF 3.0 April Fools
+-Buffed Corpulant
+-Buffed Crowned One
+-Removed Edited Corruption Servant
+-Fixed sounds between Paladin and Hell Paladin (HEM)
+-Improved Credits
+
+
+--^TXS REBORN^--
+
+
+
+//        V1.0.1
+
+Re-Added Demon Tech Axe (Requested by SyfeKS)
+Changed Utily Crate to Utility Crate because "Utily" is not correct
+Changed Enraged Legendary Kierger to Incubus Kaiser
+Added both Playing Card & Magic Card with the "DROPPED" flag
+Buffed Sentry Gun which now doing pause mode is now less
+Buffed Incubus Kaiser is finally cursed
+Nerfed Incubus Kaiser's immune of legendary attacks form players is now little resistance
+Edited Incubus Kaiser's replacing enraged homing rockets to faster and buffed rockets then Death Knight
+Fixed Explosive Sentry Gun being able to damage players
+Fixed Ace Of Clubs Card spawing grenades and mines will no longer respawned
+Fixed SS Uber Soldat's orbituary
+Fixed Random Playing Card giving nothing for Joker Card
+Fixed Anubian sprites that conflicts with Berserker Imp sprites
+Fixed Sentry Gun sprites that conflicts with Enraged Leg. Stealth Tropper's turret sprites
+Fixed Chaos Card sprites that conflicts with Chaos Soul sprites
+Removed Enraged Legendary Cowboy (I need to change something better and a weapon too)
+Scraped Hellfire Cyber Baron sprites that conflicts with Cyber Baron sprites
+Removed Edited Corrupted Revenant
+Removed TestSpheres
+
+//        V1.0
+
+Added little crossover items from The Binding of Isaac
+Added new strong monster: Thamuz
+Added new strong monster: Thamulord
+Added new monster: Death Assasin
+Added new monster: Baby Cacodemon (impromoved)
+Added new monster: Abbandine (impromoved)
+Added new monster: Caconite (impromoved)
+Added new monster: Cyberassault
+Added new monster: Four of HellClones
+Added new monster: Death
+Added new monster: Nightmare Pestilence
+Added new monster: Drone
+Added new monster: Saboteur
+Added new monster: Anubian Imp
+Added new monster: Tech Ripper Cyber Zombie
+Added new monster: Former Leutnant
+Added new monster: Executioner
+The machinegun-wielding guy in a helmet Returned
+Added new item: Void Core
+Added new item: Uranium Core
+Items from The Binding of Isaac:
+-Added new item: Brimstone
+-Added new item: Lord Of The Pit
+-Added new item: Ace Of Spades
+-Added new item: Ace Of Hearts
+-Added new item: Ace Of Clubs
+-Added new item: Ace Of Diamonds
+-Added new item: Chaos Card
+-Added new item: Huge Growth
+-Added new item: Ancient Recall
+-Added new item: Time Walk.
+Added new weapon : Legendary Quad Shotgun
+Added sentries : Sentry Gun, Explosive Sentry Gun and Sniper Sentry Gun
+Added turrets : Rocket Turret, BFG Turret and Death Turret
+Better sprite for Dark Hell Razer
+Better sprite for Pyro Soul
+Changed a name and Better sprite for Enraged Famine to Nightmare Famine
+Added sprites for any monsters "Spawn" as like CD and LCA monsters
+Added minor 1337 projectile's bounce
+Added Phase Shotgun Commando's "PhaseMoon" effects become Phase Moon
+Added Paladin's code "PainMissile"
+Added Tortured Soul death parts effect
+Added Obliterator's new attack Demon Tech Shotgun
+Edited Corruption Servant added dropping Antimatter Repeater and clones will not drop things
+Edited Corpulant's tag without nickname
+Changed Tortured Soul's souls attack to new projectiles
+Changed Unmaker Altfire
+HellRazerSecret Changes: Buffed health 220 to 500 and Nerfed spawn chance and Tagged calls Infernal Devourer
+Fixed Heavy SpecOps Machinegunner sprite offset
+Fixed Demented Flak Cannon's "Altfire" showing Regular Flak Cannon sprites
+Fixed BFG Servant's walk fire, flame spawner and add dead soul sprties
+Fixed Legendary General missing brights, LEGEZ5 offset and Removed "Raise"
+Fixed Legendary Cybruiser's "Rocket3" spread rocket is no more, even fast rocket
+Fixed Paladin's projectiles in "Normal" and added another hitbox for "Pain"
+Fixed Hell Razers and Dark Hell Razer's "Death", no more duplicating items
+Fixed M79 Zombie code
+Fixed Pyro Soul projectiles getting hit on a ground
+Fixed Cyro Soul kamikaze attack shows a Cryo Demon
+Fixed All Items should no respawn only enable INVENTORY.BIGPOWERUP flag
+Accidentally with the MissileType instead of DamageType to Legendary Behemoth Cannon's projectiles code
+Buffed Phase Moon no damage to every zombies
+Buffed Tech Vulcan primary fire is now tracer
+Buffed Arachhunter and Arachhunter MK II. MISSILEEVENMORE and QUICKTORETALIATE flags added
+Buffed Radar duration of time it will take 5 minutes
+Nerfed Legendary Cybruiser's "BFG15K" fire rating less and projectiles belongs by Leg. General
+Nerfed Obliterator's nuke attack chance
+Nerfed Huntertron's railgun attack with one
+Nerfed BFG Servant's normal and MiniDTBFG attack
+Nerfed Weapon spawners
+Nerfed BFG9000 spawners, BFG 9500 spawn chance will appear rarely
+Chance to Explosive Demon Tech Rifle appeared is actually harder
+Removed Ultra Sphere dropped from Corruption Servant
+Removed files in Actors
+Removed Redeemer Commander's Super Leg Rune dropping
+Removed Demon Tech Axe
+Removed Enraged Revolver
+Removed old files it was XtraWeapnos addon
+Fixed credits and added program used
+
+//        V1.0 early
+
+== Officially changing the name to "txs.v1.0"
+= Introducing new bosses [Upcoming] : "Hackroids" monsters
+							- Hackroid Zombie
+							- Hackroid Imp
+							- Hackroid Assault Captain
+							- Hackroid Beheaded Kamikaze
+= Added strong items : "Hacked" items
+						- Hacked Sphere
+						- Hacked Armor
+						- Hacked Power Sphere
+Added new boss: Legendary Cybruiser
+Added new boss: Legendary General
+Added new boss: Enraged Legendary Cowboy
+Added new boss: Enraged Legendary Krieger
+Added new boss: Obilterator (Baron boss)
+Added new boss: Atomic Soul (Lost Soul boss)
+Added new boss: Dr. Shabbs (X2, Original and My custom)
+Added new boss: Panz Grosse
+Added new boss: True Hitler
+Added new strong monster: Frost Demon
+Added new strong monster: Phase Moon (aparred from Phase Shotgun Commando)
+Added new monster: Redeemer Commander
+Added new monster: Frost Afrit
+Added new monster: Loper
+Added new monster: Transparented Loper
+Added new monster: Non-Existent Fiend
+Added new monster: Cacolatern
+Added new monster: Hell Razer (Normal)
+Added new monster: Hell Razer (Buff : Explosive DTR attack)
+Added new monster: Tortured Soul
+Added new monster: Dark Hell Razer
+Added new monster: Cyber Imp
+Added new monster: Carrier
+Added new monster: Paladin from CDI (Edited)
+Added new monster: BFG Servant
+Added new monster: Cacobus
+Added new monster: Super Cacobus
+Added new monster: Huntertron
+Added new monster: Enraged Famine
+Added new monster: Cyberhund
+Added new monster: Darko
+Added new monster: SS Uber Soldier with Ex. Miniguns
+Added new monster: Heavy SpecOps Railgunner
+Added new monster: Heavy SpecOps Shotgunner
+Added new monster: Heavy SpecOps Machinegunner
+Added new monster: Arachhunter
+Added new monster: Arachhunter MK II
+Added new monster: Baby Spider Mastermind
+Added new monster: Shotgun Spider
+Added new monster: Pyro Soul
+Added new monster: Cryo Soul
+Added new monster: LukeWarm Elemental
+Added new monster: M79 Zombie (sprites from complexdoomclassic)
+Added new monster: SS Dual Rocket Man from CDI (edited as well)
+Added new barrel: Nemesis Tech Barrel
+Added new barrel: Vexed Nemesis Tech Barrel*
+Added new thing: Complex Chest (find out at barrel spawner)
+Added new powerup : Doom Slayer Power (aka. nerfed Extreme Sphere)
+Added new powerup : Radar (You need get Map Reavealer)
+Added new powerup : Demon Tech Map Reavealer (Map Reavealer and Scanner)
+Added new item : Chalice Of Armageddon
+Added new item : Weapon Crate
+Added new item : Utily Crate
+Added new item : Health Crate
+Added new item : Super Crate
+Added new item : Demon Tech Sentry Gun
+Added new item : Explosive Demon Tech Sentry Gun
+Added new item : Phase Demon Tech Sentry Gun
+Added new item : Supercharge Demon Tech Sentry Gun
+Added new weapon : 1337 Rifle
+Added new weapon : 1337 Automatic Shotgun
+Added new weapon : Explosive Demon Tech Rifle
+Added new weapon : Enraged Legendary Revoler
+Added new weapon : Antimatter Repeater
+Added new weapon : Tech Ripper
+Added new weapon : Tech Blizzard (Be careful to use altfire, as harming yourself.)
+New Altfire to Flak Cannon
+New Altfire to Demented Flak Cannon
+Edited Wrathlod (Added Hexa and Double ESG, Changed DTR Regular to Explosive, Removed Flamethrower and New sounds)
+Edited Corruption (Added Chaos Projectile and Chaos Lightning, New Sounds)
+Edited Schabbs (Added summon new enemies same as Original and Custom, XDeath Sound)
+Edited Corpuland (No more infighting, New Sounds)
+Edited SS SuperSoldier With Pyro Cannon (Front sprite)
+Edited SS UberSoldier (Front sprite)
+Edited Hitler and his mech suit (Front sprite, Added immune infighting nazi soldiers and +NOICEDEATH flag to his mech suit)
+Added some sprites for new bonus health/armor from "complex-clusterweapons"
+Changed Extreme Sphere to Clusterfuck Slayer
+Changed Unmaker primary fire
+Replaced Load Order with .txt file
+New sprites for Unmaker
+New sprites for Legendary Behemoth Cannon
+New sprites for Legendary Krieger
+New sounds to Plasma Shotgun
+New sounds to Flak Cannon
+New sounds to Demented Flak Cannon
+Renamed Pulse Shotgun to Plasma Shotgun
+Fixed Phase Shotgun Commando attacks
+Fixed Casting for Plasma Shotgun
+Fixed dropping items to Fake Enraged Legendary and Fake Legendary barrels
+Fixed minor bugs
+Some Fixes by rickyV (xtraweapons in version 2.3 FIXED, 2.4 - 2.5)
+Removed dropping Crystal Armor from Impure Elemental's death, he drops extra one
+Removed Dumb/Drum Grenade Launcher
+Removed Double Grenade Launcher
+Removed Electric Rifle/Legendary Lightning Rifle
+Removed Chainsaw Gun 
+Removed Laser Cannon
+Canceled Legendary Minigun/Chaingun
+Canceled Hellice Cyberdemon
+Canceled Tech Vulcan Zombie
+Upcoming boss: Legendary Stalker
+Upcoming boss: General Akhanov
+Upcoming boss: True Legendary Commando
+Upcoming boss: Nemesis Krieger
+Upcoming boss: Overmind
+Upcoming monster: Death Assassin
+Upcoming Weapon: Nemesis Minigun
+Little Extra : Recouses [folder]
+
+*: chance to appeared from Nemesis Tech Barrel when Vexed Nemesis Enemies is "on"
+   and "off" means chance to appeared Nemesis Soul.
+   
+These changes made by rickyV
+/////ChangeLog for xtraweapons-v2.3FIXED\\\\\
+-Removed chainsawGun
+*Fixed the Rocket Mancubus not facing his target when shooting his seeker missiles
+*Fixed the gas clouds from the Dumb Grenade Launcher doing damage to team-mates 
+*Fixed some weapons making the screen brighter
+*Removed some unused weapons in SBARINFO
+-Removed weapons in the KEYCONF file that don't exist
+
+/////ChangeLog for xtraweapons-v2.4\\\\\
+*Fixed missing weapon player sprites
++Changed the "lighting rifle" to "Legendary Lightning Rifle"
++New sprites for "Legendary Lightning Rifle"
++New effects for "Legendary Lightning Rifle"
+*Fixed the "Plasma Shotgun" doing self damage
+*Fixed up some typos in the obituaries
+*Changed flak cannons to shoot in a circle, changed their damage , and all shard have gravity, increased bouncing
+*Changed "dumb Grenade Launcher" bounce type to HEXENBOUNCE (less bounce)
++Buffed "Enraged Legendary Behemoth Cannon" alt-fire
+
+/////ChangeLog for xtraweapons-v2.4.1\\\\\
+*Fixed Legendary Behemoth cannon doing dmg to team mates
+
+/////ChangeLog for xtraweapons-v2.4.2\\\\\
+*Fixed flak cannons using ammo with infinite ammo 
+*added some items to the true leg shuffle sphere
+
+/////ChangeLog for xtraweapons-v2.5\\\\\
+*Fixed the "Pulse Shotgun" not dropping a spent cell on reload
+*Fixed the "Legendary lightning Rifle" not spawning
+*Fixed the "Tech Vulcan" not dropping a spent Casing when shooting
+*Fixed the Death Balls from the "Unmaker" having the wrong sprites
+
+
+
+//Nexus changelog
+1.95b
+-Reworked Ammosphere: It doesn't give infinite ammo, but it adds better ammo regen depending on which ammotype
+-You can only use one Power Shard, Wings Of Ascension or Light Nemesis Armor at once (to prevent them from stacking)
+-Slightly changed Light Nemesis Armor's regen
+-Sprite fixes to Frostdemon's attacks, as well as a bit less loudness
+-Fixed a sprite conflict with one of Bloody Flandre's attacks
+-Some inventory item alignment fixes
+
+1.95a:
+-Fixed a critical issue that could cause game crashes (rawanger should work again)
+-Fixed a sprite conflict with the spellbook and Sublimation Sword
+-Disabled miniarchviles spawning from presents
+-Restored Statusbar HUD (Still incomplete)
+-Restored Demon Tech Spectre
+-Gave Cardihilator Demolisher necessary pain flag removals during states
+-Reduced distance to when the Armageddon Cannon removes player invul, basic is 600 while big explosion is 800 (close but not too close)
+
+By Titanium:
+-Added Welder / Empowered Welder (Flamethrower)
+-Added Hellspawn
+-Added Pyroblast Zombieman
+-Added Empowered Oil Barrel
+-Added monster XDeaths
+-New Insanity Cacodemon
+-New Nailgun Commando
+-New War (the monster)
+-New Infernal Cybernoble
+-You can disable deployed mines, proxmines and springmines by pressing [USE/OPEN] on them
+-Fixes to Paladin, Phase Shotgun Commando/Moon, Flak Zombie and Loper
+
+1.95:
+-New startup loading screen by Charlie95
+-You can change between enable/disable DTech Devastator's upgrade and switch between CF/DJB leg shottys with the railgun zoom key
+-Supply beacon changes: Weapons don't come from backpacks, but directly through the beacon. Drops protective items.
+-Hellfire Cardinal doesn't spawn from the HF Cyber anymore, instead it spawns on it's own depending if you have a tleg rune
+-EFG Lunatic has 10 seconds cooldown after using a fusion nuke
+-Legendary Beheaded Kamikaze and fake barrels added to Rawanger
+-Tweaked HPBAR, added noclip state (subject to change)
+-Tweaks to Sanae, fixed attacks and made sounds less earrapey
+-Tweaks to starting items/weapons: You only start with the inventory bonuses once each playthrough
+-(Tried to) fix DOOM's earrape
+-(Tired to) include Bulletpuff_Fix
+-(Tried to) fix certain bugs that could crash servers
+-Fixed some weapons not having fast weapon switch
+-Fixed some weapon tracers not showing
+-Fixed legendary Revolver using the wrong ammo type
+-Possible fix for starting invul not working properly
+-Disabled Infected
+-Other minor fixes I forgot to mention
+
+By HDAN:
+-Changes to Occult Spellbook: New spells can be upgraded twice
+-Reworked hud + more indicators
+-Beacon reskins
+
+1.94:
+-A complete merge with KAZUMI/TXS/CF/HEM/ILCA/DUST/HPBAR
+-DJB support, now comes with settings for plasma pistol, leg ssg zombie and pistol zombie
+-New mysterious archvile and new spells for the occult spellbook (By HDAN)
+-Faster weapon switching
+-Restored the M79 Zombie from TXS
+-New enemy options for Shinki and EFG Lunatic
+-Some fixes
+
+From CF Revised:
+-Updated Vexed Nemesis Stealth Trooper and Archon
+-Improved Railgun fire effect
+-An option to make the Freezer Rifle freeze corpses for extra loot 
+-Some more fixes
+
+From Aprilfools update:
+-New enemy: EFG Lunatic
+-Hackroid monsters should spawn properly depending if you have a true legendary rune
+-New Hellfire Ultrasphere sprites
+-Added a hotkey to drop all presents from inventory
+-New legendary monster sprites
+
+1.93:
+-A new spawn system for Hackroids: They spawn ingame from themselves depending if you have a true legendary rune
+-New startup song
+-New Legendary Quad Shotgun Sounds (From Dissy)
+-Changed the Legendary Quad Shotgun's reload speed to be faster with the Agility Rune
+-Presents don't crush like the runes
+-Brimstone Obelisks don't hurt other players
+-Fixed a sprite conflict with Pain Harvester's attack
+-Fixed Cacolantern's obituary and melee attack
+-Hackroids have more resistance towards legendary and nemesis weapons
+-Adjusted offsets for dropping skulltag runes and demon hearts
+-Adjusted offset for the Tech Vulcan's primary fire
+-Changed Vexed Nemesis Sentient's drops
+
+1.91 - 1.92:
+-New hellfire and super bonuses
+-Fixed Nemesis Rune conflicting with the Nemesis Revenant
+-Fixed the mini card blocking the path when dying
+-Fixed a mysterious bug with the hellfire armor bonus
+-An attempt to fix the RestoreH&A console error
+-Legendary Fusion Cannon ignores ammo spheres
+
+1.9:
+-Added Xmas presents that drops from monsters
+(disabled by default. To enable, use 'nx_xmas 1' or use nexus settings)
+-Added a new startup loading screen
+-Added Empowered Flak Cannon
+-Added Nemesis Rune
+-Added Talisman Of Chaos
+-Added four Skulltag runes: Strength Rune, Resistance Rune, High Jump Rune and Spread Rune
+(Hotkeys have been created for disable/enabeling the Skulltag Runes or dropping them from your inventory
+Also, some weapons does not apply to spread and the talisman due to massive lag
+If a non spread weapon is selected while using spread, an icon will show in your hud)
+-Added an option for spawn protection (disabled on default) (nx_protect)
+-Changed how Hackroids spawn (a chance to spawn from death if a tleg rune is equipped)
+-Fixed sprites conflicting with Heretic Knight's Warp Portal
+-Fixed possible infinite loops with the Enraged Sentient
+-Fixed Demonic Chalice respawning from dead enemies
+-Fixed Legendary Archvile to not summon legendaries upon death
+-Fixed a true legendary rune multiplayer exploit
+-Changed Clusterfuck Slayer Power to give nemesis ultra sphere health and not omega sphere
+-New obituaries for vexed enemies
+-Chance for Undead Shinki to spawn from Shinki has lowered from 50% to around 20%
+-Some menu options for Shiro's CAP have been temporarily removed. CDI Marines settings are merged with Nexus Settings
+
+New and improved Clusterweapons:
+-Added True Legendary Railgun
+-Added True Legendary Plasmatic Cannon
+-Added True Legendary Ion Striker
+-Added True Legendary Pulverizer
+-Added Tech Blaster
+-Added BFG3500
+-Added Legendary Demon Tech Devastator
+-Added legendary Fusion Cannon
+-Added Void Rune with a new unique ability
+-Added Demon Hearts and a hotkey for dropping them from inventory
+-Added new armor/health bonuses
+
+
+1.82:
+-New ZEN draw animation
+-New Archvile Staff sprites
+-Readded Jetpack Zombie and Stone Imp to the spawners
+-Hellstorm weapon's rod deals damage over time
+-Changed the Supercharged DTech Sentry to an Empowered DTech Sentry (TXS)
+-Hackroid ASG doesn't refill it's magazine on backpacks (TXS)
+-Nerfed Phase Guardian Cube's damage (TXS)
+-Nerfed Cyborg Shotgunner's Damage (TXS)
+-Hellclones take more damage (no damagefactor) (TXS)
+-Fixed an infinite loop error message with the Carrier (TXS)
+-Starting armor/health doesn't give ammo and doesn't reset after each map
+-Corrected Demon Tech Rifle's Tag
+-Grenades don't explode twice
+
+1.81:
+-A slight rebalance to chest drops (TXS)
+-Changed names to nemesis spheres and armors
+-CDI Marines have custom colours
+-Beacons don't randomly explode
+-Terminators don't drop on death when cf_nodroprunes is on
+-Slightly buffed Armageddon Cannon's both fire modes
+-Restored complex doom skills, UV is now skill 3 and TrueCF skill 7 on servers (sorry about that....)
+-Fixed the Nemesis Tormentor disappearing after getting a kill
+-Fixed an issue with Vexed Nemesis Fiend's ghosts not disappearing
+-Fixed Enraged Legendary Lieutenant's after images
+-Fixed a sprite conflict with the watcher's projectiles
+
+1.8:
+-Revamped Enraged Legendary Cyberdemon
+-Adjusted Armageddon Cannon's damage / explosion edit (WIP)
+-Ammo randomization, special types of ammo has a rare chance to spawn from ammo spawns, does not affect the items respawn flag (Subject to change)
+-New difficulty options (Subject to change)
+-New Enraged Legendary Coachgun sounds
+-New Vexed nemesis Baby Sentient sounds
+-New soundtracks for Vexed Nemesis Baby Sentient and Enraged Legendary Cyberdemon
+-The HF Card is less aggressive (Pause between attacks)
+-Runes cannot be crushed when dropped
+-Terminator powerups drop on death
+-BFG2704 uses less ammo
+-DBFG fully ignores ammo spheres (Subject to change)
+-Fixed a bug with Hellstorm BFG's alt fire
+
+Nexus extra 2.6:
+-New nemesis ammo resprites
+-Added True legendary barrel and new leg/nemesis/vexed barrel resprites
+-Changes to Vexed nemesis Archon, Vexed Nemesis Goliath and Vexed Nemesis Sentient
+
+TXS:
+-TXS Compatibility
+-New chest sounds
+-New True Legendary Time Sphere use sound
+-New Legendary Behemoth Cannon resprites
+-Hackroid weapons ignore ammo spheres
+
+1.72:
+-Added a starting armor/health option
+-Nerfed grenades to half damage and radius
+-Credit corrections
+
+1.71:
+-Fixed a sprite conflict from the Painharvester
+
+1.7:
+-Hardspawns can now be accessed from the CF options (testing stage)
+-Changed Leg C4's unarmed sprites
+-Grenades do self damage
+-Reworked HF Cards's attacks for the 999th time
+-The HF Card now spawns when the HF cyber dies (TLR equipped only)
+-Dispenser Marines give explosive ammo much slower
+-Fixed Enraged Coachgun not giving loaded shells on pickup
+-Updated Nemesis SSG DMF's
+-Legendary Kaguya has less health
+-Moved D-BFG higher in slot 7 selection
+-Moved Leg saber to be first in slot 1
+-Removed DTech Shotgun sprites
+
+Nexus Extra 2.5:
+-Reworked EFG
+-New hellfire armor sprites
+-New Corrupted Cardinal sprites
+-Changed agility and legendary rune sprites
+-Leg/tleg BFG offset adjustments
+-A slight change for the ZEN
+
+Nemesis Hellsmith 002 cf has updated with fixes:
+-Stingray's primary fire and the BLG ignores ammo spheres unless infiniteammo is enabled
+-Adjusted Nemesis Hellsmith's radius, height, DMF's and painchance
+-BLG sprite conflict fix
+-Removed Flak Cannon vertical recoil
+-Removed Railgun sounds
+-Cleaned SNDINFO and removed it's duplicate
+
+
+V1.63:
+-Compatibility with reimagined cf sounds 2.0 (Powered Dtech Railgun)
+-New startup song
+-Fixed Powered Dtech Railgun's ammo counter
+
+V1.62:
+-Removed CFDEMO and player healing script
+
+V1.6 - 1.61:
+-Readded Hell's Minister and Maephisto
+-Fixed Legendary C4's sprites when having no ammo
+
+Dr. Blood's patch:
+-Added CDI Marines (Marine beacons are harder to get)
+-Added CF demo map
+
+
+Stuff from Nexus Extra:
+-Added Vexed Nemesis Sentient
+-Added Hellfrost Cyberdemon
+-Added Hellstorm Penetrator
+-Readded new crosshair
+-New Demon Tech Shotgun, Freezer Rifle, EFG9000 and Improved Minigun sprites
+-Some new hud sprites
+-Changed Nemesis Unmaker to ZEN
+-Removed Flak Cannon vertical recoil
+
+V1.51:
+-Fixed hotkeys for demonic chalice, skull of power and ammo satchel
+-Added Gross Elemental
+
+V1.5:
+-BFG2704 nerf: Needs more energy, ignores ammo spheres and faster projectiles
+-Made the hellstorm BFG more useful (I think?)
+-An attempt to fix Enraged Sentient's sky
+-Fixed a bug where exp rifle kept firing after 0 ammo
+-Changed Super Aprrentice's drops
+-New soundtrack for Vexed Archon
+
+New sprites (By Carrot): 
+-Legendary Invisibilitysphere, Legendary Invulnerabilitysphere, Legendary Powersphere,
+-Legendary Randomsphere, Legendary Sphere, Legendary Timefreezesphere, Legendary Salvationsphere,
+-Legendary Ammosphere, Skull Of Power, Demonic Chalice, Berserk Pack, Pure Rage,
+-Monster Life essences and armor bonuses, Barbatos Cannon, Black Hole Generator, 
+-Ruffian Cannon and Improved Minigun
+
+V1.42:
+-Updated Vexed Chainsaw Zombie's rewards and nerfed vexed timer
+-Changed crosshair 2 to be smaller
+
+V1.41:
+-Fixed Nemesis Power Sphere conflicting with runes
+
+V1.4:
+-Brand new Nemesis SSG sprites
+-Added a menu cursor
+-Updated nemesis barrel
+-Updated nemesis ammo hud
+-Updated Vexed Nemesis Suicide Bomber
+-Semi nemesis sphere/armor increased to 900
+-Fixed Vexed Baby Sentient's sounds
+-Included a nerf for legendary chair
+-More enemies drop the Armageddon Cannon
+
+-Nemesis Hellsmith 002 has updated to support CF:
+
+-New and improved Stingray
+-Angry Unmaker is changed to Nemesis Unmaker (again)
+
+V1.3: (Now fused with ParadoX's Clusteraddons)
+-Added Vexed Nemesis Stealth Trooper
+-Added Vexed Nemesis Redeemer
+-Added Vexed Nemesis Fiend
+-Added Vexed Nemesis Archon
+-Added Vexed Nemesis Behemoth
+-Added Vexed Nemesis Baby Sentient
+-Added Enraged Legendary Cyberdemon
+-Added Enraged Legendary Lieutenant
+-Added Enraged Legendary Coach Gun
+-Added True Legendary Armor
+-New rune sprites
+-New Hellfire Cyber Cannon sprites
+-New Deathlord sprites
+-New sprites for Legendary Rifle, Ruffian Cannon and Leg/Enraged ASG
+
+V1.2:
+-Rebalanced monsters, now the special monsters should appear slightly more often.
+
+V1.1:
+-Added LegC4 to the hud
+-Fixed issue with two different ammo satchels appearing
+-Rebalanced Hibachi's drops
+-Changed BFG Spawns
+
+V1.0:
+-Compatibility to CF 4.1
+-Fixed Nemesis Chainsaw's infinite clones
+-Changed voices for Corrupted Legendary Cardinal
+-Changed the Commander Devastator's propulsion speeds (subject to change)
+
+
+--^ALPHA^--

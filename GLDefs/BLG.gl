@@ -1,0 +1,257 @@
+Flickerlight2 BLGBallAtoH
+{
+	Color 0.5 0.5 1.0
+	Size 72
+	SecondarySize 80
+	Interval 0.01
+}
+
+Flickerlight2 BLGBallI
+{
+	Color 0.5 0.5 1.0
+	Size 60
+	SecondarySize 68
+	Interval 0.01
+}
+
+Flickerlight2 BLGBallJ
+{
+	Color 0.5 0.5 1.0
+	Size 48
+	SecondarySize 56
+	Interval 0.01
+}
+
+Flickerlight2 BLGBallK
+{
+	Color 0.5 0.5 1.0
+	Size 36
+	SecondarySize 42
+	Interval 0.01
+}
+
+Flickerlight2 BLGBallL
+{
+	Color 0.5 0.5 1.0
+	Size 24
+	SecondarySize 30
+	Interval 0.01
+}
+
+Flickerlight2 BLGBallM
+{
+	Color 0.5 0.5 1.0
+	Size 12
+	SecondarySize 16
+	Interval 0.01
+}
+
+Object BLGSuperLightningBall
+{
+	Frame BLSBA { Light BLGBallAtoH }
+	Frame BLSBB { Light BLGBallAtoH }
+	Frame BLSBC { Light BLGBallAtoH }
+	Frame BLSBD { Light BLGBallAtoH }
+	Frame BLSBE { Light BLGBallAtoH }
+	Frame BLSBF { Light BLGBallAtoH }
+	Frame BLSBG { Light BLGBallAtoH }
+	Frame BLSBH { Light BLGBallAtoH }
+	Frame BLSBI { Light BLGBallI }
+	Frame BLSBJ { Light BLGBallJ }
+	Frame BLSBK { Light BLGBallK }
+	Frame BLSBL { Light BLGBallL }
+	Frame BLSBM { Light BLGBallM }
+}
+
+Flickerlight BLGBolt
+{
+	Color 0.4 1.0 1.0
+	Size 65
+	SecondarySize 73
+	Chance 0.3
+}
+
+Object BLGLightningBolt
+{
+	Frame HBL1 { Light BLGBolt }
+	Frame HBL2 { Light BLGBolt }
+	Frame HBL3 { Light BLGBolt }
+	Frame HBL4 { Light BLGBolt }
+}
+
+Flickerlight BLGSpkA
+{
+	Color 0.4 1.0 1.0
+	Size 32
+	SecondarySize 38
+	Chance 0.3
+}
+
+Flickerlight BLGSpkB
+{
+	Color 0.4 1.0 1.0
+	Size 24
+	SecondarySize 30
+	Chance 0.3
+}
+
+Flickerlight BLGSpkC
+{
+	Color 0.2 0.5 0.5
+	Size 64
+	SecondarySize 72
+	Chance 0.3
+}
+
+Flickerlight BLGSpkD
+{
+	Color 0.1 0.25 0.25
+	Size 64
+	SecondarySize 72
+	Chance 0.3
+}
+
+Flickerlight BLGSpkE
+{
+	Color 0.05 0.125 0.125
+	Size 64
+	SecondarySize 72
+	Chance 0.3
+}
+
+Flickerlight BLGSpkF
+{
+	Color 0.025 0.0625 0.0625
+	Size 64
+	SecondarySize 72
+	Chance 0.3
+}
+
+Object BLGSpark
+{
+	Frame G3SPA { Light BLGSpkA }
+	Frame G3SPB { Light BLGSpkB }
+	Frame G3SPC { Light BLGSpkC }
+	Frame G3SPD { Light BLGSpkD }
+	Frame G3SPE { Light BLGSpkE }
+	Frame G3SPF { Light BLGSpkF }
+}
+
+//Alt-fire
+Flickerlight2 BLGBall2
+{
+	Color 0.2 1.0 1.0
+	Size 32
+	SecondarySize 38
+	Interval 0.01
+}
+
+Flickerlight2 BLGBall2EA
+{
+	Color 0.2 1.0 1.0
+	Size 16
+	SecondarySize 20
+	Interval 0.01
+}
+
+Flickerlight2 BLGBall2EB
+{
+	Color 0.2 1.0 1.0
+	Size 12
+	SecondarySize 16
+	Interval 0.01
+}
+
+Flickerlight2 BLGBall2EAC
+{
+	Color 0.2 1.0 1.0
+	Size 10
+	SecondarySize 13
+	Interval 0.01
+}
+
+Flickerlight2 BLGBall2ED
+{
+	Color 0.2 1.0 1.0
+	Size 4
+	SecondarySize 6
+	Interval 0.01
+}
+
+Flickerlight2 BLGBall2XA
+{
+	Color 0.2 1.0 1.0
+	Size 16
+	SecondarySize 20
+	Interval 0.01
+}
+
+Flickerlight2 BLGBall2XB
+{
+	Color 0.3 1.0 1.0
+	Size 20
+	SecondarySize 25
+	Interval 0.01
+}
+
+Flickerlight2 BLGBall2XC
+{
+	Color 0.4 1.0 1.0
+	Size 32
+	SecondarySize 38
+	Interval 0.01
+}
+
+Flickerlight2 BLGBall2XD
+{
+	Color 0.4 1.0 1.0
+	Size 10
+	SecondarySize 14
+	Interval 0.01
+}
+
+Flickerlight2 BLGBall2XE
+{
+	Color 0.2 1.0 1.0
+	Size 3
+	SecondarySize 5
+	Interval 0.01
+}
+
+Object BLGSeekerLauncherSpawner
+{
+	Frame B3S1 { Light BLGBall2 }
+}
+
+Object BLGSeekerLauncher
+{
+	Frame B3S1 { Light BLGBall2 }
+	Frame BG3EA { Light BLGBall2EA }
+	Frame BG3EB { Light BLGBall2EB }
+	Frame BG3EC { Light BLGBall2EC }
+	Frame BG3ED { Light BLGBall2ED }
+	Frame BG3XA { Light BLGBall2XA }
+	Frame BG3XB { Light BLGBall2XB }
+	Frame BG3XC { Light BLGBall2XC }
+	Frame BG3XD { Light BLGBall2XD }
+	Frame BG3XE { Light BLGBall2XE }
+}
+
+Flickerlight2 BLGSeek
+{
+	Color 0.0 0.8 1.0
+	Size 12
+	SecondarySize 16
+	Interval 0.01
+}
+
+Object BLGSeeker
+{
+	Frame B3S2 { Light BLGSeek }
+	Frame G3SPA { Light BLGSpkA }
+	Frame G3SPB { Light BLGSpkB }
+	Frame G3SPC { Light BLGSpkC }
+	Frame G3SPD { Light BLGSpkD }
+	Frame G3SPE { Light BLGSpkE }
+	Frame G3SPF { Light BLGSpkF }
+}

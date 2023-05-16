@@ -1,0 +1,28 @@
+Actor DoomsphereDust : PowerupGiver 17752
+{
+//$Category Powerups/DUST
+//$Sprite DMS0A0
+//$Title "Doom Sphere"
+  +CountItem
+  +Inventory.AutoActivate
+  +Inventory.AlwaysPickup
+  //+FLOATBOB
+  -FLOAT
+  +INVENTORY.BIGPOWERUP
+  Inventory.MaxAmount 0
+  Powerup.Type QuadDamageST
+  Powerup.Color RedMap
+  Inventory.PickupMessage "Doomsphere! Pure power surges through your weaponry!"
+  Inventory.PickupSound "powerup/quad"
+  States
+  {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,17,18)
+  SpawnLoop:
+	DMS0 ABCDCB 4 Bright 
+	Loop
+  }
+}
+
+
+Actor PowerQuadDamageST : PowerDamage {Damagefactor "Normal", 4}

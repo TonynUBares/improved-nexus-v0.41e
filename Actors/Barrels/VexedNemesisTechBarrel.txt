@@ -1,0 +1,391 @@
+ACTOR VexedNemesisTechBarrel : ModdedExplosiveBarrel
+{
+  Scale 1.2
+  -FORCERADIUSDMG
+  DamageType "Legendary"
+  DamageFactor "Legendary", 0.0
+  DamageFactor "Legendary1", 0.0
+  DamageFactor "PlayerNemesisPlasma", 0.0
+  DamageFactor "Explosion", 0.0001
+  DamageFactor "PlayerDTRG", 0.0001
+  DamageFactor "DTRailgun", 0.0001
+  DamageFactor "PDTPuff", 0.0001
+  DamageFactor "RailG", 0.0001
+  DamageFactor "PyroShot", 0.0001
+  DamageFactor "PlayerPyro", 0.0001
+  DamageFactor "PlayerBHole", 0.025
+  DamageFactor "PlayerDBFG", 0.015
+  DamageFactor "PlayerDBFG2", 0.015
+  DamageFactor "T3rm", 0.0
+  Obituary "%o got pwned into a mess by the Vexed Nemesis Tech Barrel."
+  Tag "\c[w2]Vexed Nemesis Tech Barrel\c-"
+  States
+  {
+  Spawn:
+    VTBB A 6 Bright A_SpawnItem("TrueNemesisHellionSmokeSpawner",0,0,0,0)
+    Loop
+  Death:
+	TNT1 A 0 A_StopSound(CHAN_VOICE)
+	TNT1 A 0 Bright A_SpawnItemEx("TrueNemesisHellionSmokeSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)		
+	TNT1 A 0 Bright A_PlaySoundEx("Black/Blast","Voice",0,2)
+	//TNT1 A 0 Bright A_SpawnItemEx("BlackHoleSpawn",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER,0)
+	//TNT1 A 0 Bright A_SpawnItemEx("PBlackHoleSpawnDark",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+	TNT1 AAAA 0 A_SpawnItemEx("NemesisSuicideBomberBurst",32,0,0,2)
+	TNT1 A 0 A_SpawnItem("NemesisDeathBall")
+	TNT1 A 0 A_SpawnItem("VexedNemesisNuke")
+	Stop
+  }
+}
+
+ACTOR VexedNemesisTechBarrelOnline : ModdedExplosiveBarrel
+{
+  Scale 1.2
+  -FORCERADIUSDMG
+  DamageType "Legendary"
+  DamageFactor "Legendary", 0.0
+  DamageFactor "Legendary1", 0.0
+  DamageFactor "PlayerNemesisPlasma", 0.0
+  DamageFactor "Explosion", 0.0001
+  DamageFactor "PlayerDTRG", 0.0001
+  DamageFactor "DTRailgun", 0.0001
+  DamageFactor "PDTPuff", 0.0001
+  DamageFactor "RailG", 0.0001
+  DamageFactor "PyroShot", 0.0001
+  DamageFactor "PlayerPyro", 0.0001
+  DamageFactor "PlayerBHole", 0.025
+  DamageFactor "PlayerDBFG", 0.015
+  DamageFactor "PlayerDBFG2", 0.015
+  DamageFactor "T3rm", 0.0
+  Obituary "%o got pwned into a mess by the Vexed Nemesis Tech Barrel."
+  Tag "\c[w2]Vexed Nemesis Tech Barrel\c-"
+  States
+  {
+  Spawn:
+    VTBB A 6 Bright A_SpawnItem("TrueNemesisHellionSmokeSpawner",0,0,0,0)
+    Loop
+  Death:
+	TNT1 A 0
+    TNT1 A 0 A_Scream
+	TNT1 A 1 A_SpawnItemEx("VexedNemesisNuke",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+	TNT1 A 1050 BRIGHT A_BarrelDestroy
+	Stop
+  }
+}
+
+ACTOR VexedNemesisNuke
+{
+ //+NoBlockmap
+ +NoGravity
+ +EXTREMEDEATH
+ +ForceRadiusDmg
+ +DONTSPLASH
+ +EXPLODEONWATER
+ DamageType "Superweapon"
+ States
+ {
+  Spawn:
+   TNT1 A 0
+   TNT1 A 0 A_PlaySound("Weapons/VexedNemesisNukeExp", 5, 1.0, 0, ATTN_NONE)
+   TNT1 A 0 A_Quake(9, 210, 0, 1048576, "None")
+   TNT1 A 1 A_Explode(1048576, 256, 1, 1)
+   TNT1 A 1 A_Explode(262144, 512, 1, 1)
+   TNT1 A 1 A_Explode(65536, 1024, 1, 1)
+   TNT1 A 1 A_Explode(16384, 2048, 1, 1)
+   TNT1 A 0 A_SpawnItemEx("VexedNemesisNukeFlare", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERPOINTERS)
+   //TNT1 AAAAA 0 A_SpawnItemEx("VexedNemesisNukeSmokeFloor", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE)
+   //TNT1 A 0 A_SpawnItemEx("VexedNemesisNukeFloor", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERPOINTERS)
+   TNT1 A 0 A_SpawnItemEx("VexedNemesisNukeMushroom", 0, 0, 0, 0, 0, 10, 0, SXF_TRANSFERPOINTERS, 0)
+   TNT1 A 0 A_SpawnItemEx("VexedNemesisNukeFlareMushroom", 0, 0, 0, 0, 0, 10, 0, SXF_CLIENTSIDE, 0)
+   //TNT1 AA 0 A_SpawnItemEx("VexedNemesisNukeSmokeMushroom", 0, 0, 0, 0, 0, 10, 0, SXF_CLIENTSIDE, 0)
+   TNT1 A 0 A_SpawnItemEx("VexedNemesisNukePillar", 0, 0, 0, 0, 0, 0, 12, SXF_TRANSFERPOINTERS, 0)
+   //TNT1 AA 0 A_SpawnItemEx("VexedNemesisNukeSmokePillar", 0, 0, 0, 0, 0, 12, 0, SXF_CLIENTSIDE, 0)
+   Stop
+  Vanilla:
+	TNT1 A 1
+	Stop
+ }
+}
+
+Actor VexedNemesisNukeBoom
+{
+ //+NoBlockmap
+ +NoGravity
+ +EXTREMEDEATH
+ +ForceRadiusDmg
+ DamageType "Superweapon"
+ States
+ {
+  Spawn:
+   TNT1 A 0
+   TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2 A_Explode(900, 1400, 1, 1)
+   Stop
+ }
+}
+
+Actor VexedNemesisNukeFire : VexedNemesisNuke
+{
+ RenderStyle Add
+ //+NoInteraction
+ States
+ {
+  Spawn:
+   TNT1 AA 0 A_Jump(256, "Spawn1", "Spawn2", "Spawn3", "Spawn4")
+  Spawn1:
+   TNT1 A 0 A_Explode(4000,512,1,1)
+   VLA1 A 0 A_SetScale(ScaleX +0.002, ScaleY +0.002)
+   VLA1 A 1 Bright A_FadeOut(0.005)
+   Loop
+  Spawn2:
+   TNT1 A 0 A_Explode(4000,512,1,1)
+   VLA2 A 0 A_SetScale(ScaleX +0.002, ScaleY +0.002)
+   VLA2 A 1 Bright A_FadeOut(0.005)
+   Loop
+  Spawn3:
+   TNT1 A 0 A_Explode(4000,512,1,1)
+   VLA3 A 0 A_SetScale(ScaleX +0.002, ScaleY +0.002)
+   VLA3 A 1 Bright A_FadeOut(0.005)
+   Loop
+  Spawn4:
+   TNT1 A 0 A_Explode(4000,512,1,1)
+   VLA4 A 0 A_SetScale(ScaleX +0.002, ScaleY +0.002)
+   VLA4 A 1 Bright A_FadeOut(0.005)
+   Loop
+ }
+}
+
+Actor VexedNemesisNukeSmoke : VexedNemesisNuke
+{
+ +NoInteraction
+ Scale 1.5
+ Alpha 0.1
+ States
+ {
+  Spawn:
+   TNT1 AA 0 A_Jump(256, "Spawn1", "Spawn2", "Spawn3", "Spawn4", "Spawn5", "Spawn6")
+  Spawn1:
+   SMKH A 0 A_JumpIfInventory("SmokeCount",6,"Spawn1X")
+   SMKH A 0 A_SetScale(ScaleX +0.03, ScaleY +0.03)
+   SMKH A 2 A_FadeIn(0.01)
+   SMKH A 0 A_GiveInventory("SmokeCount",1)
+   Loop
+  Spawn1X:
+   SMKH A 0 A_SetScale(ScaleX +0.03, ScaleY +0.03)
+   SMKH A 2 A_FadeOut(0.002)
+   Loop
+  Spawn2:
+   SMKH B 0 A_JumpIfInventory("SmokeCount",6,"Spawn2X")
+   SMKH B 0 A_SetScale(ScaleX +0.03, ScaleY +0.03)
+   SMKH B 2 A_FadeIn(0.01)
+   SMKH B 0 A_GiveInventory("SmokeCount",1)
+   Loop
+  Spawn2X:
+   SMKH B 0 A_SetScale(ScaleX +0.03, ScaleY +0.03)
+   SMKH B 2 A_FadeOut(0.002)
+   Loop
+  Spawn3:
+   SMKH C 0 A_JumpIfInventory("SmokeCount",6,"Spawn3X")
+   SMKH C 0 A_SetScale(ScaleX +0.03, ScaleY +0.03)
+   SMKH C 2 A_FadeIn(0.01)
+   SMKH C 0 A_GiveInventory("SmokeCount",1)
+   Loop
+  Spawn3X:
+   SMKH C 0 A_SetScale(ScaleX +0.03, ScaleY +0.03)
+   SMKH C 2 A_FadeOut(0.002)
+   Loop
+  Spawn4:
+   SMKH D 0 A_JumpIfInventory("SmokeCount",6,"Spawn4X")
+   SMKH D 0 A_SetScale(ScaleX +0.03, ScaleY +0.03)
+   SMKH D 2 A_FadeIn(0.01)
+   SMKH D 0 A_GiveInventory("SmokeCount",1)
+   Loop
+  Spawn4X:
+   SMKH D 0 A_SetScale(ScaleX +0.03, ScaleY +0.03)
+   SMKH D 2 A_FadeOut(0.002)
+   Loop
+  Spawn5:
+   SMKH E 0 A_JumpIfInventory("SmokeCount",6,"Spawn5X")
+   SMKH E 0 A_SetScale(ScaleX +0.03, ScaleY +0.03)
+   SMKH E 2 A_FadeIn(0.01)
+   SMKH E 0 A_GiveInventory("SmokeCount",1)
+   Loop
+  Spawn5X:
+   SMKH E 0 A_SetScale(ScaleX +0.03, ScaleY +0.03)
+   SMKH E 2 A_FadeOut(0.002)
+   Loop
+  Spawn6:
+   SMKH F 0 A_JumpIfInventory("SmokeCount",6,"Spawn6X")
+   SMKH F 0 A_SetScale(ScaleX +0.03, ScaleY +0.03)
+   SMKH F 2 A_FadeIn(0.01)
+   SMKH F 0 A_GiveInventory("SmokeCount",1)
+   Loop
+  Spawn6X:
+   SMKH F 0 A_SetScale(ScaleX +0.03, ScaleY +0.03)
+   SMKH F 2 A_FadeOut(0.002)
+   Loop
+ }
+}
+
+Actor VexedNemesisNukeSmoke2 : VexedNemesisNukeSmoke
+{
+ Scale 2.5
+ Alpha 0.05
+}
+
+Actor VexedNemesisNukeSmoke3 : VexedNemesisNukeSmoke
+{
+ Alpha 0.05
+}
+
+Actor VexedNemesisSmokeSpawner : VexedNemesisNukeSmoke
+{
+ //+FORCERADIUSDMG
+ States
+ {
+  Spawn:
+   TNT1 A 0 A_JumpIfInventory("SmokeCount",6,"SpawnX")
+   TNT1 A 0 A_SetScale(ScaleX +0.03, ScaleY +0.03)
+   TNT1 A 2
+   TNT1 A 0 A_GiveInventory("SmokeCount",1)
+   Loop
+  SpawnX:
+   SMKH A 0 A_JumpIfInventory("SmokeCount",10,"SpawnEnd")
+   SMKH A 0 A_SetScale(ScaleX +0.03, ScaleY +0.03)
+   TNT1 A 2
+   SMKH A 0 A_GiveInventory("SmokeCount",1)
+   SMKH A 0 A_Jump(9,1)
+   Loop
+   SMKH A 0 A_SpawnItemEx("VexedNemesisNukeSmoke2",random(32,-32),random(32,-32),random(16,-16),0.00001 * Random(0, 300000),0,0,random(0,359), SXF_CLIENTSIDE, 0)
+   Goto SpawnX
+  SpawnEnd:
+   TNT1 A 2
+   Stop
+ }
+}
+
+Actor VexedNemesisNukeFlare : VexedNemesisNukeFire
+{
+ Scale 16
+ +NoInteraction
+ States
+ {
+  Spawn:
+   VLAR A 0 Bright A_SetScale(ScaleX -0.1, ScaleY -0.1)
+   VLAR A 1 Bright A_FadeOut(0.01)
+   Loop
+ }
+}
+
+Actor VexedNemesisNukeFloor : VexedNemesisNuke
+{
+ States
+ {
+  Spawn:
+   TNT1 A 0
+   TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("VexedNemesisNukeFire", 0, 0, Random(64,256), 0.015 * Random(1900, 2000), 0, 0, Random(0, 359), SXF_TRANSFERPOINTERS, 0)
+   TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("VexedNemesisNukeFire", 0, 0, Random(64,256), 0.015 * Random(1900, 2000), 0, 0, Random(0, 359), SXF_TRANSFERPOINTERS, 0)
+   TNT1 A 5
+   TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("VexedNemesisNukeFire", 0, 0, 0, 0.00001 * Random(0, 400000), 0.00001 * Random(0, 400000), 0.5, Random(0, 359), SXF_TRANSFERPOINTERS, 0)
+   Stop
+ }
+}
+
+Actor VexedNemesisNukeSmokeFloor : VexedNemesisNuke
+{
+ States
+ {
+  Spawn:
+   TNT1 A 0
+   TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("VexedNemesisSmokeSpawner", 0, 0, Random(64,256), 0.016 * Random(1900, 2000), 0, -0.4, Random(0, 359), SXF_CLIENTSIDE, 0)
+   TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("VexedNemesisSmokeSpawner", 0, 0, Random(64,256), 0.015 * Random(1900, 2000), 0, -0.4, Random(0, 359), SXF_CLIENTSIDE, 0)
+   TNT1 A 5
+   TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("VexedNemesisNukeSmoke3", Random(0,2048), 0, Random(64,192), 0.00001 * Random(0, -500000), 0, 0.00001 * Random(0, -500000), Random(0, 359), SXF_CLIENTSIDE, 0)
+   TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("VexedNemesisNukeSmoke3", 0, 0, Random(64,192), 0.00001 * Random(0, 500000), 0, 0, Random(0, 359), SXF_CLIENTSIDE, 0)
+   Stop
+ }
+}
+
+Actor VexedNemesisNukePillar : VexedNemesisNuke
+{
++CLIENTSIDEONLY
+ States
+ {
+  Spawn:
+   TNT1 A 0
+   TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+   TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("VexedNemesisNukeFire", 0, 0, 0, 0.00001 * Random(0, 100000), 0, 0.00001 * Random(10000, 1000000), Random(0, 359), SXF_TRANSFERPOINTERS, 0)
+   TNT1 AAAAAAAAAAAAAAA 1 A_SpawnItemEx("VexedNemesisNukeFire", 0, 0, 0, 0.00001 * Random(0, 100000), 0, 0.00001 * Random(10000, 1000000), Random(0, 359), SXF_TRANSFERPOINTERS, 0)
+   TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("VexedNemesisNukeFire", 0, 0, 0, 0.00001 * Random(0, 100000), 0, 0.00001 * Random(10000, 1000000), Random(0, 359), SXF_TRANSFERPOINTERS, 0)
+   TNT1 A 0 A_SpawnItem("VexedNemesisNukeSmokering", 0, 1600, 0)
+   TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("VexedNemesisNukeFire", 0, 0, 0, 0.00001 * Random(0, 100000), 0, 0.00001 * Random(10000, 1000000), Random(0, 359), SXF_TRANSFERPOINTERS, 64)
+   Stop
+ }
+}
+
+Actor VexedNemesisNukeSmokePillar : VexedNemesisNuke
+{
+ States
+ {
+  Spawn:
+   TNT1 A 0
+   TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("VexedNemesisNukeSmoke", 0, 0, 0, 0.00001 * Random(0, 100000), 0, 0.00001 * Random(-250000, 1000000), Random(0, 359), 128, 0)
+   Stop
+ }
+}
+
+Actor VexedNemesisNukeMushroom : VexedNemesisNuke
+{
++CLIENTSIDEONLY
+ States
+ {
+  Spawn:
+   TNT1 A 0
+   TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+   TNT1 AAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("VexedNemesisNukeFire", Random(0, 128), 0, 0, 0.00001 * Random(0, 25000), 0, 0.00001 * Random(900000, 1100000), Random(0, 359), SXF_TRANSFERPOINTERS, 0)
+   TNT1 AAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("VexedNemesisNukeFire", Random(0, 192), 0, 0, 0.00001 * Random(0, 50000), 0, 0.00001 * Random(910000, 1090000), Random(0, 359), SXF_TRANSFERPOINTERS, 0)
+   TNT1 AAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("VexedNemesisNukeFire", Random(0, 256), 0, 0, 0.00001 * Random(0, 75000), 0, 0.00001 * Random(920000, 1080000), Random(0, 359), SXF_TRANSFERPOINTERS, 0)
+   TNT1 AAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("VexedNemesisNukeFire", Random(0, 320), 0, 0, 0.00001 * Random(0, 100000), 0, 0.00001 * Random(930000, 1070000), Random(0, 359), SXF_TRANSFERPOINTERS, 0)
+   TNT1 AAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("VexedNemesisNukeFire", Random(0, 384), 0, 0, 0.00001 * Random(0, 200000), 0, 0.00001 * Random(940000, 1060000), Random(0, 359), SXF_TRANSFERPOINTERS, 0)
+   TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("VexedNemesisNukeFire", Random(0, 448), 0, 0, 0.00001 * Random(0, 350000), 0, 0.00001 * Random(950000, 1050000), Random(0, 359), SXF_TRANSFERPOINTERS, 0)
+   Stop
+ }
+}
+
+Actor VexedNemesisNukeSmokeMushroom : VexedNemesisNuke
+{
+ States
+ {
+  Spawn:
+   TNT1 A 0
+   TNT1 AAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("VexedNemesisNukeSmoke2", Random(0, 192), 0, 0, 0.00001 * Random(0, 100000), 0, 0.00001 * Random(1000000, 1100000), Random(0, 359), SXF_CLIENTSIDE, 0)
+   TNT1 AAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("VexedNemesisNukeSmoke2", Random(0, 240), 0, 0, 0.00001 * Random(0, 150000), 0, 0.00001 * Random(950000, 1050000), Random(0, 359), SXF_CLIENTSIDE, 0)
+   TNT1 AAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("VexedNemesisNukeSmoke2", Random(0, 288), 0, 0, 0.00001 * Random(0, 200000), 0, 0.00001 * Random(900000, 1000000), Random(0, 359), SXF_CLIENTSIDE, 0)
+   TNT1 AAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("VexedNemesisNukeSmoke2", Random(0, 336), 0, 0, 0.00001 * Random(0, 250000), 0, 0.00001 * Random(850000, 950000), Random(0, 359), SXF_CLIENTSIDE, 0)
+   TNT1 AAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("VexedNemesisNukeSmoke2", Random(0, 384), 0, 0, 0.00001 * Random(0, 300000), 0, 0.00001 * Random(800000, 900000), Random(0, 359), SXF_CLIENTSIDE, 0)
+   TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("VexedNemesisNukeSmoke2", Random(0, 432), 0, 0, 0.00001 * Random(0, 350000), 0, 0.00001 * Random(750000, 850000), Random(0, 359), SXF_CLIENTSIDE, 0)
+   Stop
+ }
+}
+
+Actor VexedNemesisNukeFlareMushroom : VexedNemesisNukeFlare
+{
+ Scale 10
+ States
+ {
+  Spawn:
+   VLAR A 0 Bright A_SetScale(ScaleX -0.02, ScaleY -0.02)
+   VLAR A 1 Bright A_FadeOut(0.002)
+   Loop
+ }
+}
+
+Actor VexedNemesisNukeSmokering : VexedNemesisNuke
+{
+ States
+ {
+  Spawn:
+   TNT1 A 0
+   TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("VexedNemesisNukeSmoke2", Random(256, 512), 0, 0, 0.01 * Random(750, 850), 0, 0.01 * random(175, 225), Random(0, 179)*2, 128, 0)
+   TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("VexedNemesisNukeSmoke2", Random(256, 512), 0, 0, 0.01 * Random(750, 850), 0, 0.01 * random(175, 225), Random(0, 179)*2, 128, 128)
+   Stop
+ }
+}

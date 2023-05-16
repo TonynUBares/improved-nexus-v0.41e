@@ -1,0 +1,27 @@
+//HDAN
+// OccultSpellBook > Slicer
+weapons/lightningstarter DSLITCHR
+weapons/waveidle WAVEHIT
+weapons/wavelaunch DSNITBIG
+weapons/wavedeath DSSMACK
+
+// OccultSpellBook > Mini vile
+minivile/sight       DSVILSIM
+minivile/pain        DSVILPAIM
+minivile/death       DSVILDTM
+minivile/active      DSVILACM
+weapons/vilesht1    dsrevi01
+weapons/vilesht2    dsrevi02
+
+// Monsters > Dark vile
+darkthunder/fire     DSTHLTNG
+darkthunder/death    DSCCBOOM
+darkthunder/charge   DSZEUSRD
+darkthunder/charge2  DSZEUSFR
+darkvile/sight       RISATA
+darkvile/pain        HEDACT
+darkvile/death       NA_TAUNT
+darkvile/fire        DSVILATK
+darkice/shot         DSCULATK
+darkice/death        DSFLAMST
+weapons/blastershot  DSBLSHOT

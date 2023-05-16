@@ -1,0 +1,775 @@
+//Nemesis Hellsmith
+fader GoAway3
+{
+	DecayStart	3.0
+	DecayTime	5.0
+}
+
+/***** Fading Bullet Chips *****/
+
+decal FadingBulletChip1
+{
+	pic CHIP1
+	translucent 0.85
+	shade "00 00 00"
+	x-scale 0.5
+	y-scale 0.5
+	randomflipx
+	randomflipy
+	animator GoAway3
+}
+
+decal FadingBulletChip2
+{
+	pic CHIP2
+	translucent 0.85
+	shade "00 00 00"
+	x-scale 0.5
+	y-scale 0.5
+	randomflipx
+	randomflipy
+	animator GoAway3
+}
+
+decal FadingBulletChip3
+{
+	pic CHIP3
+	translucent 0.85
+	shade "00 00 00"
+	x-scale 0.5
+	y-scale 0.5
+	randomflipx
+	randomflipy
+	animator GoAway3
+}
+
+decal FadingBulletChip4
+{
+	pic CHIP4
+	translucent 0.85
+	shade "00 00 00"
+	x-scale 0.5
+	y-scale 0.5
+	randomflipx
+	randomflipy
+	animator GoAway3
+}
+
+decal FadingBulletChip5
+{
+	pic CHIP5
+	translucent 0.85
+	shade "00 00 00"
+	x-scale 0.5
+	y-scale 0.5
+	randomflipx
+	randomflipy
+	animator GoAway3
+}
+
+decalgroup FadingBulletChip
+{
+	FadingBulletChip1	1
+	FadingBulletChip2	1
+	FadingBulletChip3	1
+	FadingBulletChip4	1
+	FadingBulletChip5	1
+}
+
+decal FadingScorch
+{
+	pic SCORCH1
+	shade "00 00 00"
+	x-scale 0.390625
+	y-scale 0.390625
+	randomflipx
+	randomflipy
+	animator GoAway3
+}
+
+decal BiggerScorch
+{
+	pic SCORCH1
+	shade "00 00 00"
+	x-scale 1.00
+	y-scale 1.00
+	randomflipx
+	randomflipy
+	animator GoAway3
+}
+
+decal FadingIceScorch
+{
+	pic SCORCH1
+	shade "44 88 FF"
+	x-scale 0.390625
+	y-scale 0.390625
+	randomflipx
+	randomflipy
+	animator GoAway2
+}
+
+decal GreenFadingScorch
+{
+	pic SCORCH1
+	shade "55 FF 22"
+	x-scale 0.390625
+	y-scale 0.390625
+	randomflipx
+	randomflipy
+	animator GoAway2
+}
+
+decal BiggerIceScorch
+{
+	pic SCORCH1
+	shade "44 88 FF"
+	x-scale 1.00
+	y-scale 1.00
+	randomflipx
+	randomflipy
+	animator GoAway2
+}
+
+/***** Fading Arachnotron Plasma Scorches *************************************/
+
+decal FadingPlasmaScorchLower1
+{
+	pic PLASMA1
+	shade "00 00 00"
+	x-scale 0.3
+	y-scale 0.3
+	randomflipx
+	randomflipy
+	animator GoAway3
+}
+
+decal FadingPlasmaScorchLower2
+{
+	pic PLASMA2
+	shade "00 00 00"
+	x-scale 0.3
+	y-scale 0.3
+	randomflipx
+	randomflipy
+	animator GoAway3
+}
+
+decal FadingArachScorch1
+{
+	pic APLSA0
+	add 1.0
+	animator GoAway
+	lowerdecal FadingPlasmaScorchLower1
+}
+
+decal FadingArachScorch2
+{
+	pic APLSB0
+	add 1.0
+	animator GoAway
+	lowerdecal FadingPlasmaScorchLower2
+}
+
+decalgroup FadingArachnotronScorch
+{
+	FadingArachScorch1	1
+	FadingArachScorch2	1
+}
+
+/***** Fading Baron Ball Scorches *********************************************/
+
+decal FadingBaronScorch1
+{
+	pic BAL7SCR1
+	shade "00 00 00"
+	x-scale 0.5
+	y-scale 0.5
+	randomflipx
+	randomflipy
+	animator GoAway3
+}
+
+decal FadingBaronScorch2
+{
+	pic BAL7SCR2
+	shade "00 00 00"
+	x-scale 0.5
+	y-scale 0.5
+	randomflipx
+	randomflipy
+	animator GoAway3
+}
+
+decalgroup FadingBaronScorch
+{
+	FadingBaronScorch1	1
+	FadingBaronScorch2	1
+}
+
+/***** Fading BFG Scorches ****************************************************/
+
+decal FadingBFGScorch1
+{
+	pic BFGSCRC1
+	shade "00 00 00"
+	randomflipx
+	randomflipy
+	animator GoAway3
+}
+
+decal FadingBFGScorch2
+{
+	pic BFGSCRC2
+	shade "00 00 00"
+	randomflipx
+	randomflipy
+	animator GoAway3
+}
+
+decalgroup FadingBFGScorch
+{
+	FadingBFGScorch1	1
+	FadingBFGScorch2	1
+}
+
+decal FadingBFGLightning1
+{
+	pic BFGLITE1
+	shade "80 ff 80"
+	fullbright
+	randomflipx
+	animator GoAway2
+	lowerdecal FadingBFGScorch
+}
+
+decal FadingBFGLightning2
+{
+	pic BFGLITE2
+	shade "80 ff 80"
+	fullbright
+	randomflipy
+	animator GoAway2
+	lowerdecal FadingBFGScorch
+}
+
+decalgroup FadingBFGLightning
+{
+	FadingBFGLightning1	1
+	FadingBFGLightning2	1
+}
+
+
+/***** Fading StingrayShot Scorches *******************************************/
+
+decal StingShotScorchLower1
+{
+	pic BFGSCRC1
+	shade "00 00 00"
+	x-scale 3.0
+	y-scale 3.0
+	randomflipx
+	randomflipy
+	animator GoAway3
+}
+
+decal StingShotScorchLower2
+{
+	pic BFGSCRC2
+	shade "00 00 00"
+	x-scale 3.0
+	y-scale 3.0
+	randomflipx
+	randomflipy
+	animator GoAway3
+}
+
+decalgroup StingShotScorchLower
+{
+	StingShotScorchLower1	1
+	StingShotScorchLower2	1
+}
+
+decal StingShotScorch1
+{
+	pic BFGLITE1
+	shade "FF AA 00"
+	x-scale 3.0
+	y-scale 3.0
+	fullbright
+	randomflipx
+	animator GoAway2
+	lowerdecal StingShotScorchLower
+}
+
+decal StingShotScorch2
+{
+	pic BFGLITE2
+	shade "FF AA 00"
+	x-scale 3.0
+	y-scale 3.0
+	fullbright
+	randomflipy
+	animator GoAway2
+	lowerdecal StingShotScorchLower
+}
+
+decalgroup StingShotScorch
+{
+	StingShotScorch1	1
+	StingShotScorch2	1
+}
+
+
+/***** Fading StingrayShot Scorches *******************************************/
+
+decal BLGBallScorch1
+{
+	pic BFGLITE1
+	shade "44 FF FF"
+	x-scale 3.0
+	y-scale 3.0
+	fullbright
+	randomflipx
+	animator GoAway2
+	lowerdecal StingShotScorchLower
+}
+
+decal BLGBallScorch2
+{
+	pic BFGLITE2
+	shade "44 FF FF"
+	x-scale 3.0
+	y-scale 3.0
+	fullbright
+	randomflipy
+	animator GoAway2
+	lowerdecal StingShotScorchLower
+}
+
+decalgroup BLGBallScorch
+{
+	BLGBallScorch1	1
+	BLGBallScorch2	1
+}
+
+decal BLGSeekerScorch
+{
+	pic G3SPB0
+	shade "66 FF FF"
+	x-scale 0.8
+	y-scale 0.8
+	randomflipx
+	randomflipy
+	animator GoAway3
+}
+
+
+/***** Fading Flak Chips **8888888888888888888888888888888888888888888888888***/
+
+decal FlakChipLower1
+{
+	pic CHIP1
+	translucent 0.85
+	shade "00 00 00"
+	x-scale 0.75
+	y-scale 0.75
+	randomflipx
+	randomflipy
+	animator GoAway3
+}
+
+decal FlakChipLower2
+{
+	pic CHIP2
+	translucent 0.85
+	shade "00 00 00"
+	x-scale 0.75
+	y-scale 0.75
+	randomflipx
+	randomflipy
+	animator GoAway3
+}
+
+decal FlakChipLower3
+{
+	pic CHIP3
+	translucent 0.85
+	shade "00 00 00"
+	x-scale 0.75
+	y-scale 0.75
+	randomflipx
+	randomflipy
+	animator GoAway3
+}
+
+decal FlakChipLower4
+{
+	pic CHIP4
+	translucent 0.85
+	shade "00 00 00"
+	x-scale 0.75
+	y-scale 0.75
+	randomflipx
+	randomflipy
+	animator GoAway3
+}
+
+decal FlakChipLower5
+{
+	pic CHIP5
+	translucent 0.85
+	shade "00 00 00"
+	x-scale 0.75
+	y-scale 0.75
+	randomflipx
+	randomflipy
+	animator GoAway3
+}
+
+decal FlakChip1
+{
+	pic CHIP1
+	translucent 0.85
+	shade "FF 77 33"
+	Fullbright
+	x-scale 0.5
+	y-scale 0.5
+	randomflipx
+	randomflipy
+	animator GoAway
+	lowerdecal FlakChipLower1
+}
+
+decal FlakChip2
+{
+	pic CHIP2
+	translucent 0.85
+	shade "FF 77 33"
+	Fullbright
+	x-scale 0.5
+	y-scale 0.5
+	randomflipx
+	randomflipy
+	animator GoAway
+	lowerdecal FlakChipLower2
+}
+
+decal FlakChip3
+{
+	pic CHIP3
+	translucent 0.85
+	shade "FF 77 33"
+	Fullbright
+	x-scale 0.5
+	y-scale 0.5
+	randomflipx
+	randomflipy
+	animator GoAway
+	lowerdecal FlakChipLower3
+}
+
+decal FlakChip4
+{
+	pic CHIP4
+	translucent 0.85
+	shade "FF 77 33"
+	Fullbright
+	x-scale 0.5
+	y-scale 0.5
+	randomflipx
+	randomflipy
+	animator GoAway
+	lowerdecal FlakChipLower4
+}
+
+decal FlakChip5
+{
+	pic CHIP5
+	translucent 0.85
+	shade "FF 77 33"
+	Fullbright
+	x-scale 0.5
+	y-scale 0.5
+	randomflipx
+	randomflipy
+	animator GoAway
+	lowerdecal FlakChipLower5
+}
+
+decalgroup FlakChip
+{
+	FlakChip1	1
+	FlakChip2	1
+	FlakChip3	1
+	FlakChip4	1
+	FlakChip5	1
+}
+
+
+/***** Generators **********************************************************/
+
+generator NemHellsmith			FadingBulletChip
+generator NemesisFireball1		BiggerScorch
+generator NHTComet				BiggerScorch
+generator NemesisHitscanShot	FadingScorch
+generator NemesisHBall2			FadingBaronScorch
+generator NemTracer				FadingScorch
+generator NemesisShot2			BiggerScorch
+generator NemesisBoom			FadingScorch
+
+generator Apprentice			FadingBulletChip
+generator STracer				FadingScorch
+generator HellShot				FadingScorch
+
+generator Hellsmith				FadingBulletChip
+generator HellShot2				BiggerScorch
+generator HellBoom				FadingScorch
+
+generator Freezemotaur			FadingBulletChip
+generator IceTracer				FadingIceScorch
+generator IceShot				FadingIceScorch
+generator FreezmoComet			BiggerIcescorch
+generator MOFComet				FadingIceScorch
+
+generator Supremotaur			FadingBulletChip
+generator SupremoArachPlasma	FadingArachnotronScorch
+generator SupremoBaronBall		FadingBaronScorch
+generator SupremoBall			FadingBFGLightning
+generator SupremoFireTracer		GreenFadingScorch
+
+generator NemUnmakerBall		FadingScorch
+generator AltNemUnmakerBall		BiggerScorch
+
+generator StingrayShot			StingShotScorch
+
+generator BLGSuperLightningBall	BLGBallScorch
+generator BLGSeeker				BLGSeekerScorch
+
+generator "Flak Cannon"			FlakChip
+generator NHSFlakSlug			FadingScorch
+
+
+
+
+//Nexus
+DECAL ELegBulletChip
+{
+Pic EPFFA0
+Add 1.0
+FullBright
+Animator GoAway2
+X-scale 1.0
+Y-scale 1.0
+LowerDecal LegBulletChipLower1
+}
+
+DECAL EnragedRocketScorch
+{
+Pic EKDEA0
+Add 1.0
+X-scale 0.12
+Y-scale 0.12
+FullBright
+RandomFlipx
+RandomFlipy
+Animator GoAway
+LowerDecal Scorch
+}
+
+Decal UnmakerBeamScorch
+{
+	pic BLUFF2
+	translucent 1
+	shade "00 00 00"
+	x-scale 0.1
+	y-scale 0.1
+}
+
+Decal UnmakerSuperBeamScorch
+{
+	pic BLUFF3
+	translucent 1
+	shade "00 00 00"
+	x-scale 0.5
+	y-scale 0.5
+}
+
+DECAL EDTRScorch
+{
+Pic EDTEA0
+Add 1.0
+X-Scale 0.06
+Y-Scale 0.06
+FullBright
+RandomFlipx
+RandomFlipy
+Animator GoAway
+LowerDecal DoomImpScorch
+}
+
+//HEM
+DECAL DTBFG10KLightning1
+{
+Pic BFGLITE1
+Shade "ff 00 00"
+FullBright
+RandomFlipx
+Animator GoAway2
+LowerDecal Scorch
+}
+
+DECAL DTBFG10KLightning2
+{
+Pic BFGLITE2
+Shade "ff 00 00"
+FullBright
+RandomFlipy
+Animator GoAway2
+LowerDecal Scorch
+}
+
+DECALGROUP DTBFG10KLightning
+{
+DTBFG10KLightning1	1
+DTBFG10KLightning2	1
+}
+
+DECAL BFG9500LightningSmall
+{
+Pic BFDEA0
+Add 1.0
+X-Scale 0.12
+Y-Scale 0.12
+FullBright
+RandomFlipx
+RandomFlipy
+Animator GoAway2
+LowerDecal Scorch
+}
+
+//StunnerRifle
+Decal StunnerScorch
+{
+Pic STPRA0
+Add 1.0
+X-Scale 0.45
+Y-Scale 0.45
+FullBright
+Animator GoAway
+LowerDecal PlasmaScorchLower
+}
+
+Decal FusionShotScorch
+{
+Pic STPRB0
+Add 0.25
+X-Scale 0.45
+Y-Scale 0.45
+FullBright
+Animator GoAway
+LowerDecal PlasmaScorchLower
+}
+
+//Fallen
+Decal FallenBall
+{
+Pic PLASMA1
+Shade "00 00 00"
+X-Scale 0.5
+Y-Scale 0.5
+RandomFlipX
+RandomFlipY
+}
+Generator FallenShot FallenBall
+//=========================================
+GENERATOR PlayerHomRocket RocketScorch
+GENERATOR HellStormBomb RocketScorch
+GENERATOR MHellStormBomb RocketScorch
+GENERATOR M2HellStormBomb RocketScorch
+GENERATOR EFGRocket RocketScorch
+GENERATOR EFGSeekRocket RocketScorch
+GENERATOR EFGFusionNuke RocketScorch
+//GENERATOR Enforcer BulletChip
+GENERATOR MiniRocket RocketScorch
+GENERATOR PMiniRocket RocketScorch
+GENERATOR RevMiniRocket RocketScorch
+GENERATOR ZMiniRocket RocketScorch
+GENERATOR DogeMiniRocket RocketScorch
+GENERATOR PerroMisil RocketScorch
+GENERATOR SSMissile RocketScorch
+GENERATOR ExosMissile RocketScorch
+GENERATOR PyroRocket RocketScorch
+GENERATOR ExosMiniRocket RocketScorch
+GENERATOR "Improved Minigun" BulletChip
+GENERATOR ExosBulletPuff BulletChip
+GENERATOR DeathKnight10K BFG15KLightning
+GENERATOR DeathKnight15k BFG9500LightningSmall
+GENERATOR Catharsi10K BFG15KLightning
+GENERATOR Catharsi15k BFG9500LightningSmall
+GENERATOR Molo15KBall DTBFG10KLightning
+
+// D-BFG
+decal DBFGScorch1
+{
+	pic BFGSCRC1
+	shade "00 00 00"
+	randomflipx
+	randomflipy
+}
+
+decal DBFGScorch2
+{
+	pic BFGSCRC2
+	shade "00 00 00"
+	randomflipx
+	randomflipy
+}
+
+decalgroup DBFGScorch
+{
+	DBFGScorch1	1
+	DBFGScorch2	1
+}
+
+decal DBFGLightning1
+{
+	pic BFGLITE1
+	shade "00 80 ff"
+	fullbright
+	randomflipx
+	animator GoAway2
+	lowerdecal DBFGScorch
+}
+
+decal DBFGLightning2
+{
+	pic BFGLITE2
+	shade "00 80 ff"
+	fullbright
+	randomflipy
+	animator GoAway2
+	lowerdecal DBFGScorch
+}
+
+decalgroup DBFGLightning
+{
+	DBFGLightning1	1
+	DBFGLightning2	1
+}
+
+// 9500
+DECAL DBFG9500Lightning
+{
+Pic B3DEA0
+Add 1.0
+X-Scale 0.25
+Y-Scale 0.25
+FullBright
+RandomFlipx
+RandomFlipy
+Animator GoAway2
+LowerDecal BFGScorch
+}
+
+GENERATOR PlayerT3DBFG10kShot DBFGLightning

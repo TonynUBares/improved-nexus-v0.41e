@@ -1,0 +1,263 @@
+ACTOR HellRazer 21541
+{
+	Health 120
+	Radius 20
+	Height 56
+	Mass 100
+	Speed 8
+	PainChance 70
+	+FLOORCLIP
+	+DONTHARMSPECIES
+	+MISSILEMORE
+	DamageFactor "ImpComet", 0.0
+	SeeSound "HellRazer/Sight"
+	PainSound "HellRazer/Pain"
+	DeathSound "HellRazer/Death"
+	ActiveSound "HellRazer/Active"
+	DropItem "LifeEssence" 125
+	DropItem "ArmorBonusMax" 125
+	DropItem "DemonAmmo" 160
+	DropItem "Demon Tech Rifle" 100 1
+	Obituary "%o was disintegrated by a Hell Razer."
+	Species "Imps"
+	Tag "$NEHellRaz"
+	MONSTER
+	States
+	{
+	Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
+	Goto Idle
+  Idle:
+		HRZR A 10 A_Look
+		HRZR Z 10 A_Look
+		Loop
+	See:
+		//TNT1 A 0 A_Jump(46,"Evade")
+		HRZR AABB 3 A_Chase
+		TNT1 A 0 A_SpawnItem("HumanishStep",0,0,0,0)
+		HRZR CCDD 3 A_Chase
+		TNT1 A 0 A_SpawnItem("HumanishStep",0,0,0,0)
+		Loop
+	Evade:
+		TNT1 A 0 A_Jump(128,7)
+		TNT1 A 0 ThrustThing(Angle*256/360+64,16,0,0)
+		HRZR AAAA 3 A_Chase
+		TNT1 A 0 A_Stop
+		Goto See
+		TNT1 A 0 ThrustThing(Angle*256/360+192,16,0,0)
+		HRZR AAAA 3 A_Chase
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_JumpIfTargetInLOS("Missile")
+		Goto See
+	Missile:
+		HRZR E 3 A_FaceTarget
+		TNT1 A 0 A_CustomMissile("HellRazerDemonTechProjectile", 34, 0, 0, 0)
+		HRZR E 3 Bright A_PlaySoundEx("weapons/demontechfire","Weapon")
+		TNT1 A 0 A_Jump(20,"Pause")
+		TNT1 A 0 A_SpidRefire
+		Loop
+	Pause:
+		TNT1 A 0
+		HRZR E 15 A_PlaySound("weapons/demontechsteam")
+		Goto See
+	Pain:
+		HRZR G 3 
+		HRZR G 3 A_Pain
+		goto See
+	Death:
+		HRZR I 5
+		HRZR J 5 A_Scream
+		HRZR KL 5
+		HRZR L 5
+		HRZR M 0 A_SpawnItem("BodyCrash",0,0,0,0)
+		HRZR M 5 A_Fall
+		HRZR M -1
+		Stop
+	Raise:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		HRZR MLKJI 3
+		Goto See
+	 }
+}
+
+ACTOR HellRazerDemonTechProjectile : RedZDemonTechProjectile
+{
+Species "Imps"
+Decal DTRScorch
+Damagetype "ImpComet"
+}
+
+ACTOR HellRazerSecret 21542
+{
+	Health 500
+	Radius 20
+	Height 56
+	Mass 100
+	Speed 8
+	PainChance 70
+	+FLOORCLIP
+	+DONTHARMSPECIES
+	+MISSILEMORE
+	DamageFactor "ImpComet", 0.0
+	SeeSound "HellRazer/Sight"
+	PainSound "HellRazer/Pain"
+	DeathSound "HellRazer/Death"
+	ActiveSound "HellRazer/Active"
+	DropItem "LifeEssence" 125
+	DropItem "CFArmorBonusMax" 125
+	DropItem "DemonAmmo" 160
+	DropItem "DemonAmmo" 160
+	Obituary "%o was disintegrated by a Hellfire Devourer."
+	Species "Imps"
+	Tag "\ciHellfire Devourer\c-"
+	MONSTER
+	States
+	{
+	Spawn:
+		HFDV A 5 A_Look
+		Loop
+	See:
+		//TNT1 A 0 A_Jump(46,"Evade")
+		HFDV AABB 3 A_Chase
+		TNT1 A 0 A_SpawnItem("HumanishStep",0,0,0,0)
+		HFDV CCDD 3 A_Chase
+		TNT1 A 0 A_SpawnItem("HumanishStep",0,0,0,0)
+		Loop
+	Evade:
+		TNT1 A 0 A_Jump(128,7)
+		TNT1 A 0 ThrustThing(Angle*256/360+64,16,0,0)
+		HFDV AAAA 3 A_Chase
+		TNT1 A 0 A_Stop
+		Goto See
+		TNT1 A 0 ThrustThing(Angle*256/360+192,16,0,0)
+		HFDV AAAA 3 A_Chase
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_JumpIfTargetInLOS("Missile")
+		Goto See
+	Missile:
+		HFDV E 3 A_FaceTarget
+		TNT1 A 0 A_CustomMissile("HellRazerExDemonTechProjectile", 34, 0, 0, 0)
+		HFDV E 3 Bright A_PlaySoundEx("explosivedtech/fire","Weapon")
+		TNT1 A 0 A_Jump(20,"Pause")
+		TNT1 A 0 A_SpidRefire
+		Loop
+	Pause:
+		TNT1 A 0
+		HFDV E 15 A_PlaySound("weapons/demontechsteam")
+		Goto See
+	Pain:
+		HFDV G 3 
+		HFDV G 3 A_Pain
+		goto See
+	Death:
+		HFDV I 5
+		HFDV J 5 A_Scream
+		HFDV KL 5
+		HFDV L 5
+		HFDV M 0 A_SpawnItem("BodyCrash",0,0,0,0)
+		HFDV M 5 A_Fall
+		HFDV M -1
+		Stop
+	Raise:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		HFDV MLKJI 3
+		Goto See
+	 }
+}
+
+ACTOR HellRazerExDemonTechProjectile
+{
+   Height 4
+   Radius 4
+   Speed 40
+   Damage 10
+   Scale 0.06
+   PROJECTILE
+   +FORCERADIUSDMG
+   Damagetype "ImpComet"
+   DeathSound "sentient/chaingunex"
+   Species "Imps"
+   Decal EDTRScorch
+   States
+   {
+   Spawn:
+	  TNT1 A 0
+	  TNT1 A 0 A_Jump(128,"Spawn2")
+   Normal:
+   	  TNT1 A 0 A_Jump(128,"NormalFX")
+      EDT5 A 1 Bright A_SpawnItemEx("HRDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+      Loop
+   NormalFX:
+	  TNT1 A 0 A_SpawnItemEx("ExDTechLightning",Random(1,-1),Random(1,-1),Random(1,-1),0,0,0,0,128)
+      ETPR A 1 Bright A_SpawnItemEx("HRDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+	  TNT1 A 0 A_SpawnItemEx("ExDTechLightning2",Random(1,-1),Random(1,-1),Random(1,-1),0,0,0,0,128)
+      EDT5 A 1 Bright A_SpawnItemEx("HRDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+      Goto Normal
+   Spawn2:
+	  TNT1 A 0 A_Jump(128,"Spawn2FX")
+      EDT5 A 1 Bright A_SpawnItemEx("HRDemonTechTrail2",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+      Loop
+   Spawn2FX:
+	  TNT1 A 0 A_SpawnItemEx("ExDTechLightning",Random(1,-1),Random(1,-1),Random(1,-1),0,0,0,0,128)
+      EDT5 A 1 Bright A_SpawnItemEx("HRDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+	  TNT1 A 0 A_SpawnItemEx("ExDTechLightning2",Random(1,-1),Random(1,-1),Random(1,-1),0,0,0,0,128)
+      EDT5 A 1 Bright A_SpawnItemEx("HRDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+      Goto Spawn2  
+   Death:
+      TNT1 A 0
+	  TNT1 A 0 Bright A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	  TNT1 A 0 Bright A_SpawnItemEx("HRDemonTechEx",0,0,0,0,0,0,0,128,0)
+	  TNT1 AAA 0 A_CustomMissile("EDTRKaboom7", 0, 0, random(0,360), 2, random(0,360))
+	  TNT1 AAAA 0 A_CustomMissile("SmokeFX4", 0, 0, random(0,360), 2, random(0,360))
+      Stop
+	  }
+}
+
+ACTOR HRDemonTechEx
+{
+RenderStyle Add
+Alpha 0.75
+Scale 0.45
+Damagetype "ImpComet"
+PROJECTILE
++NOCLIP
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItem("SentientExplosiveEffect")
+EDT7 A 2 Bright A_Explode(Random(24,30)*5,74)
+EDT7 BCDEFGH 2 Bright A_FadeOut(0.1)
+Stop
+}
+}
+
+ACTOR HRDemonTechTrail : BFG9500Trail
+{
+Scale 0.04
+Alpha 0.65
+States
+{
+Spawn:
+    TNT1 A 0
+    TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 2
+    EDT6 AAAAAABBBBBBBB 1 Bright A_FadeOut(0.05)
+    Stop
+    }
+}
+
+ACTOR HRDemonTechTrail2 : ZDemonTechTrail
+{
+States
+{
+Spawn:
+    TNT1 A 0
+    TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 2
+    EDT6 AAAAAACCCCCCCC 1 Bright A_FadeOut(0.05)
+    Stop
+    }
+}

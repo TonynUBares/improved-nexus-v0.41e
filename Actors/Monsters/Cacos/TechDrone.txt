@@ -1,0 +1,149 @@
+ACTOR TechDrone 
+{
+Health 1000
+PainChance 50
+Speed 8
+Radius 30
+Height 56
+Damagefactor 0.8
+DamageFactor "CacoComet", 0.0
+DamageFactor "WeakenerBall", 0.0
+Damagefactor "Souls", 0.0
+DamageFactor "SoulToxic", 0.0
+DamageFactor "Ice", 0.0
+DamageFactor "BombBreath", 0.0
+Damagefactor "EleSouls", 0.0
+Monster
+  +NOGRAVITY
+  +FLOAT
+  +NOFEAR
+  +DONTFALL
+  +SEEINVISIBLE
+  +NOBLOOD
+  +DONTGIB
+  +DONTHURTSPECIES
+  +LOOKALLAROUND
+Species "CacoDemon"
+SeeSound "monster/cubsit"
+PainSound "weapons/bounc1"
+ActiveSound "monster/cubfly"
+DeathSound "monster/cubdth"
+Obituary "%o was hunted down by a Tech Drone."
+Tag "$NETechDrone"
+States
+{
+	Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
+	Goto Idle
+  Idle:
+         DEDR ABCDEF 4 A_Look
+		 Loop
+	See:
+         DEDR ABCDEF 4 A_Chase
+         Loop
+	Missile:
+         TNT1 A 0 A_Jump(100,"Summon")
+	Normal:
+         DEDR GH 4 Bright A_FaceTarget
+         DEDR I 2 Bright A_CustomMissile("TechDroneSeeker",28,0,0,0,0)
+         DEDR HG 2 Bright
+         Goto See
+	Summon:
+         DEDR GH 4 Bright A_FaceTarget
+         DEDR I 2 Bright A_CustomMissile("SummonCube",28,0,0,0,0)
+         DEDR HG 2 Bright
+         Goto See
+	Pain:
+		 DEDR J 2 A_Pain
+		 DEDR J 1
+         Goto See
+	Death:
+         DEDR K 4 Bright A_Scream
+         DEDR L 1 Bright A_NoBlocking
+		 DEDR LLLMMM 2 Bright A_CustomMissile("Kaboom17", Random(10,50), 0, random(0,360), 2, random(0,360))
+		 TNT1 AA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
+		 DEDR MMMNNN 2 Bright A_CustomMissile("Kaboom17", Random(10,50), 0, random(0,360), 2, random(0,360))
+		 TNT1 AA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
+		 DEDR NNNOOO 2 Bright A_CustomMissile("Kaboom17", Random(10,50), 0, random(0,360), 2, random(0,360))
+		 TNT1 AA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
+		 TNT1 AAAA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
+		 DEDR P 2 Bright
+		 DEDR Q 1 Bright
+		 Stop        
+         }
+}
+
+ACTOR TechDroneSeeker : GuardianTracer
+{
+Speed 14
+Damage 12
+Scale 1.1
+Species "CacoDemon"
+Damagetype "CacoComet"
+}
+
+ACTOR SummonCube
+{
+   Radius 8
+   Height 8
+   Speed 15
+   Damage 0
+   Scale 0.6
+   PROJECTILE
+   RENDERSTYLE ADD
+   ALPHA 0.95
+   +THRUGHOST
+   SeeSound "weapons/justfi"
+   DeathSound "weapons/firex3"
+   DONTHURTSHOOTER
+   States
+   {
+   Spawn: 
+      DBLL A 2 A_SpawnItem("SummonCubeTrail",0,0)
+	  DBLL B 2 A_SpawnItem("SummonCubeTrail",0,0)
+	  DBLL C 2 A_SpawnItem("SummonCubeTrail",0,0)
+	  DBLL D 2 A_SpawnItem("SummonCubeTrail",0,0)
+	  DBLL E 2 A_SpawnItem("SummonCubeTrail",0,0)
+	  DBLL F 2 A_SpawnItem("SummonCubeTrail",0,0)
+	  DBLL G 2 A_SpawnItem("SummonCubeTrail",0,0)
+	  DBLL H 2 A_SpawnItem("SummonCubeTrail",0,0)
+	  DBLL I 2 A_SpawnItem("SummonCubeTrail",0,0)
+	  DBLL J 2 A_SpawnItem("SummonCubeTrail",0,0)
+      Goto Death
+	Death:
+	  TNT1 A 0 A_SpawnItem("RandomCube")
+	  Stop
+   }
+}
+
+ACTOR SummonCubeTrail
+{
+  Radius 8
+  Height 8
+  Scale 0.6
+  RenderStyle Add
+  Projectile
+  -ACTIVATEPCROSS
+  -ACTIVATEIMPACT
+  +SPAWNSOUNDSOURCE
+   States
+   {
+   Spawn:
+      DBLL ABCDEFGHIJ 1 Bright
+      Goto Death
+   Death:
+      DBLL A 1 Bright A_SetTranslucent(0.5)
+	  DBLL B 1 Bright A_SetTranslucent(0.4)
+	  DBLL C 1 Bright A_SetTranslucent(0.3)
+	  DBLL D 1 Bright A_SetTranslucent(0.2)
+	  DBLL E 1 Bright A_SetTranslucent(0.1)
+      Stop
+   }
+}
+
+Actor "RandomCube" : RandomSpawner
+{
+  DropItem "GuardianCube" 256, 20
+  DropItem "DTGuardianCube" 256, 10
+  DropItem "PhaseGuardianCube" 256, 5
+}

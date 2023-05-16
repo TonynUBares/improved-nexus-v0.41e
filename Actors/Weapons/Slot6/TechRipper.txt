@@ -1,0 +1,508 @@
+Actor TechRipperGiver : CustomInventory
+{
+  Scale 0.9
+  Inventory.Amount 1
+  Inventory.MaxAmount 0
+  Inventory.InterHubAmount 0
+  Inventory.PickupMessage "Tech Ripper"
+  Inventory.PickupSound "TechRipper/up"
+  obituary "%k should stop playing cf deathmatch."
+  Tag "Tech Ripper"
+  States
+  {
+  Spawn:
+	THRP A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",6,0)
+  SpawnLoop:
+	THRP A -1
+	Loop
+  Pickup:
+	TNT1 A 0 A_JumpIfInventory("TechRipper",1,"JustAmmo")
+  All:
+	TNT1 A 0 A_GiveInventory("TechRipper",1)
+	TNT1 A 0 A_JumpIfInventory("TechRipperGiverCheck",1,"HoldAndDestroy")
+	TNT1 A 0 A_GiveInventory("TechRipperGiverCheck",1)
+	TNT1 A 0 A_GiveInventory("NewCell",40)
+	Stop
+  JustAmmo:
+    TNT1 A 0 A_JumpIfInventory("TechRipperGiverCheck",1,"Null")
+	TNT1 A 0 A_GiveInventory("TechRipperGiverCheck",1)
+	TNT1 A 0 A_GiveInventory("NewCell",40)
+	TNT1 A 0 A_SpawnItemEx("TechRipper")
+	Stop
+  }
+}
+
+Actor TechRipperSpawnerGiver : TechRipperGiver
+{
+  States
+  {
+  JustAmmo:
+    TNT1 A 0 A_JumpIfInventory("TechRipperGiverCheck",1,"Null")
+	TNT1 A 0 A_GiveInventory("TechRipperGiverCheck",1)
+	TNT1 A 0 A_GiveInventory("NewCell",40)
+	Stop
+  }
+}
+
+Actor TechRipperGiverCheck : Inventory { Inventory.Amount 1 Inventory.MaxAmount 1 Inventory.InterHubAmount 0 }
+
+
+
+ACTOR TechRipper : Weapon
+{
+  Scale 0.85
+  Tag "Tech Ripper"
+  Weapon.Selectionorder 3000
+  Weapon.KickBack 100
+  Weapon.AmmoGive 40
+  Weapon.AmmoType "NewCell"
+  Weapon.AmmoUse 4
+  Weapon.AmmoType2 "NewCell"
+  Weapon.AmmoUse2 0
+Weapon.SlotNumber 6
+  Weapon.SlotPriority 8.1
+  Weapon.PreferredSkin "Repeater-Marine"
+  Weapon.UpSound "TechRipper/up"
+  Inventory.PickupMessage "Tech Ripper"
+  Inventory.PickupSound "TechRipper/up"
+  obituary "%k should stop playing cf deathmatch."
+  States
+  {
+  Spawn:
+  	THRP A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",6,0)
+  SpawnLoop:
+    THRP A -1
+    Loop
+  Ready:
+	TNT1 A 0 A_JumpIfNoAmmo("Ready2")
+    THRI AABBCC 1
+	Goto ReadyLoop
+  ReadyLoop:
+	TNT1 A 0 A_PlayWeaponSound("TechRipper/idle")
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+    THRI A 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+    THRI A 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+    THRI A 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+    THRI B 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+    THRI B 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+    THRI B 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+    THRI C 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+    THRI C 1 A_WeaponReady
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+    THRI C 1 A_WeaponReady
+    Loop
+  Ready2:
+    TNT1 A 0 A_JumpIfInventory("NewCell",2,"ReadyLoop")
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck2")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck2")
+    THRI E 1 A_WeaponReady
+	Loop
+   Deselect:
+	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",1)
+  	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	TNT1 A 0 A_TakeInventory("RailgunAction",1)
+    TNT1 A 0 A_JumpIfNoAmmo("Deselect2")
+	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown")
+	TNT1 A 0 A_Lower
+	THRI A 1 A_Lower
+    Goto Deselect+6	
+  Deselect2:
+	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown")
+	TNT1 A 0 A_Lower
+	THRI E 1 A_Lower
+    Goto Deselect2+1
+    Wait
+  Select:
+	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",0)
+    TNT1 A 0 A_JumpIfNoAmmo("Select2")
+    TNT1 A 0 A_Playsound("weapons/pickup15k")
+	TNT1 A 0 A_Raise
+    THRI A 1 A_Raise
+    Goto Select+3
+  Select2:
+    TNT1 A 0 A_PlayWeaponSound("weapons/pickup15k")
+	TNT1 A 0 A_Raise
+    THRI E 1 A_Raise
+    Goto Select2+1
+  Fire:
+	TNT1 A 0 A_JumpIfInventory("PowerSpreadRune",1,"FireSpread")
+    THRI F 0 Bright A_GunFlash
+	TNT1 A 0 A_PlaySound("TechRipper/fire")
+    THRI F 3 Bright A_FireCustomMissile("PlasmaRazor",0,1,2,4,0)
+    THRI GH 3 Bright
+    THRI D 4
+    THRI D 6 A_ReFire
+    Goto Ready
+  FireSpread:
+    THRI F 0 Bright A_GunFlash
+	TNT1 A 0 A_PlaySound("TechRipper/fire")
+    THRI F 3 Bright A_FireCustomMissile("PlasmaRazor",0,1,2,4,0)
+    TNT1 A 0 A_FireCustomMissile("PlasmaRazor",15.0,1,2,4,0)
+    TNT1 A 0 A_FireCustomMissile("PlasmaRazor",-15.0,1,2,4,0)
+    THRI GH 3 Bright
+    THRI D 4
+    THRI D 6 A_ReFire
+    Goto Ready
+  Altfire:
+	TNT1 A 0 A_JumpIfInventory("PowerSpreadRune",1,"FireSpread")
+	TNT1 A 0 A_JumpIfInventory("NewCell",20,1)
+	Goto ReadyLoop
+    THRI F 0 Bright A_GunFlash
+	TNT1 A 0 A_PlaySound("TechRipper/altfire")
+	TNT1 A 0 Radius_Quake(8,2,0,1,0)
+	TNT1 A 0 A_TakeInventory("NewCell",20)	
+	THRI F 3 Bright A_FireCustomMissile("PlasmaRazorAlt",0,1,2,4,0)
+    THRI G 3 Bright
+	THRI H 3 Bright
+    THRI D 4
+    THRI D 16 A_ReFire
+    Goto Ready
+  AltfireSpread:
+	TNT1 A 0 A_JumpIfInventory("NewCell",20,1)
+	Goto ReadyLoop
+    THRI F 0 Bright A_GunFlash
+	TNT1 A 0 A_PlaySound("TechRipper/altfire")
+	TNT1 A 0 Radius_Quake(8,2,0,1,0)
+	TNT1 A 0 A_TakeInventory("NewCell",20)	
+	THRI F 3 Bright A_FireCustomMissile("PlasmaRazorAlt",0,1,2,4,0)
+	TNT1 A 0 A_FireCustomMissile("PlasmaRazorAlt",15.0,1,2,4,0)
+	TNT1 A 0 A_FireCustomMissile("PlasmaRazorAlt",-15.0,1,2,4,0)
+    THRI G 3 Bright
+	THRI H 3 Bright
+    THRI D 4
+    THRI D 16 A_ReFire("AltFire")
+    Goto Ready
+  GrenadeCheck:
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAmmo",1,"GrenadeToss")
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	Goto Ready
+  GrenadeToss:
+  	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown") 
+	THRI A 1 Offset(0,30)
+	THRI B 1 Offset(0,40)
+	THRI C 1 Offset(0,50)
+	THRI A 1 Offset(0,60)
+	THRI B 1 Offset(0,70)
+	TNT1 A 4 Offset(0,10)
+	HGRN ABC 1 
+	HGRN D 2
+	HGRN EFG 1
+	HGRN HI 2
+	TNT1 A 15 A_PlayWeaponSound("weapons/hgrenadepin")
+	TNT1 A 0 A_PlayWeaponSound("weapons/hgrenadethrow")
+	TNT1 A 0 A_TakeInventory("HandGrenadeAmmo",1)
+	HGNE A 1 A_FireCustomMissile("ThrownGrenade",0,0,0,0)
+	HGRN J 1
+	HGRN KLM 2
+	HGRN NO 1
+	TNT1 A 6
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAmmo",1,2)
+    TNT1 A 0 A_TakeInventory("Hand Grenade",1)
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	TNT1 A 0
+	THRI A 1 Offset(0,70)
+	THRI B 1 Offset(0,60)
+	THRI C 1 Offset(0,50)
+	THRI A 1 Offset(0,40)
+	THRI B 1 Offset(0,31)
+	Goto Ready
+  MineCheck:
+	TNT1 A 0 A_JumpIfInventory("MineAmmo",1,"MineToss")
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	Goto Ready
+  MineToss:
+  	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown") 
+	THRI A 1 Offset(0,30)
+	THRI B 1 Offset(0,40)
+	THRI C 1 Offset(0,50)
+	THRI A 1 Offset(0,60)
+	THRI B 1 Offset(0,70)
+	TNT1 A 8 Offset(0,10)
+	TNT1 A 0 A_PlayWeaponSound("weapons/hgrenadethrow")
+	MINE ABCDEF 1		
+	TNT1 A 0 A_TakeInventory("MineAmmo",1)	  
+	MINE G 1 A_FireCustomMissile("ThrownMine",0,0,0,0)
+	MINE HI 1
+	MINE JK 2
+	TNT1 A 0 A_JumpIfInventory("MineAmmo",1,2)
+    TNT1 A 0 A_TakeInventory("Land Mine",1)
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	TNT1 A 0
+	TNT1 A 5
+	THRI A 1 Offset(0,70)
+	THRI B 1 Offset(0,60)
+	THRI C 1 Offset(0,50)
+	THRI A 1 Offset(0,40)
+	THRI B 1 Offset(0,31)
+	Goto Ready
+  GrenadeCheck2:
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAmmo",1,"GrenadeToss2")
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	Goto Ready
+  GrenadeToss2:
+  	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown") 
+	THRI E 1 Offset(0,30)
+	THRI E 1 Offset(0,40)
+	THRI E 1 Offset(0,50)
+	THRI E 1 Offset(0,60)
+	THRI E 1 Offset(0,70)
+	TNT1 A 4 Offset(0,10)
+	HGRN ABC 1 
+	HGRN D 2
+	HGRN EFG 1
+	HGRN HI 2
+	TNT1 A 15 A_PlayWeaponSound("weapons/hgrenadepin")
+	TNT1 A 0 A_PlayWeaponSound("weapons/hgrenadethrow")
+	TNT1 A 0 A_TakeInventory("HandGrenadeAmmo",1)
+	HGNE A 1 A_FireCustomMissile("ThrownGrenade",0,0,0,0)
+	HGRN J 1
+	HGRN KLM 2
+	HGRN NO 1
+	TNT1 A 6
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAmmo",1,2)
+    TNT1 A 0 A_TakeInventory("Hand Grenade",1)
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	TNT1 A 0
+	THRI E 1 Offset(0,70)
+	THRI E 1 Offset(0,60)
+	THRI E 1 Offset(0,50)
+	THRI E 1 Offset(0,40)
+	THRI E 1 Offset(0,31)
+	Goto Ready
+  MineCheck2:
+	TNT1 A 0 A_JumpIfInventory("MineAmmo",1,"MineToss2")
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	Goto Ready
+  MineToss2:
+  	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown") 
+	THRI E 1 Offset(0,30)
+	THRI E 1 Offset(0,40)
+	THRI E 1 Offset(0,50)
+	THRI E 1 Offset(0,60)
+	THRI E 1 Offset(0,70)
+	TNT1 A 8 Offset(0,10)
+	TNT1 A 0 A_PlayWeaponSound("weapons/hgrenadethrow")
+	MINE ABCDEF 1		
+	TNT1 A 0 A_TakeInventory("MineAmmo",1)	  
+	MINE G 1 A_FireCustomMissile("ThrownMine",0,0,0,0)
+	MINE HI 1
+	MINE JK 2
+	TNT1 A 0 A_JumpIfInventory("MineAmmo",1,2)
+    TNT1 A 0 A_TakeInventory("Land Mine",1)
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	TNT1 A 0
+	TNT1 A 5
+	THRI E 1 Offset(0,70)
+	THRI E 1 Offset(0,60)
+	THRI E 1 Offset(0,50)
+	THRI E 1 Offset(0,40)
+	THRI E 1 Offset(0,31)
+	Goto Ready
+  Flash:
+    TNT1 A 1 Bright A_Light1
+    TNT1 A 1 Bright A_Light2
+    TNT1 A 1 Bright A_Light1
+    TNT1 A 1 Bright A_Light0
+    Stop
+   }
+}
+
+Actor PlasmaRazor
+{
+  PROJECTILE
+  Radius 8
+  Height 8
+  Speed 45
+  Damage 15
+  Seesound "PlasmaRazor/hit"
+  BounceSound "PlasmaRazor/hit"
+  Scale 0.2
+  Reactiontime 66
+  BounceFactor 1
+  WallBounceFactor 1
+  BounceCount 12
+  RenderStyle Add
+  Alpha 0.90
+  +FORCERADIUSDMG
+  +FORCEXYBILLBOARD
+  +HEXENBOUNCE 
+  +DOOMBOUNCE
+  +DONTSPLASH
+  +CANBOUNCEWATER
+  +Thruspecies
+  +DONTHARMSPECIES
+  Species "Player"
+  States
+  {
+  Spawn:
+    RIPP A 1 Bright A_Countdown
+    RIPP A 1 Bright A_SpawnItemEx("RedDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),SXF_CLIENTSIDE,128)
+	TNT1 A 0 A_Jump(128,"Spawn2")
+	RIPP A 1 Bright A_Recoil(-2)
+  Normal:
+	TNT1 A 0 A_Jump(128,"NormalFX")
+	RIPP A 1 A_SpawnItemEx("RedDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),SXF_CLIENTSIDE,128)
+	Loop
+  NormalFX:
+	TNT1 A 0 A_SpawnItemEx("RDTechLightning",Random(3,-3),Random(3,-3),Random(3,-3),0,0,0,0,SXF_CLIENTSIDE,128)
+	RIPP A 1 Bright A_SpawnItemEx("RedDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),SXF_CLIENTSIDE,128)
+	TNT1 A 0 A_SpawnItemEx("RDTechLightning2",Random(3,-3),Random(3,-3),Random(3,-3),0,0,0,0,SXF_CLIENTSIDE,128)
+	RIPP A 1 Bright A_SpawnItemEx("RedDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),SXF_CLIENTSIDE,128)
+	Goto Normal
+  Spawn2:
+	TNT1 A 0 A_Jump(128,"Spawn2FX")
+	RIPP A 1 Bright A_SpawnItemEx("RedDemonTechTrail2",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),SXF_CLIENTSIDE,128)
+	RIPP A 1 BRIGHT A_Recoil(-2)
+	Loop
+  Spawn2FX:
+	TNT1 A 0 A_SpawnItemEx("RDTechLightning",Random(3,-3),Random(3,-3),Random(3,-3),0,0,0,0,SXF_CLIENTSIDE,128)
+	RIPP A 1 Bright A_SpawnItemEx("RedDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),SXF_CLIENTSIDE,128)
+	TNT1 A 0 A_SpawnItemEx("RDTechLightning2",Random(3,-3),Random(3,-3),Random(3,-3),0,0,0,0,SXF_CLIENTSIDE,128)
+	RIPP A 1 Bright A_SpawnItemEx("RedDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),SXF_CLIENTSIDE,128)
+	Goto Spawn2
+  Death:
+    TNT1 A 0
+    TNT1 A 5 A_PlaySound("PlasmaRazor/explosion")
+	TNT1 A 0 Bright A_SpawnItemEx("RedParticleSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE,128)
+	TNT1 A 0 Bright A_SpawnItemEx("RedDemonTechEx",0,0,0,0,0,0,0,SXF_CLIENTSIDE,128,0)
+	TNT1 A 1 Bright A_Explode(25,45,0)
+	TNT1 A 0 Bright A_SetTranslucent(0.75,1)
+	RIPP F 6 Bright
+	RIPP G 5 Bright
+	RIPP H 4 Bright
+	RIPP I 3 Bright
+	RIPP J 2 Bright
+	RIPP J 1 Bright
+    Stop
+  }
+}
+
+Actor PlasmaRazorTrail : BFG9500Trail
+{
+  Alpha 0.75
+  Scale 0.1
+  states
+  {
+  Spawn:
+    TNT1 A 0
+    TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 1
+    RIPT ABCDEFG 1 A_FadeOut(0.4)
+	Goto Spawn+3
+    }
+}
+
+ACTOR RipperTrail
+{
+  +CLIENTSIDEONLY
+  +NoInteraction
+  Renderstyle Add
+  Scale 0.2
+  Alpha 0.75
+  States
+  {
+  Spawn:
+	TNT1 A 2
+	RIPP F 1 Bright A_FadeOut(0.1)
+	TNT1 A 0 A_SetScale(0.20)
+	RIPP F 1 Bright A_FadeOut(0.1)
+	TNT1 A 0 A_SetScale(0.18)
+	RIPP G 1 Bright A_FadeOut(0.1)
+	TNT1 A 0 A_SetScale(0.16)
+	RIPP G 1 Bright A_FadeOut(0.1)
+	TNT1 A 0 A_SetScale(0.14)
+	RIPP H 1 Bright A_FadeOut(0.1)
+	TNT1 A 0 A_SetScale(0.10)
+	RIPP H 1 Bright A_FadeOut(0.1)
+	TNT1 A 0 A_SetScale(0.08)
+	RIPP I 1 Bright A_FadeOut(0.1)
+	TNT1 A 0 A_SetScale(0.06)
+	RIPP I 1 Bright A_FadeOut(0.1)
+	TNT1 A 0 A_SetScale(0.04)
+    Stop
+  }
+}
+
+
+Actor PlasmaRazorAlt
+{
+  PROJECTILE
+  Radius 16
+  Height 16
+  Speed 28
+  Damage 30
+  Deathsound "PlasmaRazorAlt/explosion"
+  RenderStyle Add
+  Alpha 0.90
+  +FORCERADIUSDMG
+  +FORCEXYBILLBOARD
+  +BLOODSPLATTER
+  +SKYEXPLODE
+  +DONTSPLASH
+  +Thruspecies
+  +DONTHARMSPECIES
+  Species "Player"
+  Scale 0.30
+  states
+  {
+  Spawn:
+    RIPP A 1 NoDelay A_SpawnItemEx("RipperTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),SXF_CLIENTSIDE,128)
+	TNT1 A 0 A_Jump(128,"Spawn2")
+	RIPP A 1 Bright A_Recoil(-2)
+  Normal:
+	TNT1 A 0 A_Jump(128,"NormalFX")
+	RIPP A 1 Bright A_SpawnItemEx("RipperTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),SXF_CLIENTSIDE,128)
+	Loop
+  NormalFX:
+	TNT1 A 0 A_SpawnItemEx("RDTechLightning",Random(3,-3),Random(3,-3),Random(3,-3),0,0,0,0,128)
+	RIPP A 1 Bright A_SpawnItemEx("RipperTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),SXF_CLIENTSIDE,128)
+	TNT1 A 0 Bright A_SpawnItemEx("RDTechLightning2",Random(3,-3),Random(3,-3),Random(3,-3),0,0,0,0,128)
+	RIPP A 1 Bright A_SpawnItemEx("RipperTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),SXF_CLIENTSIDE,128)
+	Goto Normal
+  Spawn2:
+	TNT1 A 0 A_Jump(128,"Spawn2FX")
+	RIPP A 1 Bright A_SpawnItemEx("RipperTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),SXF_CLIENTSIDE,128)
+	RIPP A 1 Bright A_Recoil(-2)
+	Loop
+  Spawn2FX:
+	TNT1 A 0 A_SpawnItemEx("RDTechLightning",Random(3,-3),Random(3,-3),Random(3,-3),0,0,0,0,128)
+	RIPP A 1 Bright A_SpawnItemEx("RipperTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),SXF_CLIENTSIDE,128)
+	TNT1 A 0 A_SpawnItemEx("RDTechLightning2",Random(3,-3),Random(3,-3),Random(3,-3),0,0,0,0,128)
+	RIPP A 1 Bright A_SpawnItemEx("RipperTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),SXF_CLIENTSIDE,128)
+	Goto Spawn2
+    Loop
+  Death:
+	TNT1 A 0 A_SpawnItemEx("BFGShockwaveRed", 0, 0, 0, 0, 0, 0, 0,SXF_CLIENTSIDE,128)
+	TNT1 A 0 A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0,SXF_CLIENTSIDE,128)
+	TNT1 A 0 Bright A_SpawnItemEx("RedDemonTechEx",0,0,0,0,0,0,0,SXF_CLIENTSIDE,128,0)
+	TNT1 AAA 0 A_CustomMissile("Kaboom14", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 A 0 Radius_Quake(15,7,0,12,0)
+    TNT1 A 0 A_RadiusThrust(256,96,RTF_NOIMPACTDAMAGE)
+    TNT1 A 0 A_Explode(30,50)
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+	RIPP F 6 Bright A_Scream
+	RIPP G 5 Bright
+	RIPP H 4 Bright
+	RIPP I 3 Bright
+	RIPP J 2 Bright
+	RIPP J 1 Bright
+    Stop
+  }
+}

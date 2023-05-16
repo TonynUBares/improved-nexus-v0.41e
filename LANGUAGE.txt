@@ -1,0 +1,202 @@
+[enu default]
+
+//menu stuff
+OldSpawners = "\cfEnable old spawners";
+OldSpawners1 = "\cuEnable old spawning system (No transparent vanilla monsters)";
+OldSpawners2 = "\cgIt may cause lag in maps with many monsters";
+TXSOptions = "TXS Options";
+NexusOptions = "Nexus Options";
+NXMonsters = "Nexus Enemy features";
+NXPresents = "\cfUse All Presents in inventory";
+NXPresents1 = "\cgIt's the most wonderful time of the year!";
+NXDropHeart = "\cfDrop Current Demon Heart";
+
+NXOptionFirstLongTitleDamn = "\cfStarting Health and Armor";
+NXOptO011 = "\cuStart with 250/250 health and armor.";
+
+NXOptO02 = "\cfDisable Welder self damage";
+
+NexmasOpt = "\cfXmas Presents";
+Nexmas0 = "\cuEnemies can drop Xmas presents.";
+Nexmas1 = "\cuOnly works with progressive spawner set to Chaos";
+Nexmas2 = "\cuSet it to \cgOverride\cu to make it work with";
+Nexmas3 = "\cuany progressive spawner option";
+Nexmas4 = "\cgWarning: it can break progression!";
+
+NXOptO030 = "\cf---CDI Marines Settings---";
+NXOptO03 = "\cfRegroup Nearby Marines";
+NXOptO031 = "\cuAll your available marines";
+NXOptO032 = "\cuwill regroup near your position.";
+
+NXOptO04 = "\cfAuto-Supply Beacons";
+NXOptO041 = "\cuAllow the UAC to send you marine beacons.";
+
+NXOptO05 = "\cfAuto-Regroup Marines";
+NXOptO051 = "\cuAllow your idling marines to rejoin your position.";
+
+
+NXMonstersEFGLunaticNuclearMode = "\cfEFG Lunatic nuclear mode";
+NXMonO011 = "\cuGives the EFG Lunatic a big nuke attack,";
+NXMonO012 = "\cuif you like big nukes.";
+
+NXMonO02 = "\cfIncrease undead shinki spawn";
+NXMonO021 = "\cuDoubles the chance of undead shinki.";
+
+NXMonO03 = "\c[p7]Hackroid agony";
+NXMonO031 = "\cuHackroid monsters will spawn only if turned on";
+
+TXSOptionDisableAtomicSoul = "\cfDisable Atomic Soul";
+TXSOpt02 = "\cfDisable shuffle spheres and crates";
+
+//
+
+HPBAR_LINE_NOCLIP = "\c[d7]Noclip\c-";
+
+HPBAR_TRACKER_NOCLIP = "\c[d7][NOCLIP]\c-";
+
+//==============================================================================
+// Display name mappings
+//==============================================================================
+
+//I have a question, why is it necessary to do this when you can just add tags inside monster actors, could someone just explain to me???
+
+//LCA
+hpbar_name_BFG10KGeneral = "\cdBFG10K General\c-";
+hpbar_name_BFGCacodemon = "\cdBFG Cacodemon\c-";
+hpbar_name_CerebralCardinal = "\c[m6]Cerebral Cardinal\c-";
+hpbar_name_DTDevastatorZombie = "\crDT Devastator Zombie\c-";
+hpbar_name_EraserZombie = "\crEraser Zombie\c-";
+hpbar_name_HexaShotgunZombie = "\crHexa-Shotgun Zombie\c-";
+hpbar_name_FreezerBehemoth = "\cvFreezer Behemoth\c-";
+hpbar_name_LegendaryCardinal = "\c[z3]Legendary Cardinal\c-";
+hpbar_name_SandSpirit = "\ceSand Spirit\c-";
+hpbar_name_ShotgunCommando = "Shotgun Commando";
+hpbar_name_Poltergeist = "\cvPoltergeist\c-";
+hpbar_name_AnnihilatorImp = "\crAnnihi\cjlator \csImp\c-";
+hpbar_name_ToxicFiend = "\cdToxic Fiend\c-";
+hpbar_name_DarkAnnihilator = "\cqDark Annihilator\c-";
+hpbar_name_TrueLegendaryBabySentient = "\c[l5]True\c- \c[z3]Legendary Baby Sentient\c-";
+hpbar_name_TrueLegendarySentient = "\c[l5]True\c- \c[z3]Legendary Sentient\c-";
+hpbar_name_LegendaryZombie = "\c[z3]Legendary Zombie\c-";
+hpbar_name_ExplosiveMinigunner = "\cuExplosive \crMinigunner\c-";
+hpbar_name_TrueLegendaryCyberdemonNormal = "\c[l5]True\c- \c[z3]Legendary Cyberdemon\c- \cl(Weak)\c-";
+hpbar_name_FakeLegendarySentient = "\c[z3]Legendary Sentient\c-";
+hpbar_name_FakeLegendaryAnnihilator = "\c[z3]Legendary Annihilator\c-";
+hpbar_name_Dingy = "\c[u3]Dingy\c-";
+hpbar_name_TFusionite = "\ctFusionite\c-";
+hpbar_name_TBabyDemolisher = "Baby Demolisher";
+hpbar_name_TBabySentient = "Baby Sentient";
+hpbar_name_DemonicZombie = "Demonic Zombie";
+hpbar_name_Velocirator = "\cdVelocirator\c-";
+
+//DJB
+hpbar_name_STBelphegor = "\cgBelp\cmhegor\c-";
+hpbar_name_CyberBelphegor = "\cgCyber \cmBelphegor\c-";
+hpbar_name_NailgunCommando = "\csNailgun \cuCommando\c-";
+hpbar_name_DemonTechBallistaZombie = "\cqDemonTech Ballista Zombie\c-";
+hpbar_name_LegendarySuperShotgunZombie = "\c[z3]Legendary Super Shotgun Zombie\c-";
+hpbar_name_CorruptedRevenant = "\c[l5]Corrupted Revenant\c-";
+hpbar_name_BFG15KMajor = "\cqBFG15K Major\c-";
+hpbar_name_LegendaryRevolverZombie = "\c[z3]Legendary Revolver Zombie\c-";
+hpbar_name_FreezerBehemoth2 = "\cvFreezer Behemoth\c-";
+hpbar_name_Daedabus2 = "Daedabus";
+
+//DUST
+hpbar_name_AlternateRailgunner = "Railgunner";
+hpbar_name_GoreImp = "\c[g9]Gore Imp\c-";
+hpbar_name_NetherImp = "\cmNether Imp\c-";
+hpbar_name_CerebralCaco = "\c[m6]Cerebral Cacodemon\c-";
+hpbar_name_Mechtre = "\c[g9]Mechtre\c-";
+hpbar_name_VoidFiend = "\c[o5]Void Fiend\c-";
+hpbar_name_ChaosSoul = "\c[q9]Chaos Soul\c-";
+hpbar_name_TrueLegendaryZombie = "\c[l5]True\c- \c[z3]Legendary Zombie\c-";
+hpbar_name_PainLord = "\c[o7]Painlord\c-";
+hpbar_name_LegendaryPhaseImp = "\c[z3]Legendary Phase Imp\c-";
+hpbar_name_Desolator = "\c[i7]Desolator\c-";
+hpbar_name_CyberBaron = "Cyber Baron";
+hpbar_name_Mancutank = "\c[j6]Mancutank\c-";
+hpbar_name_DarkBishop = "\c[g3]Dark Bishop\c-";
+hpbar_name_SpiderMasterspark = "\c[n7]Spider \c[n4]Master\c[n5]spark\c-";
+hpbar_name_ImpureVile = "\c[l5]Impure Vile\c-";
+hpbar_name_SpecOpsRailgunner = "\cuSpec \crOps \csRailgunner\c-";
+hpbar_name_SpecOpsMachinegunner = "\cuSpec \crOps \csMachinegunner\c-";
+hpbar_name_SpecOpsShotgunner = "\cuSpec \crOps \csShotgunner\c-";
+hpbar_name_CerebralIncarnate  = "\c[m6]Cerebral Incarnate\c-";
+hpbar_name_CerebralRedeemer = "\c[m6]Cerebral Redeemer\c-";
+hpbar_name_FormerAdmiral = "\cuFormer \cmAdmiral\c-";
+hpbar_name_LegendaryNecromancer = "\c[z3]Legendary Necromancer\c-";
+hpbar_name_CerebralImp = "\c[m6]Cerebral Imp\c-";
+hpbar_name_DarkCybernoble = "\cqDark Cyber Noble\c-";
+hpbar_name_Overseer = "\c[a6]Overseer\c-";
+hpbar_name_LegendaryVile = "\c[z3]Legendary Archvile\c-";
+hpbar_name_BabyOverseer = "\c[a6]Baby Overseer\c-";
+hpbar_name_BabyOverseerMinion = "\c[a6]Baby Overseer\c-";
+hpbar_name_ChaosElemental = "\c[q9]Chaos Elemental\c-";
+hpbar_name_LegendaryArchon = "\c[z3]Legendary Archon Of Hell\c-";
+hpbar_name_LegendaryAfrit = "\c[z3]Legendary Afrit\c-";
+hpbar_name_ExplosiveShotgunZombie = "\cuExplosive \crShotgunner\c-";
+hpbar_name_PhaseCyberdemon = "\c[j8]Phase Cyberdemon\c-";
+hpbar_name_Hierophant = "\c[w6]Hierophant\c-";
+hpbar_name_BabyDDemolisher = "\cqBaby Dark Demolisher\c-";
+hpbar_name_Demobus = "\cmDemobus\c-";
+
+
+//CF
+hpbar_name_DemolisherMKII = "\cgDemolisher\c-";
+hpbar_name_DemolisherMkIIRevenge = "\cgDemolisher MKII\c-";
+hpbar_name_DemonTechZombie2 = "Demon Tech Zombie";
+hpbar_name_AssaultShotgunZombie2 = "Assault Shotgun Zombie";
+hpbar_name_Cybernoble2 = "Cyber Noble";
+hpbar_name_BabyDemolisher2 = "Baby Demolisher";
+hpbar_name_AssaultRifleZombie2 = "Assault Rifle Zombie";
+hpbar_name_ShotgunZombie2 = "Shotgun Zombie";
+hpbar_name_QuadShotgunZombie2 = "Quad Shotgun Zombie";
+hpbar_name_SuperShotgunZombie2 = "Super Shotgun Zombie";
+
+//==============================================================================
+// Boss mappings
+//==============================================================================
+
+//DJB
+hpbar_track_LegendarySuperShotgunZombie = 1;
+hpbar_track_LegendaryRevolverZombie = 1;
+
+//Dust
+hpbar_track_TrueLegendaryZombie = 1;
+hpbar_track_LegendaryPhaseImp = 1;
+hpbar_track_Desolator = 1;
+hpbar_track_BloodyFlandre = 1;
+hpbar_track_SpiderMasterspark = 1;
+hpbar_track_ImpureVile = 1;
+hpbar_track_LegendaryNecromancer = 1;
+hpbar_track_Overseer = 1;
+hpbar_track_LegendaryVile = 1;
+hpbar_track_LegendaryArchon = 1;
+hpbar_track_LegendaryAfrit = 1;
+hpbar_track_SacrosanctOverseer = 1;
+hpbar_track_PhaseCyberdemon = 1;
+hpbar_track_AlternateLegRev = 1;
+hpbar_track_Hierophant = 1;
+
+//CF
+hpbar_track_Uroboros = 1;
+hpbar_track_Lamia = 1;
+hpbar_track_Yorihime = 1;
+hpbar_track_Toyohime = 1;
+hpbar_track_Utsuho = 1;
+hpbar_track_CardihilatorDemolisher = 1;
+hpbar_track_NemesisZombie = 1;
+hpbar_track_NemesisAssaultCaptain = 1;
+hpbar_track_NemesisImp = 1;
+hpbar_track_NemesisHellKnight = 1;
+hpbar_track_NemesisRevenant = 1;
+hpbar_track_NemesisBarrel = 1;
+hpbar_track_NemesisCyberNoble = 1;
+hpbar_track_DemolisherMKII = 1;
+hpbar_track_DemolisherMkIIRevenge = 1;
+hpbar_track_NemesisStealthTrooper = 1;
+hpbar_track_TrueLegendaryZombie2 = 1;
+hpbar_track_TrueLegendarySentient2 = 1;
+hpbar_track_TrueLegendaryCardinal2 = 1;
+hpbar_track_LegendaryCyberNoble2 = 1;
+hpbar_track_LegendarySoul2 = 1;

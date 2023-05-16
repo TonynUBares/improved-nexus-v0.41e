@@ -1,0 +1,239 @@
+ACTOR singenjitsu3 : GenericBoss
+{
+  Health 7000
+  Mass 0x7FFFFFFF
+  Monster
+  +LOOKALLAROUND
+  +FLOORCLIP
+  +BOSS
+  +DONTMORPH
+  +NOTIMEFREEZE
+  +NOTELEFRAG
+  +NOCLIP
+  +BRIGHT
+  +FORCERADIUSDMG
+  +QUICKTORETALIATE
+  +NOTARGET
+  +NOINFIGHTING
+  +NOICEDEATH
+  +NOFEAR
+  Tag "$NESinGenj3"
+  ActiveSound "singenjitsu/active"
+  DeathSound "singenjitsu/death"
+  SeeSound "singenjitsu/sight"
+  DamageFactor "Melee", 0.05
+  DamageFactor "Crush", 0.1
+  DamageFactor "Acid", 0.05
+  DamageFactor "Ice", 0.0
+  DamageFactor "Fire", 0.0
+  DamageFactor "Poison", 0.0
+  DamageFactor "PoisonCloud", 0.0
+  DamageFactor "Electric", 0.001
+  DamageFactor "Disintegrate", 0.001
+  DamageFactor "DrainLife", 0.0
+  DamageFactor "Extreme", 0.0
+  DamageFactor "Player", 0.0
+  DamageFactor "Players", 0.02
+  DamageFactor "PyroShot", 0.0
+  DamageFactor "PlayerPyro", 0.0
+  DamageFactor "PDTPuff", 0.0
+  DamageFactor "Explosion", 0.1
+  DamageFactor "NuclearFire", 0.01
+  DamageFactor "BFG9500Ball", 0.25
+  DamageFactor "BFGSplash", 0.25
+  DamageFactor "UpBFG9500Ball", 0.25
+  DamageFactor "UpBFGSplash", 0.15
+  DamageFactor "PDTBFG", 0.03
+  DamageFactor "PDTBFGTracer", 0.03
+  DamageFactor "PlayerDevBall", 0.02
+  DamageFactor "PlayerDevBall2", 0.02
+  DamageFactor "PlayerDevTracer", 0.02
+  DamageFactor "PlayerDBFG2", 0.65
+  DamageFactor "PlayerDBFG10K2", 0.65
+  DamageFactor "PlayerDBFGSplash2", 0.65
+  DamageFactor "PlayerBHole", 0.05
+  DamageFactor "PlayerNemesisPlasma", 0.01
+  DamageFactor "Legendary", 0.015
+  DamageFactor "LegendaryPlayer", 0.015
+  DamageFactor "PlayerHellfire", 0.1
+  DamageFactor "SuperWeapon", 0.0
+  DamageFactor "LegendaryGuruPlayer", 0.015
+  DamageFactor "SatanGuard", 0.0
+  DamageFactor "AbyssalSatyr", 0.0
+  DamageFactor "Moloch", 0.0
+  DamageFactor "Exos", 0.0
+  DamageFactor "ZombieDev", 0.0
+  DamageFactor "Terminator", 0.0
+  DamageFactor "AdvancedImp", 0.0
+  DamageFactor "Legendary1", 0.0
+  DamageFactor "LegendaryGuru", 0.0
+  DamageFactor "UltimateLegendary", 0.0
+  DamageFactor "Nobles", 0.0
+  DamageFactor "VileFires", 0.0
+  DamageFactor "Shadow", 0.0
+  DamageFactor "DarkBruiserBFG10K", 0.0
+  DamageFactor "Cybers", 0.0
+  DamageFactor "Hell", 0.0
+  DamageFactor "Commander", 0.0
+  DamageFactor "Baby15K", 0.0
+  DamageFactor "Cyber10K", 0.0
+  DamageFactor "DemolisherEx", 0.0
+  DamageFactor "DarkDemoEx", 0.0
+  DamageFactor "CerChainguns", 0.0
+  DamageFactor "CerEnergyBall", 0.0
+  DamageFactor "LegMind", 0.0
+  DamageFactor "BeheComet", 0.0
+  DamageFactor "UBDTR", 0.0
+  DamageFactor "NobleComet", 0.0
+  DamageFactor "CacoComet", 0.0
+  DamageFactor "SoulToxic", 0.0
+  DamageFactor "Cacolich", 0.0
+  DamageFactor "CadaverRocket", 0.0
+  DamageFactor "HellComet", 0.0
+  DamageFactor "HFCyber", 0.0
+  DamageFactor "DBFG2", 0.0
+  DamageFactor "DBFG10K2", 0.0
+  DamageFactor "DBFGSplash2", 0.0
+  //Holy shit, that's a LOT of damage factors.
+  renderstyle add
+  speed 4
+  Radius 20
+  Height 62
+  scale 0.7
+  dropitem "RingOfRegeneration" 30
+  obituary "%o succumbed to sin-genjitsu's mindfuckery."
+  States
+  {
+  Spawn:
+    SING A 0
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("GetCVar",11) == 1, "BegoneThot")
+	TNT1 A 0 ACS_NamedExecuteAlways("WimpyMode",0,2)
+	TNT1 A 0 ACS_NamedExecuteAlways("ModifyMonster",0,2)
+	TNT1 A 0 A_StopSound(5)
+	TNT1 A 0 A_StopSound(7)
+  SpawnLoopster:
+	TNT1 A 0 ACS_NamedExecuteAlways("SGActiveScript",0)
+    SING A 1 bright A_Look
+	loop
+  BegoneThot:
+	TNT1 A 1
+	TNT1 A 0 A_SpawnItemEx("Spidermastermind",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	TNT1 A 0 A_ChangeFlag("COUNTKILL", FALSE)
+	TNT1 A 0
+	Stop	
+  See:
+	TNT1 A 0 A_JumpIf(user_lowlag == 1,"MoreSee")
+	TNT1 A 0 A_JumpIfTargetInLOS("MoreSee",0,0,0,0)
+	SING A 2 A_Chase
+	Loop
+  MoreSee:
+	TNT1 A 0 A_SetUserVar("user_lowlag",1)
+    TNT1 A 0
+	TNT1 A 0 A_PlaySound("singenjitsu/ambient",5,3.0,1)
+  SeeLoop:
+	TNT1 A 0 A_Jump(2,"GiveAway")
+	TNT1 A 0 A_Jump(1,"TeleportMe")
+	TNT1 A 0 A_JumpIfCloser(1024,"SeeNormal")
+	TNT1 AAAAAA 0 A_Chase
+    SING A 1 bright A_Chase
+	Loop
+  SeeNormal:
+	TNT1 A 0 A_Jump(2,"GiveAway")
+	TNT1 A 0 A_Jump(1,"TeleportMe")
+	TNT1 A 0 A_Jump(1,"Strafing")
+	TNT1 A 0 A_JumpIfCloser(512,"SeeSlow")
+	TNT1 AAA 0 A_Chase
+    SING A 1 bright A_Chase
+	goto SeeLoop
+  SeeSlow:
+	TNT1 A 0 A_Jump(4,"GiveAway")
+	SING A 0 A_Chase
+	SING A 1 bright A_Chase
+	goto SeeLoop
+  GiveAway:
+  	TNT1 AAA 0 A_SpawnItemEx("Red2huBossDeathFlame3",0,0,20,random(-1,1),random(-1,1),random(-1,1))
+	goto SeeLoop
+  TeleportMe:
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	TNT1 A 1 A_Wander
+	TNT1 A 0 A_Jump(12,"SeeLoop")
+	loop
+ Strafing:
+    TNT1 A 0 A_SpawnItem("LegendaryFootStep",0,0,0,0)
+    TNT1 A 0 A_Chase
+    //TNT1 A 0 a_spawnitemex("phasewarlordFspawner")
+    SING A 3 Bright A_Custommissile ("PhaseArchonBall", 32, 0, -10)
+    SING AA 3 Bright A_GiveInventory("NLegZombieStrafing2",1)
+    TNT1 A 0 A_Chase
+    //TNT1 A 0 a_spawnitemex("phasewarlordFspawner")
+    SING A 3 Bright A_Custommissile ("PhaseArchonBall", 32, 0, -10)
+    SING AA 3 Bright A_GiveInventory("NLegZombieStrafing2",1)
+    TNT1 A 0 A_SpawnItem("LegendaryFootStep",0,0,0,0)
+    TNT1 A 0 A_Chase
+    Goto See  Melee:
+	TNT1 A 0 A_GiveToTarget("kazumi_SGfuckery",1)
+	SING A 10 bright A_VileAttack("singenjitsu/melee",60,80,96,2,"Genjitsu")
+	goto seeloop
+  MeleeBoom:
+	TNT1 A 0 A_GiveToTarget("kazumi_SGfuckery",1)
+	SING A 10 bright A_VileAttack("singenjitsu/melee",9001,0,96,2,"Genjitsu")
+	goto SeeNormal
+  Death:
+	TNT1 A 0 A_StopSound(5)
+	TNT1 AAAAAAAAAAA 0 A_SpawnItemEx("2huBossDeathFlame",0,0,20,random(-3,3),random(-3,3),random(-3,3))
+	SING A 25 A_Scream
+	SING AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("Red2huBossDeathFlame",0,0,random(5,25),random(-15,15),random(-15,15),random(-15,30))
+	SING AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("Red2huBossDeathFlame",0,0,random(5,25),random(-15,15),random(-15,15),random(-15,30))
+	SING AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("Red2huBossDeathFlame",0,0,random(5,25),random(-15,15),random(-15,15),random(-15,30))
+	SING AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("Red2huBossDeathFlame",0,0,random(5,25),random(-15,15),random(-15,15),random(-15,30))
+	SING AAAAAAAAAAAA 1 A_SpawnItemEx("Red2huBossDeathFlame",0,0,random(5,25),random(-15,15),random(-15,15),random(-15,30))
+	TNT1 AA 0 A_SpawnItemEx("PhaseSphere",0,0,8,random(0,8),random(0,8),2,random(0,360),0,0)
+	TNT1 AAA 0 A_SpawnItemEx("Red2huBossDeathFlame",0,0,20,random(-4,4),random(-4,4),random(0,3))
+	TNT1 AAA 0 A_SpawnItemEx("Red2huBossDeathFlame3",0,0,20,random(-20,20),random(-20,20),random(0,20))
+	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+	TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+	SING AA 1 A_Fadeout(0.1)
+	TNT1 A 0 A_SpawnItemEx("ElusiveSphere",0,0,8,random(0,8),random(0,8),2,random(0,360),0,0)
+	TNT1 AAA 0 A_SpawnItemEx("Red2huBossDeathFlame",0,0,20,random(-4,4),random(-4,4),random(0,3))
+	TNT1 AAA 0 A_SpawnItemEx("Red2huBossDeathFlame3",0,0,20,random(-20,20),random(-20,20),random(0,20))
+	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+	TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+	SING AA 1 A_Fadeout(0.1)
+	TNT1 AAA 0 A_SpawnItemEx("Red2huBossDeathFlame",0,0,20,random(-4,4),random(-4,4),random(0,3))
+	TNT1 AAA 0 A_SpawnItemEx("Red2huBossDeathFlame3",0,0,20,random(-20,20),random(-20,20),random(0,20))
+	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+	TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+	SING AA 1 A_Fadeout(0.1)
+	TNT1 A 0 A_SpawnItemEx("DemonicChalice",0,0,8,random(0,8),random(0,8),2,random(0,360),0,128)
+	TNT1 AAA 0 A_SpawnItemEx("Red2huBossDeathFlame",0,0,20,random(-4,4),random(-4,4),random(0,3))
+	TNT1 AAA 0 A_SpawnItemEx("Red2huBossDeathFlame3",0,0,20,random(-20,20),random(-20,20),random(0,20))
+	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+	TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+	SING AA 1 A_Fadeout(0.1)
+	TNT1 A 0 A_NoBlocking
+	TNT1 AAA 0 A_SpawnItemEx("Red2huBossDeathFlame",0,0,20,random(-4,4),random(-4,4),random(0,3))
+	TNT1 AAA 0 A_SpawnItemEx("Red2huBossDeathFlame3",0,0,20,random(-20,20),random(-20,20),random(0,20))
+	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+	TNT1 AAA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+ 	SING AA 1 A_Fadeout(0.1)
+   Stop
+  }
+}
+
+actor kazumi_SGfuckery : CustomInventory
+{
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.AUTOACTIVATE
+	inventory.maxamount 1
+	inventory.pickupmessage "fuck"
+	States
+	{
+	Spawn:
+		TNT1 A 1
+		loop
+	pickup:
+		TNT1 A 1
+		TNT1 A 0 ACS_NamedExecuteAlways("SingenjitsuJumpscare",0)
+		stop
+	}
+}

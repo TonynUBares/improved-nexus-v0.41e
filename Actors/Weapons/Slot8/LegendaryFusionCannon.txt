@@ -1,0 +1,496 @@
+Actor LegendaryFusionCannonGiver : CustomInventory
+{
+  Scale 0.9
+  Inventory.Amount 1
+  Inventory.MaxAmount 0
+  Inventory.InterHubAmount 0
+  Inventory.pickupsound "upgrade/pickup"
+  Inventory.PickupMessage "The Legendary Fusion Cannon"
+  Obituary "%o was oblirerated off the planet with k's Legendary Fusion Cannon."
+  Tag "Legendary Fusion Cannon"
+  States
+  {
+  Spawn:
+	RLBG A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",8,1)
+  SpawnLoop:
+	RLBG A -1
+	Loop
+  Pickup:
+	TNT1 A 0 A_JumpIfInventory("Legendary Fusion Cannon",1,"JustAmmo")
+  All:
+	TNT1 A 0 A_GiveInventory("Legendary Fusion Cannon",1)
+	TNT1 A 0 A_JumpIfInventory("LegendaryFusionCannonGiverCheck",1,"HoldAndDestroy")
+	TNT1 A 0 A_GiveInventory("LegendaryFusionCannonGiverCheck",1)
+	TNT1 A 0 A_GiveInventory("LDemonAmmo",40)
+	Stop
+  JustAmmo:
+    TNT1 A 0 A_JumpIfInventory("LegendaryFusionCannonGiverCheck",1,"Null")
+	TNT1 A 0 A_GiveInventory("LegendaryFusionCannonGiverCheck",1)
+	TNT1 A 0 A_GiveInventory("LDemonAmmo",40)
+	TNT1 A 0 A_SpawnItemEx("Legendary Fusion Cannon")
+	Stop
+  }
+}
+
+Actor LegendaryFusionCannonSpawnerGiver : LegendaryFusionCannonGiver
+{
+  States
+  {
+  JustAmmo:
+    TNT1 A 0 A_JumpIfInventory("LegendaryFusionCannonGiverCheck",1,"Null")
+	TNT1 A 0 A_GiveInventory("LegendaryFusionCannonGiverCheck",1)
+	TNT1 A 0 A_GiveInventory("LDemonAmmo",40)
+	Stop
+  }
+}
+
+Actor LegendaryFusionCannonGiverCheck : Inventory { Inventory.Amount 1 Inventory.MaxAmount 1 Inventory.InterHubAmount 0 }
+
+
+
+Actor "Legendary Fusion Cannon" : Weapon
+{
+ +NOAUTOFIRE
+ +WEAPON.BFG
+ +WEAPON.NOAUTOAIM
+ +INVENTORY.UNDROPPABLE
+ Weapon.PreferredSkin "RTLegendaryBFG-Marine"
+ Weapon.AmmoGive 200
+ Weapon.AmmoGive2 1
+ Weapon.AmmoType "LDemonAmmo"
+ Weapon.AmmoType2 "LegendaryFusionCell"
+ Weapon.AmmoUse 0
+ Weapon.AmmoUse2 1
+ weapon.KickBack 90
+ Weapon.SlotNumber 8
+ Weapon.SlotPriority 7.0
+ Weapon.UpSound "weapons/LFusionCannonUp"
+ Inventory.pickupsound "upgrade/pickup"
+ Inventory.PickupMessage "The Legendary Fusion Cannon"
+ Obituary "%o was oblirerated off the planet with k's Legendary Fusion Cannon."
+ Tag "Legendary Fusion Cannon"
+ States
+ {
+  Spawn:
+	RLBG A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",8,1)
+  SpawnLoop:
+	RLBG X -1
+	Stop
+  Select:
+	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",0)
+	TNT1 A 0 A_ZoomFactor(1)
+	RLBU A 0 A_Raise
+	RLBU A 1 A_Raise
+	goto select+2
+  Deselect:
+	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",1)
+	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown")
+  Deselectloop:
+	TNT1 AAA 0 A_StopSound(5)
+	TNT1 AAA 0 A_StopSound(6)
+	TNT1 A 0 A_ZoomFactor(1)
+	TNT1 A 0 A_Lower
+	RLBU A 1 A_Lower
+	Loop
+  Ready:
+	TNT1 A 0 A_PlaySound("weapons/LFusionCannonIdle",5,1.0,1)
+	RLBG ABCDEFGHIJIHGFEDCB 1 A_WeaponReady
+	Loop
+  Fire:
+	TNT1 A 0 A_JumpifInventory("LDemonAmmo",125,1)
+	Goto Ready
+	TNT1 A 0 A_PlaySound("Weapons/GuruTrigger",1)
+	RLBG ABCDEFGHIJ 1
+	TNT1 A 0 A_PlaySound("weapons/LFusionCannonFire",5)
+	RLBG IHGFED 1
+	TNT1 A 0 A_GiveInventory("CFGuruCharge",1)
+  CFGuruCharger:
+	TNT1 A 0 A_TakeInventory("CFGuruCharge",1)
+	RLBC ABCDEFGHIJKLMNOPQRST 1 Bright A_Quake(4,2,0,2,"none")
+	TNT1 A 0 A_JumpIfInventory("CFGuruCharge",1,"CFGuruCharger")
+	RLBC ABC 1 Bright A_Quake(4,2,0,2,"none")
+	TNT1 A 0 A_StopSound(5)
+	TNT1 A 0 A_PlaySound("Weapons/GuruFire",5)
+	TNT1 A 0 A_PlaySound("Weapons/GuruAddFire",6)
+	TNT1 A 0 A_FireCustomMissile("PlayerRTLBBall",0,1,12,0)
+	TNT1 A 0 A_TakeInventory("LDemonAmmo",125)
+	TNT1 A 0 A_Recoil(45)
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_SetBlend("Yellow",0.5,60)
+	TNT1 A 0 A_SetBlend("White",0.25,60)
+	TNT1 A 0 A_ZoomFactor(0.950)
+	RLBF A 1 Bright Offset(2,34)
+	TNT1 A 0 A_ZoomFactor(0.75)
+	RLBF A 1 Bright Offset(4,36)
+	TNT1 A 0 A_ZoomFactor(1)
+	Goto Ready
+  Altfire:
+	TNT1 A 0 A_JumpIfNoAmmo("Ready")
+	TNT1 A 0 A_JumpIfInventory("LegendaryFusionCell",1,1)
+	Goto Ready
+	RLBG A 0 A_PlaySound("Weapons/GuruTrigger",1)
+	RLBG ABCDEFGHIJ 1
+	RLBG A 0 A_PlaySound("weapons/LFusionCannonCharging",5,2.0)
+	RLBG IHGFED 1
+	RLBG A 0 A_GiveInventory("CFGuruCharge",3)
+  Gurudeathcharger:
+	RLBG A 0 A_TakeInventory("CFGuruCharge",1)
+	RLBC ABCDEFGHIJKLMNOPQRST 1 Bright A_Quake (4, 2, 0, 2,"none")
+	RLBC ABCDEFGHIJKLMNOPQRST 1 Bright A_Quake (4, 2, 0, 2,"none")
+	RLBG A 0 A_JumpIfInventory("CFGuruCharge",1,"Gurudeathcharger")
+	RLBC ABC 1 Bright A_Quake (4, 2, 0, 2,"none")
+	RLBG A 0 A_StopSound(5)
+	RLBG A 0 A_PlaySound("Weapons/GuruFire",5)
+	RLBG A 0 A_PlaySound("Weapons/GuruAddFire",6)
+	RLBG A 0 A_FireCustomMissile("PRTLDeathball", 0, 0, 12, 0)
+	TNT1 A 0 A_TakeInventory("LegendaryFusionCell",1)
+	RLBG A 0 A_Recoil(65)
+	RLBG A 0 A_GunFlash
+	RLBG A 0 A_SetBlend("Yellow",0.5,60)
+	RLBG A 0 A_SetBlend("White",0.25,60)
+	RLBF A 0 A_ZoomFactor(0.975)		
+	RLBF A 1 Bright Offset(2,34)
+	RLBF A 0 A_ZoomFactor(0.95)		
+	RLBF A 1 Bright Offset(4,36)
+	RLBF A 1 Bright Offset(8,40) A_ZoomFactor(0.85)
+	RLBF A 1 Bright Offset(12,44) A_ZoomFactor(0.875)	
+	RLBG J 1 Bright Offset(15,47) A_ZoomFactor(0.8)
+	RLBG I 1 Bright Offset(17,49) A_ZoomFactor(0.75)
+	RLBG H 1 Bright Offset(18,50) A_ZoomFactor(0.74)
+	RLBG G 1 Bright Offset(19,51) A_ZoomFactor(0.73)
+	RLBG F 1 Bright Offset(20,52) A_ZoomFactor(0.72)
+	RLBG E 1 Bright A_ZoomFactor(0.71)
+	RLBG D 1 Bright Offset(19,51) A_ZoomFactor(0.7)
+	RLBG C 1 Bright Offset(18,50) A_ZoomFactor(0.69)
+	RLBG B 1 Bright Offset(17,49) A_ZoomFactor(0.68)
+	RLBG A 1 Bright Offset(16,48) A_ZoomFactor(0.67)
+	RLBU A 1 Offset(15,47) A_ZoomFactor(0.66)
+	RLBU A 1 Offset(14,46) A_ZoomFactor(0.67)
+	RLBU A 1 Offset(13,45) A_ZoomFactor(0.68)
+	RLBU A 1 Offset(12,44) A_ZoomFactor(0.69)
+	RLBU A 1 Offset(11,43) A_ZoomFactor(0.7)
+	RLBU A 1 Offset(10,42) A_ZoomFactor(0.71)
+	RLBU A 1 Offset(9,41) A_ZoomFactor(0.72)
+	RLBU A 1 Offset(8,40) A_ZoomFactor(0.73)
+	RLBU A 1 Offset(7,39) A_ZoomFactor(0.74)
+	RLBU A 1 Offset(6,38) A_ZoomFactor(0.75)
+	RLBU A 1 Offset(5,37) A_ZoomFactor(0.775)
+	RLBU A 1 Offset(4,36) A_ZoomFactor(0.8)
+	RLBU A 1 Offset(3,35) A_ZoomFactor(0.825)
+	RLBU A 1 Offset(2,34) A_ZoomFactor(0.85)
+	RLBU A 1 Offset(1,33) A_ZoomFactor(0.875)
+	RLBU A 1 Offset(0,32) A_ZoomFactor(0.9)
+	RLBU A 1 A_ZoomFactor(0.925)
+	RLBU A 1 A_ZoomFactor(0.925)
+	RLBU A 1 A_ZoomFactor(0.95)
+	RLBU A 1 A_ZoomFactor(0.975)
+	RLBU A 1 A_ZoomFactor(1)
+	RLBU A 5 A_PlaySound("Weapons/GuruLoad",1)
+	PWRG A 0 A_PlaySound("Weapons/GuruIdle",5,1,1)
+	RLBG ABCDFEFGHIJIHGFEDCB 1
+	Goto Ready
+  Flash:
+	TNT1 A 7 bright A_Light2
+	TNT1 A 4 bright A_Light1
+	TNT1 A 0 A_Light0
+	Stop
+ }
+}
+
+ACTOR LegendaryFusionCell : Ammo
+{
+ +IGNORESKILL
+ +INVENTORY.BIGPOWERUP
+ Inventory.Amount 1
+ Inventory.MaxAmount 5
+ Ammo.BackpackAmount 0
+ Ammo.BackpackMaxAmount 5
+ Inventory.PickupMessage "Picked up a Legendary Nuclear Fusion Cell."
+ Inventory.PickupSound "LegendaryFusionCell/PickUp"
+ Inventory.Icon "LNFCA0"
+ States
+ {
+  Spawn:
+	LFSC ABCD 3 A_CustomMissile ("LegendaryBlueParticleSpawner", 0, 0, random(0,-360), 2, random(0,360))
+	Loop
+ }
+}
+
+ACTOR PlayerRTLBBall
+{
+ Projectile
+ Height 6
+ Radius 11
+ Speed 15
+ Scale 0.50
+ Renderstyle Add
+ Damage 125
+ +FRIENDLY
+ +RIPPER
+ +FOILINVUL
+ +BLOODLESSIMPACT
+ +FORCERADIUSDMG
+ +NODAMAGETHRUST
+ +DONTBLAST
+ +SKYEXPLODE
+ +DONTREFLECT
+ +NOTIMEFREEZE
+ +FORCEXYBILLBOARD
+ +THRUSPECIES
+ +MTHRUSPECIES
+ +DONTHURTSPECIES
+ +DONTHARMSPECIES
+ +QUICKTORETALIATE
+ DamageType "LegendaryGuruPlayer"
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_RearrangePointers(AAPTR_DEFAULT, AAPTR_TARGET, AAPTR_DEFAULT)
+	TNT1 A 0 A_PlaySound("Weapons/GuruFly",5,1.0,1)
+	Goto Fly
+  AfterAttack:
+	TNT1 A 0 A_RearrangePointers(AAPTR_MASTER, AAPTR_DEFAULT, AAPTR_DEFAULT)
+	TNT1 A 0 A_Explode(600,64,0,1)
+  Fly:
+	TNT1 A 0 A_SpawnItemEx("CFGuruTrailSpark",random(-28,28),random(-28,28),random(-28,28),0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_SpawnItemEx("CFGuruTrail",-3,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+	YBAL A 1 Bright
+	TNT1 AAA 0 Bright A_CustomMissile("PlayerLRTLBBolt",0,0,random(0,360),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(0,360))
+	TNT1 A 0 A_CustomMissile("PlayerRTLBLiteShot",0,0,random(0,360),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-10,10))
+	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND,0,1250,0,360,"Attack")
+	Loop
+  Attack:
+	TNT1 A 0 A_CustomRailgun(8*random(1,8),0,None,"Yellow",RGF_SILENT|RGF_FULLBRIGHT,1,2,"PlayerRTLBFGRailgunSlugPuff")
+	Goto AfterAttack
+  Death:
+	TNT1 A 0
+	TNT1 A 0 A_RearrangePointers(AAPTR_MASTER, AAPTR_DEFAULT, AAPTR_DEFAULT)
+	TNT1 A 0 A_PlaySound("Weapons/GuruBlast3",5,1.0,0)
+	//COLLATERAL DAMAGE EFFECTS
+	TNT1 A 0 A_Explode(6000,486,0,1)
+	TNT1 A 0 A_BFGSpray("CFGuruSpray",15,20)
+	//IMPACT STUFF
+	TNT1 A 0 A_SpawnItemEx("CFGuruStruckGlowX",0,0,10,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_SpawnItemEx("CFGuruStruckGlowY",0,0,10,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+	TNT1 AAA 0 A_SpawnItemEx("FusionSphereSmoke",random(-126,126),random(-126,126),random(-66,66),0.00001 * random(-100000,100000),0.00001 * random(-100000,100000),0.00001 * random(-100000,100000),random(0,360),SXF_SETMASTER|SXF_NOCHECKPOSITION,0)
+	TNT1 AAA 0 A_SpawnItemEx("CFGuruChunkSpark",random(-126,126),random(-126,126),random(-66,66),0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+	TNT1 AAA 2 A_SpawnItemEx("CFGuruChunkSpark",random(-126,126),random(-126,126),random(-66,66),0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+	Stop
+ }
+}
+
+
+Actor PlayerRTLBFGRailgunSlugPuff : BulletPuff
+{
+ +THRUSPECIES
+ +MTHRUSPECIES
+ +PUFFGETSOWNER
+ DamageType "LegendaryGuruPlayer"
+}
+
+
+ACTOR PlayerRTLBLiteShot : RTLBLiteShot
+{
+ +FRIENDLY
+ Damagetype "LegendaryGuruPlayer"
+}
+
+
+ACTOR PlayerLRTLBBolt : LRTLBBolt
+{
+ +FRIENDLY
+ Damagetype "LegendaryGuruPlayer"
+ States
+ {
+  Crush:
+  XDeath:
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "VanillaDeath")
+	TNT1 A 0 A_SpawnItemEx("LegendaryGoldParticleSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+	TNT1 AAAA 0 Bright A_CustomMissile("LegKaboomDevastator15",0,0,random(0,360),CMF_AIMDIRECTION,random(0,360))
+  VanillaDeath:
+	LVS1 LMN 2 Bright
+	Stop
+ }
+}
+
+ACTOR PRTLDeathball : CFGuruDeathBall
+{
+ Radius 12
+ Height 7
+ Speed 15
+ Damage 1
+ Projectile
+ Renderstyle Add
+ +FORCERADIUSDMG
+ +FOILINVUL
+ +RIPPER
+ +BLOODLESSIMPACT
+ +DONTBLAST
+ +NOTIMEFREEZE
+ +NODAMAGETHRUST
+ +SKYEXPLODE
+ +DONTREFLECT
+ +FORCEXYBILLBOARD
+ +THRUSPECIES
+ +QUICKTORETALIATE
+ Scale 0.90
+ MissileType "GuruLesserProjectileTrail"
+ DamageType "LegendaryGuru"
+ Species "Player"
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_PlaySoundEx("Weapons/GuruFly","SoundSlot6",1)
+	TNT1 A 0 A_Explode(1600,128,0,1)
+	TNT1 AA 0 A_SpawnItemEx("CFGuruTrailSpark",random(42,-42),random(42,-42),random(42,-42),0,0,0,0,0,0)
+	TNT1 AA 0 A_SpawnItemEx("CFGuruEmpowerTrail",-3,0,0,0,0,0,0,0,0)
+	TNT1 AAAAA 0 A_CustomMissile("PlayerLRTLBBolt",0,0,random(0,360),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-45,45))
+	YBAL A 1 bright
+	loop
+  Death:
+	TNT1 A 0 A_PlaySound("Weapons/GuruBlast",6)
+	TNT1 A 0 A_SpawnItemEx("CFGuruGigaStruckGlowX",0,0,10,0,0,0,0,SXF_TRANSFERPOINTERS,0)
+	TNT1 A 0 A_SpawnItemEx("CFGuruGigaStruckGlowY",0,0,10,0,0,0,0,SXF_TRANSFERPOINTERS,0)
+	TNT1 A 0 A_SpawnItemEx("FusionChunkRainSpawner",0,0,15,0,0,0,0,SXF_TRANSFERPOINTERS,0)
+	TNT1 A 0 A_SpawnItemEx("CFGuruKaplosionSpawner",random(80,-80),random(80,-80),random(80,-80),frandom(25,29),frandom(25,29),frandom(-30,30),random(0,359),SXF_TRANSFERPOINTERS,0)
+	TNT1 A 1 Bright A_SpawnItemEx("FusionSphereSmoke",random(-126,126),random(-126,126),random(-66,66),0.00001 * random(-100000,100000),0.00001 * random(-100000,100000),0.00001 * random(-100000,100000),random(0,360),SXF_SETMASTER|SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_Explode(7000,6500,0,1)
+	TNT1 AAA 1 A_SpawnItemEx("CFGuruStormSpawner",0,0,10,0,0,0,0,SXF_TRANSFERPOINTERS,0)
+	//TNT1 A 1 A_PlaySound("Weapons/GuruBoom",6)
+	TNT1 A 1 A_PlaySound("Weapons/GuruBlast2",5)
+	Stop
+ }
+}
+
+ACTOR CFGuruKaboom2 : CFGuruSpawnerInheritance
+{
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_SpawnItemEx("CFGuruKaplosionSpawner",0,0,0,0,0,0,0,0,0)
+	Stop
+ }
+}
+
+
+//CHUNK
+actor FusionChunkRainSpawner : CFGuruSpawnerInheritance
+{
+ ReactionTime 32
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 AAA 1 ThrustThingZ(0, 18, 0, 0)
+	TNT1 A 0 A_SpawnItemEx("FusionSphereChunker",0,0,0,0,0,0,0,0,0)
+	TNT1 A 0 A_Countdown
+	loop
+  Death:
+	TNT1 A 1 //A_SpawnItemEx("GuruChunkRainSpawner2",0,0,0,0,0,0,0,128,0)
+	stop
+ }
+}
+
+actor FusionSphereChunker : CFGuruSpawnerInheritance
+{
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 AAA 3 A_SpawnItemEx("FusionSphereChunk",random(100,-100),random(100,-100),random(70,-70),frandom(1,12),frandom(1,12),frandom(16,20),random(0,359),0,0)
+	Stop
+  Death:
+	TNT1 A 1
+	stop
+ }
+}
+
+ACTOR FusionSphereChunk
+{
+ Radius 12
+ Height 5
+ Renderstyle Add
+ Gravity 0.25
+ Alpha 1
+ Scale 1
+ DamageType "LegendaryGuruPlayer"
+ PROJECTILE
+ species "player"
+ -NOGRAVITY
+ +NOTIMEFREEZE
+ +THRUSPECIES
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_Jump(128,2)
+	YSHK A 2 Bright A_SpawnItemEx("CFGuruTrailSpark",0,0,0,0,0,0,0,0,0)
+	Loop
+	YSHK A 2 Bright A_SpawnItemEx("CFGuruChunkTrail",frandom(-5,5),frandom(-5,5),frandom(-5,5),0.00001*random(10000,-10000),0.00001*random(10000,-10000),0.00001*random(10000,-10000),random(0,359),0,0)
+	Loop
+  Death:
+	TNT1 A 0 A_PlaySound("Weapons/GuruHit")
+	TNT1 A 0 A_PlaySound("Weapons/GuruBlast3",5)
+	TNT1 A 0 A_Explode(5000,192)
+	TNT1 AAA 0 A_SpawnItemEx("CFGuruChunkSpark",random(8,-8),random(8,-8),random(8,-8),0,0,0,0,0,0)
+	TNT1 AA 0 A_SpawnItemEx("FusionSphereSmoke",0,0,0,0.00001*random(100000,-100000),0.00001*random(100000,-100000),0.00001*random(100000,-100000),random(0,359),0,0)
+	Stop
+ }
+}
+
+ACTOR FusionSphereSmoke
+{
+ Scale 1.8
+ Alpha 0.45
+ PROJECTILE
+ DamageType "LegendaryGuruPlayer"
+ species "player"
+ +THRUSPECIES
+ +NOINTERACTION
+ +NOGRAVITY
+ +FORCERADIUSDMG
+ +NOTIMEFREEZE
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 1 A_Jump(256,"Spawn1","Spawn2","Spawn3","Spawn4","Spawn5","Spawn6")
+	Stop
+  Spawn1:
+	 TNT1 A 0 A_SetScale(ScaleX -0.002, ScaleY -0.002)
+	 TNT1 A 0 A_JumpIf(Alpha<0.3,2)
+	 THD1 A 0 A_Explode(10,164)
+	 THD1 A 4 Bright A_FadeOut(0.0065)
+	 Loop
+  Spawn2:
+	 TNT1 A 0 A_SetScale(ScaleX -0.002, ScaleY -0.002)
+	 TNT1 A 0 A_JumpIf(Alpha<0.3,2)
+	 THD1 A 0 A_Explode(10,164)
+	 THD2 A 4 Bright A_FadeOut(0.0065)
+	 Loop
+  Spawn3:
+	 TNT1 A 0 A_SetScale(ScaleX -0.002, ScaleY -0.002)
+	 TNT1 A 0 A_JumpIf(Alpha<0.3,2)
+	 THD1 A 0 A_Explode(10,164)
+	 THD3 A 4 Bright A_FadeOut(0.0065)
+	 Loop
+  Spawn4:
+	 TNT1 A 0 A_SetScale(ScaleX -0.003, ScaleY -0.003)
+	 THD1 A 0 A_Explode(15,128)
+	 THD1 A 4 Bright A_FadeOut(0.0075)
+	 Loop
+  Spawn5:
+	 TNT1 A 0 A_SetScale(ScaleX -0.001, ScaleY -0.001)
+	 THD1 A 0 A_Explode(15,128)
+	 THD2 A 4 Bright A_FadeOut(0.0065)
+	 Loop
+  Spawn6:
+	 TNT1 A 0 A_SetScale(ScaleX -0.003, ScaleY -0.003)
+	 THD1 A 0 A_Explode(15,128)
+	 THD3 A 4 Bright A_FadeOut(0.008)
+	 Loop
+ }
+}

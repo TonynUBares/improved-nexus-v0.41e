@@ -1,0 +1,86 @@
+[enu default]
+
+//Armors
+ArmorType26 = "CrystalArmorGiver";
+ArmorType58 = "HackroidArmorGiver";
+
+ArmorBonusType25 = "HellfireArmorBonus";
+ArmorBonusType26 = "EnragedLegendaryArmorBonus";
+
+//Cooldowns for regen items
+CooldownsCount = 7;
+Cooldowns4 = "NemesisPowerSphereCooldown";
+Cooldowns5 = "NemesisCrystalCooldown";
+Cooldowns6 = "WingsCooldown";
+
+
+//Monster skies
+SkyType15 = "ECYBSKY";
+SkyType16 = "VSNTSKY";
+
+//remember the -1 offset, e.g. A_SetUserVar("user_effect_type",101) is for EffectType100
+//effect on monsters
+EffectType100 = "VexedAuraSpawnerZombie";
+EffectType101 = "VexedAuraSpawnerBruiser";
+EffectType102 = "RandomHellionSmoke";
+
+//fire effects
+FireType100 = "VexedTrooperSmokeSpawner";
+FireType101 = "HibachiFireSpawner";
+
+//item effects
+ItemEffectType100 = "CrystalSparkleSpawner";
+ItemEffectType101 = "RainbowPowerLineRandomSpawner";
+ItemEffectType102 = "RandomHellionSmoke";
+ItemEffectType103 = "RandomSphereFlareSmoke";
+ItemEffectType104 = "RainbowSparkleRandomSpawner"; 
+ItemEffectType105 = "NBlackSparkleSpawner";  
+ItemEffectType106 = "LegendaryRedSparkleSpawner";  
+ItemEffectType107 = "LegendaryOrangeSparkleSpawner"; 
+ItemEffectType108 = "BlackSparkleSpawner"; 
+ItemEffectType109 = "MonochromeSparkleSpawner";
+ItemEffectType110 = "MonochromeSparkleRandomSpawner";
+ItemEffectType111 = "WhiteSparkleSpawner2";
+ItemEffectType112 = "CFSPLineSpawner";
+ItemEffectType113 = "DarkRedSparkleSpawner";
+ItemEffectType114 = "SNArmorFireSpawner";
+ItemEffectType115 = "VoidFlameSpawner";
+ItemEffectType116 = "SNSphereFlameSpawner";
+ItemEffectType117 = "UraniumSparkleSpawner";
+ItemEffectType118 = "UraniumSphereFlare";
+ItemEffectType119 = "UHellionSmokeSpawner";
+ItemEffectType120 = "VoidSparkleSpawner";
+ItemEffectType121 = "VHellionSmokeSpawner";
+ItemEffectType122 = "AscensionSpark";  
+ItemEffectType123 = "GreyPowerLineSpawner";  
+ItemEffectType124 = "WhitePowerLineSpawner"; 
+ItemEffectType125 = "OrangePowerLineSpawner";
+ItemEffectType126 = "YellowPowerLineSpawner";
+ItemEffectType127 = "LongGreenPowerLineSpawner"; 
+ItemEffectType128 = "PurplePowerLineSpawner";
+ItemEffectType129 = "PinkPowerLineSpawner";
+ItemEffectType130 = "ArmorParticleGreen";
+ItemEffectType131 = "BlackGreenSpark";
+ItemEffectType132 = "ArmorParticleWhite";
+ItemEffectType133 = "ArmorParticleRed";
+ItemEffectType134 = "LightGreenSpark";
+ItemEffectType135 = "ArmorParticleYellow";
+ItemEffectType136 = "TrueLegSpark";
+ItemEffectType137 = "ArmorParticleGold";
+ItemEffectType138 = "ArmorParticlePurple";
+
+
+
+CVar50 = "nx_lunatic";
+CVar51 = "kazumi_nukechoker";
+CVar52 = "kazumi_NoChair";
+CVar53 = "nx_shinki";
+CVar54 = "txs_noatomic";
+CVar55 = "txs_noshufflecrates";
+CVar56 = "nx_welder";
+CVar57 = "nx_agony";
+CVar58 = "st_newrunes";
+
+
+
+

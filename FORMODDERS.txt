@@ -1,0 +1,60 @@
+A few rules for modders, including those people that want to make addons for Improved Nexus
+
+0) DO NOT USE 123666789 as HUDMESSAGE id, because it will conflict with the Skulltag runes messages
+
+1) Don't setup the weapon slots in KEYCONF. SETSLOT is extremely outdated and overrides any other slot setting
+method. This is clearly written here: https://zdoom.org/wiki/Adding_weaponsections (Zdoom 2.3.0 is Stone Age).
+It was so annoying in old mods that GZdoom developers had to create an option to prevent KEYCONF loading all the
+SETSLOT shit.
+Use Weapon.SlotPriority and Weapon.SlotNumber that are compatible with every other mod out there.
+
+2) If your scripts need a lot of conditions, DO NOT abuse "else if(s)". LANGUAGE strings and arrays are way way
+way way way way way better and avoid recursive checks every time you need them.
+
+3) Unless you REALLY need it (likely never), don't abuse replacement. An addon can be made without reaching 
+the nth replacement of every single fucking actor. LegendaryZombie5 doesn't help anyone and, as you can see,
+ is not needed.
+
+4) Before replacing a system or a script that you don't understand how to work with, try to ask to who made it. 
+There's a decent chance you will get tips and hints and have enough help to work with it.
+
+5) Stop using numbered scripts and use only named scripts, possibly with hard-to-clone names. Numbered scripts
+are used in UMDF maps: using scripts with the same numbers would replace them and the maps would break.
+
+6) Learn how to use "####" as sprite and "#" as frame. It's helpful with repetitive actors (see XXXPresentActive)
+
+7) 
+ACTOR VoidCore : NemesisSphere
+{
+....
+States
+{
+.....
+	Pickup:
+	  TNT1 A 0
+	  TNT1 A 0 A_JumpIfInventory("VoidCoreItem",1,"Nope")
+	  TNT1 A 0 A_StopSound(7)
+	  TNT1 A 1 A_GiveInventory("VoidCoreItem")
+	  Stop
+	Nope:
+	  TNT1 A 1
+	  Fail
+	 }
+}
+
+ACTOR VoidCoreItem : CustomInventory
+{
+....
+States
+	  {
+      Use:
+	    TNT1 A 1 A_SpawnItemEx("VoidCoreActive",0,0,16,8,0,4,0)
+	    Stop
+      }
+}
+
+^ This is completely useless.
+- Nope state doesn't need to exist, because for Inventory you can simply jump to "Null" if you only want it to fail.
+- These two items can be combined into 1. Inventory.MaxAmount 1 will prevent a second pickup
+
+8) DECORATE can use frandom for fixed numbers. 0.01*Random(100,200) is equal to frandom(1.0,2.0)

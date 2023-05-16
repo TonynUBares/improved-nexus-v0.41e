@@ -1,0 +1,117 @@
+Actor Anubian : Imp 26433
+{
+	Health 340
+	Radius 20
+	Height 56
+	Mass 500
+	Speed 10
+	PainChance 40
+	Scale 1.1
+	Monster
+	+MISSILEMORE
+	+MISSILEEVENMORE
+    +QUICKTORETALIATE
+	DropItem "LifeEssence" 200
+    DropItem "ArmorBonusMax" 200
+    DropItem "CFMana" 100 30
+	DropItem "BigCFMana" 50 100
+	SeeSound "AdvancedImp/Sight"
+	PainSound "AdvancedImp/Pain"
+	DeathSound "AdvancedImp/Death"
+	ActiveSound "AdvancedImp/Active"
+	HitObituary "%o had a hemorrhage by the hands of an Anubian."
+	Obituary "%o was dusted by an Anubian."
+	Tag "$NEAnubi"
+	var int user_lowlag;
+	States
+	{
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
+	Goto Idle
+  Idle:
+	ANUI A 8 A_Look
+	Loop
+  See:
+	TNT1 A 0 A_JumpIf(user_lowlag == 1,"MoreSee")
+	TNT1 A 0 A_JumpIfTargetInLOS("MoreSee",0,0,0,0)
+	ANUI ABCD 6 A_Chase
+	Loop
+  MoreSee:
+	TNT1 A 0 A_SetUserVar("user_lowlag",1)
+  	TNT1 A 0 A_Jump(46,"Evade")
+    ANUI AABB 3 A_Chase
+	TNT1 A 0 A_SpawnItem("HumanishStep",0,0,0,0)
+	ANUI CCDD 3 A_Chase
+	TNT1 A 0 A_SpawnItem("HumanishStep",0,0,0,0)
+    Loop
+  Evade:
+	TNT1 A 0 A_Jump(128,7)
+	TNT1 A 0 ThrustThing(Angle*256/360+64,16,0,0)
+	ANUI AAAA 3 A_Chase
+	TNT1 A 0 A_Stop
+	Goto See
+	TNT1 A 0 ThrustThing(Angle*256/360+192,16,0,0)
+	ANUI AAAA 3 A_Chase
+	TNT1 A 0 A_Stop
+	TNT1 A 0 A_JumpIfTargetInLOS("Missile")
+	Goto See
+  Melee:
+	TNT1 A 0 A_Jump(128,7)
+    ANUI EF 5 A_FaceTarget
+    ANUI G 4 A_CustomMeleeAttack(50,"imps/melee")
+	ANUI FE 5 A_FaceTarget
+    Goto See
+	ANUI VW 5 A_FaceTarget
+    ANUI X 4 A_CustomMeleeAttack(50,"imps/melee")
+	ANUI WV 5 A_FaceTarget
+	Goto See
+  Missile:
+	TNT1 A 0 A_Jump(128,"Lightning")
+    ANUI EF 6 A_FaceTarget
+    ANUI G 5 Bright A_CustomMissile("NetherImpComet", 32, 0, 0)
+	ANUI FE 4 A_FaceTarget
+	ANUI VW 6 A_FaceTarget
+    ANUI X 5 Bright A_CustomMissile("NetherImpComet", 32, 0, 0)
+	ANUI WV 4 A_FaceTarget
+	TNT1 A 0 A_Jump(48,"Pause")
+	TNT1 A 0 A_SpidRefire
+	Goto Missile
+  Lightning:
+    ANUI EF 6 A_FaceTarget
+    ANUI G 5 Bright A_CustomMissile("NetherLightning", 32, 0, 0)
+	ANUI FE 4 A_FaceTarget
+	ANUI VW 6 A_FaceTarget
+    ANUI X 5 Bright A_CustomMissile("NetherLightning", 32, 0, 0)
+	ANUI WV 4 A_FaceTarget
+	TNT1 A 0 A_Jump(48,"Pause")
+	TNT1 A 0 A_SpidRefire
+	Goto Missile
+  Pause:
+    ANUI V 2 
+    Goto See
+  Pain:
+    ANUI H 2 
+    ANUI H 2 A_Pain
+    goto See
+  Death:
+    ANUI I 8 A_Scream
+    ANUI J 8
+    ANUI K 6
+	ANUI L 6 A_Fall
+	ANUI M -1
+    Stop
+  XDeath:
+	ANUI N 3
+	ANUI O 3 A_XScream
+	ANUI P 3 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
+	ANUI Q 3 A_Fall
+	ANUI RST 3
+	ANUI U -1
+    Stop
+  Raise:
+	TNT1 A 0
+	TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	ANUI MLKJ 6
+	Goto See
+	}
+}

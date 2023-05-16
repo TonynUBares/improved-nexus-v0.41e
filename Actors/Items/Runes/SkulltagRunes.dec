@@ -1,0 +1,141 @@
+Actor STRuneToken : Inventory //powerups are for plebs or for tactic delays
+{
+ Inventory.Amount 1
+ Inventory.MaxAmount 1
+ States
+ {
+  Held:
+	TNT1 A 105
+	Stop
+ }
+}
+
+Actor STruneDelay : STRuneToken
+{
+ States
+ {
+  Held:
+	TNT1 A 20
+	Stop
+ }
+}
+
+Actor NexusStrengthRuneToken : Inventory { Inventory.MaxAmount 1 }
+Actor NexusResistanceRuneToken: Inventory { Inventory.MaxAmount 1 }
+Actor NexusHighJumpRuneToken: Inventory { Inventory.MaxAmount 1 }
+
+//Strength Rune
+ACTOR NexusStrengthRune : CustomInventory 5119
+{
+ +FLOORCLIP
+ +FLOATBOB
+ +COUNTITEM
+ +DONTGIB
+ +INVENTORY.INVBAR
+ +INVENTORY.PICKUPFLASH
+ +INVENTORY.FANCYPICKUPSOUND
+ Inventory.Icon "ATACRUNE"
+ Inventory.Amount 1
+ Inventory.MaxAmount 3
+ Inventory.InterHubAmount 3
+ Inventory.PickupMessage "$STStrength1"
+ Inventory.PickupAnnouncerEntry "strength"
+ Tag "$STStrength2"
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("GetCVar",58)==1,"HoldAndDestroy")
+	TNT1 A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,56)
+  SpawnLoop:
+	IDDR ABCDE 6
+	Loop
+  Pickup:
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("STrunecheck")==1,"Null") 
+	TNT1 A 0 A_RailWait
+	TNT1 A 0 A_PlaySound("LegendaryRune/Pickup",6)
+	Stop
+  Use:
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("STrunecheck",1)==1,"Null") 
+	TNT1 A 0 A_RailWait
+	TNT1 A 0 A_GiveInventory("NexusStrengthRuneToken",1)
+	TNT1 A 0 A_GiveInventory("NexusStrength",1)
+	TNT1 A 0 A_PlaySound("STrunes/use",0)
+	Stop
+ }
+}
+
+ACTOR NexusStrength : PowerDamage 
+{
+ +NOTIMEFREEZE
+ Powerup.Duration 0x7FFFFFFF
+ DamageFactor "normal", 2.5
+}
+
+
+//High Jump Rune
+ACTOR NexusHighJumpRune : NexusStrengthRune 5111
+{
+ Inventory.Icon "JUMPRUNE"
+ Inventory.PickupMessage "$STHighJump1"
+ Inventory.PickupAnnouncerEntry "highjump"
+ Tag "$STHighJump2"
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("GetCVar",58)==1,"HoldAndDestroy")
+	TNT1 A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,57)
+  SpawnLoop:
+	IHJR ABCD 6 
+	Loop
+  Use:
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("STrunecheck",1)==1,"Null") 
+	TNT1 A 0 A_RailWait
+	TNT1 A 0 A_GiveInventory("NexusHighJumpRuneToken",1)
+	TNT1 A 0 A_GiveInventory("NexusHighJump",1)
+	TNT1 A 0 A_PlaySound("STrunes/use",0)
+	Stop
+ }
+}
+
+ACTOR NexusHighJump: PowerHighJump
+{
+ +NOTIMEFREEZE
+ Powerup.Duration 0x7FFFFFFF
+ Powerup.Strength 2.25
+}
+
+
+//Resistance Rune
+ACTOR NexusResistanceRune : NexusStrengthRune 5115
+{
+ Inventory.Icon "PROTECRN"
+ Inventory.PickupMessage "$STResistance1"
+ Inventory.PickupAnnouncerEntry "resistance"
+ Tag "$STResistance1"
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("GetCVar",58)==1,"HoldAndDestroy")
+	TNT1 A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,58)
+  SpawnLoop:
+	IRSR ABCDEFGH 6
+	Loop
+  Use:
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("STrunecheck",1)==1,"Null") 
+	TNT1 A 0 A_RailWait
+	TNT1 A 0 A_GiveInventory("NexusResistanceRuneToken",1)
+	TNT1 A 0 A_GiveInventory("NexusResistance",1)
+	TNT1 A 0 A_PlaySound("STrunes/use",0)
+	Stop
+ }
+}
+
+ACTOR NexusResistance : PowerProtection 
+{
+ +NOTIMEFREEZE
+  Powerup.Duration 0x7FFFFFFF
+ +NORADIUSDMG
+ +DONTRIP
+ +DONTSQUASH
+  DamageFactor "normal", 0.45
+}

@@ -1,0 +1,46 @@
+ACTOR TalismanToken : LegendaryRuneItem { }
+
+ACTOR TalismanOfChaos : CustomInventory
+{
+  Inventory.MaxAmount 1
+  Inventory.Icon "TALIB0"
+  Inventory.PickupMessage "You got the Talisman Of Chaos!"
+  Inventory.PickupSound "misc/p_pkup"
+  Inventory.UseSound "Powerup/Unstable"
+  Tag "Talisman Of Chaos"
+  +COUNTITEM
+  //+FLOATBOB
+  +INVENTORY.FANCYPICKUPSOUND
+  +INVENTORY.INVBAR
+  +INVENTORY.PICKUPFLASH
+  States
+  {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,55,57)
+	TNT1 A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,60)
+  SpawnLoop:
+	TALI A 9 Bright
+	Loop
+  Use:
+	TNT1 A 0 A_JumpIfInventory("PowerSpreadRune",1,"Null")
+	TNT1 A 0 A_GiveInventory("TalismanToken",1)
+	TNT1 A 0 A_GiveInventory("PowerSpreadRune",1)
+	TNT1 A 0 A_GiveInventory("TalismanOfChaosGiver")
+	Stop
+ }
+}
+
+actor TalismanOfChaosTimer : PowerDamage { DamageFactor "notarealdamagetype", 1.0 }
+
+Actor TalismanOfChaosGiver : PowerupGiver
+{
+-COUNTITEM
++INVENTORY.AUTOACTIVATE
+-INVENTORY.ALWAYSPICKUP
+-INVENTORY.INVBAR
+Inventory.Amount 0
+Inventory.MaxAmount 0
+Powerup.Type "TalismanOfChaosTimer"
+Powerup.Duration -30
+PowerUp.Color 255, 255, 255, 0.125
+}

@@ -1,0 +1,188 @@
+actor Cacobus : Fatso 21678
+{
+Health 1000
+Scale 1.1
+PainChance 80
+Monster
++MISSILEMORE
++DONTHURTSPECIES
+DamageFactor "BeheComet", 0.0
+DamageFactor "FatFlamer", 0.0
+DropItem "LifeEssence" 140
+DropItem "ArmorBonusMax" 140
+BloodColor "Blue"
+Species "Fatsos"
+obituary "%o was smitted by a Cacobus."
+SeeSound "caco/sight"
+PainSound "caco/pain"
+DeathSound "caco/death"
+ActiveSound "caco/active"
+Tag "$NECacobus"
+  States
+  {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
+	Goto Idle
+  Idle:
+    ZFAT C 15 A_Look
+	ZFAT C 15 A_Look
+	ZF4T C 15 A_Look
+	ZF4T C 15 A_Look
+    Loop
+  See:
+    TNT1 A 0 A_SpawnItem("BeefyStep",0,0,0,0)
+    ZFAT AABBCCDD 3 A_Chase
+	TNT1 A 0 A_SpawnItem("BeefyStep",0,0,0,0)
+	ZFAT EEFF 3 A_Chase
+    Loop
+  Missile:
+	TNT1 A 0 A_JumpIfCloser(260,"Flamethrowers")
+  Normal:     
+    ZFAT G 15 A_FaceTarget
+	TNT1 A 0 A_CustomMissile("CacobusBall", 30, -26, Random(0, 6))
+    TNT1 A 0 A_CustomMissile("CacobusBall", 30, 26, Random(0, -6))
+	TNT1 A 0 A_CustomMissile("CacobusBall2",56,0,0,0,0)
+    TNT1 A 0 A_CustomMissile("CacobusBall2",56,0,6,0,0)
+    ZFAT H 6 Bright A_CustomMissile("CacobusBall2",56,0,-6,0,0)
+    ZFAT IG 8 A_FaceTarget
+    TNT1 A 0 A_CustomMissile("CacobusBall", 30, -26, Random(7, 12))
+    TNT1 A 0 A_CustomMissile("CacobusBall", 30, 26, Random(-7, -12))
+	TNT1 A 0 A_CustomMissile("CacobusBall2",56,0,0,0,0)
+    TNT1 A 0 A_CustomMissile("CacobusBall2",56,0,6,0,0)
+    ZFAT H 6 Bright A_CustomMissile("CacobusBall2",56,0,-6,0,0)
+	ZFAT IG 12 A_FaceTarget
+    TNT1 A 0 A_CustomMissile("CacobusBall", 30, -26, Random(0, 6))
+	TNT1 A 0 Bright A_CustomMissile("CacobusBall", 30, 26, Random(0, -6))
+	TNT1 A 0 A_CustomMissile("CacobusBall", 30, -26, Random(7, 12))
+	ZFAT H 2 A_CustomMissile("CacobusBall", 30, 26, Random(-7, -12))
+	TNT1 A 0 A_CustomMissile("CacobusBall2",56,0,0,0,0)
+    TNT1 A 0 A_CustomMissile("CacobusBall2",56,0,6,0,0)
+    ZFAT H 4 Bright A_CustomMissile("CacobusBall2",56,0,-6,0,0)
+	ZFAT IG 12
+    Goto See
+  Flamethrowers:
+     TNT1 A 0 A_Jump(82,"Normal")
+	 TNT1 A 0 A_PlaySound("hectebus/flameready")
+	 ZFAT GG 10 A_FaceTarget
+	 TNT1 A 0 A_PlaySound("monsters/fatsofire")
+     TNT1 A 0 A_FaceTarget
+	 TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, 30, Random(6, -6), CMF_AIMOFFSET)
+     TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, -30, Random(6, -6), CMF_AIMOFFSET)
+	 ZFAT H 1 Bright A_CustomMissile("HectebusFlamethrower", 56, 0, Random(6, -6), CMF_AIMOFFSET)
+     TNT1 A 0 A_FaceTarget
+	 TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, 30, Random(6, -6), CMF_AIMOFFSET)
+     TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, -30, Random(6, -6), CMF_AIMOFFSET)
+	 ZFAT H 1 Bright A_CustomMissile("HectebusFlamethrower", 56, 0, Random(6, -6), CMF_AIMOFFSET)
+	 TNT1 A 0 A_FaceTarget
+	 TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, 30, Random(6, -6), CMF_AIMOFFSET)
+     TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, -30, Random(6, -6), CMF_AIMOFFSET)
+	 ZFAT H 1 Bright A_CustomMissile("HectebusFlamethrower", 56, 0, Random(6, -6), CMF_AIMOFFSET)
+     TNT1 A 0 A_FaceTarget
+	 TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, 30, Random(6, -6), CMF_AIMOFFSET)
+     TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, -30, Random(6, -6), CMF_AIMOFFSET)
+	 ZFAT H 1 Bright A_CustomMissile("HectebusFlamethrower", 56, 0, Random(6, -6), CMF_AIMOFFSET)
+     TNT1 A 0 A_FaceTarget
+	 TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, 30, Random(6, -6), CMF_AIMOFFSET)
+     TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, -30, Random(6, -6), CMF_AIMOFFSET)
+	 ZFAT H 1 Bright A_CustomMissile("HectebusFlamethrower", 56, 0, Random(6, -6), CMF_AIMOFFSET)
+	 TNT1 A 0 A_FaceTarget
+	 TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, 30, Random(6, -6), CMF_AIMOFFSET)
+     TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, -30, Random(6, -6), CMF_AIMOFFSET)
+	 ZFAT H 1 Bright A_CustomMissile("HectebusFlamethrower", 56, 0, Random(6, -6), CMF_AIMOFFSET)
+     TNT1 A 0 A_FaceTarget
+	 TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, 30, Random(6, -6), CMF_AIMOFFSET)
+     TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, -30, Random(6, -6), CMF_AIMOFFSET)
+	 ZFAT H 1 Bright A_CustomMissile("HectebusFlamethrower", 56, 0, Random(6, -6), CMF_AIMOFFSET)
+	 TNT1 A 0 A_FaceTarget
+	 TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, 30, Random(6, -6), CMF_AIMOFFSET)
+	 TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, -30, Random(6, -6), CMF_AIMOFFSET)
+	 ZFAT H 1 Bright A_CustomMissile("HectebusFlamethrower", 56, 0, Random(6, -6), CMF_AIMOFFSET)
+	 TNT1 A 0 A_FaceTarget
+	 TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, 30, Random(6, -6), CMF_AIMOFFSET)
+     TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, -30, Random(6, -6), CMF_AIMOFFSET)
+	 ZFAT H 1 Bright A_CustomMissile("HectebusFlamethrower", 56, 0, Random(6, -6), CMF_AIMOFFSET)
+     TNT1 A 0 A_FaceTarget
+	 TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, 30, Random(6, -6), CMF_AIMOFFSET)
+     TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, -30, Random(6, -6), CMF_AIMOFFSET)
+	 ZFAT H 1 Bright A_CustomMissile("HectebusFlamethrower", 56, 0, Random(6, -6), CMF_AIMOFFSET)
+     TNT1 A 0 A_FaceTarget
+	 TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, 30, Random(6, -6), CMF_AIMOFFSET)
+     TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, -30, Random(6, -6), CMF_AIMOFFSET)
+	 ZFAT H 1 Bright A_CustomMissile("HectebusFlamethrower", 56, 0, Random(6, -6), CMF_AIMOFFSET)
+	 TNT1 A 0 A_FaceTarget
+	 TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, 30, Random(6, -6), CMF_AIMOFFSET)
+     TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, -30, Random(6, -6), CMF_AIMOFFSET)
+	 ZFAT H 1 Bright A_CustomMissile("HectebusFlamethrower", 56, 0, Random(6, -6), CMF_AIMOFFSET)
+     TNT1 A 0 A_FaceTarget
+	 TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, 30, Random(6, -6), CMF_AIMOFFSET)
+     TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, -30, Random(6, -6), CMF_AIMOFFSET)
+	 ZFAT H 1 Bright A_CustomMissile("HectebusFlamethrower", 56, 0, Random(6, -6), CMF_AIMOFFSET)
+     TNT1 A 0 A_FaceTarget
+	 TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, 30, Random(6, -6), CMF_AIMOFFSET)
+     TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, -30, Random(6, -6), CMF_AIMOFFSET)
+	 ZFAT H 1 Bright A_CustomMissile("HectebusFlamethrower", 56, 0, Random(6, -6), CMF_AIMOFFSET)
+     TNT1 A 0 A_FaceTarget
+	 TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, 30, Random(6, -6), CMF_AIMOFFSET)
+     TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, -30, Random(6, -6), CMF_AIMOFFSET)
+	 ZFAT H 1 Bright A_CustomMissile("HectebusFlamethrower", 56, 0, Random(6, -6), CMF_AIMOFFSET)
+	 TNT1 A 0 A_FaceTarget
+	 TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, 30, Random(6, -6), CMF_AIMOFFSET)
+     TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, -30, Random(6, -6), CMF_AIMOFFSET)
+	 ZFAT H 1 Bright A_CustomMissile("HectebusFlamethrower", 56, 0, Random(6, -6), CMF_AIMOFFSET)
+     TNT1 A 0 A_FaceTarget
+	 TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, 30, Random(6, -6), CMF_AIMOFFSET)
+     TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, -30, Random(6, -6), CMF_AIMOFFSET)
+	 ZFAT H 1 Bright A_CustomMissile("HectebusFlamethrower", 56, 0, Random(6, -6), CMF_AIMOFFSET)
+     TNT1 A 0 A_FaceTarget
+	 TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, 30, Random(6, -6), CMF_AIMOFFSET)
+     TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, -30, Random(6, -6), CMF_AIMOFFSET)
+	 ZFAT H 1 Bright A_CustomMissile("HectebusFlamethrower", 56, 0, Random(6, -6), CMF_AIMOFFSET)
+     TNT1 A 0 A_FaceTarget
+	 TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, 30, Random(6, -6), CMF_AIMOFFSET)
+     TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, -30, Random(6, -6), CMF_AIMOFFSET)
+	 ZFAT H 1 Bright A_CustomMissile("HectebusFlamethrower", 56, 0, Random(6, -6), CMF_AIMOFFSET)
+	 TNT1 A 0 A_FaceTarget
+	 TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, 30, Random(6, -6), CMF_AIMOFFSET)
+     TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, -30, Random(6, -6), CMF_AIMOFFSET)
+	 ZFAT H 1 Bright A_CustomMissile("HectebusFlamethrower", 56, 0, Random(6, -6), CMF_AIMOFFSET)
+     TNT1 A 0 A_FaceTarget
+	 TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, 30, Random(6, -6), CMF_AIMOFFSET)
+     TNT1 A 0 A_CustomMissile("HectebusFlamethrower", 30, -30, Random(6, -6), CMF_AIMOFFSET)
+	 ZFAT H 1 Bright A_CustomMissile("HectebusFlamethrower", 56, 0, Random(6, -6), CMF_AIMOFFSET) 
+	 ZFAT IG 12
+	 Goto See
+  Pain:
+    TNT1 A 0 A_Jump(100,"PainMissile")
+    ZFAT J 6 A_Pain
+    Goto See
+  PainMissile:
+    ZFAT J 6 A_Pain
+    Goto Missile
+  Death:
+    ZFAT K 6
+    ZFAT L 6 A_Scream
+	TNT1 A 0 A_SpawnItemEx("BlueGibbedGenerator",0,0,0,0,0,0,0,128,0)
+    ZFAT M 6 A_NoBlocking
+	TNT1 A 0 A_SpawnItemEx("BlueGibbedGenerator",0,0,0,0,0,0,0,128,0)
+    ZFAT NOPQRS 6
+    ZFAT T -1 A_BossDeath
+    Stop
+   Raise:
+	TNT1 A 0
+    TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+    ZFAT RQPONMLK 5
+    Goto See
+  }
+}
+
+ACTOR CacobusBall : HectebusBall
+{
+Speed 20
+FastSpeed 40
+DamageType "BeheComet"
+}
+
+ACTOR CacobusBall2 : ABBall
+{
+DamageType "BeheComet"
+}

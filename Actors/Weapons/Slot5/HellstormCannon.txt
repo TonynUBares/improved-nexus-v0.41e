@@ -1,0 +1,192 @@
+Actor HellStormLauncherGiver : CustomInventory
+{
+  Scale 0.9
+  Inventory.Amount 1
+  Inventory.MaxAmount 0
+  Inventory.InterHubAmount 0
+  Inventory.PickupMessage "You got the HellStorm Penetrator!"
+  Obituary "%o obtained penetration by %k"
+  Tag "Hellstorm Penetrator"
+  States
+  {
+  Spawn:
+	HSTM A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",5,0)
+  SpawnLoop:
+	HSTM A -1
+	Loop
+  Pickup:
+	TNT1 A 0 A_JumpIfInventory("HellStormLauncher",1,"JustAmmo")
+  All:
+	TNT1 A 0 A_GiveInventory("HellStormLauncher",1)
+	TNT1 A 0 A_JumpIfInventory("HellStormLauncherGiverCheck",1,"HoldAndDestroy")
+	TNT1 A 0 A_GiveInventory("HellStormLauncherGiverCheck",1)
+	TNT1 A 0 A_GiveInventory("Gas",40)
+	Stop
+  JustAmmo:
+    TNT1 A 0 A_JumpIfInventory("HellStormLauncherGiverCheck",1,"Null")
+	TNT1 A 0 A_GiveInventory("HellStormLauncherGiverCheck",1)
+	TNT1 A 0 A_GiveInventory("Gas",40)
+	TNT1 A 0 A_SpawnItemEx("HellStormLauncher")
+	Stop
+  }
+}
+
+Actor HellStormLauncherSpawnerGiver : HellStormLauncherGiver
+{
+  States
+  {
+  JustAmmo:
+    TNT1 A 0 A_JumpIfInventory("HellStormLauncherGiverCheck",1,"Null")
+	TNT1 A 0 A_GiveInventory("HellStormLauncherGiverCheck",1)
+	TNT1 A 0 A_GiveInventory("Gas",40)
+	Stop
+  }
+}
+
+Actor HellStormLauncherGiverCheck : Inventory { Inventory.Amount 1 Inventory.MaxAmount 1 Inventory.InterHubAmount 0 }
+
+
+
+Actor "HellStormLauncher" : Weapon
+{
+ +WEAPON.EXPLOSIVE
+ +WEAPON.NOAUTOAIM
+ +WEAPON.NOAUTOFIRE
+ +WEAPON.AMMO_OPTIONAL
+ Weapon.PreferredSkin "HellStorm-Cannon-Marine"
+ Weapon.AmmoType "Gas"
+ Weapon.AmmoUse 50
+ Weapon.AmmoGive 150
+ Weapon.SlotNumber 5
+ Weapon.SlotPriority 9.1
+ Inventory.PickupMessage "You got the HellStorm Penetrator!"
+ Obituary "%o obtained penetration by %k"
+ Tag "Hellstorm Penetrator"
+ States
+ {
+  Spawn:
+	HSTM A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",5,0)
+  SpawnLoop:
+	HSTM A -1
+	Loop
+  Ready:
+	HSTM B 1 A_WeaponReady
+	Loop
+  Deselect:
+	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",1)
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	TNT1 A 0 A_TakeInventory("RailgunAction",1)
+  DeselectLoop:
+	TNT1 A 0 A_Lower
+	HSTM B 1 A_Lower
+	Loop
+  Select:
+	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",0)
+	TNT1 A 0 A_Raise
+	HSTM B 1 A_Raise
+	Goto Select+1
+  Fire:
+	TNT1 A 0 A_JumpIfNoAmmo("Empty")
+	TNT1 A 0 A_JumpIfInventory("PowerSpreadRune",1,"FireSpread")
+	HSTM C 4 Bright A_GunFlash
+	TNT1 A 0 Bright A_TakeInventory("Gas",50,TIF_NOTAKEINFINITE)
+	TNT1 A 0 Bright A_PlayWeaponSound("Weapons/HFGaussFire")
+	TNT1 A 0 Bright Radius_Quake(4,3,0,1,0)
+        TNT1 A 0 A_FireCustomMissile("HFGaussProjectilePlayer",0,0,0,12) 
+	HSTM DEF 3 Bright
+	HSTM B 3
+	HSTM B 40 A_PlaySoundEx("HellStorm/Reload","SoundSlot6",0)
+	Goto Ready
+  FireSpread:
+	TNT1 A 0 A_JumpIfNoAmmo("Empty")
+	HSTM C 4 Bright A_GunFlash
+	TNT1 A 0 Bright A_TakeInventory("Gas",50,TIF_NOTAKEINFINITE)
+	TNT1 A 0 Bright A_PlayWeaponSound("Weapons/HFGaussFire")
+	TNT1 A 0 Bright Radius_Quake(4,3,0,1,0)
+        TNT1 A 0 A_FireCustomMissile("HFGaussProjectilePlayer",0,0,0,12) 
+        TNT1 A 0 A_FireCustomMissile("HFGaussProjectilePlayer",15.0,0,0,12) 
+        TNT1 A 0 A_FireCustomMissile("HFGaussProjectilePlayer",-15.0,0,0,12) 
+	HSTM DEF 3 Bright
+	HSTM B 3
+	HSTM B 40 A_PlaySoundEx("HellStorm/Reload","SoundSlot6",0)
+	Goto Ready
+	Flash:
+	TNT1 A 1
+	Stop
+  Empty:
+	TNT1 A 0 A_PlaySound("weapons/click",7,1.0,0)
+	HSTM BBBBBBBBBB 1 A_WeaponReady(WRF_NOFIRE)
+	Goto Ready
+ }
+}
+
+Actor HFGaussProjectilePlayer : FastProjectile
+{
+ Radius 10
+ Height 7
+ MissileHeight 7
+ Speed 300
+ RenderStyle Add
+ DamageType "Player"
+ MissileType "GaussTrail"
+ Damage 35
+ Scale 0.9
+ +RIPPER
+ +EXTREMEDEATH
+ +NODAMAGETHRUST
+ +DONTBLAST
+ +MTHRUSPECIES
+ SeeSound "Weapons/HFGaussFire"
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_PlaySound("Weapons/HFGaussLoop",6,1.0,true)
+  Looplet:
+	HROD A 1 Bright A_ChangeVelocity(0,0,-0.1)
+	Loop
+  Death:
+	TNT1 A 0 A_SpawnItemEx("GaussWallRodPlayer",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION,0)
+  Crash:
+  XDeath:
+	TNT1 AAA 0 A_StopSound(6)
+	TNT1 AAA 0 A_SpawnItemEx("GaussHotSpark",12.0+frandom(2.0,-2.0),frandom(2.0,-2.0),frandom(2.0,-2.0),frandom(4.0,-4.0),frandom(2.0,-2.0),frandom(7.0,-1.0),frandom(0.0,360.0),SXF_CLIENTSIDE,0)
+	TNT1 A 2 A_PlaySound("weapons/HFGaussRod",7,1.0,false)
+	Stop
+ }
+}
+
+Actor GaussWallRodPlayer
+{
+ Scale 0.9
+ Radius 20
+ Height 20
+ Species "Player"
+ DamageType "Fire"
+ Alpha 0.99
+ RenderStyle Add
+ ReactionTime 80
+ +NOTIMEFREEZE
+ +DONTBLAST
+ +NOTELEPORT
+ +NONSHOOTABLE
+ +BLOODLESSIMPACT
+ +NOINTERACTION
+ +MTHRUSPECIES
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_PlaySound("Weapons/HFGaussLoop",6,1.0,true)
+	HROD A 6 Bright A_Explode(20,55,0,0)
+	TNT1 AA 0 A_SpawnItemEx("GaussHotSpark",frandom(-24,24),3+frandom(-1,1),frandom(-1,1),frandom(-1,1),frandom(-1,1),frandom(2,3),0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,128)
+	TNT1 A 0 A_Countdown
+	Loop
+  Death:
+	TNT1 A 0 A_StopSound(6)
+	HROD A 20 Bright A_PlaySound("Weapons/HFGaussEnd",7,1.0,false)
+	HROD AAAABBBBB 1 A_FadeOut(0.1,1)
+	Stop
+ }
+}

@@ -1,0 +1,52 @@
+ACTOR CrystalArmor : ArmorBase 26838 
+{
+ +INVENTORY.BIGPOWERUP
+ +NOTIMEFREEZE
+ +DONTGIB
+ Scale 1.2
+ Mass 0x7FFFFFFF
+ Inventory.Pickupmessage "Crystal Armor"
+ Inventory.Icon "CRYSA0"
+ Inventory.PickupSound "crystalarmor/pickup"
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckMods",5) == 1 || ACS_NamedExecuteWithResult("ArmorFlags") == 1,"HoldAndDestroy")
+	TNT1 A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,3,101)
+  SpawnLoop:
+	CRYS A 6 Bright
+	Loop
+  Held:
+	TNT1 A 0 Thing_ChangeTID(0,ACS_NamedExecuteWithResult("CF_GetTID"))
+	TNT1 A 0 ACS_NamedExecuteWithResult("SetSpecial")
+	TNT1 A 1
+	TNT1 A 0 ACS_NamedExecuteWithResult("GetArmorAmount")
+	Stop
+  Pickup:
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ArmorCheck",26,480) == 0,"Null")
+	TNT1 A 0 A_RailWait
+	TNT1 A 0 ACS_NamedExecuteWithResult("GiveArmor",26,480)
+    Stop
+ }
+} 
+
+
+Actor CrystalArmorGiver : BasicArmorPickup
+{
+ Armor.SavePercent 25
+ Armor.SaveAmount 480
+ Inventory.Icon "CRYSA0"
+ DamageFactor "PDTBFG", 0.12
+ DamageFactor "PDTBFGTracer", 0.12
+ DamageFactor "Legendary", 0.5
+ DamageFactor "Legendary1", 0.5
+ DamageFactor "LegendaryGuru", 0.5
+ DamageFactor "Cyber10K", 0.2
+ DamageFactor "BFGSplash", 0.45
+ DamageFactor "BFGSpray", 0.45
+ DamageFactor "Explosion", 0.5
+ DamageFactor "Plasma", 0.2
+ DamageFactor 0.6
+ +DONTRIP
+ +NOTIMEFREEZE
+}

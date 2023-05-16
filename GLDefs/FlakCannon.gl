@@ -1,0 +1,170 @@
+Flickerlight2 NHSFlakHI
+{
+ Color 1.0 1.0 0.0
+ Size 10
+ SecondarySize 30
+ Interval 0.01
+}
+
+Flickerlight2 NHSFlakLO
+{
+ Color 1.0 1.0 0.0
+ Size 5
+ SecondarySize 15
+ Interval 0.01
+}
+
+//NHSFlakSlug
+Flickerlight2 NHSFlakSL
+{
+	Color 1.0 1.0 0.0
+	Size 10
+	SecondarySize 30
+	Interval 0.01
+}
+
+Object NHSFlakSlug
+{
+	Frame HFSL { Light "NHSFlakSL"}
+}
+
+//NHSFlakExplosion
+Flickerlight NHSFlakXP_A
+{
+	Color 1.0 0.75 0.0
+	Size 8
+	SecondarySize 12
+	Chance 0.3
+}
+
+Flickerlight NHSFlakXP_B
+{
+	Color 1.0 0.85 0.0
+	Size 16
+	SecondarySize 20
+	Chance 0.3
+}
+
+Flickerlight NHSFlakXP_C
+{
+	Color 1.0 0.9 0.0
+	Size 24
+	SecondarySize 30
+	Chance 0.3
+}
+
+Flickerlight NHSFlakXP_D
+{
+	Color 1.0 1.0 0.0
+	Size 32
+	SecondarySize 38
+	Chance 0.3
+}
+
+Flickerlight NHSFlakXP_E
+{
+	Color 1.0 1.0 0.2
+	Size 44
+	SecondarySize 52
+	Chance 0.3
+}
+
+Flickerlight NHSFlakXP_F
+{
+	Color 1.0 1.0 0.4
+	Size 48
+	SecondarySize 56
+	Chance 0.3
+}
+
+Flickerlight NHSFlakXP_G
+{
+	Color 1.0 1.0 0.3
+	Size 52
+	SecondarySize 60
+	Chance 0.3
+}
+
+Flickerlight NHSFlakXP_H
+{
+	Color 1.0 1.0 0.0
+	Size 56
+	SecondarySize 64
+	Chance 0.3
+}
+
+Flickerlight NHSFlakXP_I
+{
+	Color 1.0 0.85 0.0
+	Size 64
+	SecondarySize 72
+	Chance 0.3
+}
+
+Flickerlight NHSFlakXP_J
+{
+	Color 1.0 0.75 0.0
+	Size 56
+	SecondarySize 64
+	Chance 0.3
+}
+
+Flickerlight NHSFlakXP_K
+{
+	Color 1.0 0.65 0.0
+	Size 48
+	SecondarySize 56
+	Chance 0.3
+}
+
+Flickerlight NHSFlakXP_L
+{
+	Color 1.0 0.5 0.0
+	Size 44
+	SecondarySize 52
+	Chance 0.3
+}
+
+Flickerlight NHSFlakXP_M
+{
+	Color 1.0 0.35 0.0
+	Size 40
+	SecondarySize 47
+	Chance 0.3
+}
+
+Flickerlight NHSFlakXP_N
+{
+	Color 1.0 0.0 0.0
+	Size 36
+	SecondarySize 42
+	Chance 0.3
+}
+
+Flickerlight NHSFlakXP_O
+{
+	Color 0.6 0.0 0.0
+	Size 20
+	SecondarySize 24
+	Offset -16 -8 0
+	Chance 0.3
+}
+
+Object NHSFlakExplosion
+{
+	Frame HFCXA { Light NHSFlakXP_A }
+	Frame HFCXB { Light NHSFlakXP_B }
+	Frame HFCXC { Light NHSFlakXP_C }
+	Frame HFCXD { Light NHSFlakXP_D }
+	Frame HFCXE { Light NHSFlakXP_E }
+	Frame HFCXF { Light NHSFlakXP_F }
+	Frame HFCXG { Light NHSFlakXP_G }
+	Frame HFCXH { Light NHSFlakXP_H }
+	Frame HFCXI { Light NHSFlakXP_I }
+	Frame HFCXJ { Light NHSFlakXP_J }
+	Frame HFCXK { Light NHSFlakXP_K }
+	Frame HFCXL { Light NHSFlakXP_L }
+	Frame HFCXM { Light NHSFlakXP_M }
+	Frame HFCXN { Light NHSFlakXP_N }
+	Frame HFCXO { Light NHSFlakXP_O }
+}

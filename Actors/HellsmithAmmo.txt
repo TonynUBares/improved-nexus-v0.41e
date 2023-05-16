@@ -1,0 +1,21 @@
+//Hellsmith Ammo
+
+ACTOR FuelCore : Ammo 31468
+{
+ +IGNORESKILL
+ +INVENTORY.BIGPOWERUP
+ Inventory.Amount 1
+ Inventory.MaxAmount 12
+ Ammo.BackpackAmount 0
+ Ammo.BackpackMaxAmount 12
+ Inventory.PickupMessage "Picked up a Fuel Core."
+ Inventory.PickupSound "items/cellpack"
+ Inventory.Icon "FUCXA0"
+ States
+ {
+  Spawn:
+	//LFSC ABCD 3 A_CustomMissile ("LegendaryBlueParticleSpawner", 0, 0, random(0,-360), 2, random(0,360))
+	FUCE ABCD 6 BRIGHT
+	Loop
+ }
+}

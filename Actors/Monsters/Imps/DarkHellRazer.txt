@@ -1,0 +1,218 @@
+ACTOR DarkHellRazer 21543
+{
+	Health 380
+	Radius 20
+	Height 56
+	Mass 100
+	Speed 8
+	Scale 1.1
+	PainChance 50
+	+FLOORCLIP
+	+DONTHARMSPECIES
+	+MISSILEMORE
+	+MISSILEEVENMORE
+	DamageFactor "ImpComet", 0.0
+	DropItem "LifeEssence" 256
+	DropItem "ArmorBonusMax" 256
+	DropItem "BossLifeEssence" 120
+    DropItem "BossArmorBonusMax" 120
+	DropItem "DemonAmmo" 160
+	DropItem "NewCell" 256
+	DropItem "NewCellPack" 128
+	DropItem "Demon Tech Rifle" 100 1
+	DropItem "Railgun " 60 1
+	SeeSound "DarkHellRazer/Sight"
+	PainSound "DarkHellRazer/Pain"
+	DeathSound "DarkHellRazer/Death"
+	ActiveSound "DarkHellRazer/Active"
+	Obituary "%o was executed by a Dark Hell Razer."
+	Species "Imps"
+	Tag "$NEDHellRaz"
+	var int user_lowlag;
+	MONSTER
+	States
+	{
+	Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
+	Goto Idle
+  Idle:
+		DRHR A 10 A_Look
+		DRHR Z 10 A_Look
+		Loop
+  See:
+	TNT1 A 0 A_JumpIf(user_lowlag == 1,"MoreSee")
+	TNT1 A 0 A_JumpIfTargetInLOS("MoreSee",0,0,0,0)
+	DRHR ABCD 6 A_Chase
+	Loop
+  MoreSee:
+	TNT1 A 0 A_SetUserVar("user_lowlag",1)
+		//TNT1 A 0 A_Jump(46,"Evade")
+		DRHR AABB 3 A_Chase
+		TNT1 A 0 A_SpawnItem("HumanishStep",0,0,0,0)
+		DRHR CCDD 3 A_Chase
+		TNT1 A 0 A_SpawnItem("HumanishStep",0,0,0,0)
+		TNT1 A 0 A_Jump(38,"Rush")
+		Loop
+	Rush:
+		DRHR A 1 A_Chase
+		TNT1 A 0 A_Chase
+		TNT1 A 0 A_SpawnItemEx("DHRazerGhostA",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		DRHR A 1 A_Chase
+		TNT1 A 0 A_Chase
+		TNT1 A 0 A_SpawnItemEx("DHRazerGhostA",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		DRHR B 1 A_Chase
+		DRHR B 0 A_Chase
+		DRHR B 0 A_SpawnItemEx("DHRazerGhostB",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		DRHR B 1 A_Chase
+		DRHR B 0 A_Chase
+		DRHR B 0 A_SpawnItemEx("DHRazerGhostB",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx("HumanishStep2",0,0,2,0,0,-20)
+		DRHR C 1 A_Chase
+		TNT1 A 0 A_Chase
+		TNT1 A 0 A_SpawnItemEx("DHRazerGhostC",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		DRHR C 1 A_Chase
+		TNT1 A 0 A_Chase
+		TNT1 A 0 A_SpawnItemEx("DHRazerGhostC",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		DRHR D 1 A_Chase
+		TNT1 A 0 A_Chase
+		TNT1 A 0 A_SpawnItemEx("DHRazerGhostD",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		DRHR D 1 A_Chase
+		TNT1 A 0 A_Chase
+		TNT1 A 0 A_SpawnItemEx("DHRazerGhostD",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+		TNT1 A 0 A_SpawnItemEx("HumanishStep2",0,0,2,0,0,-20)
+		TNT1 A 0 A_Jump(50,"See")
+		Loop
+	Missile:
+		DRHR E 0 A_Jump(78,"DTech")
+		DRHR E 0 A_Jump(62,"Railgun","Rocket")
+		DRHR E 0 A_Jump(41,"Homing")
+		Goto See
+	Railgun:
+		TNT1 A 0 A_PlaySound("weapons/rgcharge")
+		DRHR E 6 A_FaceTarget
+		DRHR E 3 A_FaceTarget
+		TNT1 A 0 A_PlaySound("railgunner/chargedshot")
+		TNT1 A 0 A_CustomMissile("RailgunImpact",36,4,0,CMF_AIMOFFSET)
+		DRHR E 5 Bright A_CustomRailgun(Random(30, 40), 0, "Green", None, 1, 1, 0, "DarkHellRazerRailPuff")
+		DRHR E 5 Bright
+		Goto See
+	DTech:
+		DRHR E 3 A_FaceTarget
+		TNT1 A 0 A_CustomMissile("DarkHellRazerDemonTechProjectile", 36, 0, 0, 0)
+		DRHR E 3 Bright A_PlaySoundEx("weapons/demontechfire","Weapon")
+		TNT1 A 0 A_Jump(20,"Pause")
+		TNT1 A 0 A_SpidRefire
+		Loop
+	Rocket:
+		DRHR EE 6 A_FaceTarget
+		DRHR E 10 Bright A_CustomMissile("DarkHellRazerRocket")
+		DRHR E 11
+		TNT1 A 0 A_JumpIfCloser(400,"DTech")
+		Goto See
+	Homing:
+		TNT1 A 0 A_PlaySound("DarkHellRazer/Attack",7)
+		DRHR EEE 6 A_FaceTarget
+		DRHR E 10 Bright A_CustomMissile("DarkHellRazerHomer")
+		DRHR E 11
+		Goto See
+	Pause:
+		TNT1 A 0
+		DRHR E 15 A_PlaySound("weapons/demontechsteam")
+		Goto See
+	Pain:
+		DRHR G 3 
+		DRHR G 3 A_Pain
+		goto See
+	Death:
+		DRHR I 5
+		DRHR J 5 A_Scream
+		DRHR KL 5
+		DRHR L 5
+		DRHR M 0 A_SpawnItem("BodyCrash",0,0,0,0)
+		DRHR M 5 A_Fall
+		DRHR M -1
+		Stop
+	Raise:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		DRHR MLKJI 3
+		Goto See
+	 }
+}
+
+ACTOR DHRazerGhostA
+{
+Height 56
+Radius 2
+Alpha 0.75
+Scale 1.1
+RENDERSTYLE Translucent
++NONSHOOTABLE
++NOINTERACTION
++CLIENTSIDEONLY
++NONETID
+States
+	{
+	Spawn:
+		DRHR A 2 A_FadeOut(0.1,1)
+		Loop
+	}
+}
+
+Actor DHRazerGhostB : DHRazerGhostA
+{
+States
+	{
+	Spawn:
+		DRHR B 2 A_FadeOut(0.1,1)
+		Loop
+	}
+}
+
+Actor DHRazerGhostC : DHRazerGhostA
+{
+States
+	{
+	Spawn:
+		DRHR C 2 A_FadeOut(0.1,1)
+		Loop
+	}
+}
+
+Actor DHRazerGhostD : DHRazerGhostA
+{
+States
+	{
+	Spawn:
+		DRHR D 2 A_FadeOut(0.1,1)
+		Loop
+	}
+}
+
+ACTOR DarkHellRazerDemonTechProjectile : ZDemonTechProjectile
+{
+Species "Imps"
+Decal DTRScorch
+Damagetype "ImpComet"
+}
+
+ACTOR DarkHellRazerRailPuff : BulletPuff
+{
+DamageType "ImpComet"
+States
+{
+Spawn:
+	TNT1 A 0
+	Stop
+	}
+}
+
+ACTOR DarkHellRazerRocket : DarkCyberRocket
+{
+Damagetype "ImpComet"
+}
+
+ACTOR DarkHellRazerHomer : DarkCyberHomer
+{
+Damagetype "ImpComet"
+}

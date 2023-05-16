@@ -1,0 +1,64 @@
+Actor TXSAllMap : AllMap
+{
+ Inventory.PickupSound "NewAllMap/Get"
+ Inventory.PickupMessage "Map Revealer"
+ Tag "Map Revealer"
+ States
+ {
+  Spawn:
+	MAPR ABCDCB 6 Bright
+	Loop
+ }
+}
+
+Actor RadarItem : CustomInventory
+{
+ +COUNTITEM
+ +INVENTORY.FANCYPICKUPSOUND
+ +INVENTORY.ALWAYSPICKUP
+ +INVENTORY.BIGPOWERUP
+ Inventory.MaxAmount 0
+ Inventory.PickupSound "Radar/Get"
+ Inventory.PickupMessage "Radar. Requires Map Revealer to use."
+ Tag "Radar"
+ States
+ {
+  Spawn:
+	RADR ABCDCB 6 Bright
+	Loop
+  Pickup:
+	TNT1 A 1 A_GiveInventory("RadarActivate")
+	Stop
+ }
+}
+
+Actor RadarActivate : PowerupGiver
+{
+ Powerup.type "Scanner"
+ +INVENTORY.AUTOACTIVATE
+ +INVENTORY.ALWAYSPICKUP
+ Inventory.MaxAmount 0
+ Powerup.Duration -300
+}
+
+Actor DTAllMap : CFMegaMap
+{
+ +COUNTITEM
+ +INVENTORY.FANCYPICKUPSOUND
+ +INVENTORY.ALWAYSPICKUP
+ +INVENTORY.BIGPOWERUP
+ Inventory.MaxAmount 0
+ Inventory.PickupSound "DTAllMap/Get"
+ Inventory.PickupMessage "Advanced Map Revealer"
+ Tag "Advanced Map Revealer"
+ States
+ {
+  Spawn:
+	DMAP ABCDCB 6 Bright
+	Loop
+  Pickup:
+	TNT1 A 1 A_GiveInventory("Allmap")
+	TNT1 A 1 A_GiveInventory("CFDoomScanner")
+	Stop
+  }
+}

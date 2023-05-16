@@ -1,0 +1,168 @@
+ACTOR TechErasusZombie 22631
+{
+  Health 180
+  Radius 20
+  Height 56
+  PainChance 110
+  Speed 7
+  Mass 100
+  DropItem "StimKit" 180
+  DropItem "ArmorBooster" 180
+  DropItem "AmmoPack" 165
+  DropItem "HandGrenadeAmmo" 250 1
+  DropItem "MineAmmo" 180 1
+  DropItem "DemonAmmo" 250 60
+  DropItem "DemonAmmoBox" 105
+  DropItem "Armorplate" 215 1
+  DropItem "Portablemedkit" 230 1
+  DropItem "Backpack" 80 1
+  //DropItem "Tech Erasus" 56
+  SeeSound "superzombie/sight"
+  PainSound "superzombie/pain"
+  DeathSound "superzombie/death"
+  ActiveSound "superzombie/active"
+  AttackSound ""
+  Obituary "%o was targeted and defeated by a Tech Erasus Zombie."
+  Tag "$NEErasusZomb"
+  DamageFactor "GeneralTracer", 0.0
+  Species "ZombieDeud"
+  MONSTER 
+  +FLOORCLIP
+  +MISSILEMORE
+  +MISSILEEVENMORE
+  +QUICKTORETALIATE
+  States
+  {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
+	Goto Idle
+  Idle:
+    TERZ A 10 A_Look
+	TERI A 10 A_Look
+    Loop
+  See:
+    TERZ AABB 3 A_Chase
+    TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+    TERZ CCDD 3 A_Chase
+    TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+    Loop
+  Missile:
+    TERZ E 0 Bright A_FaceTarget
+	TNT1 A 0 A_StopSound(6)
+    TERZ E 0 Bright A_PlaySound ("erasus/load")
+	TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+	TERZ E 2 Bright A_FaceTarget
+	TERZ E 2 Bright A_FaceTarget
+	TERZ E 2 Bright A_FaceTarget
+	TERZ E 2 Bright A_FaceTarget
+	TERZ E 2 Bright A_FaceTarget
+	TERZ E 2 Bright A_FaceTarget
+	TERZ E 2 Bright A_FaceTarget
+	TERZ E 2 Bright A_FaceTarget
+	TERZ E 2 Bright A_FaceTarget
+	TERZ E 2 Bright A_FaceTarget
+	TERZ E 2 Bright A_FaceTarget
+	TERZ E 2 Bright A_FaceTarget
+	TERZ E 2 Bright A_FaceTarget
+	TERZ E 2 Bright A_FaceTarget
+	TERZ E 2 Bright A_FaceTarget
+	TERZ E 2 Bright A_FaceTarget
+	TERZ E 2 Bright A_FaceTarget
+	TERZ E 2 Bright A_FaceTarget
+	TERZ E 2 Bright A_FaceTarget
+	TERZ E 2 Bright A_FaceTarget
+	TERZ E 2 Bright A_FaceTarget
+	TERZ E 2 Bright A_FaceTarget
+    TERZ F 2 Bright
+	TERZ F 2 Bright
+	TERZ F 2 Bright
+	TERZ F 2 Bright
+	TERZ F 2 Bright
+	TERZ F 0 A_PlaySound ("erasus/fire")
+    TERZ F 10 Bright A_CustomMissile("ZombieErasusProj",26,16,random(-1,1))
+	TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+    TERZ E 50
+    Goto See
+  Pain:
+    TERZ G 6 A_Pain
+    Goto See
+  Death:
+	TNT1 A 0 A_StopSound(6)
+    TERZ H 5 A_Scream
+    TERZ I 5 A_Fall
+    TERZ J 5 A_SpawnItem("BodyCrash",0,0,0,0)
+    TERZ KLM 5
+    TERZ N -1
+    Stop
+  XDeath:
+	TNT1 A 0 A_StopSound(6)
+    TERZ O 3 
+    TERZ P 3 A_XScream
+    TERZ Q 3 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
+    TERZ R 3 A_Fall 
+    TERZ STUV 3
+	TERZ W -1
+    Stop
+  Raise:
+  	TNT1 A 0
+	TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+    TERZ VUTSRQPO 5
+    Goto See
+  }
+}
+
+ACTOR ZombieErasusProj
+{
+Speed 350
+Radius 17
+Height 10
+Damage 75
+Renderstyle Add
+PROJECTILE
+-CANNOTPUSH
++NODAMAGETHRUST
++EXTREMEDEATH
+-MTHRUSPECIES
+DamageType "GeneralTracer"
+Species "ZombieDeud"
+DeathSound "weapons/StachanovHit"
+Decal Scorch
+Damage 25
+MissileType "ZombieErasusProjTrail"
+States
+{
+  Spawn:
+    TNT1 A 0
+	YAE4 A 0 A_SpawnItemEx("ZombieErasusProjTrail",5,1.0,1)
+    TNT1 A 1 A_PlaySound("erasus/fly",5,1.0,1)
+    Loop
+  Death:
+    TNT1 A 0 A_PlaySound("erasus/explode",5)
+    TNT1 AAAAAAAAAA 0 A_SpawnItemEx("ErasusProjTrailSparks",random(19,-19),random(19,-19),random(19,-19),0,0,0,0,128,0)
+    TNT1 A 0 A_SpawnItemEx("ErasusExplode",0,0,0,0,0,0,0,128,0)
+    TNT1 A 0 A_Explode(108,156,0)
+    TNT1 BCD 4
+    Stop
+  }
+}
+
+ACTOR ZombieErasusProjTrail
+{
+RenderStyle Add
+Scale 0.0875
+Alpha 1
++NOINTERACTION
++NOGRAVITY
+States
+{
+  Spawn:
+    TNT1 A 0
+    TNT1 A 0 //A_SetScale(ScaleX,ScaleY-0.0875)
+    YAE4 A 2 Bright A_SpawnItemEx("ErasusProjTrailSparks",random(4,-4),random(4,-4),random(4,-4),0,0,0,0,128,0)
+    YAE4 A 2 Bright
+  Fly:
+    YAE4 A 0 //A_SetScale(ScaleX-0.01,ScaleY-0.01)
+    YAE4 A 1 Bright A_FadeOut(0.295)
+    Loop
+  }
+}

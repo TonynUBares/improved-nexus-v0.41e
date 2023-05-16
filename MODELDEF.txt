@@ -1,0 +1,620 @@
+Model BabyOverseer10K
+{ 
+   Path "Models/Tracers"
+   SKIN 0 "tracer2.tga"
+   MODEL 0 "Tracer.md3"
+   Scale 10.0 10.0 5.0
+   PITCHFROMMOMENTUM
+   FrameIndex TRA2 A 0 0
+}
+
+Model CybernobleExplosiveTracer
+{ 
+   Path "Models/Tracers"
+   SKIN 0 "tracer1.tga"
+   MODEL 0 "Tracer.md3"
+   Scale 2.2 2.2 1.0
+   PITCHFROMMOMENTUM
+   FrameIndex TRAC A 0 0
+}
+
+Model MancutankExplosiveTracer
+{ 
+   Path "Models/Tracers"
+   SKIN 0 "tracer1.tga"
+   MODEL 0 "Tracer.md3"
+   Scale 2.2 2.2 1.0
+   PITCHFROMMOMENTUM
+   FrameIndex TRAC A 0 0
+}
+
+Model IncarnateExplosiveTracer
+{ 
+   Path "Models/Tracers"
+   SKIN 0 "tracer1.tga"
+   MODEL 0 "Tracer.md3"
+   Scale 2.2 2.2 1.0
+   PITCHFROMMOMENTUM
+   FrameIndex TRAC A 0 0
+}
+
+Model Enraged10KProjectile
+{ 
+   Path "Models/Tracers"
+   SKIN 0 "tracer6.tga"
+   MODEL 0 "Tracer.md3"
+   Scale 10.0 10.0 5.0
+   PITCHFROMMOMENTUM
+   FrameIndex TRA3 A 0 0
+}
+
+Model LegendaryRedTracer
+{ 
+   Path "Models/Tracers"
+   SKIN 0 "tracer6.tga"
+   MODEL 0 "tracer.md3"
+   Scale 4.5 4.5 1.5
+   PITCHFROMMOMENTUM
+   FrameIndex TRA3 A 0 0
+}
+
+Model RedSGTracer
+{ 
+   Path "Models/Tracers"
+   SKIN 0 "tracer6.tga"
+   MODEL 0 "tracer.md3"
+   Scale 4.5 4.5 1.5
+   PITCHFROMMOMENTUM
+   FrameIndex IRAC A 0 0
+}
+
+/*Model VesselSpreadLaser
+{ 
+   Path "BFG10K Tracer"
+   SKIN 0 "tracer5.tga"
+   MODEL 0 "tracer.md3"
+   Scale 10.0 10.0 2.0
+   PITCHFROMMOMENTUM
+   FrameIndex BRAC A 0 0
+}*/
+
+Model ELBSExplosiveTracer
+{ 
+   Path "Models/Tracers"
+   SKIN 0 "tracer6.tga"
+   MODEL 0 "tracer.md3"
+   Scale 3.0 3.0 2.0
+   PITCHFROMMOMENTUM
+   FrameIndex TRA3 A 0 0
+}
+
+Model PlayerDragonTracer
+{ 
+   Path "Models/Tracers"
+   SKIN 0 "tracer6.tga"
+   MODEL 0 "tracer.md3"
+   Scale 3.0 3.0 2.0
+   PITCHFROMMOMENTUM
+   FrameIndex TRA3 A 0 0
+}
+
+Model PlayerDragonTracerBad
+{ 
+   Path "Models/Tracers"
+   SKIN 0 "tracer6.tga"
+   MODEL 0 "tracer.md3"
+   Scale 3.0 3.0 2.0
+   PITCHFROMMOMENTUM
+   FrameIndex TRA3 A 0 0
+}
+
+Model MExplosiveTracer
+{
+   Path "Models/Tracers"
+   SKIN 0 "tracer1.tga"
+   MODEL 0 "Tracer.md3"
+   Scale 2.6 2.6 1.2
+   PITCHFROMMOMENTUM
+   FrameIndex TRAC A 0 0
+}
+
+Model MarineT3DBFG10kShot
+{
+   Path "models/tracers"
+   SKIN 0 "tracer5b.tga"
+   MODEL 0 "Tracer.md3"
+   Scale 4.5 4.5 1.5
+   PITCHFROMMOMENTUM
+   FrameIndex TRC5 A 0 0
+}
+
+//TXS
+Model LCybruiser10KProjectile
+{ 
+   Path "Models/Tracers/BFG10K"
+   SKIN 0 "tracer5.tga"
+   MODEL 0 "Tracer.md3"
+   Scale 10.0 10.0 5.0
+   PITCHFROMMOMENTUM
+   FrameIndex BRAC A 0 0
+}
+
+Model RedeeCom10K
+{ 
+   Path "Models/Tracers/BFG10K"
+   SKIN 0 "tracer9.tga"
+   MODEL 0 "Tracer.md3"
+   Scale 10.0 10.0 5.0
+   PITCHFROMMOMENTUM
+   FrameIndex TPA3 A 0 0
+}
+
+Model CacobusBFG10K
+{ 
+   Path "Models/Tracers/BFG10K"
+   SKIN 0 "tracer3.tga"
+   MODEL 0 "Tracer.md3"
+   Scale 10.0 10.0 5.0
+   PITCHFROMMOMENTUM
+   FrameIndex TRA3 A 0 0
+}
+
+Model Paladin10K
+{ 
+   Path "Models/Tracers/BFG10K"
+   SKIN 0 "tracer3.tga"
+   MODEL 0 "Tracer.md3"
+   Scale 10.0 10.0 5.0
+   PITCHFROMMOMENTUM
+   FrameIndex TRA3 A 0 0
+}
+
+Model Arachhunter10K
+{ 
+   Path "Models/Tracers/BFG10K"
+   SKIN 0 "tracer3.tga"
+   MODEL 0 "Tracer.md3"
+   Scale 10.0 10.0 5.0
+   PITCHFROMMOMENTUM
+   FrameIndex TRA3 A 0 0
+}
+
+Model Panz10K
+{ 
+   Path "Models/Tracers/BFG10K"
+   SKIN 0 "tracer3.tga"
+   MODEL 0 "Tracer.md3"
+   Scale 10.0 10.0 5.0
+   PITCHFROMMOMENTUM
+   FrameIndex TRA3 A 0 0
+}
+
+Model SSUberExplosiveTracer
+{ 
+   Path "Models/Tracers"
+   SKIN 0 "tracer1.tga"
+   MODEL 0 "Tracer.md3"
+   Scale 2.2 2.2 1.0
+   PITCHFROMMOMENTUM
+   FrameIndex TRAC A 0 0
+}
+
+Model DarkoExplosiveTracer
+{ 
+Path "Models/Tracers"
+SKIN 0 "tracer1.tga"
+MODEL 0 "Tracer.md3"
+Scale 2.6 2.6 1.2
+PITCHFROMMOMENTUM
+FrameIndex TRAC A 0 0
+}
+
+Model ELegKrieger10KProjectile
+{ 
+   Path "Models/Tracers/BFG10K"
+   SKIN 0 "tracer6.tga"
+   MODEL 0 "Tracer.md3"
+   Scale 10.0 10.0 5.0
+   PITCHFROMMOMENTUM
+   FrameIndex TRA3 A 0 0
+}
+
+Model ELegKriegerExplosiveTracer
+{ 
+   Path "Models/Tracers"
+   SKIN 0 "tracer6.tga"
+   MODEL 0 "tracer.md3"
+   Scale 3.0 3.0 2.0
+   PITCHFROMMOMENTUM
+   FrameIndex TRA3 A 0 0
+}
+
+Model ServantDBFG
+{ 
+   Path "Models/Tracers/BFG10K"
+   SKIN 0 "tracer5b.tga"
+   MODEL 0 "Tracer.md3"
+   Scale 4.5 4.5 1.5
+   PITCHFROMMOMENTUM
+   FrameIndex TRC5 A 0 0
+}
+
+Model PlayerRepeaterAntimatter
+{ 
+   Path "Models/Tracers/BFG10K"
+   SKIN 0 "tracer0.tga"
+   MODEL 0 "Tracer.md3"
+   Scale 10.0 10.0 5.0
+   PITCHFROMMOMENTUM
+   FrameIndex TRA2 A 0 0
+}
+
+Model ZombieRepeaterAntimatter
+{ 
+   Path "Models/Tracers/BFG10K"
+   SKIN 0 "tracer0.tga"
+   MODEL 0 "Tracer.md3"
+   Scale 10.0 10.0 5.0
+   PITCHFROMMOMENTUM
+   FrameIndex TRA2 A 0 0
+}
+
+Model 1337SGTracer
+{ 
+   Path "Models/Tracers"
+   SKIN 0 "tracer6.tga"
+   MODEL 0 "tracer.md3"
+   Scale 3.0 3.0 2.0
+   PITCHFROMMOMENTUM
+   FrameIndex TRA3 A 0 0
+}
+
+Model Thamuz10K
+{ 
+   Path "Models/Tracers"
+   SKIN 0 "tracer2.tga"
+   MODEL 0 "Tracer.md3"
+   Scale 10.0 10.0 5.0
+   PITCHFROMMOMENTUM
+   FrameIndex TRA2 A 0 0
+}
+
+Model LGeneral10KProjectile
+{ 
+	Path "Models/Tracers"
+	SKIN 0 "tracer7.tga"
+	MODEL 0 "Tracer.md3"
+	Scale 10.0 10.0 5.0
+	PITCHFROMMOMENTUM
+	FrameIndex LRAC A 0 0
+}
+
+Model CyShotgunnerShot 
+{ 
+	Path "Models/Tracers"
+	SKIN 0 "tracer4.tga"
+	MODEL 0 "Tracer.md3"
+	Scale 10.0 10.0 5.0
+	PITCHFROMMOMENTUM
+	FrameIndex TRA4 A 0 0
+}
+
+Model CorruptedGeneral10KProjectile
+{ 
+	Path "models/tracers"
+	SKIN 0 "tracer5b.tga"
+	MODEL 0 "Tracer.md3"
+	Scale 4.5 4.5 1.5
+	PITCHFROMMOMENTUM
+	FrameIndex TRC5 A 0 0
+}
+
+Model NemesisTracer
+{ 
+	Path "models/tracers"
+	SKIN 0 "tracern.tga"
+	MODEL 0 "Tracer.md3"
+	Scale 4.5 4.5 1.5
+	PITCHFROMMOMENTUM
+	FrameIndex NTRC A 0 0
+}
+
+Model NemesisASGBall
+{ 
+	Path "models/tracers"
+	SKIN 0 "tracern.tga"
+	MODEL 0 "Tracer.md3"
+	Scale 4.5 4.5 1.5
+	PITCHFROMMOMENTUM
+	FrameIndex NSHB A 0 0
+}
+
+Model NemesisASGBallPlayer
+{ 
+	Path "models/tracers"
+	SKIN 0 "tracern.tga"
+	MODEL 0 "Tracer.md3"
+	Scale 4.5 4.5 1.5
+	PITCHFROMMOMENTUM
+	FrameIndex NSHB A 0 0
+}
+
+Model Nemesis10kProjectile
+{ 
+	Path "models/tracers"
+	SKIN 0 "tracer8.tga"
+	MODEL 0 "Tracer.md3"
+	Scale 10.0 10.0 5.0
+	PITCHFROMMOMENTUM
+	FrameIndex CLBA D 0 0
+}
+
+Model Nemesis10kProjectileZombie
+{ 
+	Path "models/tracers"
+	SKIN 0 "tracer8.tga"
+	MODEL 0 "Tracer.md3"
+	Scale 10.0 10.0 5.0
+	PITCHFROMMOMENTUM
+	FrameIndex CLBA D 0 0
+}
+
+Model NemesisCannonLaser
+{ 
+	Path "models/tracers"
+	SKIN 0 "tracer8.tga"
+	MODEL 0 "Tracer.md3"
+	Scale 8.0 8.0 5.0
+	PITCHFROMMOMENTUM
+	FrameIndex CLBA D 0 0
+}
+
+Model NemesisCannonLaserPlayer
+{ 
+	Path "models/tracers"
+	SKIN 0 "tracer8.tga"
+	MODEL 0 "Tracer.md3"
+	Scale 8.0 8.0 5.0
+	PITCHFROMMOMENTUM
+	FrameIndex CLBA D 0 0
+}
+
+Model NemesisZombieCannonLaser
+{ 
+	Path "models/tracers"
+	SKIN 0 "tracer8.tga"
+	MODEL 0 "Tracer.md3"
+	Scale 8.0 8.0 5.0
+	PITCHFROMMOMENTUM
+	FrameIndex CLBA D 0 0
+}
+
+Model NemesisRevCannonLaser
+{ 
+	Path "models/tracers"
+	SKIN 0 "tracer8.tga"
+	MODEL 0 "Tracer.md3"
+	Scale 8.0 8.0 5.0
+	PITCHFROMMOMENTUM
+	FrameIndex CLBA D 0 0
+}
+
+Model NemesisBabySentientLaser
+{ 
+	Path "models/tracers"
+	SKIN 0 "tracer8.tga"
+	MODEL 0 "Tracer.md3"
+	Scale 8.0 8.0 5.0
+	PITCHFROMMOMENTUM
+	FrameIndex CLBA D 0 0
+}
+
+Model NemesisNobleCannonLaser
+{ 
+	Path "models/tracers"
+	SKIN 0 "tracer8.tga"
+	MODEL 0 "Tracer.md3"
+	Scale 8.0 8.0 5.0
+	PITCHFROMMOMENTUM
+	FrameIndex CLBA D 0 0
+}
+
+Model NemesisBehemothCannonLaser
+{ 
+	Path "models/tracers"
+	SKIN 0 "tracer8.tga"
+	MODEL 0 "Tracer.md3"
+	Scale 8.0 8.0 5.0
+	PITCHFROMMOMENTUM
+	FrameIndex CLBA D 0 0
+}
+
+Model NemesisCannonIonBeam
+{ 
+	Path "models/tracers"
+	SKIN 0 "tracer8.tga"
+	MODEL 0 "Tracer.md3"
+	Scale 20.0 20.0 10.0
+	PITCHFROMMOMENTUM
+	FrameIndex CLBA D 0 0
+}
+
+Model NemesisCannonIonBeamPlayer
+{ 
+	Path "models/tracers"
+	SKIN 0 "tracer8.tga"
+	MODEL 0 "Tracer.md3"
+	Scale 20.0 20.0 10.0
+	PITCHFROMMOMENTUM
+	FrameIndex CLBA D 0 0
+}
+
+Model NemesisRevCannonIonBeam
+{ 
+	Path "models/tracers"
+	SKIN 0 "tracer8.tga"
+	MODEL 0 "Tracer.md3"
+	Scale 20.0 20.0 10.0
+	PITCHFROMMOMENTUM
+	FrameIndex CLBA D 0 0
+}
+
+Model NemesisZombieCannonIonBeam
+{ 
+	Path "models/tracers"
+	SKIN 0 "tracer8.tga"
+	MODEL 0 "Tracer.md3"
+	Scale 20.0 20.0 10.0
+	PITCHFROMMOMENTUM
+	FrameIndex CLBA D 0 0
+}
+
+Model NemesisNobleCannonIonBeam
+{ 
+	Path "models/tracers"
+	SKIN 0 "tracer8.tga"
+	MODEL 0 "Tracer.md3"
+	Scale 20.0 20.0 10.0
+	PITCHFROMMOMENTUM
+	FrameIndex CLBA D 0 0
+}
+
+Model LegPlayer10KProjectile
+{ 
+	Path "Models/Tracers"
+	SKIN 0 "tracer7.tga"
+	MODEL 0 "Tracer.md3"
+	Scale 10.0 10.0 5.0
+	PITCHFROMMOMENTUM
+	FrameIndex LRAC A 0 0
+}
+
+Model BlueSentientExplosiveTracer
+{ 
+	Path "Models/Tracers"
+	SKIN 0 "tracer5b.tga"
+	MODEL 0 "Tracer.md3"
+	Scale 2.6 2.6 1.2
+	PITCHFROMMOMENTUM
+	FrameIndex TRC5 A 0 0
+}
+
+Model PHGProjectile 
+{ 
+	Path "Models/Tracers"
+	SKIN 0 "tracer4.tga"
+	MODEL 0 "Tracer.md3"
+	Scale 10.0 10.0 5.0
+	PITCHFROMMOMENTUM
+	FrameIndex TRA4 A 0 0
+}
+
+Model Imp10k
+{ 
+   Path "Models/Tracers"
+   SKIN 0 "tracer3.tga"
+   MODEL 0 "Tracer.md3"
+   Scale 10.0 10.0 5.0
+   PITCHFROMMOMENTUM
+   FrameIndex TRA3 A 0 0
+}
+
+Model DeathKnight10K
+{ 
+Path "Models/Tracers"
+SKIN 0 "tracer2.tga"
+MODEL 0 "Tracer.md3"
+Scale 10.0 10.0 5.0
+PITCHFROMMOMENTUM
+FrameIndex TRA2 A 0 0
+}
+
+Model DarkBruiser10K
+{ 
+Path "Models/Tracers"
+SKIN 0 "tracer2.tga"
+MODEL 0 "Tracer.md3"
+Scale 10.0 10.0 5.0
+PITCHFROMMOMENTUM
+FrameIndex TRA2 A 0 0
+}
+
+Model Catharsi10K
+{ 
+Path "Models/Tracers"
+SKIN 0 "tracer2.tga"
+MODEL 0 "Tracer.md3"
+Scale 10.0 10.0 5.0
+PITCHFROMMOMENTUM
+FrameIndex TRA2 A 0 0
+}
+
+Model LegArach10KProjectile
+{ 
+Path "Models/Tracers"
+SKIN 0 "tracer7.tga"
+MODEL 0 "Tracer.md3"
+Scale 10.0 10.0 5.0
+PITCHFROMMOMENTUM
+FrameIndex LRAC A 0 0
+}
+
+Model PlayerExplosiveTracer2
+{ 
+Path "Models/Tracers"
+SKIN 0 "tracer1.tga"
+MODEL 0 "Tracer.md3"
+Scale 2.6 2.6 1.2
+PITCHFROMMOMENTUM
+FrameIndex TRAC A 0 0
+}
+
+Model MonsterExplosiveTracer2
+{ 
+Path "Models/Tracers"
+SKIN 0 "tracer1.tga"
+MODEL 0 "Tracer.md3"
+Scale 2.6 2.6 1.2
+PITCHFROMMOMENTUM
+FrameIndex TRAC A 0 0
+}
+
+Model MonsterExplosiveTracer3
+{ 
+Path "Models/Tracers"
+SKIN 0 "tracer1.tga"
+MODEL 0 "Tracer.md3"
+Scale 2.6 2.6 1.2
+PITCHFROMMOMENTUM
+FrameIndex TRAC A 0 0
+}
+Model T3DBFG10kShot
+{ 
+   Path "models/tracers"
+   SKIN 0 "tracer5b.tga"
+   MODEL 0 "Tracer.md3"
+   Scale 4.5 4.5 1.5
+   PITCHFROMMOMENTUM
+   FrameIndex TRC5 A 0 0
+}
+
+Model PlayerT3DBFG10kShot
+{ 
+   Path "models/tracers"
+   SKIN 0 "tracer5b.tga"
+   MODEL 0 "Tracer.md3"
+   Scale 4.5 4.5 1.5
+   PITCHFROMMOMENTUM
+   FrameIndex TRC5 A 0 0
+}
+
+Model LaserBeam
+{ 
+   Path "models/tracers"
+   SKIN 0 "tracer5b.tga"
+   MODEL 0 "Tracer.md3"
+   Scale 4.5 4.5 1.5
+   PITCHFROMMOMENTUM
+   Offset 128 0 0
+   FrameIndex TRC5 A 0 0
+}

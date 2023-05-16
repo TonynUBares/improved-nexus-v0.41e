@@ -1,0 +1,476 @@
+ACTOR DAImp : Imp 26662
+{
+  Scale 1.15
+  Health 670
+  PainChance 30
+  PainChance "SoulToxic", 20
+  PainChance "FatFlamer", 20
+  PainChance "FiendFire", 20
+  PainChance "Explosion", 90
+  +DONTHARMCLASS
+  +DONTHARMSPECIES
+  +DONTHURTSPECIES
+  +MISSILEMORE
+  +MISSILEEVENMORE
+  +FASTMELEE
+  +AVOIDMELEE
+  SeeSound "DarkHellRazer/Sight"
+  PainSound "DarkHellRazer/Pain"
+  DeathSound "DarkHellRazer/Death"
+  ActiveSound "DarkHellRazer/Active"
+  MeleeSound "weapons/fistwiff"
+  MeleeDamage 12
+  DamageFactor "Cyber10K", 0.5
+  DamageFactor "PDTBFG", 0.6
+  DamageFactor "PDTBFGTracer", 0.9
+  DropItem "LifeEssence" 256
+  DropItem "ArmorBonusMax" 256
+  DropItem "BossLifeEssence" 128 25
+  DropItem "BossArmorBonusMax" 128 1
+  DropItem "DemonAmmo" 256 60
+  DropItem "DemonAmmoBox" 128
+  DropItem "Missile" 256 5
+  DropItem "MissileBox" 128 10
+  DropItem "NewCell" 256
+  DropItem "NewCellPack" 128
+  //DropItem "Demon Tech Ballista" 100 1
+  //DropItem "M79 Gas Grenade Launcher" 90 1
+  DropItem "Demon Tech Rifle" 100 1
+  DropItem "Railgun " 60 1
+  DropItem "Tech Vulcan" 30 1
+  DropItem "BFG10K " 15 1
+  Obituary "%o was exterminated by a Dark Annihilator Imp."
+  HitObituary "%o was whacked upside the head by a Dark Annihilator Imp."
+  Tag "$NEDaimp"
+  var int user_lowlag;
+  States
+  {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
+	Goto Idle
+  Idle:
+    KIMP A 10 A_Look
+	KIMI A 10 A_Look
+    Loop
+  See:
+	TNT1 A 0 A_JumpIf(user_lowlag == 1,"MoreSee")
+	TNT1 A 0 A_JumpIfTargetInLOS("MoreSee",0,0,0,0)
+	KIMP ABCD 6 A_Chase
+	Loop
+  MoreSee:
+	TNT1 A 0 A_SetUserVar("user_lowlag",1)
+    KIMP AABB 3 A_Chase
+	TNT1 A 0 A_SpawnItem("HumanishStep",0,0,0,0)
+	KIMP CCDD 3 A_Chase
+	TNT1 A 0 A_SpawnItem("HumanishStep",0,0,0,0)
+	TNT1 A 0 A_Jump(38,"Rush")
+    Loop
+ Rush:
+	KIMP A 1 A_Chase
+	TNT1 A 0 A_Chase
+	TNT1 A 0 A_SpawnItemEx("DAImpGhostA",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+	KIMP A 1 A_Chase
+	TNT1 A 0 A_Chase
+	TNT1 A 0 A_SpawnItemEx("DAImpGhostA",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+	KIMP B 1 A_Chase
+	KIMP B 0 A_Chase
+	KIMP B 0 A_SpawnItemEx("DAImpGhostB",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+	KIMP B 1 A_Chase
+	KIMP B 0 A_Chase
+	KIMP B 0 A_SpawnItemEx("DAImpGhostB",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_SpawnItemEx("HumanishStep2",0,0,2,0,0,-20)
+	KIMP C 1 A_Chase
+	TNT1 A 0 A_Chase
+	TNT1 A 0 A_SpawnItemEx("DAImpGhostC",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+	KIMP C 1 A_Chase
+	TNT1 A 0 A_Chase
+	TNT1 A 0 A_SpawnItemEx("DAImpGhostC",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+	KIMP D 1 A_Chase
+	TNT1 A 0 A_Chase
+	TNT1 A 0 A_SpawnItemEx("DAImpGhostD",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+	KIMP D 1 A_Chase
+	TNT1 A 0 A_Chase
+	TNT1 A 0 A_SpawnItemEx("DAImpGhostD",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_SpawnItemEx("HumanishStep2",0,0,2,0,0,-20)
+	TNT1 A 0 A_Jump(42,"See")
+	Loop
+  Pause:
+	KIMP E 10
+	Goto See
+  Pause2:
+	KIMP G 10
+	Goto See
+  Melee: 
+    KIMP EF 4 A_FaceTarget
+    KIMP G 3 A_MeleeAttack
+	KIMP FE 4 A_FaceTarget
+    Goto See 
+  Lunge:
+	TNT1 A 0 A_JumpIfCloser(300,1)
+	Goto See
+	TNT1 A 0 A_PlaySound("weapons/fistwiff")
+	KIMP EF 5 A_FaceTarget
+	TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,1)
+	TNT1 A 0 ThrustThingZ(0,25,0,1)
+	KIMP G 2 A_Recoil(-30)
+	KIMP G 3 A_CustomMissile("PinkyLunge",18,0,0,CMF_AIMDIRECTION)
+	KIMP G 3 
+	KIMP F 2 A_ScaleVelocity(0.2)
+	TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)
+	KIMP E 1 A_ScaleVelocity(0)
+	Goto See
+  Missile:
+    TNT1 A 0 A_Jump(64,"ARifle","BFG15K","Railgun")
+    TNT1 A 0 A_JumpIfCloser(200, "Nades")
+    TNT1 A 0 A_JumpIfCloser(250, "Lunge")
+    TNT1 A 0 A_JumpIfCloser(300, "ASG")
+    KIMP E 6 A_FaceTarget
+    KIMP W 10 BRIGHT A_CustomMissile("DarkHellRazerRocket")
+	KIMP F 5
+	KIMP G 6 A_FaceTarget
+    KIMP V 10 BRIGHT A_CustomMissile("DarkHellRazerRocket")
+	KIMP G 5
+	TNT1 A 0 A_Jump(32,"Homing","BFG10K")
+    Goto See
+  ARifle:
+    KIMP G 10 A_FaceTarget
+	TNT1 A 0 A_PlayWeaponSound("vulcan/fire")
+    TNT1 A 0 A_SpawnItemEx("DAImpVulcanCasting", 0, -12, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+    KIMP V 2 Bright A_CustomMissile("DAImpVulcanTracer",Random(4,-3),15,Random(2,-2),0)
+    KIMP G 2 A_FaceTarget
+	TNT1 A 0 A_PlayWeaponSound("vulcan/fire")
+    TNT1 A 0 A_SpawnItemEx("DAImpVulcanCasting", 0, -12, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+    KIMP V 2 Bright A_CustomMissile("DAImpVulcanTracer",Random(4,-3),15,Random(2,-2),0)
+    KIMP G 2 A_FaceTarget
+	TNT1 A 0 A_PlayWeaponSound("vulcan/fire")
+    TNT1 A 0 A_SpawnItemEx("DAImpVulcanCasting", 0, -12, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+    KIMP V 2 Bright A_CustomMissile("DAImpVulcanTracer",Random(4,-3),15,Random(2,-2),0)
+    KIMP G 10 A_FaceTarget
+	TNT1 A 0 A_Jump(64,"Pause2")
+    TNT1 A 0 A_CPosRefire
+    Goto ARifle+1
+  ASG:
+    KIMP E 8 A_FaceTarget
+	KIMP E 13 A_FaceTarget
+	TNT1 AAAAA 0 A_CustomMissile("DarkHellRazerDemonTechProjectile",32,0,Random(-20,20)*0.1,0,Random(-5,5)*0.1)
+	KIMP W 3 Bright A_PlaySoundEx("weapons/demontechfire","Weapon")
+    TNT1 A 0 A_Jump(64,"Pause")
+    TNT1 A 0 A_SpidRefire
+	Goto ASG+1
+  Homing:
+    KIMP E 6 A_FaceTarget
+    KIMP W 10 BRIGHT A_CustomMissile("DarkHellRazerHomer")
+	KIMP F 15
+	KIMP G 6 A_FaceTarget
+    KIMP V 10 BRIGHT A_CustomMissile("DarkHellRazerHomer")
+	KIMP G 5
+    Goto See
+  Nades:
+    KIMP E 6 A_FaceTarget
+	TNT1 A 0 A_PlaySound("Weapons/GrenadeFire")
+    KIMP W 10 BRIGHT A_CustomMissile("DAImpGrenade")
+	KIMP F 5
+	KIMP G 6 A_FaceTarget
+	TNT1 A 0 A_PlaySound("Weapons/GrenadeFire")
+    KIMP V 10 BRIGHT A_CustomMissile("DAImpGrenade")
+	KIMP G 5
+    Goto See
+  BFG15K:
+	TNT1 A 0 A_PlaySound("weapons/charge15k")
+    KIMP E 18 A_FaceTarget
+	TNT1 A 0 A_PlaySound("Weapons/GrenadeFire")
+    KIMP W 10 BRIGHT A_CustomMissile("DAImp15K")
+	KIMP F 5
+	KIMP G 6 A_FaceTarget
+	TNT1 A 0 A_PlaySound("Weapons/GrenadeFire")
+    KIMP V 10 BRIGHT A_CustomMissile("DAImp15K")
+	KIMP G 10 A_PlaySound("weapons/bfg15kcooldown") 
+    Goto See
+  BFG10K:
+	TNT1 A 0 A_PlayWeaponSound("weapons/charge15k")
+	KIMP E 25 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+    KIMP W 10 BRIGHT A_CustomMissile("DAImpBFG10K")
+	KIMP F 10
+	KIMP G 6 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+    KIMP V 10 BRIGHT A_CustomMissile("DAImpBFG10K")
+	KIMP G 15 A_PlaySound("weapons/bfg15kcooldown") 
+    Goto See
+  Railgun:
+	TNT1 A 0 A_PlaySound("weapons/rgcharge")
+    KIMP E 6 A_FaceTarget
+	KIMP E 3 A_FaceTarget
+	TNT1 A 0 A_PlaySound("railgunner/chargedshot")
+	TNT1 A 0 A_CustomMissile("RailgunImpact",36,4,0,CMF_AIMOFFSET)
+	KIMP W 7 Bright A_CustomRailgun(Random(30, 40), 0, "Green", None, 1, 1, 0, "DarkHellRazerRailPuff")
+	KIMP F 5
+	KIMP G 6 A_FaceTarget
+	TNT1 A 0 A_PlaySound("railgunner/chargedshot")
+	TNT1 A 0 A_CustomMissile("RailgunImpact",36,4,0,CMF_AIMOFFSET)
+	KIMP V 7 Bright A_CustomRailgun(Random(30, 40), 0, "Green", None, 1, 1, 0, "DarkHellRazerRailPuff")
+	KIMP G 5
+    Goto See
+  Pain:
+	TNT1 A 0 A_Jump(64,"PainMissile")
+    KIMP H 2
+    KIMP H 2 A_Pain
+    Goto See
+  PainMissile:
+    KIMP H 2
+    KIMP H 2 A_Pain
+    Goto Missile
+  Death:
+    KIMP I 8
+    KIMP J 8 A_Scream
+    KIMP K 6
+    KIMP L 6 A_NoBlocking
+	KIMP M 0 A_SpawnItem("BodyCrash",0,0,0,0)
+    KIMP M -1
+    Stop
+  XDeath:
+    KIMP N 5 A_playsound("weapons/bfg95explode")
+	KIMP O 0 A_custommissile("DAImparm2",30,-10,270)
+	KIMP O 0 A_custommissile("DAImparm",30,10,93)
+    KIMP O 5 A_XScream
+	KIMP P 0 A_SpawnItemEx("GreenGibbedGenerator",0,0,0,0,0,0,0,128,0)
+	TNT1 A 0 A_SpawnItemEx("DAImpDeathEx",0,0,28)
+	KIMP P 5 A_Explode(80,100)
+    KIMP Q 5 A_NoBlocking
+    KIMP RST 5
+    KIMP U -1
+    Stop
+  Raise:
+    TNT1 A 0
+	TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+    KIMP ML 8
+    KIMP KJI 6
+    Goto See
+  }
+}
+
+ACTOR DAImparm
+{
+	Radius 12
+	Height 10
+	Speed 4
+	+DOOMBOUNCE
+	+DROPOFF
+	+Missile
+      States
+	{
+	Spawn:
+     DAR1 ABCD 3
+     Loop
+	Death:
+	 DAR1 E -1
+	 Loop
+	}
+} 
+
+ACTOR DAImparm2
+{
+	Radius 12
+	Height 10
+	Speed 4
+	+DOOMBOUNCE
+	+DROPOFF
+	+Missile
+      States
+	{
+	Spawn:
+     DAR2 ABCD 3
+     Loop
+	Death:
+	 DAR2 E -1
+	 Loop
+	}
+} 
+
+Actor DAImpVulcanTracer : FastProjectile
+{
+  Radius 1
+  Height 1
+  Speed 250
+  Damage 10
+  +NOGRAVITY
+  +FORCERADIUSDMG
+  +FORCEXYBILLBOARD
+  Projectile
+  Scale 0.5 
+  Renderstyle Add
+  Alpha 0.75
+  Decal BulletChip
+  DamageType "ImpComet"
+  Translation "176:191=120:127","16:16=112:112","168:175=112:119"
+  States
+  {
+  Spawn:
+    TRA2 A 1 Bright
+	Loop
+  Death:
+    TNT1 A 0
+  	TNT1 A 0 A_SpawnItemEx("GreenParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+	TNT1 AAA 0 A_CustomMissile("Kaboom4", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX4", 0, 0, random(0,360), 2, random(0,360))
+    RFOG A 3 Bright A_Explode(36,48)
+    RFOG BCDEF 3 Bright
+    Stop
+  }
+}
+
+ACTOR DAImpVulcanCasting : BulletCasing
+{
+	Scale 0.18
+	Seesound "weapons/casing1"
+	Translation "176:191=112:127"
+	States
+	{
+	Spawn:
+	  TNT1 A 0
+      TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	  CAS0 GHABCDEF 2
+	  Loop
+    Death:
+	  TNT1 A 0
+      TNT1 A 0 A_Jump(128,3)
+      CAS0 A 100
+      CAS0 A 5 A_FadeOut(0.10)
+      Goto Death+3
+      CAS0 E 100
+	  CAS0 E 5 A_FadeOut(0.10)
+	  Goto Death+5
+	  }
+}
+
+ACTOR DAImpBFG10K : General10KProjectile
+{
+   Decal BFG15KLightning
+   Species "Imps"
+   DamageType "ImpComet"
+   States
+   {
+   Spawn:
+      TRA2 A 1 Bright
+      Loop
+   Death:
+   XDeath:  
+      TNT1 A 0
+      TNT1 A 1 A_SpawnItem("DAImp10KEx")
+      Stop
+	  }
+}
+
+ACTOR DAImp10KEx : General10KEx
+{
+  DamageType "ImpComet"
+  Species "Imps"
+}
+
+ACTOR DAImp15K : BFG15KBall
+{
+DamageType "ImpComet"
+Species "Imps"
+-THRUSPECIES
+}
+
+ACTOR DAImpGrenade : M79Grenade 
+{
+	Species "Imps"
+	Damagetype "ImpComet"
+	States 
+	{
+	Death:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("GreenParticleSpawner",0,0,0,0,0,0,0,128)
+		TNT1 AAA 0 A_CustomMissile("Kaboom4",0,0,FRandom(0,360),2,FRandom(0,360))	
+		TNT1 AAA 0 A_CustomMissile("SmokeFX2",0,0,FRandom(0,360),2,FRandom(0,360))
+		TNT1 AAAAAAAAA 0 A_SpawnItemEx("DAImpGrenadePoison",0,0,10,FRandom(4,-4),FRandom(4,-4),FRandom(4,-2))
+		TNT1 A 0 A_Explode(128,128)
+		GMEX ABCDE 3
+		Stop
+	}
+}
+
+ACTOR DAImpGrenadePoison : BarbatosPoison
+{ 
+	Species "Imps"
+	DamageType "ImpComet"
+}
+
+ACTOR DAImpDeathEx : Player10KEx
+{
+  Radius 11
+  Height 8
+  Damage 140
+  +NOBLOCKMAP
+  +NOGRAVITY
+  +NOTELEPORT 
+  +FORCERADIUSDMG
+  Renderstyle Add
+  Alpha 0.75
+  Scale 0.85
+  States
+	{
+  Spawn:
+    TNT1 A 0
+  Death:
+    TNT1 A 0
+	TNT1 A 0 A_SpawnItemEx("BFGShockwave", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AA 0 A_SpawnItemEx("GreenParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+    TNT1 AAAA 0 A_CustomMissile("Kaboom13", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAAAAAAAA 0 A_SpawnItemEx("DAImpGrenadePoison",0,0,10,FRandom(4,-4),FRandom(4,-4),FRandom(4,-2))
+    BFE1 A 4 Bright A_Detonate
+    BFE1 BCDEF 4 Bright
+    Stop
+    }
+}
+
+ACTOR DAImpGhostA
+{
+Height 56
+Radius 2
+Alpha 0.75
+Scale 1.1
+RENDERSTYLE Translucent
++NONSHOOTABLE
++NOINTERACTION
++CLIENTSIDEONLY
++NONETID
+States
+	{
+	Spawn:
+		KIMP A 2 A_FadeOut(0.1,1)
+		Loop
+	}
+}
+
+Actor DAImpGhostB : DHRazerGhostA
+{
+States
+	{
+	Spawn:
+		KIMP B 2 A_FadeOut(0.1,1)
+		Loop
+	}
+}
+
+Actor DAImpGhostC : DHRazerGhostA
+{
+States
+	{
+	Spawn:
+		KIMP C 2 A_FadeOut(0.1,1)
+		Loop
+	}
+}
+
+Actor DAImpGhostD : DHRazerGhostA
+{
+States
+	{
+	Spawn:
+		KIMP D 2 A_FadeOut(0.1,1)
+		Loop
+	}
+}

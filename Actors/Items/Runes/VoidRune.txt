@@ -1,0 +1,87 @@
+Actor VoidRune : CustomInventory
+{
+ +FloatBob
+ +Inventory.InvBar
+ +Inventory.PickupFlash
+ +Inventory.FancyPickupSound
+ +INVENTORY.HUBPOWER
+ +INVENTORY.PERSISTENTPOWER
+ +Inventory.AUTOACTIVATE
+ Inventory.Amount 1
+ Inventory.MaxAmount 0
+ Inventory.Icon "BLRNA0"
+ ActiveSound "VoidRune/Idle"
+ Inventory.PickupMessage "Void Rune: Gain a fearful invisibility when taking health damage"
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("GetCVar",13) == 1, "HoldAndDestroy")
+	TNT1 A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,116)
+  SpawnLoop:
+	TNT1 A 0 A_PlaySound("VoidRune/Idle",7,1.0,1)
+	BLRN ABCDDCBA 4 Bright
+	Loop
+  Pickup:
+	TNT1 A 0 A_JumpIfInventory("VoidRuneToken",1,"Null")
+	TNT1 A 0 A_PlaySound("Pyro/blast",6)
+	TNT1 A 0 A_GiveInventory("VoidRuneToken")
+	TNT1 A 0 A_GiveInventory("VoidRuneFull")
+	TNT1 A 1 A_StopSound(7)
+	Stop
+ }
+}
+
+Actor VoidFlameSpawner : RedParticleSpawner
+{
+ +NOTIMEFREEZE
+ +NOINTERACTION
+ States
+ {
+  Spawn:
+	TNT1 A 0 
+	TNT1 A 1 Bright A_SpawnItemEx("VoidFlame",random(5,-5),random(5,-5),random(10,20),0,0,random(2,4),0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,0)
+	Stop
+ }
+}
+ACTOR VoidFlame 
+{
+ RenderStyle Add
+ Scale 0.5
+ +NOTIMEFREEZE
+ +NOINTERACTION
+ +FORCEXYBILLBOARD
+ +NOBLOCKMAP
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 1 
+	TNT1 A 0 A_Jump(256,1,2,3,4)
+	TNT1 AAA 1 
+	TNT1 A 0 
+	PMKE ABCDEFGHIJKL 2 Bright A_FadeOut(0.1,1)
+	Wait
+  Vanilla:
+	TNT1 A 0
+	Stop
+ }
+}
+
+Actor VoidRuneToken : LegendaryRuneItem { }
+Actor VoidRuneFull : LegendaryRuneItem { }
+Actor VoidRuneDepleted : LegendaryRuneItem { }
+Actor VoidRuneRegA : LegendaryRuneItem { }
+Actor VoidRuneRegB : LegendaryRuneItem { }
+Actor VoidRuneRegC : LegendaryRuneItem { }
+
+ACTOR PowerVoid : PowerInvisibility
+{
+  Powerup.Duration -15
+  Powerup.Strength 100
+  Powerup.Mode "Cumulative"
+}
+
+ACTOR PowerVoidFrighten : PowerFrightener
+{
+  Powerup.Duration -15
+}
