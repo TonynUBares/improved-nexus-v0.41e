@@ -12,7 +12,6 @@ ACTOR NemHellsmith : LegendaryCyberdemon 31999
  MONSTER
  +QUICKTORETALIATE
  +NORADIUSDMG
- +PIERCEARMOR
  +MISSILEEVENMORE
  +NOTARGET
  +BOSS
@@ -1433,7 +1432,6 @@ Actor NemHellsmithLightningBolt
 	DeathType "Legendary"
 	species "Cybers"
 	RENDERSTYLE ADD
-	+FoilInvul
 	+EXTREMEDEATH
 	+DONTHARMSPECIES
 	+NODAMAGETHRUST
@@ -1495,7 +1493,6 @@ Actor NemHellsmithLightning2
 	DeathType "Legendary"
 	species "Cybers"
 	RENDERSTYLE ADD
-	+FOILINVUL
 	+EXTREMEDEATH
 	+DONTHARMSPECIES
 	+NODAMAGETHRUST
@@ -1519,7 +1516,6 @@ Actor NemHellsmithLightning3
 	DeathType "Legendary"
 	species "Cybers"
 	RENDERSTYLE ADD
-	+FOILINVUL
 	+EXTREMEDEATH
 	+DONTHARMSPECIES
 	+NODAMAGETHRUST

@@ -22,9 +22,9 @@ ACTOR HackroidArmor : CustomInventory
 	TNT1 A 0 ACS_NamedExecuteWithResult("GetArmorAmount")
 	Stop
   Pickup:
-	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ArmorCheck",58,1700) == 0,"Null")
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ArmorCheck",58,1200) == 0,"Null")
 	TNT1 A 0 A_RailWait
-	TNT1 A 0 ACS_NamedExecuteWithResult("GiveArmor",58,1700)
+	TNT1 A 0 ACS_NamedExecuteWithResult("GiveArmor",58,1200)
 	Stop
  }
 }	
@@ -33,19 +33,19 @@ ACTOR HackroidArmor : CustomInventory
 Actor HackroidArmorGiver : BasicArmorPickup
 {
   Armor.SavePercent 25
-  Armor.SaveAmount 1700
+  Armor.SaveAmount 1200
   Inventory.Icon "HAMRA0"
-  DamageFactor "Normal", 0.4
-  DamageFactor "PDTBFG", 0.25
-  DamageFactor "PDTBFGTracer", 0.25
-  DamageFactor "Cyber10K", 0.25
-  DamageFactor "Legendary", 0.25
-  DamageFactor "LegendaryGuru", 0.25
-  DamageFactor "BFGSplash", 0.25
-  DamageFactor "BFGSpray", 0.25
+  DamageFactor "Normal", 0.35
+  DamageFactor "PDTBFG", 0.20
+  DamageFactor "PDTBFGTracer", 0.20
+  DamageFactor "Cyber10K", 0.20
+  DamageFactor "Legendary", 0.20
+  DamageFactor "LegendaryGuru", 0.20
+  DamageFactor "BFGSplash", 0.20
+  DamageFactor "BFGSpray", 0.20
   DamageFactor "PlayerLegendary", 0.1
-  DamageFactor "NemesisBall", 0.25
-  DamageFactor "SatanGuard", 0.35
+  DamageFactor "NemesisBall", 0.20
+  DamageFactor "SatanGuard", 0.30
   DamageFactor "Hell", 0.1
   DamageFactor "Extreme", 0.1
   DamageFactor "UltimateLegendary", 0.1
@@ -60,67 +60,67 @@ Actor HackroidArmorGiver : BasicArmorPickup
 ACTOR HackroidSphereHealth : Health
 {
 +NOTIMEFREEZE
-Inventory.Amount 1700
-Inventory.MaxAmount 1700
+Inventory.Amount 1200
+Inventory.MaxAmount 1200
 }
 
 Actor HackroidSphere : LegendarySphere
 {
-+DONTGIB
-Renderstyle Add
-Inventory.PickupSound "UnknownSphere/pickup"
-Inventory.PickupMessage "Hackroid Sphere. This is getting out of control."
-States
-	{
-	Spawn:
-		TNT1 A 0
-		TNT1 A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,103,104)
-	SpawnLoop:
-		HSPH ABCDCB 12 Bright 
-		Loop
-	Pickup:
-		TNT1 A 1 A_GiveInventory("HackroidSphereHealth",1)
-		TNT1 A 1 A_GiveInventory("RingOfRegenerationQuiet",1)
-		Stop
-	}
+ +DONTGIB
+ Renderstyle Add
+ Inventory.PickupSound "UnknownSphere/pickup"
+ Inventory.PickupMessage "Hackroid Sphere. This is getting out of control."
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,103,104)
+  SpawnLoop:
+	HSPH ABCDCB 12 Bright 
+	Loop
+  Pickup:
+	TNT1 A 1 A_GiveInventory("HackroidSphereHealth",1)
+	TNT1 A 1 A_GiveInventory("RingOfRegenerationQuiet",1)
+	Stop
+ }
 }
 
 ACTOR HackroidHyperSphere : LegendaryUltraSphere
 {
-+DONTGIB
-Renderstyle Add
-Inventory.PickupSound "UnknownHyperSphere/pickup"
-Inventory.Pickupmessage "Hackroid Hyper Sphere! You are the future!"
-States
-	{
-	Spawn:
-		TNT1 A 0
-		TNT1 A 0 A_PlaySound("UnknownHyperSphere/idle",CHAN_ITEM,1.0,True)
-		TNT1 A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,103,105)
-	SpawnLoop:
-		TNT1 A 0 A_LoopActiveSound
-		HLUS ABCDEFGHIJK 4 Bright 
-		Loop
-	Pickup:
-		TNT1 A 0 A_GiveInventory("HackroidSphereHealth",1)
-		TNT1 A 0 A_GiveInventory("HackroidArmor",1)
-		TNT1 A 0 A_GiveInventory("RingOfRegenerationQuiet",1)
-		TNT1 A 0 A_GiveInventory("ModdedBackpack", 1)
-		TNT1 A 0 A_GiveInventory("BulletMag", 800)
-		TNT1 A 0 A_GiveInventory("NewShell", 200)
-		TNT1 A 0 A_GiveInventory("Missile", 200)
-		TNT1 A 0 A_GiveInventory("NewCell", 1200)
-		TNT1 A 0 A_GiveInventory("DemonAmmo", 1200)
-		TNT1 A 0 A_GiveInventory("HandGrenadeAmmo", 16)
-		TNT1 A 0 A_GiveInventory("MineAmmo", 16)
-		TNT1 A 0 A_GiveInventory("LDemonAmmo", 1000)
-		TNT1 A 0 A_GiveInventory("LegendaryShell",180)
-		TNT1 A 0 A_GiveInventory("LegendaryLMGBulletMag",600)
-		TNT1 A 0 A_GiveInventory("Gas",1200)
-		TNT1 A 0 A_GiveInventory("HCKAmmo", 400)
-		TNT1 A 0 A_GiveInventory("HCKShell",60)
-		Stop
-	}
+ +DONTGIB
+ Renderstyle Add
+ Inventory.PickupSound "UnknownHyperSphere/pickup"
+ Inventory.Pickupmessage "Hackroid Hyper Sphere! You are the future!"
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_PlaySound("UnknownHyperSphere/idle",CHAN_ITEM,1.0,True)
+	TNT1 A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,103,105)
+  SpawnLoop:
+	TNT1 A 0 A_LoopActiveSound
+	HLUS ABCDEFGHIJK 4 Bright 
+	Loop
+  Pickup:
+	TNT1 A 0 A_GiveInventory("HackroidSphereHealth",1)
+	TNT1 A 0 A_GiveInventory("HackroidArmor",1)
+	TNT1 A 0 A_GiveInventory("RingOfRegenerationQuiet",1)
+	TNT1 A 0 A_GiveInventory("ModdedBackpack", 1)
+	TNT1 A 0 A_GiveInventory("BulletMag", 800)
+	TNT1 A 0 A_GiveInventory("NewShell", 200)
+	TNT1 A 0 A_GiveInventory("Missile", 200)
+	TNT1 A 0 A_GiveInventory("NewCell", 1200)
+	TNT1 A 0 A_GiveInventory("DemonAmmo", 1200)
+	TNT1 A 0 A_GiveInventory("HandGrenadeAmmo", 16)
+	TNT1 A 0 A_GiveInventory("MineAmmo", 16)
+	TNT1 A 0 A_GiveInventory("LDemonAmmo", 1000)
+	TNT1 A 0 A_GiveInventory("LegendaryShell",180)
+	TNT1 A 0 A_GiveInventory("LegendaryLMGBulletMag",600)
+	TNT1 A 0 A_GiveInventory("Gas",1200)
+	TNT1 A 0 A_GiveInventory("HCKAmmo", 400)
+	TNT1 A 0 A_GiveInventory("HCKShell",60)
+	Stop
+ }
 }
 
 // Effects
