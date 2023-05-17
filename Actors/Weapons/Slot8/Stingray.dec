@@ -271,34 +271,34 @@ ACTOR StingrayMode : Inventory { Inventory.MaxAmount 1 }
 
 ACTOR StingrayShot : Fastprojectile
 {
-	Speed 200
-	Radius 4
-	Height 8
-	DamageType "PlayerDTRG"
-	Damage 16
-	Scale 1.0
-	Projectile
-	+RIPPER
-	+NODAMAGETHRUST
-	+FORCERADIUSDMG
-	+THRUACTORS
-	+SKYEXPLODE
-	+MTHRUSPECIES
-	Translation "112:127=208:223"
-	RenderStyle Translucent
-	Alpha 0.75
-	MissileType "StingrayTrail"
-	MissileHeight 8
-	Obituary "%o was obliterated by %k's Stingray!"
-	States
-	{
-	Spawn:
-		BFSH AABB 1 Bright A_Explode(1536,256,0,0,256)
-		Loop
-	Death:
-		TNT1 A 1 A_SpawnItem("StingrayBlast")
-		Stop
-	}
+ Speed 200
+ Radius 4
+ Height 8
+ DamageType "PlayerDTRG"
+ Damage 16
+ Scale 1.0
+ Projectile
+ +RIPPER
+ +NODAMAGETHRUST
+ +FORCERADIUSDMG
+ +THRUACTORS
+ +SKYEXPLODE
+ +MTHRUSPECIES
+ Translation "112:127=208:223"
+ RenderStyle Translucent
+ Alpha 0.75
+ MissileType "StingrayTrail"
+ MissileHeight 8
+ Obituary "%o was obliterated by %k's Stingray!"
+ States
+ {
+  Spawn:
+	BFSH AABB 1 Bright A_Explode(1536,256,0,0,256)
+	Loop
+  Death:
+	TNT1 A 1 A_SpawnItem("StingrayBlast")
+	Stop
+ }
 }
 
 ACTOR StingrayTrail
