@@ -72,126 +72,113 @@ Weapon.SlotNumber 7
    Spawn:
    	LDEV A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",7,1)
   SpawnLoop:
-      LDEV A -1
-      Loop
+	LDEV A -1
+	Loop
    Ready:
-      LEVG Y 0 A_PlaySound("devastator/idle",6,1.0,1)
-      LEVG Y 2 A_WeaponReady
-      Loop
-    Deselect:
+	LEVG Y 0 A_PlaySound("devastator/idle",6,1.0,1)
+	LEVG Y 2 A_WeaponReady
+	Loop
+  Deselect:
 	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",1)
-      TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
-	  TNT1 A 0 A_TakeInventory("MineAction",1)
-	  TNT1 A 0 A_TakeInventory("RailgunAction",1)
-	  TNT1 A 0 A_PlayWeaponSound("weapons/weapondown")
-      TNT1 AAA 0 A_StopSound(6)
-	  TNT1 A 0 A_Lower
-      LEVG Y 1 A_Lower
-      Goto Deselect+8
-    Select:
+	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
+	TNT1 A 0 A_TakeInventory("MineAction",1)
+	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown")
+	TNT1 AAA 0 A_StopSound(6)
+	TNT1 A 0 A_Lower
+	LEVG Y 1 A_Lower
+	Wait
+  Select:
 	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",0)
-	  TNT1 A 0 A_Raise
-      LEVG Y 1 A_Raise
-      Goto Select+1
-   Fire:
-      LEVG Y 0 A_StopSound(6)
-      LEVG B 9 A_PlayWeaponSound("devastator/charge")
-      LEVG CDEF 10 Bright
-      LEVG G 3 Bright A_FireBullets(4,4,2,20,"SuperDevPuff",0,64)
-      LEVG H 4 Bright A_FireBullets(4,4,2,20,"SuperDevPuff",0,64)
-      LEVG I 4 Bright A_FireBullets(4,4,2,20,"SuperDevPuff",0,64)
-      LEVG G 4 Bright A_FireBullets(4,4,2,20,"SuperDevPuff",0,64)
-      LEVG H 4 Bright A_FireBullets(4,4,2,20,"SuperDevPuff",0,64)
-      LEVG I 4 Bright A_FireBullets(4,4,2,20,"SuperDevPuff",0,64)
-      LEVG G 3 Bright A_FireBullets(4,4,2,20,"SuperDevPuff",0,64)
-      LEVG H 4 Bright A_FireBullets(4,4,2,20,"SuperDevPuff",0,64)
-      LEVG I 4 Bright A_FireBullets(4,4,2,20,"SuperDevPuff",0,64)
-      LEVG G 4 Bright A_FireBullets(4,4,2,20,"SuperDevPuff",0,64)
-      LEVG H 4 Bright A_FireBullets(4,4,2,20,"SuperDevPuff",0,64)
-      LEVG I 4 Bright A_FireBullets(4,4,2,20,"SuperDevPuff",0,64)
-      LEVG Y 0 A_Refire
-      LEVG J 3 Bright A_GunFlash
-      TNT1 A 0 A_Recoil(20)
-      LEVG J 1 Bright A_Playsound("devastator/fire")
-      LEVG K 9 Bright A_FireCustomMissile ("LegendaryDevastatorBall",0,1,0,0)
-      LEVG L 7 Bright
-      Goto Ready
-Hold:
-      LEVG Y 0 A_StopSound(6)
-      LEVG G 1 Bright A_PlayWeaponSound("weapons/devfch")
-      LEVG G 3 Bright A_FireBullets(4,4,2,6,"SuperDevPuff",0,64)
-      LEVG H 4 Bright A_FireBullets(4,4,2,6,"SuperDevPuff",0,64)
-      LEVG I 4 Bright A_FireBullets(4,4,2,6,"SuperDevPuff",0,64)
-      LEVG G 4 Bright A_FireBullets(4,4,2,6,"SuperDevPuff",0,64)
-      LEVG H 4 Bright A_FireBullets(4,4,2,6,"SuperDevPuff",0,64)
-      LEVG I 4 Bright A_FireBullets(4,4,2,6,"SuperDevPuff",0,64)
-      LEVG I 0 A_Refire
-      LEVG J 4 Bright A_GunFlash
-      LEVG J 1 Bright A_Playsound("devastator/fire")
-      LEVG K 10 Bright A_FireCustomMissile ("LegendaryDevastatorBall",0,1,0,0)
-      LEVG L 7 Bright
-      Goto Ready
-   Flash:
-      NULL A 5 A_Light1
-      NULL A 10 A_Light2
-      NULL A 7 A_Light1
-      NULL A 5 A_Light0
-      stop
+	TNT1 A 0 A_Raise
+	LEVG Y 1 A_Raise
+	Goto Select+1
+  Fire:
+	LEVG Y 0 A_StopSound(6)
+	LEVG B 9 A_PlayWeaponSound("devastator/charge")
+	LEVG CDEF 10 Bright
+	LEVG G 3 Bright A_FireBullets(4,4,2,20,"SuperDevPuff",0,64)
+	LEVG HIGHI 4 Bright A_FireBullets(4,4,2,20,"SuperDevPuff",0,64)
+	LEVG G 3 Bright A_FireBullets(4,4,2,20,"SuperDevPuff",0,64)
+	LEVG HIGHI 4 Bright A_FireBullets(4,4,2,20,"SuperDevPuff",0,64)
+	LEVG Y 0 A_Refire
+	LEVG J 3 Bright A_GunFlash
+	TNT1 A 0 A_Recoil(20)
+	LEVG J 1 Bright A_Playsound("devastator/fire")
+	LEVG K 9 Bright A_FireCustomMissile ("LegendaryDevastatorBall",0,1,0,0)
+	LEVG L 7 Bright
+	Goto Ready
+  Hold:
+	LEVG Y 0 A_StopSound(6)
+	LEVG G 1 Bright A_PlayWeaponSound("weapons/devfch")
+	LEVG G 3 Bright A_FireBullets(4,4,2,6,"SuperDevPuff",0,64)
+	LEVG HIGHI 4 Bright A_FireBullets(4,4,2,6,"SuperDevPuff",0,64)
+	LEVG I 0 A_Refire
+	LEVG J 4 Bright A_GunFlash
+	LEVG J 1 Bright A_Playsound("devastator/fire")
+	LEVG K 10 Bright A_FireCustomMissile ("LegendaryDevastatorBall",0,1,0,0)
+	LEVG L 7 Bright
+	Goto Ready
+  Flash:
+	NULL A 5 A_Light1
+	NULL A 10 A_Light2
+	NULL A 7 A_Light1
+	NULL A 5 A_Light0
+	stop
    }
 }
 
 Actor SuperDevPuff
 {
-   Radius 3
-   Height 3
-   RENDERSTYLE ADD
-   ALPHA 0.75
-   +ALWAYSPUFF
-   +PUFFONACTORS
-   +NOGRAVITY
-   DeathSound "weapons/buzz"
-   States
-   {
-   Spawn:
-      LLIT JKLJKLJKL 3 Bright
-      stop
-   Crash:
-      NULL A 1 Bright
-      stop
-   }
+ Radius 3
+ Height 3
+ RENDERSTYLE ADD
+ ALPHA 0.75
+ +ALWAYSPUFF
+ +PUFFONACTORS
+ +NOGRAVITY
+ DeathSound "weapons/buzz"
+ States
+ {
+  Spawn:
+	LLIT JKLJKLJKL 3 Bright
+	stop
+  Crash:
+	NULL A 1 Bright
+	stop
+ }
 }
 
 
 ACTOR LegendaryDevastatorBall 
 {
-Radius 16
-Height 16
-Damage 4000
-Speed 19
-Alpha 0.95
-Scale 0.7
-RENDERSTYLE Translucent
-Species "Player"
-DamageType "LegendaryGuruPlayer"
-Alpha 0.85
-PROJECTILE
-+FORCERADIUSDMG
-+FORCEXYBILLBOARD
-+EXTREMEDEATH
-+SKYEXPLODE
-+MTHRUSPECIES
-+NOTIMEFREEZE
-+DONTHARMSPECIES
-+NODAMAGETHRUST
-States
-{
-Spawn:
-    TNT1 A 0
+ Radius 16
+ Height 16
+ Damage 4000
+ Speed 19
+ Alpha 0.95
+ Scale 0.7
+ RENDERSTYLE Translucent
+ Species "Player"
+ DamageType "LegendaryGuruPlayer"
+ Alpha 0.85
+ PROJECTILE
+ +FORCERADIUSDMG
+ +FORCEXYBILLBOARD
+ +EXTREMEDEATH
+ +SKYEXPLODE
+ +MTHRUSPECIES
+ +NOTIMEFREEZE
+ +DONTHARMSPECIES
+ +NODAMAGETHRUST
+ States
+ {
+  Spawn:
+	TNT1 A 0
 	TNT1 A 0 A_PlaySoundEx("devastator/fly","Voice",1)
-    TNT1 A 0 A_AlertMonsters
-    TNT1 A 0 A_PlaySoundEx("devastator/fly","Voice",1)
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 A_PlaySoundEx("devastator/fly","Voice",1)
 	TNT1 A 0 A_CustomMissile("LegHumanDevastatorBolt",6,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40))
-    LGS2 A 1 Bright A_SpawnItemEx("LDevTrailParticleGold",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	LGS2 A 1 Bright A_SpawnItemEx("LDevTrailParticleGold",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
 	TNT1 A 0 Bright A_SpawnItemEx("PlayerLegendaryDevastatorProjectileAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
 	TNT1 A 0 A_CustomMissile("LegHumanDevastatorBolt",6,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40))
 	LGS2 B 1 Bright A_SpawnItemEx("LDevTrailParticleGold",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
@@ -203,35 +190,34 @@ Spawn:
 	TNT1 A 0 A_CustomMissile("LegHumanDevastatorBolt",6,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40))
 	TNT1 A 0 A_CustomMissile("LegDevastatorTrail",0,0,0,CMF_AIMDIRECTION|CMF_TRACKOWNER,0)
 	LGS2 D 1 Bright A_SpawnItemEx("LDevTrailParticleGold",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
-    TNT1 A 0 Bright A_SpawnItemEx("PlayerLegendaryDevastatorProjectileAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
+	TNT1 A 0 Bright A_SpawnItemEx("PlayerLegendaryDevastatorProjectileAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
 	Loop
-DTBFGSFX:
-    TNT1 A 0 A_AlertMonsters
-    TNT1 A 0 A_PlaySoundEx("devastator/fly","Voice",1)
+  DTBFGSFX:
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 A_PlaySoundEx("devastator/fly","Voice",1)
 	TNT1 A 0 A_Explode(32,900,0)
 	TNT1 A 0 A_CustomMissile("LegHumanDevastatorBolt",6,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40))
 	TNT1 A 0 A_SpawnItemEx("DTBFGLightningGold",Random(6,-6),Random(6,-6),Random(6,-6),0,0,0,0,128)
-    LGS2 A 1 Bright A_SpawnItemEx("LDevTrailParticleGold",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	LGS2 A 1 Bright A_SpawnItemEx("LDevTrailParticleGold",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
 	LGS2 A 1 Bright A_SpawnItemEx("PlayerLegendaryDevastatorProjectileAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
 	TNT1 A 0 A_Explode(32,900,0)
 	TNT1 A 0 A_CustomMissile("LegHumanDevastatorBolt",6,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40))
 	TNT1 A 0 A_SpawnItemEx("DTBFGLightningGold2",Random(6,-6),Random(6,-6),Random(6,-6),0,0,0,0,128)
-    LGS2 B 1 Bright A_SpawnItemEx("LDevTrailParticleGold",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	LGS2 B 1 Bright A_SpawnItemEx("LDevTrailParticleGold",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
 	LGS2 A 1 Bright A_SpawnItemEx("PlayerLegendaryDevastatorProjectileAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
 	TNT1 A 0 A_Explode(32,900,0)
 	TNT1 A 0 A_CustomMissile("LegHumanDevastatorBolt",6,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40))
 	TNT1 A 0 A_SpawnItemEx("DTBFGLightningGold",Random(6,-6),Random(6,-6),Random(6,-6),0,0,0,0,128)
-    LGS2 C 1 Bright A_SpawnItemEx("LDevTrailParticleGold",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	LGS2 C 1 Bright A_SpawnItemEx("LDevTrailParticleGold",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
 	LGS2 A 1 Bright A_SpawnItemEx("PlayerLegendaryDevastatorProjectileAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
 	TNT1 A 0 A_Explode(32,900,0)
 	TNT1 A 0 A_CustomMissile("LegHumanDevastatorBolt",6,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40))
 	TNT1 A 0 A_SpawnItemEx("DTBFGLightningGold2",Random(6,-6),Random(6,-6),Random(6,-6),0,0,0,0,128)
 	TNT1 A 0 A_CustomMissile("LegDevastatorTrail",0,0,0,CMF_AIMDIRECTION|CMF_TRACKOWNER,0)
-    LGS2 D 1 Bright A_SpawnItemEx("LDevTrailParticleGold",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	LGS2 D 1 Bright A_SpawnItemEx("LDevTrailParticleGold",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
 	LGS2 A 1 Bright A_SpawnItemEx("PlayerLegendaryDevastatorProjectileAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
-    Goto Spawn
+	Goto Spawn
 Death:
-    TNT1 A 0
 	TNT1 A 0 A_SetTranslucent(0.75,1)
 	TNT1 A 0 Radius_Quake(3,35,0,10,0)
 	TNT1 A 0 A_CustomMissile("DTBFG10KTracerHuman",0,0,0,CMF_TRACKOWNER)
@@ -304,89 +290,87 @@ Death:
 	TNT1 A 0 A_SpawnItemEx("LegDevastatorShockWave2",0,0,0,0,0,0,0,128)
 	TNT1 A 0 A_SpawnItem("LegAnniDTBFGEx",0,-10)
 	TNT1 A 0 A_SpawnItemEx("CFGuruSphereSmoke")
-	LGE1 D 0 Bright A_CustomMissile("FriendlyLegCybDevastatorBall2",0,0,18,2)
-    LGE1 D 0 Bright A_CustomMissile("FriendlyLegCybDevastatorBall2",0,0,36,2)
-    LGE1 D 0 Bright A_CustomMissile("FriendlyLegCybDevastatorBall2",0,0,54,2)
-    LGE1 D 0 Bright A_CustomMissile("FriendlyLegCybDevastatorBall2",0,0,72,2)
-    LGE1 D 0 Bright A_CustomMissile("FriendlyLegCybDevastatorBall2",0,0,90,2)
-    LGE1 D 0 Bright A_CustomMissile("FriendlyLegCybDevastatorBall2",0,0,108,2)
-    LGE1 D 0 Bright A_CustomMissile("FriendlyLegCybDevastatorBall2",0,0,126,2)
-    LGE1 D 0 Bright A_CustomMissile("FriendlyLegCybDevastatorBall2",0,0,144,2)
-    LGE1 D 0 Bright A_CustomMissile("FriendlyLegCybDevastatorBall2",0,0,144,2)
-    LGE1 D 0 Bright A_CustomMissile("FriendlyLegCybDevastatorBall2",0,0,162,2)
-    LGE1 D 0 Bright A_CustomMissile("FriendlyLegCybDevastatorBall2",0,0,180,2)
-    LGE1 D 0 Bright A_CustomMissile("FriendlyLegCybDevastatorBall2",0,0,196,2)
-    LGE1 D 0 Bright A_CustomMissile("FriendlyLegCybDevastatorBall2",0,0,216,2)
-    LGE1 D 0 Bright A_CustomMissile("FriendlyLegCybDevastatorBall2",0,0,234,2)
-    LGE1 D 0 Bright A_CustomMissile("FriendlyLegCybDevastatorBall2",0,0,252,2)
-    LGE1 D 0 Bright A_CustomMissile("FriendlyLegCybDevastatorBall2",0,0,270,2)
-    LGE1 D 0 Bright A_CustomMissile("FriendlyLegCybDevastatorBall2",0,0,288,2)
-    LGE1 D 0 Bright A_CustomMissile("FriendlyLegCybDevastatorBall2",0,0,306,2)
-    LGE1 D 0 Bright A_CustomMissile("FriendlyLegCybDevastatorBall2",0,0,324,2)
-    LGE1 D 0 Bright A_CustomMissile("FriendlyLegCybDevastatorBall2",0,0,342,2)
+	LGE1 D 0 A_CustomMissile("FriendlyLegCybDevastatorBall2",0,0,18,2)
+	LGE1 D 0 A_CustomMissile("FriendlyLegCybDevastatorBall2",0,0,36,2)
+	LGE1 D 0 A_CustomMissile("FriendlyLegCybDevastatorBall2",0,0,54,2)
+	LGE1 D 0 A_CustomMissile("FriendlyLegCybDevastatorBall2",0,0,72,2)
+	LGE1 D 0 A_CustomMissile("FriendlyLegCybDevastatorBall2",0,0,90,2)
+	LGE1 D 0 A_CustomMissile("FriendlyLegCybDevastatorBall2",0,0,108,2)
+	LGE1 D 0 A_CustomMissile("FriendlyLegCybDevastatorBall2",0,0,126,2)
+	LGE1 D 0 A_CustomMissile("FriendlyLegCybDevastatorBall2",0,0,144,2)
+	LGE1 D 0 A_CustomMissile("FriendlyLegCybDevastatorBall2",0,0,144,2)
+	LGE1 D 0 A_CustomMissile("FriendlyLegCybDevastatorBall2",0,0,162,2)
+	LGE1 D 0 A_CustomMissile("FriendlyLegCybDevastatorBall2",0,0,180,2)
+	LGE1 D 0 A_CustomMissile("FriendlyLegCybDevastatorBall2",0,0,196,2)
+	LGE1 D 0 A_CustomMissile("FriendlyLegCybDevastatorBall2",0,0,216,2)
+	LGE1 D 0 A_CustomMissile("FriendlyLegCybDevastatorBall2",0,0,234,2)
+	LGE1 D 0 A_CustomMissile("FriendlyLegCybDevastatorBall2",0,0,252,2)
+	LGE1 D 0 A_CustomMissile("FriendlyLegCybDevastatorBall2",0,0,270,2)
+	LGE1 D 0 A_CustomMissile("FriendlyLegCybDevastatorBall2",0,0,288,2)
+	LGE1 D 0 A_CustomMissile("FriendlyLegCybDevastatorBall2",0,0,306,2)
+	LGE1 D 0 A_CustomMissile("FriendlyLegCybDevastatorBall2",0,0,324,2)
+	LGE1 D 0 A_CustomMissile("FriendlyLegCybDevastatorBall2",0,0,342,2)
 	LGE1 AAAAAABBBBBBCCCCCCDDDDDD 1 A_CustomMissile("LegKaboomDevastator22",0,0,random(0,360),2,random(0,360))
-    LGE1 EF 6 Bright
-    Stop    
-    }
+	LGE1 EF 6 Bright
+	Stop    
+ }
 }
 
 ACTOR PlayerLegendaryDevastatorProjectileAttack 
 {
-Obituary "%o was pulverised by %k's Legendary Devastator."
-MissileType "PlayerLDevastatorRailgunSlug"
-PROJECTILE
-Species "Player"
-damageType "legendaryGuruPlayer"
-+NOBLOOD
-+ISMONSTER
-+THRUSPECIES
-+LOOKALLAROUND
-+QUICKTORETALIATE
-+NOTARGET
-+FRIENDLY
-+NOCLIP
-States
-{
-Spawn:
-    TNT1 A 0
+ Obituary "%o was pulverised by %k's Legendary Devastator."
+ MissileType "PlayerLDevastatorRailgunSlug"
+ PROJECTILE
+ Species "Player"
+ damageType "legendaryGuruPlayer"
+ +NOBLOOD
+ +ISMONSTER
+ +THRUSPECIES
+ +LOOKALLAROUND
+ +QUICKTORETALIATE
+ +NOTARGET
+ +FRIENDLY
+ +NOCLIP
+ States
+ {
+  Spawn:
+	TNT1 A 0
 	TNT1 A 0 A_Look
 	TNT1 AAAAA 1 A_Chase
 	Stop
-See:
-    TNT1 A 0
+  See:
 	TNT1 A 1 A_JumpIfCloser(1250,"Attack")
 	Stop
-Attack:
-    TNT1 A 0
+  Attack:
 	TNT1 A 0 A_FaceTarget
 	TNT1 A 0 A_MissileAttack
 	TNT1 A 1 A_CustomRailgun(-1,0,NONE,"Yellow",1,1,1)
 	Goto Death	
-Death:
+  Death:
 	TNT1 A 1
 	Stop
-	}
+ }
 }
 ACTOR PlayerLDevastatorRailgunSlug : ProjectileBullet
 {
-   Damage 22
-   damageType "legendaryGuruPlayer"
-   Species "Player"  
-   Decal None
-   +RIPPER
-   +NOBOSSRIP   
-   +BLOODLESSIMPACT
-   +NODAMAGETHRUST
-   +THRUSPECIES
-   +MTHRUSPECIES
-   +DONTHURTSPECIES
-   -NOEXTREMEDEATH
-   States
-   {
-   Death:
-      TNT1 A 1
-      Stop
-	  }
+ Damage 22
+ damageType "legendaryGuruPlayer"
+ Species "Player"  
+ Decal None
+ +RIPPER
+ +NOBOSSRIP   
+ +BLOODLESSIMPACT
+ +NODAMAGETHRUST
+ +THRUSPECIES
+ +MTHRUSPECIES
+ +DONTHURTSPECIES
+ -NOEXTREMEDEATH
+ States
+ {
+  Death:
+	TNT1 A 1
+	Stop
+ }
 }
 
 actor LDevTrailParticleGold : LCABFGTrailParticleGold { +NOTIMEFREEZE }
@@ -395,36 +379,35 @@ actor LDevLightningBoltGold : LCALightningBoltGold { +NOTIMEFREEZE }
 
 ACTOR FriendlyLegCybDevastatorBall2 
 {
-   Radius 8
-   Height 8
-   Speed 16
-   Damage 115
-   PROJECTILE
-   RENDERSTYLE ADD
-   ALPHA 0.90
-   ExplosionRadius 68
-   ExplosionDamage 132
-   Damagetype "LegendaryGuruPlayer"
-   Decal DoomImpScorch
-   Species "Player"
-   +THRUGHOST
-   +NOTIMEFREEZE
-   +THRUSPECIES
-   SeeSound "weapons/devbal"
-   DeathSound "weapons/devex2" 
-   States
-   {
-   Spawn:
-      LBA2 AB 4 Bright
-      Loop
-   Death:
-      //LBA2 C 1 Bright
-      //LBA2 C 3 Bright A_Explode
-	  TNT1 A 0
-	  TNT1 A 0 A_SpawnItemEx("GoldParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
-	  TNT1 AAA 0 A_CustomMissile("Kaboom9Gold", 0, 0, random(0,360), 2, random(0,360))
-	  TNT1 AAA 0 A_CustomMissile("SmokeFX4", 0, 0, random(0,360), 2, random(0,360))
-      LBA2 CDE 3 Bright A_Explode
-      Stop
-   }
+ Radius 8
+ Height 8
+ Speed 16
+ Damage 115
+ PROJECTILE
+ RENDERSTYLE ADD
+ ALPHA 0.90
+ ExplosionRadius 68
+ ExplosionDamage 132
+ Damagetype "LegendaryGuruPlayer"
+ Decal DoomImpScorch
+ Species "Player"
+ +THRUGHOST
+ +NOTIMEFREEZE
+ +THRUSPECIES
+ SeeSound "weapons/devbal"
+ DeathSound "weapons/devex2" 
+ States
+ {
+  Spawn:
+	LBA2 AB 4 Bright
+	Loop
+  Death:
+	//LBA2 C 1 Bright
+	//LBA2 C 3 Bright A_Explode
+	TNT1 A 0 A_SpawnItemEx("GoldParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AAA 0 A_CustomMissile("Kaboom9Gold", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAA 0 A_CustomMissile("SmokeFX4", 0, 0, random(0,360), 2, random(0,360))
+	LBA2 CDE 3 Bright A_Explode
+	Stop
+ }
 }

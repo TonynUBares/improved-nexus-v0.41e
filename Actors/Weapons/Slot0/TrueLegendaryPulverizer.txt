@@ -10,10 +10,10 @@ Inventory.PickupMessage "True Legendary Pulverizer"
   States
   {
   Spawn:
-    TLVA A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",7,1)
+	TLVA A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",7,1)
   SpawnLoop:
 	TLVA A -1
-    Stop
+	Stop
   Pickup:
 	TNT1 A 0 A_JumpIfInventory("True Legendary Pulverizer",1,"JustAmmo")
   All:
@@ -23,7 +23,7 @@ Inventory.PickupMessage "True Legendary Pulverizer"
 	TNT1 A 0 A_GiveInventory("LegendaryFusionCell",1)
 	Stop
   JustAmmo:
-    TNT1 A 0 A_JumpIfInventory("TrueLegendaryPulverizerGiverCheck",1,"Null")
+	TNT1 A 0 A_JumpIfInventory("TrueLegendaryPulverizerGiverCheck",1,"Null")
 	TNT1 A 0 A_GiveInventory("TrueLegendaryPulverizerGiverCheck",1)
 	TNT1 A 0 A_GiveInventory("LegendaryFusionCell",1)
 	TNT1 A 0 A_SpawnItemEx("True Legendary Pulverizer")
@@ -43,7 +43,7 @@ Inventory.PickupMessage "True Legendary Pulverizer"
   States
   {
   JustAmmo:
-    TNT1 A 0 A_JumpIfInventory("TrueLegendaryPulverizerGiverCheck",1,"Null")
+	TNT1 A 0 A_JumpIfInventory("TrueLegendaryPulverizerGiverCheck",1,"Null")
 	TNT1 A 0 A_GiveInventory("TrueLegendaryPulverizerGiverCheck",1)
 	TNT1 A 0 A_GiveInventory("LegendaryFusionCell",1)
 	Stop
@@ -55,40 +55,40 @@ Actor TrueLegendaryPulverizerGiverCheck : Inventory { Inventory.Amount 1 Invento
 
 ACTOR "True Legendary Pulverizer" : Weapon 19656
 {
-Height 20
-Weapon.SelectionOrder 2780
-Weapon.AmmoUse 1
-Weapon.AmmoGive 1
-Weapon.AmmoType "LegendaryFusionCell"
-Weapon.AmmoType2 "LegendaryFusionCell"
-Weapon.SlotNumber 0
-Weapon.SlotPriority 5.0
-Scale 1.2
-Weapon.PreferredSkin "DemonTechBFG10K-Marine"
-Inventory.PickupSound "weapons/PlanetCracker_Cling"
-Inventory.PickupMessage "True Legendary Pulverizer"
-Obituary "%o had absolutely no chance against %k's True Legendary Pulverizer."
-+INVENTORY.UNDROPPABLE
-Tag "True Legendary Pulverizer"
-States
-{
-Spawn:
-    TLVA A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",7,1)
+ Height 20
+ Weapon.SelectionOrder 2780
+ Weapon.AmmoUse 1
+ Weapon.AmmoGive 1
+ Weapon.AmmoType "LegendaryFusionCell"
+ Weapon.AmmoType2 "LegendaryFusionCell"
+ Weapon.SlotNumber 0
+ Weapon.SlotPriority 5.0
+ Scale 1.2
+ Weapon.PreferredSkin "DemonTechBFG10K-Marine"
+ Inventory.PickupSound "weapons/PlanetCracker_Cling"
+ Inventory.PickupMessage "True Legendary Pulverizer"
+ Obituary "%o had absolutely no chance against %k's True Legendary Pulverizer."
+ +INVENTORY.UNDROPPABLE
+ Tag "True Legendary Pulverizer"
+ States
+ {
+  Spawn:
+	TLVA A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",7,1)
   SpawnLoop:
 	TLVA A -1
 	Stop
- Select:
+  Select:
 	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",0)
 	TNT1 A 0 A_JumpIfNoAmmo("Select2")
-        TNT1 A 0 A_PlayWeaponSound("weapons/PlanetCracker_Mechanism3")
+		TNT1 A 0 A_PlayWeaponSound("weapons/PlanetCracker_Mechanism3")
 	TNT1 A 0 A_Raise
-       BBFI A 1 A_Raise
+	   BBFI A 1 A_Raise
 	Goto Select+3
-Select2:   
-    TNT1 A 0 A_Raise
-    BBFI M 1 A_Raise
+  Select2:   
+	TNT1 A 0 A_Raise
+	BBFI M 1 A_Raise
 	Loop
- Deselect:
+  Deselect:
 	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",1)
 	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
 	TNT1 A 0 A_TakeInventory("MineAction",1)
@@ -99,73 +99,68 @@ Select2:
 	TNT1 A 0 A_Lower
 	BBFI G 1 A_Lower
 	Goto Deselect+7
-Deselect2:
+  Deselect2:
 	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown")
 	TNT1 A 0 A_Lower
 	BBFI M 1 A_Lower
 	Goto Deselect2+1
-Ready:
-    TNT1 A 0 A_JumpIfNoAmmo("Ready2")
-    TNT1 A 0
-    TNT1 A 0 A_PlaySound("TrueLegPulverizer/Idle",5,1.0,1)
-    BBFI ABCDEFGHIJKL 2 A_WeaponReady
-    Loop
-Ready2:
-    TNT1 A 0 A_JumpIfInventory("LegendaryFusionCell",1,"ReCharge")
+  Ready:
+	TNT1 A 0 A_JumpIfNoAmmo("Ready2")
+	TNT1 A 0 A_PlaySound("TrueLegPulverizer/Idle",5,1.0,1)
+	BBFI ABCDEFGHIJKL 2 A_WeaponReady
+	Loop
+  Ready2:
+	TNT1 A 0 A_JumpIfInventory("LegendaryFusionCell",1,"ReCharge")
 	TNT1 A 0 A_StopSound(5)
 	BBFI M 1 A_WeaponReady
 	Loop
-Fire:
+  Fire:
 	TNT1 A 0 A_JumpIfNoAmmo("Ready2")
 	TNT1 A 0 A_JumpIfInventory("LegendaryFusionCell",1,1)
 	Goto Ready2
 	TNT1 A 0 A_JumpIfInventory("AgilityRuneRage",1,"NotSoFast")
 	TNT1 A 0 A_Light1
 	TNT1 A 0 A_StopSound(5)
-    TNT1 A 0 A_PlayWeaponSound("TrueLegPulverizer/Fire")
-	//TNT1 A 0 Bright A_SpawnItemEx("PTLegPulverizerCharging",0,0,10)
+	TNT1 A 0 A_PlayWeaponSound("TrueLegPulverizer/Fire")
 	BBFG A 4 Bright Radius_Quake(2,2,0,1,0)
-    BBFG BC 4 Bright Radius_Quake(4,2,0,1,0)
-    BBFG DEF 4 Bright Radius_Quake(8,2,0,1,0)
+	BBFG BC 4 Bright Radius_Quake(4,2,0,1,0)
+	BBFG DEF 4 Bright Radius_Quake(8,2,0,1,0)
 	BBFG GHI 4 Bright Radius_Quake(12,3,0,1,0)
 	BBFG J 15 Bright Radius_Quake(16,3,0,1,0)
 	TNT1 A 0 A_Light2
-    TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_GunFlash
 	BBFG K 2 Bright Radius_Quake(20,4,0,1,0)
 	TNT1 A 0 A_Recoil(50)
 	TNT1 A 0 Radius_Quake(24,6,0,1,0)
 	BBFG L 2 Bright A_FireCustomMissile("PlayerTruePulverizerBall",0,0,0,5)	
 	TNT1 A 0 A_TakeInventory("LegendaryFusionCell",1)
 	BBFG M 2 Bright
-	BBFG N 20 //Bright
+	BBFG N 20
 	TNT1 A 0 A_Light0
-	BBFG OPQRS 4 //Bright
+	BBFG OPQRS 4
 	TNT1 A 0 Radius_Quake(6,10,0,1,0)
 	TNT1 A 0 A_PlaySound("weapons/dtech10ksteam",7)
 	BBFG SSSSSSSSSSSS 1 A_FireCustomMissile("DTech10KSteam",-58+Random(-4,4),0,0,0)
 	BBFG S 20
 	TNT1 A 0 A_JumpIfInventory("LegendaryFusionCell",1,1)
 	Goto Ready2
-ReCharge:
+  ReCharge:
 	BBFG SRQ 2
 	BBFG Q 60 A_PlayWeaponSound("weapons/dtech10kcharge")
-	//BBFG O 10 A_PlayWeaponSound("weapons/plasmacellin")
 	BBFH A 2 A_PlayWeaponSound("weapons/plasmacellin")
 	BBFH BCD 2
 	Goto Ready
-NotSoFast:
-    TNT1 A 0
-    TNT1 A 0 A_Light1
+  NotSoFast:
+	TNT1 A 0 A_Light1
 	TNT1 A 0 A_StopSound(5)
-    TNT1 A 0 A_PlayWeaponSound("TrueLegPulverizer/Fire")
-	//TNT1 A 0 Bright A_SpawnItemEx("PTLegPulverizerCharging",0,0,10)
+	TNT1 A 0 A_PlayWeaponSound("TrueLegPulverizer/Fire")
 	BBFG A 8 Bright Radius_Quake(2,2,0,1,0)
-    BBFG BC 8 Bright Radius_Quake(4,2,0,1,0)
-    BBFG DEF 8 Bright Radius_Quake(8,2,0,1,0)
+	BBFG BC 8 Bright Radius_Quake(4,2,0,1,0)
+	BBFG DEF 8 Bright Radius_Quake(8,2,0,1,0)
 	BBFG GHI 8 Bright Radius_Quake(12,3,0,1,0)
 	BBFG J 30 Bright Radius_Quake(16,3,0,1,0)
 	TNT1 A 0 A_Light2
-    TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_GunFlash
 	BBFG K 4 Bright Radius_Quake(20,4,0,1,0)
 	TNT1 A 0 A_Recoil(50)
 	TNT1 A 0 Radius_Quake(24,6,0,1,0)
@@ -181,35 +176,34 @@ NotSoFast:
 	BBFG S 40
 	TNT1 A 0 A_JumpIfInventory("LegendaryFusionCell",1,1)
 	Goto Ready2
-ReCharge2:
+  ReCharge2:
 	BBFG SRQ 4
 	BBFG Q 120 A_PlayWeaponSound("weapons/dtech10kcharge")
-	//BBFG O 10 A_PlayWeaponSound("weapons/plasmacellin")
 	BBFH A 4 A_PlayWeaponSound("weapons/plasmacellin")
 	BBFH BCD 4
 	Goto Ready
-Flash:
-    TNT1 A 2 Bright A_Light1
-    TNT1 A 2 Bright A_Light2
+  Flash:
 	TNT1 A 2 Bright A_Light1
-    Goto LightDone
-    }
+	TNT1 A 2 Bright A_Light2
+	TNT1 A 2 Bright A_Light1
+	Goto LightDone
+ }
 }
 
 
 ACTOR PlayerTrueDTech10kBallExp : ClientSideEffectBase
 {
-States
-{
-Spawn:
+ States
+ {
+  Spawn:
 	TNT1 A 0
 	TNT1 A 0 A_CheckSight("Vanilla")
 	TNT1 A 0 A_SpawnItemEx("DTBFGLightningBlueSpawner",0,0,0,0,0,0,0,128)	
 	TNT1 AAAA 6 Bright A_SpawnItemEx("TrueLegDevastatorShockWave",0,0,0,0,0,0,0,128)
 	TNT1 A 0 A_SpawnItemEx("TrueLegDevastatorShockWave2",0,0,0,0,0,0,0,128)
-    TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 1 A_CustomMissile("TrueLegKaboomDevastator22",0,0,random(0,360),2,random(0,360))
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 1 A_CustomMissile("TrueLegKaboomDevastator22",0,0,random(0,360),2,random(0,360))
 	Stop
-}
+ }
 }
 
 ACTOR PlayerTruePulverizerBall : TrueLegCybDevastatorBall
@@ -237,68 +231,67 @@ States
 Spawn:
 	TNT1 A 0 A_AlertMonsters
 	TNT1 A 0 A_Explode(600,192,0,1)
-	TNT1 AAA 0 BRIGHT A_SpawnItemEx("TrueLegPlayerDTBFGTracerAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
+	TNT1 AAA 0 A_SpawnItemEx("TrueLegPlayerDTBFGTracerAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
 	TNT1 A 0 A_SpawnItemEx("TruePulverizerBombTrail",5,0,0,0,0,0,0,0,0)
-    TNT1 A 0 A_Jump(224, 2)
+	TNT1 A 0 A_Jump(224, 2)
 	TNT1 A 0 A_SpawnItemEx("TrueLegVaporizerShockwave",0,0,0,10,0,0,0,0,0)
-    TNT1 A 0 A_Jump(16, 2)
-    TNT1 A 0 A_SpawnItemEx("ArcBallLightningBolt2",Random(6,-6),Random(6,-6),Random(16,8),0,0,0,0,128)
-    TNT1 A 0 A_SpawnItemEx("LCABFGTrailParticleBlue",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	TNT1 A 0 A_Jump(16, 2)
+	TNT1 A 0 A_SpawnItemEx("ArcBallLightningBolt2",Random(6,-6),Random(6,-6),Random(16,8),0,0,0,0,128)
+	TNT1 A 0 A_SpawnItemEx("LCABFGTrailParticleBlue",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
 	HBAX A 1 Bright
-    TNT1 A 0 A_SpawnItemEx("LCABFGTrailParticleBlue",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	TNT1 A 0 A_SpawnItemEx("LCABFGTrailParticleBlue",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
 	HBAX A 1 Bright
-	TNT1 A 0 A_GiveToTarget("BlueAlert",1,AAPTR_DEFAULT) //TNT1 A 0 A_SpawnItemEx("AlertGiver",0,0,32,0,0,0,0,SXF_NOCHECKPOSITION) //TNT1 A 0 NoDelay A_RadiusGive("BlueAlert",5000,RGF_GIVESELF)
+	TNT1 A 0 A_GiveToTarget("BlueAlert",1,AAPTR_DEFAULT)
 	TNT1 A 0 A_PlaySound("Weapons/GuruFly",5,1.0,1)
 	TNT1 A 0 A_Explode(600,192,0,1)
-	TNT1 AAA 0 BRIGHT A_SpawnItemEx("TrueLegPlayerDTBFGTracerAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
+	TNT1 AAA 0 A_SpawnItemEx("TrueLegPlayerDTBFGTracerAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
 	TNT1 A 0 A_SpawnItemEx("TruePulverizerBombTrail",5,0,0,0,0,0,0,0,0)
-    TNT1 A 0 A_Jump(224, 2)
+	TNT1 A 0 A_Jump(224, 2)
 	TNT1 A 0 A_SpawnItemEx("TrueLegVaporizerShockwave",0,0,0,10,0,0,0,0,0)
-    TNT1 A 0 A_Jump(16, 2)
-    TNT1 A 0 A_SpawnItemEx("ArcBallLightningBolt2",Random(6,-6),Random(6,-6),Random(16,8),0,0,0,0,128)
-    TNT1 A 0 A_SpawnItemEx("LCABFGTrailParticleBlue",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	TNT1 A 0 A_Jump(16, 2)
+	TNT1 A 0 A_SpawnItemEx("ArcBallLightningBolt2",Random(6,-6),Random(6,-6),Random(16,8),0,0,0,0,128)
+	TNT1 A 0 A_SpawnItemEx("LCABFGTrailParticleBlue",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
 	HBAX B 1 Bright
-    TNT1 A 0 A_SpawnItemEx("LCABFGTrailParticleBlue",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	TNT1 A 0 A_SpawnItemEx("LCABFGTrailParticleBlue",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
 	HBAX B 1 Bright
 	TNT1 A 0 A_PlaySound("Weapons/GuruFly",5,1.0,1)
 	TNT1 A 0 A_Explode(600,192,0,1)
-	TNT1 AAA 0 BRIGHT A_SpawnItemEx("TrueLegPlayerDTBFGTracerAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
+	TNT1 AAA 0 A_SpawnItemEx("TrueLegPlayerDTBFGTracerAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
 	TNT1 A 0 A_SpawnItemEx("TruePulverizerBombTrail",5,0,0,0,0,0,0,0,0)
-    TNT1 A 0 A_Jump(224, 2)
+	TNT1 A 0 A_Jump(224, 2)
 	TNT1 A 0 A_SpawnItemEx("TrueLegVaporizerShockwave",0,0,0,10,0,0,0,0,0)
-    TNT1 A 0 A_Jump(16, 2)
-    TNT1 A 0 A_SpawnItemEx("ArcBallLightningBolt2",Random(6,-6),Random(6,-6),Random(16,8),0,0,0,0,128)
-    TNT1 A 0 A_SpawnItemEx("LCABFGTrailParticleBlue",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	TNT1 A 0 A_Jump(16, 2)
+	TNT1 A 0 A_SpawnItemEx("ArcBallLightningBolt2",Random(6,-6),Random(6,-6),Random(16,8),0,0,0,0,128)
+	TNT1 A 0 A_SpawnItemEx("LCABFGTrailParticleBlue",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
 	HBAX C 1 Bright
-    TNT1 A 0 A_SpawnItemEx("LCABFGTrailParticleBlue",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	TNT1 A 0 A_SpawnItemEx("LCABFGTrailParticleBlue",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
 	HBAX C 1 Bright
 	TNT1 A 0 A_PlaySound("Weapons/GuruFly",5,1.0,1)
 	TNT1 A 0 A_Explode(600,192,0,1)
-	TNT1 AAA 0 BRIGHT A_SpawnItemEx("TrueLegPlayerDTBFGTracerAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
+	TNT1 AAA 0 A_SpawnItemEx("TrueLegPlayerDTBFGTracerAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
 	TNT1 A 0 A_SpawnItemEx("TruePulverizerBombTrail",5,0,0,0,0,0,0,0,0)
-    TNT1 A 0 A_Jump(224, 2)
+	TNT1 A 0 A_Jump(224, 2)
 	TNT1 A 0 A_SpawnItemEx("TrueLegVaporizerShockwave",0,0,0,10,0,0,0,0,0)
-    TNT1 A 0 A_Jump(16, 2)
-    TNT1 A 0 A_SpawnItemEx("ArcBallLightningBolt2",Random(6,-6),Random(6,-6),Random(16,8),0,0,0,0,128)
-    TNT1 A 0 A_SpawnItemEx("LCABFGTrailParticleBlue",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	TNT1 A 0 A_Jump(16, 2)
+	TNT1 A 0 A_SpawnItemEx("ArcBallLightningBolt2",Random(6,-6),Random(6,-6),Random(16,8),0,0,0,0,128)
+	TNT1 A 0 A_SpawnItemEx("LCABFGTrailParticleBlue",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
 	HBAX D 1 Bright
-    TNT1 A 0 A_SpawnItemEx("LCABFGTrailParticleBlue",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	TNT1 A 0 A_SpawnItemEx("LCABFGTrailParticleBlue",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
 	HBAX D 1 Bright
 	TNT1 A 0 A_PlaySound("Weapons/GuruFly",5,1.0,1)
 	TNT1 A 0 A_Explode(600,192,0,1)
-	TNT1 AAA 0 BRIGHT A_SpawnItemEx("TrueLegPlayerDTBFGTracerAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
+	TNT1 AAA 0 A_SpawnItemEx("TrueLegPlayerDTBFGTracerAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
 	TNT1 A 0 A_SpawnItemEx("TruePulverizerBombTrail",5,0,0,0,0,0,0,0,0)
-    TNT1 A 0 A_Jump(224, 2)
+	TNT1 A 0 A_Jump(224, 2)
 	TNT1 A 0 A_SpawnItemEx("TrueLegVaporizerShockwave",0,0,0,10,0,0,0,0,0)
-    TNT1 A 0 A_Jump(16, 2)
-    TNT1 A 0 A_SpawnItemEx("ArcBallLightningBolt2",Random(6,-6),Random(6,-6),Random(16,8),0,0,0,0,128)
-    TNT1 A 0 A_SpawnItemEx("LCABFGTrailParticleBlue",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	TNT1 A 0 A_Jump(16, 2)
+	TNT1 A 0 A_SpawnItemEx("ArcBallLightningBolt2",Random(6,-6),Random(6,-6),Random(16,8),0,0,0,0,128)
+	TNT1 A 0 A_SpawnItemEx("LCABFGTrailParticleBlue",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
 	HBAX E 1 Bright
-    TNT1 A 0 A_SpawnItemEx("LCABFGTrailParticleBlue",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	TNT1 A 0 A_SpawnItemEx("LCABFGTrailParticleBlue",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
 	HBAX E 1 Bright
 	Loop
-Death:
-	TNT1 A 0
+  Death:
 	TNT1 A 0 A_StopSound(5)
 	TNT1 A 0 A_SpawnItemEx("PTrueLegendaryNuke",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS)
 	TNT1 A 0 A_SpawnItemEx("ArcStruckGlowX",0,0,10,0,0,0,0,128,0)
@@ -315,25 +308,25 @@ Death:
 	TNT1 A 5 A_Explode(750,10000,0,1)
 	TNT1 A 0 A_SpawnItemEx("ArcStruckGlowX",0,0,10,0,0,0,0,128,0)
 	TNT1 A 0 A_SpawnItemEx("ArcStruckGlowY",0,0,10,0,0,0,0,128,0)
-    Stop    
-    }
+	Stop	
+ }
 }
 
 ACTOR TruePulverizerBombTrail : LegCardiBombTrail
 {
-	Alpha 0.50
-	Renderstyle Add
-	+CLIENTSIDEONLY
-	+NOTIMEFREEZE
-	Scale 1.0
-	States
-	{
-	Spawn:
+ Alpha 0.50
+ Renderstyle Add
+ +CLIENTSIDEONLY
+ +NOTIMEFREEZE
+ Scale 1.0
+ States
+ {
+  Spawn:
 	TNT1 A 0
 	TNT1 A 0 A_SetScale(ScaleX -0.01, ScaleY -0.01)
 	UBAL BFBFB 1 Bright A_FadeOut(0.05)
 	Loop
-	}
+ }
 }
 
 Actor AlertGiver
@@ -362,8 +355,8 @@ Actor BlueAlert : CustomInventory
 	TNT1 A 1
 	Stop
   Pickup:
-    TNT1 A 0 ACS_NamedLockedExecute("BlueAlerted",0)
-    stop
+	TNT1 A 0 ACS_NamedLockedExecute("BlueAlerted",0)
+	stop
   }
 }
 
@@ -429,7 +422,7 @@ Actor PTrueLegendaryNuke : PlayerTruePulverizerBall
    TNT1 A 105 A_SpawnItemEx("NukeHyperSmokePillar", 0, 0, 0, 0, 0, 10, 0, SXF_CLIENTSIDE|SXF_TRANSFERPOINTERS, 0)
    TNT1 AA 0 A_SpawnItemEx("TrueLegHyperMushroom", 0, 0, 1000, 0, 0, 0, 0, SXF_CLIENTSIDE|SXF_TRANSFERPOINTERS, 0)
    TNT1 A 0 A_SpawnItemEx("NukeHyperSmokeMushroom", 0, 0, 1000, 0, 0, 0, 0, SXF_CLIENTSIDE|SXF_TRANSFERPOINTERS, 0)
-    TNT1 AAAAAAAA 0 A_CustomMissile("playertruelegbfgsmoke", 0, 0, random(0,360), 2, random(0,360))
+	TNT1 AAAAAAAA 0 A_CustomMissile("playertruelegbfgsmoke", 0, 0, random(0,360), 2, random(0,360))
    Stop
  }
 }
@@ -443,9 +436,9 @@ Actor TrueLegHyperPillar : CFNuke
  {
   Spawn:
    TNT1 A 0
-   TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1  A_SpawnItemEx("TrueLegHyperFire", 0, 0, 0, 0.00001 * Random(0, 300000), 0.00001 * Random(0, 300000), 0.00001 * Random(0, -600000), Random(0, 359), SXF_CLIENTSIDE|SXF_TRANSFERPOINTERS, 0)
+   TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1  A_SpawnItemEx("TrueLegHyperFire", 0, 0, 0,frandom(0,3.0),frandom(0,3.0),frandom(-6.0,0), Random(0, 359), SXF_CLIENTSIDE|SXF_TRANSFERPOINTERS, 0)
    TNT1 A 0 A_SpawnItem("NukeHyperSmokering", 0, 0, 0)
-   TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("TrueLegHyperFire", 0, 0, 0, 0.00001 * Random(0, 300000), 0.00001 * Random(0, 300000), 0.00001 * Random(0, -600000), Random(0, 359), SXF_CLIENTSIDE|SXF_TRANSFERPOINTERS, 0)
+   TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("TrueLegHyperFire", 0, 0, 0,frandom(0,3.0),frandom(0,3.0),frandom(-6.0,0), Random(0, 359), SXF_CLIENTSIDE|SXF_TRANSFERPOINTERS, 0)
    Stop
  }
 }
@@ -458,7 +451,7 @@ States
  {
   Spawn:
    TNT1 A 0
-   TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("TrueLegHyperFire", 0, 0, 0, 0.00001 * Random(0, 600000), 0.00001 * Random(0, 900000), 0.00001 * Random(-400000, 400000), Random(0, 359), 128, 0)
+   TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("TrueLegHyperFire", 0, 0, 0,frandom(0,6.0),frandom(0,9.0),frandom(-4.0,4.0), Random(0, 359), 128, 0)
    Stop
  }
 }
@@ -471,7 +464,7 @@ States
  {
   Spawn:
    TNT1 A 0
-   TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("TrueLegHyperFire", 0, 0, 0, 0.00001 * Random(400000, 900000), 0.00001 * Random(400000, 900000), 0, Random(0, 359), 128, 0)
+   TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("TrueLegHyperFire", 0, 0, 0,frandom(4.0, 9.0),frandom(4.0, 9.0), 0, Random(0, 359), 128, 0)
    Stop
  }
 }
@@ -536,29 +529,29 @@ ACTOR TrueLegVaporizerShockwave : LegendaryBombShockwave
   States
   {
   Spawn:
-    TNT1 A 0
-    TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
-    HBRX A 1 Bright A_FadeOut(0.04)
-    HBRB B 1 Bright A_FadeOut(0.04)
-    HBRX C 1 Bright A_FadeOut(0.04)
-    HBRB D 1 Bright A_FadeOut(0.04)
-    HBRX E 1 Bright A_FadeOut(0.04)
-    HBRB F 1 Bright A_FadeOut(0.04)
-    HBRX G 1 Bright A_FadeOut(0.04)
-    HBRB H 1 Bright A_FadeOut(0.04)
-    HBRX I 1 Bright A_FadeOut(0.04)
-    HBRB J 1 Bright A_FadeOut(0.04)
-    HBRX K 1 Bright A_FadeOut(0.04)
-    HBRB L 1 Bright A_FadeOut(0.04)
-    HBRX M 1 Bright A_FadeOut(0.04)
-    HBRB N 1 Bright A_FadeOut(0.04)
-    HBRX O 1 Bright A_FadeOut(0.04)
-    HBRB P 1 Bright A_FadeOut(0.04)
-    HBRX Q 1 Bright A_FadeOut(0.04)
-    HBRB R 1 Bright A_FadeOut(0.04)
-    Stop
+	TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	HBRX A 1 Bright A_FadeOut(0.04)
+	HBRB B 1 Bright A_FadeOut(0.04)
+	HBRX C 1 Bright A_FadeOut(0.04)
+	HBRB D 1 Bright A_FadeOut(0.04)
+	HBRX E 1 Bright A_FadeOut(0.04)
+	HBRB F 1 Bright A_FadeOut(0.04)
+	HBRX G 1 Bright A_FadeOut(0.04)
+	HBRB H 1 Bright A_FadeOut(0.04)
+	HBRX I 1 Bright A_FadeOut(0.04)
+	HBRB J 1 Bright A_FadeOut(0.04)
+	HBRX K 1 Bright A_FadeOut(0.04)
+	HBRB L 1 Bright A_FadeOut(0.04)
+	HBRX M 1 Bright A_FadeOut(0.04)
+	HBRB N 1 Bright A_FadeOut(0.04)
+	HBRX O 1 Bright A_FadeOut(0.04)
+	HBRB P 1 Bright A_FadeOut(0.04)
+	HBRX Q 1 Bright A_FadeOut(0.04)
+	HBRB R 1 Bright A_FadeOut(0.04)
+	Stop
   Vanilla:
-    TNT1 A 0
+	TNT1 A 0
 	Stop
 	}
 }
@@ -578,11 +571,11 @@ actor PTLegPulverizerCharging
   states
   {
   Spawn:
-    UBAL BDBD 2 bright A_SpawnItemEx("TrueLegVaporizerShockwave",0,0,0,10,0,0,0,0,0)
-    goto Death
+	UBAL BDBD 2 bright A_SpawnItemEx("TrueLegVaporizerShockwave",0,0,0,10,0,0,0,0,0)
+	goto Death
   Death:
-    UBAL A 4 A_SpawnItemEx("PTLegPulverizerCharging2")
-    stop
+	UBAL A 4 A_SpawnItemEx("PTLegPulverizerCharging2")
+	stop
   }
 }
 
@@ -601,11 +594,11 @@ actor PTLegPulverizerCharging2
   states
   {
   Spawn:
-    UBAL BDBD 2 bright A_SpawnItemEx("TrueLegVaporizerShockwave",0,0,0,10,0,0,0,0,0)
-    goto Death
+	UBAL BDBD 2 bright A_SpawnItemEx("TrueLegVaporizerShockwave",0,0,0,10,0,0,0,0,0)
+	goto Death
   Death:
-    UBAL A 4 A_SpawnItemEx("PTLegPulverizerCharging3",0,0,0)
-    stop
+	UBAL A 4 A_SpawnItemEx("PTLegPulverizerCharging3",0,0,0)
+	stop
   }
 }
 
@@ -624,11 +617,11 @@ actor PTLegPulverizerCharging3
   states
   {
   Spawn:
-    UBAL BDBD 2 bright A_SpawnItemEx("TrueLegVaporizerShockwave",0,0,0,10,0,0,0,0,0)
-    goto Death
+	UBAL BDBD 2 bright A_SpawnItemEx("TrueLegVaporizerShockwave",0,0,0,10,0,0,0,0,0)
+	goto Death
   Death:
-    UBAL A 4 A_SpawnItemEx("PTLegPulverizerCharging4") 
-    stop
+	UBAL A 4 A_SpawnItemEx("PTLegPulverizerCharging4") 
+	stop
   }
 }
 
@@ -647,11 +640,11 @@ actor PTLegPulverizerCharging4
   states
   {
   Spawn:
-    UBAL BDBD 2 bright A_SpawnItemEx("TrueLegVaporizerShockwave",0,0,0,10,0,0,0,0,0)
-    goto Death
+	UBAL BDBD 2 bright A_SpawnItemEx("TrueLegVaporizerShockwave",0,0,0,10,0,0,0,0,0)
+	goto Death
   Death:
-    UBAL A 4 A_SpawnItemEx("PTLegPulverizerCharging5") 
-    stop
+	UBAL A 4 A_SpawnItemEx("PTLegPulverizerCharging5") 
+	stop
   }
 }
 
@@ -670,11 +663,11 @@ actor PTLegPulverizerCharging5
   states
   {
   Spawn:
-    UBAL BDBD 2 bright A_SpawnItemEx("TrueLegVaporizerShockwave",0,0,0,10,0,0,0,0,0)
-    goto Death
+	UBAL BDBD 2 bright A_SpawnItemEx("TrueLegVaporizerShockwave",0,0,0,10,0,0,0,0,0)
+	goto Death
   Death:
-    UBAL A 4 A_SpawnItemEx("PTLegPulverizerCharging6") 
-    stop
+	UBAL A 4 A_SpawnItemEx("PTLegPulverizerCharging6") 
+	stop
   }
 }
 
@@ -695,11 +688,11 @@ actor PTLegPulverizerCharging6
   states
   {
   Spawn:
-    UBAL BDBD 2 bright A_SpawnItemEx("TrueLegVaporizerShockwave",0,0,0,10,0,0,0,0,0)
-    goto Death
+	UBAL BDBD 2 bright A_SpawnItemEx("TrueLegVaporizerShockwave",0,0,0,10,0,0,0,0,0)
+	goto Death
   Death:
-    UBAL A 4 A_SpawnItemEx("PTLegPulverizerCharging7")
-    stop
+	UBAL A 4 A_SpawnItemEx("PTLegPulverizerCharging7")
+	stop
   }
 }
 
@@ -720,11 +713,11 @@ actor PTLegPulverizerCharging7
   states
   {
   Spawn:
-    UBAL BDBD 2 bright A_SpawnItemEx("TrueLegVaporizerShockwave",0,0,0,10,0,0,0,0,0)
-    goto Death
+	UBAL BDBD 2 bright A_SpawnItemEx("TrueLegVaporizerShockwave",0,0,0,10,0,0,0,0,0)
+	goto Death
   Death:
-    UBAL A 4 A_SpawnItemEx("PTLegPulverizerCharging8") 
-    stop
+	UBAL A 4 A_SpawnItemEx("PTLegPulverizerCharging8") 
+	stop
   }
 }
 
@@ -745,11 +738,11 @@ actor PTLegPulverizerCharging8
   states
   {
   Spawn:
-    UBAL BDBD 2 bright A_SpawnItemEx("TrueLegVaporizerShockwave",0,0,0,10,0,0,0,0,0)
-    goto Death
+	UBAL BDBD 2 bright A_SpawnItemEx("TrueLegVaporizerShockwave",0,0,0,10,0,0,0,0,0)
+	goto Death
   Death:
-    UBAL A 4 A_SpawnItemEx("PTLegPulverizerCharging9")
-    stop
+	UBAL A 4 A_SpawnItemEx("PTLegPulverizerCharging9")
+	stop
   }
 }
 
@@ -770,11 +763,11 @@ actor PTLegPulverizerCharging9
   states
   {
   Spawn:
-    UBAL BDBD 2 bright A_SpawnItemEx("TrueLegVaporizerShockwave",0,0,0,10,0,0,0,0,0)
-    goto Death
+	UBAL BDBD 2 bright A_SpawnItemEx("TrueLegVaporizerShockwave",0,0,0,10,0,0,0,0,0)
+	goto Death
   Death:
-    UBAL A 4 A_SpawnItemEx("PTLegPulverizerCharging10")
-    stop
+	UBAL A 4 A_SpawnItemEx("PTLegPulverizerCharging10")
+	stop
   }
 }
 
@@ -794,11 +787,11 @@ actor PTLegPulverizerCharging10
   states
   {
   Spawn:
-    UBAL B 2 BRIGHT A_SpawnItemEx("TrueLegVaporizerShockwave",0,0,0,10,0,0,0,0,0)
-    UBAL BDBDBDBDBDBDBDBDBD 8 bright
-    goto Death
+	UBAL B 2 BRIGHT A_SpawnItemEx("TrueLegVaporizerShockwave",0,0,0,10,0,0,0,0,0)
+	UBAL BDBDBDBDBDBDBDBDBD 8 bright
+	goto Death
   Death:
-    UBAL B 4 BRIGHT
-    stop
+	UBAL B 4 BRIGHT
+	stop
   }
 }

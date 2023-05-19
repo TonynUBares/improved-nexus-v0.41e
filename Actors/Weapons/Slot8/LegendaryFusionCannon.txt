@@ -86,8 +86,8 @@ Actor "Legendary Fusion Cannon" : Weapon
 	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",1)
 	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown")
   Deselectloop:
-	TNT1 AAA 0 A_StopSound(5)
-	TNT1 AAA 0 A_StopSound(6)
+	TNT1 A 0 A_StopSound(5)
+	TNT1 A 0 A_StopSound(6)
 	TNT1 A 0 A_ZoomFactor(1)
 	TNT1 A 0 A_Lower
 	RLBU A 1 A_Lower
@@ -180,8 +180,7 @@ Actor "Legendary Fusion Cannon" : Weapon
 	RLBU A 1 Offset(2,34) A_ZoomFactor(0.85)
 	RLBU A 1 Offset(1,33) A_ZoomFactor(0.875)
 	RLBU A 1 Offset(0,32) A_ZoomFactor(0.9)
-	RLBU A 1 A_ZoomFactor(0.925)
-	RLBU A 1 A_ZoomFactor(0.925)
+	RLBU AA 1 A_ZoomFactor(0.925)
 	RLBU A 1 A_ZoomFactor(0.95)
 	RLBU A 1 A_ZoomFactor(0.975)
 	RLBU A 1 A_ZoomFactor(1)
@@ -211,7 +210,7 @@ ACTOR LegendaryFusionCell : Ammo
  States
  {
   Spawn:
-	LFSC ABCD 3 A_CustomMissile ("LegendaryBlueParticleSpawner", 0, 0, random(0,-360), 2, random(0,360))
+	LFSC ABCD 3 A_CustomMissile ("LegendaryBlueParticleSpawner", 0, 0, random(0,359), 2, random(0,359))
 	Loop
  }
 }
@@ -256,8 +255,8 @@ ACTOR PlayerRTLBBall
 	TNT1 A 0 A_SpawnItemEx("CFGuruTrailSpark",random(-28,28),random(-28,28),random(-28,28),0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
 	TNT1 A 0 A_SpawnItemEx("CFGuruTrail",-3,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
 	YBAL A 1 Bright
-	TNT1 AAA 0 Bright A_CustomMissile("PlayerLRTLBBolt",0,0,random(0,360),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(0,360))
-	TNT1 A 0 A_CustomMissile("PlayerRTLBLiteShot",0,0,random(0,360),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-10,10))
+	TNT1 AAA 0 Bright A_CustomMissile("PlayerLRTLBBolt",0,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(0,359))
+	TNT1 A 0 A_CustomMissile("PlayerRTLBLiteShot",0,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-10,10))
 	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND,0,1250,0,360,"Attack")
 	Loop
   Attack:
@@ -273,7 +272,7 @@ ACTOR PlayerRTLBBall
 	//IMPACT STUFF
 	TNT1 A 0 A_SpawnItemEx("CFGuruStruckGlowX",0,0,10,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
 	TNT1 A 0 A_SpawnItemEx("CFGuruStruckGlowY",0,0,10,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
-	TNT1 AAA 0 A_SpawnItemEx("FusionSphereSmoke",random(-126,126),random(-126,126),random(-66,66),0.00001 * random(-100000,100000),0.00001 * random(-100000,100000),0.00001 * random(-100000,100000),random(0,360),SXF_SETMASTER|SXF_NOCHECKPOSITION,0)
+	TNT1 AAA 0 A_SpawnItemEx("FusionSphereSmoke",random(-126,126),random(-126,126),random(-66,66),frandom(-1.0,1.0),frandom(-1.0,1.0),frandom(-1.0,1.0),random(0,359),SXF_SETMASTER|SXF_NOCHECKPOSITION,0)
 	TNT1 AAA 0 A_SpawnItemEx("CFGuruChunkSpark",random(-126,126),random(-126,126),random(-66,66),0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
 	TNT1 AAA 2 A_SpawnItemEx("CFGuruChunkSpark",random(-126,126),random(-126,126),random(-66,66),0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
 	Stop
@@ -307,7 +306,7 @@ ACTOR PlayerLRTLBBolt : LRTLBBolt
   XDeath:
 	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "VanillaDeath")
 	TNT1 A 0 A_SpawnItemEx("LegendaryGoldParticleSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
-	TNT1 AAAA 0 Bright A_CustomMissile("LegKaboomDevastator15",0,0,random(0,360),CMF_AIMDIRECTION,random(0,360))
+	TNT1 AAAA 0 Bright A_CustomMissile("LegKaboomDevastator15",0,0,random(0,359),CMF_AIMDIRECTION,random(0,359))
   VanillaDeath:
 	LVS1 LMN 2 Bright
 	Stop
@@ -346,7 +345,7 @@ ACTOR PRTLDeathball : CFGuruDeathBall
 	TNT1 A 0 A_Explode(1600,128,0,1)
 	TNT1 AA 0 A_SpawnItemEx("CFGuruTrailSpark",random(42,-42),random(42,-42),random(42,-42),0,0,0,0,0,0)
 	TNT1 AA 0 A_SpawnItemEx("CFGuruEmpowerTrail",-3,0,0,0,0,0,0,0,0)
-	TNT1 AAAAA 0 A_CustomMissile("PlayerLRTLBBolt",0,0,random(0,360),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-45,45))
+	TNT1 AAAAA 0 A_CustomMissile("PlayerLRTLBBolt",0,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-45,45))
 	YBAL A 1 bright
 	loop
   Death:
@@ -354,8 +353,8 @@ ACTOR PRTLDeathball : CFGuruDeathBall
 	TNT1 A 0 A_SpawnItemEx("CFGuruGigaStruckGlowX",0,0,10,0,0,0,0,SXF_TRANSFERPOINTERS,0)
 	TNT1 A 0 A_SpawnItemEx("CFGuruGigaStruckGlowY",0,0,10,0,0,0,0,SXF_TRANSFERPOINTERS,0)
 	TNT1 A 0 A_SpawnItemEx("FusionChunkRainSpawner",0,0,15,0,0,0,0,SXF_TRANSFERPOINTERS,0)
-	TNT1 A 0 A_SpawnItemEx("CFGuruKaplosionSpawner",random(80,-80),random(80,-80),random(80,-80),frandom(25,29),frandom(25,29),frandom(-30,30),random(0,359),SXF_TRANSFERPOINTERS,0)
-	TNT1 A 1 Bright A_SpawnItemEx("FusionSphereSmoke",random(-126,126),random(-126,126),random(-66,66),0.00001 * random(-100000,100000),0.00001 * random(-100000,100000),0.00001 * random(-100000,100000),random(0,360),SXF_SETMASTER|SXF_NOCHECKPOSITION,0)
+	TNT1 A 0 A_SpawnItemEx("CFGuruKaplosionSpawner",random(80,-80),random(80,-80),random(80,-80),frandom(25.0,29.0),frandom(25.0,29.0),frandom(-30.0,30.0),random(0,359),SXF_TRANSFERPOINTERS,0)
+	TNT1 A 1 Bright A_SpawnItemEx("FusionSphereSmoke",random(-126,126),random(-126,126),random(-66,66),frandom(-1.0,1.0),frandom(-1.0,1.0),frandom(-1.0,1.0),random(0,359),SXF_SETMASTER|SXF_NOCHECKPOSITION,0)
 	TNT1 A 0 A_Explode(7000,6500,0,1)
 	TNT1 AAA 1 A_SpawnItemEx("CFGuruStormSpawner",0,0,10,0,0,0,0,SXF_TRANSFERPOINTERS,0)
 	//TNT1 A 1 A_PlaySound("Weapons/GuruBoom",6)
@@ -400,7 +399,7 @@ actor FusionSphereChunker : CFGuruSpawnerInheritance
  {
   Spawn:
 	TNT1 A 0
-	TNT1 AAA 3 A_SpawnItemEx("FusionSphereChunk",random(100,-100),random(100,-100),random(70,-70),frandom(1,12),frandom(1,12),frandom(16,20),random(0,359),0,0)
+	TNT1 AAA 3 A_SpawnItemEx("FusionSphereChunk",random(100,-100),random(100,-100),random(70,-70),frandom(1.0,12.0),frandom(1.0,12.0),frandom(16.0,20.0),random(0,359),0,0)
 	Stop
   Death:
 	TNT1 A 1
@@ -429,14 +428,14 @@ ACTOR FusionSphereChunk
 	TNT1 A 0 A_Jump(128,2)
 	YSHK A 2 Bright A_SpawnItemEx("CFGuruTrailSpark",0,0,0,0,0,0,0,0,0)
 	Loop
-	YSHK A 2 Bright A_SpawnItemEx("CFGuruChunkTrail",frandom(-5,5),frandom(-5,5),frandom(-5,5),0.00001*random(10000,-10000),0.00001*random(10000,-10000),0.00001*random(10000,-10000),random(0,359),0,0)
+	YSHK A 2 Bright A_SpawnItemEx("CFGuruChunkTrail",frandom(-5.0,5.0),frandom(-5.0,5.0),frandom(-5.0,5.0),frandom(-0.1,0.1),frandom(-0.1,0.1),frandom(-0.1,0.1),random(0,359),0,0)
 	Loop
   Death:
 	TNT1 A 0 A_PlaySound("Weapons/GuruHit")
 	TNT1 A 0 A_PlaySound("Weapons/GuruBlast3",5)
 	TNT1 A 0 A_Explode(5000,192)
 	TNT1 AAA 0 A_SpawnItemEx("CFGuruChunkSpark",random(8,-8),random(8,-8),random(8,-8),0,0,0,0,0,0)
-	TNT1 AA 0 A_SpawnItemEx("FusionSphereSmoke",0,0,0,0.00001*random(100000,-100000),0.00001*random(100000,-100000),0.00001*random(100000,-100000),random(0,359),0,0)
+	TNT1 AA 0 A_SpawnItemEx("FusionSphereSmoke",0,0,0,frandom(-1.0,1.0),frandom(-1.0,1.0),frandom(-1.0,1.0),random(0,359),0,0)
 	Stop
  }
 }
