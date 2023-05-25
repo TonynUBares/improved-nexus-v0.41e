@@ -1,0 +1,39 @@
+This script MUST be credited to TonynUBares.
+And please, follow the comment down below and try to not mess it up
+
+str sgname[8] =
+{
+"\c[t7]s\c[n6]i\c[j8]n\c[c6]-\c[k5]g\c[e6]e\c[d3]n\c[v0]j\c[a4]i\c[g2]tsu",
+"\c[r2]Y29ycnVwdA==",
+"\c[n4]636f7272757074",
+"\c[b3]2147483647",
+"\c[s5]abcdefghijklmnopqrstupwxyz",
+"\c[o9]dt1k5blwa3f9",
+"\c[a2]6666666666666",
+"\c[n7]Yi76B76t7hB68Otb7N",
+};
+
+Script "SGActiveScript" (void)
+{
+ int x,currhealth,newhealth,multiplier,newDF,currDF;
+ currhealth = 7000;
+ currDF = 1.0;
+
+ while(FixedDiv(currhealth<<16,currDF) > (100<<16)) 
+  {
+   if(ClassifyActor(0) & ACTOR_DEAD) {break;}
+   currhealth = GetActorProperty(0,APROP_Health);
+   currDF = GetActorProperty(0,APROP_DamageFactor);
+   newhealth = random(100,32200);
+   multiplier = FixedDiv(currhealth<<16,currDF);
+   newDF = FixedDiv(newhealth<<16,multiplier);
+   SetActorProperty(0,APROP_DamageFactor,newDF);
+   SetActorProperty(0,APROP_Health,newhealth);
+   SetActorProperty(0,APROP_NameTag,sgname[random(0,7)]);
+   Delay(35*2);
+  }
+}
+
+/* If you want the newhealth to exceed 1<<15 (aka 32768), be sure to add a condition like this after calculating newDF to avoid surprises
+if(!(newhealth/32768) && (newhealth/32768)%2) {newDF = -newDF;}
+and find a way to avoid divisions by 0*/
