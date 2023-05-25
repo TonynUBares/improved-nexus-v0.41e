@@ -112,24 +112,10 @@ ACTOR singenjitsu3 : GenericBoss
 	TNT1 A 0 ACS_NamedExecuteAlways("ModifyMonster",0,2)
 	TNT1 A 0 A_StopSound(5)
 	TNT1 A 0 A_StopSound(7)
-<<<<<<< Updated upstream
   	TNT1 A 0 ACS_NamedExecuteAlways("SGActiveScript",0)
   SpawnLoopster:
 	SING A 7 bright A_Look
 	Loop
-=======
-<<<<<<< HEAD
-	TNT1 A 0 ACS_NamedExecuteAlways("SGActiveScript",0)
-  SpawnLoopster:
-	SING A 7 Bright A_Look
-	Loop
-=======
-  SpawnLoopster:
-	TNT1 A 0 ACS_NamedExecuteAlways("SGActiveScript",0)
-    SING A 1 bright A_Look
-	loop
->>>>>>> parent of 5c3ceb5 (Update sin-genjitsu3.txt)
->>>>>>> Stashed changes
   BegoneThot:
 	TNT1 A 1
 	TNT1 A 0 A_SpawnItemEx("Spidermastermind",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
