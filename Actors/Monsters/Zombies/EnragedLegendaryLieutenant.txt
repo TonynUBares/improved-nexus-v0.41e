@@ -232,6 +232,7 @@ Actor EnragedLegendaryLieutenant : EnragedLegendaryAssaultCaptain
 	ESSZ L -1
 	Stop
   LegendarySoul:
+	ESSZ H 1
 	TNT1 A 0 A_SpawnItem("EnragedHellionSmokeSpawner",0,0,0,0)
 	ESSZ H 6
 	TNT1 A 0 A_SpawnItem("EnragedHellionSmokeSpawner",0,0,0,0)

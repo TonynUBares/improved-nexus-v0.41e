@@ -224,7 +224,6 @@ ACTOR PhaseShotgunCommando 22452
     PSGC G 6 A_Pain
     Goto See
   Death:
-    TNT1 A 0 A_SetUserVar("user_attack",0)
 	TNT1 A 0 A_PlaySound("HeavyChaingun/Down",CHAN_WEAPON,1.0,0)
 	TNT1 A 0 A_Jump(42,"PhaseMoon")
 	TNT1 A 0 A_SetTranslucent(1)
@@ -232,11 +231,7 @@ ACTOR PhaseShotgunCommando 22452
     PSGC I 5 A_Scream 
     PSGC J 5 A_Fall 
     PSGC K 5 A_SpawnItem("BodyCrash",0,0,0,0)
-    PSGC L 5 
-	PSGC M 5 
-	PSGC N 5 
-	PSGC O 5 
-	PSGC P 5 
+    PSGC LMNOP 5
 	PSGC P -1
     Stop
   PhaseMoon:
@@ -250,20 +245,15 @@ ACTOR PhaseShotgunCommando 22452
 	TNT1 A 0 A_SpawnItem("PHellionSmokeSpawner",0,0,0,0)
     PSGC K 5 A_SpawnItem("BodyCrash",0,0,0,0)
 	TNT1 A 0 A_SpawnItem("PHellionSmokeSpawner",0,0,0,0)
-	PSGC L 5
-	PSGC M 5
-	PSGC N 5
-	PSGC O 5
+	PSGC LMNO 5
     PSGC P 140
 	PSGC P 0 A_PlaySoundEx("brain/spit","Voice",0,2)
 	PSGC PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP 2 A_SpawnItem("PHellionSmokeSpawner",0,0,0,0)
 	PSGC P 0 A_PlaySoundEx("TLegZomb/Resurrect",7,0,1)
 	PHMO PONMLKJGH 11 Bright
 	TNT1 A 0 A_SpawnItemEx("PhaseMoon",0,0,16,0,0,0,0,32)
-	TNT1 A 0
 	Stop
   Raise:
-  	TNT1 A 0
 	TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
     PSGC PONMLKJIH 5 A_SpawnItem("PHellionSmokeSpawner",0,0,0,0)
     Goto See

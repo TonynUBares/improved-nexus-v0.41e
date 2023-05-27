@@ -294,22 +294,16 @@ ACTOR PhaseMoon 23452
     PHMO G 6 A_Pain
     Goto Missile
   Death:
-	TNT1 A 0 A_SetUserVar("user_attack",0)
 	TNT1 A 0 A_PlaySound("HeavyChaingun/Down",CHAN_WEAPON,1.0,0)
 	TNT1 A 0 A_SetTranslucent(1)
     PHMO H 5
     PHMO I 5 A_Scream 
     PHMO J 5 A_Fall 
     PHMO K 5 A_SpawnItem("BodyCrash",0,0,0,0)
-    PHMO L 5 
-	PHMO M 5 
-	PHMO N 5 
-	PHMO O 5 
-	PHMO P 5 
+    PHMO LMNO 5
 	PHMO P -1
     Stop
   Raise:
-  	TNT1 A 0
 	TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
     PHMO PONMLKJIH 5
     Goto See

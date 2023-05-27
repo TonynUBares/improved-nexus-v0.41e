@@ -1,6 +1,6 @@
 iNexus-v0.x
 - Made Nexus fully compatible with GZdoom 
-- Made Nexus compatibile with CF4.2.4+ and all the available patches
+- Made Nexus compatibile with CF4.2.4+ and all the available gzdoom mod patches
 - Removed every single fucking blyat console error that these cursed addons had!
 - Included NemesisHellsmith addon
 - Made weapons use the Reload and Zoom keys (no more Altfire to reload and RailgunAction to zoom)
@@ -11,7 +11,7 @@ iNexus-v0.x
    TXS crates scripts reworked to look better
    Marines scripts reworked a bit better
 - Reworked OccultSpellbook
-    Added new interactive Altfire menu
+    Added new interactive Altfire menu (update: now with mouse movement)
     Added two new sounds for the Altfire menu
     Bound every mode to a different key (Altfire, Zoom, Reload, Grenade, Mine)
 - Reworked Skulltag runes
@@ -42,4 +42,17 @@ iNexus-v0.x
    Also removed every instance of Unmaker (including the crates and shuffle drops)
    Unmaker now has its own D64-inspired system
 - Added a CCARDS lump, because why not
-- Balanced (partially) Hackroid boys
+- Rework(ing)ed Hackroid boys
+   Balanced (partially)
+   New attack mechanic (soon)
+- Balanced (partially) Nemesis Hellsmith
+- Fixed a very serious server-fucking problem with SinGenjitsu3
+   Rework SGActiveScript to work as it probably was intended to
+- Rework(ing)ed Hackroid Weapons:
+   They hack the system and don't consume ammo anymore
+   They hack the HUD and the statusbar and show TV-static-like in place of the ammo
+- Reworked Beacons to make full use of Gaturra's sprites
+   They now show their "loading" bar that fills to 100% when they are ready to spawn more stuff
+   They will play the beep/alarm sound when ready, not when you step on them and they are not ready
+
+

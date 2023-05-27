@@ -188,7 +188,6 @@ actor SSUberSoldierExMinigun 21924
 		EMSS E 6 A_Pain
 		Goto SeeLoop
 	Death:
-		TNT1 A 0
 		TNT1 AAA 0 A_StopSound(CHAN_WEAPON)
 		EMSS I 5 A_ScreamAndUnblock
 		EMSS J 5 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)

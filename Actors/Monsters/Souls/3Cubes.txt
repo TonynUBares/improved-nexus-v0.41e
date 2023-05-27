@@ -62,7 +62,6 @@ Actor GuardianCube 20102
     CUBE D 1 A_Pain 
     Goto See 
   Death:
-	TNT1 A 0
 	TNT1 A 0 A_playsound("weapons/rocklx")
 	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
     TNT1 AAA 0 A_CustomMissile("Kaboom3", 0, 0, random(0,360), 2, random(0,360))
@@ -98,7 +97,6 @@ Actor CubeShot
     CBAL AB 1 Bright A_SpawnItemEx("CubeShotTrail",0,0,0,0,0,0,0,128,0)
     Loop
   Death:
-	TNT1 A 0
 	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
 	TNT1 AAA 0 A_CustomMissile("MiniKaboom9", 0, 0, random(0,360), 2, random(0,360))
 	TNT1 AAA 0 A_CustomMissile("SmokeFX4", 0, 0, random(0,360), 2, random(0,360))
@@ -168,7 +166,6 @@ Actor DTGuardianCube : GuardianCube
     DTCB D 1 A_Pain 
     Goto See 
   Death:
-	TNT1 A 0
 	TNT1 A 0 A_playsound("weapons/clrocketexplode")
 	TNT1 A 0 A_SpawnItemEx("GreenParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
     TNT1 AAA 0 A_CustomMissile("Kaboom4", 0, 0, random(0,360), 2, random(0,360))
@@ -250,7 +247,6 @@ Actor PhaseGuardianCube : GuardianCube 20104
     Goto See 
   Death:
 	TNT1 A 0 A_SetTranslucent(1)
-	TNT1 A 0
 	TNT1 A 0 A_playsound("weapons/clrocketexplode")
 	TNT1 A 0 A_SpawnItemEx("PurpleParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
     TNT1 AAA 0 A_CustomMissile("PurpleKaboom4", 0, 0, random(0,360), 2, random(0,360))
@@ -304,7 +300,6 @@ Actor PhaseCubeShot
       PTPR A 1 Bright A_SpawnItemEx("PhaseSentryDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
       Goto Spawn2
    Death:
-   	  TNT1 A 0
 	  TNT1 A 0 A_SpawnItemEx("PhaseSentryDemonTechEx",0,0,0,0,0,0,0,128,0)
 	  TNT1 AAA 0 A_CustomMissile("Kaboom8", 0, 0, random(0,360), 2, random(0,360))
 	  TNT1 AAA 0 A_CustomMissile("SmokeFX4", 0, 0, random(0,360), 2, random(0,360))

@@ -461,7 +461,6 @@ ACTOR MakaiSlut
 	MYS2 L 5 ACS_NamedExecuteAlways("TakeResistance") //A_UnSetInvulnerable
 	Goto MoreSee
   Death:
-	TNT1 A 0
 	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("GetCVar",53) == 1,"Death2")
 	MYST M 70 A_PlaySound("uroboros/death",6,1.0,0,ATTN_NONE)
 	TNT1 A 0 A_NoBlocking

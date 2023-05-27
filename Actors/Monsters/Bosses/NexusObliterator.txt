@@ -953,12 +953,10 @@ ACTOR NexusObliterator 29316
     OBAR H 4 A_Pain
     Goto RageMissile
   Death:
-	TNT1 A 0
 	TNT1 A 0 A_Jump(100,"DeathPyro","DeathBlackHole","Lucky4U")
 	TNT1 A 0 A_Jump(40,"DeathNuke")
 	Goto DeathDevastator
   DeathDevastator:
-	TNT1 A 0
     OBAR H 0 A_Scream
 	OBAR HHHHHHHHHHHHHHHHHHHHHHHHHHH 2 Bright A_SpawnItemEx("ObliteratorDeathKaboom",random(-32,32),random(-40,40),random(16,48),random(-4,4),random(-4,4),random(0,4),0,SXF_TRANSFERPOINTERS)
 	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
@@ -987,7 +985,6 @@ ACTOR NexusObliterator 29316
     OBAR O -1
     Stop
   DeathPyro:
-	TNT1 A 0
     OBAR H 0 A_Scream
 	OBAR HHHHHHHHHHHHHHHHHHHHHHHHHHH 2 Bright A_SpawnItemEx("ObliteratorDeathKaboom",random(-32,32),random(-40,40),random(16,48),random(-4,4),random(-4,4),random(0,4),0,SXF_TRANSFERPOINTERS)
 	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
@@ -1016,7 +1013,6 @@ ACTOR NexusObliterator 29316
     OBAR O -1
     Stop
   DeathBlackHole:
-	TNT1 A 0
     OBAR H 0 A_Scream
 	OBAR HHHHHHHHHHHHHHHHHHHHHHHHHHH 2 Bright A_SpawnItemEx("ObliteratorDeathKaboom",random(-32,32),random(-40,40),random(16,48),random(-4,4),random(-4,4),random(0,4),0,SXF_TRANSFERPOINTERS)
 	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
@@ -1044,7 +1040,6 @@ ACTOR NexusObliterator 29316
     OBAR O -1
     Stop
   DeathNuke:
-	TNT1 A 0
     OBAR H 0 A_Scream
 	OBAR HHHHHHHHHHHHHHHHHHHHHHHHHHH 2 Bright A_SpawnItemEx("ObliteratorDeathKaboom",random(-32,32),random(-40,40),random(16,48),random(-4,4),random(-4,4),random(0,4),0,SXF_TRANSFERPOINTERS)
 	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
@@ -1072,7 +1067,6 @@ ACTOR NexusObliterator 29316
     OBAR O -1
     Stop
   Lucky4U:
-	TNT1 A 0
     OBAR H 0 A_Scream
 	OBAR HHHHHHHHHHHHHHHHHHHHHHHHHHH 2 Bright A_SpawnItemEx("ObliteratorDeathKaboom",random(-32,32),random(-40,40),random(16,48),random(-4,4),random(-4,4),random(0,4),0,SXF_TRANSFERPOINTERS)
 	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)

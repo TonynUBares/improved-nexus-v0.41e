@@ -95,7 +95,6 @@ States
 		TRCZ G 3
 		GoTo See
 	Death:
-		TNT1 A 0
 		TRCZ H 5 A_Scream
 		TRCZ I 5 A_Fall
 		TRCZ JKLM 4

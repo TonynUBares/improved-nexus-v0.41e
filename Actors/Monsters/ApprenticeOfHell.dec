@@ -148,6 +148,7 @@ ACTOR Apprentice 31600
 		SMT1 P 10 A_Pain 
 		Goto See 
 	Death: 
+		SMT1 Q 1
 		SMT1 Q 6 A_CustomMissile("SmithHammer",128,-40,-30,0)
 		SMT1 R 6 A_Scream
 		SMT1 STU 6 

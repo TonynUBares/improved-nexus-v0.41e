@@ -92,7 +92,6 @@ States
 		FLMZ G 4
 		GoTo See
 	Death:
-		TNT1 A 0
 		FLMZ G 5 A_ScreamAndUnBlock
 		FLMZ H 5
 		FLMZ IJK 5

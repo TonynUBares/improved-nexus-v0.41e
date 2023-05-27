@@ -125,6 +125,7 @@ States
 	DARO E 6 A_Pain
 	Goto Missile
   Death:
+	DARO G 1
     DARO G 5 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
     DARO H 5 A_Scream
     DARO I 5

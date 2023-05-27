@@ -413,6 +413,7 @@ States
 	L0HS F 2 Bright A_SpawnItemEx("MinisterOfHellFlameSpawner")
 	Goto See
   Death: 
+	L0HS I 1
 	L0HS II 2 A_SpawnItemEx("GreenGibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)	
 	TNT1 AAA 0 A_CustomMissile("BigGreenBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
 	L0HS II 2 A_SpawnItemEx("GreenGibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)	

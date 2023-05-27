@@ -53,6 +53,7 @@ Actor SSDualRocketMan : SSRocketMan 29546
     GOER D 3 A_Pain
     goto See
   Death:
+    GOER H 1
     GOER H 5 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
     GOER I 5 A_Scream
     GOER J 5 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)

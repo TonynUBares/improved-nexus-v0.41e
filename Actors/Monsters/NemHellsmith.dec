@@ -582,6 +582,7 @@ ACTOR NemHellsmith : LegendaryCyberdemon 31999
 	TNT1 A 0 A_ChangeFlag(Reflective,0)
 	Goto See
   Death:
+    NHTH F 1
     NHTH F 0 A_CustomMissile("NemPentaLine3",0,0,-72,2)
        NHTH F 0 A_CustomMissile("NemPentaLine3",0,0,-144,2)
        NHTH F 0 A_CustomMissile("NemPentaLine3",0,0,-216,2)

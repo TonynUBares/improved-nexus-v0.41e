@@ -164,7 +164,6 @@ States
 		PRAI G 3 A_Pain
 		Goto Missile
 	Death:
-		TNT1 A 0
 		PRAI H 5 A_Scream
 		PRAI I 5 A_Fall
 		PRAI J 5 A_SpawnItem("BodyCrash",0,0,0,0)
