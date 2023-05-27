@@ -76,12 +76,10 @@ ACTOR LegendaryQuadShotgun : Weapon
     QS2S Z -1
     Stop
   Ready:
-	LQ78 HG 1
- 	LQ78 FE 1
+	LQ78 HGFE 1
  	LQ78 D 2
 	TNT1 A 0 A_PlayWeaponSound("LegendaryQuadShotgun/Up")
- 	LQ78 C 1
- 	LQ78 BA 1
+ 	LQ78 CBA 1
 	LQ77 H 1
 	LQ77 A 2
   ReadyLoop:
@@ -108,14 +106,11 @@ ACTOR LegendaryQuadShotgun : Weapon
 	TNT1 A 0 A_PlaySound("LegendaryQuadShotgun/QuadFire")
 	TNT1 A 0 A_AlertMonsters
 	TNT1 A 0 A_Recoil(12)
-	TNT1 A 0 A_GunFlash
-	TNT1 A 0 A_Light1
 	TNT1 A 0 Radius_Quake(20,5,0,1,0)
 	TNT1 A 0 A_TakeInventory("LegendaryQuadShell",4)	
 	TNT1 AAAAAAAAAAAA 0 A_FireCustomMissile("BlueSGTracer",frandom(8,-8),0,0,frandom(10,-10))
 	LQ77 B 2 Bright A_FireBullets(11.8,7.3,48,Random(10,35),"LegendaryASGBulletPuff",FBF_NORANDOM)
-	LQ77 C 2 Bright A_Light2
-	TNT1 A 0 A_Light0
+	LQ77 C 2 Bright
 	TNT1 A 0 Radius_Quake(20,5,0,1,0)
 	LQ77 DE 2
 	LQ77 FG 1
@@ -125,16 +120,13 @@ ACTOR LegendaryQuadShotgun : Weapon
 	TNT1 A 0 A_PlaySound("LegendaryQuadShotgun/QuadFire")
 	TNT1 A 0 A_AlertMonsters
 	TNT1 A 0 A_Recoil(12)
-	TNT1 A 0 A_GunFlash
-	TNT1 A 0 A_Light1
 	TNT1 A 0 Radius_Quake(20,5,0,1,0)
 	TNT1 A 0 A_TakeInventory("LegendaryQuadShell",4)	
 	TNT1 AAAAAAAAAAAA 0 A_FireCustomMissile("BlueSGTracer",frandom(8,-8),0,0,frandom(10,-10))
 	TNT1 AAAAAAAAAAAA 0 A_FireCustomMissile("BlueSGTracer",frandom(8,-8)+15.0,0,0,frandom(10,-10))
 	TNT1 AAAAAAAAAAAA 0 A_FireCustomMissile("BlueSGTracer",frandom(8,-8)-15.0,0,0,frandom(10,-10))
 	LQ77 B 2 Bright A_FireBullets(11.8+15.0,7.3,48*3,Random(10,35),"LegendaryASGBulletPuff",FBF_NORANDOM)
-	LQ77 C 2 Bright A_Light2
-	TNT1 A 0 A_Light0
+	LQ77 C 2 Bright
 	TNT1 A 0 Radius_Quake(20,5,0,1,0)
 	LQ77 DE 2
 	LQ77 FG 1
@@ -153,14 +145,11 @@ ACTOR LegendaryQuadShotgun : Weapon
 	TNT1 A 0 A_PlaySound("LegendaryQuadShotgun/DualFire",CHAN_WEAPON)	
 	TNT1 A 0 A_AlertMonsters
 	TNT1 A 0 A_Recoil(8)
-	TNT1 A 0 A_GunFlash
-	TNT1 A 0 A_Light1
 	TNT1 A 0 Radius_Quake(10,5,0,1,0)
 	TNT1 A 0 A_TakeInventory("LegendaryQuadShell",2)	
 	TNT1 AAAAAAAAAAAA 0 A_FireCustomMissile("BlueSGTracer",frandom(8,-8),0,0,frandom(10,-10))
 	LQ77 B 2 Bright A_FireBullets(11.8,7.3,24,Random(10,35),"LegendaryASGBulletPuff",FBF_NORANDOM)
-	LQ77 C 2 Bright A_Light2
-	TNT1 A 0 A_Light0
+	LQ77 C 2 Bright
 	TNT1 A 0 Radius_Quake(10,5,0,1,0)
 	LQ77 DE 2
 	LQ77 FG 1
@@ -173,16 +162,13 @@ ACTOR LegendaryQuadShotgun : Weapon
 	TNT1 A 0 A_PlaySound("LegendaryQuadShotgun/DualFire",CHAN_WEAPON)	
 	TNT1 A 0 A_AlertMonsters
 	TNT1 A 0 A_Recoil(8)
-	TNT1 A 0 A_GunFlash
-	TNT1 A 0 A_Light1
 	TNT1 A 0 Radius_Quake(10,5,0,1,0)
 	TNT1 A 0 A_TakeInventory("LegendaryQuadShell",2)	
 	TNT1 AAAAAAAAAAAA 0 A_FireCustomMissile("BlueSGTracer",frandom(8,-8),0,0,frandom(10,-10))
 	TNT1 AAAAAAAAAAAA 0 A_FireCustomMissile("BlueSGTracer",frandom(8,-8)+15.0,0,0,frandom(10,-10))
 	TNT1 AAAAAAAAAAAA 0 A_FireCustomMissile("BlueSGTracer",frandom(8,-8)-15.0,0,0,frandom(10,-10))
 	LQ77 B 2 Bright A_FireBullets(11.8+15.0,7.3,24*3,Random(10,35),"LegendaryASGBulletPuff",FBF_NORANDOM)
-	LQ77 C 2 Bright A_Light2
-	TNT1 A 0 A_Light0
+	LQ77 C 2 Bright
 	TNT1 A 0 Radius_Quake(10,5,0,1,0)
 	LQ77 DE 2
 	LQ77 FG 1
@@ -193,14 +179,11 @@ ACTOR LegendaryQuadShotgun : Weapon
 	TNT1 A 0 A_PlaySound("LegendaryQuadShotgun/DualFire")	
 	TNT1 A 0 A_AlertMonsters
 	TNT1 A 0 A_Recoil(8)
-	TNT1 A 0 A_GunFlash
-	TNT1 A 0 A_Light1
 	TNT1 A 0 Radius_Quake(10,5,0,1,0)
 	TNT1 A 0 A_TakeInventory("LegendaryQuadShell",2)	
 	TNT1 AAAAAAAAAAAA 0 A_FireCustomMissile("BlueSGTracer",frandom(8,-8),0,0,frandom(10,-10))
 	LQ77 B 2 Bright A_FireBullets(11.8,7.3,24,Random(10,35),"LegendaryASGBulletPuff",FBF_NORANDOM)
-	LQ77 C 2 Bright A_Light2
-	TNT1 A 0 A_Light0
+	LQ77 C 2 Bright
 	TNT1 A 0 Radius_Quake(10,5,0,1,0)
 	LQ77 DE 2
 	LQ77 FG 1
@@ -210,16 +193,13 @@ ACTOR LegendaryQuadShotgun : Weapon
 	TNT1 A 0 A_PlaySound("LegendaryQuadShotgun/DualFire")	
 	TNT1 A 0 A_AlertMonsters
 	TNT1 A 0 A_Recoil(8)
-	TNT1 A 0 A_GunFlash
-	TNT1 A 0 A_Light1
 	TNT1 A 0 Radius_Quake(10,5,0,1,0)
 	TNT1 A 0 A_TakeInventory("LegendaryQuadShell",2)	
 	TNT1 AAAAAAAAAAAA 0 A_FireCustomMissile("BlueSGTracer",frandom(8,-8),0,0,frandom(10,-10))
 	TNT1 AAAAAAAAAAAA 0 A_FireCustomMissile("BlueSGTracer",frandom(8,-8)+15.0,0,0,frandom(10,-10))
 	TNT1 AAAAAAAAAAAA 0 A_FireCustomMissile("BlueSGTracer",frandom(8,-8)-15.0,0,0,frandom(10,-10))
 	LQ77 B 2 Bright A_FireBullets(11.8+15.0,7.3,24*3,Random(10,35),"LegendaryASGBulletPuff",FBF_NORANDOM)
-	LQ77 C 2 Bright A_Light2
-	TNT1 A 0 A_Light0
+	LQ77 C 2 Bright
 	TNT1 A 0 Radius_Quake(10,5,0,1,0)
 	LQ77 DE 2
 	LQ77 FG 1

@@ -714,9 +714,9 @@ StatusBar FullScreen, FullScreenOffsets
     {
 	DrawImage "SEWPA0", -48, -53;
 	DrawImage "HSTMA0", -30, -4, CenterBottom;
-	DrawImage AmmoIcon2, -16, -25, CenterBottom;
-	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
-	DrawNumber 3, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
+	DrawImage AmmoIcon1, -16, -25, CenterBottom;
+	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo1, DrawShadow, -27, -41, 0;
+	DrawNumber 3, HUDFONT_DOOM, Gold, Ammo1, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
 	DrawNumber 3, INDEXFONT, Red, Ammo Gas, -16, -115;
 	DrawNumber 3, INDEXFONT, Green, Ammo Gas, WhenNotZero, -16, -115;
     }

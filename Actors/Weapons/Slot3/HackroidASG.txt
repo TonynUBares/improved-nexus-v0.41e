@@ -96,14 +96,11 @@ ACTOR "HackroidASG" : Weapon
 	TNT1 A 0 A_PlaySound("1337ASG/Fire", 1)
 	TNT1 A 0 A_AlertMonsters
 	TNT1 A 0 Radius_Quake(3,3,0,1,0)
-	TNT1 A 0 A_GunFlash
-	TNT1 A 0 A_Light1
 	TNT1 A 0 A_SpawnItemEx("1337ShellCasing",30,5,25,frandom(2,4),frandom(3,6),frandom(3,6),0)
 	TNT1 AAAAAA 0 A_FireCustomMissile("1337SGTracer",frandom(5,-5),0,0,frandom(5,-5))
 	TNT1 A 0 A_TakeInventory("HCKASGDrum",1)
-	HGSG B 2 Bright A_FireBullets(6.2,3.4,7,Random(25,35),"1337ModdedBulletPuff")
-	HGSG C 2 Bright A_Light2
-	TNT1 A 0 A_Light0
+	HGSG B 2 Bright A_FireBullets(6.2,3.4,7,Random(40,50),"1337ModdedBulletPuff")
+	HGSG C 2 Bright
 	HGSG DEFG 1
 	HGSG HI 4
 	Goto ReadyLoop
@@ -113,16 +110,13 @@ ACTOR "HackroidASG" : Weapon
 	TNT1 A 0 A_PlaySound("1337ASG/Fire", 1)
 	TNT1 A 0 A_AlertMonsters
 	TNT1 A 0 Radius_Quake(3,3,0,1,0)
-	TNT1 A 0 A_GunFlash
-	TNT1 A 0 A_Light1
 	TNT1 A 0 A_SpawnItemEx("1337ShellCasing",30,5,25,frandom(2,4),frandom(3,6),frandom(3,6),0)
 	TNT1 AAAAAA 0 A_FireCustomMissile("1337SGTracer",frandom(5,-5),0,0,frandom(5,-5))
 	TNT1 AAAAAA 0 A_FireCustomMissile("1337SGTracer",frandom(5,-5)+15.0,0,0,frandom(5,-5))
 	TNT1 AAAAAA 0 A_FireCustomMissile("1337SGTracer",frandom(5,-5)-15.0,0,0,frandom(5,-5))
 	TNT1 A 0 A_TakeInventory("HCKASGDrum",1)
-	HGSG B 2 Bright A_FireBullets(6.2+15.0,3.4,7*3,Random(25,35),"1337ModdedBulletPuff")
-	HGSG C 2 Bright A_Light2
-	TNT1 A 0 A_Light0
+	HGSG B 2 Bright A_FireBullets(6.2+15.0,3.4,7*3,Random(40,50),"1337ModdedBulletPuff")
+	HGSG C 2 Bright 
 	HGSG DEFG 1
 	HGSG HI 4
 	Goto ReadyLoop
@@ -323,7 +317,7 @@ ACTOR 1337SGTracer : SentientExplosiveTracer
   Death:
 	TNT1 A 0 A_SetTranslucent(0.75,1)
 	TNT1 A 0 A_SpawnItem("EKaboomLN2")
-	EISL B 4 Bright A_Explode(Random(3,12)*6,25)
+	EISL B 4 Bright A_Explode(Random(18,72),25)
 	EISL CD 3 Bright
 	Stop
  }

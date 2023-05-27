@@ -1987,7 +1987,7 @@ Actor UACGuyMiner : UACBaseMarine
   Missile:
 	PMNE A 1
 	PMNE A 1 A_Jump(220,"LandMine")
-  FragGrenade
+  FragGrenade:
 	PLA1 E 1 A_JumpIfCloser(1000,1)
 	Goto SpringMine
 	PLA1 E 0 A_JumpIfCloser(280,"LandMine")

@@ -421,6 +421,7 @@ States
 	HPR8 AAAAAABBBBBBBB 1 Bright A_FadeOut(0.05,1)
 	HPR8 BBBBB 1 Bright A_FadeOut(0.025,1)
 	Stop
+ }
 }
 
 ACTOR 1337DemonTechTrail2 : DemonTechTrail
@@ -504,6 +505,7 @@ ACTOR 1337ADemonTechEx2 : 1337ADemonTechEx { +NOTIMEFREEZE }
 
 ACTOR 1337DTRProjPlayer : 1337Proj
 {
+ Damage 100
  +THRUSPECIES
  +FOILINVUL
  Species "Player"
@@ -543,7 +545,7 @@ ACTOR 1337ProjExplosionPlayer : 1337ProjExplosion
   Spawn:
   Death:
 	TNT1 A 0
-	TNT1 A 1 A_Explode(15,8)
+	TNT1 A 1 A_Explode(35,8)
 	Stop
  }
 }
