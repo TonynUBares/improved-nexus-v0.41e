@@ -1,9 +1,15 @@
 ACTOR HeartToken : GenericLegRuneToken { }
 
-Actor HeartCooldown : PowerDamage
+Actor HeartCooldown : Inventory 
 {
-  DamageFactor "notarealdamagetype", 1.0
-  Powerup.Duration -4
+ Inventory.Amount 1
+ Inventory.MaxAmount 1
+ States
+ {
+  Held:
+	TNT1 A 105
+	Stop
+ }
 }
 
 Actor DemonHeartParent : CustomInventory
@@ -33,13 +39,13 @@ ACTOR DemonHeart : DemonHeartParent
 	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,10,18)
   SpawnLoop: 
 	TNT1 A 0 A_PlaySound("DemonHeart/Idle",7)
-    DMHT ABB 12 Bright
-    Loop
+	DMHT ABB 12 Bright
+	Loop
   Pickup:
 	TNT1 A 0 A_JumpIfInventory("HeartToken",1,"Null")
+	TNT1 A 0 A_JumpIfInventory("HeartCooldown",1,"Null")
 	TNT1 A 0 A_StopSound(7)
 	TNT1 A 0 A_PlaySound("DemonHeart/Pickup",0)
-	TNT1 A 0 A_GiveInventory("HeartToken",1)
 	TNT1 A 0 ACS_NamedExecuteAlways("DemonHeartSeriousScript",0,0)
 	TNT1 A 1
 	Stop
@@ -70,9 +76,9 @@ ACTOR LegendaryDemonHeart : DemonHeartParent
 	Loop
   Pickup:
 	TNT1 A 0 A_JumpIfInventory("HeartToken",1,"Null")
+	TNT1 A 0 A_JumpIfInventory("HeartCooldown",1,"Null")
 	TNT1 A 0 A_StopSound(7)
 	TNT1 A 0 A_PlaySound("LegDemonHeart/Pickup")
-	TNT1 A 0 A_GiveInventory("HeartToken",1)
 	TNT1 A 0 ACS_NamedExecuteAlways("DemonHeartSeriousScript",0,1)
 	TNT1 A 1
 	Stop
@@ -103,9 +109,9 @@ ACTOR TrueLegendaryDemonHeart : DemonHeartParent
 	Loop
   Pickup:
 	TNT1 A 0 A_JumpIfInventory("HeartToken",1,"Null")
+	TNT1 A 0 A_JumpIfInventory("HeartCooldown",1,"Null")
 	TNT1 A 0 A_StopSound(7)
 	TNT1 A 0 A_PlaySound("TLegDemonHeart/Pickup")
-	TNT1 A 0 A_GiveInventory("HeartToken",1)
 	TNT1 A 0 ACS_NamedExecuteAlways("DemonHeartSeriousScript",0,2)
 	TNT1 A 1
 	Stop
@@ -136,9 +142,9 @@ ACTOR NemesisDemonHeart : DemonHeartParent
 	Loop
   Pickup:
 	TNT1 A 0 A_JumpIfInventory("HeartToken",1,"Null")
+	TNT1 A 0 A_JumpIfInventory("HeartCooldown",1,"Null")
 	TNT1 A 0 A_StopSound(7)
 	TNT1 A 0 A_PlaySound("NDemonHeart/Pickup")
-	TNT1 A 0 A_GiveInventory("HeartToken",1)
 	TNT1 A 0 ACS_NamedExecuteAlways("DemonHeartSeriousScript",0,3)
 	TNT1 A 1
 	Stop
