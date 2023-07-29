@@ -78,27 +78,26 @@ ACTOR "True Legendary Pulverizer" : Weapon 19656
 	TLVA A -1
 	Stop
   Select:
-	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",0)
 	TNT1 A 0 A_JumpIfNoAmmo("Select2")
-		TNT1 A 0 A_PlayWeaponSound("weapons/PlanetCracker_Mechanism3")
+	TNT1 A 0 A_PlayWeaponSound("weapons/PlanetCracker_Mechanism3")
 	TNT1 A 0 A_Raise
-	   BBFI A 1 A_Raise
-	Goto Select+3
+	BBFI A 1 A_Raise
+	Goto Select+2
   Select2:   
 	TNT1 A 0 A_Raise
 	BBFI M 1 A_Raise
 	Loop
   Deselect:
-	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",1)
 	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
 	TNT1 A 0 A_TakeInventory("MineAction",1)
 	TNT1 A 0 A_TakeInventory("RailgunAction",1)
 	TNT1 A 0 A_JumpIfNoAmmo("Deselect2")
 	TNT1 A 0 A_PlaySound("TrueLegPulverizer/Down",5)
 	TNT1 A 0 A_StopSound(5)
+  DeselectLoop:
 	TNT1 A 0 A_Lower
 	BBFI G 1 A_Lower
-	Goto Deselect+7
+	Loop
   Deselect2:
 	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown")
 	TNT1 A 0 A_Lower
@@ -119,7 +118,6 @@ ACTOR "True Legendary Pulverizer" : Weapon 19656
 	TNT1 A 0 A_JumpIfInventory("LegendaryFusionCell",1,1)
 	Goto Ready2
 	TNT1 A 0 A_JumpIfInventory("AgilityRuneRage",1,"NotSoFast")
-	TNT1 A 0 A_Light1
 	TNT1 A 0 A_StopSound(5)
 	TNT1 A 0 A_PlayWeaponSound("TrueLegPulverizer/Fire")
 	BBFG A 4 Bright Radius_Quake(2,2,0,1,0)
@@ -127,7 +125,6 @@ ACTOR "True Legendary Pulverizer" : Weapon 19656
 	BBFG DEF 4 Bright Radius_Quake(8,2,0,1,0)
 	BBFG GHI 4 Bright Radius_Quake(12,3,0,1,0)
 	BBFG J 15 Bright Radius_Quake(16,3,0,1,0)
-	TNT1 A 0 A_Light2
 	TNT1 A 0 A_GunFlash
 	BBFG K 2 Bright Radius_Quake(20,4,0,1,0)
 	TNT1 A 0 A_Recoil(50)
@@ -136,7 +133,6 @@ ACTOR "True Legendary Pulverizer" : Weapon 19656
 	TNT1 A 0 A_TakeInventory("LegendaryFusionCell",1)
 	BBFG M 2 Bright
 	BBFG N 20
-	TNT1 A 0 A_Light0
 	BBFG OPQRS 4
 	TNT1 A 0 Radius_Quake(6,10,0,1,0)
 	TNT1 A 0 A_PlaySound("weapons/dtech10ksteam",7)
@@ -159,7 +155,6 @@ ACTOR "True Legendary Pulverizer" : Weapon 19656
 	BBFG DEF 8 Bright Radius_Quake(8,2,0,1,0)
 	BBFG GHI 8 Bright Radius_Quake(12,3,0,1,0)
 	BBFG J 30 Bright Radius_Quake(16,3,0,1,0)
-	TNT1 A 0 A_Light2
 	TNT1 A 0 A_GunFlash
 	BBFG K 4 Bright Radius_Quake(20,4,0,1,0)
 	TNT1 A 0 A_Recoil(50)
@@ -167,9 +162,8 @@ ACTOR "True Legendary Pulverizer" : Weapon 19656
 	BBFG L 4 Bright A_FireCustomMissile("PlayerTruePulverizerBall",0,0,0,5)	
 	TNT1 A 0 A_TakeInventory("LegendaryFusionCell",1)
 	BBFG M 4 Bright
-	BBFG N 40 //Bright
-	TNT1 A 0 A_Light0
-	BBFG OPQRS 8 //Bright
+	BBFG N 40 
+	BBFG OPQRS 8
 	TNT1 A 0 Radius_Quake(6,10,0,1,0)
 	TNT1 A 0 A_PlaySound("weapons/dtech10ksteam",7)
 	BBFG SSSSSSSSSSSS 1 A_FireCustomMissile("DTech10KSteam",-58+Random(-4,4),0,0,0)

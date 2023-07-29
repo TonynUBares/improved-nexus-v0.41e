@@ -1,4 +1,4 @@
-Actor TrueLegendaryIonStrikerGiverRO : CustomInventory
+Actor TrueLegendaryIonStrikerGiverRO : TrueLegendaryIonStrikerGiver
 {
  States
  {
@@ -10,7 +10,7 @@ Actor TrueLegendaryIonStrikerGiverRO : CustomInventory
  }
 }
 
-Actor TrueLegendaryPlasmaticCannonGiverRO : CustomInventory
+Actor TrueLegendaryPlasmaticCannonGiverRO : TrueLegendaryPlasmaticCannonGiver
 {
  States
  {
@@ -22,7 +22,7 @@ Actor TrueLegendaryPlasmaticCannonGiverRO : CustomInventory
  }
 }
 
-Actor TrueLegendaryPulverizerGiverRO : CustomInventory
+Actor TrueLegendaryPulverizerGiverRO : TrueLegendaryPulverizerGiver
 {
  States
  {
@@ -34,7 +34,7 @@ Actor TrueLegendaryPulverizerGiverRO : CustomInventory
  }
 }
 
-Actor TrueLegendaryRailgunGiverRO : CustomInventory
+Actor TrueLegendaryRailgunGiverRO : TrueLegendaryRailgunGiver
 {
  States
  {
@@ -46,7 +46,7 @@ Actor TrueLegendaryRailgunGiverRO : CustomInventory
  }
 }
 
-Actor StingrayGiverRO : CustomInventory
+Actor StingrayGiverRO : StingrayGiver
 {
  States
  {
@@ -58,7 +58,7 @@ Actor StingrayGiverRO : CustomInventory
  }
 }
 
-Actor ArmageddonCannonGiverRO : CustomInventory
+Actor ArmageddonCannonGiverRO : ArmageddonCannonGiver
 {
  States
  {

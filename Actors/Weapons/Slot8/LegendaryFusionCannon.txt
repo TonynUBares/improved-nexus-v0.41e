@@ -77,13 +77,11 @@ Actor "Legendary Fusion Cannon" : Weapon
 	RLBG X -1
 	Stop
   Select:
-	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",0)
 	TNT1 A 0 A_ZoomFactor(1)
 	RLBU A 0 A_Raise
 	RLBU A 1 A_Raise
-	goto select+2
+	goto select+1
   Deselect:
-	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",1)
 	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown")
   Deselectloop:
 	TNT1 A 0 A_StopSound(5)

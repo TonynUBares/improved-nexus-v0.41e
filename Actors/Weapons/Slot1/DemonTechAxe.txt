@@ -49,43 +49,37 @@ Actor DemonTechAxeGiverCheck : Inventory { Inventory.Amount 1 Inventory.MaxAmoun
 
 ACTOR "DemonTechAxe" : FWeapAxe
 {
-	Weapon.YAdjust 0
-	Weapon.AmmoType "DemonAmmo"
-	weapon.Ammogive 120
-	Weapon.AmmoUse 30
-Weapon.SlotNumber 1
-  Weapon.SlotPriority 3.1
-	Inventory.Pickupmessage "You've picked up the Demon Tech Axe!"
-	Tag "Demon Tech Axe"
-	Obituary "%o was ripped to shreds by %k's axe."
-	Weapon.PreferredSkin "Chainsaw-Marine"
-	states
-	{
-		Spawn:
-			WFAX A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",1,0)
-		SpawnLoop:
-		WFAX A 3
-		loop
-		
-		 Select:
-	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",0)
-		TNT1 A 0 A_Raise
-		FAXE A 1 A_FAxeCheckUp
-		Goto Select+1
-		
-		 Deselect:
-	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",1)
-		TNT1 A 0 A_Lower
-		FAXE A 1 A_Lower
-		Goto Deselect+1
-		
-		Ready:
-		TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
-		TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
-		FAXE A 1 A_FAxeCheckReady
-		Loop
-		
-		Fire:
+ Weapon.YAdjust 0
+ Weapon.AmmoType "DemonAmmo"
+ weapon.Ammogive 120
+ Weapon.AmmoUse 30
+ Weapon.SlotNumber 1
+ Weapon.SlotPriority 3.1
+ Inventory.Pickupmessage "You've picked up the Demon Tech Axe!"
+ Tag "Demon Tech Axe"
+ Obituary "%o was ripped to shreds by %k's axe."
+ Weapon.PreferredSkin "Chainsaw-Marine"
+ states
+ {
+  Spawn:
+	WFAX A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",1,0)
+  SpawnLoop:
+	WFAX A 3
+	loop
+  Select:
+	TNT1 A 0 A_Raise
+	FAXE A 1 A_FAxeCheckUp
+	Loop
+  Deselect:
+	TNT1 A 0 A_Lower
+	FAXE A 1 A_Lower
+	Loop
+  Ready:
+	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"GrenadeCheck")
+	TNT1 A 0 A_JumpIfInventory("MineAction",1,"MineCheck")
+	FAXE A 1 A_FAxeCheckReady
+	Loop
+	Fire:
 		FAXE B 3 Offset(24, 32) A_FAxeCheckAtk
 		TNT1 A 0 A_PlaySound("weapons/axeswing")
 		FAXE C 1 Offset(23, 32)

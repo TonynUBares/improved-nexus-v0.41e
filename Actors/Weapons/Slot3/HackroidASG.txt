@@ -79,13 +79,11 @@ ACTOR "HackroidASG" : Weapon
 	HGSG A 1 A_WeaponReady(WRF_ALLOWRELOAD)
 	Loop
    Deselect:
-	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",1) 
 	TNT1 A 0 A_PlaySound("weapons/weapondown")
 	TNT1 A 0 A_Lower
 	HGSG A 1 A_Lower
-	Goto Deselect+2
+	Goto Deselect+1
    Select:
-	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",0)
 	TNT1 A 1 A_Raise
 	TNT1 A 0 A_Raise
 	Wait

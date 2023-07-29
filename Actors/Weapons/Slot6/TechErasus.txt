@@ -50,85 +50,83 @@ Actor TechErasusGiverCheck : Inventory { Inventory.Amount 1 Inventory.MaxAmount 
 
 ACTOR "Tech Erasus" : Weapon
 {
-	Tag "Tech Erasus"	
-	Weapon.AmmoUse 10
-	Weapon.AmmoType "DemonAmmo"
-	Weapon.AmmoGive 100
-	Weapon.SlotNumber 0
-   Weapon.SlotPriority 0.1
-    Weapon.PreferredSkin "DemonTechRifle-Marine"
-	Inventory.PickupMessage "Tech Erasus"
-	Obituary "%o stood in shock of %k's Tech Erasus"
-	Inventory.PickupSound "erasus/up"
-	Weapon.Upsound "erasus/up"
-	Decal DoomImpScorch
-	Scale 0.9
-	+WEAPON.NOAUTOAIM
-	States
-	{
-	Ready:
-		ERGG A 1 A_WeaponReady
-		Loop
-	 Deselect:
-	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",1)
-		TNT1 A 0 A_PlayWeaponSound("weapons/weapondown")
-		ERGG A 1 A_Lower
-		Goto Deselect+2
-	 Select:
-	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",0)
-		ERGG A 1 A_Raise
-		Goto Select+1
-	Fire:
-		ERGL A 0 A_Quake(3,25,0,128,"none")
-		ERGL A 0 A_PlayWeaponSound("erasus/fire")
-		ERGL A 0 A_AlertMonsters
-		ERGL A 0 A_Recoil(6)
-		ERGL A 0 A_GunFlash
-		ERGL A 0 A_FireCustomMissile("ErasusProj",0,1,4,-5)
-		ERGF A 1 Bright Offset(4,36) A_ZoomFactor(0.995)
-		ERGF B 1 Bright Offset(8,40) A_ZoomFactor(0.98)
-		ERGF C 1 Offset(12,44) A_ZoomFactor(0.97)
-		ERGF D 1 Offset(15,47) A_ZoomFactor(0.965)
-		ERGF D 1 Offset(18,50) A_ZoomFactor(0.96)
-		ERGF E 1 Offset(20,51) A_ZoomFactor(0.97)
-		ERGF E 1 Offset(21,52) A_ZoomFactor(0.98)
-		ERGF F 1 Offset(22,53) A_ZoomFactor(0.985)
-		ERGF F 1 Offset(23,54) A_ZoomFactor(0.99)
-		ERGF G 1 A_ZoomFactor(0.995)
-		ERGF G 1 A_ZoomFactor(1)
-		ERGF H 6
-		ERGF I 4
-		ERGF I 1 Offset(22,53)
-		ERGF I 1 Offset(21,52)
-		ERGF J 1 Offset(20,51)
-		ERGF J 1 Offset(19,50)
-		ERGF K 1 Offset(17,48)
-		ERGF K 1 Offset(15,46)
-		ERGF L 1 Offset(13,44)
-		ERGF L 1 Offset(10,41)
-		ERGF M 1 Offset(8,39)
-		ERGF M 1 Offset(6,37)
-		ERGF N 1 Offset(4,35)
-		ERGF N 1 Offset(2,33)
-		ERGL A 0 A_PlayWeaponSound("erasus/load")
-		ERGL A 0 A_Quake(2,24,0,32,"none")
-		ERGL A 0 A_SetBlend("Red",0.1,22)
-		ERGL ABCDEFGHI 4
-		ERGL J 4 A_ReFire
-		ERGL K 4
-		ERGG B 3
-		Goto Ready
-	Flash:
-		TNT1 A 3
-		TNT1 A 3
-		TNT1 A 1
-		Stop
-	Spawn:
-		ERGG Z 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",6,0)
+ Tag "Tech Erasus"	
+ Weapon.AmmoUse 10
+ Weapon.AmmoType "DemonAmmo"
+ Weapon.AmmoGive 100
+ Weapon.SlotNumber 0
+ Weapon.SlotPriority 0.1
+ Weapon.PreferredSkin "DemonTechRifle-Marine"
+ Inventory.PickupMessage "Tech Erasus"
+ Obituary "%o stood in shock of %k's Tech Erasus"
+ Inventory.PickupSound "erasus/up"
+ Weapon.Upsound "erasus/up"
+ Decal DoomImpScorch
+ Scale 0.9
+ +WEAPON.NOAUTOAIM
+ States
+ {
+  Ready:
+	ERGG A 1 A_WeaponReady
+	Loop
+  Deselect:
+	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown")
+	ERGG A 1 A_Lower
+	Goto Deselect+1
+  Select:
+	ERGG A 1 A_Raise
+	Wait
+  Fire:
+	ERGL A 0 A_Quake(3,25,0,128,"none")
+	ERGL A 0 A_PlayWeaponSound("erasus/fire")
+	ERGL A 0 A_AlertMonsters
+	ERGL A 0 A_Recoil(6)
+	ERGL A 0 A_GunFlash
+	ERGL A 0 A_FireCustomMissile("ErasusProj",0,1,4,-5)
+	ERGF A 1 Bright Offset(4,36) A_ZoomFactor(0.995)
+	ERGF B 1 Bright Offset(8,40) A_ZoomFactor(0.98)
+	ERGF C 1 Offset(12,44) A_ZoomFactor(0.97)
+	ERGF D 1 Offset(15,47) A_ZoomFactor(0.965)
+	ERGF D 1 Offset(18,50) A_ZoomFactor(0.96)
+	ERGF E 1 Offset(20,51) A_ZoomFactor(0.97)
+	ERGF E 1 Offset(21,52) A_ZoomFactor(0.98)
+	ERGF F 1 Offset(22,53) A_ZoomFactor(0.985)
+	ERGF F 1 Offset(23,54) A_ZoomFactor(0.99)
+	ERGF G 1 A_ZoomFactor(0.995)
+	ERGF G 1 A_ZoomFactor(1)
+	ERGF H 6
+	ERGF I 4
+	ERGF I 1 Offset(22,53)
+	ERGF I 1 Offset(21,52)
+	ERGF J 1 Offset(20,51)
+	ERGF J 1 Offset(19,50)
+	ERGF K 1 Offset(17,48)
+	ERGF K 1 Offset(15,46)
+	ERGF L 1 Offset(13,44)
+	ERGF L 1 Offset(10,41)
+	ERGF M 1 Offset(8,39)
+	ERGF M 1 Offset(6,37)
+	ERGF N 1 Offset(4,35)
+	ERGF N 1 Offset(2,33)
+	ERGL A 0 A_PlayWeaponSound("erasus/load")
+	ERGL A 0 A_Quake(2,24,0,32,"none")
+	ERGL A 0 A_SetBlend("Red",0.1,22)
+	ERGL ABCDEFGHI 4
+	ERGL J 4 A_ReFire
+	ERGL K 4
+	ERGG B 3
+	Goto Ready
+  Flash:
+	TNT1 A 3
+	TNT1 A 3
+	TNT1 A 1
+	Stop
+  Spawn:
+	ERGG Z 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",6,0)
   SpawnLoop:
-		ERGG Z -1
-		Loop
-	}
+	ERGG Z -1
+	Stop
+ }
 }
 I fucking hate this shit, these stupid unused actors left everywhere and the ass logic
 */

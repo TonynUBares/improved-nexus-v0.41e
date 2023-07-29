@@ -94,19 +94,17 @@ Ready:
 	IOZG BCDEFGHIJKL 2 A_WeaponReady(WRF_ALLOWZOOM)
 	Loop
  Deselect:
-	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",1)
-	TNT1 A 0
 	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
 	TNT1 A 0 A_TakeInventory("MineAction",1)
 	IOZR A 0 A_PlayWeaponSound("weapons/CFPlanetCrackerDown")
+ DeselectLoop:
 	TNT1 A 0 A_Lower
 	IOZG A 1 A_Lower
-	Goto Deselect+7
+	Loop
  Select:
-	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",0)
 	TNT1 A 0 A_Raise
 	IOZG A 1 A_Raise
-	Goto Select+1
+	Loop
   Fire:
 	TNT1 A 0 A_JumpIfInventory("TrueLegendaryCell",50,1)
 	Goto Empty
@@ -146,9 +144,7 @@ Ready:
 	IOZF A 0 A_ZoomFactor(1)
 	IOZG AAAAA 3 A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
 	IOZG A 0 A_PlaySoundEx("weapons/CFPlanetCrackerReload","SoundSlot5")
-	IOZR ABC 2
-	IOZR DEFDEFDEF 2
-	IOZR CBG 2
+	IOZR ABCDEFDEFDEFCBG 2
 	IOZG A 10
 	Goto Ready
   NotSoFast:
@@ -187,9 +183,7 @@ Ready:
 	IOZF A 0 A_ZoomFactor(1)
 	IOZG AAAAA 6 A_FireCustomMissile("CFPlanetCrackerSmokeSpawner",0,0,8,5)
 	IOZG A 0 A_PlaySoundEx("weapons/CFPlanetCrackerReload","SoundSlot5")
-	IOZR ABC 4
-	IOZR DEFDEFDEF 4
-	IOZR CBG 4
+	IOZR ABCDEFDEFDEFCBG 4
 	IOZG A 10
 	Goto Ready
   Altfire:
@@ -219,10 +213,10 @@ Ready:
 	IOZC W 10 BRIGHT
 	TNT1 A 0 A_Quake(7,14,0,2,0)
 	IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Void",6)
-	IOZC WWWWWWW 2 BRIGHT
+	IOZC W 14 BRIGHT
 	IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Mechanism1",0)
 	TNT1 A 0 A_Quake(8,8,0,2,0)
-	IOZC WWWWWWWWWWW 2 BRIGHT
+	IOZC W 22 BRIGHT
 	IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Mechanism2",0)
 	TNT1 A 0 A_Quake(9,90,0,2,0)
 	IOZD BCDEFGHIJKLMNNN 5 BRIGHT
@@ -307,10 +301,10 @@ Ready:
 	IOZC W 20 BRIGHT
 	TNT1 A 0 A_Quake(7,14,0,2,0)
 	IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Void",6)
-	IOZC WWWWWWW 4 BRIGHT
+	IOZC W 28 BRIGHT
 	IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Mechanism1",0)
 	TNT1 A 0 A_Quake(8,8,0,2,0)
-	IOZC WWWWWWWWWWW 4 BRIGHT
+	IOZC W 44 BRIGHT
 	IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Mechanism2",0)
 	TNT1 A 0 A_Quake(9,90,0,2,0)
 	IOZD BCDEFGHIJKLMNNN 10 BRIGHT
@@ -398,10 +392,10 @@ Ready:
 	IOZC W 10 BRIGHT
 	TNT1 A 0 A_Quake(7,14,0,2,0)
 	IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Void",6)
-	IOZC WWWWWWW 2 BRIGHT
+	IOZC W 14 BRIGHT
 	IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Mechanism1",0)
 	TNT1 A 0 A_Quake(8,8,0,2,0)
-	IOZC WWWWWWWWWWW 2 BRIGHT
+	IOZC W 22 BRIGHT
 	IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Mechanism2",0)
 	TNT1 A 0 A_Quake(9,90,0,2,0)
 	IOZD BCDEFGHIJKLMNNN 5 BRIGHT
@@ -486,10 +480,10 @@ Ready:
 	IOZC W 20 BRIGHT
 	TNT1 A 0 A_Quake(7,14,0,2,0)
 	IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Void",6)
-	IOZC WWWWWWW 4 BRIGHT
+	IOZC W 28 BRIGHT
 	IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Mechanism1",0)
 	TNT1 A 0 A_Quake(8,8,0,2,0)
-	IOZC WWWWWWWWWWW 4 BRIGHT
+	IOZC W 44 BRIGHT
 	IOZG A 0 A_PlaySound("weapons/CFPlanetCracker_Mechanism2",0)
 	TNT1 A 0 A_Quake(9,90,0,2,0)
 	IOZD BCDEFGHIJKLMNNN 10 BRIGHT

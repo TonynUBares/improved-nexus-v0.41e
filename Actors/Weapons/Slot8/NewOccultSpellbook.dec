@@ -114,7 +114,6 @@ Actor OccultSpellbook : Weapon 17601
 	TNT1 A 0 A_TakeInventory("VileCache",999)
 	Loop
    Deselect:
-	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",1)
 	"####" A 0 A_TakeInventory("HandGrenadeAction",1)
 	"####" A 0 A_TakeInventory("MineAction",1)
 	"####" A 0 A_PlayWeaponSound("weapons/weapondown")
@@ -123,7 +122,6 @@ Actor OccultSpellbook : Weapon 17601
 	"####" A 1 A_Lower
 	Loop
   Select:
-	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",0)
 	TNT1 A 0 A_JumpIfInventory("OccultDarkMatterToken2",1,"Select2")
 	TNT1 A 0 A_JumpIfInventory("OccultChaosLightningToken2",1,"Select3")
 	TNT1 A 0 A_JumpIfInventory("OccultSlicerToken2",1,"Select4")

@@ -77,18 +77,16 @@ ACTOR LegendaryBehemothCannon : Weapon
 	LBHC A 1 A_WeaponReady
 	Loop
   Select:
-	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",0)
 	TNT1 A 0 A_Raise
 	LBHC A 1 A_Raise
-	Goto Select+1
-  Deselect:
-	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",1)	
+	Loop
+  Deselect:	
 	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
 	TNT1 A 0 A_TakeInventory("MineAction",1)
 	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown")
 	TNT1 A 0 A_Lower
 	LBHC A 1 A_Lower
-	Goto Deselect+5
+	Goto Deselect+4
   Fire:	
 	LBHC D 3 Bright
 	LBHC E 3 Bright A_PlaySound("cannon/fire", CHAN_WEAPON, 1.0, 0)

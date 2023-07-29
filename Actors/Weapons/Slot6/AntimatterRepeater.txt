@@ -76,21 +76,20 @@ Actor AntimatterRepeater : Weapon
     REPA A 1 A_WeaponReady
     Loop
    Deselect:
-	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",1)
 	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
 	TNT1 A 0 A_TakeInventory("MineAction",1)
 	TNT1 A 0 A_TakeInventory("RailgunAction",1)
 	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown")
-    TNT1 A 0 A_TakeInventory("RepeaterSpin", 3)
-    TNT1 A 0 A_GiveInventory("RepeaterFrameA", 1)
+	TNT1 A 0 A_TakeInventory("RepeaterSpin", 3)
+	TNT1 A 0 A_GiveInventory("RepeaterFrameA", 1)
+  DeselectLoop:
 	TNT1 A 0 A_Lower
-    REPA A 1 A_Lower
-    Goto Deselect+7
-   Select:
-	TNT1 A 0 ACS_NamedExecuteWithResult("SbarFix",0)
+	REPA A 1 A_Lower
+	Loop
+  Select:
 	TNT1 A 0 A_Raise
-    REPA A 1 A_Raise
-    Goto Select+1
+	REPA A 1 A_Raise
+    	Loop
   Fire:
     //===========Spinup
     REPA A 0 A_PlaySound("PlasmaRepeater/Spin",7)
