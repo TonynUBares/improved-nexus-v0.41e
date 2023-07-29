@@ -11,10 +11,10 @@ Actor StingrayGiver : CustomInventory
   States
   {
   Spawn:
-	WLDP A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",8,0)
+	WLDP A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",9,1)
   SpawnLoop:
 	WLDP A -1
-	Loop
+	Stop
   Pickup:
 	TNT1 A 0 A_JumpIfInventory("Stingray",1,"JustAmmo")
   All:
@@ -68,8 +68,10 @@ Tag "Stingray"
 States
 {
  Spawn:
+	FLHT Z 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",9,1)
+ SpawnLoop:
 	FLHT Z -1
-	Loop
+	Stop
  Ready:
 	FLHX ABCDE 1
 	FLHX FGH 3

@@ -10,7 +10,7 @@ Actor TrueLegendaryRailgunGiver : CustomInventory
   States
   {
   Spawn:
-    LRWP A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",6,1)
+    LRWP A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",9,1)
   SpawnLoop:
 	LRWP A -1
     Stop
@@ -191,7 +191,7 @@ ACTOR "True Legendary Railgun" : Weapon 7777
 	TNT1 A 5
 	Goto Ready
   Spawn:
-	LRWP A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",6,1)
+	LRWP A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",9,1)
   SpawnLoop:
 	LRWP A -1
 	Stop

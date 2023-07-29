@@ -1,0 +1,71 @@
+Actor TrueLegendaryIonStrikerGiverRO : CustomInventory
+{
+ States
+ {
+  Spawn:
+	IOZG A 0
+  SpawnLoop:
+	IONG A -1
+	Stop
+ }
+}
+
+Actor TrueLegendaryPlasmaticCannonGiverRO : CustomInventory
+{
+ States
+ {
+  Spawn:
+	15LW A 0 
+  SpawnLoop:
+	15LW A -1
+	Stop
+ }
+}
+
+Actor TrueLegendaryPulverizerGiverRO : CustomInventory
+{
+ States
+ {
+  Spawn:
+	TLVA A 0
+  SpawnLoop:
+	TLVA A -1
+	Stop
+ }
+}
+
+Actor TrueLegendaryRailgunGiverRO : CustomInventory
+{
+ States
+ {
+  Spawn:
+	LRWP A 0
+  SpawnLoop:
+	LRWP A -1
+	Stop
+ }
+}
+
+Actor StingrayGiverRO : CustomInventory
+{
+ States
+ {
+  Spawn:
+	WLDP A 0 
+  SpawnLoop:
+	WLDP A -1
+	Stop
+ }
+}
+
+Actor ArmageddonCannonGiverRO : CustomInventory
+{
+ States
+ {
+  Spawn:
+	NUKW A 0 
+  SpawnLoop:
+	NUKW A -1
+	Stop
+ }
+}

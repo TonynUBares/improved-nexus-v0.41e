@@ -10,7 +10,7 @@ inventory.PickupMessage "True Legendary Ion Striker! Use railgun zoom to change 
   States
   {
   Spawn:
-	IOZG A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",7,1)
+	IOZG A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",9,1)
   SpawnLoop:
 	IONG A -1
     Stop
@@ -85,7 +85,7 @@ Weapon.PreferredSkin "BFG9500-Marine"
 States
 {
 Spawn:
-	IOZG A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",7,1)
+	IOZG A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",9,1)
 SpawnLoop:
 	IOZG X -1
 	Loop

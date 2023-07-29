@@ -10,7 +10,7 @@ Inventory.PickupMessage "True Legendary Pulverizer"
   States
   {
   Spawn:
-	TLVA A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",7,1)
+	TLVA A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",9,1)
   SpawnLoop:
 	TLVA A -1
 	Stop
@@ -73,7 +73,7 @@ ACTOR "True Legendary Pulverizer" : Weapon 19656
  States
  {
   Spawn:
-	TLVA A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",7,1)
+	TLVA A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",9,1)
   SpawnLoop:
 	TLVA A -1
 	Stop

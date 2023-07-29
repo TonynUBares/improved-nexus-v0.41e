@@ -10,7 +10,7 @@ Actor TrueLegendaryPlasmaticCannonGiver : CustomInventory
   States
   {
   Spawn:
-    15LW A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",5,1)
+    15LW A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",9,1)
   SpawnLoop:
 	15LW A -1
     Stop
@@ -80,7 +80,7 @@ Weapon.SlotNumber 0
   States
   {
   Spawn:
-    15LW A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",5,1)
+    15LW A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",9,1)
   SpawnLoop:
     15LW A -1
     Stop

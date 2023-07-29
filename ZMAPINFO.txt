@@ -12,4 +12,5 @@ TextColor = "G5"
 Gameinfo
 {
   ForceKillScripts = true
+  AddEventHandlers = "ExtraROevent"
 }

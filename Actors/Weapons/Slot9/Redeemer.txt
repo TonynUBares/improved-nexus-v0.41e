@@ -14,7 +14,7 @@ Tag "Armageddon Cannon"
 	NUKW A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",9,1)
   SpawnLoop:
 	NUKW A -1
-	Loop
+	Stop
   Pickup:
 	TNT1 A 0 A_JumpIfInventory("Armageddon Cannon",1,"JustAmmo")
   All:
@@ -79,7 +79,7 @@ States
 	NUKW A 0 NoDelay ACS_NamedExecuteWithResult("WeaponListCheck",9,1)
   SpawnLoop:
 	NUKW A -1
-	Loop
+	Stop
 	Ready:
 	TNT1 A 0 A_JumpIfInventory("AgilityRuneRage",1,"ReadySlow")
 	NUKX ABCDE 2
