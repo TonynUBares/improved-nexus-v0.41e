@@ -296,34 +296,33 @@ Pain:
 		 CALM F 6
          Goto See
 Death:
-         CALM G 7 A_Scream
-         CALM H 7 A_NoBlocking
-		 CALM I 6
-		 CALM J 5
-		 CALM K 4
-		 CALM L -1
-		 Stop
+        CALM G 7 A_Scream
+        CALM H 7 A_NoBlocking
+	CALM I 6
+	CALM J 5
+	CALM K 4
+	CALM L -1
+	Stop
 XDeath:
-		 CMXD A 4 
-		 CMXD B 3 A_PlaySound("Gore/Splat")
-		 CMXD C 3 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
-		 CMXD D 3 A_NoBlocking
-		 CMXD EFGHI 3
-		 CMXD J -1
-		 Stop		 
+	CMXD A 4 
+	CMXD B 3 A_PlaySound("Gore/Splat")
+	CMXD C 3 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
+	CMXD D 3 A_NoBlocking
+	CMXD EFGHI 3
+	CMXD J -1
+	Stop		 
 Raise:
-	     TNT1 A 0
-	     TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
-	     CALM KJIHG 4
-	     Goto See         
-         }
+	TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	CALM KJIHG 4
+	Goto See         
+ }
 }
 
 ACTOR BabyCacoGangs
 {
-+ISMONSTER
-States
-{
+ +ISMONSTER
+ States
+ {
   Spawn:
 	TNT1 A 0
 	TNT1 A 0 A_SpawnItemEx("BabyCacoCounter",-20,0,0)
@@ -332,14 +331,14 @@ States
 	TNT1 A 0 A_SpawnItemEx("RandomBabyCaco",0,-20,0)
 	TNT1 A 0 A_SpawnItemEx("RandomBabyCaco",0,0,20)
 	Stop
-}
+ }
 }
 
 ACTOR BabyCacoGangsMKII
 {
-+ISMONSTER
-States
-{
+ +ISMONSTER
+ States
+ {
   Spawn:
 	TNT1 A 0
 	TNT1 A 0 A_SpawnItemEx("BabyCacoCounter",-20,0,0)
@@ -352,7 +351,7 @@ States
 	TNT1 A 0 A_SpawnItemEx("RandomBabyCaco",0,20,20)
 	TNT1 A 0 A_SpawnItemEx("RandomBabyCaco",0,-20,20)
 	Stop
-}
+ }
 }
 
 Actor "RandomBabyCaco" : RandomSpawner
