@@ -483,7 +483,7 @@ SpiderMastermindBoss3 = "NemesisSentient";			SpiderMastermindBoss3Chance = 8;
 SpiderMastermindBoss4 = "CFOverlord";				SpiderMastermindBoss4Chance = 4;
 SpiderMastermindBoss5 = "CerebralCommander";			SpiderMastermindBoss5Chance = 4;
 SpiderMastermindBoss6 = "EvaccanniaDOOM";			SpiderMastermindBoss6Chance = 4;
-SpiderMastermindBoss7 = "sin-genjitsu3";				SpiderMastermindBoss7Chance = 19;
+SpiderMastermindBoss7 = "singenjitsu3";				SpiderMastermindBoss7Chance = 19;
 
 CyberdemonCount = 20;
 Cyberdemon0 = "";					Cyberdemon0Chance = 0;
@@ -502,7 +502,7 @@ Cyberdemon12 = "ClockworkCardinal";			Cyberdemon12Chance = 7;
 Cyberdemon13 = "TerminatorPrototype";			Cyberdemon13Chance = 7;
 Cyberdemon14 = "CorruptedCardinal";			Cyberdemon14Chance = 6;
 Cyberdemon15 = "Thamuz";					Cyberdemon15Chance = 17;
-Cyberdemon16 = "Thamuz-Lord";				Cyberdemon16Chance = 13;
+Cyberdemon16 = "ThamuzLord";				Cyberdemon16Chance = 13;
 Cyberdemon17 = "Apprentice";				Cyberdemon17Chance = 9;
 Cyberdemon18 = "HellfrostCyberdemon";			Cyberdemon18Chance = 7;
 Cyberdemon19 = "Frostdemon";				Cyberdemon19Chance = 6;

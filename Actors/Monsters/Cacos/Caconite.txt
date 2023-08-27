@@ -1,45 +1,43 @@
-ACTOR BabyCaco : Cacodemon
+ACTOR BabyCaco : CFCacodemon
 {
-	Health 150
-	Radius 18
-	Height 36
-	Mass 200
-	Speed 9
-	PainChance 100
-	MeleeDamage 4
-	PainChance "SoulToxic", 0
-	PainChance "Souls", 0
-	PainChance "ChaosSoul", 0
-	DamageFactor "CacoComet", 0.0
-	DamageFactor "WeakenerBall", 0.0
-	Damagefactor "Souls", 0.0
-	DamageFactor "SoulToxic", 0.0
-	DamageFactor "BombBreath", 0.0
-	Damagefactor "EleSouls", 0.0
-	SeeSound "BabyCaco/sight"
-	PainSound "BabyCaco/pain"
-	DeathSound "BabyCaco/death"
-	ActiveSound "BabyCaco/active"
-	MeleeSound "BabyCaco/melee"
-	BloodColor "Blue"
-	Obituary "%o underestimated a Baby Cacodemon."
-	HitObituary "%o was nibbled to death by a Baby Cacodemon."
-	MONSTER
-	+NOGRAVITY
-	+FLOAT
-	-COUNTKILL
-    Tag "$NEBabyCaco"
-    DropItem "LifeEssence", 50
-    DropItem "ArmorBonusMax", 50
-	var int user_lowlag;
-	States
-	{
-	Spawn:
-	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
+ Health 150
+ Radius 18
+ Height 36
+ Mass 200
+ Speed 9
+ PainChance 100
+ MeleeDamage 4
+ PainChance "SoulToxic", 0
+ PainChance "Souls", 0
+ PainChance "ChaosSoul", 0
+ DamageFactor "CacoComet", 0.0
+ DamageFactor "WeakenerBall", 0.0
+ Damagefactor "Souls", 0.0
+ DamageFactor "SoulToxic", 0.0
+ DamageFactor "BombBreath", 0.0
+ Damagefactor "EleSouls", 0.0
+ SeeSound "BabyCaco/sight"
+ PainSound "BabyCaco/pain"
+ DeathSound "BabyCaco/death"
+ ActiveSound "BabyCaco/active"
+ MeleeSound "BabyCaco/melee"
+ BloodColor "Blue"
+ Obituary "%o underestimated a Baby Cacodemon."
+ HitObituary "%o was nibbled to death by a Baby Cacodemon."
+ MONSTER
+ +NOGRAVITY
+ +FLOAT
+ Tag "$NEBabyCaco"
+ DropItem "LifeEssence", 50
+ DropItem "ArmorBonusMax", 50
+ States
+ {
+ Spawn:
+	CACB A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
 	Goto Idle
   Idle:
-		CACB A 10 A_Look
-		Loop
+	CACB A 10 A_Look
+	Loop
   See:
 	TNT1 A 0 A_JumpIf(user_lowlag == 1,"MoreSee")
 	TNT1 A 0 A_JumpIfTargetInLOS("MoreSee",0,0,0,0)
@@ -47,255 +45,261 @@ ACTOR BabyCaco : Cacodemon
 	Loop
   MoreSee:
 	TNT1 A 0 A_SetUserVar("user_lowlag",1)
-		CACB A 3 A_Chase
-		TNT1 A 0 A_Jump(4,"Evade")	
+	CACB A 3 A_Chase
+	TNT1 A 0 A_Jump(4,"Evade")	
         Loop
-	Evade:
-		TNT1 A 0 A_Jump(128,7)
-		TNT1 A 0 ThrustThing(Angle*256/360+64,14,0,0)
-		CACB AAAA 3 A_Chase
-		TNT1 A 0 A_Stop
-		Goto See
-		TNT1 A 0 ThrustThing(Angle*256/360+192,14,0,0)		 
-		CACB AAAA 3 A_Chase
-		TNT1 A 0 A_Stop		 
-		Goto See
-	Missile:
-		CACB AB 5 A_FaceTarget
-		CACB C 5 Bright A_CustomComboAttack("BabyCacoBall",17,random(1,8)*3)
-		Goto See
-	Melee:
-         CACB AB 5 A_FaceTarget
-         CACB C 5 A_MeleeAttack
-		 CACB BA 5 A_FaceTarget
-         Goto See
-	Pain:
-		CACB D 3
-		CACB D 3 A_Pain
-		CACB E 6
-		Goto See
-	Death:
-		CACB F 7
-		CACB G 7 A_Scream
-		CACB H 6
-		CACB I 5
-		CACB J 4 A_NoBlocking
-		CACB K 3
-		CACB L -1 A_SetFloorClip
-		Stop
-	Raise:
-		Stop
-	}
+  Evade:
+	TNT1 A 0 A_Jump(128,7)
+	TNT1 A 0 ThrustThing(Angle*256/360+64,14,0,0)	
+	CACB AAAA 3 A_Chase
+	TNT1 A 0 A_Stop
+	Goto See
+	TNT1 A 0 ThrustThing(Angle*256/360+192,14,0,0)
+	CACB AAAA 3 A_Chase
+	TNT1 A 0 A_Stop	
+	Goto See
+  Missile:
+	CACB AB 5 A_FaceTarget
+	CACB C 5 Bright A_CustomComboAttack("BabyCacoBall",17,random(1,8)*3)
+	Goto See
+  Melee:
+	CACB AB 5 A_FaceTarget
+	CACB C 5 A_MeleeAttack
+	CACB BA 5 A_FaceTarget
+	Goto See
+  Pain:
+	CACB D 3
+	CACB D 3 A_Pain
+	CACB E 6
+	Goto See
+  Death:
+  XDeath:
+	CACB F 7
+	CACB G 7 A_Scream
+	CACB H 6
+	CACB I 5
+	CACB J 4 A_NoBlocking
+	CACB K 3
+	CACB L -1 A_SetFloorClip
+	Stop
+  Raise:
+  XRaise:
+	TNT1 A 1
+	Stop
+ }
 }
 
-ACTOR BabyCacoCounter : Cacodemon
+ACTOR BabyCacoCounter : CFCacodemon
 {
-	Health 150
-	Radius 18
-	Height 36
-	Mass 200
-	Speed 9
-	PainChance 100
-	MeleeDamage 4
-	PainChance "SoulToxic", 0
-	PainChance "Souls", 0
-	PainChance "ChaosSoul", 0
-	DamageFactor "CacoComet", 0.0
-	DamageFactor "WeakenerBall", 0.0
-	Damagefactor "Souls", 0.0
-	DamageFactor "SoulToxic", 0.0
-	DamageFactor "BombBreath", 0.0
-	Damagefactor "EleSouls", 0.0
-	SeeSound "BabyCaco/sight"
-	PainSound "BabyCaco/pain"
-	DeathSound "BabyCaco/death"
-	ActiveSound "BabyCaco/active"
-	MeleeSound "BabyCaco/melee"
-	BloodColor "Blue"
-	Obituary "%o underestimated a Baby Cacodemon."
-	HitObituary "%o was nibbled to death by a Baby Cacodemon."
-	MONSTER
-	+NOGRAVITY
-	+FLOAT
-	+COUNTKILL
-    Tag "$NEBabyCaco2"
-    DropItem "LifeEssence", 50
-    DropItem "ArmorBonusMax", 50
-	States
-	{
-	Spawn:
-		CACB A 10 A_Look
-		Loop
-	See:
-		CACB A 3 A_Chase
-		TNT1 A 0 A_Jump(4,"Evade")	
+ Health 150
+ Radius 18
+ Height 36
+ Mass 200
+ Speed 9
+ PainChance 100
+ MeleeDamage 4
+ PainChance "SoulToxic", 0
+ PainChance "Souls", 0
+ PainChance "ChaosSoul", 0
+ DamageFactor "CacoComet", 0.0
+ DamageFactor "WeakenerBall", 0.0
+ Damagefactor "Souls", 0.0
+ DamageFactor "SoulToxic", 0.0
+ DamageFactor "BombBreath", 0.0
+ Damagefactor "EleSouls", 0.0
+ SeeSound "BabyCaco/sight"
+ PainSound "BabyCaco/pain"
+ DeathSound "BabyCaco/death"
+ ActiveSound "BabyCaco/active"
+ MeleeSound "BabyCaco/melee"
+ BloodColor "Blue"
+ Obituary "%o underestimated a Baby Cacodemon."
+ HitObituary "%o was nibbled to death by a Baby Cacodemon."
+ MONSTER
+ +NOGRAVITY
+ +FLOAT
+ +COUNTKILL
+ Tag "$NEBabyCaco2"
+ DropItem "LifeEssence", 50
+ DropItem "ArmorBonusMax", 50
+ States
+ {
+  Spawn:
+	CACB A 10 A_Look
+	Loop
+  See:
+	CACB A 3 A_Chase
+	TNT1 A 0 A_Jump(4,"Evade")	
         Loop
-	Evade:
-		TNT1 A 0 A_Jump(128,7)
-		TNT1 A 0 ThrustThing(Angle*256/360+64,14,0,0)
-		CACB AAAA 3 A_Chase
-		TNT1 A 0 A_Stop
-		Goto See
-		TNT1 A 0 ThrustThing(Angle*256/360+192,14,0,0)		 
-		CACB AAAA 3 A_Chase
-		TNT1 A 0 A_Stop		 
-		Goto See
-	Missile:
-		CACB AB 5 A_FaceTarget
-		CACB C 5 Bright A_CustomComboAttack("BabyCacoBall",17,random(1,8)*3)
-		Goto See
-	Melee:
-         CACB AB 5 A_FaceTarget
-         CACB C 5 A_MeleeAttack
-		 CACB BA 5 A_FaceTarget
-         Goto See
-	Pain:
-		CACB D 3
-		CACB D 3 A_Pain
-		CACB E 6
-		Goto See
-	Death:
-		CACB F 7
-		CACB G 7 A_Scream
-		CACB H 6
-		CACB I 5
-		CACB J 4 A_NoBlocking
-		CACB K 3
-		CACB L -1 A_SetFloorClip
-		Stop
-	Raise:
-		Stop
-	}
+  Evade:
+	TNT1 A 0 A_Jump(128,7)
+	TNT1 A 0 ThrustThing(Angle*256/360+64,14,0,0)
+	CACB AAAA 3 A_Chase
+	TNT1 A 0 A_Stop
+	Goto See
+	TNT1 A 0 ThrustThing(Angle*256/360+192,14,0,0)	
+	CACB AAAA 3 A_Chase
+	TNT1 A 0 A_Stop	
+	Goto See
+  Missile:
+	CACB AB 5 A_FaceTarget
+	CACB C 5 Bright A_CustomComboAttack("BabyCacoBall",17,random(1,8)*3)
+	Goto See
+  Melee:
+	CACB AB 5 A_FaceTarget
+	CACB C 5 A_MeleeAttack
+	CACB BA 5 A_FaceTarget
+	Goto See
+  Pain:
+	CACB D 3
+	CACB D 3 A_Pain
+	CACB E 6
+	Goto See
+  Death:
+  XDeath:
+	CACB F 7
+	CACB G 7 A_Scream
+	CACB H 6
+	CACB I 5
+	CACB J 4 A_NoBlocking
+	CACB K 3
+	CACB L -1 A_SetFloorClip
+	Stop
+  Raise:
+  XRaise:
+	TNT1 A 1
+	Stop
+ }
 }
 
 ACTOR BabyCacoBall
 {
-	Radius 3
-	Height 4
-	Speed 18
-	FastSpeed 17
-	Damage 4
-	Projectile 
-	+RANDOMIZE
-	RenderStyle Add
-	Alpha 1
-	SeeSound "caco/attack"
-	DeathSound "caco/shotx"
-	Decal "HImpScorch"
-	Damagetype "CacoComet"
-		States
-	{
-	Spawn:
-		BCAB AB 2 BRIGHT A_SpawnItemEx("BabyCacoBallTrail")
-		Loop
-	Death:
-		BCAB CDE 6 BRIGHT
-		Stop
-	}
+ Radius 3
+ Height 4
+ Speed 18
+ FastSpeed 17
+ Damage 4
+ Projectile 
+ +RANDOMIZE
+ RenderStyle Add
+ Alpha 1
+ SeeSound "caco/attack"
+ DeathSound "caco/shotx"
+ Decal "HImpScorch"
+ Damagetype "CacoComet"
+ States
+ {
+  Spawn:
+	BCAB AB 2 BRIGHT A_SpawnItemEx("BabyCacoBallTrail")
+	Loop
+  Death:
+	BCAB CDE 6 BRIGHT
+	Stop
+ }
 }
 
 ACTOR BabyCacoBallTrail : MissileTrail
 {
-	Scale 1
-	States
-	{
-	Spawn:
-		TNT1 A 0
-		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
-		TNT1 A 1
-		BCAB AB 4 Bright A_FadeOut(0.01)
-		Stop
-	}
+ Scale 1
+ States
+ {
+ Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 1
+	BCAB AB 4 Bright A_FadeOut(0.01)
+	Stop
+ }
 }
 
 ACTOR Caconite : CFCacodemon
 {
-Health 600
-PainChance 60
-MeleeDamage 7
-DamageFactor "CacoComet", 0.0
-DamageFactor "WeakenerBall", 0.0
-Species "CacoDemon"
-SeeSound "Caconite/sight"
-PainSound "Caconite/pain"
-DeathSound "Caconite/death"
-ActiveSound "caco/active"
-Obituary "%o was vanisqued by a Caconite."
-HitObituary "%o was too close to a Caconite's jaws."
-DropItem "LifeEssence" 90
-DropItem "ArmorBonusMax" 90
-DropItem "CFMana" 60 30
-BloodColor "Red"
-Tag "$NECaconite"
-States
-{
-Spawn:
-         CALM A 1 A_Look
-		 Loop
-See:
-         CALM A 3 A_Chase
-		 TNT1 A 0 A_Jump(8,"Evade")	
-         Loop
-Evade:
-		 TNT1 A 0 A_Jump(128,7)
-		 TNT1 A 0 ThrustThing(Angle*256/360+64,14,0,0)
-		 CALM AAAA 3 A_Chase
-		 TNT1 A 0 A_Stop
-		 Goto See
-		 TNT1 A 0 ThrustThing(Angle*256/360+192,14,0,0)		 
-		 CALM AAAA 3 A_Chase
-		 TNT1 A 0 A_Stop		 
-		 Goto See
-HadesSphere:
-         CALM BC 6 A_FaceTarget
-         CALM D 2 Bright A_FaceTarget
-		 CALM D 1 Bright A_PainAttack("HS")
-         CALM CB 4 A_FaceTarget
-         Goto See
-Missile:
-		 CALM A 0 A_Jump(128,"HadesSphere","HellStaffNormal","HellStaffHoming")
-         CALM BC 6 A_FaceTarget
-         CALM D 2 Bright A_FaceTarget
-		 CALM D 1 Bright A_CustomMissile("CBElemBall",24,0,0,0,0)
-         TNT1 A 0 Bright A_CustomMissile("CBElemBall",24,0,6,0,0)
-         CALM D 1 Bright A_CustomMissile("CBElemBall",24,0,-6,0,0)
-         CALM CB 4 A_FaceTarget
-         Goto See
-HellStaffNormal:
-         CALM BC 7 A_FaceTarget
-         CALM D 6 Bright A_FaceTarget
-		 CALM D 6 Bright A_CustomMissile("CBElemHellStaffBall1",24,0,random(-4,4),0,0)
-         CALM D 6 Bright A_CustomMissile("CBElemHellStaffBall1",24,0,random(-4,4),0,0)
-		 CALM D 6 Bright A_CustomMissile("CBElemHellStaffBall1",24,0,random(-4,4),0,0)
-		 CALM D 6 Bright A_CustomMissile("CBElemHellStaffBall1",24,0,random(-4,4),0,0)
-		 CALM D 6 Bright A_CustomMissile("CBElemHellStaffBall1",24,0,random(-4,4),0,0)
-		 CALM D 6 Bright A_CustomMissile("CBElemHellStaffBall1",24,0,random(-4,4),0,0)
-		 CALM D 6 Bright A_CustomMissile("CBElemHellStaffBall1",24,0,random(-4,4),0,0)
-		 CALM D 6 Bright A_CustomMissile("CBElemHellStaffBall1",24,0,random(-4,4),0,0)
-		 CALM D 6 Bright A_CustomMissile("CBElemHellStaffBall1",24,0,random(-4,4),0,0)
-		 CALM D 7 Bright A_CustomMissile("CBElemHellStaffBall1",24,0,random(-4,4),0,0)
-         CALM CB 7 A_FaceTarget
-         Goto See
-HellStaffHoming:
-         CALM BC 7 A_FaceTarget
-         CALM D 2 Bright A_FaceTarget
-		 CALM D 7 Bright A_CustomMissile("CBElemHellStaffBall2",24,0,0,0,0)
-         CALM D 7 Bright A_CustomMissile("CBElemHellStaffBall2",24,0,0,0,0)
-		 CALM D 7 Bright A_CustomMissile("CBElemHellStaffBall2",24,0,0,0,0)
-		 CALM D 7 Bright A_CustomMissile("CBElemHellStaffBall2",24,0,0,0,0)
-		 CALM D 7 Bright A_CustomMissile("CBElemHellStaffBall2",24,0,0,0,0)
-         CALM CB 7 A_FaceTarget
-         Goto See
-Melee:
-         CALM BC 5 A_FaceTarget
-         CALM D 5 A_MeleeAttack
-		 CALM CB 5 A_FaceTarget
-         Goto See
-Pain:
-		 CALM E 6 A_Pain
-		 CALM F 6
-         Goto See
-Death:
+ Health 600
+ PainChance 60
+ MeleeDamage 7
+ DamageFactor "CacoComet", 0.0
+ DamageFactor "WeakenerBall", 0.0
+ Species "CacoDemon"
+ SeeSound "Caconite/sight"
+ PainSound "Caconite/pain"
+ DeathSound "Caconite/death"
+ ActiveSound "caco/active"
+ Obituary "%o was vanisqued by a Caconite."
+ HitObituary "%o was too close to a Caconite's jaws."
+ DropItem "LifeEssence" 90
+ DropItem "ArmorBonusMax" 90
+ DropItem "CFMana" 60 30
+ BloodColor "Red"
+ Tag "$NECaconite"
+ States
+ {
+  Spawn:
+	CALM A 1 A_Look
+	Loop
+  See:
+	CALM A 3 A_Chase
+	TNT1 A 0 A_Jump(8,"Evade")	
+	Loop
+  Evade:
+	TNT1 A 0 A_Jump(128,7)
+	TNT1 A 0 ThrustThing(Angle*256/360+64,14,0,0)
+	CALM AAAA 3 A_Chase
+	TNT1 A 0 A_Stop
+	Goto See
+	TNT1 A 0 ThrustThing(Angle*256/360+192,14,0,0)	
+	CALM AAAA 3 A_Chase
+	TNT1 A 0 A_Stop	
+	Goto See
+  HadesSphere:
+	CALM BC 6 A_FaceTarget
+	CALM D 2 Bright A_FaceTarget
+	CALM D 1 Bright A_PainAttack("HS")
+	CALM CB 4 A_FaceTarget
+	Goto See
+  Missile:
+	CALM A 0 A_Jump(128,"HadesSphere","HellStaffNormal","HellStaffHoming")
+	CALM BC 6 A_FaceTarget
+	CALM D 2 Bright A_FaceTarget
+	CALM D 1 Bright A_CustomMissile("CBElemBall",24,0,0,0,0)
+	TNT1 A 0 Bright A_CustomMissile("CBElemBall",24,0,6,0,0)
+	CALM D 1 Bright A_CustomMissile("CBElemBall",24,0,-6,0,0)
+	CALM CB 4 A_FaceTarget
+	Goto See
+  HellStaffNormal:
+	CALM BC 7 A_FaceTarget
+	CALM D 6 Bright A_FaceTarget
+	CALM D 6 Bright A_CustomMissile("CBElemHellStaffBall1",24,0,random(-4,4),0,0)
+	CALM D 6 Bright A_CustomMissile("CBElemHellStaffBall1",24,0,random(-4,4),0,0)
+	CALM D 6 Bright A_CustomMissile("CBElemHellStaffBall1",24,0,random(-4,4),0,0)
+	CALM D 6 Bright A_CustomMissile("CBElemHellStaffBall1",24,0,random(-4,4),0,0)
+	CALM D 6 Bright A_CustomMissile("CBElemHellStaffBall1",24,0,random(-4,4),0,0)
+	CALM D 6 Bright A_CustomMissile("CBElemHellStaffBall1",24,0,random(-4,4),0,0)
+	CALM D 6 Bright A_CustomMissile("CBElemHellStaffBall1",24,0,random(-4,4),0,0)
+	CALM D 6 Bright A_CustomMissile("CBElemHellStaffBall1",24,0,random(-4,4),0,0)
+	CALM D 6 Bright A_CustomMissile("CBElemHellStaffBall1",24,0,random(-4,4),0,0)
+	CALM D 7 Bright A_CustomMissile("CBElemHellStaffBall1",24,0,random(-4,4),0,0)
+	CALM CB 7 A_FaceTarget
+	Goto See
+  HellStaffHoming:
+	CALM BC 7 A_FaceTarget
+	CALM D 2 Bright A_FaceTarget
+	CALM D 7 Bright A_CustomMissile("CBElemHellStaffBall2",24,0,0,0,0)
+	CALM D 7 Bright A_CustomMissile("CBElemHellStaffBall2",24,0,0,0,0)
+	CALM D 7 Bright A_CustomMissile("CBElemHellStaffBall2",24,0,0,0,0)
+	CALM D 7 Bright A_CustomMissile("CBElemHellStaffBall2",24,0,0,0,0)
+	CALM D 7 Bright A_CustomMissile("CBElemHellStaffBall2",24,0,0,0,0)
+	CALM CB 7 A_FaceTarget
+	Goto See
+  Melee:
+	CALM BC 5 A_FaceTarget
+	CALM D 5 A_MeleeAttack
+	CALM CB 5 A_FaceTarget
+	Goto See
+  Pain:
+	CALM E 6 A_Pain
+	CALM F 6
+	Goto See
+  Death:
         CALM G 7 A_Scream
         CALM H 7 A_NoBlocking
 	CALM I 6
@@ -303,18 +307,19 @@ Death:
 	CALM K 4
 	CALM L -1
 	Stop
-XDeath:
+  XDeath:
 	CMXD A 4 
 	CMXD B 3 A_PlaySound("Gore/Splat")
 	CMXD C 3 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
 	CMXD D 3 A_NoBlocking
 	CMXD EFGHI 3
 	CMXD J -1
-	Stop		 
-Raise:
+	Stop	
+  Raise:
+  XRaise:
 	TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 	CALM KJIHG 4
-	Goto See         
+	Goto See	
  }
 }
 

@@ -437,7 +437,7 @@ BSBaronOfHell13 = "FrostAfrit"; BSBaronOfHell13Chance = 5;
 BSBaronOfHell14 = "LesserCardinal"; BSBaronOfHell14Chance = 5;
 BSBaronOfHell15 = "InfernalCyberNoble"; BSBaronOfHell15Chance = 5;
 BSBaronOfHell16 = "Hellspawn"; BSBaronOfHell16Chance = 4;
-BSBaronOfHell17 = "PhaseOverlord2"; BSBaronOfHell17Chance = 3;
+BSBaronOfHell17 = "PhaseOverlord"; BSBaronOfHell17Chance = 3;
 BSBaronOfHell18 = "WrathLord"; BSBaronOfHell18Chance = 3;
 BSBaronOfHell19 = "CorruptionServantStandalone"; BSBaronOfHell19Chance = 3;
 BSBaronOfHell20 = "ProtoDestroyer"; BSBaronOfHell20Chance = 3;
@@ -457,7 +457,7 @@ BSBaronOfHell31 = "LegendaryCyberNoble"; BSBaronOfHell31Chance = 1;
 BSBaronOfHell32 = "LegendaryAfrit"; BSBaronOfHell32Chance = 1;
 BSBaronOfHell33 = "LegendaryArchon"; BSBaronOfHell33Chance = 1;
 BSBaronOfHell34 = "EnragedLegendaryCybruiser"; BSBaronOfHell34Chance = 1;
-BSBaronOfHell35 = "Obliterator"; BSBaronOfHell35Chance = 1;
+BSBaronOfHell35 = "NexusObliterator"; BSBaronOfHell35Chance = 1;
 BSBaronOfHell36 = "NemesisCyberNoble"; BSBaronOfHell36Chance = 1;
 
 
@@ -513,7 +513,7 @@ BSSpiderMastermind19 = "InsaneWritheQueen"; BSSpiderMastermind19Chance = 4;
 
 BSSpiderMastermindBossCount = 7;
 BSSpiderMastermind20 = "LegendarySentient"; BSSpiderMastermind20Chance = 3;
-BSSpiderMastermind21 = "sin-genjitsu3"; BSSpiderMastermind21Chance = 3;
+BSSpiderMastermind21 = "singenjitsu3"; BSSpiderMastermind21Chance = 3;
 BSSpiderMastermind22 = "EnragedLegendarySentient"; BSSpiderMastermind22Chance = 2;
 BSSpiderMastermind23 = "NemesisSentient"; BSSpiderMastermind23Chance = 2;
 BSSpiderMastermind24 = "CFOverlord"; BSSpiderMastermind24Chance = 1;
@@ -535,7 +535,7 @@ BSCyberdemon7 = "Thamuz"; BSCyberdemon7Chance = 14;
 BSCyberdemon8 = "DarkAnnihilator"; BSCyberdemon8Chance = 13;
 BSCyberdemon9 = "EmpoweredDarkCyberdemon"; BSCyberdemon9Chance = 13;
 BSCyberdemon10 = "ClockworkCyberdemon"; BSCyberdemon10Chance = 12;
-BSCyberdemon11 = "Thamuz-Lord"; BSCyberdemon11Chance = 11;
+BSCyberdemon11 = "ThamuzLord"; BSCyberdemon11Chance = 11;
 BSCyberdemon12 = "Cardihilator"; BSCyberdemon12Chance = 9;
 BSCyberdemon13 = "ClockworkAnnihilator"; BSCyberdemon13Chance = 9;
 BSCyberdemon14 = "Apprentice"; BSCyberdemon14Chance = 7;

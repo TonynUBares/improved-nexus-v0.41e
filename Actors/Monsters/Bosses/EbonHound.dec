@@ -6,9 +6,8 @@ Actor EbonHound
  Health 6000
  MaxStepHeight 64
  MaxDropOffHeight 50
-  BloodColor Purple
- 
-  Damagefactor Dark, 0
+ BloodColor Purple
+ Damagefactor Dark, 0
  DeathSound "Cerberus/Die"
  SeeSound "Cerberus/See"
  ActiveSound ""
@@ -36,7 +35,7 @@ Actor EbonHound
  Radius 80
  Scale 1.27
  Speed 6
- Tag "CFEHound"
+ Tag "$CFEHound"
  var int user_lowlag;
  States
   {
