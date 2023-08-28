@@ -1399,7 +1399,7 @@ ACTOR DTBFG10KTracerObliterator : DTBFG10KTracer
 	  }
 }
 
-ACTOR BaronNuke : FusionNuke
+ACTOR BaronNuke : SentientFusionNuke
 {
    DamageType "NobleComet"
    Obituary "%o was slaughtered by an Obliterator."
