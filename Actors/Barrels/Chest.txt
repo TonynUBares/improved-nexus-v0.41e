@@ -24,7 +24,7 @@ ACTOR ComplexChest
  {
   Spawn:
 	TNT1 A 0
-	CEST A -1
+	CEST X -1
 	Stop
   Death:
 	TNT1 A 0 A_Jump(128,"Death2","Death3","Death4","DeathMonster","DeathMonster","DeathMonster")
@@ -72,8 +72,8 @@ ACTOR ComplexChest
 	TNT1 A 0 A_SpawnItemEx("WolfensteinSS",0,0,64,0,0,2,random(0,360),0,0)
 	Goto DeathLoop
   DeathLoop:
-	CEST B 1
-	CEST B -1
+	CEST Z 1
+	CEST Z -1
 	Stop
  }
 }
