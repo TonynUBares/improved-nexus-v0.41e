@@ -78,8 +78,8 @@ DamageFactor "PlayerDevBall2", 0.0
 DamageFactor "PlayerDevTracer", 0.0
 DamageFactor "PlayerExplosive", 0.0
 DamageFactor "PlayerDTRG", 0.0
-DamageFactor "PDTBFG", 0.0
-DamageFactor "PDTBFGTracer", 0.0
+DamageFactor "PDTBFG", 0.35
+DamageFactor "PDTBFGTracer", 0.35
 DamageFactor "LegendaryPlayer", 0.0
 DamageFactor "LegendaryGuruPlayer", 0.0
 DamageFactor "PlayerPyro", 0.0

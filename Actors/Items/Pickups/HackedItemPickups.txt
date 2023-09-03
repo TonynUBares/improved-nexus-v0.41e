@@ -36,8 +36,8 @@ Actor HackroidArmorGiver : BasicArmorPickup
   Armor.SaveAmount 1200
   Inventory.Icon "HAMRA0"
   DamageFactor "Normal", 0.35
-  DamageFactor "PDTBFG", 0.20
-  DamageFactor "PDTBFGTracer", 0.20
+  DamageFactor "PDTBFG", 0.10
+  DamageFactor "PDTBFGTracer", 0.10
   DamageFactor "Cyber10K", 0.20
   DamageFactor "Legendary", 0.20
   DamageFactor "LegendaryGuru", 0.20
