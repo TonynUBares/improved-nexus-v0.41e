@@ -88,30 +88,30 @@ Actor OccultSpellbook : Weapon 17601
 	TNT1 A 0 A_JumpIfInventory("OccultSlicerToken2",1,"Ready4")
 	TNT1 A 0 A_JumpIfInventory("SummonerToken2",1,"Ready5")
   Ready1:
-	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"ToSlicer")
-	TNT1 A 0 A_JumpIfInventory("MineAction",1,"ToSummoner")
+	SPBK A 0 A_JumpIfInventory("HandGrenadeAction",1,"ToSlicer")
+	SPBK A 0 A_JumpIfInventory("MineAction",1,"ToSummoner")
 	SPBK A 1 A_WeaponReady(WRF_ALLOWZOOM|WRF_ALLOWRELOAD)
 	Loop
   Ready2:
-	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"ToSlicer")
-	TNT1 A 0 A_JumpIfInventory("MineAction",1,"ToSummoner")
+	SPBD A 0 A_JumpIfInventory("HandGrenadeAction",1,"ToSlicer")
+	SPBD A 0 A_JumpIfInventory("MineAction",1,"ToSummoner")
 	SPBD A 1 A_WeaponReady(WRF_ALLOWRELOAD)
 	Loop
   Ready3:
-	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"ToSlicer")
-	TNT1 A 0 A_JumpIfInventory("MineAction",1,"ToSummoner")
+	SPBC A 0 A_JumpIfInventory("HandGrenadeAction",1,"ToSlicer")
+	SPBC A 0 A_JumpIfInventory("MineAction",1,"ToSummoner")
 	SPBC A 1 A_WeaponReady(WRF_ALLOWZOOM)
 	Loop
   Ready4:
-	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"SlicerSwitch")
-	TNT1 A 0 A_JumpIfInventory("MineAction",1,"ToSummoner")
+	SBXS A 0 A_JumpIfInventory("HandGrenadeAction",1,"SlicerSwitch")
+	SBXS A 0 A_JumpIfInventory("MineAction",1,"ToSummoner")
 	SBXS A 1 A_WeaponReady(WRF_ALLOWZOOM|WRF_ALLOWRELOAD)
 	Loop
   Ready5:
-	TNT1 A 0 A_JumpIfInventory("MineAction",1,"SummonerSwitch")
-	TNT1 A 0 A_JumpIfInventory("HandGrenadeAction",1,"ToSlicer")
+	SBVV A 0 A_JumpIfInventory("MineAction",1,"SummonerSwitch")
+	SBVV A 0 A_JumpIfInventory("HandGrenadeAction",1,"ToSlicer")
 	SBVV A 1 A_WeaponReady(WRF_ALLOWZOOM|WRF_ALLOWRELOAD)
-	TNT1 A 0 A_TakeInventory("VileCache",999)
+	SBVV A 0 A_TakeInventory("VileCache",999)
 	Loop
    Deselect:
 	"####" A 0 A_TakeInventory("HandGrenadeAction",1)
