@@ -16,5 +16,5 @@ ALIAS UsePresents "Pukename XmasMorning"
 ADDMENUKEY "Drop Heart" DropCurrentHeart
 ALIAS DropCurrentHeart "Pukename HeartDropping"
 
-//ADDMENUKEY "Occult menu 1" +User1
-//ADDMENUKEY "Occult menu 2" +User2
+ADDMENUKEY "Occult menu 1" +User1
+ADDMENUKEY "Occult menu 2" +User2
