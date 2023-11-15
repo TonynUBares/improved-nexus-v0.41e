@@ -2,13 +2,13 @@ ListMenu "MainMenu"
 {
 	IfGame (DOOM)
 	{
-	  ifOption(OpenAL) { StaticPatch 80,-20, "NEGZDOOM" Position 93,96 Font "MENUFONT", "Red", "Black" Linespacing  14 }
-	  else { StaticPatch 80,-25, "NEDOOM" Position 93,90 Font "BIGFONT", "Red", "Black" }
+	  ifOption(OpenAL) { StaticPatch 80,-20, "GZMDOOMHD" Position 93,96 Font "BIGFONT", "Red", "Black" Linespacing  14 }
+	  else { StaticPatch 80,-25, "MDOOMHD" Position 93,90 Font "BIGFONT", "Red", "Black" }
 	}
 	 //BIGFONT, "DarkGrey", White"
 	TextItem "$CFNewGame",			"n",	"PlayerClassMenu"
 	TextItem "$ModOptions",			"c",	"OptionsCF"
-	TextItem "$MainCredits",			"h",	"ReadThisMenu"
+	TextItem "$ExtraInfo",			"h",	"ExtraInfo"
 	TextItem "$Options",				"o",	"OptionsMenu"
 	TextItem "$Load",				"l",	"LoadGameMenu"
 	TextItem "$Save",				"s",	"SaveGameMenu"
