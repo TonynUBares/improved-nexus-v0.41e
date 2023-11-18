@@ -3,7 +3,7 @@ Actor HDANLiteBeaconSupply: LiteBeaconSupply replaces LiteBeaconSupply
  States
  {
   Spawn:
-	BELT ACDEFR 7
+	BELT ABCDER 7
   Idle:
 	TNT1 A 0 A_ChangeFlag(FRIENDLY,0)
 	TNT1 A 0 A_ChangeFlag(NOBLOCKMAP,0)
@@ -26,7 +26,7 @@ Actor HDANLiteBeaconSupply: LiteBeaconSupply replaces LiteBeaconSupply
 	TNT1 A 0 A_SetUserVar("user_spawncount",user_spawncount + 1)
 	TNT1 A 0 A_JumpIf(user_spawncount >= user_spawntotal, "Death")
 	BELT A 0 Healthing(100)
-	BELT ACDEF 210
+	BELT ABCDE 210
 	BELT R 0 Bright A_PlaySound("weapon/warn")
 	Goto Idle
  }
@@ -37,7 +37,7 @@ Actor HDANFullBeaconSupply: FullBeaconSupply replaces FullBeaconSupply
  States
  {
   Spawn:
-	BEFL ACDEFR 7
+	BEFL ABCDER 7
   Idle:
 	TNT1 A 0 A_ChangeFlag(FRIENDLY,0)
 	TNT1 A 0 A_ChangeFlag(NOBLOCKMAP,0)
@@ -60,7 +60,7 @@ Actor HDANFullBeaconSupply: FullBeaconSupply replaces FullBeaconSupply
 	TNT1 A 0 A_SetUserVar("user_spawncount",user_spawncount + 1)
 	TNT1 A 0 A_JumpIf(user_spawncount >= user_spawntotal, "Death")
 	BEFL A 0 Healthing(100)
-	BEFL ACDEF 210
+	BEFL ABCDE 210
 	BEFL R 0 Bright A_PlaySound("weapon/warn")
 	Goto Idle
  }
@@ -71,31 +71,31 @@ Actor HDANRandomBeaconSupply: RandomBeaconSupply replaces RandomBeaconSupply
  States
  {
   Spawn:
-	BERD ACDEFR 7
+	BERA ABCDER 7
   Idle:
 	TNT1 A 0 A_ChangeFlag(FRIENDLY,0)
 	TNT1 A 0 A_ChangeFlag(NOBLOCKMAP,0)
 	TNT1 A 0 A_SetTranslucent(1,0)
 	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND,0,100,0,360,"Supply")
 	TNT1 A 0 A_ChangeFlag(FRIENDLY,1)
-	BERD R 35
+	BERA R 35
 	TNT1 A 0 A_ChangeFlag(FRIENDLY,0)
 	TNT1 A 0 A_ChangeFlag(NOBLOCKMAP,0)
 	TNT1 A 0 A_SetTranslucent(1,0)
 	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND,0,100,0,360,"Supply")
 	TNT1 A 0 A_ChangeFlag(FRIENDLY,1)
-	BERD R 35 Bright
+	BERA R 35 Bright
 	Loop
   Supply:
 	TNT1 A 0 A_SetUserVar("user_spawntotal",ACS_NamedExecuteWithResult("GetBeaconSpawnNumber"))
 	TNT1 A 0 A_CheckFlag(ISMONSTER,"Hide",AAPTR_TARGET)
-	BERD R 10 Bright A_SpawnItemEx ("TeleportFog",0,0,8,0,0,0,0,SXF_NOCHECKPOSITION,0)
+	BERA R 10 Bright A_SpawnItemEx ("TeleportFog",0,0,8,0,0,0,0,SXF_NOCHECKPOSITION,0)
 	TNT1 A 0 ACS_NamedExecuteAlways("RandomBeacon")
 	TNT1 A 0 A_SetUserVar("user_spawncount",user_spawncount + 1)
 	TNT1 A 0 A_JumpIf(user_spawncount >= user_spawntotal, "Death")
-	BERD A 0 Healthing(100)
-	BERD ACDEF 210
-	BERD R 0 Bright A_PlaySound("weapon/warn")
+	BERA A 0 Healthing(100)
+	BERA ABCDE 210
+	BERA R 0 Bright A_PlaySound("weapon/warn")
 	Goto Idle
  }
 }

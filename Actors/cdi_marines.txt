@@ -2122,7 +2122,7 @@ Actor UACGuyDBFG : UACHeavyMarine
 
 ACTOR MarineT3DBFG10kShot : PlayerT3DBFG10kShot
 {
- DamageType "Players"
+ //DamageType "Players"
  States
  {
   Death:

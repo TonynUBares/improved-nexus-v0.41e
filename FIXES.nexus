@@ -1,0 +1,9 @@
+Fixes up to version 0.4:
+
+- Phase armor using the same sprite names of a Baron (fixed on CF's side)
+- Fixed(?) DBFG marines dealing tonnes of dmg (DamageType was "Players")
+- Not Fixed Hackroid weapons working with no ammo (it became a feature)
+- Fixed Leg behemoth cannon spawn sprite
+- Removed PIERCEARMOR from every monster using it (I hope)
+- ^Same with FOILINVUL
+- Fixed (hopefully once and for all) the wrong invbar sprites of Gaturra's beacons

@@ -1,0 +1,119 @@
+If you're a pro complex doom addon maker or whatever here are some better detailed 
+changes you might find useful for compatibility.
+
+---V1.95b---
+-SBARINFO updated, new powerup timers added for WingsOfAscension and LightNemesisArmor
+-New ACS library: NEXUSPOW which contains inventory regenerative power items
+
+Item actors changed: Ammosphere, LegendaryPowerShard, EnragedLegendaryPowerShard, NemesisPowerShard, WingsOfAscension,
+NemesisPowerSphere
+
+Monster actors changed: Frostdemon, Abaddon (inside XDeath-Tweaks)
+
+---V1.95a:---
+-Updated SBARINFO (Mugshot, Statusbar normal, Welder)
+-New tweak file, Xdeath tweaks
+
+New actors:
+
+Monsters:
+- Pyroblast Zombieman (Shotgunner)
+- Hellspawn (Baron)
+
+Weapons:
+- Welder (Slot 8)
+
+Barrels:
+- Empowered Oil Barrel
+
+Update monster, weapon and barrel spawners!
+
+Monster Actors changed: Cardihilator Demolisher, Enraged legendary Suicide Bomber, Insanity Cacodemon,
+Nailgun Commando, Demon Tech Spectre, Flak Cannon Zombie, Loper, Phase Shotgun Commando, Phase Moon,
+War, Infernal Cybernoble, Paladin
+
+XDEATH EDITS: SpecOps Railgunner, SpecOps Shotgunner, SpecOps Machinegunner, HeavySpecOps Machinegunner,
+HeavySpecOps Shotgunner, Hell Guardian, Cacomental, Abaddon, BFG Cacodemon, Cerebral Cacodemon, Agathodemon,
+Phase Cacodemon, Empowered BFG Cacodemon
+
+Weapon actors changed: Occult Spellbook, BFG15k (forgot to mention this last update)
+
+Item actors changed: Presents, Mines, Springmines, Proxymines
+
+---V1.95:---
+-All beacon actors have been moved to Actors/BaconStuff.txt (with changes)
+-All weapon tweaks have been moved to Actors/Tweaks/Weapontweaks.txt
+
+Weapon actors changed: Occult Spellbook, Behemoth cannon, Demon Tech Devastator, Legendary Coachgun,
+Legendary Revolver, Barbatos Cannon, Grenade Launcher, Rocket Launcher, Behemoth Cannon, Plasma Rifle, 
+Legendary Plasmatic Rifle, Legendary Light Machine Gun, Assault Shotgun, Chainsaw, FlameSword,
+Plasma Handguns, Demon tech Axe
+
+Monster actors changed: Cyberimp, EFGLunatic, all of kazumi's monsters
+
+Item actors changed: Brimstone, Demon Hearts, Sphere Of Power, Shiro sphere, Nemesis Shiro sphere, Spring Mine,
+Supply beacons, Ankh Of Resurrection, Salvation spheres, Talisman Of Chaos, Phase Sphere
+
+WARNING: Following actor names have changed:
+
+Kazumi_KaguyaHouraisan --> KaguyaHouraisan
+Kazumi_LegendaryKaguya --> LegendaryKaguya
+Kazumi_SanaeKochiya    --> SanaeKochiya
+kazumi_sin-genjitsu    --> sin-genjitsu3
+Kazumi_MakaiSlut       --> MakaiSlut
+Kazumi_UndeadMakaiSlut --> UndeadMakaiSlut
+Kazumi_Hibachi         --> Hibachi
+LegendaryChairNEW      --> LegendaryChair
+Kazumi_EvaccanniaDOOM  --> EvaccanniaDOOM
+
+(this requires to update monster and barrel spawners in order to work)
+
+WARNING: Following changes have beem added to to monster spawners:
+
+Added: HellfireCardinal
+Removed: Infected
+
+---V1.94:---
+
+
+- Many weapons/monsters/items have their code changed, if you replaced anything make sure to check all of them for compatibility reasons.
+This also requires updating KEYCONFIG and SBARINFO.
+- All weapons have their Select/Deselect states changed, make sure to replace accordingly to apply the faster weapon switching.
+- Original nemesis and enraged monster actors don't have remove states, but they're replaced with one in RemoveStateOverride.txt (an easy method if switching to ACS spawners)
+However, NoRemoveStates.txt have monsters with no remove states for guaranteed spawns.
+- All HPBAR monster tagging must be done with LANGUAGE (or intern actor tags), CVARINFO does not work, see the LANGUAGE file to gain insight.
+
+New actors:
+
+Monsters:
+- LegendaryRevolverZombie (zombieman)
+- DemonTechBallistaZombie (zombieman)
+- M79Zombie (zombieman)
+- LegendarySuperShotgunZombie (shotgunner)
+- NailgunCommando chaingunner)
+- EFGLunatic (chaingunner)
+- BFG15KMajor (chaingunner)
+- LegChainsawZombie (demon)
+- SpiderMinimind (arachnotron)
+- FreezerRevenant (revenant)
+- STBelphegor (baronofhell)
+- DarkVile (archvile)
+
+Weapons:
+- LegendaryChainsaw (chainsaw)
+- "Legendary Revolver" (pistol)
+- "Legendary Super Shotgun" (doublebarrel) (replaces legendarycoachgun)
+- Nailgun (chaingun)
+- "M79 Gas Grenade Launcher" (rocketlauncher)
+- "Demon Tech Ballista" (plasmarifle)
+- "Legendary Railgun" (plasmarifle)
+- FreezerBFG (BFG)
+- "BFG15K" (BFG)
+
+New Cvars:
+nx_Shinki (0 - 1) Double change for Undead Shinki
+nx_Lunatic (0 - 1) Enable EFG Lunatic's final nuclear option
+nx_shotty (0 - 2) Spawner for Leg SSG Zombie, Lieutenant or both
+nx_revolver (0 - 2) Spawner for Leg Revolver zombie, cowboy or both
+nx_freezer (0 - 1) The Freezer Rifle's alt fire freezes corpses for more loot, does not apply to bosses
+lcadjb_PlasmaNerf (0 - 3) Change which plasma pistol mode to start with

@@ -233,25 +233,25 @@ StatusBar FullScreen, FullScreenOffsets
     {
 	DrawImage "SEWPA0", -72, -53;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
-	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
-	DrawNumber 3, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
+	DrawNumber 4, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
+	DrawNumber 4, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
 	DrawImage AmmoIcon1, -16, -6, CenterBottom;
 	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo1, DrawShadow, -27, -22, 0;
 	DrawNumber 2, HUDFONT_DOOM, Gold, Ammo1, WhenNotZero, DrawShadow, -27, -22, 0, Red, 4, Green, 9;
-	DrawNumber 3, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
-	DrawNumber 3, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
+	DrawNumber 4, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
+	DrawNumber 4, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
     }
   IsSelected "PoweredDemonTechPistol"
     {
 	DrawImage "SEWPA0", -72, -53;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
-	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
-	DrawNumber 3, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
+	DrawNumber 4, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
+	DrawNumber 4, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
 	DrawImage "ETPTA0", -16, -6, CenterBottom;
 	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo1, DrawShadow, -27, -22, 0;
 	DrawNumber 2, HUDFONT_DOOM, Gold, Ammo1, WhenNotZero, DrawShadow, -27, -22, 0, Red, 4, Green, 9;
-	DrawNumber 3, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
-	DrawNumber 3, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
+	DrawNumber 4, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
+	DrawNumber 4, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
     }
   IsSelected ".357 Revolver"
     {
@@ -413,10 +413,10 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawImage "SEWPA0", -64, -53;
 	DrawImage "ERAGA0", -34, -4, CenterBottom;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
-	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
-	DrawNumber 3, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
-	DrawNumber 3, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
-	DrawNumber 3, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
+	DrawNumber 4, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
+	DrawNumber 4, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
+	DrawNumber 4, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
+	DrawNumber 4, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
 	}
   IsSelected "Legendary Assault Shotgun"
     {
@@ -657,30 +657,30 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawImage "SEWPA0", -48, -53;
 	DrawImage "FHMSA0", -27, -4, CenterBottom;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
-	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
-	DrawNumber 3, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
-	DrawNumber 3, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
-	DrawNumber 3, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
+	DrawNumber 4, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
+	DrawNumber 4, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
+	DrawNumber 4, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
+	DrawNumber 4, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
 	}
   IsSelected "BarbatosCannon"
 	{
 	DrawImage "SEWPA0", -48, -53;
 	DrawImage "BRBDA0", -27, -4, CenterBottom;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
-	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
-	DrawNumber 3, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
-	DrawNumber 3, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
-	DrawNumber 3, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
+	DrawNumber 4, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
+	DrawNumber 4, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
+	DrawNumber 4, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
+	DrawNumber 4, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
 	}
   IsSelected "RuffianCannon"
 	{
 	DrawImage "SEWPA0", -48, -53;
 	DrawImage "RFMSA0", -27, -4, CenterBottom;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
-	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
-	DrawNumber 3, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
-	DrawNumber 3, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
-	DrawNumber 3, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
+	DrawNumber 4, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
+	DrawNumber 4, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
+	DrawNumber 4, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
+	DrawNumber 4, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
 	}
   IsSelected "HomingRocketLauncher"
     {
@@ -775,62 +775,62 @@ StatusBar FullScreen, FullScreenOffsets
     {
 	DrawImage "SEWPA0", -40, -53;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
-	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
-	DrawNumber 3, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
+	DrawNumber 4, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
+	DrawNumber 4, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
 	DrawImage AmmoIcon1, -28, -6, CenterBottom;
-	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo1, DrawShadow, -27, -22, 0;
+	DrawNumber 4, HUDFONT_DOOM, DarkGrey, Ammo1, DrawShadow, -27, -22, 0;
 	DrawNumber 2, HUDFONT_DOOM, Gold, Ammo1, WhenNotZero, DrawShadow, -27, -22, 0, Red, 10, Green, 21;
-	DrawNumber 3, INDEXFONT, Red, Ammo NewCell, -16, -80;
-	DrawNumber 3, INDEXFONT, Green, Ammo NewCell, WhenNotZero, -16, -80;
+	DrawNumber 4, INDEXFONT, Red, Ammo NewCell, -16, -80;
+	DrawNumber 4, INDEXFONT, Green, Ammo NewCell, WhenNotZero, -16, -80;
     }	
   IsSelected "Freezer Rifle"
 	{
 	DrawImage "SEWPA0", -40, -53;
 	DrawImage "RIPGA0", -36, -4, CenterBottom;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
-	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
-	DrawNumber 3, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
-	DrawNumber 3, INDEXFONT, Red, Ammo NewCell, -16, -80;
-	DrawNumber 3, INDEXFONT, Green, Ammo NewCell, WhenNotZero, -16, -80;
+	DrawNumber 4, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
+	DrawNumber 4, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
+	DrawNumber 4, INDEXFONT, Red, Ammo NewCell, -16, -80;
+	DrawNumber 4, INDEXFONT, Green, Ammo NewCell, WhenNotZero, -16, -80;
 	}
   IsSelected "Tech Vulcan"
 	{
 	DrawImage "SEWPA0", -40, -53;
 	DrawImage "VULCZ0", -30, -3, CenterBottom;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
-	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
-	DrawNumber 3, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
-	DrawNumber 3, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
-	DrawNumber 3, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
+	DrawNumber 4, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
+	DrawNumber 4, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
+	DrawNumber 4, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
+	DrawNumber 4, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
 	}
   IsSelected "PlasmaRepeater"
 	{
 	DrawImage "SEWPA0", -40, -53;
 	DrawImage "REPPA0", -30, -3, CenterBottom;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
-	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
-	DrawNumber 3, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
-	DrawNumber 3, INDEXFONT, Red, Ammo NewCell, -16, -80;
-	DrawNumber 3, INDEXFONT, Green, Ammo NewCell, WhenNotZero, -16, -80;
+	DrawNumber 4, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
+	DrawNumber 4, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
+	DrawNumber 4, INDEXFONT, Red, Ammo NewCell, -16, -80;
+	DrawNumber 4, INDEXFONT, Green, Ammo NewCell, WhenNotZero, -16, -80;
 	}
   IsSelected "AntimatterRepeater"
 	{
 	DrawImage "SEWPA0", -40, -53;
 	DrawImage "ANRPA0", -30, -3, CenterBottom;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
-	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
-	DrawNumber 3, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
-	DrawNumber 3, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
-	DrawNumber 3, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
+	DrawNumber 4, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
+	DrawNumber 4, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
+	DrawNumber 4, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
+	DrawNumber 4, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
 	}
   IsSelected "Railgun "
     {
 	DrawImage "SEWPA0", -40, -53;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
-	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
-	DrawNumber 3, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
+	DrawNumber 4, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
+	DrawNumber 4, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
 	DrawImage AmmoIcon1, -34, -2, CenterBottom;
-	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo1, DrawShadow, -27, -22, 0;
+	DrawNumber 4, HUDFONT_DOOM, DarkGrey, Ammo1, DrawShadow, -27, -22, 0;
 	DrawNumber 2, HUDFONT_DOOM, Gold, Ammo1, WhenNotZero, DrawShadow, -27, -22, 0, Red, 10, Green, 21;
 	DrawNumber 3, INDEXFONT, Red, Ammo NewCell, -16, -80;
 	DrawNumber 3, INDEXFONT, Green, Ammo NewCell, WhenNotZero, -16, -80;
@@ -839,48 +839,48 @@ StatusBar FullScreen, FullScreenOffsets
     {
 	DrawImage "SEWPA0", -40, -53;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
-	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
-	DrawNumber 3, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
+	DrawNumber 4, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
+	DrawNumber 4, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
 	DrawImage AmmoIcon1, -27, -6, CenterBottom;
-	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo1, DrawShadow, -27, -22, 0;
+	DrawNumber 4, HUDFONT_DOOM, DarkGrey, Ammo1, DrawShadow, -27, -22, 0;
 	DrawNumber 2, HUDFONT_DOOM, Gold, Ammo1, WhenNotZero, DrawShadow, -27, -22, 0, Red, 10, Green, 21;
-	DrawNumber 3, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
-	DrawNumber 3, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
+	DrawNumber 4, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
+	DrawNumber 4, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
     }
   IsSelected "ExplosiveRailgun"
     {
 	DrawImage "SEWPA0", -40, -53;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
-	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
-	DrawNumber 3, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
+	DrawNumber 4, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
+	DrawNumber 4, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
 	DrawImage AmmoIcon1, -34, -4, CenterBottom;
-	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo1, DrawShadow, -27, -22, 0;
+	DrawNumber 4, HUDFONT_DOOM, DarkGrey, Ammo1, DrawShadow, -27, -22, 0;
 	DrawNumber 2, HUDFONT_DOOM, Gold, Ammo1, WhenNotZero, DrawShadow, -27, -22, 0, Red, 10, Green, 21;
-	DrawNumber 3, INDEXFONT, Red, Ammo NewCell, -16, -80;
-	DrawNumber 3, INDEXFONT, Green, Ammo NewCell, WhenNotZero, -16, -80;
+	DrawNumber 4, INDEXFONT, Red, Ammo NewCell, -16, -80;
+	DrawNumber 4, INDEXFONT, Green, Ammo NewCell, WhenNotZero, -16, -80;
     }
   IsSelected "TechRipper"
 	{
 	DrawImage "SEWPA0", -40, -53;
 	DrawImage "THRPA0", -30, -3, CenterBottom;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
-	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
-	DrawNumber 3, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
-	DrawNumber 3, INDEXFONT, Red, Ammo NewCell, -16, -80;
-	DrawNumber 3, INDEXFONT, Green, Ammo NewCell, WhenNotZero, -16, -80;
+	DrawNumber 4, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
+	DrawNumber 4, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
+	DrawNumber 4, INDEXFONT, Red, Ammo NewCell, -16, -80;
+	DrawNumber 4, INDEXFONT, Green, Ammo NewCell, WhenNotZero, -16, -80;
 	}
   IsSelected "Tech Blaster"
 	{
 	DrawImage "SEWPA0", -40, -53;
 	DrawImage "DTNGA0", -30, -3, CenterBottom;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
-	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
-	DrawNumber 3, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
+	DrawNumber 4, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
+	DrawNumber 4, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
 	DrawImage AmmoIcon1, -34, -4, CenterBottom;
-	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo1, DrawShadow, -27, -22, 0;
+	DrawNumber 4, HUDFONT_DOOM, DarkGrey, Ammo1, DrawShadow, -27, -22, 0;
 	DrawNumber 2, HUDFONT_DOOM, Gold, Ammo1, WhenNotZero, DrawShadow, -27, -22, 0, Red, 10, Green, 21;
-	DrawNumber 3, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
-	DrawNumber 3, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
+	DrawNumber 4, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
+	DrawNumber 4, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
 	}
   IsSelected "Legendary Railgun"
     {
@@ -909,22 +909,22 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawImage "SEWPA0", -40, -53;
 	DrawImage "DTBIB0", -30, -2, CenterBottom, 19, 25;
 	DrawImage AmmoIcon1, -16, -25, CenterBottom;
-	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo1, DrawShadow, -27, -41, 0;
-	DrawNumber 3, HUDFONT_DOOM, Gold, Ammo1, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
-	DrawNumber 3, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
-	DrawNumber 3, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
+	DrawNumber 4, HUDFONT_DOOM, DarkGrey, Ammo1, DrawShadow, -27, -41, 0;
+	DrawNumber 4, HUDFONT_DOOM, Gold, Ammo1, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
+	DrawNumber 4, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
+	DrawNumber 4, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
     }
   IsSelected "Demon Tech Rifle","Powered Demon Tech Rifle"
     {
 	DrawImage "SEWPA0", -40, -53;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
-	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
-	DrawNumber 3, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
+	DrawNumber 4, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
+	DrawNumber 4, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
 	DrawImage AmmoIcon1, -32, -6, CenterBottom;
 	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo1, DrawShadow, -27, -22, 0;
 	DrawNumber 2, HUDFONT_DOOM, Gold, Ammo1, WhenNotZero, DrawShadow, -27, -22, 0, Red, 10, Green, 21;
-	DrawNumber 3, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
-	DrawNumber 3, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
+	DrawNumber 4, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
+	DrawNumber 4, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
     }
   IsSelected "Legendary Plasmatic Rifle"
     {
@@ -982,20 +982,20 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawImage "SEWPA0", -32, -53;
 	DrawImage "BF95A0", -30, -3, CenterBottom;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
-	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
-	DrawNumber 3, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 40, Green, 81;
-	DrawNumber 3, INDEXFONT, Red, Ammo NewCell, -16, -80;
-	DrawNumber 3, INDEXFONT, Green, Ammo NewCell, WhenNotZero, -16, -80;
+	DrawNumber 4, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
+	DrawNumber 4, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 40, Green, 81;
+	DrawNumber 4, INDEXFONT, Red, Ammo NewCell, -16, -80;
+	DrawNumber 4, INDEXFONT, Green, Ammo NewCell, WhenNotZero, -16, -80;
     }
   IsSelected "BFG2704"
     {
 	DrawImage "SEWPA0", -32, -53;
 	DrawImage "WBF2A0", -34, -1, CenterBottom;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
-	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
-	DrawNumber 3, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 40, Green, 81;
-	DrawNumber 3, INDEXFONT, Red, Ammo NewCell, -16, -80;
-	DrawNumber 3, INDEXFONT, Green, Ammo NewCell, WhenNotZero, -16, -80;
+	DrawNumber 4, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
+	DrawNumber 4, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 40, Green, 81;
+	DrawNumber 4, INDEXFONT, Red, Ammo NewCell, -16, -80;
+	DrawNumber 4, INDEXFONT, Green, Ammo NewCell, WhenNotZero, -16, -80;
     }
   IsSelected "BFG10K ", "PoweredBFG10k"
     {
@@ -1010,10 +1010,10 @@ StatusBar FullScreen, FullScreenOffsets
 	  DrawImage "BFG2A0", -32, -1, CenterBottom;
 	  DrawImage AmmoIcon2, -16, -25, CenterBottom;
 	}
-	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
-	DrawNumber 3, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 40, Green, 81;
-	DrawNumber 3, INDEXFONT, Red, Ammo NewCell, -16, -80;
-	DrawNumber 3, INDEXFONT, Green, Ammo NewCell, WhenNotZero, -16, -80;
+	DrawNumber 4, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
+	DrawNumber 4, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 40, Green, 81;
+	DrawNumber 4, INDEXFONT, Red, Ammo NewCell, -16, -80;
+	DrawNumber 4, INDEXFONT, Green, Ammo NewCell, WhenNotZero, -16, -80;
     }
   IsSelected "HellstormBFG"
     {
@@ -1021,10 +1021,10 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawImage "HFG2A0", -30, -1, CenterBottom;
   InInventory "HSBFGUpgrade",1 { DrawImage "TFG2A0", -30, -1, CenterBottom; }
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
-	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
-	DrawNumber 3, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 40, Green, 81;
-	DrawNumber 3, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
-	DrawNumber 3, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
+	DrawNumber 4, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
+	DrawNumber 4, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 40, Green, 81;
+	DrawNumber 4, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
+	DrawNumber 4, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
     }
   IsSelected "D-BFG"
     {
@@ -1041,31 +1041,31 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawImage "SEWPA0", -32, -53;
 	DrawImage "BFUGA0", -32, -1, CenterBottom;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
-	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo1, DrawShadow, -27, -41, 0;
-	DrawNumber 3, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 100, Green, 201;
-	DrawNumber 3, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
-	DrawNumber 3, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
+	DrawNumber 4, HUDFONT_DOOM, DarkGrey, Ammo1, DrawShadow, -27, -41, 0;
+	DrawNumber 4, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 100, Green, 201;
+	DrawNumber 4, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
+	DrawNumber 4, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
     }
   IsSelected "Demon Tech Devastator"
     {
 	DrawImage "SEWPA0", -32, -53;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
-	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
-	DrawNumber 3, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 100, Green, 201;
+	DrawNumber 4, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
+	DrawNumber 4, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 100, Green, 201;
   InInventory "CommanderDevUpgrade",1 	{ DrawImage "CDEVM0", -32, -1, CenterBottom; 	}
   InInventory not "CommanderDevUpgrade",1 { DrawImage "WDEVA0", -32, -1, CenterBottom; }    
-	DrawNumber 3, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
-	DrawNumber 3, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
+	DrawNumber 4, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
+	DrawNumber 4, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
     }
   IsSelected "FreezerBFG"
     {
 	DrawImage "SEWPA0", -32, -53;
 	DrawImage "FZDZA0", -32, -1, CenterBottom;
 	DrawImage AmmoIcon1, -16, -25, CenterBottom;
-	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo1, DrawShadow, -27, -41, 0;
-	DrawNumber 3, HUDFONT_DOOM, Gold, Ammo1, WhenNotZero, DrawShadow, -27, -41, 0, Red, 40, Green, 81;
-	DrawNumber 3, INDEXFONT, Red, Ammo NewCell, -16, -80;
-	DrawNumber 3, INDEXFONT, Green, Ammo NewCell, WhenNotZero, -16, -80;
+	DrawNumber 4, HUDFONT_DOOM, DarkGrey, Ammo1, DrawShadow, -27, -41, 0;
+	DrawNumber 4, HUDFONT_DOOM, Gold, Ammo1, WhenNotZero, DrawShadow, -27, -41, 0, Red, 40, Green, 81;
+	DrawNumber 4, INDEXFONT, Red, Ammo NewCell, -16, -80;
+	DrawNumber 4, INDEXFONT, Green, Ammo NewCell, WhenNotZero, -16, -80;
     }
   IsSelected "BFG3500"
     {
@@ -1183,10 +1183,10 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawImage "SEWPA0", -24, -53;
 	DrawImage "DCANA0", -32, -1, CenterBottom;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
-	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
-	DrawNumber 3, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 100, Green, 201;
-	DrawNumber 3, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
-	DrawNumber 3, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
+	DrawNumber 4, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
+	DrawNumber 4, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 100, Green, 201;
+	DrawNumber 4, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
+	DrawNumber 4, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
 	}
   IsSelected "Stingray"
     {
@@ -1220,10 +1220,10 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawImage "SEWPA0", -16, -53;
 	DrawImage "REVIZ0", -28, -2, CenterBottom; 
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
-	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
-	DrawNumber 3, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
-	DrawNumber 3, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
-	DrawNumber 3, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
+	DrawNumber 4, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
+	DrawNumber 4, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
+	DrawNumber 4, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
+	DrawNumber 4, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
     }	
   IsSelected "CFUnmaker"
     {
@@ -1234,10 +1234,10 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawImage "SEWPA0", -16, -53;
 	DrawImage "UMNKZ0", -28, -2, CenterBottom; 
 	DrawImage AmmoIcon1, -16, -25, CenterBottom;
-	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo1, DrawShadow, -27, -41, 0;
-	DrawNumber 3, HUDFONT_DOOM, Gold, Ammo1, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
-	DrawNumber 3, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
-	DrawNumber 3, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
+	DrawNumber 4, HUDFONT_DOOM, DarkGrey, Ammo1, DrawShadow, -27, -41, 0;
+	DrawNumber 4, HUDFONT_DOOM, Gold, Ammo1, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
+	DrawNumber 4, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
+	DrawNumber 4, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
     }
   IsSelected "Nemesis"
     {
@@ -1491,8 +1491,8 @@ StatusBar FullScreen, FullScreenOffsets
 	  DrawNumber 3,  INDEXFONT, White, SkullPower, alignment(right), 22, 98;
 	}
   InInventory CFSpreadRune { DrawImage "SPRRZ0", 12, 129, CenterBottom, 25, 25; DrawNumber 3,  INDEXFONT, White, SpreadRunePower, alignment(right), 22, 123; }
-  InInventory RespawnPointCooldown { DrawImage "RP_ICON", 12, 154, CenterBottom, 20, 20; DrawNumber 3,  INDEXFONT, White, PowerupTime RespawnPointCooldownGiver, alignment(right), 22, 148; }
-  InInventory RespawnPointRespawnCooldown { DrawImage "RP_ICON", 12, 154, CenterBottom, 20, 20; DrawNumber 3,  INDEXFONT, White, PowerupTime RespawnPointRespawnCooldownGiver, alignment(right), 22, 148; }
+  InInventory RespawnPointCooldown { DrawImage "RP_ICON", 12, 194, CenterBottom, 20, 20; DrawNumber 3,  INDEXFONT, White, PowerupTime RespawnPointCooldownGiver, alignment(right), 22, 188; }
+  InInventory RespawnPointRespawnCooldown { DrawImage "RP_ICON", 12, 194, CenterBottom, 20, 20; DrawNumber 3,  INDEXFONT, White, PowerupTime RespawnPointRespawnCooldownGiver, alignment(right), 22, 188; }
   InInventory PowerInvulnerable
 	{
 	  DrawImage "PINVY0", 12, 179, CenterBottom, 20, 20;
@@ -1513,11 +1513,11 @@ StatusBar FullScreen, FullScreenOffsets
 	  DrawImage "HRGNZ0", 12, 244, CenterBottom, 20, 20;
 	  DrawNumber 3,  INDEXFONT, White, PowerupTime HellionRegenGiver, alignment(right), 12, 238;
 	}
-  InInventory PowerIronMaiden
+/*  InInventory PowerIronMaiden
 	{
 	  DrawImage "TALIZ0", 37, 54, CenterBottom, 20, 20;
 	  DrawNumber 3,  INDEXFONT, White, PowerupTime IronMaidenGiver, alignment(right), 47, 48;
-	}
+	}*/
   InInventory PowerPentagram
 	{
 	  DrawImage "PNTCZ0", 37, 79, CenterBottom, 20, 20;
@@ -1528,6 +1528,16 @@ StatusBar FullScreen, FullScreenOffsets
 	  DrawImage "INIMA0", 37, 104, CenterBottom, 20, 20;
 	  DrawNumber 3,  INDEXFONT, White, ChalicePower, alignment(right), 47, 98;
 	}
+	InInventory PowerEmpowermentStone1
+	{
+	  DrawImage "WEA9A0", 12, 319, CenterBottom, 20, 20;
+	  DrawNumber 2,  INDEXFONT, White, EmpowermentStoneTimer, alignment(right), 22, 313;
+	}
+	InInventory PowerEnhancementStone1
+	{
+	  DrawImage "ARR8A0", 12, 344, CenterBottom, 20, 20;
+	  DrawNumber 2,  INDEXFONT, White, EnhancementStoneTimer, alignment(right), 22, 338;
+	}								   
 
   InInventory CFHasBackpackToken { InInventory Not MaxCapacitor { DrawImage "BPAKA0", 24, -40, CenterBottom, 16, 16; } }
   InInventory MaxCapacitor { DrawImage "BPK2A0", 24, -40, CenterBottom, 13, 16; DrawNumber 1,  INDEXFONT, White, MaxCapacitor, 30, -46; }
@@ -2730,6 +2740,16 @@ StatusBar normal, forcescaled
   InInventory MaxCapacitor { DrawImage "BPK2A0", 110, 322, CenterBottom, 18, 18; DrawNumber 1,  INDEXFONT, White, MaxCapacitor, 118, 316; }
   InInventory Trophy { DrawImage "Trophy", 130, 325, CenterBottom, 25, 25,forcescale; }
   InInventory NemesisRuneToken, 1 { DrawImage "NMRNA0", 30, 322, CenterBottom, 16, 15; } 
+  InInventory PowerEmpowermentStone1
+  {
+  DrawImage "WEA9A0", 490, 322, CenterBottom, 20, 20; 
+  DrawNumber 2,  INDEXFONT, White, EmpowermentStoneTimer, alignment(right), 500, 316;
+  }
+  InInventory PowerEnhancementStone1
+  {
+  DrawImage "ARR8A0", 515, 322, CenterBottom, 20, 20;
+  DrawNumber 2,  INDEXFONT, White, EnhancementStoneTimer, alignment(right), 525, 316;
+  }
   InInventory RespawnPointCooldown { DrawImage "RP_ICON", 535, 322, CenterBottom, 20, 20; DrawNumber 3,  INDEXFONT, White, PowerupTime RespawnPointCooldownGiver, alignment(right), 545, 316; }
   InInventory RespawnPointRespawnCooldown { DrawImage "RP_ICON", 535, 322, CenterBottom, 20, 20; DrawNumber 3,  INDEXFONT, White, PowerupTime RespawnPointRespawnCooldownGiver, alignment(right), 545, 316; }
   InInventory CFSpreadRune { DrawImage "SPRRZ0", 560, 322, CenterBottom, 20, 20; DrawNumber 3,  INDEXFONT, White, SpreadRunePower, alignment(right), 570, 316; }
@@ -2767,11 +2787,11 @@ StatusBar normal, forcescaled
 	DrawImage "HRGNZ0", 685, 282, CenterBottom, 20, 20;
 	DrawNumber 3,  INDEXFONT, White, PowerupTime HellionRegenGiver, alignment(right), 695, 276;
     }
-  InInventory PowerIronMaiden
+/*  InInventory PowerIronMaiden
     {
 	DrawImage "TALIZ0", 685, 262, CenterBottom, 20, 20;
 	DrawNumber 3,  INDEXFONT, White, PowerupTime IronMaidenGiver, alignment(right), 695, 256;
-    }
+    }*/
   InInventory PowerPentagram
     {
 	DrawImage "PNTCZ0", 685, 237, CenterBottom, 20, 20;
