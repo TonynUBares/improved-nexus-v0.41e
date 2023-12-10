@@ -44,7 +44,8 @@ iNexus-v0.x
 - Added a CCARDS lump, because why not
 - Rework(ing)ed Hackroid boys
    Balanced (partially)
-   New attack mechanic (soon)
+   New attack mechanic for the Zombie (the HackroFuck)
+   New attack mechanic for the Captain (soon)
 - Balanced (partially) Nemesis Hellsmith
 - Fixed a very serious server-fucking problem with SinGenjitsu3
    Rework SGActiveScript to work as it probably was intended to

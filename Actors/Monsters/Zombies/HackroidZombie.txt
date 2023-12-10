@@ -435,6 +435,7 @@ BounceCount 5
 +NOTIMEFREEZE
 +THRUSPECIES
 +SKYEXPLODE
++HITTRACER
 DamageType "Hackroid"
 DeathSound "weapons/demontechex"
  States
@@ -450,25 +451,27 @@ DeathSound "weapons/demontechex"
 	Spawn2:
 		HZP1 ABCDEF 1 Bright A_SpawnItemEx("1337ProjTrailZ",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
 		//HZP1 ABCDEF 1 A_SpawnItemEx("1337ProjTrail2",SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
-		Loop	  
+		Loop
+	XDeath:
+	Crash:
+		TNT1 A 0 ACS_NamedExecuteWithResult("HackroFuck")	  
 	Death:
-		TNT1 A 0 Bright
-		TNT1 A 0 Bright A_SpawnItemEx("GreenParticleSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+		TNT1 A 0 A_SpawnItemEx("GreenParticleSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
 		TNT1 AAA 0 A_CustomMissile("1337ADemonTechEx",0,0,random(0,360),CMF_AIMDIRECTION,random(0,360))
 		TNT1 AAA 0 A_CustomMissile("LegendarySmokeFX4",0,0,random(0,360),CMF_AIMDIRECTION,random(0,360))
-		TNT1 A 0 Bright A_SpawnItemEx("1337ADemonTechEx2",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+		TNT1 A 0 A_SpawnItemEx("1337ADemonTechEx2",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
 		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 0, "DeathSFX")
 		Goto Toaster
 	DeathSFX:
-		TNT1 A 0 Bright A_SpawnItemEx("GreenParticleSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+		TNT1 A 0 A_SpawnItemEx("GreenParticleSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
 		TNT1 AAA 0 A_CustomMissile("1337ADemonTechEx",0,0,random(0,360),CMF_AIMDIRECTION,random(0,360))
 		TNT1 AAA 0 A_CustomMissile("LegendarySmokeFX4",0,0,random(0,360),CMF_AIMDIRECTION,random(0,360))
-		TNT1 A 0 Bright A_SpawnItemEx("1337ADemonTechEx2",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+		TNT1 A 0 A_SpawnItemEx("1337ADemonTechEx2",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
 	Toaster:
-		TNT1 A 1 Bright A_CustomMissile("1337ProjExplosion",0,0,0,2)
-		TNT1 A 1 Bright A_CustomMissile("1337ProjMinor",0,0,random(0,360),CMF_TRACKOWNER,random(10,-10))
-		TNT1 A 1 Bright A_CustomMissile("1337ProjMinor",0,0,random(0,360),CMF_TRACKOWNER,random(10,-10))
-		TNT1 A 1 Bright A_CustomMissile("1337ProjMinor",0,0,random(0,360),CMF_TRACKOWNER,random(10,-10))
+		TNT1 A 1 A_CustomMissile("1337ProjExplosion",0,0,0,2)
+		TNT1 A 1 A_CustomMissile("1337ProjMinor",0,0,random(0,360),CMF_TRACKOWNER,random(10,-10))
+		TNT1 A 1 A_CustomMissile("1337ProjMinor",0,0,random(0,360),CMF_TRACKOWNER,random(10,-10))
+		TNT1 A 1 A_CustomMissile("1337ProjMinor",0,0,random(0,360),CMF_TRACKOWNER,random(10,-10))
 		Stop
 	}
 }
