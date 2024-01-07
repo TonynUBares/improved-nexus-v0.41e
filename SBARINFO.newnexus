@@ -974,7 +974,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 2, HUDFONT_DOOM, Gold, Ammo1, WhenNotZero, DrawShadow, -27, -22, 0, Red, 10, Green, 21;
 	//DrawNumber 3, INDEXFONT, Red, Ammo HCKAmmo, -49, -80;
 	//DrawNumber 3, INDEXFONT, Green, Ammo HCKAmmo, WhenNotZero, -49, -80;
-	DrawImage "HKDIST00", -59, -73, None, 9, 20,forcescale;
+	DrawImage "HKDIST00", -59, -80, None, 9, 20,forcescale;
     }
 //SLOT 7
   IsSelected "BFG9500","PoweredBFG9500"
