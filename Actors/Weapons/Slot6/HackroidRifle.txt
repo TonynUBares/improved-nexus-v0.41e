@@ -70,6 +70,7 @@ ACTOR "HackroidRifle" : "Legendary Plasmatic Rifle"
   Ready:
 	TNT1 A 0 A_PlaySound("1337DTR/up",7)
 	HPR5 ABCDE 1
+	TNT1 A 0 A_GunFlash("HackFlash")
   ReadyLoop:
 	TNT1 A 0 A_JumpIfInventory("HCKMagazine",1,2)
 	TNT1 A 0
@@ -145,37 +146,50 @@ ACTOR "HackroidRifle" : "Legendary Plasmatic Rifle"
 	TNT1 A 0 A_Raise
 	Wait
   Fire:
+	TNT1 A 0 A_GunFlash
 	TNT1 A 0 A_JumpIfInventory("PowerSpreadRune",1,"FireSpread")
 	TNT1 A 0 A_JumpIfInventory("HCKMagazine",5,1)
 	Goto Empty
 	TNT1 A 0 A_AlertMonsters
-	TNT1 A 0 A_GunFlash
 	TNT1 A 0 Radius_Quake(4,2,0,1,0)
-	TNT1 A 0 A_Light1
+	//TNT1 A 0 A_Light1
 	TNT1 A 0 A_PlayWeaponSound("1337DTR/Fire")
 	TNT1 A 0 A_TakeInventory("HCKMagazine",5)
 	HPR3 A 1 Bright A_FireCustomMissile("1337DTRProjPlayer",frandom(1.0,-1.0),0,0,0,0,frandom(1.0,-1.0))
-	HPR3 B 2 Bright A_Light2
-	HPR3 C 3 A_Light0
+	HPR3 B 2 Bright //A_Light2
+	HPR3 C 3 //A_Light0
 	HPR1 ABCDE 2
 	TNT1 A 0 A_ReFire
+	TNT1 A 0 A_GunFlash("HackFlash")
 	Goto ReadyLoop
   FireSpread:
 	TNT1 A 0 A_JumpIfInventory("HCKMagazine",5,1)
 	Goto Empty
 	TNT1 A 0 A_AlertMonsters
-	TNT1 A 0 A_GunFlash
 	TNT1 A 0 Radius_Quake(4,2,0,1,0)
-	TNT1 A 0 A_Light1
 	TNT1 A 0 A_PlayWeaponSound("1337DTR/Fire")
 	TNT1 A 0 A_TakeInventory("HCKMagazine",5)
 	HPR3 A 1 Bright A_FireCustomMissile("1337DTRProjPlayer",frandom(1.0,-1.0),0,0,0,0,frandom(1.0,-1.0))
 	TNT1 A 0 A_FireCustomMissile("1337DTRProjPlayer",frandom(1.0,-1.0)+15.0,0,0,0,0,frandom(1.0,-1.0))
 	TNT1 A 0 A_FireCustomMissile("1337DTRProjPlayer",frandom(1.0,-1.0)-15.0,0,0,0,0,frandom(1.0,-1.0))
-	HPR3 B 2 Bright A_Light2
-	HPR3 C 3 A_Light0
+	HPR3 B 2 Bright //A_Light2
+	HPR3 C 3 //A_Light0
 	HPR1 ABCDE 2
 	TNT1 A 0 A_ReFire
+	TNT1 A 0 A_GunFlash("HackFlash")
+	Goto ReadyLoop
+  AltFire:
+	TNT1 A 0 A_GunFlash
+	TNT1 A 0 A_JumpIfInventory("HackroidToken",0,1)
+	Goto ReadyLoop
+	TNT1 A 0 A_AlertMonsters
+	TNT1 A 0 Radius_Quake(4,2,0,1,0)
+	TNT1 A 0 A_PlayWeaponSound("1337DTR/Fire")
+	HPR3 A 1 Bright A_FireCustomMissile("1337DTRProjPlayerHack",frandom(1.0,-1.0),0,0,0,0,frandom(1.0,-1.0))
+	HPR3 B 2 Bright 
+	HPR3 C 3 
+	HPR1 ABCDE 2
+	TNT1 A 0 A_GunFlash("HackFlash")
 	Goto ReadyLoop
   Empty:
 	TNT1 A 0 A_PlaySound("weapons/click2")
@@ -202,6 +216,7 @@ ACTOR "HackroidRifle" : "Legendary Plasmatic Rifle"
 	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
 	Goto Ready+6
   GrenadeToss:
+	TNT1 A 0 A_GunFlash
 	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown") 
 	HPR5 EDCBA 1
 	TNT1 A 6
@@ -224,6 +239,7 @@ ACTOR "HackroidRifle" : "Legendary Plasmatic Rifle"
 	TNT1 A 0 A_TakeInventory("MineAction",1)
 	Goto Ready+6
   MineToss:
+	TNT1 A 0 A_GunFlash
 	TNT1 A 0 A_PlayWeaponSound("weapons/weapondown") 
 	HPR5 EDCBA 1
 	TNT1 A 10
@@ -238,6 +254,21 @@ ACTOR "HackroidRifle" : "Legendary Plasmatic Rifle"
 	TNT1 A 0 A_TakeInventory("MineAction",1)
 	TNT1 A 5
 	Goto Ready+1 
+  HackFlash:
+	TNT1 A 35 A_JumpIfInventory("HackroidToken",0,"HackFlash2")
+	Loop
+  HackFlash2:
+	TNT1 A 0 //A_PlaySound()
+	HPR1 F 3 Bright A_Light1
+	HPR1 F 3 Bright A_Light2
+	HPR1 A 0 A_Light0 
+	HPR1 F 7
+	HPR1 F 3 Bright A_Light1
+	HPR1 F 3 Bright A_Light2
+	HPR1 A 0 A_Light0 
+	HPR1 F 7
+	TNT1 A 70
+	Loop
  }
 }
 
@@ -506,12 +537,15 @@ ACTOR 1337DTRProjPlayer : 1337Proj
  Damage 100
  +THRUSPECIES
  +FOILINVUL
+ +HITTRACER
  Species "Player"
  DamageType "Hackroid"
  States
  {
+  XDeath:
+  Crash:
+	TNT1 A 0 ACS_NamedExecuteWithResult("HackCharge")
   Death:
-	TNT1 A 0
 	TNT1 A 0 A_SpawnItemEx("GreenParticleSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
 	TNT1 AAA 0 A_CustomMissile("1337ADemonTechEx",0,0,random(0,360),CMF_AIMDIRECTION,random(0,360))
 	TNT1 AAA 0 A_CustomMissile("LegendarySmokeFX4",0,0,random(0,360),2,random(0,360))
@@ -528,6 +562,40 @@ ACTOR 1337DTRProjPlayer : 1337Proj
 	TNT1 A 1 A_CustomMissile("1337ProjMinorPlayer",0,0,random(90,270),CMF_TRACKOWNER,random(10,-10))
 	TNT1 A 1 A_CustomMissile("1337ProjMinorPlayer",0,0,random(90,270),CMF_TRACKOWNER,random(10,-10))
 	TNT1 A 1 A_CustomMissile("1337ProjMinorPlayer",0,0,random(90,270),CMF_TRACKOWNER,random(10,-10))
+	Stop
+ }
+}
+
+ACTOR 1337DTRProjPlayerHack: 1337DTRProjPlayer
+{
+ Damage 0
+ Speed 65
+ Scale 0.6
+ States
+ {
+  Normal:
+	HPR7 ABCDEF 1 Bright A_SpawnItemEx("1337ProjTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+	Loop
+  Spawn2:
+	HPR7 ABCDEF 1 Bright A_SpawnItemEx("1337ProjTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+	Loop
+  XDeath:
+  Crash:
+	TNT1 A 0 ACS_NamedExecuteWithResult("HackAttack")
+  Death:
+	TNT1 A 0 A_SpawnItemEx("GreenParticleSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+	TNT1 AAA 0 A_CustomMissile("1337ADemonTechEx",0,0,random(0,360),CMF_AIMDIRECTION,random(0,360))
+	TNT1 AAA 0 A_CustomMissile("LegendarySmokeFX4",0,0,random(0,360),2,random(0,360))
+	TNT1 A 0 A_SpawnItemEx("1337ADemonTechEx2",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 0, "DeathSFX")
+	TNT1 A 1
+	Stop
+  DeathSFX:
+	TNT1 A 0 A_SpawnItemEx("GreenParticleSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+	TNT1 AAA 0 A_CustomMissile("1337ADemonTechEx",0,0,random(0,360),CMF_AIMDIRECTION,random(0,360))
+	TNT1 AAA 0 A_CustomMissile("LegendarySmokeFX4",0,0,random(0,360),CMF_AIMDIRECTION,random(0,360))
+	TNT1 A 0 A_SpawnItemEx("1337ADemonTechEx2",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+	TNT1 A 1
 	Stop
  }
 }
@@ -586,4 +654,13 @@ ACTOR 1337EmptyMag : BulletCasing
 	HPR9 C 5 A_FadeOut(0.10)
 	Goto Death+5	  
  }
+}
+
+Actor HackroidToken: Inventory
+{
+ +INVENTORY.UNDROPPABLE
+ +INVENTORY.PERSISTENTPOWER
+ +INVENTORY.HUBPOWER
+ Inventory.Amount 1
+ Inventory.MaxAmount 1000
 }
