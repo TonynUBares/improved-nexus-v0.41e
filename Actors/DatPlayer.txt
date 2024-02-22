@@ -60,16 +60,8 @@ actor "IsNexusPlayer": Inventory
  +INVENTORY.PERSISTENTPOWER
 }
 
-ACTOR ComplexNexusPlayer : DoomPlayer
+ACTOR ComplexNexusPlayer : CFDoomPlayer
 {
-Speed 1
-Health 100
-GibHealth 50
-Radius 16
-Height 56
-Mass 100
-PainChance 255 
-Species "Player"
 DamageFactor "Player", 0.0
 DamageFactor "Players", 0.0
 DamageFactor "PlayerNemesisPlasma", 0.0
@@ -99,27 +91,24 @@ DamageFactor "VulcanLazerEffect", 0.0
 DamageFactor "PlayerBrimstone", 0.0
 DamageFactor "ChaosC", 0.0
 -NOSKIN
-+THRUSPECIES//could conflict with PVP gamemodes
-+DONTHARMSPECIES//could conflict with PVP gamemodes
-+MTHRUSPECIES//could conflict with PVP gamemodes
 +NOBLOOD //A known way to fix the nemesis charging on players, somewhat
 Player.SoundClass "Marine"
 Player.ColorRange 112, 127
 Player.DisplayName "Doom Guy"
 Player.CrouchSprite "PLYC"
-  Player.StartItem "Handgun"
-  Player.StartItem "Plasma Handgun"
-  Player.StartItem "DemonTechPistol"
-  Player.StartItem "PistolMagazine" 16
-  Player.StartItem "BulletMag" 60
-  Player.StartItem "Melee"
-  Player.StartItem "Hand Grenade"
-  Player.StartItem "HandGrenadeAmmo" 4
-  Player.StartItem "Land Mine"
-  Player.StartItem "MineAmmo" 4
-  Player.StartItem "NewShell" 8
-  Player.StartItem "SpringMine" 4
-  Player.StartItem "PlasmaHGCell" 100
+Player.StartItem "Handgun"
+Player.StartItem "Plasma Handgun"
+Player.StartItem "DemonTechPistol"
+Player.StartItem "PistolMagazine" 16
+Player.StartItem "BulletMag" 60
+Player.StartItem "Melee"
+Player.StartItem "Hand Grenade"
+Player.StartItem "HandGrenadeAmmo" 4
+Player.StartItem "Land Mine"
+Player.StartItem "MineAmmo" 4
+Player.StartItem "NewShell" 8
+Player.StartItem "SpringMine" 4
+Player.StartItem "PlasmaHGCell" 100
 Player.StartItem "ShotgunMagazine" 9
 Player.StartItem "SSGShell" 2
 Player.StartItem "QuadShell" 4
@@ -148,11 +137,6 @@ Player.StartItem "NewCell" 90
 Player.StartItem "OccultLasersToken2" 1
 Player.StartItem "IsCFPlayer" 1
 Player.StartItem "IsNexusPlayer" 1
-  var int user_loop;
-  var int user_armor;
-  var int user_DTDevastator;
-  var int user_tid;
-  var int user_pnum;
  States
  {
   Spawn:
@@ -263,50 +247,6 @@ Player.StartItem "IsNexusPlayer" 1
 	TNT1 A 0 A_SpawnItemEx("AGPlayerSmokeSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
 	TNT1 A 0 A_SpawnItemEx("NemPlayerSmokeSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE,220)
 	Goto Spawn
-  Death:
-	TNT1 A 0 A_StopSound(5)
-	TNT1 A 0 A_StopSound(6)
-	TNT1 A 0 A_StopSound(7)
-	TNT1 A 0 A_GiveToTarget("MarineKilled",1)
-	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
-	TNT1 A 0 A_TakeInventory("MineAction",1)
-	PLAY H 8
-	PLAY I 8 A_PlayerScream
-	PLAY J 8 A_NoBlocking
-	PLAY K 8
-	PLAY L 8 A_SpawnItem("BodyCrash",0,0,0,0)
-	PLAY M 8
-	PLAY N -1
-	Stop
-  XDeath:
-	TNT1 A 0 A_StopSound(5)
-	TNT1 A 0 A_StopSound(6)
-	TNT1 A 0 A_StopSound(7)
-	TNT1 A 0 A_GiveToTarget("MarineKilled",1)
-	TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
-	TNT1 A 0 A_TakeInventory("MineAction",1)
-	TNT1 A 0 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
-	PLAY P 3 A_XScream
-	PLAY Q 3 A_NoBlocking
-	PLAY RSTUV 3
-	PLAY W -1
-	Stop
-  XDeath.LegendaryHeroSoul:
-  Death.LegendaryHeroSoul:
-        TNT1 A 0 A_StopSound(5)
-        TNT1 A 0 A_StopSound(6)
-        TNT1 A 0 A_StopSound(7)
-        TNT1 A 0 A_GiveToTarget("MarineKilled",1)
-        TNT1 A 0 A_TakeInventory("HandGrenadeAction",1)
-        TNT1 A 0 A_TakeInventory("MineAction",1)
-        TNT1 A 0 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
-        PLAY P 3 A_XScream
-        PLAY Q 3 A_NoBlocking
-        PLAY RSTUV 3
-        TNT1 A 0 ACS_NamedExecuteWithResult("LDGSummoner")
-        PLAY W 185
-        TNT1 A -1
-        Stop
   Incorp:
 	TNT1 A 0 A_ChangeFlag("SOLID",FALSE)
 	Goto Spawn
