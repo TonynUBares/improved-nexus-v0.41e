@@ -54,7 +54,6 @@ ACTOR NemPlayerSmokeSpawner : LegendaryRedParticleSpawner //Uh oh stinky
 
 actor "IsNexusPlayer": Inventory
 {
- Inventory.MaxAmount 1
  +INVENTORY.UNDROPPABLE
  +INVENTORY.HUBPOWER
  +INVENTORY.PERSISTENTPOWER
@@ -137,6 +136,8 @@ Player.StartItem "NewCell" 90
 Player.StartItem "OccultLasersToken2" 1
 Player.StartItem "IsCFPlayer" 1
 Player.StartItem "IsNexusPlayer" 1
+Player.StartItem "Using Power" 1
+Player.StartItem "Managing Inventory" 1
  States
  {
   Spawn:

@@ -1,33 +1,24 @@
 ACTOR DevilChest
 {
- Health 1000
  Radius 16
  Height 27
  Scale 1.2
  Mass 100000
- DamageFactor 0.8
- DamageFactor "PlayerBHole", 0.0
- DamageFactor "T3rm", 0.0
- DamageFactor "Hell", 0.0
- Damagefactor "Disintegrate", 0.0
- Deathsound "Chest/Open"
  Tag "\c[G2]Devil Chest\c- (loot)"
  -SOLID
- +SHOOTABLE
  +NEVERRESPAWN
  +DONTGIB
- +CANBLAST
- +NOICEDEATH
- +NOBLOOD
- +ISMONSTER
- +BOSS
+ Activation THINGSPEC_Activate
+ +USESPECIAL
  States
  {
   Spawn:
-	TNT1 A 0
+	TNT1 A 0 Nodelay ACS_NamedExecuteAlways("ttkCrateIcon",0)
 	DVBX A -1
 	Stop
-  Death:
+  Active:
+	TNT1 A 0 A_RemoveChildren(true)
+	TNT1 A 0 A_NoBlocking
 	TNT1 A 0 A_PlaySound("chest/open",7)
 	DVBX B 50
 	TNT1 A 0 A_Jump(200,"Weapons","Ammos","Items","Monsters")
@@ -155,9 +146,9 @@ ACTOR DevilChest
 	TNT1 A 0 A_SpawnItemEx("ChestWeapon",0,0,2,random(1,8),0,10,random(0,360),0,0)
 	Goto DeathLoop
   DeathLoop:
-	DVBX B 1
-	DVBX B -1
-	Stop
+	DVBX B 70
+	DVBX B 5 A_Fadeout(0.05)
+	Wait
  }
 }
 

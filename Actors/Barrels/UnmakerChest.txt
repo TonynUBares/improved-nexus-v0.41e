@@ -1,33 +1,24 @@
 ACTOR UnmakerChest
 {
-  Health 1000
   Radius 16
   Height 27
   Scale 1.2
   Mass 0x7fffffff
-  DamageFactor 0.5
-  DamageFactor "PlayerBHole", 0.0
-  DamageFactor "T3rm", 0.0
-  DamageFactor "Hell", 0.0
-  Damagefactor "Disintegrate", 0.0
-  Deathsound "Chest/Open"
   Tag "$TXSUnmChest"
-  -SOLID
-  +SHOOTABLE
-  +NEVERRESPAWN
-  +DONTGIB
-  +CANBLAST
-  +NOICEDEATH
-  +NOBLOOD
-  +ISMONSTER
-  +BOSS
+ -SOLID
+ +NEVERRESPAWN
+ +DONTGIB
+ Activation THINGSPEC_Activate
+ +USESPECIAL
   States
   {
   Spawn:
-    TNT1 A 0
+	TNT1 A 0 Nodelay ACS_NamedExecuteAlways("ttkCrateIcon",0)
     UNBX A -1
     Stop
-  Death:
+  Active:
+	TNT1 A 0 A_RemoveChildren(true)
+	TNT1 A 0 A_NoBlocking
 	TNT1 A 0 A_PlaySound("chest/open",7)
 	UNBX B 50
 	TNT1 A 0 A_Jump(30,"NotSoLuck")
@@ -71,8 +62,9 @@ ACTOR UnmakerChest
 	TNT1 A 0 A_SpawnItemEx("UltraBossBeacon",0,0,2,random(1,3),0,10,random(0,360),0,0)
 	TNT1 A 0 A_SpawnItemEx("RareChestWeapon",0,0,2,random(1,8),0,10,random(0,360),0,0)
   DeathLoop:
-	UNBX B -1
-	Stop
+	UNBX B 70
+	UNBX B 5 A_Fadeout(0.05)
+	Wait
  }
 }
 
