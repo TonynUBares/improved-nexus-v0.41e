@@ -1,25 +1,15 @@
-ACTOR UnmakerChest
+ACTOR UnmakerChest: ComplexChest
 {
-  Radius 16
   Height 27
   Scale 1.2
-  Mass 0x7fffffff
   Tag "$TXSUnmChest"
- -SOLID
- +NEVERRESPAWN
- +DONTGIB
- Activation THINGSPEC_Activate
- +USESPECIAL
   States
   {
   Spawn:
 	TNT1 A 0 Nodelay ACS_NamedExecuteAlways("ttkCrateIcon",0)
-    UNBX A -1
-    Stop
-  Active:
-	TNT1 A 0 A_RemoveChildren(true)
-	TNT1 A 0 A_NoBlocking
-	TNT1 A 0 A_PlaySound("chest/open",7)
+	UNBX A -1
+	Stop
+  ActiveCont:
 	UNBX B 50
 	TNT1 A 0 A_Jump(30,"NotSoLuck")
 	TNT1 A 0 A_Jump(128,"Death2")

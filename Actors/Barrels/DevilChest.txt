@@ -1,25 +1,16 @@
-ACTOR DevilChest
+ACTOR DevilChest: ComplexChest
 {
  Radius 16
  Height 27
  Scale 1.2
- Mass 100000
  Tag "\c[G2]Devil Chest\c- (loot)"
- -SOLID
- +NEVERRESPAWN
- +DONTGIB
- Activation THINGSPEC_Activate
- +USESPECIAL
  States
  {
   Spawn:
 	TNT1 A 0 Nodelay ACS_NamedExecuteAlways("ttkCrateIcon",0)
 	DVBX A -1
 	Stop
-  Active:
-	TNT1 A 0 A_RemoveChildren(true)
-	TNT1 A 0 A_NoBlocking
-	TNT1 A 0 A_PlaySound("chest/open",7)
+  ActiveCont:
 	DVBX B 50
 	TNT1 A 0 A_Jump(200,"Weapons","Ammos","Items","Monsters")
 	Goto DeathLoop

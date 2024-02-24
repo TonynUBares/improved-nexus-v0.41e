@@ -159,10 +159,10 @@ ACTOR NightmareFamine : Famine 27221
   XDeath:
     TNT1 A 0 A_ChangeFlag(NOPAIN,0)
 	TNT1 A 0 A_JumpIfInventory("EnragedFamineDeathToken",1,"TrueDeath")
-	TNT1 A 0 A_Die
-	TNT1 A 0 A_NoBlocking
 	TNT1 A 0 A_Jump(84,"FakeDeath")
   TrueDeath:
+	TNT1 A 0 A_Die
+	TNT1 A 0 A_NoBlocking
 	TNT1 A 0 A_Jump(128,2,3,4,5,6)
 	TNT1 A 0 A_SpawnItem("DemonAmmoBox",0,12)
 	TNT1 A 0 A_SpawnItem("BossLifeEssence",0,12)
@@ -170,10 +170,10 @@ ACTOR NightmareFamine : Famine 27221
 	TNT1 A 0 A_SpawnItem("BossLifeEssence",0,12)
 	TNT1 A 0 A_SpawnItem("BossArmorBonusMax",0,12)
 	TNT1 A 0 A_SpawnItemEx("BrimstoneItem",0,0,8,random(0,2),random(0,2),2,random(0,360),0,90)
-    EFMX A 5 Bright
+	EFMX A 5 Bright
 	TNT1 AAA 0 A_SpawnItemEx("RedParticleSpawner", 0, 0, 40, 0, 0, 0, 0, 128)
-    EFMX B 5 Bright A_Scream
-    EFMX C 5 Bright
+	EFMX B 5 Bright A_Scream
+	EFMX C 5 Bright
 	EFMX D 5 Bright A_CustomMissile("FamineSoul",72,0,0,2,90)
 	TNT1 AAAA 0 A_CustomMissile("SmokeFX", Random(30,60), 0, random(0,360), 2, random(0,360))
 	EFMX EFGH 4 Bright
@@ -182,20 +182,20 @@ ACTOR NightmareFamine : Famine 27221
     EFMX K -1
     Stop
   FakeDeath:
-    EFMV L 7 A_GiveInventory("EnragedFamineDeathToken",1)
+	EFMV L 7 A_GiveInventory("EnragedFamineDeathToken",1)
 	EFMV MNO 7
-    EFMV P 7 A_SpawnItem("BodyCrash",0,0,0,0)
-    TNT1 A 0 A_Jump(128,2,3,4,5)
-    EFMV QQQQQ 100
+	EFMV P 7 A_SpawnItem("BodyCrash",0,0,0,0)
+ 	TNT1 A 0 A_Jump(128,2,3,4,5)
+	EFMV QQQQQ 100
 	TNT1 A 0 A_CustomMissile("EnragedFamineResurrection",0,0,0)
 	EFMV Q -1
 	Stop
   Raise:
  	TNT1 A 0
-    TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
-    EFMV PONML 5
-    Goto See
-    }
+	TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	EFMV PONML 5
+	Goto See
+ }
 }
 
 ACTOR EnragedFamineMeleeToken : Inventory

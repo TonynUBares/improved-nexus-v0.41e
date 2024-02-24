@@ -19,11 +19,9 @@ Actor NemesisPowerShard : CustomInventory
   Inventory.MaxAmount 1
   +DONTGIB
   +INVBAR
-  +COUNTITEM
   +INVENTORY.BIGPOWERUP
   +NOTIMEFREEZE
   +FLOAT
-  //+FLOATBOB
   Scale 0.75
   Tag "$NENemShard"
   States

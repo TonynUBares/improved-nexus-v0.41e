@@ -6,9 +6,7 @@ Actor TrueLegTimeFreezeSphere : CustomInventory 26351
  Inventory.UseSound "truelegtime/use"
  Inventory.Icon "TLTFZ0"
  Inventory.MaxAmount 1
- //+FLOATBOB
  +INVBAR
- +COUNTITEM
  +INVENTORY.BIGPOWERUP
  +NOTIMEFREEZE
  +DONTGIB

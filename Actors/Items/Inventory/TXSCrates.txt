@@ -6,7 +6,6 @@ Actor CratesParent : CustomInventory
  Inventory.MaxAmount 1
  +INVENTORY.INVBAR
  +INVENTORY.BIGPOWERUP
- +COUNTITEM
  +FLOORCLIP
  +NOTIMEFREEZE
  States

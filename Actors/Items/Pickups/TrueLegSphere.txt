@@ -3,8 +3,6 @@ Actor TrueLegendarySphere : LegendarySphere 26836
  +INVENTORY.BIGPOWERUP
  -INVENTORY.ALWAYSPICKUP
  -FLOAT
- +COUNTITEM
- //+FLOATBOB
  +NOTIMEFREEZE
  +DONTGIB
  Inventory.PickupMessage "\c[l5]True Legendary Sphere. SUPREME LIFE! Better with great deal."

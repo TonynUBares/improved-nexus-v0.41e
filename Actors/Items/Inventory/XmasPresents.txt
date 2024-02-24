@@ -113,11 +113,9 @@ Actor DarkPresentActive : ExplosiveBarrel
 	"####" A 0 A_PlaySound("worlds/quake",7)
 	"####" E 80 A_Quake(7,50,0,700)
 	"####" A 0 A_PlaySound("Weapons/ProxFire")
-	"####" A 0 A_SpawnItemEx("NormalMonsterCube",0,0,1,random(1,8),0,random(8,15),random(0,360),0,0)
-	"####" E 35
+	"####" E 35 A_SpawnItemEx("NormalMonsterCube",0,0,1,random(1,8),0,random(8,15),random(0,360),0,0)
 	"####" A 0 A_PlaySound("Weapons/ProxFire")
-	"####" A 0 A_SpawnItemEx("NormalMonsterCube",0,0,1,random(1,8),0,random(8,15),random(0,360),0,0)
-	"####" E 35
+	"####" E 35 A_SpawnItemEx("NormalMonsterCube",0,0,1,random(1,8),0,random(8,15),random(0,360),0,0)
 	"####" A 0 A_PlaySound("Weapons/ProxFire")
 	"####" A 0 A_SpawnItemEx("NormalMonsterCube",0,0,1,random(1,8),0,random(8,15),random(0,360),0,0)
 	Goto Death
@@ -126,26 +124,19 @@ Actor DarkPresentActive : ExplosiveBarrel
 	"####" A 0 A_PlaySound("worlds/quake",7)
 	"####" E 160 A_Quake(7,100,0,700)
 	"####" A 0 A_PlaySound("Weapons/ProxFire")
-	"####" A 0 A_SpawnItemEx("NormalMonsterCube",0,0,1,random(1,8),0,random(8,15),random(0,360),0,0)
-	"####" E 20
+	"####" E 20 A_SpawnItemEx("NormalMonsterCube",0,0,1,random(1,8),0,random(8,15),random(0,360),0,0)
 	"####" A 0 A_PlaySound("Weapons/ProxFire")
-	"####" A 0 A_SpawnItemEx("NormalMonsterCube",0,0,1,random(1,8),0,random(8,15),random(0,360),0,0)
-	"####" E 20
+	"####" E 20 A_SpawnItemEx("NormalMonsterCube",0,0,1,random(1,8),0,random(8,15),random(0,360),0,0)
 	"####" A 0 A_PlaySound("Weapons/ProxFire")
-	"####" A 0 A_SpawnItemEx("NormalMonsterCube",0,0,1,random(1,8),0,random(8,15),random(0,360),0,0)
-	"####" E 20
+	"####" E 20 A_SpawnItemEx("NormalMonsterCube",0,0,1,random(1,8),0,random(8,15),random(0,360),0,0)
 	"####" A 0 A_PlaySound("Weapons/ProxFire")
-	"####" A 0 A_SpawnItemEx("NormalMonsterCube",0,0,1,random(1,8),0,random(8,15),random(0,360),0,0)
-	"####" E 20
+	"####" E 20 A_SpawnItemEx("NormalMonsterCube",0,0,1,random(1,8),0,random(8,15),random(0,360),0,0)
 	"####" A 0 A_PlaySound("Weapons/ProxFire")
-	"####" A 0 A_SpawnItemEx("NormalMonsterCube",0,0,1,random(1,8),0,random(8,15),random(0,360),0,0)
-	"####" E 20
+	"####" E 20 A_SpawnItemEx("NormalMonsterCube",0,0,1,random(1,8),0,random(8,15),random(0,360),0,0)
 	"####" A 0 A_PlaySound("Weapons/ProxFire")
-	"####" A 0 A_SpawnItemEx("NormalMonsterCube",0,0,1,random(1,8),0,random(8,15),random(0,360),0,0)
-	"####" E 20
+	"####" E 20 A_SpawnItemEx("NormalMonsterCube",0,0,1,random(1,8),0,random(8,15),random(0,360),0,0)
 	"####" A 0 A_PlaySound("Weapons/ProxFire")
-	"####" A 0 A_SpawnItemEx("NormalMonsterCube",0,0,1,random(1,8),0,random(8,15),random(0,360),0,0)
-	"####" E 20
+	"####" E 20 A_SpawnItemEx("NormalMonsterCube",0,0,1,random(1,8),0,random(8,15),random(0,360),0,0)
 	"####" A 0 A_PlaySound("Weapons/ProxFire")
 	"####" A 0 A_SpawnItemEx("NormalMonsterCube",0,0,1,random(1,8),0,random(8,15),random(0,360),0,0)
 	Goto Death
@@ -181,24 +172,15 @@ Actor DarkPresentActive : ExplosiveBarrel
 	"####" A 0 A_SpawnItemEx("PresentDoomslayerSpawner",0,0,1,random(1,8),0,random(8,15),random(0,360),0,0)
 	Goto Death
   TheScrollOfHellfire:
-	"####" E 1
-	"####" E 15
-	"####" A 0 A_SpawnItemEx("HFLavaMist",0,0,1,random(1,8),0,random(8,15),random(0,360),0,128)
-	"####" E 15
-	"####" A 0 A_SpawnItemEx("HFFireSpawned2",0,0,0,0,0,0,0,0,128)
-	"####" E 15
-	"####" A 0 A_SpawnItemEx("HFLavaMist",0,0,1,random(1,8),0,random(8,15),random(0,360),0,128)
-	"####" E 15
-	"####" A 0 A_SpawnItemEx("HFFireSpawned2",0,0,0,0,0,0,0,0,128)
-	"####" E 15
-	"####" A 0 A_SpawnItemEx("HFLavaMist",0,0,1,random(1,8),0,random(8,15),random(0,360),0,128)
-	"####" E 15
-	"####" A 0 A_SpawnItemEx("HFFireSpawned2",0,0,0,0,0,0,0,0,128)
-	"####" E 15
-	"####" A 0 A_SpawnItemEx("HFLavaMist",0,0,1,random(1,8),0,random(8,15),random(0,360),0,128)
-	"####" E 15
-	"####" A 0 A_SpawnItemEx("HFFireSpawned2",0,0,0,0,0,0,0,0,128)
-	"####" E 15
+	"####" E 16
+	"####" E 15 A_SpawnItemEx("HFLavaMist",0,0,1,random(1,8),0,random(8,15),random(0,360),0,128)
+	"####" E 15 A_SpawnItemEx("HFFireSpawned2",0,0,0,0,0,0,0,0,128)
+	"####" E 15 A_SpawnItemEx("HFLavaMist",0,0,1,random(1,8),0,random(8,15),random(0,360),0,128)
+	"####" E 15 A_SpawnItemEx("HFFireSpawned2",0,0,0,0,0,0,0,0,128)
+	"####" E 15 A_SpawnItemEx("HFLavaMist",0,0,1,random(1,8),0,random(8,15),random(0,360),0,128)
+	"####" E 15 A_SpawnItemEx("HFFireSpawned2",0,0,0,0,0,0,0,0,128)
+	"####" E 15 A_SpawnItemEx("HFLavaMist",0,0,1,random(1,8),0,random(8,15),random(0,360),0,128)
+	"####" E 15 A_SpawnItemEx("HFFireSpawned2",0,0,0,0,0,0,0,0,128)
 	"####" A 0 Radius_Quake(5, 350, 0, 140, 0)
 	"####" A 0 A_PlaySoundEx("brain/spit",7,0,2)
 	"####" A 0 A_CustomMissile("PentaLine3",0,0,-72,2)
@@ -206,36 +188,21 @@ Actor DarkPresentActive : ExplosiveBarrel
 	"####" A 0 A_CustomMissile("PentaLine3",0,0,-216,2)
 	"####" A 0 A_CustomMissile("PentaLine3",0,0,-288,2)
 	"####" A 0 A_CustomMissile("PentaLine3",0,0,0,2)
-	"####" A 0 A_SpawnItemEx("HFLavaMist",0,0,1,random(1,8),0,random(8,15),random(0,360),0,128)
-	"####" E 15
-	"####" A 0 A_SpawnItemEx("HFFireSpawned2",0,0,0,0,0,0,0,0,128)
-	"####" E 15
-	"####" A 0 A_SpawnItemEx("HFLavaMist",0,0,1,random(1,8),0,random(8,15),random(0,360),0,128)
-	"####" E 15
-	"####" A 0 A_SpawnItemEx("HFFireSpawned2",0,0,0,0,0,0,0,0,128)
-	"####" E 15
-	"####" A 0 A_SpawnItemEx("HFLavaMist",0,0,1,random(1,8),0,random(8,15),random(0,360),0,128)
-	"####" E 15
-	"####" A 0 A_SpawnItemEx("HFFireSpawned2",0,0,0,0,0,0,0,0,128)
-	"####" E 15
-	"####" A 0 A_SpawnItemEx("HFLavaMist",0,0,1,random(1,8),0,random(8,15),random(0,360),0,128)
-	"####" E 15
-	"####" A 0 A_SpawnItemEx("HFFireSpawned2",0,0,0,0,0,0,0,0,128)
-	"####" E 15
-	"####" A 0 A_SpawnItemEx("HFLavaMist",0,0,1,random(1,8),0,random(8,15),random(0,360),0,128)
-	"####" E 15
-	"####" A 0 A_SpawnItemEx("HFFireSpawned2",0,0,0,0,0,0,0,0,128)
-	"####" E 15
-	"####" A 0 A_SpawnItemEx("HFLavaMist",0,0,1,random(1,8),0,random(8,15),random(0,360),0,128)
-	"####" E 15
-	"####" A 0 A_SpawnItemEx("HFFireSpawned2",0,0,0,0,0,0,0,0,128)
-	"####" E 15
-	"####" A 0 A_SpawnItemEx("HFLavaMist",0,0,1,random(1,8),0,random(8,15),random(0,360),0,128)
-	"####" E 15
-	"####" A 0 A_SpawnItemEx("HFFireSpawned2",0,0,0,0,0,0,0,0,128)
-	"####" E 15
-	"####" A 0 A_SpawnItemEx("HFLavaMist",0,0,1,random(1,8),0,random(8,15),random(0,360),0,128)
-	"####" E 15
+	"####" E 15 A_SpawnItemEx("HFLavaMist",0,0,1,random(1,8),0,random(8,15),random(0,360),0,128)
+	"####" E 15 A_SpawnItemEx("HFFireSpawned2",0,0,0,0,0,0,0,0,128)
+	"####" E 15 A_SpawnItemEx("HFLavaMist",0,0,1,random(1,8),0,random(8,15),random(0,360),0,128)
+	"####" E 15 A_SpawnItemEx("HFFireSpawned2",0,0,0,0,0,0,0,0,128)
+	"####" E 15 A_SpawnItemEx("HFLavaMist",0,0,1,random(1,8),0,random(8,15),random(0,360),0,128)
+	"####" E 15 A_SpawnItemEx("HFFireSpawned2",0,0,0,0,0,0,0,0,128)
+	"####" E 15 A_SpawnItemEx("HFLavaMist",0,0,1,random(1,8),0,random(8,15),random(0,360),0,128)
+	"####" E 15 A_SpawnItemEx("HFFireSpawned2",0,0,0,0,0,0,0,0,128)
+	"####" E 15 A_SpawnItemEx("HFLavaMist",0,0,1,random(1,8),0,random(8,15),random(0,360),0,128)
+	"####" E 15 A_SpawnItemEx("HFFireSpawned2",0,0,0,0,0,0,0,0,128)
+	"####" E 15 A_SpawnItemEx("HFLavaMist",0,0,1,random(1,8),0,random(8,15),random(0,360),0,128)
+	"####" E 15 A_SpawnItemEx("HFFireSpawned2",0,0,0,0,0,0,0,0,128)
+	"####" E 15 A_SpawnItemEx("HFLavaMist",0,0,1,random(1,8),0,random(8,15),random(0,360),0,128)
+	"####" E 15 A_SpawnItemEx("HFFireSpawned2",0,0,0,0,0,0,0,0,128)
+	"####" E 15 A_SpawnItemEx("HFLavaMist",0,0,1,random(1,8),0,random(8,15),random(0,360),0,128)
 	"####" A 0 A_PlaySound("HFCyb/laugh2",7)
 	"####" AAAAA 0 A_SpawnItemEx("HellFlame",0,0,1,random(1,8),0,random(8,15),random(0,360),0,0)
 	"####" A 0 A_SpawnItemEx("ScrollOfHellfire",0,0,1,random(1,8),0,random(8,15),random(0,360),0,192)
@@ -244,8 +211,7 @@ Actor DarkPresentActive : ExplosiveBarrel
 	Goto Death
   Yoooooo:
 	"####" E 1
-	"####" A 0 A_PlaySound("xmas/yoooooo",7)
-	"####" E 287
+	"####" E 287 A_PlaySound("xmas/yoooooo",7)
 	"####" A 0 A_SpawnItemEx("PresentRuneSpawner",0,0,1,random(1,8),0,random(8,15),random(0,360),0,0)
 	Goto Death
   WTF:
@@ -261,24 +227,15 @@ Actor DarkPresentActive : ExplosiveBarrel
 	Goto Death
   Armageddon:
 	"####" E 1
-	"####" A 0 A_PlaySound("xmas/armageddon",7,1,0,ATTN_NONE)
-	"####" E 90
-	"####" A 0 Radius_Quake(2, 90, 0, 140, 0)
-	"####" E 90
-	"####" A 0 Radius_Quake(3, 90, 0, 140, 0)
-	"####" E 90
-	"####" A 0 Radius_Quake(4, 90, 0, 140, 0)
-	"####" E 90
-	"####" A 0 Radius_Quake(5, 90, 0, 140, 0)
-	"####" E 90
-	"####" A 0 Radius_Quake(6, 90, 0, 140, 0)
-	"####" E 90
-	"####" A 0 Radius_Quake(7, 90, 0, 140, 0)
-	"####" E 90
-	"####" A 0 Radius_Quake(8, 90, 0, 140, 0)
-	"####" E 90
-	"####" A 0 Radius_Quake(9, 90, 0, 140, 0)
-	"####" E 90
+	"####" E 90 A_PlaySound("xmas/armageddon",7,1,0,ATTN_NONE)
+	"####" E 90 Radius_Quake(2, 90, 0, 140, 0)
+	"####" E 90 Radius_Quake(3, 90, 0, 140, 0)
+	"####" E 90 Radius_Quake(4, 90, 0, 140, 0)
+	"####" E 90 Radius_Quake(5, 90, 0, 140, 0)
+	"####" E 90 Radius_Quake(6, 90, 0, 140, 0)
+	"####" E 90 Radius_Quake(7, 90, 0, 140, 0)
+	"####" E 90 Radius_Quake(8, 90, 0, 140, 0)
+	"####" E 90 Radius_Quake(9, 90, 0, 140, 0)
 	"####" A 0 A_SpawnItemEX("XmasBoom",0,0,0,0,0,0,0)
 	"####" E 35 A_StopSound(7)
 	Goto Death
@@ -1413,7 +1370,8 @@ ACTOR XmasBoom //There's no good xmas without an EXPLOSION!
  States
  {
   Spawn:
-	TNT1 AAA 0 A_Countdown
+	TNT1 A 1
+	Goto Death
   Death:
 	TNT1 A 0 A_StopSound(5)
 	TNT1 A 0 A_PlaySoundEx("redeemer/explosion", "Voice", 0, 2)

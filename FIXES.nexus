@@ -1,4 +1,4 @@
-Fixes up to version 0.4:
+Fixes up to version 0.41b:
 
 - Phase armor using the same sprite names of a Baron (fixed on CF's side)
 - Fixed(?) DBFG marines dealing tonnes of dmg (DamageType was "Players")
@@ -7,3 +7,5 @@ Fixes up to version 0.4:
 - Removed PIERCEARMOR from every monster using it (I hope)
 - ^Same with FOILINVUL
 - Fixed (hopefully once and for all) the wrong invbar sprites of Gaturra's beacons
+- Fixed NightmareFamine corpse staying solid after real death
+- Fixed doubles items when using give all

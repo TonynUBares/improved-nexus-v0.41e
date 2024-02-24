@@ -6,7 +6,6 @@ Actor DoomsphereDust : PowerupGiver 17752
   +CountItem
   +Inventory.AutoActivate
   +Inventory.AlwaysPickup
-  //+FLOATBOB
   -FLOAT
   +INVENTORY.BIGPOWERUP
   Inventory.MaxAmount 0

@@ -46,11 +46,9 @@ Actor NemesisPowerSphere : CustomInventory
   Inventory.MaxAmount 1
   +DONTGIB
   +INVBAR
-  +COUNTITEM
   +INVENTORY.BIGPOWERUP
   +NOTIMEFREEZE
   +FLOAT
-  //+FLOATBOB
   Tag "$NENemPow"
   States
   {

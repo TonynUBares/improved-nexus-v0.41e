@@ -6,7 +6,6 @@ ACTOR Shirosphere : CustomInventory
  +INVENTORY.BIGPOWERUP
  -INVENTORY.UNDROPPABLE //HDAN - dropable item
  +INVENTORY.INVBAR
- //+FLOATBOB
  -FLOAT
  Inventory.Icon SLVSL0
  Inventory.PickupSound "touhou/sight"
@@ -35,7 +34,6 @@ ACTOR NemesisShirosphere : CustomInventory
  +INVENTORY.BIGPOWERUP
  -INVENTORY.UNDROPPABLE //HDAN - dropable item
  +INVENTORY.INVBAR
- //+FLOATBOB
  -FLOAT
  Inventory.Icon SLVSO0
  Inventory.PickupSound "touhou/sight"

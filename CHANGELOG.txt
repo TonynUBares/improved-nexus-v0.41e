@@ -55,5 +55,5 @@ iNexus-v0.x
 - Reworked Beacons to make full use of Gaturra's sprites
    They now show their "loading" bar that fills to 100% when they are ready to spawn more stuff
    They will play the beep/alarm sound when ready, not when you step on them and they are not ready
-
+- Converted all chests into switchable decorations (press use to open them)
 

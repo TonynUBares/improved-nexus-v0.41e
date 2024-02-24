@@ -6,7 +6,6 @@ ACTOR ShuffleSphere : CustomInventory
   +INVENTORY.AUTOACTIVATE
   +INVENTORY.ALWAYSPICKUP
   +INVENTORY.BIGPOWERUP
-  //+FLOATBOB
   -FLOAT
   Inventory.PickupMessage "A Shuffle Sphere! Let's see what you've won..." 
   States

@@ -9,8 +9,6 @@ actor ClusterfuckSlayerPower : CustomInventory
   +INVENTORY.ALWAYSPICKUP
   +INVENTORY.HUBPOWER
   +INVENTORY.BIGPOWERUP
-  +COUNTITEM
-  //+FLOATBOB
   -FLOAT
   +DONTGIB
   XScale 0.24

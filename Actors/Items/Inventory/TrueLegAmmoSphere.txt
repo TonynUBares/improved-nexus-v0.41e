@@ -5,9 +5,7 @@ Actor TrueLegAmmoSphere : CustomInventory 26837
  Inventory.UseSound "truelegammosphere/use"
  Inventory.Icon "TLASZ0"
  Inventory.MaxAmount 1
- //+FLOATBOB
  +INVBAR
- +COUNTITEM
  +INVENTORY.BIGPOWERUP
  +NOTIMEFREEZE
  +DONTGIB

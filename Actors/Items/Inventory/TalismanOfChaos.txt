@@ -8,8 +8,6 @@ ACTOR TalismanOfChaos : CustomInventory
   Inventory.PickupSound "misc/p_pkup"
   Inventory.UseSound "Powerup/Unstable"
   Tag "Talisman Of Chaos"
-  +COUNTITEM
-  //+FLOATBOB
   +INVENTORY.FANCYPICKUPSOUND
   +INVENTORY.INVBAR
   +INVENTORY.PICKUPFLASH
