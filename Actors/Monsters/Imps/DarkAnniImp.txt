@@ -249,43 +249,32 @@ ACTOR DAImp : Imp 26662
   }
 }
 
-ACTOR DAImparm
+ACTOR DAImparm : RocketArm
 {
-	Radius 12
-	Height 10
-	Speed 4
-	+DOOMBOUNCE
-	+DROPOFF
-	+Missile
-      States
-	{
-	Spawn:
-     DAR1 ABCD 3
-     Loop
-	Death:
-	 DAR1 E -1
-	 Loop
-	}
+ States
+ {
+  Spawn:
+	DAR1 ABCD 3
+	Loop
+  Crash:
+	 DAR1 E 525
+	"####" "###########" 8 A_FadeOut(0.1,1)
+	Stop
+ }
 } 
 
-ACTOR DAImparm2
+ACTOR DAImparm2 : RocketArm
 {
-	Radius 12
-	Height 10
-	Speed 4
-	+DOOMBOUNCE
-	+DROPOFF
-	+Missile
-      States
-	{
-	Spawn:
-     DAR2 ABCD 3
-     Loop
-	Death:
-	 DAR2 E -1
-	 Loop
-	}
-} 
+ States
+ {
+  Spawn:
+	DAR2 ABCD 3
+	Loop
+  Crash:
+	 DAR2 E 525
+	"####" "###########" 8 A_FadeOut(0.1,1)
+	Stop
+ }
 
 Actor DAImpVulcanTracer : FastProjectile
 {

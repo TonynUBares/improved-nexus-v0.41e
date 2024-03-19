@@ -250,7 +250,7 @@ Actor Welderflare2: WelderFlare
   DeathEnd:
 	CFCF MNOP 2 Bright
 	Stop
-  Death2:
+  DeathLoop2:
 	CFCF ABC 2 Bright A_spawnItemEx("CFFlareFire",frandom(-3,3),frandom(-3,3),frandom(0,7),0,0,frandom(2,7),random(0,360),SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,64+4*user_flareloop)
 	TNT1 A 0 A_FadeOut(0.015,0)
 	TNT1 A 0 A_Explode(5+random(0,5),50,1,0)
