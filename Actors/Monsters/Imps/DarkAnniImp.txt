@@ -275,6 +275,7 @@ ACTOR DAImparm2 : RocketArm
 	"####" "###########" 8 A_FadeOut(0.1,1)
 	Stop
  }
+}
 
 Actor DAImpVulcanTracer : FastProjectile
 {
