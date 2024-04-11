@@ -61,83 +61,85 @@ actor "IsNexusPlayer": Inventory
 
 ACTOR ComplexNexusPlayer : CFDoomPlayer
 {
-DamageFactor "Player", 0.0
-DamageFactor "Players", 0.0
-DamageFactor "PlayerNemesisPlasma", 0.0
-DamageFactor "PlayerDevBall", 0.0
-DamageFactor "PlayerDevBall2", 0.0
-DamageFactor "PlayerDevTracer", 0.0
-DamageFactor "PlayerExplosive", 0.0
-DamageFactor "PlayerDTRG", 0.0
-DamageFactor "PDTBFG", 0.35
-DamageFactor "PDTBFGTracer", 0.35
-DamageFactor "LegendaryPlayer", 0.0
-DamageFactor "LegendaryGuruPlayer", 0.0
-DamageFactor "PlayerPyro", 0.0
-damageFactor "PlayerFireSword", 0.0
-DamageFactor "PlayerBHole", 0.0
-DamageFactor "PDTPuff", 0.0
-DamageFactor "Player2hu", 0.0
-DamageFactor "TrueLegendaryPlayer", 0.0
-//Ark
-DamageFactor "PlayerTear", 0.0
-DamageFactor "PlayerDBFG2", 0.0
-//TXS
-DamageFactor "VulcanPlasmaPuff", 0.0
-DamageFactor "VulcanLazer", 0.0
-DamageFactor "VulcanLazerEffect", 0.0
-//DamageFactor "Fire", 0.0
-DamageFactor "PlayerBrimstone", 0.0
-DamageFactor "ChaosC", 0.0
--NOSKIN
-+NOBLOOD //A known way to fix the nemesis charging on players, somewhat
-Player.SoundClass "Marine"
-Player.ColorRange 112, 127
-Player.DisplayName "Doom Guy"
-Player.CrouchSprite "PLYC"
-Player.StartItem "Handgun"
-Player.StartItem "Plasma Handgun"
-Player.StartItem "DemonTechPistol"
-Player.StartItem "PistolMagazine" 16
-Player.StartItem "BulletMag" 60
-Player.StartItem "Melee"
-Player.StartItem "Hand Grenade"
-Player.StartItem "HandGrenadeAmmo" 4
-Player.StartItem "Land Mine"
-Player.StartItem "MineAmmo" 4
-Player.StartItem "NewShell" 8
-Player.StartItem "SpringMine" 4
-Player.StartItem "PlasmaHGCell" 100
-Player.StartItem "ShotgunMagazine" 9
-Player.StartItem "SSGShell" 2
-Player.StartItem "QuadShell" 4
-Player.StartItem "HexaShell" 6
-Player.StartItem "RocketDrum" 7
-Player.StartItem "GrenadeDrum" 7
-Player.StartItem "ARMagazine" 41
-Player.StartItem "BulletMag" 60
-Player.StartItem "CellCharge" 50
-Player.StartItem "DemonMagazine" 60
-Player.StartItem "MP40Mag" 33
-Player.StartItem "ExplosiveShotgunMagazine" 9
-Player.StartItem "ExpSSGShell" 2
-Player.StartItem "NemesisPellets" 2
-Player.StartItem "LegendaryCoachShells" 2
-Player.StartItem "ELegendaryCoachShells" 2
-Player.StartItem "EnragedLegendaryShotgunDrum" 16
-Player.StartItem "EXPCellCharge" 60
-Player.StartItem "SpringMine" 4
-Player.StartItem "PlasmaHGCell" 100
-Player.StartItem "DTPistolMagazine" 16
-Player.StartItem "M79G" 1
-Player.StartItem "LEGRailgunAmmo" 50
-Player.StartItem "LEGENDARYRevolverSpinner" 6
-Player.StartItem "NewCell" 90
-Player.StartItem "OccultLasersToken2" 1
-Player.StartItem "IsCFPlayer" 1
-Player.StartItem "IsNexusPlayer" 1
-Player.StartItem "Using Power" 1
-Player.StartItem "Managing Inventory" 1
+ DamageFactor "Player", 0.0
+ DamageFactor "Players", 0.0
+ DamageFactor "PlayerNemesisPlasma", 0.0
+ DamageFactor "PlayerDevBall", 0.0
+ DamageFactor "PlayerDevBall2", 0.0
+ DamageFactor "PlayerDevTracer", 0.0
+ DamageFactor "PlayerExplosive", 0.0
+ DamageFactor "PlayerDTRG", 0.0
+ DamageFactor "PDTBFG", 0.35
+ DamageFactor "PDTBFGTracer", 0.35
+ DamageFactor "LegendaryPlayer", 0.0
+ DamageFactor "LegendaryGuruPlayer", 0.0
+ DamageFactor "PlayerPyro", 0.0
+ damageFactor "PlayerFireSword", 0.0
+ DamageFactor "PlayerBHole", 0.0
+ DamageFactor "PDTPuff", 0.0
+ DamageFactor "Player2hu", 0.0
+ DamageFactor "TrueLegendaryPlayer", 0.0
+ //Ark
+ DamageFactor "PlayerTear", 0.0
+ DamageFactor "PlayerDBFG2", 0.0
+ //TXS
+ DamageFactor "VulcanPlasmaPuff", 0.0
+ DamageFactor "VulcanLazer", 0.0
+ DamageFactor "VulcanLazerEffect", 0.0
+ //DamageFactor "Fire", 0.0
+ DamageFactor "PlayerBrimstone", 0.0
+ DamageFactor "ChaosC", 0.0
+ -NOSKIN
+ +NOBLOOD //A known way to fix the nemesis charging on players, somewhat
+ Player.SoundClass "Marine"
+ Player.ColorRange 112, 127
+ Player.DisplayName "Doom Guy"
+ Player.CrouchSprite "PLYC"
+ Player.StartItem "Handgun"
+ Player.StartItem "Plasma Handgun"
+ Player.StartItem "DemonTechPistol"
+ Player.StartItem "PistolMagazine" 16
+ Player.StartItem "BulletMag" 60
+ Player.StartItem "Melee"
+ Player.StartItem "Hand Grenade"
+ Player.StartItem "HandGrenadeAmmo" 4
+ Player.StartItem "Land Mine"
+ Player.StartItem "MineAmmo" 4
+ Player.StartItem "NewShell" 8
+ Player.StartItem "SpringMine" 4
+ Player.StartItem "PlasmaHGCell" 100
+ Player.StartItem "ShotgunMagazine" 9
+ Player.StartItem "SSGShell" 2
+ Player.StartItem "QuadShell" 4
+ Player.StartItem "HexaShell" 6
+ Player.StartItem "RocketDrum" 7
+ Player.StartItem "GrenadeDrum" 7
+ Player.StartItem "ARMagazine" 41
+ Player.StartItem "BulletMag" 60
+ Player.StartItem "CellCharge" 50
+ Player.StartItem "DemonMagazine" 60
+ Player.StartItem "MP40Mag" 33
+ Player.StartItem "ExplosiveShotgunMagazine" 9
+ Player.StartItem "ExpSSGShell" 2
+ Player.StartItem "NemesisPellets" 2
+ Player.StartItem "LegendaryCoachShells" 2
+ Player.StartItem "ELegendaryCoachShells" 2
+ Player.StartItem "EnragedLegendaryShotgunDrum" 16
+ Player.StartItem "EXPCellCharge" 60
+ Player.StartItem "SpringMine" 4
+ Player.StartItem "PlasmaHGCell" 100
+ Player.StartItem "DTPistolMagazine" 16
+ Player.StartItem "M79G" 1
+ Player.StartItem "LEGRailgunAmmo" 50
+ Player.StartItem "LEGENDARYRevolverSpinner" 6
+ Player.StartItem "NewCell" 90
+ Player.StartItem "OccultLasersToken2" 1
+ Player.StartItem "IsCFPlayer" 1
+ Player.StartItem "IsNexusPlayer" 1
+ Player.StartItem "Using Power" 1
+ Player.StartItem "Managing Inventory" 1
+ Player.StartItem "CFMedikitPack"
+ Player.StartItem "CFArmorPack"
  States
  {
   Spawn:
