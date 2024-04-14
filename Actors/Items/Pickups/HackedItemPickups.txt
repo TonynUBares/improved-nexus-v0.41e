@@ -122,27 +122,3 @@ ACTOR HackroidHyperSphere : LegendaryUltraSphere
 	Stop
  }
 }
-
-// Effects
-
-Actor RandomHellionSmoke : RandomSpawner
-{
-DropItem "EnragedHellionSmokeSpawner", 256, 10
-DropItem "HellFireBaronFlameSpawner", 256, 10
-DropItem "LHellionSmokeSpawner", 256, 10
-DropItem "GHellionSmokeSpawner", 256, 10
-DropItem "BHellionSmokeSpawner", 256, 10
-DropItem "PHellionSmokeSpawner", 256, 10
-DropItem "NemesisHellionSmokeSpawner", 256, 5
-DropItem "TrueNemesisHellionSmokeSpawner", 256, 5
-}
-
-Actor RandomSphereFlareSmoke : RandomSpawner
-{
-DropItem "RedSphereFlare", 256, 10
-DropItem "YellowSphereFlare", 256, 10
-DropItem "GreenSphereFlare", 256, 10
-DropItem "BlueSphereFlare", 256, 10
-DropItem "PurpleSphereFlare", 256, 10
-DropItem "WhiteSphereFlare", 256, 10
-}

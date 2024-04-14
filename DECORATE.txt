@@ -1,3 +1,5 @@
+#include "Actors/Items/SFX/iNexusSFX.dec"
+
 //NemesisHellsmith
 #INCLUDE "Actors/Weapons/NemUnmaker.dec"
 #INCLUDE "Actors/Weapons/Slot8/Stingray.dec"
@@ -202,7 +204,6 @@ Inventory.MaxAmount 255
 #include "Actors/Items/Pickups/HackedItemPickups.txt"
 #include "Actors/Items/Pickups/SlayerPower.txt"
 #include "Actors/Items/Pickups/AutoMaps.txt"
-#include "Actors/Items/Pickups/TrueLegendaryArmor.txt"
 
 #include "Actors/Items/Inventory/NemesisPowerShard.txt"
 #include "Actors/Items/Inventory/NemesisPowerSphere.txt"

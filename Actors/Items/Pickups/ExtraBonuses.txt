@@ -1,31 +1,3 @@
-ACTOR LegendaryRedStar : RedStar { +NOTIMEFREEZE }
-ACTOR LegendaryRedSparkleSpawner : redSparkleSpawner
-{
- +NOTIMEFREEZE
- States
- {
-  Spawn:
-	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
-	TNT1 AA 2 A_SpawnItemEx("LegendaryRedStar", random(-15, 15), random(-15, 15), random(0, 16), 0, 0, 0, 0, 128)
-	Stop
- }
-}
-
-ACTOR LegendaryOrangeStar : OrangeStar { +NOTIMEFREEZE }
-ACTOR LegendaryOrangeSparkleSpawner : OrangeSparkleSpawner
-{
- +NOTIMEFREEZE
- States
- {
-  Spawn:
-	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
-	TNT1 AA 2 A_SpawnItemEx("LegendaryOrangeStar", random(-15, 15), random(-15, 15), random(0, 16), 0, 0, 0, 0, 128)
-	Stop
- }
-}
-
-ACTOR LegendaryRedSphereFlare : RedSphereFlare { +NOTIMEFREEZE }
-
 Actor HellfireLifeEssence : NewHealthBonus
 {
  Scale 0.8

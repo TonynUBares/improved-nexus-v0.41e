@@ -1,0 +1,664 @@
+ACTOR ArmorParticleGreenSpawner : WhiteSparkleSpawner
+{
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 AA 0 A_SpawnItemEx("ArmorParticleGreen",random(-12,12),random(-12,12),random(0,24),random(-2,2),random(-2,2),random(0,2),random(-20,20),SXF_CLIENTSIDE,64)
+	Stop
+ }
+}
+
+ACTOR ArmorParticleGreen : BFGTrailParticleGreen
+{
+ Scale 0.06
+ +NOTIMEFREEZE
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	LS3B A 2 Bright A_FadeOut(0.015)
+	Loop
+ }
+}
+
+///////////
+ACTOR BlackGreenSparkSpawner : WhiteSparkleSpawner
+{
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 AA 0 A_SpawnItemEx("BlackGreenSpark",random(-12,12),random(-12,12),random(2,16),frandom(-0.4,0.4),frandom(-0.4,0.4),frandom(0,2),0,SXF_CLIENTSIDE,64)
+	Stop
+ }
+}
+
+
+Actor BlackGreenSpark
+{
+ +NOINTERACTION
+ +NOTIMEFREEZE
+ +CLIENTSIDEONLY
+ Renderstyle Subtract
+ var int user_delay;
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Null")
+	TNT1 A 0 A_SetScale(frandom(0.3,0.6))
+	TNT1 A 0 A_SetUserVar(user_delay,random(2,4))
+	S9KO ABCDEF 1 A_SetTics(user_delay)
+	Stop
+ }
+}
+
+///////////
+ACTOR ArmorParticleWhiteSpawner : WhiteSparkleSpawner
+{
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 AA 0 A_SpawnItemEx("ArmorParticleWhite",random(-12,12),random(-12,12),random(0,24),random(-2,2),random(-2,2),random(0,2),random(-20,20),SXF_CLIENTSIDE,64)
+	Stop
+ }
+}
+
+ACTOR ArmorParticleWhite : BFGTrailParticleGreen
+{
+ Scale 0.06
+ +NOTIMEFREEZE
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	LS4B A 2 Bright A_FadeOut(0.015)
+	Loop
+ }
+}
+
+///////////
+ACTOR ArmorParticleRedSpawner : WhiteSparkleSpawner
+{
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 AA 0 A_SpawnItemEx("ArmorParticleRed",random(-12,12),random(-12,12),random(0,24),random(-2,2),random(-2,2),random(0,2),random(-20,20),SXF_CLIENTSIDE,64)
+	Stop
+ }
+}
+
+ACTOR ArmorParticleRed : BFGTrailParticleGreen
+{
+ Scale 0.06
+ +NOTIMEFREEZE
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	LS5B A 2 Bright A_FadeOut(0.015)
+	Loop
+ }
+}
+
+///////////
+ACTOR AscensionSparkSpawner : WhiteSparkleSpawner
+{
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 AA 0 A_SpawnItemEx("AscensionSpark",random(-12,12),random(-12,12),random(2,16),frandom(-0.4,0.4),frandom(-0.4,0.4),frandom(0,2),0,SXF_CLIENTSIDE,64)
+	Stop
+ }
+}
+
+///////////
+ACTOR LightGreenSparkSpawner : WhiteSparkleSpawner
+{
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 AA 0 A_SpawnItemEx("LightGreenSpark",random(-12,12),random(-12,12),random(2,16),frandom(-0.4,0.4),frandom(-0.4,0.4),frandom(0,2),0,SXF_CLIENTSIDE,64)
+	Stop
+ }
+}
+
+Actor LightGreenSpark
+{
+ +NOINTERACTION
+ +NOTIMEFREEZE
+ +CLIENTSIDEONLY
+ Renderstyle Add
+ var int user_delay;
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Null")
+	TNT1 A 0 A_SetScale(frandom(0.3,0.6))
+	TNT1 A 0 A_SetUserVar(user_delay,random(2,4))
+	S8KO ABCDEF 1 A_SetTics(user_delay)
+	Stop
+ }
+}
+
+///////////
+ACTOR ArmorParticleYellowSpawner : WhiteSparkleSpawner
+{
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 AA 0 A_SpawnItemEx("ArmorParticleYellow",random(-12,12),random(-12,12),random(0,24),random(-2,2),random(-2,2),random(0,2),random(-20,20),SXF_CLIENTSIDE,64)
+	Stop
+ }
+}
+
+ACTOR ArmorParticleYellow : BFGTrailParticleGreen
+{
+ Scale 0.06
+ +NOTIMEFREEZE
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	LS6B A 2 Bright A_FadeOut(0.015)
+	Loop
+ }
+}
+
+///////////
+ACTOR TrueLegSparkSpawner : WhiteSparkleSpawner
+{
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 AA 0 A_SpawnItemEx("TrueLegSpark",random(-12,12),random(-12,12),random(2,16),frandom(-0.4,0.4),frandom(-0.4,0.4),frandom(0,2),0,SXF_CLIENTSIDE,64)
+	Stop
+ }
+}
+
+Actor TrueLegSpark: LegArmorSpark
+{
+ +NOINTERACTION
+ +NOTIMEFREEZE
+ +CLIENTSIDEONLY
+ Renderstyle Add
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 0 A_SetScale(frandom(0.3,0.6))
+	TNT1 A 0 A_SetUserVar(user_delay,random(2,4))
+	SPX8 ABCDEF 1 A_SetTics(user_delay)
+	Stop
+ }
+}
+
+///////////
+ACTOR ArmorParticleGoldSpawner : WhiteSparkleSpawner
+{
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 AA 0 A_SpawnItemEx("ArmorParticleGold",random(-12,12),random(-12,12),random(0,24),random(-2,2),random(-2,2),random(0,2),random(-20,20),SXF_CLIENTSIDE,64)
+	Stop
+ }
+}
+
+ACTOR ArmorParticleGold : BFGTrailParticleGreen
+{
+ Scale 0.06
+ +NOTIMEFREEZE
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	LS7B A 2 Bright A_FadeOut(0.015)
+	Loop
+ }
+}
+
+///////////
+ACTOR ArmorParticlePurpleSpawner : WhiteSparkleSpawner
+{
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 AA 0 A_SpawnItemEx("ArmorParticlePurple",random(-12,12),random(-12,12),random(0,24),random(-2,2),random(-2,2),random(0,2),random(-20,20),SXF_CLIENTSIDE,64)
+	Stop
+ }
+}
+
+ACTOR ArmorParticlePurple : BFGTrailParticleGreen
+{
+ Scale 0.06
+ +NOTIMEFREEZE
+ States
+ {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	LS8B A 2 Bright A_FadeOut(0.015)
+	Loop
+ }
+}
+
+///////////
+ACTOR SNArmorFireSpawner : BluePowerLineSpawner
+{
+ +NOTIMEFREEZE
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 1 A_SpawnItemEx("SNArmorFire",random(12,-12),random(15,-15),0,0,0,2,0,128,0) 
+	Stop
+ }
+}
+
+ACTOR SNArmorFire
+{
+ Speed 1
+ Radius 0
+ Height 0
+ Scale 0.30
+ RenderStyle Subtract
+ Alpha 0.8
+ +MISSILE
+ +NOGRAVITY
+ +NOBLOCKMAP
+ +NOINTERACTION
+ +NOTELEPORT
+ +DONTSPLASH
+ +NOTIMEFREEZE
+ -SOLID
+ States
+ {
+  Spawn:
+	FIW1 A 5 Bright
+	TNT1 A 0 A_Jump(128,"FadeOut2")
+  Normal:
+	FIW1 ABCDEFGHIJKL 1 Bright A_FadeOut(0.08)
+	Stop
+  FadeOut2:
+	FIW1 ABCDEFGHIJKL 1 Bright A_FadeOut(0.0125)
+	Stop
+ }
+}
+
+///////////
+ACTOR LegendaryRedStar : RedStar { +NOTIMEFREEZE }
+ACTOR LegendaryRedSparkleSpawner : redSparkleSpawner
+{
+ +NOTIMEFREEZE
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 AA 2 A_SpawnItemEx("LegendaryRedStar", random(-15, 15), random(-15, 15), random(0, 16), 0, 0, 0, 0, 128)
+	Stop
+ }
+}
+
+///////////
+ACTOR LegendaryOrangeStar : OrangeStar { +NOTIMEFREEZE }
+ACTOR LegendaryOrangeSparkleSpawner : OrangeSparkleSpawner
+{
+ +NOTIMEFREEZE
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 AA 2 A_SpawnItemEx("LegendaryOrangeStar", random(-15, 15), random(-15, 15), random(0, 16), 0, 0, 0, 0, 128)
+	Stop
+ }
+}
+
+///////////
+ACTOR LegendaryRedSphereFlare : RedSphereFlare { +NOTIMEFREEZE }
+
+/////////// Hackroid effects
+Actor RandomHellionSmoke : RandomSpawner
+{
+DropItem "EnragedHellionSmokeSpawner", 256, 10
+DropItem "HellFireBaronFlameSpawner", 256, 10
+DropItem "LHellionSmokeSpawner", 256, 10
+DropItem "GHellionSmokeSpawner", 256, 10
+DropItem "BHellionSmokeSpawner", 256, 10
+DropItem "PHellionSmokeSpawner", 256, 10
+DropItem "NemesisHellionSmokeSpawner", 256, 5
+DropItem "TrueNemesisHellionSmokeSpawner", 256, 5
+}
+
+Actor RandomSphereFlareSmoke : RandomSpawner
+{
+DropItem "RedSphereFlare", 256, 10
+DropItem "YellowSphereFlare", 256, 10
+DropItem "GreenSphereFlare", 256, 10
+DropItem "BlueSphereFlare", 256, 10
+DropItem "PurpleSphereFlare", 256, 10
+DropItem "WhiteSphereFlare", 256, 10
+}
+
+/////////// SlayerPower effect
+ACTOR CFSPLineSpawner : LegImpLineSpawner
+{
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 AAA 0 A_CustomMissile("NemesisHellionSmokeSpawner",0,0,random(0,-360),2,random(0,360))
+	TNT1 AAAAAAA 0 A_SpawnItemEx("WhitePowerLine",random(32,-32),random(32,-32),random(8,48),0,0,random(1,4),0,128,0) 	
+	TNT1 A 1 A_SpawnItemEx("WhitePowerLine",random(32,-32),random(32,-32),random(8,48),0,0,random(1,4),0,128,0) 
+	Stop
+ }
+}
+
+///////////Nemesis shard effects
+ACTOR NemesisPowerShardEffects : RedSparkleSpawner
+{
++NOTIMEFREEZE
+States
+{
+ Pickup:
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 0 A_CustomMissile("NBlackSparkleSpawner",0,0,frandom(0,-360),2,frandom(0,360))
+	TNT1 AA 3 A_SpawnItemEx("NBlackPowerLineSpawner",frandom(32,-32),frandom(32,-32),frandom(8,48),0,0,random(1,4),0,128,0)
+	Stop
+ }
+}
+
+ACTOR NBlackSparkleSpawner : WhiteSparkleSpawner
+{
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 AA 2 A_SpawnItemEx("NBlackStar", frandom(-15, 15), frandom(-15, 15), frandom(28, 44), 0, 0, 0, 0, 128) 
+	Stop
+ }
+}
+
+
+ACTOR NBlackStar
+{
+ Height 0
+ Radius 0
+ Speed 2
+ Scale 0.16
+ RenderStyle Subtract
+ PROJECTILE
+ +CLIENTSIDEONLY
+ +DOOMBOUNCE
+ +DONTSPLASH
+ +NOTELEPORT
+ +NOGRAVITY
+ +FORCEXYBILLBOARD
+ States
+ {
+  Spawn:
+	BLKS ABC 2 Bright A_FadeOut(0.05)
+	Loop
+ }
+}
+
+
+ACTOR NBlackPowerLineSpawner : BluePowerLineSpawner
+{
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 1 A_SpawnItemEx("NBlackPowerLine",frandom(12,-12),frandom(12,-12),0,0,0,2,0,128,0) 
+    Stop  
+ }
+}
+
+ACTOR NBlackPowerLine
+{
+ Speed 1
+ Radius 0
+ Height 0
+ Scale 0.28
+ RenderStyle Subtract
+ Alpha 0.8
+ +MISSILE
+ +NOGRAVITY
+ +NOBLOCKMAP
+ +NOINTERACTION
+ +NOTELEPORT
+ +DONTSPLASH
+ -SOLID
+ States
+ {
+  Spawn:
+	BLKL A 5 Bright
+	TNT1 A 0 A_Jump(128,"FadeOut2")
+  Normal:
+	BLKL AAAAAAAA 1 Bright A_FadeOut(0.05)
+	Stop
+  FadeOut2:
+	BLKL AAAAAAAA 1 Bright A_FadeOut(0.075)
+	Stop
+ }
+}
+
+///////////Nemesis sphere effects
+ACTOR SNSphereFlame
+{
+ +NOCLIP
+ +MISSILE
+ +DONTSPLASH
+ +CLIENTSIDEONLY
+ +NOBLOCKMAP
+ +NOGRAVITY
+ +NOTELEPORT
+ +FORCEXYBILLBOARD
+ +NOTIMEFREEZE
+ RenderStyle Subtract
+ Scale 0.3
+ States
+ {
+  Spawn:
+	FIW1 ABCDEFGHIJKL 2 Bright A_FadeOut
+	Stop
+ }
+}
+
+ACTOR SNSphereFlameSpawner 
+{
+ +NOTIMEFREEZE
+ +CLIENTSIDEONLY
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 AAAAAA 0 A_SpawnItemEx("SNSphereFlame",random(20,-20),random(20,-20),random(20,40),0,0,random(2,6),0,128,0)
+	TNT1 A 0
+	Stop
+  Vanilla:
+	TNT1 A 0
+	Stop
+ }
+}
+
+ACTOR NemesisPowerSphereEffects : CustomInventory
+{
+ +NOTIMEFREEZE
+ States
+ {
+  Pickup:
+        TNT1 A 0
+	TNT1 AA 0 A_CustomMissile("NemesisSparkleSpawner2",0,0,frandom(0,-360),2,frandom(0,360))
+	TNT1 AAAA 0 A_SpawnItemEx("NBlackPowerLine",frandom(-32,32),frandom(-32,32),frandom(8,48),0,0,frandom(1,4),0,SXF_CLIENTSIDE,0) 
+        Stop
+ }
+}
+
+ACTOR NemesisSparkleSpawner2 : BlueSparkleSpawner
+{
+ +NOTIMEFREEZE
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 AA 2 A_SpawnItemEx("BlackStar2", frandom(-15, 15), frandom(-15, 15), frandom(28, 44), 0, 0, 0, 0, 128)
+        Stop
+ }
+}
+
+ACTOR BlackStar2 : NBlackStar { +NOTIMEFREEZE }
+
+///////////Uranium core effects
+Actor UHellionSmokeSpawner : RandomSpawner
+{
+DropItem "LHellionSmokeSpawner", 256, 1
+DropItem "GHellionSmokeSpawner", 256, 1
+}
+
+ACTOR UraniumSparkleSpawner : WhiteSparkleSpawner
+{
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 AA 2 A_SpawnItemEx("UraniumStar", random(-15, 15), frandom(-15, 15), frandom(28, 44), 0, 0, 0, 0, 128) 
+	Stop
+ }
+}
+
+ACTOR UraniumStar : RandomSpawner
+{
+ DropItem "YellowStar", 256, 1
+ DropItem "GreenStar", 256, 1
+}
+
+ACTOR UraniumSphereFlare : BlueSphereFlare
+{
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	LENU A 1 Bright
+	Stop
+ }
+}
+
+///////////Wings of Ascension effects
+ACTOR AscensionPowerEffects : CustomInventory
+{
++NOTIMEFREEZE
+States
+ {
+  Pickup:
+	TNT1 A 0 A_CustomMissile("AWhiteSparkleSpawner",0,0,frandom(0,-360),2,frandom(0,360))
+	TNT1 AA 3 A_SpawnItemEx("AWhitePowerLine",frandom(32,-32),frandom(32,-32),frandom(8,48),0,0,frandom(1,4),0,128,0) 
+        Stop
+ }
+}
+
+ACTOR AWhiteSparkleSpawner : WhiteSparkleSpawner
+{
+States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 AA 2 A_SpawnItemEx("AWhiteStar", frandom(-15, 15), frandom(-15, 15), frandom(28, 44), 0, 0, 0, 0, 128) 
+        Stop
+ }
+}
+
+ACTOR AWhiteStar
+{
+ Height 0
+ Radius 0
+ Speed 2
+ Scale 0.16
+ RenderStyle add
+ PROJECTILE
+ +CLIENTSIDEONLY
+ +DOOMBOUNCE
+ +DONTSPLASH
+ +NOTELEPORT
+ +NOGRAVITY
+ +FORCEXYBILLBOARD
+ +FLOATBOB
+ States
+ {
+  Spawn:
+	WPXS ABC 2 Bright A_FadeOut(0.05)
+	Loop
+ }
+}
+
+ACTOR AWhitePowerLine
+{
+ Speed 1
+ Radius 0
+ Height 0
+ Scale 0.28
+ RenderStyle Add
+ Alpha 0.8
+ +MISSILE
+ +NOGRAVITY
+ +NOBLOCKMAP
+ +NOINTERACTION
+ +NOTELEPORT
+ +DONTSPLASH
+ -SOLID
+ States
+ {
+  Spawn:
+	WPXL A 5 Bright
+	TNT1 A 0 A_Jump(128,"FadeOut2")
+  Normal:
+	WPXL AAAAAAAA 1 Bright A_FadeOut(0.05)
+	Stop
+  FadeOut2:
+	WPXL AAAAAAAA 1 Bright A_FadeOut(0.075)
+	Stop
+ }
+}
+
+ACTOR AscensionSparkSpawner : WhiteSparkleSpawner
+{
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 AA 0 A_SpawnItemEx("AscensionSpark",random(-12,12),random(-12,12),random(2,16),frandom(-0.4,0.4),frandom(-0.4,0.4),frandom(0,2),0,SXF_CLIENTSIDE,64)
+	Stop
+ }
+}
+
+Actor AscensionSpark
+{
+ +NOINTERACTION
+ +NOTIMEFREEZE
+ +CLIENTSIDEONLY
+ +NOBLOCKMAP
+ Renderstyle Add
+ var int user_delay;
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 0 A_SetScale(frandom(0.3,0.6))
+	TNT1 A 0 A_SetUserVar(user_delay,random(2,4))
+	SPX7 ABCDEF 1 A_SetTics(user_delay)
+	Stop
+  Vanilla:
+	TNT1 A 1
+	Stop
+ }
+}

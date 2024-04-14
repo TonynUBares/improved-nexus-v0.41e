@@ -84,37 +84,3 @@ Actor UraniumCoreActive : ExplosiveBarrel
     Stop
   }
 }
-
-Actor UHellionSmokeSpawner : RandomSpawner
-{
-DropItem "LHellionSmokeSpawner", 256, 1
-DropItem "GHellionSmokeSpawner", 256, 1
-}
-
-ACTOR UraniumSparkleSpawner : WhiteSparkleSpawner
-{
- States
- {
-  Spawn:
-	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
-	TNT1 AA 2 A_SpawnItemEx("UraniumStar", random(-15, 15), frandom(-15, 15), frandom(28, 44), 0, 0, 0, 0, 128) 
-	Stop
- }
-}
-
-ACTOR UraniumStar : RandomSpawner
-{
- DropItem "YellowStar", 256, 1
- DropItem "GreenStar", 256, 1
-}
-
-ACTOR UraniumSphereFlare : BlueSphereFlare
-{
- States
- {
-  Spawn:
-	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
-	LENU A 1 Bright
-	Stop
- }
-}

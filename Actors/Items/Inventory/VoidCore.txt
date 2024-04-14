@@ -1,4 +1,3 @@
-
 ACTOR VoidCore : NemesisSphere
 {
  Alpha 0.8

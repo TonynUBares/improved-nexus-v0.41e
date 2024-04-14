@@ -1,4 +1,4 @@
-//Dark
+///////////Dark
 Actor PresentParent: CustomInventory
 {
  Alpha 1.0
@@ -254,39 +254,9 @@ Actor DarkPresentActive : ExplosiveBarrel
  }
 }
 
-Actor BlackGreenSpark
-{
- +NOINTERACTION
- +NOTIMEFREEZE
- +CLIENTSIDEONLY
- Renderstyle Subtract
- var int user_delay;
- States
- {
-  Spawn:
-	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Null")
-	TNT1 A 0 A_SetScale(frandom(0.3,0.6))
-	TNT1 A 0 A_SetUserVar(user_delay,random(2,4))
-	S9KO ABCDEF 1 A_SetTics(user_delay)
-	Stop
- }
-}
 
-ACTOR ArmorParticleGreen : BFGTrailParticleGreen
-{
- Scale 0.06
- +NOTIMEFREEZE
- States
- {
-  Spawn:
-	TNT1 A 0
-	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
-	LS3B A 2 Bright A_FadeOut(0.015)
-	Loop
- }
-}
 
-//Red Green
+///////////Red Green
 ACTOR RedGreenPresent : PresentParent
 {
  Tag "$NERedGPresent"
@@ -314,7 +284,7 @@ Actor RedGreenPresentActive : DarkPresentActive
  }
 }
 
-//Red White
+///////////Red White
 ACTOR RedWhitePresent : PresentParent
 {
  Tag "$NERedWPresent"
@@ -340,20 +310,7 @@ Actor RedWhitePresentActive : DarkPresentActive
  }
 }
 
-ACTOR ArmorParticleWhite : BFGTrailParticleGreen
-{
- Scale 0.06
- +NOTIMEFREEZE
- States
- {
-  Spawn:
-	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
-	LS4B A 2 Bright A_FadeOut(0.015)
-	Loop
- }
-}
-
-//White Red
+///////////White Red
 ACTOR WhiteRedPresent : PresentParent
 {
  Tag "$NEWhiteRPresent"
@@ -379,20 +336,7 @@ Actor WhiteRedPresentActive : DarkPresentActive
  }
 }
 
-ACTOR ArmorParticleRed : BFGTrailParticleGreen
-{
- Scale 0.06
- +NOTIMEFREEZE
- States
- {
-  Spawn:
-	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
-	LS5B A 2 Bright A_FadeOut(0.015)
-	Loop
- }
-}
-
-//Green Red
+///////////Green Red
 ACTOR GreenRedPresent : PresentParent
 {
  Tag "$NEGreenRPresent"
@@ -418,25 +362,7 @@ Actor GreenRedPresentActive : DarkPresentActive
  }
 }
 
-Actor LightGreenSpark
-{
- +NOINTERACTION
- +NOTIMEFREEZE
- +CLIENTSIDEONLY
- Renderstyle Add
- var int user_delay;
- States
- {
-  Spawn:
-	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Null")
-	TNT1 A 0 A_SetScale(frandom(0.3,0.6))
-	TNT1 A 0 A_SetUserVar(user_delay,random(2,4))
-	S8KO ABCDEF 1 A_SetTics(user_delay)
-	Stop
- }
-}
-
-//Legendary
+///////////Legendary
 ACTOR LegendaryPresent : PresentParent
 {
  Tag "$NELegPresent"
@@ -479,21 +405,7 @@ Actor LegendaryPresentActive : DarkPresentActive
  }
 }
 
-ACTOR ArmorParticleYellow : BFGTrailParticleGreen
-{
- Scale 0.06
- +NOTIMEFREEZE
- States
- {
-  Spawn:
-	TNT1 A 0
-	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
-	LS6B A 2 Bright A_FadeOut(0.015)
-	Loop
- }
-}
-
-//Enraged Legendary
+///////////Enraged Legendary
 ACTOR EnragedLegendaryPresent : PresentParent
 {
 Tag "$NEEnrPresent"
@@ -536,7 +448,7 @@ Actor EnragedLegendaryPresentActive : DarkPresentActive
   }
 }
 
-//Nemesis
+///////////Nemesis
 ACTOR NemesisPresent : PresentParent
 {
 Tag "$NENemPresent"
@@ -602,21 +514,7 @@ Actor NemesisPresentActive : DarkPresentActive
  }
 }
 
-ACTOR ArmorParticleGold : BFGTrailParticleGreen
-{
- Scale 0.06
- +NOTIMEFREEZE
- States
- {
-  Spawn:
-	TNT1 A 0
-	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
-	LS7B A 2 Bright A_FadeOut(0.015)
-	Loop
- }
-}
-
-//Phase
+///////////Phase
 ACTOR PhasePresent : PresentParent
 {
 Tag "$NEPhasePresent"
@@ -660,20 +558,6 @@ Actor PhasePresentActive : DarkPresentActive
   }
 }
 
-ACTOR ArmorParticlePurple : BFGTrailParticleGreen
-{
- Scale 0.06
- +NOTIMEFREEZE
- States
- {
-  Spawn:
-	TNT1 A 0
-	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
-	LS8B A 2 Bright A_FadeOut(0.015)
-	Loop
- }
-}
-
 ACTOR RandomPresentSpawner : RandomSpawner
 {
 +DROPPED
@@ -698,7 +582,7 @@ DropItem "NemesisPresent", 256, 1
 DropItem "PhasePresent", 256, 1
 }
 
-//Normal Reward Spawners
+///////////Normal Reward Spawners
 ACTOR NormalPresentItemSpawner : RandomSpawner
 {
 +DROPPED
@@ -889,7 +773,7 @@ DropItem "CFMastermindSpawner", 256, 1
 DropItem "CFCyberSpawner", 256, 1
 }
 
-//Legendary Reward Spawners
+///////////Legendary Reward Spawners
 ACTOR LegendaryPresentItemSpawner : RandomSpawner
 {
 +DROPPED
@@ -1014,7 +898,7 @@ DropItem "LegendarySentient", 256, 13
  DropItem "LegendaryTerminator", 256, 2 //Here's hoping your luck won't be this shitty
 }
 
-//Enraged Legendary Reward Spawners
+///////////Enraged Legendary Reward Spawners
 ACTOR EnragedLegendaryPowerupSpawner : RandomSpawner
 {
  +DROPPED
@@ -1078,7 +962,7 @@ DropItem "EnragedLegendaryCyberdemon", 256, 5
 }
 
 
-//Nemesis Reward Spawners
+///////////Nemesis Reward Spawners
 ACTOR NemesisPresentPowerupSpawner : RandomSpawner
 {
 +DROPPED
@@ -1155,7 +1039,7 @@ DropItem "NemesisCyberdemon", 256, 5
 DropItem "NemHellsmith", 256, 2
 }
 
-//Phase Reward Spawners
+///////////Phase Reward Spawners
 ACTOR PhasePresentRewardSpawner : RandomSpawner
 {
 +DROPPED
@@ -1208,7 +1092,7 @@ DropItem "singenjitsu3", 256, 10
 //DropItem "AbyssalSatyrVoid", 256, 5
 }
 
-//Ammo Spawners
+///////////Ammo Spawners
 ACTOR NormalPresentAmmoSpawner : RandomSpawner
 {
 +DROPPED
@@ -1268,7 +1152,7 @@ Dropitem "NemesisShellBox", 256, 5
 Dropitem "NLDemonAmmoBox", 256, 5
 }
 
-//Bonus Spawners
+///////////Bonus Spawners
 ACTOR NormalPresentBonusSpawner : RandomSpawner
 {
 +DROPPED
@@ -1301,7 +1185,7 @@ DropItem "NemesisHealthBonusMax", 256, 1
 DropItem "NemesisArmorBonusMax", 256, 1
 }
 
-//Unique Spawners
+///////////Unique Spawners
 ACTOR DangerousBarrelSpawner : RandomSpawner //Xmas is a lie
 {
 +DROPPED
@@ -1354,7 +1238,7 @@ DropItem "ClusterfuckSlayerPower", 256, 5
 }
 
 
-//Misc
+///////////Misc
 ACTOR XmasBoom //There's no good xmas without an EXPLOSION!
 {
  DamageType "Cyber10K"

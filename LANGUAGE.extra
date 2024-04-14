@@ -51,7 +51,7 @@ ItemEffectType118 = "UraniumSphereFlare";
 ItemEffectType119 = "UHellionSmokeSpawner";
 ItemEffectType120 = "VoidSparkleSpawner";
 ItemEffectType121 = "VHellionSmokeSpawner";
-ItemEffectType122 = "AscensionSpark";  
+ItemEffectType122 = "AscensionSparkSpawner";  
 ItemEffectType123 = "GreyPowerLineSpawner";  
 ItemEffectType124 = "WhitePowerLineSpawner"; 
 ItemEffectType125 = "OrangePowerLineSpawner";
@@ -59,15 +59,15 @@ ItemEffectType126 = "YellowPowerLineSpawner";
 ItemEffectType127 = "LongGreenPowerLineSpawner"; 
 ItemEffectType128 = "PurplePowerLineSpawner";
 ItemEffectType129 = "PinkPowerLineSpawner";
-ItemEffectType130 = "ArmorParticleGreen";
-ItemEffectType131 = "BlackGreenSpark";
-ItemEffectType132 = "ArmorParticleWhite";
-ItemEffectType133 = "ArmorParticleRed";
-ItemEffectType134 = "LightGreenSpark";
-ItemEffectType135 = "ArmorParticleYellow";
-ItemEffectType136 = "TrueLegSpark";
-ItemEffectType137 = "ArmorParticleGold";
-ItemEffectType138 = "ArmorParticlePurple";
+ItemEffectType130 = "ArmorParticleGreenSpawner";
+ItemEffectType131 = "BlackGreenSparkSpawner";
+ItemEffectType132 = "ArmorParticleWhiteSpawner";
+ItemEffectType133 = "ArmorParticleRedSpawner";
+ItemEffectType134 = "LightGreenSparkSpawner";
+ItemEffectType135 = "ArmorParticleYellowSpawner";
+ItemEffectType136 = "TrueLegSparkSpawner";
+ItemEffectType137 = "ArmorParticleGoldSpawner";
+ItemEffectType138 = "ArmorParticlePurpleSpawner";
 
 
 
