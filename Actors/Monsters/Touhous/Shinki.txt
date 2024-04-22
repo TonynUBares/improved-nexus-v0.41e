@@ -39,20 +39,20 @@ ACTOR MakaiSlut
   Seesound ""
   painsound "touhou/pain"
   deathsound "touhou/rekt"
-   DamageFactor "PDTBFG", 0.05
-   DamageFactor "PDTBFGTracer", 0.05
-   DamageFactor "Legendary", 0.0
-   DamageFactor "LegendaryGuru", 0.0
-   DamageFactor "LegendaryGuruPlayer", 0.0
-   DamageFactor "LegendaryPlayer", 0.0
-   DamageFactor "PlayerBHole", 0.0
-   DamageFactor "BFGSplash", 0.25
-   DamageFactor "BFGSpray", 0.25
-   DamageFactor "PlayerDevBall", 0.025
-   DamageFactor "PlayerDevBall2", 0.025
-   DamageFactor "PlayerDTBFGRailgunSlug", 0.025
-   DamageFactor "PlayerDevTracer", 0.025
-   DamageFactor "PlayerDTRG", 0.2
+ DamageFactor "PDTBFG", 0.05
+ DamageFactor "PDTBFGTracer", 0.05
+ DamageFactor "Legendary", 0.0
+ DamageFactor "LegendaryGuru", 0.0
+ DamageFactor "LegendaryGuruPlayer", 0.0
+ DamageFactor "LegendaryPlayer", 0.0
+ DamageFactor "PlayerBHole", 0.0
+ DamageFactor "BFGSplash", 0.25
+ DamageFactor "BFGSpray", 0.25
+ DamageFactor "PlayerDevBall", 0.025
+ DamageFactor "PlayerDevBall2", 0.025
+ DamageFactor "PlayerDTBFGRailgunSlug", 0.025
+ DamageFactor "PlayerDevTracer", 0.025
+ DamageFactor "PlayerDTRG", 0.2
  DamageFactor "SuperWeapon", 0.0
  DamageFactor "Extreme", 0.0
  DamageFactor "SatanGuard", 0.1
@@ -121,7 +121,7 @@ ACTOR MakaiSlut
 	MYST A 0
 	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("GetCVar",11) == 1, "BegoneThot")
 	TNT1 A 0 ACS_NamedExecuteAlways("WimpyMode",0,2)
-	TNT1 A 0 ACS_NamedExecuteAlways("ModifyMonster",0,2)
+	TNT1 A 0 ACS_NamedExecuteAlways("ModifyMonster",0,2,1)
 	TNT1 A 0 A_SetInvulnerable
 	TNT1 A 0 A_ChangeFlag("NODAMAGE",1)
 	TNT1 A 0 A_ChangeFlag("NOPAIN",1)
@@ -156,32 +156,14 @@ ACTOR MakaiSlut
 	MYST K 10 A_Pain
 	Goto MoreSee
   Melee:
-	MYST A 0 A_facetarget
-	MYST A 0 A_Jump(256,"Missile")
-	Goto MoreSee
   Missile:
 	MYST A 0 A_facetarget
-	TNT1 A 0 A_Jump(128,"SummonAllies") //32
-  List1:
-	TNT1 A 0 A_JumpIfHealthLower(4000,"List2")
-	MYST A 0 A_Jump(256,"Attack1", "Attack2","Attack3")
-	Goto MoreSee
-  List2:
-	TNT1 A 0 A_JumpIfHealthLower(3000,"List3")
-	MYST A 0 A_Jump(256,"Attack1", "Attack2","Attack3","Attack4")
-	Goto MoreSee
-  List3:
-	TNT1 A 0 A_JumpIfHealthLower(2000,"List4")
-	MYST A 0 A_Jump(256,"Attack1", "Attack2","Attack3","Attack4","Attack5")
-	Goto MoreSee
-  List4:
-	TNT1 A 0 A_JumpIfHealthLower(1000,"List5")
-	MYST A 0 A_Jump(256,"Attack1", "Attack2","Attack3","Attack4","Attack5","Attack6")
-	Goto MoreSee
-  List5:
-	MYST A 0 A_Jump(256,"Attack1", "Attack2","Attack3","Attack4","Attack5","Attack6","Attack7")
-	Goto MoreSee
+	TNT1 A 0 ACS_NamedExecuteWithResult("ttkShinki",1)
+	MYST A 1
+	Wait
   SummonAllies:
+	TNT1 A 0 A_GiveInventory("BossProtectionTierIII",1) //A_SetInvulnerable
+	TNT1 A 0 ACS_NamedExecuteAlways("BossResistanceBuff")
 	MYS2 ABCD 5
 	TNT1 A 0 A_SpawnItemEx("ShinkiEnemySpawner",0,0,20,30,0,0,0,0)
 	TNT1 A 0 A_SpawnItemEx("ShinkiEnemySpawner",0,0,20,30,0,0,90,0)
@@ -189,7 +171,10 @@ ACTOR MakaiSlut
 	TNT1 A 0 A_SpawnItemEx("ShinkiEnemySpawner",0,0,20,30,0,0,270,0)
 	MYS2 E 35
 	MYS2 F 5
-	goto List1
+	TNT1 A 0 ACS_NamedExecuteAlways("TakeResistance") //A_UnSetInvulnerable
+	TNT1 A 0 ACS_NamedExecuteWithResult("ttkShinki",0)
+	MYST A 1
+	Wait
   Attack1:
 	MYS2 GHI 7 A_Facetarget
 	MYS2 JK 3 A_FaceTarget
@@ -227,6 +212,8 @@ ACTOR MakaiSlut
 	TNT1 A 0 ACS_NamedExecuteAlways("BossResistanceBuff")
 	MYS2 LPM 7 A_Facetarget
 	MYS2 NO 3 A_FaceTarget
+	TNT1 A 0 A_SetUserVar("user_loop",0)
+  Attack2Loop:
 	MYS2 O 0 A_Playsound("remishot",0)
 	MYS2 O 0 A_CustomMissile("ShinkiSkullShot",30,23,10)
 	MYS2 O 0 A_CustomMissile("ShinkiSkullShot",30,23,30)
@@ -237,61 +224,17 @@ ACTOR MakaiSlut
 	MYS2 O 4 A_CustomMissile("ShinkiSkullShot",30,-23,-10)
 	MYS2 O 0 A_Playsound("remishot",0)
 	MYS2 O 0 A_CustomMissile("ShinkiSkullShot",30,23,10)
-	MYS2 O 4 A_CustomMissile("ShinkiSkullShot",30,-23,-10)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot",30,23,10)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot",30,23,30)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot",30,-23,-30)
-	MYS2 O 4 A_CustomMissile("ShinkiSkullShot",30,-23,-10)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot",30,23,10)
-	MYS2 O 4 A_CustomMissile("ShinkiSkullShot",30,-23,-10)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot",30,23,10)
-	MYS2 O 4 A_CustomMissile("ShinkiSkullShot",30,-23,-10)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot",30,23,10)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot",30,23,30)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot",30,-23,-30)
-	MYS2 O 4 A_CustomMissile("ShinkiSkullShot",30,-23,-10)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot",30,23,10)
-	MYS2 O 4 A_CustomMissile("ShinkiSkullShot",30,-23,-10)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot",30,23,10)
-	MYS2 O 4 A_CustomMissile("ShinkiSkullShot",30,-23,-10)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot",30,23,10)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot",30,23,30)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot",30,-23,-30)
-	MYS2 O 4 A_CustomMissile("ShinkiSkullShot",30,-23,-10)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot",30,23,10)
-	MYS2 O 4 A_CustomMissile("ShinkiSkullShot",30,-23,-10)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot",30,23,10)
-	MYS2 O 4 A_CustomMissile("ShinkiSkullShot",30,-23,-10)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot",30,23,10)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot",30,23,30)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot",30,-23,-30)
-	MYS2 O 4 A_CustomMissile("ShinkiSkullShot",30,-23,-10)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot",30,23,10)
-	MYS2 O 4 A_CustomMissile("ShinkiSkullShot",30,-23,-10)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot",30,23,10)
-	MYS2 O 4 A_CustomMissile("ShinkiSkullShot",30,-23,-10)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot",30,23,10)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot",30,23,30)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot",30,-23,-30)
-	MYS2 O 4 A_CustomMissile("ShinkiSkullShot",30,-23,-10)
-	MYS2 L 5 A_FaceTarget
+	MYS2 O 0 A_CustomMissile("ShinkiSkullShot",30,-23,-10)
+	MYS2 E 4 A_SetUserVar("user_loop",user_loop+1)
+	TNT1 A 0 A_JumpIf(user_loop < 6,"Attack2Loop")
+	MYS2 L 5
+	MYS2 L 5 A_SetUserVar("user_loop",0)
 	TNT1 A 0 ACS_NamedExecuteAlways("TakeResistance") //A_UnSetInvulnerable
 	Goto MoreSee
   Attack3:
 	MYS2 ABCD 3 A_FaceTarget
+	TNT1 A 0 A_SetUserVar("user_loop",0)
+  Attack3Loop:
 	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,0)
 	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,20)
 	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,40)
@@ -309,27 +252,11 @@ ACTOR MakaiSlut
 	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,280)
 	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,300)
 	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,320)
-	MYS2 E 10 A_CustomMissile("ShinkiOrb",30,0,340)
-	TNT1 A 0 A_FaceTarget
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,0)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,20)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,40)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,60)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,80)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,100)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,120)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,140)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,160)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,180)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,200)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,220)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,240)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,260)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,280)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,300)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,320)
-	MYS2 E 5 A_CustomMissile("ShinkiOrb",30,0,340)
+	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,340)
+	MYS2 E 10 A_SetUserVar("user_loop",user_loop+1)
+	TNT1 A 0 A_JumpIf(user_loop < 2,"Attack3Loop")
 	MYS2 F 5
+	MYS2 F 5 A_SetUserVar("user_loop",0)
 	Goto MoreSee
   Attack4:
 	MYS2 GHI 7 A_Facetarget
@@ -406,6 +333,8 @@ ACTOR MakaiSlut
 	Goto MoreSee
   Attack6:
 	MYS2 ABCD 3 A_FaceTarget
+	TNT1 A 0 A_SetUserVar("user_loop",0)
+  Attack6Loop:
 	MYS2 O 0 A_Playsound("remishot",0)
 	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,random(-20,20),CMF_ABSOLUTEANGLE)
 	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,random(-20,20),CMF_ABSOLUTEANGLE)
@@ -414,44 +343,11 @@ ACTOR MakaiSlut
 	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,random(-110,-70),CMF_ABSOLUTEANGLE)
 	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,random(-110,-70),CMF_ABSOLUTEANGLE)
 	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,random(160,200),CMF_ABSOLUTEANGLE)
-	MYS2 E 5 A_CustomMissile("ShinkiOrb",30,0,random(160,200),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,random(-20,20),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,random(-20,20),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,random(70,110),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,random(70,110),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,random(-110,-70),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,random(-110,-70),CMF_ABSOLUTEANGLE)
 	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,random(160,200),CMF_ABSOLUTEANGLE)
-	MYS2 E 5 A_CustomMissile("ShinkiOrb",30,0,random(160,200),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,random(-20,20),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,random(-20,20),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,random(70,110),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,random(70,110),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,random(-110,-70),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,random(-110,-70),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,random(160,200),CMF_ABSOLUTEANGLE)
-	MYS2 E 5 A_CustomMissile("ShinkiOrb",30,0,random(160,200),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,random(-20,20),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,random(-20,20),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,random(70,110),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,random(70,110),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,random(-110,-70),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,random(-110,-70),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,random(160,200),CMF_ABSOLUTEANGLE)
-	MYS2 E 5 A_CustomMissile("ShinkiOrb",30,0,random(160,200),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,random(-20,20),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,random(-20,20),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,random(70,110),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,random(70,110),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,random(-110,-70),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,random(-110,-70),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb",30,0,random(160,200),CMF_ABSOLUTEANGLE)
-	MYS2 E 5 A_CustomMissile("ShinkiOrb",30,0,random(160,200),CMF_ABSOLUTEANGLE)
+	MYS2 E 5 A_SetUserVar("user_loop",user_loop+1)
+	TNT1 A 0 A_JumpIf(user_loop < 5,"Attack6Loop")
 	MYS2 F 3
+	MYS2 F 3 A_SetUserVar("user_loop",0)
 	Goto MoreSee
   Attack7:
 	TNT1 A 0 A_GiveInventory("BossProtectionTierIII",1) //A_SetInvulnerable
@@ -530,12 +426,17 @@ ACTOR UndeadMakaiSlut : MakaiSlut
  States
   {
   Spawn:
+	MYS3 A 0
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("GetCVar",11) == 1, "BegoneThot")
+	TNT1 A 0 ACS_NamedExecuteAlways("WimpyMode",0,2)
+	TNT1 A 0 ACS_NamedExecuteAlways("ModifyMonster",0,2,1)
 	TNT1 A 0 A_SetInvulnerable
 	TNT1 A 0 A_ChangeFlag("NODAMAGE",1)
 	TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+  SpawnLoop:
 	MYS3 ABCDEFGHIJ 3 A_LookEX(LOF_FULLVOLSEESOUND,0,0,0,360,"Prepare")
 	Loop
-  Remove:
+  BegoneThot:
 	TNT1 A 1
 	TNT1 A 0 A_SpawnItemEx("Archvile",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 	TNT1 A 0 A_ChangeFlag("COUNTKILL", FALSE)
@@ -543,8 +444,9 @@ ACTOR UndeadMakaiSlut : MakaiSlut
 	Stop
   Prepare:
 	TNT1 A 0 A_PlaySound("touhou/sight",7,1.0,0,ATTN_NONE)
-	TNT1 A 0 ACS_NamedExecuteAlways("TakeResistance") //A_UnSetInvulnerable
+	TNT1 A 0 A_UnSetInvulnerable
 	TNT1 A 0 A_ChangeFlag("NODAMAGE",0)
+	TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 	TNT1 A 0 A_JumpIf(user_music == 1,3)
 	TNT1 A 0 ACS_NamedExecuteAlways("CFMusic",0,816)
 	TNT1 A 0 A_SetUserVar("user_music",1)
@@ -568,23 +470,22 @@ ACTOR UndeadMakaiSlut : MakaiSlut
 	MYS3 K 10 A_Pain
 	Goto See
   Melee:
-	MYST A 0 A_facetarget
-	MYST A 0 A_Jump(256,"Missile")
-	Goto See
+	MYST A 1 A_facetarget
   Missile:
 	TNT1 A 0 A_Jump(32,"Teleport")
-	TNT1 A 0 A_Jump(32,"SummonAllies")
+	MYST A 1 A_Jump(32,"SummonAllies")
 	MYST A 0 A_Jump(256,"Attack1", "Attack2","Attack3","Attack4","Attack5","Attack6","Attack7")
 	Goto See
   SummonAllies:
-	TNT1 A 0 A_SetInvulnerable
+	TNT1 A 0 A_GiveInventory("BossProtectionTierIII",1) //A_SetInvulnerable
+	TNT1 A 0 ACS_NamedExecuteAlways("BossResistanceBuff")
 	MYS4 ABCD 5
 	TNT1 A 0 A_SpawnItemEx("ShinkiEnemySpawner",0,0,20,30,0,0,0,0)
 	TNT1 A 0 A_SpawnItemEx("ShinkiEnemySpawner",0,0,20,30,0,0,90,0)
 	TNT1 A 0 A_SpawnItemEx("ShinkiEnemySpawner",0,0,20,30,0,0,180,0)
 	TNT1 A 0 A_SpawnItemEx("ShinkiEnemySpawner",0,0,20,30,0,0,270,0)
 	MYS4 E 10
-	MYS4 F 5 A_UnSetInvulnerable
+	TNT1 A 0 ACS_NamedExecuteAlways("TakeResistance") //A_UnSetInvulnerable
 	goto Missile
   Attack1:
 	MYS4 GHI 7 A_Facetarget
@@ -614,8 +515,8 @@ ACTOR UndeadMakaiSlut : MakaiSlut
 	TNT1 A 0 A_SetUserVar("user_loop",0)
   Attack1Loop2:
 	MYS2 O 0 A_CustomMissile("ShinkiDIBall2",30,0,user_loop)
-	TNT1 A 0 A_SetUserVar("user_loop",user_loop+1)
-	TNT1 A 0 A_JumpIf(user_loop < 360,"Attack1Loop")
+	TNT1 A 0 A_SetUserVar("user_loop",user_loop+5)
+	TNT1 A 0 A_JumpIf(user_loop < 360,"Attack1Loop2")
 	MYS2 O 0 A_Playsound("remishot",0)
 	TNT1 A 0 A_SetUserVar("user_loop",0)
 	MYS4 JK 3 A_FaceTarget
@@ -628,6 +529,8 @@ ACTOR UndeadMakaiSlut : MakaiSlut
 	TNT1 A 0 ACS_NamedExecuteAlways("BossResistanceBuff")
 	MYS4 LPM 7 A_Facetarget
 	MYS4 NO 3 A_FaceTarget
+	MYS4 O 0 A_SetUserVar("user_loop",0)
+  Attack2Loop:
 	MYS2 O 0 A_Playsound("remishot",0)
 	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,23,10)
 	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,23,30)
@@ -639,94 +542,10 @@ ACTOR UndeadMakaiSlut : MakaiSlut
 	MYS2 O 0 A_Playsound("remishot",0)
 	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,23,10)
 	MYS4 O 2 A_CustomMissile("ShinkiSkullShot2",30,-23,-10)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,23,10)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,23,30)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,-23,-30)
-	MYS4 O 2 A_CustomMissile("ShinkiSkullShot2",30,-23,-10)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,23,10)
-	MYS4 O 2 A_CustomMissile("ShinkiSkullShot2",30,-23,-10)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,23,10)
-	MYS4 O 2 A_CustomMissile("ShinkiSkullShot2",30,-23,-10)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,23,10)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,23,30)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,-23,-30)
-	MYS4 O 2 A_CustomMissile("ShinkiSkullShot2",30,-23,-10)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,23,10)
-	MYS4 O 2 A_CustomMissile("ShinkiSkullShot2",30,-23,-10)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,23,10)
-	MYS4 O 2 A_CustomMissile("ShinkiSkullShot2",30,-23,-10)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,23,10)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,23,30)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,-23,-30)
-	MYS4 O 2 A_CustomMissile("ShinkiSkullShot2",30,-23,-10)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,23,10)
-	MYS4 O 2 A_CustomMissile("ShinkiSkullShot2",30,-23,-10)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,23,10)
-	MYS4 O 2 A_CustomMissile("ShinkiSkullShot2",30,-23,-10)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,23,10)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,23,30)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,-23,-30)
-	MYS4 O 2 A_CustomMissile("ShinkiSkullShot2",30,-23,-10)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,23,10)
-	MYS4 O 2 A_CustomMissile("ShinkiSkullShot2",30,-23,-10)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,23,10)
-	MYS4 O 2 A_CustomMissile("ShinkiSkullShot2",30,-23,-10)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,23,10)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,23,30)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,-23,-30)
-	MYS4 O 2 A_CustomMissile("ShinkiSkullShot2",30,-23,-10)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,23,10)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,23,30)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,-23,-30)
-	MYS4 O 2 A_CustomMissile("ShinkiSkullShot2",30,-23,-10)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,23,10)
-	MYS4 O 2 A_CustomMissile("ShinkiSkullShot2",30,-23,-10)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,23,10)
-	MYS4 O 2 A_CustomMissile("ShinkiSkullShot2",30,-23,-10)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,23,10)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,23,30)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,-23,-30)
-	MYS4 O 2 A_CustomMissile("ShinkiSkullShot2",30,-23,-10)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,23,10)
-	MYS4 O 2 A_CustomMissile("ShinkiSkullShot2",30,-23,-10)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,23,10)
-	MYS4 O 2 A_CustomMissile("ShinkiSkullShot2",30,-23,-10)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,23,10)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,23,30)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,-23,-30)
-	MYS4 O 2 A_CustomMissile("ShinkiSkullShot2",30,-23,-10)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,23,10)
-	MYS4 O 2 A_CustomMissile("ShinkiSkullShot2",30,-23,-10)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,23,10)
-	MYS4 O 2 A_CustomMissile("ShinkiSkullShot2",30,-23,-10)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,23,10)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,23,30)
-	MYS2 O 0 A_CustomMissile("ShinkiSkullShot2",30,-23,-30)
-	MYS4 O 2 A_CustomMissile("ShinkiSkullShot2",30,-23,-10)
+	TNT1 A 0 A_SetUserVar("user_loop",user_loop+1)
+	TNT1 A 0 A_JumpIf(user_loop < 9,"Attack2Loop")
 	MYS4 L 5 A_FaceTarget
+	MYS4 L 5 A_SetUserVar("user_loop",0)
 	TNT1 A 0 ACS_NamedExecuteAlways("TakeResistance") //A_UnSetInvulnerable
 	Goto See
   Attack3:
@@ -854,6 +673,8 @@ ACTOR UndeadMakaiSlut : MakaiSlut
 	TNT1 A 0 ACS_NamedExecuteAlways("BossResistanceBuff")
 	MYS4 ABC 5 A_Facetarget
 	MYS4 DE 7 A_FaceTarget
+	MYS4 F 0 A_SetUserVar("user_loop",0)
+  Attack5Loop:
 	MYS2 O 0 A_CustomMissile("UroLaser",30,0,0)
 	MYS2 O 0 A_CustomMissile("UroLaser",30,0,22.5)
 	MYS2 O 0 A_CustomMissile("UroLaser",30,0,45)
@@ -871,45 +692,16 @@ ACTOR UndeadMakaiSlut : MakaiSlut
 	MYS2 O 0 A_CustomMissile("UroLaser",30,0,-90)
 	MYS2 O 0 A_CustomMissile("UroLaser",30,0,-135)
 	MYS4 E 10 A_FaceTarget
-	MYS2 O 0 A_CustomMissile("UroLaser",30,0,0)
-	MYS2 O 0 A_CustomMissile("UroLaser",30,0,22.5)
-	MYS2 O 0 A_CustomMissile("UroLaser",30,0,45)
-	MYS2 O 0 A_CustomMissile("UroLaser",30,0,67.5)
-	MYS2 O 0 A_CustomMissile("UroLaser",30,0,90)
-	MYS2 O 0 A_CustomMissile("UroLaser",30,0,112.5)
-	MYS2 O 0 A_CustomMissile("UroLaser",30,0,135)
-	MYS2 O 0 A_CustomMissile("UroLaser",30,0,157.5)
-	MYS2 O 0 A_CustomMissile("UroLaser",30,0,180)
-	MYS2 O 0 A_CustomMissile("UroLaser",30,0,-45)
-	MYS2 O 0 A_CustomMissile("UroLaser",30,0,-22.5)
-	MYS2 O 0 A_CustomMissile("UroLaser",30,0,-67.5)
-	MYS2 O 0 A_CustomMissile("UroLaser",30,0,-112.5)
-	MYS2 O 0 A_CustomMissile("UroLaser",30,0,-157.5)
-	MYS2 O 0 A_CustomMissile("UroLaser",30,0,-90)
-	MYS2 O 0 A_CustomMissile("UroLaser",30,0,-135)
+	TNT1 A 0 A_SetUserVar("user_loop",user_loop+1)
+	TNT1 A 0 A_JumpIf(user_loop < 3,"Attack5Loop")
 	MYS4 E 10 A_FaceTarget
-	MYS2 O 0 A_CustomMissile("UroLaser",30,0,0)
-	MYS2 O 0 A_CustomMissile("UroLaser",30,0,22.5)
-	MYS2 O 0 A_CustomMissile("UroLaser",30,0,45)
-	MYS2 O 0 A_CustomMissile("UroLaser",30,0,67.5)
-	MYS2 O 0 A_CustomMissile("UroLaser",30,0,90)
-	MYS2 O 0 A_CustomMissile("UroLaser",30,0,112.5)
-	MYS2 O 0 A_CustomMissile("UroLaser",30,0,135)
-	MYS2 O 0 A_CustomMissile("UroLaser",30,0,157.5)
-	MYS2 O 0 A_CustomMissile("UroLaser",30,0,180)
-	MYS2 O 0 A_CustomMissile("UroLaser",30,0,-45)
-	MYS2 O 0 A_CustomMissile("UroLaser",30,0,-22.5)
-	MYS2 O 0 A_CustomMissile("UroLaser",30,0,-67.5)
-	MYS2 O 0 A_CustomMissile("UroLaser",30,0,-112.5)
-	MYS2 O 0 A_CustomMissile("UroLaser",30,0,-157.5)
-	MYS2 O 0 A_CustomMissile("UroLaser",30,0,-90)
-	MYS2 O 0 A_CustomMissile("UroLaser",30,0,-135)
-	MYS4 E 10 A_FaceTarget
-	MYS4 E 10 A_FaceTarget
+	MYS4 F 5 A_SetUserVar("user_loop",0)
 	TNT1 A 0 ACS_NamedExecuteAlways("TakeResistance") //A_UnSetInvulnerable
 	Goto See
   Attack6:
 	MYS4 ABCD 3 A_FaceTarget
+	MYS4 A 0 A_SetUserVar("user_loop",0)
+  Attack6Loop:
 	MYS2 O 0 A_Playsound("remishot",0)
 	MYS2 O 0 A_CustomMissile("ShinkiOrb2",30,0,random(-20,20),CMF_ABSOLUTEANGLE)
 	MYS2 O 0 A_CustomMissile("ShinkiOrb2",30,0,random(-20,20),CMF_ABSOLUTEANGLE)
@@ -918,44 +710,11 @@ ACTOR UndeadMakaiSlut : MakaiSlut
 	MYS2 O 0 A_CustomMissile("ShinkiOrb2",30,0,random(-110,-70),CMF_ABSOLUTEANGLE)
 	MYS2 O 0 A_CustomMissile("ShinkiOrb2",30,0,random(-110,-70),CMF_ABSOLUTEANGLE)
 	MYS2 O 0 A_CustomMissile("ShinkiOrb2",30,0,random(160,200),CMF_ABSOLUTEANGLE)
-	MYS4 E 5 A_CustomMissile("ShinkiOrb2",30,0,random(160,200),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb2",30,0,random(-20,20),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb2",30,0,random(-20,20),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb2",30,0,random(70,110),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb2",30,0,random(70,110),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb2",30,0,random(-110,-70),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb2",30,0,random(-110,-70),CMF_ABSOLUTEANGLE)
 	MYS2 O 0 A_CustomMissile("ShinkiOrb2",30,0,random(160,200),CMF_ABSOLUTEANGLE)
-	MYS4 E 5 A_CustomMissile("ShinkiOrb2",30,0,random(160,200),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb2",30,0,random(-20,20),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb2",30,0,random(-20,20),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb2",30,0,random(70,110),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb2",30,0,random(70,110),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb2",30,0,random(-110,-70),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb2",30,0,random(-110,-70),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb2",30,0,random(160,200),CMF_ABSOLUTEANGLE)
-	MYS4 E 5 A_CustomMissile("ShinkiOrb2",30,0,random(160,200),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb2",30,0,random(-20,20),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb2",30,0,random(-20,20),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb2",30,0,random(70,110),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb2",30,0,random(70,110),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb2",30,0,random(-110,-70),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb2",30,0,random(-110,-70),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb2",30,0,random(160,200),CMF_ABSOLUTEANGLE)
-	MYS4 E 5 A_CustomMissile("ShinkiOrb2",30,0,random(160,200),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_Playsound("remishot",0)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb2",30,0,random(-20,20),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb2",30,0,random(-20,20),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb2",30,0,random(70,110),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb2",30,0,random(70,110),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb2",30,0,random(-110,-70),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb2",30,0,random(-110,-70),CMF_ABSOLUTEANGLE)
-	MYS2 O 0 A_CustomMissile("ShinkiOrb2",30,0,random(160,200),CMF_ABSOLUTEANGLE)
-	MYS4 E 5 A_CustomMissile("ShinkiOrb2",30,0,random(160,200),CMF_ABSOLUTEANGLE)
+	MYS4 E 5 A_SetUserVar("user_loop",user_loop+1)
+	TNT1 A 0 A_JumpIf(user_loop < 5,"Attack6Loop")
 	MYS4 F 3
+	MYS4 F 3 A_SetUserVar("user_loop",0)
 	Goto See
   Attack7:
 	TNT1 A 0 A_GiveInventory("BossProtectionTierIII",1) //A_SetInvulnerable
@@ -984,64 +743,64 @@ ACTOR UndeadMakaiSlut : MakaiSlut
 
 Actor ShinkiEnemySpawner
 {
-	Height 8
-	Radius 25
-	Speed 30
-	Damage (0)
-	+RIPPER
-	+BLOODLESSIMPACT
-	+NOTIMEFREEZE
-	States
-	{
-	Spawn:
-		TNT1 A 5
-	Death:
-		TNT1 A 0
-		TNT1 AAAAAA 0 A_SpawnItemEx("BHellionSmokeSpawner",0,0,0,0,0,0,0,128)
-		TNT1 A 2 A_SpawnItemEX("TeleportFog",0,0,0,0,0,0,0)
-		TNT1 A 0 A_SpawnItemEx("ShinkiFairySpawner")
-		Stop
-	}
+ Height 8
+ Radius 25
+ Speed 30
+ Damage (0)
+ +RIPPER
+ +BLOODLESSIMPACT
+ +NOTIMEFREEZE
+ States
+ {
+  Spawn:
+	TNT1 A 5
+  Death:
+	TNT1 A 0
+	TNT1 AAAAAA 0 A_SpawnItemEx("BHellionSmokeSpawner",0,0,0,0,0,0,0,128)
+	TNT1 A 2 A_SpawnItemEX("TeleportFog",0,0,0,0,0,0,0)
+	TNT1 A 0 A_SpawnItemEx("ShinkiFairySpawner")
+	Stop
+ }
 }
 
 actor ShinkiFairySpawner : RandomSpawner
 {
-	DropItem "ShinkiFairy1" 255 1
-	DropItem "ShinkiFairy2" 255 1
-	DropItem "ShinkiFairy3" 255 1
-	DropItem "ShinkiFairy4" 255 1
+ DropItem "ShinkiFairy1" 256 1
+ DropItem "ShinkiFairy2" 256 1
+ DropItem "ShinkiFairy3" 256 1
+ DropItem "ShinkiFairy4" 256 1
 }
 
 ACTOR ShinkiFairy1 31232
 {
-//$Category "Touhou Characters"
-  floatspeed 8
-  Speed 8
-  fastspeed 10
-  MONSTER
-  Health 175
-  Radius 24
-  Height 56
-  MinMissileChance 240
-  Mass 200
-  MeleeRange 64
-  Species "Touhou"
-  damagefactor "Touhou", 0.0
-  +DONTHURTSPECIES
-  +FLOORCLIP
-  +DONTFALL
-  +NOGRAVITY
-  +FLOAT
-  +NOICEDEATH
-  Painchance 128
-  damagefactor 0.5
-  Painsound "touhou/pain"
-  Deathsound "weapons/plasmax"
-  tag "\c[l3]Shinki\c-'s \ckFairy\c-"
-  Obituary "%o got wrecked by one of Shinki's fairies."
-  HitObituary "%o was punched into oblivion by one of Shinki's fairies!"
-  States
-  {
+ //$Category "Touhou Characters"
+ floatspeed 8
+ Speed 8
+ fastspeed 10
+ MONSTER
+ Health 175
+ Radius 24
+ Height 56
+ MinMissileChance 240
+ Mass 200
+ MeleeRange 64
+ Species "Touhou"
+ damagefactor "Touhou", 0.0
+ +DONTHURTSPECIES
+ +FLOORCLIP
+ +DONTFALL
+ +NOGRAVITY
+ +FLOAT
+ +NOICEDEATH
+ Painchance 128
+ damagefactor 0.5
+ Painsound "touhou/pain"
+ Deathsound "weapons/plasmax"
+ tag "\c[l3]Shinki\c-'s \ckFairy\c-"
+ Obituary "%o got wrecked by one of Shinki's fairies."
+ HitObituary "%o was punched into oblivion by one of Shinki's fairies!"
+ States
+ {
   Spawn:
 	FAR8 ABCD 3 A_LookEx(0,0,2048,2048)
 	Loop
@@ -1080,15 +839,15 @@ ACTOR ShinkiFairy1 31232
 	FAR8 E 1 A_SetTranslucent(0.10)
 	FAR8 E 1 A_SetTranslucent(0)
 	Stop
-  }
+ }
 }
 
 actor ShinkiFairy2 : ShinkiFairy1
 {
-	health 300
-  tag "\c[l3]Shinki\c-'s \cgFairy\c-"
-  States
-  {
+ Health 300
+ tag "\c[l3]Shinki\c-'s \cgFairy\c-"
+ States
+ {
   Spawn:
 	FAR5 ABCD 3 A_LookEx(0,0,2048,2048)
 	Loop
@@ -1127,16 +886,16 @@ actor ShinkiFairy2 : ShinkiFairy1
 	FAR5 E 1 A_SetTranslucent(0.10)
 	FAR5 E 1 A_SetTranslucent(0)
 	Stop
-  }
+ }
 }
 
 actor ShinkiFairy3 : ShinkiFairy1
 {
-	health 500
-  +MISSILEMORE
-  tag "\c[l3]Shinki\c-'s \cvFairy\c-"
-  States
-  {
+ Health 500
+ +MISSILEMORE
+ Tag "\c[l3]Shinki\c-'s \cvFairy\c-"
+ States
+ {
   Spawn:
 	FAR4 ABCD 3 A_LookEx(0,0,2048,2048)
 	Loop
@@ -1175,7 +934,7 @@ actor ShinkiFairy3 : ShinkiFairy1
 	FAR4 E 1 A_SetTranslucent(0.10)
 	FAR4 E 1 A_SetTranslucent(0)
 	Stop
-  }
+ }
 }
 
 actor ShinkiFairy4 : ShinkiFairy1
@@ -1224,24 +983,24 @@ actor ShinkiFairy4 : ShinkiFairy1
 	FAR7 E 1 A_SetTranslucent(0.10)
 	FAR7 E 1 A_SetTranslucent(0)
 	Stop
-  }
+ }
 }
 
 actor ShinkiDIBall : DoomImpBall
 {
-	Damagetype "Touhou"
-	Obituary "%o got %s ass handed to %h and fried by the goddess of Makai, Shinki Margatroid!"
-	damage 10
-	-RANDOMIZE
-	speed 25
+ Damagetype "Touhou"
+ Obituary "%o got %s ass handed to %h and fried by the goddess of Makai, Shinki Margatroid!"
+ damage 10
+ -RANDOMIZE
+ speed 25
 }
 
 actor ShinkiDIBall2 : ShinkiDIBall
 {
-	speed 40
-	Obituary "%o's soul was sent to the darkness by the undead resurrection of Shinki."
-	damage 20
-	renderstyle subtract
+ Speed 40
+ Obituary "%o's soul was sent to the darkness by the undead resurrection of Shinki."
+ damage 20
+ renderstyle subtract
 }
 
 ACTOR ShinkiSkullShot
@@ -1280,10 +1039,10 @@ ACTOR ShinkiSkullShot
 
 actor ShinkiSkullShot2 : ShinkiSkullShot
 {
-	speed 50
-	damage 3
-  States
-  {
+ Speed 50
+ Damage 3
+ States
+ {
   Spawn:
 	TNT1 A 0 A_SeekerMissile(4,4,SMF_LOOK)
 	TNT1 A 0 A_Countdown
@@ -1294,112 +1053,112 @@ actor ShinkiSkullShot2 : ShinkiSkullShot
 	TNT1 A 0 A_Explode(6,100)
 	RVSK ABCDEFGHIJKL 2 Bright A_Explode(3,100)
 	Stop
-  }
+ }
 }
 
 ACTOR ShinkiLightTunnel
 {
-	PROJECTILE
-	Height 5
-	Radius 5
-	Speed 20
-	Scale 1.5
-	RenderStyle stencil
-	stencilcolor "yellow"
-	Decal "DoomImpScorch"
-	Damage 4
-	+FORCERADIUSDMG
-	+NOTIMEFREEZE
-	+THRUSPECIES
-	+SEEKERMISSILE
-	+RIPPER
-	DamageType "Touhou"
-	DeathSound "weapons/demontechex"
-	Obituary "%o got %s ass handed to %h and fried by the goddess of Makai, Shinki Margatroid!"
-	var int user_looptime;
-	States
-	{
-	Spawn:
-		TNT1 A 0 A_SetUserVar("user_looptime",0)
-	TakeFlight:
-		TNT1 A 0 A_JumpIf(user_looptime == 360,"Death")
-		TNT1 A 0 A_SeekerMissile(2,2,SMF_LOOK,256,1024)
-		BAL1 A 1 bright A_SpawnItemEX("ShinkiLightTunnelTracer",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
-		TNT1 A 0 A_SetUserVar("user_looptime",user_looptime+1)
-		loop
-	Death:
-		TNT1 A 0 A_SpawnItem("YellowProjExplodeLarge")
-		TNT1 AAAAAAAAA 0 A_SpawnItemEx("YellowProjParticleSuperLarge",0,0,0,frandom(-4,4),frandom(-4,4),frandom(-4,4),random(0,359))
-		MISL B 8 bright A_Explode(64,100,1)
-		MISL C 6 bright
-		MISL D 4 bright
-		Stop
-	}
+ PROJECTILE
+ Height 5
+ Radius 5
+ Speed 20
+ Scale 1.5
+ RenderStyle stencil
+ stencilcolor "yellow"
+ Decal "DoomImpScorch"
+ Damage 4
+ +FORCERADIUSDMG
+ +NOTIMEFREEZE
+ +THRUSPECIES
+ +SEEKERMISSILE
+ +RIPPER
+ DamageType "Touhou"
+ DeathSound "weapons/demontechex"
+ Obituary "%o got %s ass handed to %h and fried by the goddess of Makai, Shinki Margatroid!"
+ var int user_looptime;
+ States
+ {
+  Spawn:
+	TNT1 A 0 A_SetUserVar("user_looptime",0)
+  TakeFlight:
+	TNT1 A 0 A_JumpIf(user_looptime == 360,"Death")
+	TNT1 A 0 A_SeekerMissile(2,2,SMF_LOOK,256,1024)
+	BAL1 A 1 bright A_SpawnItemEX("ShinkiLightTunnelTracer",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+	TNT1 A 0 A_SetUserVar("user_looptime",user_looptime+1)
+	loop
+  Death:
+	TNT1 A 0 A_SpawnItem("YellowProjExplodeLarge")
+	TNT1 AAAAAAAAA 0 A_SpawnItemEx("YellowProjParticleSuperLarge",0,0,0,frandom(-4,4),frandom(-4,4),frandom(-4,4),random(0,359))
+	MISL B 8 bright A_Explode(64,100,1)
+	MISL C 6 bright
+	MISL D 4 bright
+	Stop
+ }
 }
 
 ACTOR ShinkiLightTunnelTracer : BFG9500Trail
 {
-	Scale 1.5
-	RenderStyle stencil
-	stencilcolor "yellow"
-	+NOTIMEFREEZE
-	States
-	{
-	Spawn:
-		BAL1 AAAAAAAAAA 1 Bright A_Fadeout(0.1,0)
-		stop
-	}
+ Scale 1.5
+ RenderStyle stencil
+ stencilcolor "yellow"
+ +NOTIMEFREEZE
+ States
+ {
+  Spawn:
+	BAL1 AAAAAAAAAA 1 Bright A_Fadeout(0.1,0)
+	stop
+ }
 }
 
 actor ShinkiLightTunnel2 : ShinkiLightTunnel
 {
-	RenderStyle stencil
-	stencilcolor "black"
-	Damage 4
-	Obituary "%o's soul was sent to the darkness by the undead resurrection of Shinki."
-	speed 30
-	States
-	{
-	Spawn:
-		TNT1 A 0 A_SetUserVar("user_looptime",0)
-	TakeFlight:
-		TNT1 A 0 A_JumpIf(user_looptime == 360,"Death")
-		TNT1 A 0 A_SeekerMissile(2,2,SMF_LOOK,256,1024)
-		BAL1 A 1 bright A_SpawnItemEX("ShinkiLightTunnelTracer2",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
-		TNT1 A 0 A_SetUserVar("user_looptime",user_looptime+1)
-		loop
-	Death:
-		TNT1 AAAAAAAAA 0 A_SpawnItemEx("DarkPurpleProjParticleSuperLarge",0,0,0,frandom(-2,2),frandom(-2,2),frandom(-2,2),random(0,359))
-		MISL B 8 bright A_Explode(64,100,1)
-		MISL C 6 bright
-		MISL D 4 bright
-		Stop
-	}
+ RenderStyle stencil
+ stencilcolor "black"
+ Damage 4
+ Obituary "%o's soul was sent to the darkness by the undead resurrection of Shinki."
+ speed 30
+ States
+ {
+  Spawn:
+	TNT1 A 0 A_SetUserVar("user_looptime",0)
+  TakeFlight:
+	TNT1 A 0 A_JumpIf(user_looptime == 360,"Death")
+	TNT1 A 0 A_SeekerMissile(2,2,SMF_LOOK,256,1024)
+	BAL1 A 1 bright A_SpawnItemEX("ShinkiLightTunnelTracer2",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+	TNT1 A 0 A_SetUserVar("user_looptime",user_looptime+1)
+	loop
+  Death:
+	TNT1 AAAAAAAAA 0 A_SpawnItemEx("DarkPurpleProjParticleSuperLarge",0,0,0,frandom(-2,2),frandom(-2,2),frandom(-2,2),random(0,359))
+	MISL B 8 bright A_Explode(64,100,1)
+	MISL C 6 bright
+	MISL D 4 bright
+	Stop
+ }
 }
 
 ACTOR ShinkiLightTunnelTracer2 : ShinkiLightTunnelTracer
 {
-	RenderStyle stencil
-	stencilcolor "black"
+ RenderStyle stencil
+ stencilcolor "black"
 }
 
 ACTOR ShinkiOrb
 {
-  Radius 9
-  Height 12
-  Speed 30
-  damage 6
-  scale 0.75
-  Damagetype "Touhou" 
-  Species "Touhou"
-  Projectile
-  +strifedamage
-  RenderStyle Add
-  SeeSound " "
-  DeathSound "Orbpdeath"
-  +NOTIMEFREEZE
-  States
-  {
+ Radius 9
+ Height 12
+ Speed 30
+ damage 6
+ scale 0.75
+ Damagetype "Touhou" 
+ Species "Touhou"
+ Projectile
+ +strifedamage
+ RenderStyle Add
+ SeeSound " "
+ DeathSound "Orbpdeath"
+ +NOTIMEFREEZE
+ States
+ {
   Spawn:
 	CLBB F 1 Bright A_SpawnItemEX("ShinkiOrbTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
 	Loop
@@ -1411,33 +1170,33 @@ ACTOR ShinkiOrb
   Fade:
 	CLBB F 1 Bright A_FadeOut(0.2)
 	Loop
-  }
+ }
 }
 
 ACTOR ShinkiOrbTrail
 {
-	Scale 0.75
-	RenderStyle Add
-	Alpha 0.95
-	+NOTELEPORT
-	+NOGRAVITY
-	+NOBLOCKMAP
-	+NOTIMEFREEZE
-	States
-	{
-	Spawn:
-		CLBB FFFFFFFFFF 1 Bright A_Fadeout(0.1,0)
-		stop
-	}
+ Scale 0.75
+ RenderStyle Add
+ Alpha 0.95
+ +NOTELEPORT
+ +NOGRAVITY
+ +NOBLOCKMAP
+ +NOTIMEFREEZE
+ States
+ {
+  Spawn:
+	CLBB FFFFFFFFFF 1 Bright A_Fadeout(0.1,0)
+	stop
+ }
 }
 
 ACTOR ShinkiOrb2 : ShinkiOrb
 {
-  Speed 50
-  damage 12
-  renderstyle "subtract"
-  States
-  {
+ Speed 50
+ damage 12
+ renderstyle "subtract"
+ States
+ {
   Spawn:
 	CLBB F 1 Bright A_SpawnItemEX("ShinkiOrbTrail2",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
 	Loop
@@ -1448,78 +1207,45 @@ ACTOR ShinkiOrb2 : ShinkiOrb
   Fade:
 	CLBB F 1 Bright A_FadeOut(0.2)
 	Loop
-  }
+ }
 }
 
-ACTOR ShinkiDIBallF : ShinkiDIBall
-{
-  damagetype "Normal"
-}
+ACTOR ShinkiDIBallF : ShinkiDIBall {Damagetype "Normal"}
 
-ACTOR ShinkiLightTunnelF : ShinkiLightTunnel
-{
-  damagetype "Normal"
-}
+ACTOR ShinkiLightTunnelF : ShinkiLightTunnel {Damagetype "Normal"}
 
-ACTOR ShinkiOrbF : ShinkiOrb
-{
-  damagetype "Normal"
-}
+ACTOR ShinkiOrbF : ShinkiOrb {Damagetype "Normal"}
 
-ACTOR ShinkiSkullShotF : ShinkiSkullShot
-{
-  damagetype "Normal"
-}
+ACTOR ShinkiSkullShotF : ShinkiSkullShot {Damagetype "Normal"}
 
-actor ShinkiDIBall2F : ShinkiDIBall2
-{
-  damagetype "Normal"
-}
+actor ShinkiDIBall2F : ShinkiDIBall2 {Damagetype "Normal"}
 
-actor ShinkiSkullShot2F : ShinkiSkullShot2
-{
-  damagetype "Normal"
-}
+actor ShinkiSkullShot2F : ShinkiSkullShot2 {Damagetype "Normal"}
 
-actor ShinkiLightTunnel2F : ShinkiLightTunnel2
-{
-  damagetype "Normal"
-}
+actor ShinkiLightTunnel2F : ShinkiLightTunnel2 {Damagetype "Normal"}
 
-ACTOR ShinkiOrb2F : ShinkiOrb2
-{
-  damagetype "Normal"
-}
+ACTOR ShinkiOrb2F : ShinkiOrb2 {Damagetype "Normal"}
 
-ACTOR ShinkiOrbTrail2 : ShinkiOrbTrail
-{
-	renderstyle "subtract"
-	States
-	{
-	Spawn:
-		CLBB FFFFFFFFFF 1 Bright A_Fadeout(0.1,0)
-		stop
-	}
-}
+ACTOR ShinkiOrbTrail2 : ShinkiOrbTrail {Renderstyle "subtract"}
 
 actor UroLaserF
 {
-  Radius 6
-  Speed 100
-  Height 6
-  damage 5
-  Scale 0.6
-  RenderStyle Subtract
-  Projectile
-  +RIPPER
-  +strifedamage
-  +FORCEXYBILLBOARD
-  Seesound "uroboros/laser"
-  Missiletype "UroLaserTrail"
-  MissileHeight 8
-  Damagetype "Player"
-  States
-  {
+ Radius 6
+ Speed 100
+ Height 6
+ damage 5
+ Scale 0.6
+ RenderStyle Subtract
+ Projectile
+ +RIPPER
+ +strifedamage
+ +FORCEXYBILLBOARD
+ Seesound "uroboros/laser"
+ Missiletype "UroLaserTrail"
+ MissileHeight 8
+ Damagetype "Player"
+ States
+ {
   Spawn:
 	TNT1 A 0
 	TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("DarkPurpleProjParticleSuperLarge2",0,0,0,frandom(0,6),frandom(-6,6),frandom(-6,6))
@@ -1528,5 +1254,5 @@ actor UroLaserF
   Death:
 	TNT1 A 1 Bright
 	Stop
-  }
+ }
 }

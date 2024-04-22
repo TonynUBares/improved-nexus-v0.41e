@@ -171,7 +171,8 @@ ACTOR singenjitsu3 : GenericBoss
     SING AA 3 Bright A_GiveInventory("NLegZombieStrafing2",1)
     TNT1 A 0 A_SpawnItem("LegendaryFootStep",0,0,0,0)
     TNT1 A 0 A_Chase
-    Goto See  Melee:
+    Goto See
+  Melee:
 	TNT1 A 0 A_GiveToTarget("kazumi_SGfuckery",1)
 	SING A 10 bright A_VileAttack("singenjitsu/melee",60,80,96,2,"Genjitsu")
 	goto seeloop
@@ -223,18 +224,18 @@ ACTOR singenjitsu3 : GenericBoss
 
 actor kazumi_SGfuckery : CustomInventory
 {
-	+INVENTORY.ALWAYSPICKUP
-	+INVENTORY.AUTOACTIVATE
-	inventory.maxamount 1
-	inventory.pickupmessage "fuck"
-	States
-	{
-	Spawn:
-		TNT1 A 1
-		loop
-	pickup:
-		TNT1 A 1
-		TNT1 A 0 ACS_NamedExecuteAlways("SingenjitsuJumpscare",0)
-		stop
-	}
+ +INVENTORY.ALWAYSPICKUP
+ +INVENTORY.AUTOACTIVATE
+ inventory.maxamount 1
+ inventory.pickupmessage "fuck"
+ States
+ {
+  Spawn:
+	TNT1 A 1
+	loop
+  Pickup:
+	TNT1 A 1
+	TNT1 A 0 ACS_NamedExecuteAlways("SingenjitsuJumpscare",0)
+	stop
+ }
 }

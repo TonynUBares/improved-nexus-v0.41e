@@ -1,18 +1,19 @@
 ACTOR HackroidAssaultCaptain : LegendaryAssaultCaptain
 {
  Health 4200
-    Radius 20
-    Height 56
-    Speed 45
-    PainChance 20
-    MONSTER
+ Radius 20
+ Height 56
+ Speed 45
+ PainChance 20
+ MONSTER
  BloodColor "Red"
  DropItem "LegendaryBossLifeEssence" 256
  DropItem "LegendaryBossArmorBonusMax" 256
  DropItem "LegendaryBossLifeEssence" 256
  DropItem "LegendaryBossArmorBonusMax" 256
-    DropItem "HCKShell" 200 4
-    DropItem "HCKShellBox" 200
+ DropItem "HackroidASGGiver" 140 1
+ DropItem "HCKShell" 200 4
+ DropItem "HCKShellBox" 200
  DropItem "LegAmmoSphere" 256 1
  DropItem "EnragedLegendaryArmor" 200
  DropItem "HandGrenadeAmmo" 235 2
@@ -20,30 +21,30 @@ ACTOR HackroidAssaultCaptain : LegendaryAssaultCaptain
  DropItem "Backpack" 256 1
  DropItem "AgilityRune" 200 1
  DropItem "LegendaryRune" 200 1
-    DropItem "LegendaryPowerShard" 200 1
-    DropItem "EnragedLegendaryPowerShard" 200 1
+ DropItem "LegendaryPowerShard" 200 1
+ DropItem "EnragedLegendaryPowerShard" 200 1
  DropItem "HackroidArmor" 20 1
-    DropItem "HackroidSphere" 20 1
+ DropItem "HackroidSphere" 20 1
  Species "Zombie"
-    DamageFactor 0.6
-    DamageFactor "LegendaryZombie", 0.0
-    DamageFactor "PDTBFG", 0.5
-    DamageFactor "PDTBFGTracer", 0.4
-    DamageFactor "PlayerDevBall", 0.8
-    DamageFactor "PlayerDevBall2", 0.8
-    DamageFactor "PlayerDTBFGRailgunSlug", 0.75
-    DamageFactor "PlayerDevTracer", 0.75
-    DamageFactor "DBFG10K2", 0.5
-    DamageFactor "PlayerDBFG10K2", 0.5
-    DamageFactor "DBFG2", 0.5
-    DamageFactor "PlayerDBFG2", 0.5
-    DamageFactor "PlayerPyro", 0.08
-    DamageFactor "Legendary", 0.1
-    DamageFactor "Superweapon", 0.1
-    DamageFactor "LegendaryPlayer", 0.1
-    DamageFactor "PlayerNemesisPlasma", 0.1
-    DamageFactor "Hackroid", 0.0
-    +NOTIMEFREEZE
+ DamageFactor 0.6
+ DamageFactor "LegendaryZombie", 0.0
+ DamageFactor "PDTBFG", 0.5
+ DamageFactor "PDTBFGTracer", 0.4
+ DamageFactor "PlayerDevBall", 0.8
+ DamageFactor "PlayerDevBall2", 0.8
+ DamageFactor "PlayerDTBFGRailgunSlug", 0.75
+ DamageFactor "PlayerDevTracer", 0.75
+ DamageFactor "DBFG10K2", 0.5
+ DamageFactor "PlayerDBFG10K2", 0.5
+ DamageFactor "DBFG2", 0.5
+ DamageFactor "PlayerDBFG2", 0.5
+ DamageFactor "PlayerPyro", 0.08
+ DamageFactor "Legendary", 0.1
+ DamageFactor "Superweapon", 0.1
+ DamageFactor "LegendaryPlayer", 0.1
+ DamageFactor "PlayerNemesisPlasma", 0.1
+ DamageFactor "Hackroid", 0.0
+ +NOTIMEFREEZE
  +NOFEAR
  +BOSS
  +BOSSDEATH
@@ -56,13 +57,12 @@ ACTOR HackroidAssaultCaptain : LegendaryAssaultCaptain
  +NOTARGET
  +NORADIUSDMG
  SeeSound "HackroidAC/see"
-    AttackSound "1337ASG/Fire"
-    PainSound "HackroidAC/Pain"
-    DeathSound "HackroidAC/Death"
-    ActiveSound "HackroidAC/Active"
-    Obituary "%o was Pulverized by an Hackroid Assault Captain"
-
-    Tag "$NEHackShot"
+ AttackSound "1337ASG/Fire"
+ PainSound "HackroidAC/Pain"
+ DeathSound "HackroidAC/Death"
+ ActiveSound "HackroidAC/Active"
+ Obituary "%o was Pulverized by an Hackroid Assault Captain"
+ Tag "$NEHackShot"
  States
  {
   Spawn:
@@ -77,7 +77,7 @@ ACTOR HackroidAssaultCaptain : LegendaryAssaultCaptain
   Idle:
         HASG AZ 10 Bright A_Look
         Loop
-    Remove:
+  Remove:
 	TNT1 A 1
 	TNT1 A 0 A_SpawnItemEx("Shotgunguy",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 	TNT1 A 0 A_ChangeFlag("COUNTKILL", FALSE)
@@ -124,7 +124,7 @@ ACTOR HackroidAssaultCaptain : LegendaryAssaultCaptain
 	TNT1 A 0 A_SpawnItemEx("FootStep",0,0,2,0,0,-20)
 	HASG A 0 A_Jump(128,"Dodge")
 	Loop
-	Rush:
+  Rush:
 	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
 	TNT1 A 0 A_SpawnItemEx("HELegASGZombieGhostA",0,0,0,0,0,0,0,128)
 	HASG A 1 Bright A_Chase
@@ -146,7 +146,7 @@ ACTOR HackroidAssaultCaptain : LegendaryAssaultCaptain
 	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
 	TNT1 A 0 A_Jump(85,"See")
 	Loop
-   GrenadeAttack:
+  GrenadeAttack:
         TNT1 A 0 A_PlaySound("weapons/hgrenadepin",0,1.0,0)
 	HASG CE 4 Bright A_FaceTarget
 	TNT1 A 0 A_PlaySound("weapons/hgrenadethrow",0,1.0,0)
@@ -265,7 +265,7 @@ ACTOR HackroidAssaultCaptain : LegendaryAssaultCaptain
 	TNT1 A 0 A_PlaySound("weapons/hgrenadethrow",0,1.0,0)
 	HASG E 1 Bright A_CustomMissile("LSSGGrenade",32,0,0,2,4)
 	Goto GrenadeAttack
-    Reload:
+  Reload:
     	TNT1 A 0 A_ChangeFlag("NoPain", 1)
     	TNT1 A 0 A_PlaySound("lasgguy/asgout")
 	TNT1 A 0 A_SpawnItemEx("LegendaryEmptyDrumSpawner", -8, 7, 30, 4, 0, (0.1)*Random(30, 40), Random(-80, -90), 128)
@@ -293,28 +293,12 @@ ACTOR HackroidAssaultCaptain : LegendaryAssaultCaptain
 	Goto See
   Death:
 	TNT1 A 0 A_StopSound(6)
-	//TNT1 A 0 A_Jump(36,"LegendarySoul")
         HASG H 5
         HASG I 5 A_Scream
         HASG J 5 A_Fall
 	HASG J 5 A_SpawnItem("BodyCrash",0,0,0,0)
         HASG K 5
         HASG L -1
-        Stop
-  LegendarySoul:
-	TNT1 A 0 A_StopSound(6)
-        HASG H 5
-        HASG I 5 A_Scream
-        HASG J 5 A_Fall
-	HASG J 5 A_SpawnItem("BodyCrash",0,0,0,0)
-        HASG K 5
-	HASG L 140
-	HASG L 0 A_PlaySoundEx("brain/spit","Voice",0,2)
-	HASG LLLLLLLLLLLLLLLLL 2 Bright A_SpawnItem("ELegSoulEventSmokeSpawner",1)
-	HASG LLLLLLLLLLLLLLLLL 2 Bright A_SpawnItem("ELegSoulEventSmokeSpawner",1)
-	HASG LLLLLLLLLLLLLLLLL 2 Bright A_SpawnItem("ELegSoulEventSmokeSpawner",1)
-	TNT1 A 0 A_SpawnItemEx("TeleportFog",0,0,16,0,0,0,0,32)
-	HASG L -1
         Stop
     XDeath:
 	TNT1 A 0 A_StopSound(6)
@@ -324,7 +308,7 @@ ACTOR HackroidAssaultCaptain : LegendaryAssaultCaptain
         HASG RSTUV 5
         HASG W -1
         Stop
-    }
+ }
 }
 
 ACTOR HELegASGZombieGhostA : LegASGZombieGhostA

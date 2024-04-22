@@ -15,7 +15,7 @@ way way way way way better and avoid recursive checks every time you need them.
 the nth replacement of every single fucking actor. LegendaryZombie5 doesn't help anyone and, as you can see,
  is not needed.
 
-4) Before replacing a system or a script that you don't understand how to work with, try to ask to who made it. 
+4) Before replacing a system or a script that you don't understand how to work with, try to ask to whom made it. 
 There's a decent chance you will get tips and hints and have enough help to work with it.
 
 5) Stop using numbered scripts and use only named scripts, possibly with hard-to-clone names. Numbered scripts
@@ -54,7 +54,62 @@ States
 }
 
 ^ This is completely useless.
-- Nope state doesn't need to exist, because for Inventory you can simply jump to "Null" if you only want it to fail.
+- Nope state doesn't need to exist, because for CustomInventory you can simply jump to "Null" if you only want it to fail.
 - These two items can be combined into 1. Inventory.MaxAmount 1 will prevent a second pickup
 
 8) DECORATE can use frandom for fixed numbers. 0.01*Random(100,200) is equal to frandom(1.0,2.0)
+
+9)
+```
+  Melee:
+	MYST A 0 A_facetarget
+	MYST A 0 A_Jump(256,"Missile")
+	Goto MoreSee
+  Missile:
+	MYST A 0 A_facetarget
+	TNT1 A 0 A_Jump(128,"SummonAllies") //32
+  List1:
+	TNT1 A 0 A_JumpIfHealthLower(4000,"List2")
+	MYST A 0 A_Jump(256,"Attack1", "Attack2","Attack3")
+	Goto MoreSee
+  List2:
+	TNT1 A 0 A_JumpIfHealthLower(3000,"List3")
+	MYST A 0 A_Jump(256,"Attack1", "Attack2","Attack3","Attack4")
+	Goto MoreSee
+  List3:
+	TNT1 A 0 A_JumpIfHealthLower(2000,"List4")
+	MYST A 0 A_Jump(256,"Attack1", "Attack2","Attack3","Attack4","Attack5")
+	Goto MoreSee
+  List4:
+	TNT1 A 0 A_JumpIfHealthLower(1000,"List5")
+	MYST A 0 A_Jump(256,"Attack1", "Attack2","Attack3","Attack4","Attack5","Attack6")
+	Goto MoreSee
+  List5:
+	MYST A 0 A_Jump(256,"Attack1", "Attack2","Attack3","Attack4","Attack5","Attack6","Attack7")
+	Goto MoreSee
+```
+^can be summarized into
+```
+  Melee:
+  Missile:
+	MYST A 0 A_facetarget
+	TNT1 A 0 ACS_NamedExecuteWithResult("ttkShinki")
+	MYST A 1
+	Wait
+
+with 
+script "ttkShinki" (void)
+{
+ if(ClassifyActor(0) & ACTOR_DEAD) {terminate;}
+
+ if(random(1,100) <= 50) {SetActorState(0,"SummonAllies",true);}
+
+ else
+ {
+  int limit = 3;
+  int mhealth = GetActorProperty(0,APROP_Health);
+  if(mhealth < 4000) {limit += (1 + (4000-mhealth)/1000);}
+  SetActorState(0,StrParam(s:"Attack",i:random(1,limit)),true);
+ }
+}
+```

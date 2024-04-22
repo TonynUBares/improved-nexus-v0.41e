@@ -23,7 +23,7 @@ DropItem "AgilityRune" 200 1
 DropItem "LegendaryRune" 200 1
 DropItem "LegendaryPowerShard" 200 1
 DropItem "EnragedLegendaryPowerShard" 200 1
-DropItem "HackroidRifle" 140 1
+DropItem "HackroidRifleGiver" 140 1
 DropItem "HCKAmmoBox" 120 90
 DropItem "HCKAmmo" 256 20
 DropItem "HCKShell" 200 4

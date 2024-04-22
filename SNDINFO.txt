@@ -260,6 +260,7 @@ sanae/PRUNEJUICE PRUNEJUI
 
 touhou/yuuka/melee YUKAKICK
 
+singenjitsu/music LEGM723
 singenjitsu/sight SINGSPWN
 singenjitsu/active SINGACTI
 singenjitsu/melee SINGMELE
