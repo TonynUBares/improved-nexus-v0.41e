@@ -4,7 +4,7 @@ Actor PlayerCallingMinions : Inventory
  States
  {
   Held:
-	B3AC A 50
+	TNT1 A 50
 	Stop
  }
 }
