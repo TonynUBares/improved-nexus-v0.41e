@@ -50,7 +50,7 @@ ACTOR EnragedLegendaryBarrelFake : ExplosiveBarrel
  States
  {
   Spawn:
-	EB4R A
+	EB4R A 0
 	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("RawAnger") == 0,"Remove")
   Spawnloop:
 	EB4R AB 8 Bright A_SpawnItemEx("EnragedHellionSmokeSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,64)

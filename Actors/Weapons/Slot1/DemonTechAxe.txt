@@ -50,9 +50,11 @@ Actor DemonTechAxeGiverCheck : Inventory { Inventory.Amount 1 Inventory.MaxAmoun
 ACTOR "DemonTechAxe" : FWeapAxe
 {
  Weapon.YAdjust 0
- Weapon.AmmoType "DemonAmmo"
- weapon.Ammogive 120
- Weapon.AmmoUse 30
+ Weapon.AmmoType1 "DemonAmmo"
+ Weapon.AmmoType2 "DemonAmmo"
+ weapon.Ammogive 0
+ Weapon.AmmoUse1 30
+ Weapon.AmmoUse2 0
  Weapon.SlotNumber 1
  Weapon.SlotPriority 3.1
  Inventory.Pickupmessage "You've picked up the Demon Tech Axe!"

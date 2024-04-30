@@ -146,8 +146,9 @@ StatusBar FullScreen, FullScreenOffsets
     {
 	DrawImage "SEWPA0", -80, -53; 
 	DrawImage "WFAZA0", -33, -2, CenterBottom;
-	DrawNumber 4, HUDFONT_DOOM, DarkGrey, Ammo1, DrawShadow, -27, -41, 0;
-	DrawNumber 4, HUDFONT_DOOM, Gold, Ammo1, WhenNotZero, DrawShadow, -27, -41, 0, Red, 100, Green, 201;
+	DrawImage AmmoIcon2, -16, -25, CenterBottom;
+	DrawNumber 4, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
+	DrawNumber 4, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
 	DrawNumber 4, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
 	DrawNumber 4, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
     }
@@ -158,8 +159,8 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
 	DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
 	DrawNumber 3, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 10, Green, 21;
-	DrawNumber 3, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
-	DrawNumber 3, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
+	DrawNumber 3, INDEXFONT, Red, Ammo CFMana, -16, -122;
+	DrawNumber 3, INDEXFONT, Green, Ammo CFMana, WhenNotZero , -16, -122;
     }
   IsSelected "SubliminationSword"
     {
