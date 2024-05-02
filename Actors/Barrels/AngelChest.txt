@@ -8,8 +8,9 @@ ACTOR AngelChest: ComplexChest
  {
   Spawn:
 	TNT1 A 0 Nodelay ACS_NamedExecuteAlways("ttkCrateIcon",0)
-	AGBX A -1
-	Stop
+  SpawnLoop:
+	AGBX A 1
+	Loop
   ActiveCont:
 	AGBX B 50
 	TNT1 A 0 A_Jump(185,"Weapons","Ammos","Items")

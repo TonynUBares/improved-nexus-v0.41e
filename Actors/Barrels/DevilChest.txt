@@ -8,8 +8,9 @@ ACTOR DevilChest: ComplexChest
  {
   Spawn:
 	TNT1 A 0 Nodelay ACS_NamedExecuteAlways("ttkCrateIcon",0)
-	DVBX A -1
-	Stop
+  SpawnLoop:
+	DVBX A 1
+	Loop
   ActiveCont:
 	DVBX B 50
 	TNT1 A 0 A_Jump(200,"Weapons","Ammos","Items","Monsters")
