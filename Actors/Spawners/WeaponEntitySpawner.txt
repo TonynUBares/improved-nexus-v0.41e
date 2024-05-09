@@ -1,12 +1,24 @@
-ACTOR DeadlyBarrelSpawner : RandomSpawner
+ACTOR DeadlyBarrelSpawner
 {
-DropItem "KaguyaHouraisan", 256, 14
-DropItem "LegendaryChair", 256, 13
-DropItem "NemesisBarrel", 256, 13
-DropItem "NemesisTechBarrel", 256, 11
-DropItem "BlackholeBarrel", 256, 11
-DropItem "NukeBarrel", 256, 10
-DropItem "InstantNukeBarrel", 256, 10
+ Health 1000000
+ DamageFactor 0.0
+ -SHOOTABLE
+ +NOBLOCKMAP
+ +NOINTERACTION
+ -SOLID
+ +MOVEWITHSECTOR
+ +RELATIVETOFLOOR
+ States
+ {
+  Spawn:
+	TNT1 A 0 NoDelay ACS_NamedExecuteWithResult("nx_DeadlyBarrel")
+  SpawnLoop:
+	TNT1 A 35
+	Loop
+  Death:
+	TNT1 A 1 A_Fall
+	Stop
+ }
 }
 
 ACTOR LegendaryBarrelSpawner : RandomSpawner
@@ -16,6 +28,7 @@ DropItem "LegendaryTechBarrel", 256, 25
 DropItem "LegendaryBarrelFake", 256, 20
 DropItem "EnragedLegendaryBarrel", 256, 10
 DropItem "EnragedLegendaryBarrelFake", 256, 10
+DropItem "NemesisBarrel", 256, 10
 DropItem "ttkD64Barrel", 256, 1
 }
 

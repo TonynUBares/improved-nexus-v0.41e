@@ -1031,20 +1031,12 @@ Frame KYBSB { Light FreezeBlueLight }
 }
 
 //Barrels
-OBJECT LegendaryBarrelEdit
-{
-Frame LB4R { Light SmallLegLight }
-}
 
 OBJECT TrueLegendaryBarrel
 {
 Frame TB4R { Light MediumTrueLegLight }
 }
 
-OBJECT NemesisBarrelEdit
-{
-Frame LB0R { Light SmallLegNemesisLight }
-}
 
 OBJECT VexedNemesisBarrel
 {

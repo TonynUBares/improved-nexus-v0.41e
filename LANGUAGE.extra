@@ -1,5 +1,15 @@
 [enu default]
 
+//DeadlyBarrel spawner
+NXDeadlyBarrelTot = "79";     NXDeadlyBarrelCount = "7";
+NXDeadlyBarrel0 = "KaguyaHouraisan";   NXDeadlyBarrelChance0 = "14";   NXDeadlyBarrel0Cvar = "11";
+NXDeadlyBarrel1 = "LegendaryChair";   NXDeadlyBarrelChance1 = "13";   NXDeadlyBarrel1Cvar = "4";
+NXDeadlyBarrel2 = "NemesisTechBarrel";   NXDeadlyBarrelChance2 = "11";
+NXDeadlyBarrel3 = "BlackholeBarrel";   NXDeadlyBarrelChance3 = "11";
+NXDeadlyBarrel4 = "TrueLegendaryBarrel";   NXDeadlyBarrelChance4 = "10";
+NXDeadlyBarrel5 = "NukeBarrel";   NXDeadlyBarrelChance5 = "10";
+NXDeadlyBarrel6 = "InstantNukeBarrel";   NXDeadlyBarrelChance6 = "10";
+
 //Armors
 ArmorType26 = "CrystalArmorGiver";
 ArmorType58 = "HackroidArmorGiver";
@@ -73,7 +83,7 @@ ItemEffectType138 = "ArmorParticlePurpleSpawner";
 
 CVar50 = "nx_lunatic";
 CVar51 = "kazumi_nukechoker";
-CVar52 = "kazumi_NoChair";
+CVar52 = "nx_aprilfools";
 CVar53 = "nx_shinki";
 CVar54 = "txs_noatomic";
 CVar55 = "txs_noshufflecrates";

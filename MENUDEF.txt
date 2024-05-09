@@ -84,6 +84,12 @@ OptionMenu "NXOptions"
 	Option "$NXOptO05","dr_marine_tele","OnOff"
 	StaticText "$NXOptO051"
 	StaticText " "
+	Option "$NXOptO06","kazumi_nukechoker","OnOff"
+	StaticText "$NXOptO051"
+	StaticText " "
+	Option "$NXOptO07","nx_aprilfools","OnOff"
+	StaticText "$NXOptO071"
+	StaticText " "
 }
 
 OptionMenu "TXSOptions"

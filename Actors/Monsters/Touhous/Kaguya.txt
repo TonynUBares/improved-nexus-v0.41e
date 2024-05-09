@@ -48,17 +48,18 @@ ACTOR KaguyaHouraisan
   States
   {
   Spawn:
-	KAGI A 0
+	KAGI A 1
 	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("GetCVar",11) == 1, "BegoneThot")
+  SpawnLoop:
+	KAGI A 0
 	TNT1 A 0 ACS_NamedExecuteAlways("WimpyMode",0,2)
 	TNT1 A 0 ACS_NamedExecuteAlways("ModifyMonster",0,2)
-  SpawnLoop:
 	TNT1 A 0 A_SetInvulnerable
 	TNT1 A 0 A_ChangeFlag("NODAMAGE",1)
 	TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-    KAGI AAAAAAAAAAAAAAABBBBBCCCCCDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDCCCCCBBBBBEEEFFGGGG 1 A_LookEX(LOF_FULLVOLSEESOUND,0,0,0,360,"Prepare")
+ 	KAGI AAABCDDDDDDDDCBEFG 5 A_LookEX(LOF_FULLVOLSEESOUND,0,0,0,360,"See")
   IdleMore:
-    KAGI H 1 A_LookEX(LOF_FULLVOLSEESOUND,0,0,0,360,"See")
+	KAGI H 10 A_LookEX(LOF_FULLVOLSEESOUND,0,0,0,360,"See")
 	Loop
   BegoneThot:
 	TNT1 A 1
@@ -237,81 +238,87 @@ actor LegendaryKaguya : KaguyaHouraisan
 //Monster Tier: Pinky Demon
 //Enemy Tier: Legendary (Touhou)
 //Difficulty: Insane (SURPRISE! 8/10)
-  Health 3000
-  Painchance 16
-  Obituary "%o died when %g saw Legendary Kaguya's beautiful barrage of danmaku."
-  tag "\c[z3]Legendary Kaguya"
-	DamageFactor "SuperWeapon", 0.0
-	DamageFactor "Extreme", 0.0
-	DamageFactor "SatanGuard", 0.1
-	DamageFactor "AbyssalSatyr", 0.1
-	DamageFactor "Moloch", 0.1
-	DamageFactor "Exos", 0.2
-	DamageFactor "ZombieDev", 0.1
-	DamageFactor "Terminator", 0.1
-	DamageFactor "AdvancedImp", 0.1
-	DamageFactor "Legendary1", 0.1
-	DamageFactor "LegendaryGuru", 0.1
-	DamageFactor "UltimateLegendary", 0.0
-	DamageFactor "Nobles", 0.1
-	DamageFactor "VileFires", 0.1
-	DamageFactor "Shadow", 0.1
-	DamageFactor "DarkBruiserBFG10K", 0.1
-	DamageFactor "Cybers", 0.1
-	DamageFactor "Hell", 0.1
-	DamageFactor "Commander", 0.1
-	DamageFactor "Baby15K", 0.1
-	DamageFactor "Cyber10K", 0.1
-	DamageFactor "DemolisherEx", 0.1
-	DamageFactor "DarkDemoEx", 0.1
-	DamageFactor "CerChainguns", 0.1
-	DamageFactor "CerEnergyBall", 0.1
-	DamageFactor "LegMind", 0.1
-	DamageFactor "BeheComet", 0.1
-	DamageFactor "UBDTR", 0.1
-	DamageFactor "NobleComet", 0.1
-	DamageFactor "CacoComet", 0.1
-	DamageFactor "SoulToxic", 0.1
-	DamageFactor "Cacolich", 0.1
-	DamageFactor "CadaverRocket", 0.1
-	DamageFactor "HellComet", 0.1
-	DamageFactor "HFCyber", 0.1
-	DamageFactor "DBFG2", 0.1
-	DamageFactor "DBFG10K2", 0.1
-	DamageFactor "DBFGSplash2", 0.1
-	damagefactor "Terminator", 0.01
-	damagefactor "T3rm", 0.01
-	damagefactor "Term", 0.1
-  dropitem "LegendaryRune", 128
-  DropItem "LDemonAmmoBox" 200 
-  DropItem "LDemonAmmoBox" 200 
-  DropItem "LDemonAmmo" 250 
-  DropItem "LDemonAmmo" 250 
-  dropitem "Legendary Revolver", 48
-  dropitem "Legendary Assault Shotgun", 48
-  dropitem "LegendaryCoachgun", 48
-  dropitem "Legendary Light Machine Gun", 48
-  dropitem "Legendary Plasmatic Cannon", 48
-  dropitem "Legendary Plasmatic Rifle", 48
-  dropitem "Legendary BFG 10K", 48
-  dropitem "Legendary BFG", 24
-  dropitem "LegendaryBossLifeEssence", 256
-  dropitem "LegendaryLifeEssence", 256
-  dropitem "LegendaryBossArmorBonusMax", 256
-  dropitem "LegendaryArmorBonusMax", 256
-  var int user_music;
-  var int user_loopnuke;
-  seesound ""
-  States
-  {
+ Health 3000
+ Painchance 16
+ Obituary "%o died when %g saw Legendary Kaguya's beautiful barrage of danmaku."
+ tag "\c[z3]Legendary Kaguya"
+ DamageFactor "SuperWeapon", 0.0
+ DamageFactor "Extreme", 0.0
+ DamageFactor "SatanGuard", 0.1
+ DamageFactor "AbyssalSatyr", 0.1
+ DamageFactor "Moloch", 0.1
+ DamageFactor "Exos", 0.2
+ DamageFactor "ZombieDev", 0.1
+ DamageFactor "Terminator", 0.1
+ DamageFactor "AdvancedImp", 0.1
+ DamageFactor "Legendary1", 0.1
+ DamageFactor "LegendaryGuru", 0.1
+ DamageFactor "UltimateLegendary", 0.0
+ DamageFactor "Nobles", 0.1
+ DamageFactor "VileFires", 0.1
+ DamageFactor "Shadow", 0.1
+ DamageFactor "DarkBruiserBFG10K", 0.1
+ DamageFactor "Cybers", 0.1
+ DamageFactor "Hell", 0.1
+ DamageFactor "Commander", 0.1
+ DamageFactor "Baby15K", 0.1
+ DamageFactor "Cyber10K", 0.1
+ DamageFactor "DemolisherEx", 0.1
+ DamageFactor "DarkDemoEx", 0.1
+ DamageFactor "CerChainguns", 0.1
+ DamageFactor "CerEnergyBall", 0.1
+ DamageFactor "LegMind", 0.1
+ DamageFactor "BeheComet", 0.1
+ DamageFactor "UBDTR", 0.1
+ DamageFactor "NobleComet", 0.1
+ DamageFactor "CacoComet", 0.1
+ DamageFactor "SoulToxic", 0.1
+ DamageFactor "Cacolich", 0.1
+ DamageFactor "CadaverRocket", 0.1
+ DamageFactor "HellComet", 0.1
+ DamageFactor "HFCyber", 0.1
+ DamageFactor "DBFG2", 0.1
+ DamageFactor "DBFG10K2", 0.1
+ DamageFactor "DBFGSplash2", 0.1
+ damagefactor "Terminator", 0.01
+ damagefactor "T3rm", 0.01
+ damagefactor "Term", 0.1
+ dropitem "LegendaryRune", 128
+ DropItem "LDemonAmmoBox" 200 
+ DropItem "LDemonAmmoBox" 200 
+ DropItem "LDemonAmmo" 250 
+ DropItem "LDemonAmmo" 250 
+ dropitem "Legendary Revolver", 48
+ dropitem "Legendary Assault Shotgun", 48
+ dropitem "LegendaryCoachgun", 48
+ dropitem "Legendary Light Machine Gun", 48
+ dropitem "Legendary Plasmatic Cannon", 48
+ dropitem "Legendary Plasmatic Rifle", 48
+ dropitem "Legendary BFG 10K", 48
+ dropitem "Legendary BFG", 24
+ dropitem "LegendaryBossLifeEssence", 256
+ dropitem "LegendaryLifeEssence", 256
+ dropitem "LegendaryBossArmorBonusMax", 256
+ dropitem "LegendaryArmorBonusMax", 256
+ var int user_music;
+ var int user_loopnuke;
+ seesound ""
+ States
+ {
   Spawn:
-	TNT1 A 0 ACS_NamedExecuteAlways("LegTermFireBecauseIAmLazy",0)
+	KALI A 0
+	TNT1 A 0 A_JumpIf(user_script == 1,4)
+	TNT1 A 0 ACS_NamedExecuteAlways("SpawnFireOnActor",0,19)
+	TNT1 A 0 A_SetUserVar("user_script",1)
+	TNT1 A 0 A_SetUserVar("user_script_type",19)
+	TNT1 A 0 ACS_NamedExecuteAlways("WimpyMode",0,2)
+	TNT1 A 0 ACS_NamedExecuteAlways("ModifyMonster",0,2)
 	TNT1 A 0 A_SetInvulnerable
 	TNT1 A 0 A_ChangeFlag("NODAMAGE",1)
 	TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-    KALI AAAAAAAAAAAAAAABBBBBCCCCCDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDCCCCCBBBBBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEEEFFGGGG 1 A_LookEX(LOF_FULLVOLSEESOUND,0,0,0,360,"Prepare")
+	KALI AABCDDDDDDDDCBAAAAAAEFG 5 A_LookEX(LOF_FULLVOLSEESOUND,0,0,0,360,"See")
   IdleMore:
-    KALI H 1 A_LookEX(LOF_FULLVOLSEESOUND,0,0,0,360,"See")
+	KALI H 10 A_LookEX(LOF_FULLVOLSEESOUND,0,0,0,360,"See")
 	Loop
   Remove:
 	TNT1 A 1

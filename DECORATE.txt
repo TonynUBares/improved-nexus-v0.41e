@@ -236,7 +236,6 @@ Inventory.MaxAmount 255
 #include "Actors/Spawners/EnemySpawner.txt"
 
 //Barrels
-#include "Actors/Barrels/NemBarrel.txt"
 #include "Actors/Barrels/VNemBarrel.txt"
 #include "Actors/Barrels/TrueLegBarrel.txt"
 #include "Actors/Barrels/BlackHoleBarrel.txt"

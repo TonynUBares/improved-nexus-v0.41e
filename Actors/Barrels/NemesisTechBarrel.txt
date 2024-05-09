@@ -17,8 +17,15 @@ ACTOR NemesisTechBarrel : ModdedExplosiveBarrel
  States
  {
   Spawn:
+	NTBB A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("GetCVar",52) == 1,"Remove")
+  SpawnLoop:
 	NTBB A 6 Bright A_SpawnItem("NemesisHellionSmokeSpawner",0,0,0,0)
 	Loop
+  Remove:
+	TNT1 A 1
+	TNT1 A 0 A_SpawnItemEx("LegendaryBarrelSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	TNT1 A 0
+	Stop
   Death:
 	TNT1 A 0 A_StopSound(CHAN_VOICE)
 	NTBB A 2 Bright A_SpawnItemEx("NemesisHellionSmokeSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)		

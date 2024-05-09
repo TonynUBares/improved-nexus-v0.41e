@@ -10,7 +10,7 @@ ACTOR LegendaryTechBarrel : ModdedExplosiveBarrel
  States
  {
   Spawn:
-	LTBB A 6 Bright A_SpawnItem("LHellionSmokeSpawner",0,0,0,0)
+	LTBB A 6 Bright A_SpawnItemEx("LHellionSmokeSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,64)
 	Loop
   Death:
 	TNT1 A 0 Bright

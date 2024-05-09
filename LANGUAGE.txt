@@ -34,6 +34,12 @@ NXOptO041 = "\cuAllow the UAC to send you marine beacons.";
 NXOptO05 = "\cfAuto-Regroup Marines";
 NXOptO051 = "\cuAllow your idling marines to rejoin your position.";
 
+NXOptO06 = "\cfKazumi nuke effect chocker";
+NXOptO061 = "\cuSuppress some Kazumi nuke effects.";
+
+NXOptO07 = "\cfApril Fools mode";
+NXOptO071 = "\cuAllow some very op and very unfair actors to spawn in game.";
+
 
 NXMonstersEFGLunaticNuclearMode = "\cfEFG Lunatic nuclear mode";
 NXMonO011 = "\cuGives the EFG Lunatic a big nuke attack,";
