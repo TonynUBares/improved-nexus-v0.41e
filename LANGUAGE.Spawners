@@ -756,7 +756,7 @@ AllMap0 = "";					AllMap0Chance = 0;
 AllMap1 = "TXSAllMap";					AllMap1Chance = 90;
 AllMap2 = "DTAllMap";					AllMap2Chance = 10;
 
-BarrelCount = 8;
+BarrelCount = 10;
 Barrel0 = "";					Barrel0Chance = 0;
 Barrel1 = "ModdedExplosiveBarrel";			Barrel1Chance = 53;
 Barrel2 = "TechBarrel";					Barrel2Chance = 12;
