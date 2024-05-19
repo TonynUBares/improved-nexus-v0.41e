@@ -151,7 +151,7 @@ ACTOR MarineMedicBeacon : MarineDBFGBeacon
 {
  Inventory.Icon "BCMDZ0"
  Inventory.PickupSound "Beacon/Pickup"
- Inventory.PickupMessage "DrBeacon2Pickup"
+ Inventory.PickupMessage "$DrBeacon2Pickup"
  Tag "$DrBeacon2"
  States
  {

@@ -7,9 +7,9 @@ Clusterweapons, Clusteraddons and main Nexus content.
 
 This file also includes CF/HEM/ILCA/DUST/HPBAR
 
-More info: [redacted]
-Official Discord server: [redacted]
+Official Discord server: https://discord.com/invite/dwsWCn4WUC
 
+Clusterfuck Wiki: https://complex-cf.fandom.com/wiki/Complex_CF
 
 !PLEASE NOTE!
 
