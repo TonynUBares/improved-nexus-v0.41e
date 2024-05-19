@@ -64,11 +64,11 @@ PainSound "HackroidZombie/Pain"
 DeathSound "HackroidZombie/Death"
 ActiveSound "HackroidZombie/Active"
 Obituary "%o was Deleted by Hackroid Zombie's supreme energy."
-
 Tag "$NEHackZomb"
 var int user_missile;
+var int user_fading;
  States
-{
+ {
   Spawn:
 	HASG A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("GetCVar",57) == 0, "Remove")
 	TNT1 A 0 ACS_NamedExecuteAlways("WimpyMode",0,2)
@@ -110,14 +110,14 @@ var int user_missile;
 	TNT1 A 0 A_SpawnItem("FootStep")
 	Loop
   Teleport:
-	HPOS A 1 Bright A_UnSetShootable
-	HPOS AAAAAAAAAA 1 Bright A_FadeOut(0.1,0)
+	HPOS A 1 Bright ACS_NamedExecuteWithResult("ttk_fader",10,3)
+	HPOS A 0 A_Settics(user_fading)
 	HPOS A 2 Bright
 	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
 	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
 	HPOS A 1 Bright A_PlayWeaponSound("boss/teleport")
-	HPOS AAAAAAAAAA 1 Bright A_FadeIn(0.1)
-	HPOS A 1 Bright A_SetShootable
+	HPOS A 0 A_Settics(user_fading)
+	HPOS A 1 Bright
 	Goto See  
   Rush:
 	HPOS A 0 A_JumpIfTargetInLOS("Strafing")

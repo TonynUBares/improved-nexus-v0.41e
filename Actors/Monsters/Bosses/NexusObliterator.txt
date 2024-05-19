@@ -1,115 +1,116 @@
 ACTOR NexusObliterator 29316
 {
-  Health 4700
-  Radius 24
-  Height 64
-  Mass 1000
-  Speed 12
-  Scale 1.2
-  PainChance 40
-  Bloodcolor "Red"
-  MONSTER
-  Obituary "%o was obliterated by an Obliterator."
-  HitObituary "%o was torn asunder by an Obliterator."
-  +NOTIMEFREEZE
-  +NORADIUSDMG
-  +DONTHARMSPECIES
-  +MISSILEMORE
-  +MISSILEMORE
-  +FLOORCLIP
-  +NOTARGET
-  +NOICEDEATH
-  +BOSS
-  +MISSILEEVENMORE
-  +CANTSEEK
-  +NOFEAR
-  +DONTSPLASH
-  +LOOKALLAROUND
-  +NOEXTREMEDEATH
-  +FireResist
-  +BOSSDEATH
-  +NOTELEFRAG
-  +DONTGIB
-  +DONTMORPH
-  +QUICKTORETALIATE
-  +NoDropOff
-  +DONTRIP
-  SeeSound "Obliterator/sight"
-  PainSound "Obliterator/pain"
-  DeathSound "Obliterator/death"
-  ActiveSound "Obliterator/active"
-  MeleeSound "baron/melee"
-  DamageFactor 0.5
-  DamageFactor "NobleComet", 0.0
-  DamageFactor "Cyber10K", 0.0
-  DamageFactor "Legendary", 0.0
-  DamageFactor "Legendary1", 0.0
-  DamageFactor "LegendaryGuru", 0.0
-  DamageFactor "LegMind", 0.0
-  DamageFactor "Ice", 0.0
-  DamageFactor "Fire", 0.0
-  DamageFactor "C0mm4nder", 0.0
-  DamageFactor "PlayerBHole", 0.0
-  DamageFactor "Extreme", 0.0
-  DamageFactor "UltimateLegendary", 0.0
-  DamageFactor "HellComet", 0.0
-  DamageFactor "SuperWeapon", 0.4
-  DamageFactor "T3rm", 0.0
-  DamageFactor "Hell", 0.0
-  DamageFactor "RST", 0.0
-  Damagefactor "Disintegrate", 0.0
-  DamageFactor "PlayerNemesisPlasma", 0.3
-  DamageFactor "PlayerPyro", 0.3
-  DamageFactor "Explosion", 0.2
-  DamageFactor "PlayerDTRG", 0.4
-  DamageFactor "DTRailgun", 0.4
-  DamageFactor "PDTPuff", 0.4
-  DamageFactor "RailG", 0.3
-  DamageFactor "PDTBFG", 0.4
-  DamageFactor "PDTBFGTracer", 0.3
-  DamageFactor "PlayerDevBall", 0.2
-  DamageFactor "PlayerDevBall2", 0.2
-  DamageFactor "PlayerDTBFGRailgunSlug", 0.3
-  DamageFactor "PlayerDTRG", 0.5
-  DamageFactor "PlayerDevTracer", 0.2
-  DamageFactor "DBFG10K2", 0.65
-  DamageFactor "PlayerDBFG10K2", 0.65
-  DamageFactor "DBFG2", 0.4
-  DamageFactor "PlayerDBFG2", 0.65
-  DamageFactor "LegendaryPlayer", 0.0
-  DamageFactor "LegendaryGuruPlayer", 0.1
-  DropItem "LifeEssence" 256
-  DropItem "ArmorBonusMax" 256
-  DropItem "BossLifeEssence" 256 25
-  DropItem "BossArmorBonusMax" 256 1
-  DropItem "DemonAmmoBox" 256 200
-  DropItem "Explosive Minigun" 256 1
-  DropItem "Demon Tech Devastator" 256 1
-  DropItem "Demon Tech Shotgun" 256 1
-  DropItem "BFG10K " 256 1
-  //DropItem "ExplosiveDemonTechRifle" 64 1
-  DropItem "HellfireUltrasphere" 256 1
-  DropItem "HellfireArmor" 256 1
-  DropItem "LegendaryRune" 256 1
-  DropItem "EFG9000" 128 1
-  DropItem "TerminatorItem" 15 1
-  Species "Nobles"
-  Tag "$NEOblit"
-  var int user_music;
-  var int user_missile;
-  var int user_bfg10k;
-  var int user_railgun;
-  var int user_fusionnuke;
-  var int user_lowlag;
-  States
-  {
+ Health 4700
+ Radius 24
+ Height 64
+ Mass 1000
+ Speed 12
+ Scale 1.2
+ PainChance 40
+ Bloodcolor "Red"
+ MONSTER
+ Obituary "%o was obliterated by an Obliterator."
+ HitObituary "%o was torn asunder by an Obliterator."
+ +NOTIMEFREEZE
+ +NORADIUSDMG
+ +DONTHARMSPECIES
+ +MISSILEMORE
+ +MISSILEMORE
+ +FLOORCLIP
+ +NOTARGET
+ +NOICEDEATH
+ +BOSS
+ +MISSILEEVENMORE
+ +CANTSEEK
+ +NOFEAR
+ +DONTSPLASH
+ +LOOKALLAROUND
+ +NOEXTREMEDEATH
+ +FireResist
+ +BOSSDEATH
+ +NOTELEFRAG
+ +DONTGIB
+ +DONTMORPH
+ +QUICKTORETALIATE
+ +NoDropOff
+ +DONTRIP
+ SeeSound "Obliterator/sight"
+ PainSound "Obliterator/pain"
+ DeathSound "Obliterator/death"
+ ActiveSound "Obliterator/active"
+ MeleeSound "baron/melee"
+ DamageFactor 0.5
+ DamageFactor "NobleComet", 0.0
+ DamageFactor "Cyber10K", 0.0
+ DamageFactor "Legendary", 0.0
+ DamageFactor "Legendary1", 0.0
+ DamageFactor "LegendaryGuru", 0.0
+ DamageFactor "LegMind", 0.0
+ DamageFactor "Ice", 0.0
+ DamageFactor "Fire", 0.0
+ DamageFactor "C0mm4nder", 0.0
+ DamageFactor "PlayerBHole", 0.0
+ DamageFactor "Extreme", 0.0
+ DamageFactor "UltimateLegendary", 0.0
+ DamageFactor "HellComet", 0.0
+ DamageFactor "SuperWeapon", 0.4
+ DamageFactor "T3rm", 0.0
+ DamageFactor "Hell", 0.0
+ DamageFactor "RST", 0.0
+ Damagefactor "Disintegrate", 0.0
+ DamageFactor "PlayerNemesisPlasma", 0.3
+ DamageFactor "PlayerPyro", 0.3
+ DamageFactor "Explosion", 0.2
+ DamageFactor "PlayerDTRG", 0.4
+ DamageFactor "DTRailgun", 0.4
+ DamageFactor "PDTPuff", 0.4
+ DamageFactor "RailG", 0.3
+ DamageFactor "PDTBFG", 0.4
+ DamageFactor "PDTBFGTracer", 0.3
+ DamageFactor "PlayerDevBall", 0.2
+ DamageFactor "PlayerDevBall2", 0.2
+ DamageFactor "PlayerDTBFGRailgunSlug", 0.3
+ DamageFactor "PlayerDTRG", 0.5
+ DamageFactor "PlayerDevTracer", 0.2
+ DamageFactor "DBFG10K2", 0.65
+ DamageFactor "PlayerDBFG10K2", 0.65
+ DamageFactor "DBFG2", 0.4
+ DamageFactor "PlayerDBFG2", 0.65
+ DamageFactor "LegendaryPlayer", 0.0
+ DamageFactor "LegendaryGuruPlayer", 0.1
+ DropItem "LifeEssence" 256
+ DropItem "ArmorBonusMax" 256
+ DropItem "BossLifeEssence" 256 25
+ DropItem "BossArmorBonusMax" 256 1
+ DropItem "DemonAmmoBox" 256 200
+ DropItem "Explosive Minigun" 256 1
+ DropItem "Demon Tech Devastator" 256 1
+ DropItem "Demon Tech Shotgun" 256 1
+ DropItem "BFG10K " 256 1
+ //DropItem "ExplosiveDemonTechRifle" 64 1
+ DropItem "HellfireUltrasphere" 256 1
+ DropItem "HellfireArmor" 256 1
+ DropItem "LegendaryRune" 256 1
+ DropItem "EFG9000" 128 1
+ DropItem "TerminatorItem" 15 1
+ Species "Nobles"
+ Tag "$NEOblit"
+ var int user_music;
+ var int user_missile;
+ var int user_bfg10k;
+ var int user_railgun;
+ var int user_fusionnuke;
+ var int user_lowlag;
+ var int user_fading;
+ States
+ {
   Spawn:
-    OBAR A 0
+	OBAR A 0
 	TNT1 A 0 ACS_NamedExecuteAlways("WimpyMode",0,2)
 	TNT1 A 0 ACS_NamedExecuteAlways("ModifyMonster",0,2,6)
   Idle:
-    OBAR A 7 A_Look
-    Loop
+	OBAR A 7 A_Look
+	Loop
   See:
 	TNT1 A 0 A_JumpIf(user_lowlag == 1,"MoreSee")
 	TNT1 A 0 A_JumpIfTargetInLOS("MoreSee",0,0,0,0)
@@ -124,11 +125,11 @@ ACTOR NexusObliterator 29316
 	TNT1 A 0 A_UnSetInvulnerable
 	TNT1 A 0 A_Jump(100,"Rush")
 	OBAR AABB 3 A_Chase
-    TNT1 A 0 A_SpawnItem("HoofStep",0,0,0,0)
-    OBAR CCDD 3 A_Chase
-    TNT1 A 0 A_Playsound("monster/bruwlk")
+	TNT1 A 0 A_SpawnItem("HoofStep",0,0,0,0)
+	OBAR CCDD 3 A_Chase
+	TNT1 A 0 A_Playsound("monster/bruwlk")
 	TNT1 A 0 A_Jump(32,"Teleport")
-    Loop
+	Loop
   Rush:
 	TNT1 A 0 A_SpawnItemEx("ObliteratorGhostA",0,0,0,0,0,0,0,128)
 	OBAR A 1 A_Chase
@@ -138,7 +139,7 @@ ACTOR NexusObliterator 29316
 	OBAR B 1 A_Chase
 	TNT1 A 0 A_SpawnItemEx("ObliteratorGhostB",0,0,0,0,0,0,0,128)
 	OBAR B 1 A_Chase
-    TNT1 A 0 A_SpawnItem("HoofStep",0,0,0,0)
+	TNT1 A 0 A_SpawnItem("HoofStep",0,0,0,0)
 	TNT1 A 0 A_SpawnItemEx("ObliteratorGhostC",0,0,0,0,0,0,0,128)
 	OBAR C 1 A_Chase
 	TNT1 A 0 A_SpawnItemEx("ObliteratorGhostC",0,0,0,0,0,0,0,128)
@@ -147,27 +148,27 @@ ACTOR NexusObliterator 29316
 	OBAR D 1 A_Chase
 	TNT1 A 0 A_SpawnItemEx("ObliteratorGhostD",0,0,0,0,0,0,0,128)
 	OBAR D 1 A_Chase
-    TNT1 A 0 A_Playsound("monster/bruwlk")
+	TNT1 A 0 A_Playsound("monster/bruwlk")
 	TNT1 A 0 A_Jump(12,"Teleport")
 	TNT1 A 0 A_Jump(12,"See")
 	Loop
   Teleport:
-    OBAR P 1 Bright A_UnSetShootable
+	OBAR P 1 Bright ACS_NamedExecuteWithResult("ttk_fader",10,3)
 	OBAR PPPP 0 A_SpawnItem("ObliteratorLineSpawner",0,0,0,0)
-	OBAR PPPPPPPPPP 1  A_FadeOut(0.1,0)
+	OBAR P 0 A_Settics(user_fading)
 	OBAR P 2 
 	OBAR PEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 0 A_Wander
 	OBAR PEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 0 A_Wander
-    OBAR P 1 A_PlayWeaponSound("boss/teleport")
+	OBAR P 1 A_PlayWeaponSound("boss/teleport")
 	OBAR PPPP 0 A_SpawnItem("ObliteratorLineSpawner",0,0,0,0)
-	OBAR PPPPPPPPPPP 1 A_FadeIn(0.1)
-    OBAR P 1 Bright A_SetShootable
-    Goto See		
+	OBAR P 0 A_Settics(user_fading)
+	OBAR P 1 Bright 
+	Goto See		
   Melee:
 	TNT1 A 0 A_Jump(200,"ESG")
-    OBAR PQ 7 A_FaceTarget
-    OBAR R 7 A_MeleeAttack
-    Goto See
+	OBAR PQ 7 A_FaceTarget
+	OBAR R 7 A_MeleeAttack
+	Goto See
   Pause:
 	OBAR E 10
 	Goto See
@@ -177,16 +178,16 @@ ACTOR NexusObliterator 29316
   PauseExMinigunMissile:
 	TNT1 A 0 A_PlaySound("weapons/expmgunspinstop")
 	TNT1 A 0 A_StopSoundEx("Voice")
-    TNT1 A 0 A_CPosRefire
+	TNT1 A 0 A_CPosRefire
 	OBAR E 10
 	TNT1 A 0 A_Jump(78,"Rockets","HomingRockets","BFG15K","BFG10K","ExDTR","BurstBall","SeekingComets")
-    TNT1 A 0 A_Jump(64,"RailgunV2","DarkMatter","HellStorm","ExRailgun","ChaosLighting","FireBalls")
+	TNT1 A 0 A_Jump(64,"RailgunV2","DarkMatter","HellStorm","ExRailgun","ChaosLighting","FireBalls")
 	TNT1 A 0 A_Jump(32,"BFG10KRage","RailgunRage","HellStorm","AnnhilationBall","DTDevastator","PyroCannon")
 	Goto See
   Missile:
   	TNT1 A 0 A_Jump(10,"Nuke")
 	TNT1 A 0 A_Jump(128,"RailgunV2","DarkMatter","HellStorm","ExRailgun","ChaosLighting","FireBalls","DarkMatter2","PyroCannon")
-    TNT1 A 0 A_Jump(256,"ExMinigun","Rockets","HomingRockets","BFG15K","BFG10K","ExDTR","BurstBall","SeekingComets","AnnhilationBall")
+	TNT1 A 0 A_Jump(256,"ExMinigun","Rockets","HomingRockets","BFG15K","BFG10K","ExDTR","BurstBall","SeekingComets","AnnhilationBall")
 	Goto See
   RageMissile:
 	TNT1 A 0 A_Jump(20,"Nuke")
@@ -234,236 +235,236 @@ ACTOR NexusObliterator 29316
 	OBAR E 8
 	Goto See
   ExMinigun:
-    TNT1 A 0 A_PlaySound("weapons/expmgunspinstart")
-    OBAR E 20 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/expmgunspinstart")
+	OBAR E 20 A_FaceTarget
 	TNT1 A 0 A_PlaySoundEx("weapons/expmgunspin","Voice")
 	TNT1 A 0 A_PlaySound("sentient/fire")
 	TNT1 A 0 A_CustomMissile("ObliteratorExplosiveTracer",40,26,Random(5,-5),0)
-    TNT1 A 0 A_SpawnItemEx("OrangeShellCasing", 0, 12, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
-    OBAR F 2 Bright A_CPosAttack
+	TNT1 A 0 A_SpawnItemEx("OrangeShellCasing", 0, 12, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	OBAR F 2 Bright A_CPosAttack
 	TNT1 A 0 A_PlaySound("sentient/fire")
 	TNT1 A 0 A_CustomMissile("ObliteratorExplosiveTracer",40,26,Random(5,-5),0)
-    TNT1 A 0 A_SpawnItemEx("OrangeShellCasing", 0, 12, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
-    OBAR F 2 Bright A_CPosAttack
+	TNT1 A 0 A_SpawnItemEx("OrangeShellCasing", 0, 12, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	OBAR F 2 Bright A_CPosAttack
 	TNT1 A 0 A_PlaySound("weapons/expmgunspinstop")
 	TNT1 A 0 A_StopSoundEx("Voice")
-    TNT1 A 0 A_CPosRefire
+	TNT1 A 0 A_CPosRefire
 	TNT1 A 0 A_Jump (6,"PauseExMinigunMissile")
-    Goto ExMinigun+2
+	Goto ExMinigun+2
   Rockets:
 	TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-    OBAR E 3 A_FaceTarget 
-    OBAR F 1 Bright A_CustomMissile("InfernalCyberNobleRocket",40,26,0,0)
-    OBAR E 3 A_FaceTarget
-    OBAR F 1 Bright A_CustomMissile("InfernalCyberNobleRocket",40,26,0,0)
 	OBAR E 3 A_FaceTarget 
-    OBAR F 1 Bright A_CustomMissile("InfernalCyberNobleRocket",40,26,0,0)
-    OBAR E 3 A_FaceTarget
-    OBAR F 1 Bright A_CustomMissile("InfernalCyberNobleRocket",40,26,0,0)
+	OBAR F 1 Bright A_CustomMissile("InfernalCyberNobleRocket",40,26,0,0)
+	OBAR E 3 A_FaceTarget
+	OBAR F 1 Bright A_CustomMissile("InfernalCyberNobleRocket",40,26,0,0)
 	OBAR E 3 A_FaceTarget 
-    OBAR F 1 Bright A_CustomMissile("InfernalCyberNobleRocket",40,26,0,0)
-    OBAR E 3 A_FaceTarget
-    OBAR F 1 Bright A_CustomMissile("InfernalCyberNobleRocket",40,26,0,0)
-    OBAR E 3
+	OBAR F 1 Bright A_CustomMissile("InfernalCyberNobleRocket",40,26,0,0)
+	OBAR E 3 A_FaceTarget
+	OBAR F 1 Bright A_CustomMissile("InfernalCyberNobleRocket",40,26,0,0)
+	OBAR E 3 A_FaceTarget 
+	OBAR F 1 Bright A_CustomMissile("InfernalCyberNobleRocket",40,26,0,0)
+	OBAR E 3 A_FaceTarget
+	OBAR F 1 Bright A_CustomMissile("InfernalCyberNobleRocket",40,26,0,0)
+	OBAR E 3
 	TNT1 A 0 A_Jump(162,"HomingRockets","HomingRocketsV2","BFG15K","BFG10K","RailgunV2","DarkMatter","DarkMatter2","ChaosLighting","FireBalls","ExRailgun")
-    TNT1 A 0 A_Jump(128,"BFG10KRage","RailgunRage","HellStorm","AnnhilationBall","HomingRocketStrike")
+	TNT1 A 0 A_Jump(128,"BFG10KRage","RailgunRage","HellStorm","AnnhilationBall","HomingRocketStrike")
 	TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 	Goto See
   HomingRockets:
 	TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-    OBAR E 6 A_FaceTarget 
-    OBAR F 3 Bright A_CustomMissile("BruiserMissile",40,26,0,0)
+	OBAR E 6 A_FaceTarget 
+	OBAR F 3 Bright A_CustomMissile("BruiserMissile",40,26,0,0)
 	OBAR F 1 Bright A_CustomMissile("BruiserMissile",40,26,0,0)
-    OBAR E 6 A_FaceTarget
-    OBAR F 3 Bright A_CustomMissile("BruiserMissile",40,26,0,0)
+	OBAR E 6 A_FaceTarget
+	OBAR F 3 Bright A_CustomMissile("BruiserMissile",40,26,0,0)
 	OBAR F 1 Bright A_CustomMissile("BruiserMissile",40,26,0,0)
 	OBAR E 6 A_FaceTarget 
-    OBAR F 3 Bright A_CustomMissile("BruiserMissile",40,26,0,0)
+	OBAR F 3 Bright A_CustomMissile("BruiserMissile",40,26,0,0)
 	OBAR F 1 Bright A_CustomMissile("BruiserMissile",40,26,0,0)
-    OBAR E 6 A_FaceTarget
-    OBAR F 3 Bright A_CustomMissile("BruiserMissile",40,26,0,0)
+	OBAR E 6 A_FaceTarget
+	OBAR F 3 Bright A_CustomMissile("BruiserMissile",40,26,0,0)
 	OBAR F 1 Bright A_CustomMissile("BruiserMissile",40,26,0,0)
 	OBAR E 6 A_FaceTarget 
-    OBAR F 3 Bright A_CustomMissile("BruiserMissile",40,26,0,0)
-	OBAR F 1 Bright A_CustomMissile("BruiserMissile",40,26,0,0)
-    OBAR E 6 A_FaceTarget
-    OBAR F 3 Bright A_CustomMissile("BruiserMissile",40,26,0,0)
+	OBAR F 3 Bright A_CustomMissile("BruiserMissile",40,26,0,0)
 	OBAR F 1 Bright A_CustomMissile("BruiserMissile",40,26,0,0)
 	OBAR E 6 A_FaceTarget
-    OBAR F 3 Bright A_CustomMissile("BruiserMissile",40,26,0,0)
+	OBAR F 3 Bright A_CustomMissile("BruiserMissile",40,26,0,0)
 	OBAR F 1 Bright A_CustomMissile("BruiserMissile",40,26,0,0)
 	OBAR E 6 A_FaceTarget
-    OBAR F 3 Bright A_CustomMissile("BruiserMissile",40,26,0,0)
+	OBAR F 3 Bright A_CustomMissile("BruiserMissile",40,26,0,0)
 	OBAR F 1 Bright A_CustomMissile("BruiserMissile",40,26,0,0)
 	OBAR E 6 A_FaceTarget
-    OBAR F 3 Bright A_CustomMissile("BruiserMissile",40,26,0,0)
+	OBAR F 3 Bright A_CustomMissile("BruiserMissile",40,26,0,0)
 	OBAR F 1 Bright A_CustomMissile("BruiserMissile",40,26,0,0)
 	OBAR E 6 A_FaceTarget
-    OBAR F 3 Bright A_CustomMissile("BruiserMissile",40,26,0,0)
+	OBAR F 3 Bright A_CustomMissile("BruiserMissile",40,26,0,0)
+	OBAR F 1 Bright A_CustomMissile("BruiserMissile",40,26,0,0)
+	OBAR E 6 A_FaceTarget
+	OBAR F 3 Bright A_CustomMissile("BruiserMissile",40,26,0,0)
 	TNT1 A 0 Bright A_CustomMissile("InfernalCyberNobleRocket",40,26,0,-8)
 	TNT1 A 0 Bright A_CustomMissile("InfernalCyberNobleRocket",40,26,0,-4)
 	TNT1 A 0 Bright A_CustomMissile("InfernalCyberNobleRocket",40,26,0,4)
 	TNT1 A 0 Bright A_CustomMissile("InfernalCyberNobleRocket",40,26,0,8)
-    OBAR E 6
+	OBAR E 6
 	TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 	TNT1 A 0 A_Jump(162,"HomingRockets","HomingRocketsV2","BFG15K","BFG10K","RailgunV2","DarkMatter","DarkMatter2","ChaosLighting","FireBalls","ExRailgun")
-    TNT1 A 0 A_Jump(128,"BFG10KRage","RailgunRage","HellStorm","AnnhilationBall","HomingRocketStrike")
+	TNT1 A 0 A_Jump(128,"BFG10KRage","RailgunRage","HellStorm","AnnhilationBall","HomingRocketStrike")
 	Goto See
   HomingRocketStrike:
 	TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-    OBAR E 6 A_FaceTarget 
-    OBAR F 1 Bright A_CustomMissile("ObilEFGSeekRocket",40,26,0,0)
-    OBAR E 3 A_FaceTarget
-    OBAR F 1 Bright A_CustomMissile("ObilEFGSeekRocket",40,26,0,0)
+	OBAR E 6 A_FaceTarget 
+	OBAR F 1 Bright A_CustomMissile("ObilEFGSeekRocket",40,26,0,0)
+	OBAR E 3 A_FaceTarget
+	OBAR F 1 Bright A_CustomMissile("ObilEFGSeekRocket",40,26,0,0)
 	OBAR E 3 A_FaceTarget 
-    OBAR F 1 Bright A_CustomMissile("ObilEFGSeekRocket",40,26,0,0)
-    OBAR E 3 A_FaceTarget
-    OBAR F 1 Bright A_CustomMissile("ObilEFGSeekRocket",40,26,0,0)
+	OBAR F 1 Bright A_CustomMissile("ObilEFGSeekRocket",40,26,0,0)
+	OBAR E 3 A_FaceTarget
+	OBAR F 1 Bright A_CustomMissile("ObilEFGSeekRocket",40,26,0,0)
 	OBAR E 3 A_FaceTarget 
-    OBAR F 1 Bright A_CustomMissile("ObilEFGSeekRocket",40,26,0,0)
-    OBAR E 3 A_FaceTarget
-    OBAR F 1 Bright A_CustomMissile("ObilEFGSeekRocket",40,26,0,0)
+	OBAR F 1 Bright A_CustomMissile("ObilEFGSeekRocket",40,26,0,0)
 	OBAR E 3 A_FaceTarget
-    OBAR F 1 Bright A_CustomMissile("ObilEFGSeekRocket",40,26,0,0)
+	OBAR F 1 Bright A_CustomMissile("ObilEFGSeekRocket",40,26,0,0)
 	OBAR E 3 A_FaceTarget
-    OBAR F 1 Bright A_CustomMissile("ObilEFGSeekRocket",40,26,0,0)
+	OBAR F 1 Bright A_CustomMissile("ObilEFGSeekRocket",40,26,0,0)
 	OBAR E 3 A_FaceTarget
-    OBAR F 1 Bright A_CustomMissile("ObilEFGSeekRocket",40,26,0,0)
+	OBAR F 1 Bright A_CustomMissile("ObilEFGSeekRocket",40,26,0,0)
 	OBAR E 3 A_FaceTarget
-    OBAR F 1 Bright A_CustomMissile("ObilEFGSeekRocket",40,26,0,0)
+	OBAR F 1 Bright A_CustomMissile("ObilEFGSeekRocket",40,26,0,0)
 	OBAR E 3 A_FaceTarget
-    OBAR F 1 Bright A_CustomMissile("ObilEFGSeekRocket",40,26,0,0)
+	OBAR F 1 Bright A_CustomMissile("ObilEFGSeekRocket",40,26,0,0)
 	OBAR E 3 A_FaceTarget
-    OBAR F 1 Bright A_CustomMissile("ObilEFGSeekRocket",40,26,0,0)
-    OBAR E 9
+	OBAR F 1 Bright A_CustomMissile("ObilEFGSeekRocket",40,26,0,0)
+	OBAR E 3 A_FaceTarget
+	OBAR F 1 Bright A_CustomMissile("ObilEFGSeekRocket",40,26,0,0)
+	OBAR E 9
 	TNT1 A 0 A_Jump(200,"HomingRockets","BFG15K","BFG10K","Rockets")
 	TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 	Goto See
   HomingRocketsV2:
-    TNT1 A 0 A_JumpIf(user_missile >= Random(6,8),"HomingRocketsV2End")
-    OBAR E 4 Bright A_FaceTarget
-    OBAR F 3 Bright A_CustomMissile("BruiserMissile",40,26,0,0)
-    TNT1 A 0 A_SetUserVar(user_missile,user_missile+1)
-    Loop
+	TNT1 A 0 A_JumpIf(user_missile >= Random(6,8),"HomingRocketsV2End")
+	OBAR E 4 Bright A_FaceTarget
+	OBAR F 3 Bright A_CustomMissile("BruiserMissile",40,26,0,0)
+	TNT1 A 0 A_SetUserVar(user_missile,user_missile+1)
+	Loop
   HomingRocketsV2End:
-    TNT1 A 0 A_SetUserVar(user_missile,0)
+	TNT1 A 0 A_SetUserVar(user_missile,0)
 	TNT1 A 0 A_Jump(87,"BFG10K","BFG15K")
 	TNT1 A 0 A_Jump(64,"DTDevastator")
-    Goto See
+	Goto See
   BFG15K:
 	TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 	TNT1 A 0 A_PlaySound("weapons/charge15k")
-    OBAR E 9 A_FaceTarget
+	OBAR E 9 A_FaceTarget
 	OBAR E 3 A_FaceTarget
-    OBAR S 3 Bright A_CustomMissile("Cybruiser15K",40,26,Random(-4, 4))	
+	OBAR S 3 Bright A_CustomMissile("Cybruiser15K",40,26,Random(-4, 4))	
 	OBAR E 3 A_FaceTarget
-    OBAR S 3 Bright A_CustomMissile("Cybruiser15K",40,26,Random(-4, 4))
+	OBAR S 3 Bright A_CustomMissile("Cybruiser15K",40,26,Random(-4, 4))
 	OBAR E 3 A_FaceTarget
-    OBAR S 3 Bright A_CustomMissile("Cybruiser15K",40,26,Random(-4, 4))
+	OBAR S 3 Bright A_CustomMissile("Cybruiser15K",40,26,Random(-4, 4))
 	OBAR E 3 A_FaceTarget
-    OBAR S 3 Bright A_CustomMissile("Cybruiser15K",40,26,Random(-4, 4))
+	OBAR S 3 Bright A_CustomMissile("Cybruiser15K",40,26,Random(-4, 4))
 	OBAR E 3 A_FaceTarget
-    OBAR S 3 Bright A_CustomMissile("Cybruiser15K",40,26,Random(-4, 4))
+	OBAR S 3 Bright A_CustomMissile("Cybruiser15K",40,26,Random(-4, 4))
 	OBAR E 3 A_FaceTarget
-    OBAR S 3 Bright A_CustomMissile("Cybruiser15K",40,26,Random(-4, 4))
-	OBAR E 3 A_FaceTarget
-	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
-    OBAR S 2 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
+	OBAR S 3 Bright A_CustomMissile("Cybruiser15K",40,26,Random(-4, 4))
 	OBAR E 3 A_FaceTarget
 	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
-    OBAR S 2 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
+	OBAR S 2 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
 	OBAR E 3 A_FaceTarget
 	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
-    OBAR S 2 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
+	OBAR S 2 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
 	OBAR E 3 A_FaceTarget
 	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
-    OBAR S 2 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
+	OBAR S 2 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
+	OBAR E 3 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	OBAR S 2 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
 	OBAR E 2 A_FaceTarget
 	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
-    OBAR S 1 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
+	OBAR S 1 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
 	OBAR E 2 A_FaceTarget
 	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
-    OBAR S 1 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
+	OBAR S 1 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
 	OBAR E 2 A_FaceTarget
 	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
-    OBAR S 1 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
+	OBAR S 1 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
 	OBAR E 2 A_FaceTarget
 	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
-    OBAR S 1 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
+	OBAR S 1 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
 	OBAR E 10 A_PlaySound("weapons/bfg15kcooldown",CHAN_AUTO)
 	TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 	Goto Missile
   BFG10K:
 	TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 	TNT1 A 0 A_PlayWeaponSound("weapons/charge15k")
-    OBAR E 20 A_FaceTarget
+	OBAR E 20 A_FaceTarget
 	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
-    OBAR S 3 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
-    OBAR E 2 A_FaceTarget
-	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
-    OBAR S 3 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
-    OBAR E 2 A_FaceTarget
-	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
-    OBAR S 3 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
-    OBAR E 2 A_FaceTarget
-	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
-    OBAR S 3 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
-    OBAR E 2 A_FaceTarget
-	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
-    OBAR S 2 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
-	OBAR E 1 A_FaceTarget
-	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
-    OBAR S 2 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
-	OBAR E 1 A_FaceTarget
-	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
-    OBAR S 2 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
-	OBAR E 1 A_FaceTarget
-	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
-    OBAR S 2 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
-	OBAR E 1 A_FaceTarget
-	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
-    OBAR S 2 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
-	OBAR E 1 A_FaceTarget
-	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
-    OBAR S 1 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
+	OBAR S 3 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
 	OBAR E 2 A_FaceTarget
 	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
-    OBAR SSS 1 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
+	OBAR S 3 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
 	OBAR E 2 A_FaceTarget
 	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
-    OBAR SSS 1 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
+	OBAR S 3 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
 	OBAR E 2 A_FaceTarget
 	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
-    OBAR SSS 1 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
-    OBAR E 10 A_PlaySound("weapons/bfg15kcooldown",CHAN_AUTO)
+	OBAR S 3 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
+	OBAR E 2 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	OBAR S 2 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
+	OBAR E 1 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	OBAR S 2 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
+	OBAR E 1 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	OBAR S 2 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
+	OBAR E 1 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	OBAR S 2 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
+	OBAR E 1 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	OBAR S 2 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
+	OBAR E 1 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	OBAR S 1 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
+	OBAR E 2 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	OBAR SSS 1 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
+	OBAR E 2 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	OBAR SSS 1 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
+	OBAR E 2 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	OBAR SSS 1 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
+	OBAR E 10 A_PlaySound("weapons/bfg15kcooldown",CHAN_AUTO)
 	TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 	TNT1 A 0 A_Jump(128,"Rockets","HomingRockets","HomingRocketsV2","BFG15K","BFG10K","RailgunV2","DarkMatter","DarkMatter2","ChaosLighting","FireBalls","ExRailgun")
-    TNT1 A 0 A_Jump(65,"BFG10KRage","RailgunRage","HellStorm","AnnhilationBall","HomingRocketStrike")
+	TNT1 A 0 A_Jump(65,"BFG10KRage","RailgunRage","HellStorm","AnnhilationBall","HomingRocketStrike")
 	Goto See
   BFG10KRage:
 	TNT1 A 0 A_Changeflag(reflective,1)
 	TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 	TNT1 A 0 A_PlaySound("weapons/charge15k")
 	TNT1 A 0 A_SetUserVar("user_bfg10k", 0)
-    OBAR EEEEEEE 4 A_FaceTarget
+	OBAR EEEEEEE 4 A_FaceTarget
   BFG10KLoop:
 	TNT1 A 0 A_JumpIf(user_bfg10k > 40,"BFG10KEnd")
 	TNT1 A 0 A_SetUserVar("user_bfg10k",user_bfg10k+1)
 	OBAR E 2 A_FaceTarget
 	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
-    OBAR S 1 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
+	OBAR S 1 Bright A_CustomMissile("Cy10K",40,26,Random(-4, 4))
 	Loop
   BFG10KEnd:
 	OBAR E 3 Bright A_PlaySound("weapons/bfg15kcooldown",CHAN_AUTO)
 	OBAR EEEEE 3 A_FaceTarget	   
-    OBAR E 4 A_FaceTarget
+	OBAR E 4 A_FaceTarget
 	TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 	TNT1 A 0 A_Changeflag(reflective,0)
 	TNT1 A 0 A_Jump(128,"DTDevastator")
 	TNT1 A 0 A_Jump(100,"BFG10KRage","RailgunRage","HellStorm","AnnhilationBall","HomingRocketStrike")
-    Goto See
+	Goto See
   ExDTR:
-    OBAR E 6 A_FaceTarget
+	OBAR E 6 A_FaceTarget
 	OBAR E 3 A_FaceTarget
 	TNT1 A 0 A_CustomMissile("ObliteratorExDemonTech",40,26,Random(-12,12))
 	TNT1 A 0 A_CustomMissile("ObliteratorExDemonTech",40,26,Random(-12,12))
@@ -489,7 +490,7 @@ ACTOR NexusObliterator 29316
 	TNT1 A 0 Bright A_CustomMissile("RIComet", 32, 0, -6)
 	OBAR PQ 5
 	TNT1 A 0 A_Jump (128,"ExMinigun","Rockets","HomingRockets","HomingRocketsV2","BFG15K","BFG10K","ExDTR","BurstBall","SeekingComets")
-    TNT1 A 0 A_Jump (100,"RailgunV2","DarkMatter","DarkMatter2","HellStorm","ExRailgun","ChaosLighting","FireBalls","AnnhilationBall")
+	TNT1 A 0 A_Jump (100,"RailgunV2","DarkMatter","DarkMatter2","HellStorm","ExRailgun","ChaosLighting","FireBalls","AnnhilationBall")
 	Goto See
   SeekingComets:
 	TNT1 A 0 A_ChangeFlag("NOPAIN",1)
@@ -508,13 +509,13 @@ ACTOR NexusObliterator 29316
 	OBAR PQ 5
 	TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 	TNT1 A 0 A_Jump (128,"ExMinigun","Rockets","HomingRockets","HomingRocketsV2","BFG15K","BFG10K","ExDTR","BurstBall","SeekingComets")
-    TNT1 A 0 A_Jump (100,"RailgunV2","DarkMatter","DarkMatter2","HellStorm","ExRailgun","ChaosLighting","FireBalls","AnnhilationBall")
+	TNT1 A 0 A_Jump (100,"RailgunV2","DarkMatter","DarkMatter2","HellStorm","ExRailgun","ChaosLighting","FireBalls","AnnhilationBall")
 	Goto See
   RailgunV2:
 	TNT1 A 0 A_Jump(78,"Missile")
 	TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 	TNT1 A 0 A_PlaySound("weapons/rgcharge")
-    OBAR EE 10 A_FaceTarget
+	OBAR EE 10 A_FaceTarget
 	OBAR E 2 A_FaceTarget
 	OBAR E 1
 	TNT1 A 0 A_PlaySound("railgunner/chargedshot")
@@ -541,13 +542,13 @@ ACTOR NexusObliterator 29316
 	OBAR P 2 
 	OBAR PEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 0 A_Wander
 	OBAR PEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 0 A_Wander
-    OBAR P 1 A_PlayWeaponSound("boss/teleport")
+	OBAR P 1 A_PlayWeaponSound("boss/teleport")
 	OBAR PPPP 0 A_SpawnItem("ObliteratorLineSpawner",0,0,0,0)
 	OBAR PPPPPPPPPPP 1 A_FadeIn(0.1)
-    OBAR P 1 Bright A_SetShootable
+	OBAR P 1 Bright A_SetShootable
 	OBAR E 2 A_FaceTarget
 	OBAR E 1
-    OBAR S 4 Bright A_CustomMissile("CydestroyerRail",40,26,Random(5,-5),0)
+	OBAR S 4 Bright A_CustomMissile("CydestroyerRail",40,26,Random(5,-5),0)
 	TNT1 A 0 A_PlaySound("railgunner/chargedshot")
 	OBAR S 4 Bright A_CustomMissile("CydestroyerRail",40,26,Random(5,-5),0)
 	TNT1 A 0 A_PlaySound("railgunner/chargedshot")
@@ -562,13 +563,13 @@ ACTOR NexusObliterator 29316
 	OBAR P 2 
 	OBAR PEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 0 A_Wander
 	OBAR PEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 0 A_Wander
-    OBAR P 1 A_PlayWeaponSound("boss/teleport")
+	OBAR P 1 A_PlayWeaponSound("boss/teleport")
 	OBAR PPPP 0 A_SpawnItem("ObliteratorLineSpawner",0,0,0,0)
 	OBAR PPPPPPPPPPP 1 A_FadeIn(0.1)
-    OBAR P 1 Bright A_SetShootable
+	OBAR P 1 Bright A_SetShootable
 	OBAR E 2 A_FaceTarget
 	OBAR E 1
-    OBAR S 2 Bright A_CustomMissile("CydestroyerRail",40,26,Random(5,-5),0)
+	OBAR S 2 Bright A_CustomMissile("CydestroyerRail",40,26,Random(5,-5),0)
 	TNT1 A 0 A_PlaySound("railgunner/chargedshot")
 	OBAR F 2 Bright A_CustomMissile("CydestroyerRail",40,26,Random(5,-5),0)
 	TNT1 A 0 A_PlaySound("railgunner/chargedshot")
@@ -599,46 +600,46 @@ ACTOR NexusObliterator 29316
 	OBAR S 1 Bright A_CustomMissile("CydestroyerRail",40,26,Random(5,-5),0)
 	TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 	TNT1 A 0 A_Jump(128,"Rockets","HomingRockets","BFG15K","BFG10K","PyroCannon","DarkMatter","DarkMatter2","ChaosLighting","FireBalls","ExRailgun")
-    TNT1 A 0 A_Jump (87,"AnnhilationBall","HomingRocketsV2","HellStorm")
+	TNT1 A 0 A_Jump (87,"AnnhilationBall","HomingRocketsV2","HellStorm")
 	Goto See
   RailgunRage:
-    TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+	TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 	TNT1 A 0 A_PlaySoundEx("Obliterator/sight","OBILSIT")
 	TNT1 A 0 A_PlaySound("weapons/rgcharge")
 	TNT1 A 0 A_Changeflag(reflective,1)
 	TNT1 A 0 A_SetUserVar("user_railgun", 0)
-    OBAR EE 10 A_FaceTarget
+	OBAR EE 10 A_FaceTarget
   RailgunLoop:
 	TNT1 A 0 A_JumpIf(user_railgun > 40,"RailgunEnd")
 	TNT1 A 0 A_SetUserVar("user_railgun",user_railgun+1)
 	OBAR E 2 Bright A_FaceTarget
-    OBAR S 1 Bright A_CustomMissile("CydestroyerRail",40,26,Random(5,-5),0)
+	OBAR S 1 Bright A_CustomMissile("CydestroyerRail",40,26,Random(5,-5),0)
 	Loop
   RailgunEnd:
 	OBAR E 15 Bright
 	TNT1 A 0 A_Changeflag(reflective,0)
-    Goto See
+	Goto See
 	TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 	TNT1 A 0 A_Jump(128,"Rockets","HomingRockets","BFG15K","DarkMatter","DarkMatter2","ChaosLighting","FireBalls","ExRailgun")
-    TNT1 A 0 A_Jump(64,"AnnhilationBall","HomingRocketsV2","HellStorm")
+	TNT1 A 0 A_Jump(64,"AnnhilationBall","HomingRocketsV2","HellStorm")
 	Goto See
   DarkMatter:
 	TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-    OBAR E 8 A_FaceTarget 
-    OBAR T 8 Bright A_CustomMissile("PainLordDarkMatter",40,26,0,0)
-    OBAR E 8 A_FaceTarget
-    OBAR T 8 Bright A_CustomMissile("PainLordDarkMatter",40,26,0,0)
+	OBAR E 8 A_FaceTarget 
+	OBAR T 8 Bright A_CustomMissile("PainLordDarkMatter",40,26,0,0)
 	OBAR E 8 A_FaceTarget
-    OBAR T 8 Bright A_CustomMissile("PainLordDarkMatter",40,26,0,0)
+	OBAR T 8 Bright A_CustomMissile("PainLordDarkMatter",40,26,0,0)
 	OBAR E 8 A_FaceTarget
-    OBAR T 8 Bright A_CustomMissile("PainLordDarkMatter",40,26,0,0)
+	OBAR T 8 Bright A_CustomMissile("PainLordDarkMatter",40,26,0,0)
+	OBAR E 8 A_FaceTarget
+	OBAR T 8 Bright A_CustomMissile("PainLordDarkMatter",40,26,0,0)
 	OBAR T 1 Bright A_CustomMissile("PainLordDarkMatter",40,26,0,0)
 	OBAR T 1 Bright A_CustomMissile("PainLordDarkMatter",40,26,0,0)
-    OBAR E 8
+	OBAR E 8
 	TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 	TNT1 A 0 A_Jump(128,"Rockets","HomingRockets","BFG15K","BFG10K","RailgunV2","DarkMatter2","ChaosLighting","FireBalls","ExRailgun")
-    TNT1 A 0 A_Jump (100,"AnnhilationBall","HomingRocketsV2","HellStorm")
-    Goto See
+	TNT1 A 0 A_Jump (100,"AnnhilationBall","HomingRocketsV2","HellStorm")
+	Goto See
   DarkMatter2:
 	TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 	OBAR PQ 3 A_FaceTarget 
@@ -652,64 +653,64 @@ ACTOR NexusObliterator 29316
 	OBAR PQ 3
 	TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 	TNT1 A 0 A_Jump (128,"ExMinigun","Rockets","HomingRockets","BFG15K","BFG10K","DarkMatter","ExDTR","BurstBall","SeekingComets")
-    TNT1 A 0 A_Jump (100,"RailgunV2","DarkMatter","HellStorm","ExRailgun","ChaosLighting","FireBalls","AnnhilationBall")
+	TNT1 A 0 A_Jump (100,"RailgunV2","DarkMatter","HellStorm","ExRailgun","ChaosLighting","FireBalls","AnnhilationBall")
 	Goto See
   HellStorm:
 	TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 	TNT1 A 0 A_PlaySound("weapons/Hcharge10k")
-    OBAR EEEEEE 5 A_FaceTarget
+	OBAR EEEEEE 5 A_FaceTarget
 	OBAR E 3 A_FaceTarget
 	TNT1 A 0 A_PlaySound("weapons/Hbfg10kfire",6)
-    OBAR S 2 Bright A_CustomMissile("HSBFG10kShotWrath",40,26,Random(4,-4))
+	OBAR S 2 Bright A_CustomMissile("HSBFG10kShotWrath",40,26,Random(4,-4))
 	OBAR E 3 A_FaceTarget
 	TNT1 A 0 A_PlaySound("weapons/Hbfg10kfire",6)
-    OBAR S 2 Bright A_CustomMissile("HSBFG10kShotWrath",40,26,Random(4,-4))
+	OBAR S 2 Bright A_CustomMissile("HSBFG10kShotWrath",40,26,Random(4,-4))
 	OBAR E 3 A_FaceTarget
 	TNT1 A 0 A_PlaySound("weapons/Hbfg10kfire",6)
-    OBAR S 2 Bright A_CustomMissile("HSBFG10kShotWrath",40,26,Random(4,-4))
+	OBAR S 2 Bright A_CustomMissile("HSBFG10kShotWrath",40,26,Random(4,-4))
 	OBAR E 3 A_FaceTarget
 	TNT1 A 0 A_PlaySound("weapons/Hbfg10kfire",6)
-    OBAR S 2 Bright A_CustomMissile("HSBFG10kShotWrath",40,26,Random(4,-4))
+	OBAR S 2 Bright A_CustomMissile("HSBFG10kShotWrath",40,26,Random(4,-4))
 	OBAR E 3 A_FaceTarget
 	TNT1 A 0 A_PlaySound("weapons/Hbfg10kfire",6)
-    OBAR S 2 Bright A_CustomMissile("HSBFG10kShotWrath",40,26,Random(4,-4))
+	OBAR S 2 Bright A_CustomMissile("HSBFG10kShotWrath",40,26,Random(4,-4))
 	OBAR E 3 A_FaceTarget
 	TNT1 A 0 A_PlaySound("weapons/Hbfg10kfire",6)
-    OBAR S 2 Bright A_CustomMissile("HSBFG10kShotWrath",40,26,Random(4,-4))
+	OBAR S 2 Bright A_CustomMissile("HSBFG10kShotWrath",40,26,Random(4,-4))
 	OBAR E 3 A_FaceTarget
 	TNT1 A 0 A_PlaySound("weapons/Hbfg10kfire",6)
-    OBAR S 2 Bright A_CustomMissile("HSBFG10kShotWrath",40,26,Random(4,-4))
+	OBAR S 2 Bright A_CustomMissile("HSBFG10kShotWrath",40,26,Random(4,-4))
 	OBAR E 3 A_FaceTarget
 	TNT1 A 0 A_PlaySound("weapons/Hbfg10kfire",6)
-    OBAR S 2 Bright A_CustomMissile("HSBFG10kShotWrath",40,26,Random(4,-4))
+	OBAR S 2 Bright A_CustomMissile("HSBFG10kShotWrath",40,26,Random(4,-4))
 	OBAR E 3 A_FaceTarget
 	TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 	OBAR E 6 A_PlaySound("weapons/Hbfg10kcooldown",CHAN_AUTO)
 	TNT1 A 0 A_Jump(128,"Rockets","HomingRockets","BFG15K","BFG10K","RailgunV2","DarkMatter","DarkMatter2","ChaosLighting","FireBalls","ExRailgun")
-    TNT1 A 0 A_Jump (100,"BFG10KRage","RailgunRage","HellStorm","AnnhilationBall","HomingRocketStrike")
+	TNT1 A 0 A_Jump (100,"BFG10KRage","RailgunRage","HellStorm","AnnhilationBall","HomingRocketStrike")
 	Goto See
   ExRailgun:
 	TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 	TNT1 A 0 A_PlaySound("ExplosiveRailgun/Charge")
 	TNT1 A 0 A_Changeflag(reflective,1)
 	TNT1 A 0 A_PlaySoundEx("Obliterator/sight","OBILSIT")
-    OBAR EE 10 A_FaceTarget
+	OBAR EE 10 A_FaceTarget
 	TNT1 A 0 A_PlaySound("ExplosiveRailgun/Fire")
-    TNT1 A 0 A_CustomMissile("NobleExplosiveRailgunImpact",40,26,0,0)
-    OBAR F 5 Bright A_CustomRailgun(50,20,"None","None",RGF_SILENT,1,0,"BruiserRailPuff",0,0,0,0,40,0,"ExplosiveRailgunTrail")
-    OBAR EE 5 A_FaceTarget
+	TNT1 A 0 A_CustomMissile("NobleExplosiveRailgunImpact",40,26,0,0)
+	OBAR F 5 Bright A_CustomRailgun(50,20,"None","None",RGF_SILENT,1,0,"BruiserRailPuff",0,0,0,0,40,0,"ExplosiveRailgunTrail")
+	OBAR EE 5 A_FaceTarget
 	TNT1 A 0 A_PlaySound("ExplosiveRailgun/Fire")
-    TNT1 A 0 A_CustomMissile("NobleExplosiveRailgunImpact",40,26,0,0)
-    OBAR F 5 Bright A_CustomRailgun(50,20,"None","None",RGF_SILENT,1,0,"BruiserRailPuff",0,0,0,0,40,0,"ExplosiveRailgunTrail")
+	TNT1 A 0 A_CustomMissile("NobleExplosiveRailgunImpact",40,26,0,0)
+	OBAR F 5 Bright A_CustomRailgun(50,20,"None","None",RGF_SILENT,1,0,"BruiserRailPuff",0,0,0,0,40,0,"ExplosiveRailgunTrail")
 	OBAR EE 2 A_FaceTarget
 	TNT1 A 0 A_PlaySound("ExplosiveRailgun/Fire")
-    TNT1 A 0 A_CustomMissile("NobleExplosiveRailgunImpact",40,26,0,0)
-    OBAR F 5 Bright A_CustomRailgun(50,20,"None","None",RGF_SILENT,1,0,"BruiserRailPuff",0,0,0,0,40,0,"ExplosiveRailgunTrail")
+	TNT1 A 0 A_CustomMissile("NobleExplosiveRailgunImpact",40,26,0,0)
+	OBAR F 5 Bright A_CustomRailgun(50,20,"None","None",RGF_SILENT,1,0,"BruiserRailPuff",0,0,0,0,40,0,"ExplosiveRailgunTrail")
 	TNT1 A 0 A_Changeflag(reflective,0)
-    OBAR EE 2
+	OBAR EE 2
 	TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 	TNT1 A 0 A_Jump(128,"Rockets","HomingRockets","BFG15K","BFG10K","RailgunV2","DarkMatter","DarkMatter2","ChaosLighting","FireBalls","ExRailgun")
-    TNT1 A 0 A_Jump (100,"BFG10KRage","RailgunRage","HellStorm","AnnhilationBall","HomingRocketStrike")
+	TNT1 A 0 A_Jump (100,"BFG10KRage","RailgunRage","HellStorm","AnnhilationBall","HomingRocketStrike")
 	Goto See
   ChaosLighting:
 	TNT1 A 0 A_ChangeFlag("NOPAIN",1)
@@ -718,41 +719,41 @@ ACTOR NexusObliterator 29316
 	TNT1 A 0 A_PlaySoundEx("Obliterator/sight","OBILSIT")
 	TNT1 A 0 A_SpawnItem("OverseerBrainSFX",0,0,0,0)
 	TNT1 A 0 A_SpawnItem("ChaosSuperLightningFX5",32,43,0,0)
-    OBAR P 4 Bright A_FaceTarget
+	OBAR P 4 Bright A_FaceTarget
 	TNT1 A 0 A_SpawnItem("OverseerBrainSFX",0,0,0,0)
 	TNT1 A 0 A_SpawnItem("ChaosSuperLightningFX5",32,43,0,0)
-    OBAR P 4 Bright A_FaceTarget
+	OBAR P 4 Bright A_FaceTarget
 	TNT1 A 0 A_SpawnItem("OverseerBrainSFX",0,0,0,0)
 	TNT1 A 0 A_SpawnItem("ChaosSuperLightningFX4",32,43,0,0)
-    OBAR P 4 Bright A_FaceTarget
+	OBAR P 4 Bright A_FaceTarget
 	TNT1 A 0 A_SpawnItem("OverseerBrainSFX",0,0,0,0)
 	TNT1 A 0 A_SpawnItem("ChaosSuperLightningFX4",32,43,0,0)
-    OBAR P 4 Bright A_FaceTarget
+	OBAR P 4 Bright A_FaceTarget
 	TNT1 A 0 A_SpawnItem("OverseerBrainSFX",0,0,0,0)
 	TNT1 A 0 A_SpawnItem("ChaosSuperLightningFX3",32,43,0,0)
-    OBAR P 4 Bright A_FaceTarget
+	OBAR P 4 Bright A_FaceTarget
 	TNT1 A 0 A_SpawnItem("OverseerBrainSFX",0,0,0,0)
 	TNT1 A 0 A_SpawnItem("ChaosSuperLightningFX3",32,43,0,0)
-    OBAR P 4 Bright A_FaceTarget
+	OBAR P 4 Bright A_FaceTarget
 	TNT1 A 0 A_SpawnItem("OverseerBrainSFX",0,0,0,0)
 	TNT1 A 0 A_SpawnItem("ChaosSuperLightningFX2",32,43,0,0)
-    OBAR Q 4 Bright A_FaceTarget
+	OBAR Q 4 Bright A_FaceTarget
 	TNT1 A 0 A_SpawnItem("OverseerBrainSFX",0,0,0,0)
 	TNT1 A 0 A_SpawnItem("ChaosSuperLightningFX2",32,43,0,0)
-    OBAR Q 4 Bright A_FaceTarget
+	OBAR Q 4 Bright A_FaceTarget
 	TNT1 A 0 A_SpawnItem("OverseerBrainSFX",0,0,0,0)
 	TNT1 A 0 A_SpawnItem("ChaosSuperLightningFX",32,43,0,0)
-    OBAR Q 4 Bright A_FaceTarget
+	OBAR Q 4 Bright A_FaceTarget
 	TNT1 A 0 A_SpawnItem("OverseerBrainSFX",0,0,0,0)
 	TNT1 A 0 A_SpawnItem("ChaosSuperLightningFX",32,43,0,0)
-    OBAR Q 4 Bright A_FaceTarget
+	OBAR Q 4 Bright A_FaceTarget
 	TNT1 A 0 A_SpawnItem("OverseerBrainSFX",0,0,0,0)
 	TNT1 A 0 A_SpawnItem("ChaosSuperLightningFX",32,43,0,0)
-    OBAR Q 4 Bright A_FaceTarget
+	OBAR Q 4 Bright A_FaceTarget
 	TNT1 A 0 A_SpawnItem("OverseerBrainSFX",0,0,0,0)
 	TNT1 A 0 A_SpawnItem("ChaosSuperLightningFX",32,43,0,0)
-    OBAR Q 4 Bright A_FaceTarget
-    OBAR R 8 Bright A_CustomMissile("ObliteratorChaosSuperLightningProj",32,0,0,0,0)
+	OBAR Q 4 Bright A_FaceTarget
+	OBAR R 8 Bright A_CustomMissile("ObliteratorChaosSuperLightningProj",32,0,0,0,0)
 	TNT1 A 0 A_Changeflag(reflective,0)
 	TNT1 A 0 A_UnSetInvulnerable
 	TNT1 A 0 A_ChangeFlag("NOPAIN",0)
@@ -761,40 +762,40 @@ ACTOR NexusObliterator 29316
 	Goto See
   FireBalls:
 	TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-    OBAR E 6 A_FaceTarget 
-    OBAR F 3 Bright A_CustomMissile("ObliteratorFireball",40,26,Random(4,-4))
-    OBAR E 6 A_FaceTarget
-    OBAR F 3 Bright A_CustomMissile("ObliteratorFireball",40,26,Random(4,-4))
 	OBAR E 6 A_FaceTarget 
-    OBAR F 3 Bright A_CustomMissile("ObliteratorFireball",40,26,Random(4,-4))
-    OBAR E 6 A_FaceTarget
-    OBAR F 3 Bright A_CustomMissile("ObliteratorFireball",40,26,Random(4,-4))
+	OBAR F 3 Bright A_CustomMissile("ObliteratorFireball",40,26,Random(4,-4))
+	OBAR E 6 A_FaceTarget
+	OBAR F 3 Bright A_CustomMissile("ObliteratorFireball",40,26,Random(4,-4))
 	OBAR E 6 A_FaceTarget 
-    OBAR F 3 Bright A_CustomMissile("ObliteratorFireball",40,26,Random(4,-4))
-    OBAR E 6 A_FaceTarget
-    OBAR F 3 Bright A_CustomMissile("ObliteratorFireball",40,26,Random(4,-4))
+	OBAR F 3 Bright A_CustomMissile("ObliteratorFireball",40,26,Random(4,-4))
+	OBAR E 6 A_FaceTarget
+	OBAR F 3 Bright A_CustomMissile("ObliteratorFireball",40,26,Random(4,-4))
+	OBAR E 6 A_FaceTarget 
+	OBAR F 3 Bright A_CustomMissile("ObliteratorFireball",40,26,Random(4,-4))
+	OBAR E 6 A_FaceTarget
+	OBAR F 3 Bright A_CustomMissile("ObliteratorFireball",40,26,Random(4,-4))
 	OBAR E 4 A_FaceTarget
-    OBAR F 2 Bright A_CustomMissile("ObliteratorFireball",40,26,Random(4,-4))
+	OBAR F 2 Bright A_CustomMissile("ObliteratorFireball",40,26,Random(4,-4))
 	OBAR E 4 A_FaceTarget
-    OBAR F 2 Bright A_CustomMissile("ObliteratorFireball",40,26,Random(4,-4))
+	OBAR F 2 Bright A_CustomMissile("ObliteratorFireball",40,26,Random(4,-4))
 	OBAR E 4 A_FaceTarget
-    OBAR F 2 Bright A_CustomMissile("ObliteratorFireball",40,26,Random(4,-4))
+	OBAR F 2 Bright A_CustomMissile("ObliteratorFireball",40,26,Random(4,-4))
 	OBAR E 4 A_FaceTarget
-    OBAR F 2 Bright A_CustomMissile("ObliteratorFireball",40,26,Random(4,-4))
+	OBAR F 2 Bright A_CustomMissile("ObliteratorFireball",40,26,Random(4,-4))
 	OBAR E 4 A_FaceTarget
-    OBAR F 2 Bright A_CustomMissile("ObliteratorFireball",40,26,Random(4,-4))
+	OBAR F 2 Bright A_CustomMissile("ObliteratorFireball",40,26,Random(4,-4))
 	OBAR E 4 A_FaceTarget
-    OBAR F 2 Bright A_CustomMissile("ObliteratorFireball",40,26,Random(4,-4))
+	OBAR F 2 Bright A_CustomMissile("ObliteratorFireball",40,26,Random(4,-4))
 	OBAR E 2 A_FaceTarget
-    OBAR F 1 Bright A_CustomMissile("ObliteratorFireball",40,26,Random(4,-4))
+	OBAR F 1 Bright A_CustomMissile("ObliteratorFireball",40,26,Random(4,-4))
 	OBAR E 2 A_FaceTarget
-    OBAR F 1 Bright A_CustomMissile("ObliteratorFireball",40,26,Random(4,-4))
+	OBAR F 1 Bright A_CustomMissile("ObliteratorFireball",40,26,Random(4,-4))
 	OBAR E 2 A_FaceTarget
-    OBAR F 1 Bright A_CustomMissile("ObliteratorFireball",40,26,Random(4,-4))
+	OBAR F 1 Bright A_CustomMissile("ObliteratorFireball",40,26,Random(4,-4))
 	OBAR E 2 A_FaceTarget
-    OBAR F 1 Bright A_CustomMissile("ObliteratorFireball",40,26,Random(4,-4))
+	OBAR F 1 Bright A_CustomMissile("ObliteratorFireball",40,26,Random(4,-4))
 	TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-    OBAR E 6
+	OBAR E 6
 	TNT1 A 0 A_Jump(87,"HomingRockets","BFG15K")
 	Goto See
   AnnhilationBall:
@@ -804,13 +805,13 @@ ACTOR NexusObliterator 29316
 	TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 	Goto See
   PyroCannon:
-    TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+	TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 	TNT1 A 0 A_Changeflag(reflective,1)
 	OBAR E 4 A_FaceTarget
 	OBAR E 4 A_FaceTarget
 	OBAR E 4 A_FaceTarget
 	OBAR E 4 A_FaceTarget
-    OBAR E 4 A_FaceTarget
+	OBAR E 4 A_FaceTarget
 	OBAR E 4 A_FaceTarget
 	OBAR E 4 A_FaceTarget
 	OBAR F 4 A_FaceTarget
@@ -823,9 +824,9 @@ ACTOR NexusObliterator 29316
 	Goto See
   DTDevastator:
   	OBAR E 0 Bright A_FaceTarget
-    OBAR E 0 Bright A_PlaySound ("devastator/charge")
+	OBAR E 0 Bright A_PlaySound ("devastator/charge")
 	TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-    OBAR E 2 Bright A_FaceTarget
+	OBAR E 2 Bright A_FaceTarget
 	OBAR E 2 Bright A_FaceTarget
 	OBAR E 2 Bright A_FaceTarget
 	OBAR E 2 Bright A_FaceTarget
@@ -875,15 +876,15 @@ ACTOR NexusObliterator 29316
 	OBAR E 2 Bright A_FaceTarget
 	OBAR S 2 Bright
 	OBAR S 2 Bright
-    OBAR S 0 A_PlaySound ("devastator/fire")
-    OBAR S 10 Bright A_CustomMissile("ObliteratorDevastatorBall")
+	OBAR S 0 A_PlaySound ("devastator/fire")
+	OBAR S 10 Bright A_CustomMissile("ObliteratorDevastatorBall")
 	TNT1 A 0 A_UnSetInvulnerable
-    OBAR E 35
+	OBAR E 35
 	Goto See
   DevastatorRage:
 	TNT1 A 0 A_PlaySoundEx("Obliterator/sight","OBILSIT")
   	TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-    OBAR E 2 Bright A_PlayWeaponSound("cydes/mischrg")
+	OBAR E 2 Bright A_PlayWeaponSound("cydes/mischrg")
 	OBAR E 1 Bright A_FaceTarget
 	OBAR EEEEEEEEEE 2 Bright A_FaceTarget
 	OBAR E 2 A_FaceTarget
@@ -898,11 +899,11 @@ ACTOR NexusObliterator 29316
 	TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 	Goto See
   Nuke:
-    TNT1 A 0 A_JumpIf(user_fusionnuke == 1, "Missile")
-    TNT1 A 0 A_SetUserVar("user_fusionnuke", 1)
+	TNT1 A 0 A_JumpIf(user_fusionnuke == 1, "Missile")
+	TNT1 A 0 A_SetUserVar("user_fusionnuke", 1)
 	TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 	TNT1 A 0 A_SetInvulnerable
-    TNT1 A 0 Bright A_SpawnItem("HellFireBaronFlameSpawner",0,0,0,0)
+	TNT1 A 0 Bright A_SpawnItem("HellFireBaronFlameSpawner",0,0,0,0)
 	TNT1 A 0 A_PlaySound("weapons/nuclearmissilecharge",0,10.0)
 	OBAR E 3 Bright A_PlaySound("LesserCardinal/Laugh", CHAN_AUTO, 1.0, False, ATTN_NONE)
 	TNT1 A 0 Radius_Quake(50,150,0,24,0)
@@ -942,22 +943,22 @@ ACTOR NexusObliterator 29316
 	TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 	Goto See
   Pain:
-    TNT1 A 0 A_Jump(128,"PainMissile")
+	TNT1 A 0 A_Jump(128,"PainMissile")
 	TNT1 A 0 A_Jump(100,"PainRage")
-    OBAR H 4 A_Pain
-    Goto See
+	OBAR H 4 A_Pain
+	Goto See
   PainMissile:
-    OBAR H 4 A_Pain
-    Goto Missile
+	OBAR H 4 A_Pain
+	Goto Missile
   PainRage:
-    OBAR H 4 A_Pain
-    Goto RageMissile
+	OBAR H 4 A_Pain
+	Goto RageMissile
   Death:
 	TNT1 A 0 A_Jump(100,"DeathPyro","DeathBlackHole","Lucky4U")
 	TNT1 A 0 A_Jump(40,"DeathNuke")
 	Goto DeathDevastator
   DeathDevastator:
-    OBAR H 0 A_Scream
+	OBAR H 0 A_Scream
 	OBAR HHHHHHHHHHHHHHHHHHHHHHHHHHH 2 Bright A_SpawnItemEx("ObliteratorDeathKaboom",random(-32,32),random(-40,40),random(16,48),random(-4,4),random(-4,4),random(0,4),0,SXF_TRANSFERPOINTERS)
 	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
 	TNT1 AA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))	
@@ -978,14 +979,14 @@ ACTOR NexusObliterator 29316
 	TNT1 A 0 A_SpawnItemEx("RadarItem",0,0,64,random(0,8),0,2,random(0,360),0,120)
 	TNT1 A 0 A_SpawnItemEx("LegendaryRandomSphere",0,0,64,random(0,8),0,2,random(0,360),0,0)
 	TNT1 A 0 A_SpawnItemEx("LegendaryRandomSphere",0,0,64,random(0,8),0,2,random(0,360),0,0)
-    OBAR M 4 Bright A_NoBlocking
-    OBAR N 3 Bright
+	OBAR M 4 Bright A_NoBlocking
+	OBAR N 3 Bright
 	TNT1 A 0 A_BossDeath
 	TNT1 A 0 A_KillMaster
-    OBAR O -1
-    Stop
+	OBAR O -1
+	Stop
   DeathPyro:
-    OBAR H 0 A_Scream
+	OBAR H 0 A_Scream
 	OBAR HHHHHHHHHHHHHHHHHHHHHHHHHHH 2 Bright A_SpawnItemEx("ObliteratorDeathKaboom",random(-32,32),random(-40,40),random(16,48),random(-4,4),random(-4,4),random(0,4),0,SXF_TRANSFERPOINTERS)
 	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
 	TNT1 AA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))	
@@ -1006,14 +1007,14 @@ ACTOR NexusObliterator 29316
 	//TNT1 A 0 A_SpawnItemEx("ArmorRegeneratorPickup",0,0,64,random(0,8),0,2,random(0,360),0,60)
 	TNT1 A 0 A_SpawnItemEx("PyroCannon",0,0,64,random(0,8),0,2,random(0,360),0,0)
 	TNT1 A 0 A_SpawnItemEx("RadarItem",0,0,64,random(0,8),0,2,random(0,360),0,120)
-    OBAR M 4 Bright A_NoBlocking
-    OBAR N 3 Bright
+	OBAR M 4 Bright A_NoBlocking
+	OBAR N 3 Bright
 	TNT1 A 0 A_BossDeath
 	TNT1 A 0 A_KillMaster
-    OBAR O -1
-    Stop
+	OBAR O -1
+	Stop
   DeathBlackHole:
-    OBAR H 0 A_Scream
+	OBAR H 0 A_Scream
 	OBAR HHHHHHHHHHHHHHHHHHHHHHHHHHH 2 Bright A_SpawnItemEx("ObliteratorDeathKaboom",random(-32,32),random(-40,40),random(16,48),random(-4,4),random(-4,4),random(0,4),0,SXF_TRANSFERPOINTERS)
 	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
 	TNT1 AA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))	
@@ -1033,14 +1034,14 @@ ACTOR NexusObliterator 29316
 	TNT1 A 0 A_SpawnItemEx("RadarItem",0,0,64,random(0,8),0,2,random(0,360),0,120)
 	TNT1 A 0 A_SpawnItemEx("LegendaryRandomSphere",0,0,64,random(0,8),0,2,random(0,360),0,0)
 	TNT1 A 0 A_SpawnItemEx("LegendaryRandomSphere",0,0,64,random(0,8),0,2,random(0,360),0,0)
-    OBAR M 4 Bright A_NoBlocking
-    OBAR N 3 Bright
+	OBAR M 4 Bright A_NoBlocking
+	OBAR N 3 Bright
 	TNT1 A 0 A_BossDeath
 	TNT1 A 0 A_KillMaster
-    OBAR O -1
-    Stop
+	OBAR O -1
+	Stop
   DeathNuke:
-    OBAR H 0 A_Scream
+	OBAR H 0 A_Scream
 	OBAR HHHHHHHHHHHHHHHHHHHHHHHHHHH 2 Bright A_SpawnItemEx("ObliteratorDeathKaboom",random(-32,32),random(-40,40),random(16,48),random(-4,4),random(-4,4),random(0,4),0,SXF_TRANSFERPOINTERS)
 	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
 	TNT1 AA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))	
@@ -1060,14 +1061,14 @@ ACTOR NexusObliterator 29316
 	//TNT1 A 0 A_SpawnItemEx("ArmorRegeneratorPickup",0,0,64,random(0,8),0,2,random(0,360),0,60)
 	TNT1 A 0 A_SpawnItemEx("RadarItem",0,0,64,random(0,8),0,2,random(0,360),0,120)
 	TNT1 A 0 A_SpawnItemEx("UnbelieveabilitySphere",0,0,64,random(1,8),0,2,random(0,360),0,64)
-    OBAR M 4 Bright A_NoBlocking
-    OBAR N 3 Bright
+	OBAR M 4 Bright A_NoBlocking
+	OBAR N 3 Bright
 	TNT1 A 0 A_BossDeath
 	TNT1 A 0 A_KillMaster
-    OBAR O -1
-    Stop
+	OBAR O -1
+	Stop
   Lucky4U:
-    OBAR H 0 A_Scream
+	OBAR H 0 A_Scream
 	OBAR HHHHHHHHHHHHHHHHHHHHHHHHHHH 2 Bright A_SpawnItemEx("ObliteratorDeathKaboom",random(-32,32),random(-40,40),random(16,48),random(-4,4),random(-4,4),random(0,4),0,SXF_TRANSFERPOINTERS)
 	TNT1 AA 0 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,128,0)
 	TNT1 AA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))	
@@ -1087,12 +1088,12 @@ ACTOR NexusObliterator 29316
 	//TNT1 A 0 A_SpawnItemEx("ArmorRegeneratorPickup",0,0,64,random(0,8),0,2,random(0,360),0,60)
 	TNT1 A 0 A_SpawnItemEx("DTAllMap",0,0,64,random(0,8),0,2,random(0,360),0,120)
 	TNT1 A 0 A_SpawnItemEx("UnbelieveabilitySphere",0,0,64,random(1,8),0,2,random(0,360),0,64)
-    OBAR M 4 Bright A_NoBlocking
-    OBAR N 3 Bright
+	OBAR M 4 Bright A_NoBlocking
+	OBAR N 3 Bright
 	TNT1 A 0 A_BossDeath
 	TNT1 A 0 A_KillMaster
-    OBAR O -1
-    Stop
+	OBAR O -1
+	Stop
    }
 }
 
@@ -1109,9 +1110,9 @@ Scale 1.2
 States
 {
 Spawn:
-    OBAR A 2 A_FadeOut(0.18)
-    Loop
-    }
+	OBAR A 2 A_FadeOut(0.18)
+	Loop
+	}
 }
 
 ACTOR ObliteratorGhostB : ObliteratorGhostA
@@ -1119,9 +1120,9 @@ ACTOR ObliteratorGhostB : ObliteratorGhostA
 States
 {
 Spawn:
-    OBAR B 2 A_FadeOut(0.18)
-    Loop
-    }
+	OBAR B 2 A_FadeOut(0.18)
+	Loop
+	}
 }
 
 ACTOR ObliteratorGhostC : ObliteratorGhostA
@@ -1129,9 +1130,9 @@ ACTOR ObliteratorGhostC : ObliteratorGhostA
 States
 {
 Spawn:
-    OBAR C 2 A_FadeOut(0.18)
-    Loop
-    }
+	OBAR C 2 A_FadeOut(0.18)
+	Loop
+	}
 }
 
 ACTOR ObliteratorGhostD : ObliteratorGhostA
@@ -1139,9 +1140,9 @@ ACTOR ObliteratorGhostD : ObliteratorGhostA
 States
 {
 Spawn:
-    OBAR D 2 A_FadeOut(0.18)
-    Loop
-    }
+	OBAR D 2 A_FadeOut(0.18)
+	Loop
+	}
 }
 
 ACTOR ObliteratorExplosiveTracer : MinigunnerExplosiveTracer
@@ -1155,12 +1156,12 @@ DamageType "NobleComet"
 States
  {
   Death:
-      TNT1 A 0
+	  TNT1 A 0
 	  TNT1 A 0 Bright A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
 	  TNT1 A 0 Bright A_SpawnItemEx("ObliteratorDemonTechEx",0,0,0,0,0,0,0,128,0)
 	  TNT1 AAA 0 A_CustomMissile("Kaboom17", 0, 0, random(0,360), 2, random(0,360))
 	  TNT1 AAAA 0 A_CustomMissile("SmokeFX4", 0, 0, random(0,360), 2, random(0,360))
-      Stop
+	  Stop
   }
 }
 
@@ -1198,7 +1199,7 @@ States
 	HBAL AAA 0 A_SpawnItemEx("SentientBrainLightning",0,0,32,0,0,0,0,0,160)
 	Loop
   Death:
-    TNT1 A 0
+	TNT1 A 0
 	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("EnragedLightningSpark",0,0,0,random(1,10),0,random(1,10),random(0,359),129)
 	TNT1 A 0 A_StopSoundEx("Voice")
 	TNT1 A 0 A_Explode(350,250)
@@ -1219,12 +1220,12 @@ ACTOR ObliteratorDevastatorBall : FusionDevastatorBall
 States
 {
 Spawn:
-    TNT1 A 0
-    TNT1 A 0 A_PlaySoundEx("devastator/fly","Voice",1)
+	TNT1 A 0
+	TNT1 A 0 A_PlaySoundEx("devastator/fly","Voice",1)
 
 	TNT1 A 0 A_CustomMissile("ObliteratorDevastatorBolt",6,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40))
 	CRS9 A 0 Bright A_CustomMissile("ObliteratorLiteShot",0,0,Random(0,360))
-    CRS9 A 1 Bright A_SpawnItemEx("ProjectileTrailParticleRed",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	CRS9 A 1 Bright A_SpawnItemEx("ProjectileTrailParticleRed",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
 	TNT1 A 0 A_SpawnItemEx("DevastatorLightningRed",Random(6,-6),Random(6,-6),Random(6,-6),0,0,0,0,128)
 	CRS9 A 1 Bright A_CustomMissile("ObliteratorDTBFGProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER)
 	TNT1 A 0 A_CustomMissile("DevastatorTrail",0,0,0,CMF_AIMDIRECTION|CMF_TRACKOWNER,0)
@@ -1232,14 +1233,14 @@ Spawn:
 
 	TNT1 A 0 A_CustomMissile("ObliteratorDevastatorBolt",6,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40))
 	CRS9 A 0 Bright A_CustomMissile("ObliteratorLiteShot",0,0,Random(0,360))
-    CRS9 B 1 Bright A_SpawnItemEx("ProjectileTrailParticleRed",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	CRS9 B 1 Bright A_SpawnItemEx("ProjectileTrailParticleRed",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
 	TNT1 A 0 A_SpawnItemEx("DevastatorLightningRed2",Random(6,-6),Random(6,-6),Random(6,-6),0,0,0,0,128)
 	CRS9 A 1 Bright A_CustomMissile("ObliteratorDTBFGProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER)
 	TNT1 A 0 A_Explode(32,450,0)
 
 	TNT1 A 0 A_CustomMissile("ObliteratorDevastatorBolt",6,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40))
 	CRS9 A 0 Bright A_CustomMissile("ObliteratorLiteShot",0,0,Random(0,360))
-    CRS9 C 1 Bright A_SpawnItemEx("ProjectileTrailParticleRed",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	CRS9 C 1 Bright A_SpawnItemEx("ProjectileTrailParticleRed",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
 	TNT1 A 0 A_SpawnItemEx("DevastatorLightningRed",Random(6,-6),Random(6,-6),Random(6,-6),0,0,0,0,128)
 	CRS9 A 1 Bright A_CustomMissile("ObliteratorDTBFGProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER)
 	TNT1 A 0 A_CustomMissile("DevastatorTrail",0,0,0,CMF_AIMDIRECTION|CMF_TRACKOWNER,0)
@@ -1247,12 +1248,12 @@ Spawn:
 
 	TNT1 A 0 A_CustomMissile("ObliteratorDevastatorBolt",6,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40))
 	CRS9 A 0 Bright A_CustomMissile("ObliteratorLiteShot",0,0,Random(0,360))
-    CRS9 D 1 Bright A_SpawnItemEx("ProjectileTrailParticleRed",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+	CRS9 D 1 Bright A_SpawnItemEx("ProjectileTrailParticleRed",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
 	TNT1 A 0 A_SpawnItemEx("DevastatorLightningRed2",Random(6,-6),Random(6,-6),Random(6,-6),0,0,0,0,128)
 	CRS9 A 1 Bright A_CustomMissile("ObliteratorDTBFGProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER)
-    Goto Spawn
+	Goto Spawn
 Death:
-    TNT1 A 0
+	TNT1 A 0
 	TNT1 A 0 A_SetTranslucent(0.75,1)
 	TNT1 A 0 Radius_Quake(3,35,0,10,0)
 	TNT1 A 0 A_CustomMissile("DTBFG10KTracerObliterator",0,0,0,CMF_TRACKOWNER)
@@ -1324,29 +1325,29 @@ Death:
 	TNT1 A 0 A_SpawnItemEx("DevastatorShockWave2",0,0,0,0,0,0,0,128)
 	TNT1 A 0 A_SpawnItem("RedDTBFGEx",0,-10)
 	CRE9 D 0 Bright A_CustomMissile("ObliteratorDevastatorBall2",0,0,18,2)
-    CRE9 D 0 Bright A_CustomMissile("ObliteratorDevastatorBall2",0,0,36,2)
-    CRE9 D 0 Bright A_CustomMissile("ObliteratorDevastatorBall2",0,0,54,2)
-    CRE9 D 0 Bright A_CustomMissile("ObliteratorDevastatorBall2",0,0,72,2)
-    CRE9 D 0 Bright A_CustomMissile("ObliteratorDevastatorBall2",0,0,90,2)
-    CRE9 D 0 Bright A_CustomMissile("ObliteratorDevastatorBall2",0,0,108,2)
-    CRE9 D 0 Bright A_CustomMissile("ObliteratorDevastatorBall2",0,0,126,2)
-    CRE9 D 0 Bright A_CustomMissile("ObliteratorDevastatorBall2",0,0,144,2)
-    CRE9 D 0 Bright A_CustomMissile("ObliteratorDevastatorBall2",0,0,144,2)
-    CRE9 D 0 Bright A_CustomMissile("ObliteratorDevastatorBall2",0,0,162,2)
-    CRE9 D 0 Bright A_CustomMissile("ObliteratorDevastatorBall2",0,0,180,2)
-    CRE9 D 0 Bright A_CustomMissile("ObliteratorDevastatorBall2",0,0,196,2)
-    CRE9 D 0 Bright A_CustomMissile("ObliteratorDevastatorBall2",0,0,216,2)
-    CRE9 D 0 Bright A_CustomMissile("ObliteratorDevastatorBall2",0,0,234,2)
-    CRE9 D 0 Bright A_CustomMissile("ObliteratorDevastatorBall2",0,0,252,2)
-    CRE9 D 0 Bright A_CustomMissile("ObliteratorDevastatorBall2",0,0,270,2)
-    CRE9 D 0 Bright A_CustomMissile("ObliteratorDevastatorBall2",0,0,288,2)
-    CRE9 D 0 Bright A_CustomMissile("ObliteratorDevastatorBall2",0,0,306,2)
-    CRE9 D 0 Bright A_CustomMissile("ObliteratorDevastatorBall2",0,0,324,2)
-    CRE9 D 0 Bright A_CustomMissile("ObliteratorDevastatorBall2",0,0,342,2)
+	CRE9 D 0 Bright A_CustomMissile("ObliteratorDevastatorBall2",0,0,36,2)
+	CRE9 D 0 Bright A_CustomMissile("ObliteratorDevastatorBall2",0,0,54,2)
+	CRE9 D 0 Bright A_CustomMissile("ObliteratorDevastatorBall2",0,0,72,2)
+	CRE9 D 0 Bright A_CustomMissile("ObliteratorDevastatorBall2",0,0,90,2)
+	CRE9 D 0 Bright A_CustomMissile("ObliteratorDevastatorBall2",0,0,108,2)
+	CRE9 D 0 Bright A_CustomMissile("ObliteratorDevastatorBall2",0,0,126,2)
+	CRE9 D 0 Bright A_CustomMissile("ObliteratorDevastatorBall2",0,0,144,2)
+	CRE9 D 0 Bright A_CustomMissile("ObliteratorDevastatorBall2",0,0,144,2)
+	CRE9 D 0 Bright A_CustomMissile("ObliteratorDevastatorBall2",0,0,162,2)
+	CRE9 D 0 Bright A_CustomMissile("ObliteratorDevastatorBall2",0,0,180,2)
+	CRE9 D 0 Bright A_CustomMissile("ObliteratorDevastatorBall2",0,0,196,2)
+	CRE9 D 0 Bright A_CustomMissile("ObliteratorDevastatorBall2",0,0,216,2)
+	CRE9 D 0 Bright A_CustomMissile("ObliteratorDevastatorBall2",0,0,234,2)
+	CRE9 D 0 Bright A_CustomMissile("ObliteratorDevastatorBall2",0,0,252,2)
+	CRE9 D 0 Bright A_CustomMissile("ObliteratorDevastatorBall2",0,0,270,2)
+	CRE9 D 0 Bright A_CustomMissile("ObliteratorDevastatorBall2",0,0,288,2)
+	CRE9 D 0 Bright A_CustomMissile("ObliteratorDevastatorBall2",0,0,306,2)
+	CRE9 D 0 Bright A_CustomMissile("ObliteratorDevastatorBall2",0,0,324,2)
+	CRE9 D 0 Bright A_CustomMissile("ObliteratorDevastatorBall2",0,0,342,2)
 	CRE9 AAAAAABBBBBBCCCCCCDDDDDD 1 A_CustomMissile("KaboomDevastator22",0,0,random(0,360),2,random(0,360))
-    CRE9 EF 6 Bright
-    Stop    
-    }
+	CRE9 EF 6 Bright
+	Stop	
+	}
 }
 
 ACTOR ObliteratorDevastatorBall2 : FusionDevastatorBall2
@@ -1377,11 +1378,11 @@ ACTOR ObliteratorLiteShot : LiteShot
    States
    {
    Spawn:
-      DLIT AAABBBCCC 1 Bright A_SpawnItem ("LiteTrail",0,0,0)
-      Loop
+	  DLIT AAABBBCCC 1 Bright A_SpawnItem ("LiteTrail",0,0,0)
+	  Loop
    Death:
-      DLIT DEFGHIJKLMNO 1 Bright
-      Stop
+	  DLIT DEFGHIJKLMNO 1 Bright
+	  Stop
    }
 }
 
@@ -1393,9 +1394,9 @@ ACTOR DTBFG10KTracerObliterator : DTBFG10KTracer
    States
    {
    XDeath:
-      TNT1 A 0
-      TNT1 A 1 A_SpawnItem("CustomSpray2")
-      Stop
+	  TNT1 A 0
+	  TNT1 A 1 A_SpawnItem("CustomSpray2")
+	  Stop
 	  }
 }
 
@@ -1406,16 +1407,16 @@ ACTOR BaronNuke : SentientFusionNuke
    States
    {
    Spawn:
-      TNT1 A 0 Bright A_CustomMissile("MissileTrail",Random(4,6),Random(-2,2)) 
-      TNT1 A 0 Bright A_CustomMissile("ProjectileTrailParticleOrange",Random(4,6),Random(-2,2)) 
-      NKS1 A 2 Bright A_CustomMissile("NuclearMissileTrail",0,0,0)
-      Loop
+	  TNT1 A 0 Bright A_CustomMissile("MissileTrail",Random(4,6),Random(-2,2)) 
+	  TNT1 A 0 Bright A_CustomMissile("ProjectileTrailParticleOrange",Random(4,6),Random(-2,2)) 
+	  NKS1 A 2 Bright A_CustomMissile("NuclearMissileTrail",0,0,0)
+	  Loop
    Death:
-      TNT1 A 0
+	  TNT1 A 0
 	  TNT1 A 0 A_StopSound(5)
 	  TNT1 A 0 A_SpawnItem("DarkDesNukeBaron")
 	  TNT1 A 0 A_Explode(6000,512,0,1)
-      Stop
+	  Stop
    }
 }
 
@@ -1469,8 +1470,8 @@ Actor ObilteratorDevastatorDeath
 		CRE9 AAAAAABBBBBBCCCCCCDDDDDD 1 Bright A_CustomMissile("KaboomDevastator22",32,0,random(0,360),CMF_AIMDIRECTION,random(0,360))
 		CRE9 EF 6 Bright
 		TNT1 A 35 Bright
-    Stop 
-    }
+	Stop 
+	}
 }
 
 ACTOR ObliteratorLineSpawner : BluePowerLineSpawner
@@ -1482,8 +1483,8 @@ Spawn:
 	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
 	TNT1 AAAAA 0 A_SpawnItemEx("TerminatorPowerLine",random(38,-38),random(38,-38),random(0,38),0,0,random(2,8),0,128,0) 	
 	TNT1 A 1 A_SpawnItemEx("TerminatorPowerLine",random(38,-38),random(38,-38),random(0,38),0,0,random(2,8),0,128,0) 
-    Stop  
-    }
+	Stop  
+	}
 }
 
 ACTOR ObliteratorDeathKaboom : BaseBlueKaboom
@@ -1493,28 +1494,28 @@ Scale 1
 States
 {
   Spawn:
-    TNT1 A 0
-    FXPO A 1 Bright A_PlaySound("weapons/rocklx")
-    TNT1 A 0 A_Explode(8, 128)
+	TNT1 A 0
+	FXPO A 1 Bright A_PlaySound("weapons/rocklx")
+	TNT1 A 0 A_Explode(8, 128)
 	TNT1 A 0 A_SpawnItemEx("DeathKaboomFlare", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE)
 	TNT1 A 0 A_Jump(192, 58)
 	TNT1 A 0 A_Jump(128, 15, 29, 43)
-    FXPR ABBCDEFGHIJKLM 1 Bright A_FadeOut(0.05)
+	FXPR ABBCDEFGHIJKLM 1 Bright A_FadeOut(0.05)
 	Stop
-    FXPO ABBCDEFGHIJKLM 1 Bright A_FadeOut(0.05)
+	FXPO ABBCDEFGHIJKLM 1 Bright A_FadeOut(0.05)
 	Stop
-    EISL BBBBCCCCDDDDDD 1 Bright A_FadeOut(0.05)
+	EISL BBBBCCCCDDDDDD 1 Bright A_FadeOut(0.05)
 	Stop
-    MISL BBBBCCCCDDDDDD 1 Bright A_FadeOut(0.05)
+	MISL BBBBCCCCDDDDDD 1 Bright A_FadeOut(0.05)
 	Stop
-    FXPO AB 1 Bright A_FadeOut(0.05)
+	FXPO AB 1 Bright A_FadeOut(0.05)
 	FXPR BC 1 Bright A_FadeOut(0.05)
 	FXPO DE 1 Bright A_FadeOut(0.05)
 	FXPR FG 1 Bright A_FadeOut(0.05)
 	FXPO HI 1 Bright A_FadeOut(0.05)
 	FXPR JK 1 Bright A_FadeOut(0.05)
 	FXPO LM 1 Bright A_FadeOut(0.05)
-    Stop
+	Stop
 }
 }
 

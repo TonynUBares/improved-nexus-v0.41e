@@ -96,15 +96,15 @@ ACTOR VexedNemesisFiend : NemesisFiend
 	TNT1 A 0 A_Jump(87,"See")
 	Loop
  Teleport:
-	VFND A 1 Bright A_UnSetShootable
+	VFND A 1 Bright ACS_NamedExecuteWithResult("ttk_fader",10,3)
 	VFND AAAA 0 A_SpawnItem("TrueNemesisHellionSmokeSpawner",0,0,0,0)
-	VFND AAAAAAAAAA 1 A_FadeOut(0.1,0)
+	VFND A 0 A_Settics(user_fading)
 	VFND AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
 	VFND AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
 	VFND A 1 A_PlayWeaponSound("boss/teleport")
 	VFND AAAA 0 A_SpawnItem("TrueNemesisHellionSmokeSpawner",0,0,0,0)
-	VFND AAAAAAAAAA 1 A_FadeIn(0.1)
-	VFND A 1 Bright A_SetShootable
+	VFND A 0 A_Settics(user_fading)
+	VFND A 1 Bright
 	Goto See		
   Missile:
     TNT1 A 0 A_SetTranslucent (0.3)

@@ -45,6 +45,7 @@ Actor NemesisHellKnight : LegendaryHellKnight 28003
   var int user_delay;
   var int user_deathtimer;
   var int user_deathtimeractive;
+  var int user_fading;
   States
   {
   Spawn:
@@ -124,14 +125,14 @@ Actor NemesisHellKnight : LegendaryHellKnight 28003
 	TNT1 A 0 A_Jump(75,"See")
 	Loop
   Teleport:
-	NNBL P 1 Bright A_UnSetShootable
+	NNBL P 1 Bright ACS_NamedExecuteWithResult("ttk_fader",10,3)
 	TNT1 A 0 A_SetUserVar("user_effect_type",0)
-	NNBL PPPPPPPPPP 1 Bright A_FadeOut(0.1,0)
+	NNBL P 0 A_Settics(user_fading)
 	NNBL P 2 Bright
 	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 Bright A_Wander
 	NNBL P 1 Bright A_PlayWeaponSound("boss/teleport")
-	NNBL PPPPPPPPPP 1 Bright A_FadeIn(0.1)
-	NNBL P 1 Bright A_SetShootable
+	NNBL P 0 A_Settics(user_fading)
+	NNBL P 1 Bright 
 	TNT1 A 0 A_Jump(64,"See")
 	TNT1 A 0 A_JumpIfTargetInLOS("Missile")
 	Goto See	

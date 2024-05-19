@@ -47,6 +47,7 @@ Actor NemesisFiend : LegendaryFiend 28025
   Tag "$CFNemFiend"
   var int user_deathtimer;
   var int user_deathtimeractive;
+  var int user_fading;
   States
   {
   Spawn:
@@ -108,13 +109,13 @@ Actor NemesisFiend : LegendaryFiend 28025
 	Loop
  Teleport:
 	TNT1 A 0 A_SetUserVar("user_effect_type",0)
-	NFND A 1 Bright A_UnSetShootable
-	NFND AAAAAAAAAA 1 A_FadeOut(0.1,0)
+	NFND A 1 Bright ACS_NamedExecuteWithResult("ttk_fader",10,3)
+	NFND A 0 A_Settics(user_fading)
 	NFND AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
 	NFND A 1 A_PlayWeaponSound("boss/teleport")
 	TNT1 A 0 A_Recoil(0.1)
-	NFND AAAAAAAAAA 1 A_FadeIn(0.1)
-	NFND A 1 Bright A_SetShootable
+	NFND A 0 A_Settics(user_fading)
+	NFND A 1 Bright 
 	Goto See		
   Missile:
 	TNT1 A 0 A_SetShootable
