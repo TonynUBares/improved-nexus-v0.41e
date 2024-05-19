@@ -45,6 +45,7 @@ ACTOR KaguyaHouraisan
   tag "$NEKaguya"
   var int user_delay;
   var int user_lowlag;
+  var int user_script;
   States
   {
   Spawn:

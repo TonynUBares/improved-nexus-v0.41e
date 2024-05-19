@@ -1,58 +1,58 @@
 ACTOR HellsMinister 29020 //Judgment Day
 { 
-Health 15000
-Scale 2
-Radius 40
-Height 110
-Mass 999999
-Speed 11
-Monster
-MeleeRange 384
-Obituary "%o was annihilated by Hell's Minister."
-+BOSS
-+FLOORCLIP
-+MISSILEMORE
-+MISSILEEVENMORE
-+QUICKTORETALIATE
-+NORADIUSDMG
-+DONTHARMSPECIES
-+NOTIMEFREEZE
-+NOPAIN
-Species "Hell"
-DamageFactor "NobleComet", 0.0
-DamageFactor "HellComet", 0.0
-DamageFactor "Hell", 0.0
-DamageFactor "Cyber10K", 0.0
-DamageFactor "Legendary", 0.01
-DamageFactor "LegendaryGuru", 0.01
-DamageFactor "LegendaryGuruPlayer", 0.01
-DamageFactor "BFGSplash", 0.1
-DamageFactor "BFGSpray", 0.1
-DamageFactor "PDTBFG", 0.0
-DamageFactor "PDTBFGTracer", 0.0
-DamageFactor "PlayerDevBall", 0.0
-DamageFactor "PlayerDevBall2", 0.0
-DamageFactor "PlayerDTBFGRailgunSlug", 0.0
-DamageFactor "PlayerDevTracer", 0.0
-DamageFactor "Ice", 0.5
-DamageFactor "Explosion", 0.1
-DamageFactor "PlayerNemesisPlasma", 0.1
-DamageFactor 0.7 //0.35
-MinMissileChance 10
-SeeSound "Minister/See"
-ActiveSound "Minister/Idle"
-PainSound "ArchonLord/pain"
-DeathSound "Minister/Death"
-MaxStepHeight 32
-MaxDropOffHeight 32
-BloodColor "Green"
-var int user_delay;
-var int user_missile;
-var int user_music;
-var int user_lowlag;
-Tag "$NEHellMini"
-States 
-{ 
+ Health 15000
+ Scale 2
+ Radius 40
+ Height 110
+ Mass 999999
+ Speed 11
+ Monster
+ MeleeRange 384
+ Obituary "%o was annihilated by Hell's Minister."
+ +BOSS
+ +FLOORCLIP
+ +MISSILEMORE
+ +MISSILEEVENMORE
+ +QUICKTORETALIATE
+ +NORADIUSDMG
+ +DONTHARMSPECIES
+ +NOTIMEFREEZE
+ +NOPAIN
+ Species "Hell"
+ DamageFactor "NobleComet", 0.0
+ DamageFactor "HellComet", 0.0
+ DamageFactor "Hell", 0.0
+ DamageFactor "Cyber10K", 0.0
+ DamageFactor "Legendary", 0.01
+ DamageFactor "LegendaryGuru", 0.01
+ DamageFactor "LegendaryGuruPlayer", 0.01
+ DamageFactor "BFGSplash", 0.1
+ DamageFactor "BFGSpray", 0.1
+ DamageFactor "PDTBFG", 0.0
+ DamageFactor "PDTBFGTracer", 0.0
+ DamageFactor "PlayerDevBall", 0.0
+ DamageFactor "PlayerDevBall2", 0.0
+ DamageFactor "PlayerDTBFGRailgunSlug", 0.0
+ DamageFactor "PlayerDevTracer", 0.0
+ DamageFactor "Ice", 0.5
+ DamageFactor "Explosion", 0.1
+ DamageFactor "PlayerNemesisPlasma", 0.1
+ DamageFactor 0.7 //0.35
+ MinMissileChance 10
+ SeeSound "Minister/See"
+ ActiveSound "Minister/Idle"
+ PainSound "ArchonLord/pain"
+ DeathSound "Minister/Death"
+ MaxStepHeight 32
+ MaxDropOffHeight 32
+ BloodColor "Green"
+ var int user_delay;
+ var int user_missile;
+ var int user_music;
+ var int user_lowlag;
+ Tag "$NEHellMini"
+ States 
+ { 
   Spawn: 
     L0HS A 0
 	TNT1 A 0 ACS_NamedExecuteAlways("WimpyMode",0,2)

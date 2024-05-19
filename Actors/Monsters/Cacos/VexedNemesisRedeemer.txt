@@ -37,43 +37,44 @@ Actor VexedNemesisRedeemer : NemesisDefiler
   DeathSound "NemesisDefiler/Death"
   Obituary "%o was destined to die by the Vexed Nemesis Redeemer."
   Tag "$NEVedDefi"
+ var int user_fading;
   States
   {
   Spawn:
-    VMDF A 0
+	VMDF A 0
 	TNT1 A 0 ACS_NamedExecuteAlways("WimpyMode",0,2)
 	TNT1 A 0 ACS_NamedExecuteAlways("ModifyMonster",0,2,5)
   Idle:
-    TNT1 AAA 0 A_SpawnItemEx("NDefilerWhiteSmokeSpawner")
-    VMDF A 10 Bright A_Look
-    Loop
+	TNT1 AAA 0 A_SpawnItemEx("NDefilerWhiteSmokeSpawner")
+	VMDF A 10 Bright A_Look
+	Loop
   See:
-    TNT1 A 0 A_JumpIf(user_music == 1,3)
-    TNT1 A 0 ACS_NamedExecuteAlways("CFMusic",0,2005)
+	TNT1 A 0 A_JumpIf(user_music == 1,3)
+	TNT1 A 0 ACS_NamedExecuteAlways("CFMusic",0,2005)
 	TNT1 A 0 A_SetUserVar("user_music",1)
 	TNT1 A 0 ACS_NamedExecuteWithResult("CFRuneCheck",1)
 	TNT1 A 0 A_JumpIf(user_suicide == 1,"SeeSuicide")
 	TNT1 AAA 0 A_SpawnItemEx("NDefilerWhiteSmokeSpawner")
-    VMDF AAA 2 Bright A_Chase
+	VMDF AAA 2 Bright A_Chase
 	TNT1 A 0 A_Jump(68,"Avoid","Rush","Trap","Teleport")
-    Loop
+	Loop
   SeeSuicide:
 	TNT1 A 0 A_JumpIfHealthLower(50,"SeeKamikaze")
 	TNT1 A 0 A_SpawnItemEx("NemesisSoulFlameSpawner")
-    VMDF A 3 Bright A_Chase("","Missile.Suicide")
-    Loop	
+	VMDF A 3 Bright A_Chase("","Missile.Suicide")
+	Loop	
   SeeKamikaze:
 	TNT1 A 0 A_ChangeFlag("ALWAYSFAST",1)
 	TNT1 A 0 A_SpawnItemEx("NemesisSoulFlameSpawner")
-    VMDF A 3 Bright A_Chase("","Kamikaze")
+	VMDF A 3 Bright A_Chase("","Kamikaze")
 	Loop
   Rush:
 	TNT1 AAA 0 A_SpawnItemEx("NDefilerWhiteSmokeSpawner")	
 	TNT1 A 0 A_JumpIf(user_suicide == 1,"SeeSuicide")
 	TNT1 AA 0 A_Chase
-    VMDF A 1 Bright A_SpawnItemEx("VNemesisDefilerGhost")
+	VMDF A 1 Bright A_SpawnItemEx("VNemesisDefilerGhost")
 	TNT1 A 0 A_Jump(12,"See")
-    Loop
+	Loop
   Avoid:
 	TNT1 A 0
 	TNT1 A 0 A_JumpIf(user_suicide == 1,"SeeSuicide")
@@ -86,45 +87,45 @@ Actor VexedNemesisRedeemer : NemesisDefiler
 	VMDF G 1 A_Stop
 	TNT1 A 0 A_Jump(150,2)
 	TNT1 A 0 A_JumpIfTargetInLOS("Comets")
-    Goto Avoid
+	Goto Avoid
   Teleport:
-    VMDF A 1 A_UnSetShootable
+	VMDF A 1 ACS_NamedExecuteWithResult("ttk_fader",10,3)
 	TNT1 AAA 0 A_SpawnItemEx("NDefilerWhiteSmokeSpawner")
-	VMDF AAAAAAAAAAA 1 A_FadeOut(0.1,0)
+	VMDF A 0 A_Settics(user_fading)
 	VMDF AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
 	VMDF AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
-    VMDF A 1 A_PlayWeaponSound("boss/teleport")
+	VMDF A 1 A_PlayWeaponSound("boss/teleport")
 	TNT1 AAA 0 A_SpawnItemEx("NDefilerWhiteSmokeSpawner")
-	VMDF AAAAAAAAAAA 1 A_FadeIn(0.1)
-    VMDF A 1 A_SetShootable
-    Goto See		
+	VMDF A 0 A_Settics(user_fading)
+	VMDF A 1 
+	Goto See		
   Trap:
 	TNT1 A 0 A_JumpIf(user_suicide == 1,"SeeSuicide")
-    TNT1 A 0 A_SetAngle(random(0,359))
+	TNT1 A 0 A_SetAngle(random(0,359))
 	TNT1 A 0 A_JumpIfCloser(2,2)
 	TNT1 A 0 A_Jump(256,"See")
 	TNT1 A 0 A_PlaySound("NemesisDefiler/Attack1",7)
-    VMDF BC 5 Bright
+	VMDF BC 5 Bright
 	TNT1 A 0 A_PlaySound("reedemer/trap")
-    VMDF D 5 Bright A_SpawnItemEx("VNemesisDefilerTrap",45,0,16,15)
+	VMDF D 5 Bright A_SpawnItemEx("VNemesisDefilerTrap",45,0,16,15)
 	VMDF D 5 Bright A_SpawnItemEx("VNemesisDefilerTrap",45,0,16,15)	
-    Goto See
+	Goto See
   Missile:
-    TNT1 A 0 A_SetShootable
-    TNT1 A 0 A_SetTranslucent(1)
-    TNT1 A 0 A_JumpIf(user_suicide == 1,"SeeSuicide")
+	TNT1 A 0 A_SetShootable
+	TNT1 A 0 A_SetTranslucent(1)
+	TNT1 A 0 A_JumpIf(user_suicide == 1,"SeeSuicide")
 	TNT1 A 0 A_Jump(128,2)
 	TNT1 A 0 A_JumpIfHealthLower(400,"Suicide")
 	TNT1 A 0 A_JumpIfHealthLower(200,"Suicide")
-    TNT1 A 0 A_Jump(128,"BFG9K","LightningBall","TrapAttack","Laser","Accuser","HellStaff")
+	TNT1 A 0 A_Jump(128,"BFG9K","LightningBall","TrapAttack","Laser","Accuser","HellStaff")
 	TNT1 A 0 A_Jump(64,"Mindfuck")
 	Goto Comets
   Missile.Suicide:
-    TNT1 A 0 A_Jump(128,"LightningBall.Suicide","TrapAttack.Suicide","Comets.Suicide")
+	TNT1 A 0 A_Jump(128,"LightningBall.Suicide","TrapAttack.Suicide","Comets.Suicide")
 	TNT1 A 0 A_Jump(64,"Mindfuck")
 	Goto BFG9K
   BFG9K:
-    TNT1 A 0 A_PlaySound("weapons/bfgf")
+	TNT1 A 0 A_PlaySound("weapons/bfgf")
 	VMDF EF 9 Bright A_FaceTarget
 	VMDF G 15 Bright A_CustomMissile("DefilerBFGBall",30)
 	Goto See
@@ -167,7 +168,7 @@ Actor VexedNemesisRedeemer : NemesisDefiler
 	TNT1 A 0 A_SpawnItemEx("NDefilerWhiteSmokeSpawner")
 	VMDF F 4 Bright A_FaceTarget
 	TNT1 A 0 A_SpawnItemEx("NDefilerWhiteSmokeSpawner")
-    VMDF F 30 Bright A_CustomMissile("DefilerLightningProj",41)
+	VMDF F 30 Bright A_CustomMissile("DefilerLightningProj",41)
 	Goto See
   LightningBall.Suicide:
 	TNT1 A 0 A_PlaySound("NemesisDefiler/Attack2",7)
@@ -214,40 +215,40 @@ Actor VexedNemesisRedeemer : NemesisDefiler
 	TNT1 A 0 A_SpawnItemEx("NDefilerWhiteSmokeSpawner")
 	TNT1 A 0 A_CustomMissile("DefilerLightningProj",41,0,-20)
 	TNT1 A 0 A_CustomMissile("DefilerLightningProj",41,0,20)
-    VMDF F 30 Bright A_CustomMissile("DefilerLightningProj",41)
+	VMDF F 30 Bright A_CustomMissile("DefilerLightningProj",41)
 	Goto See
   Laser:
 	TNT1 A 0 A_PlaySound("NemesisDefiler/Attack1",7)
-    VMDF BC 7 Bright A_FaceTarget
-    VMDF D 8 Bright A_CustomMissile("DefilerNemesisLaser",25)
+	VMDF BC 7 Bright A_FaceTarget
+	VMDF D 8 Bright A_CustomMissile("DefilerNemesisLaser",25)
 	VMDF C 5 A_FaceTarget
-    VMDF D 8 Bright A_CustomMissile("DefilerNemesisLaser",25)
+	VMDF D 8 Bright A_CustomMissile("DefilerNemesisLaser",25)
 	VMDF C 5 A_FaceTarget
-    VMDF D 8 Bright A_CustomMissile("DefilerNemesisLaser",25)
+	VMDF D 8 Bright A_CustomMissile("DefilerNemesisLaser",25)
 	VMDF C 5 A_FaceTarget
-    VMDF D 8 Bright A_CustomMissile("DefilerNemesisLaser",25)
+	VMDF D 8 Bright A_CustomMissile("DefilerNemesisLaser",25)
 	VMDF C 5 A_FaceTarget
-    VMDF D 8 Bright A_CustomMissile("DefilerNemesisLaser",25)
-    Goto See
+	VMDF D 8 Bright A_CustomMissile("DefilerNemesisLaser",25)
+	Goto See
   TrapAttack:
 	TNT1 A 0 A_PlaySound("NemesisDefiler/Attack1",7)
-    VMDF BC 5 Bright A_FaceTarget
+	VMDF BC 5 Bright A_FaceTarget
 	TNT1 A 0 A_SpawnItemEx("VNemesisDefilerTrap",45,0,16,15,-4)
 	VMDF D 5 Bright A_SpawnItemEx("VNemesisDefilerTrap",45,0,16,15,4)
 	TNT1 A 0 A_SpawnItemEx("VNemesisDefilerTrap",45,0,16,15,-4)
 	VMDF D 5 Bright A_SpawnItemEx("VNemesisDefilerTrap",45,0,16,15,4)
 	TNT1 A 0 A_Jump(128,"Teleport")
 	TNT1 A 0 A_Jump(64,"LightningBall")
-    Goto See
+	Goto See
   TrapAttack.Suicide:
 	TNT1 A 0 A_PlaySound("NemesisDefiler/Attack1",7)
-    VMDF BC 5 Bright A_FaceTarget
+	VMDF BC 5 Bright A_FaceTarget
 	TNT1 A 0 A_SpawnItemEx("NemesisDefilerTrap",45,0,16,15,0)
 	TNT1 A 0 A_SpawnItemEx("NemesisDefilerTrap",45,0,16,15,-10)
 	VMDF D 5 Bright A_SpawnItemEx("VNemesisDefilerTrap",45,0,16,15,10)
 	TNT1 A 0 A_Jump(128,"Teleport")
 	TNT1 A 0 A_Jump(64,"LightningBall")
-    Goto See
+	Goto See
   Comets:
 	TNT1 A 0 A_PlaySound("NemesisDefiler/Attack1",7)
 	VMDF BC 5 Bright A_FaceTarget
@@ -359,7 +360,7 @@ Actor VexedNemesisRedeemer : NemesisDefiler
 	TNT1 A 0 Radius_Quake(8,120,0,20,0)
 	TNT1 A 0 A_FaceTarget
 	TNT1 A 0 ACS_NamedExecuteAlways("NemesisDefilerSuicide")
-    VMDF EEEEEEEEEEEEEFFFFFFFFFFFFFFFGGGGGGGGGGGGGGGGG 3 Bright A_SpawnItemEx("NemesisSoulFlameSpawner")
+	VMDF EEEEEEEEEEEEEFFFFFFFFFFFFFFFGGGGGGGGGGGGGGGGG 3 Bright A_SpawnItemEx("NemesisSoulFlameSpawner")
 	Goto SeeSuicide
   Kamikaze:
 	TNT1 A 0 A_SetUserVar("user_missile",0)
@@ -371,38 +372,38 @@ Actor VexedNemesisRedeemer : NemesisDefiler
   KamikazeEnd:
 	TNT1 A 0 A_Quake(9,2,0,3000)
 	TNT1 A 0 A_SpawnItemEx("NDefilerKamikazeSmokeSpawner")
-    VMDF G 2 Bright A_RadiusThrust(-2500,1200,RTF_NOIMPACTDAMAGE)
-    Loop 
+	VMDF G 2 Bright A_RadiusThrust(-2500,1200,RTF_NOIMPACTDAMAGE)
+	Loop 
   Explode:
 	TNT1 A 0 A_CustomMissile("DefilerSuicideBomb",0,0,0,0)
-    VMDF G 3 Bright A_Die
-    Goto Death	
+	VMDF G 3 Bright A_Die
+	Goto Death	
   Pain:
-    TNT1 A 0
+	TNT1 A 0
 	TNT1 A 0 A_KillChildren
-    TNT1 A 0 A_Jump(8,"LightningBall")	
+	TNT1 A 0 A_Jump(8,"LightningBall")	
   	TNT1 A 0 A_Jump(21,"Teleport")	
-    VMDF H 2 Bright
-    VMDF H 2 Bright A_Pain
+	VMDF H 2 Bright
+	VMDF H 2 Bright A_Pain
 	TNT1 A 0 A_Jump(128,"Missile")
-    Goto See
+	Goto See
   Death:
 	TNT1 A 0 A_ChangeFlag("NODAMAGE",0)
-    VMDF I 5 Bright A_Scream
+	VMDF I 5 Bright A_Scream
 	TNT1 A 0 A_PlaySound("BFlan/LightningExp",0)
 	TNT1 A 0 A_SpawnItemEx("DefilerLightningExplode",random(0,20),0,random(20,50),random(2,6),0,random(-4,4),random(0,360))
 	TNT1 A 0 A_SpawnItemEx("NemesisGibbedGenerator",0,0,0,0,0,0,0,128,0)
-    VMDF JJKKLL 2 Bright A_SpawnItemEx("WhiteNemesisKaboom",random(-32,32),random(-40,40),random(16,48),random(-4,4),random(-4,4),random(0,4),0,SXF_TRANSFERPOINTERS)
+	VMDF JJKKLL 2 Bright A_SpawnItemEx("WhiteNemesisKaboom",random(-32,32),random(-40,40),random(16,48),random(-4,4),random(-4,4),random(0,4),0,SXF_TRANSFERPOINTERS)
 	TNT1 A 0 A_SpawnItemEx("NemesisGibbedGenerator",0,0,0,0,0,0,0,128,0)
-    TNT1 A 0 A_NoBlocking
+	TNT1 A 0 A_NoBlocking
 	TNT1 A 0 A_KillChildren
 	TNT1 A 0 A_PlaySound("BFlan/LightningExp",0)
 	TNT1 A 0 A_SpawnItemEx("DefilerLightningExplode",random(0,20),0,random(20,50),random(2,6),0,random(-4,4),random(0,360))
-    VMDF MMNNOOPP 2 Bright A_SpawnItemEx("WhiteNemesisKaboom",random(-32,32),random(-40,40),random(16,48),random(-4,4),random(-4,4),random(0,4),0,SXF_TRANSFERPOINTERS)
+	VMDF MMNNOOPP 2 Bright A_SpawnItemEx("WhiteNemesisKaboom",random(-32,32),random(-40,40),random(16,48),random(-4,4),random(-4,4),random(0,4),0,SXF_TRANSFERPOINTERS)
 	TNT1 A 0 A_SpawnItemEx("NemesisGibbedGenerator",0,0,0,0,0,0,0,128,0)
 	TNT1 A 0 A_PlaySound("BFlan/LightningExp",0)
 	TNT1 A 0 A_SpawnItemEx("DefilerLightningExplode",random(0,20),0,random(20,50),random(2,6),0,random(-4,4),random(0,360))
-    VMDF QQRRSSTTUU 2 A_SpawnItemEx("WhiteNemesisKaboom",random(-32,32),random(-40,40),random(16,48),random(-4,4),random(-4,4),random(0,4),0,SXF_TRANSFERPOINTERS) 
+	VMDF QQRRSSTTUU 2 A_SpawnItemEx("WhiteNemesisKaboom",random(-32,32),random(-40,40),random(16,48),random(-4,4),random(-4,4),random(0,4),0,SXF_TRANSFERPOINTERS) 
 	VMDF V 20
 	TNT1 A 0 A_Quake(6,30,0,3000)
 	VMDF V 30
@@ -416,8 +417,8 @@ Actor VexedNemesisRedeemer : NemesisDefiler
 	TNT1 A 0 A_JumpIfInTargetInventory("NemesisFragmentToken",1,3)
 	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("GetCVar",18) == 0,2)
 	TNT1 A 0 A_SpawnItemEx("NemesisFragmentSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,192)	
-    VMDF V -1
-    Stop
+	VMDF V -1
+	Stop
   MoreStuff:
 	TNT1 A 0 A_SpawnItem("HellionSmokeAttack")
 	VMDF VVVVVVVVVVVVVVVVVVVVVVVVVVVVVV 1 A_SpawnItem("NemesisHKItemRandomizer")
@@ -489,7 +490,7 @@ Actor VNemesisDefilerTrap
 	Goto Spawn+2 
   Suicide:
 	TNT1 A 2 A_Die
-	Goto Death    
+	Goto Death	
   Death:
 	TNT1 A 0
 	TNT1 A 0 A_RemoveChildren(1)
@@ -516,13 +517,13 @@ Renderstyle Translucent
 States
 {
 Spawn:
-    TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
 Fade:
-    TNT1 A 1
-    VMDF A 2 A_FadeOut(0.10)
-    Goto Fade+1
+	TNT1 A 1
+	VMDF A 2 A_FadeOut(0.10)
+	Goto Fade+1
 Vanilla:
-    TNT1 A 0
-    Stop
-    }
+	TNT1 A 0
+	Stop
+	}
 }

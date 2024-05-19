@@ -423,6 +423,7 @@ ACTOR UndeadMakaiSlut : MakaiSlut
  Obituary "%o's soul was sent to the darkness by the undead resurrection of Shinki."
  tag "\c[u2]The Resurrected One, \c[u9]Undead Shinki\c-"
  seesound ""
+ var int user_fading;
  States
   {
   Spawn:
@@ -454,16 +455,16 @@ ACTOR UndeadMakaiSlut : MakaiSlut
 	MYS3 ABCDEFGHIJ 3 A_Chase
 	Loop
   Teleport:
-	MYS4 A 2 Bright A_UnSetShootable
+	MYS4 A 2 Bright ACS_NamedExecuteWithResult("ttk_fader",10,3)
 	TNT1 A 0 A_PlaySound("MReimu/TeleportOut",7)
 	TNT1 A 0 A_SpawnItemEx("MReimuTeleportEffect",0,0,40)
-	MYS4 AABBCCDDEE 1 A_FadeOut(0.1,0)
+	MYS4 AABBCCDDEE 1
 	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
 	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
 	TNT1 A 0 A_PlaySound("MReimu/TeleportIn",7)
 	TNT1 A 0 A_SpawnItemEx("MReimuTeleportEffect",0,0,40)
-	MYS4 EEEEEEEEEF 1 A_FadeIn(0.1)
-	MYS3 F 1 Bright A_SetShootable
+	MYS4 EEEEEEEEEF 1
+	MYS3 F 1 Bright
 	TNT1 A 0 A_Jump(64,"Teleport")
 	Goto See
   Pain:

@@ -51,16 +51,15 @@ PainSound "Thamuz/Pain"
 DeathSound "Thamuz/Death"
 Tag "$NEThamuzLord"
 var int user_lowlag;
+var int user_fading;
 States 
 {    
-	Spawn: 
-		TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
-		Goto Idle
-	Idle:
-        THLD A 10 A_Look
-		THLD A 10 A_Look
-		THLR A 10 A_Look
-		THLR A 10 A_Look
+  Spawn: 
+	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
+	Goto Idle
+  Idle:
+        THLD AA 10 A_Look
+	THLR AA 10 A_Look
         Loop 
   See:
 	TNT1 A 0 A_JumpIf(user_lowlag == 1,"MoreSee")
@@ -71,444 +70,444 @@ States
 	TNT1 A 0 A_SetUserVar("user_lowlag",1)
         TNT1 A 0 A_Jump(75,"Rush")
         THLD A 3 A_Hoof
-        THLD ABB 3 A_Chase		
+        THLD ABB 3 A_Chase	
         THLD C 3 A_Metal 
         THLD CDD 3 A_Chase
-		TNT1 A 0 A_Jump(35,"Teleport")
+	TNT1 A 0 A_Jump(35,"Teleport")
         Loop 
-	Rush:
-		TNT1 A 0 A_Hoof
-	    THLD AA 0 A_Chase
+  Rush:
+	TNT1 A 0 A_Hoof
+	THLD AA 0 A_Chase
         THLD A 2 A_SpawnItemEx("ThamuzLordGhostA",0,0,0,0,0,0,0,128)
-	    THLD AA 0 A_Chase
+	THLD AA 0 A_Chase
         THLD A 2 A_SpawnItemEx("ThamuzLordGhostA",0,0,0,0,0,0,0,128)
-	    THLD AA 0 A_Chase
+	THLD AA 0 A_Chase
         THLD B 2 A_SpawnItemEx("ThamuzLordGhostB",0,0,0,0,0,0,0,128)
-	    THLD AA 0 A_Chase
+	THLD AA 0 A_Chase
         THLD B 2 A_SpawnItemEx("ThamuzLordGhostB",0,0,0,0,0,0,0,128)
-	    THLD AA 0 A_Chase
+	THLD AA 0 A_Chase
         THLD C 2 A_SpawnItemEx("ThamuzLordGhostC",0,0,0,0,0,0,0,128)
-	    THLD AA 0 A_Chase
-        THLD C 2 A_SpawnItemEx("ThamuzLordGhostC",0,0,0,0,0,0,0,128)		
-		TNT1 A 0 A_Metal
-	    THLD AA 0 A_Chase
+	THLD AA 0 A_Chase
+        THLD C 2 A_SpawnItemEx("ThamuzLordGhostC",0,0,0,0,0,0,0,128)	
+	TNT1 A 0 A_Metal
+	THLD AA 0 A_Chase
         THLD D 2 A_SpawnItemEx("ThamuzLordGhostD",0,0,0,0,0,0,0,128)
-	    THLD AA 0 A_Chase
+	THLD AA 0 A_Chase
         THLD D 2 A_SpawnItemEx("ThamuzLordGhostD",0,0,0,0,0,0,0,128)
-		TNT1 A 0 A_Jump(10,"Teleport")
-		TNT1 A 0 A_Jump(20,"See")
-		Loop
-	Teleport:
-		THLD A 1 A_UnSetShootable
-		THLD AAAAAAAAAAAAA 0 A_SpawnItemEx("DarkAnniFlameSpawner")
-		THLD AAAAAAAAAA 1 A_FadeOut(0.1,0)
-		THLD A 2
-		THLD AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA  0 A_Wander
-		THLD A 1 A_PlayWeaponSound("boss/teleport")
-		THLD AAAAAAAAAAAAA 0 A_SpawnItemEx("DarkAnniFlameSpawner")
-		THLD AAAAAAAAAA 1 A_FadeIn(0.1)
-		THLD A 1 A_SetShootable
-		Goto See
-	Missile:
-	Normal:
+	TNT1 A 0 A_Jump(10,"Teleport")
+	TNT1 A 0 A_Jump(20,"See")
+	Loop
+ Teleport:
+	THLD A 1 ACS_NamedExecuteWithResult("ttk_fader",10,3)
+	THLD AAAAAAAAAAAAA 0 A_SpawnItemEx("DarkAnniFlameSpawner")
+	THLD A 0 A_Settics(user_fading)
+	THLD A 2
+	THLD AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA  0 A_Wander
+	THLD A 1 A_PlayWeaponSound("boss/teleport")
+	THLD AAAAAAAAAAAAA 0 A_SpawnItemEx("DarkAnniFlameSpawner")
+	THLD A 0 A_Settics(user_fading)
+	THLD A 1
+	Goto See
+ Missile:
+ Normal:
         TNT1 A 0 A_Jump(128,"Seekers","FloorStomp","BFG15K","Railgun","BFGCombo")
         THLD E 4 A_FaceTarget
-		THLD F 0 A_CustomMissile("ThamuzProjectile",54,-22,Random(-4, 4))
+	THLD F 0 A_CustomMissile("ThamuzProjectile",54,-22,Random(-4, 4))
         THLD F 4 Bright A_CustomMissile("ThamuzProjectile",54,22,Random(-4, 4))
         THLD E 4 A_FaceTarget
-		THLD F 0 A_CustomMissile("ThamuzProjectile",54,-22,Random(-4, 4))
+	THLD F 0 A_CustomMissile("ThamuzProjectile",54,-22,Random(-4, 4))
         THLD F 4 Bright A_CustomMissile("ThamuzProjectile",54,22,Random(-4, 4))
         THLD E 4 A_FaceTarget
-		THLD F 0 A_CustomMissile("ThamuzProjectile",54,-22,Random(-4, 4))
+	THLD F 0 A_CustomMissile("ThamuzProjectile",54,-22,Random(-4, 4))
         THLD F 4 Bright A_CustomMissile("ThamuzProjectile",54,22,Random(-4, 4))
-		THLD E 4 A_FaceTarget
-		THLD F 0 A_CustomMissile("ThamuzProjectile",54,-22,Random(-4, 4))
-		THLD F 4 Bright A_CustomMissile("ThamuzProjectile",54,22,Random(-4, 4))
+	THLD E 4 A_FaceTarget
+	THLD F 0 A_CustomMissile("ThamuzProjectile",54,-22,Random(-4, 4))
+	THLD F 4 Bright A_CustomMissile("ThamuzProjectile",54,22,Random(-4, 4))
         THLD E 4 A_FaceTarget
-		THLD F 0 A_CustomMissile("ThamuzProjectile",54,-22,Random(-4, 4))
+	THLD F 0 A_CustomMissile("ThamuzProjectile",54,-22,Random(-4, 4))
         THLD F 4 Bright A_CustomMissile("ThamuzProjectile",54,22,Random(-4, 4))
         THLD E 3 A_FaceTarget
-		THLD F 0 A_CustomMissile("ThamuzProjectile",54,-22,Random(-4, 4))
+	THLD F 0 A_CustomMissile("ThamuzProjectile",54,-22,Random(-4, 4))
         THLD F 3 Bright A_CustomMissile("ThamuzProjectile",54,22,Random(-4, 4))
-		THLD E 3 A_FaceTarget
-		THLD F 0 A_CustomMissile("ThamuzProjectile",54,-22,Random(-4, 4))
-		THLD F 3 Bright A_CustomMissile("ThamuzProjectile",54,22,Random(-4, 4))
+	THLD E 3 A_FaceTarget
+	THLD F 0 A_CustomMissile("ThamuzProjectile",54,-22,Random(-4, 4))
+	THLD F 3 Bright A_CustomMissile("ThamuzProjectile",54,22,Random(-4, 4))
         THLD E 3 A_FaceTarget
-		THLD F 0 A_CustomMissile("ThamuzProjectile",54,-22,Random(-4, 4))
+	THLD F 0 A_CustomMissile("ThamuzProjectile",54,-22,Random(-4, 4))
         THLD F 3 Bright A_CustomMissile("ThamuzProjectile",54,22,Random(-4, 4))
         THLD E 3 A_FaceTarget
-		THLD F 0 A_CustomMissile("ThamuzProjectile",54,-22,Random(-4, 4))
+	THLD F 0 A_CustomMissile("ThamuzProjectile",54,-22,Random(-4, 4))
         THLD F 3 Bright A_CustomMissile("ThamuzProjectile",54,22,Random(-4, 4))
-		THLD E 8
-		TNT1 A 0 A_Jump(36,"BFGCombo")
-		TNT1 A 0 Bright A_Jump(128,"Seekers","FloorStomp","Railgun","BFG15K","BFG10K","DTBFG10K")
+	THLD E 8
+	TNT1 A 0 A_Jump(36,"BFGCombo")
+	TNT1 A 0 Bright A_Jump(128,"Seekers","FloorStomp","Railgun","BFG15K","BFG10K","DTBFG10K")
         Goto See
 	Seekers:
-		THLD E 6 A_FaceTarget
-		THLD F 0 A_CustomMissile("ThamuzHomer",54,-22,0)
+	THLD E 6 A_FaceTarget
+	THLD F 0 A_CustomMissile("ThamuzHomer",54,-22,0)
         THLD F 4 Bright A_CustomMissile("ThamuzHomer",54,22,0)
         THLD E 6 A_FaceTarget
-		THLD F 0 A_CustomMissile("ThamuzHomer",54,-22,0)
+	THLD F 0 A_CustomMissile("ThamuzHomer",54,-22,0)
         THLD F 4 Bright A_CustomMissile("ThamuzHomer",54,22,0)
         THLD E 6 A_FaceTarget
-		THLD F 0 A_CustomMissile("ThamuzHomer",54,-22,0)
+	THLD F 0 A_CustomMissile("ThamuzHomer",54,-22,0)
         THLD F 4 Bright A_CustomMissile("ThamuzHomer",54,22,0)
         THLD E 6 A_FaceTarget
-		THLD F 0 A_CustomMissile("ThamuzHomer",54,-22,0)
+	THLD F 0 A_CustomMissile("ThamuzHomer",54,-22,0)
         THLD F 4 Bright A_CustomMissile("ThamuzHomer",54,22,0)
         THLD E 6 A_FaceTarget
-		THLD F 0 A_CustomMissile("ThamuzHomer",54,-22,0)
+	THLD F 0 A_CustomMissile("ThamuzHomer",54,-22,0)
         THLD F 4 Bright A_CustomMissile("ThamuzHomer",54,22,0)
         THLD E 6 A_FaceTarget
-		THLD F 0 A_CustomMissile("ThamuzHomer",54,-22,0)
+	THLD F 0 A_CustomMissile("ThamuzHomer",54,-22,0)
         THLD F 4 Bright A_CustomMissile("ThamuzHomer",54,22,0)
-		THLD E 8
-		TNT1 A 0 A_Jump(128,"FloorStomp","Railgun","BFG15K","BFG10K","DTBFG10K")
-		Goto See
+	THLD E 8
+	TNT1 A 0 A_Jump(128,"FloorStomp","Railgun","BFG15K","BFG10K","DTBFG10K")
+	Goto See
 	FloorStomp:
-		TNT1 A 0
-		TNT1 A 0 A_SetInvulnerable
-		TNT1 A 0 A_PlaySound("brain/spit",2)
-		THLD GGG 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		THLO AAAA 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,20)
-		TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,40)
-		TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,60)
-		TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,80)
-		TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,100)
-		TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,120)
-		TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,140)
-		TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,160)
-		TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,-20)
-		TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,-40)
-		TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,-60)
-		TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,-80)
-		TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,-100)
-		TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,-120)
-		TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,-140)
-		TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,-160)
-		TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,180)
-		TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,0)
-		THLO AAAA 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		TNT1 A 0 Radius_Quake(10,8,0,24,0)
-		THLO B 7 Bright
-		THLO B 5 Bright
-		THLO B 2 Bright
-		THLO B 10 Bright
-		TNT1 A 0 A_PlaySound("brain/spit",2)
-		THLD GGG 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		THLO AAAA 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,10)
-		TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,30)
-		TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,50)
-		TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,70)
-		TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,90)
-		TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,110)
-		TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,130)
-		TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,150)
-		TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,-10)
-		TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,-30)
-		TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,-50)
-		TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,-70)
-		TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,-90)
-		TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,-110)
-		TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,-130)
-		TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,-150)
-		TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,170)
-		TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,0)
-		THLO AAAA 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		TNT1 A 0 A_UnsetInvulnerable
-		TNT1 A 0 Radius_Quake(10,8,0,24,0)
-		THLO B 7 Bright
-		THLO B 5 Bright
-		THLO B 2 Bright
-		THLO B 10 Bright
-		TNT1 A 0 A_Jump(128,"Railgun","BFG15K","DTBFG10K")
-		Goto See
+	TNT1 A 0
+	TNT1 A 0 A_SetInvulnerable
+	TNT1 A 0 A_PlaySound("brain/spit",2)
+	THLD GGG 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	THLO AAAA 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,20)
+	TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,40)
+	TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,60)
+	TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,80)
+	TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,100)
+	TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,120)
+	TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,140)
+	TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,160)
+	TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,-20)
+	TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,-40)
+	TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,-60)
+	TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,-80)
+	TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,-100)
+	TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,-120)
+	TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,-140)
+	TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,-160)
+	TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,180)
+	TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,0)
+	THLO AAAA 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	TNT1 A 0 Radius_Quake(10,8,0,24,0)
+	THLO B 7 Bright
+	THLO B 5 Bright
+	THLO B 2 Bright
+	THLO B 10 Bright
+	TNT1 A 0 A_PlaySound("brain/spit",2)
+	THLD GGG 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	THLO AAAA 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,10)
+	TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,30)
+	TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,50)
+	TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,70)
+	TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,90)
+	TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,110)
+	TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,130)
+	TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,150)
+	TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,-10)
+	TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,-30)
+	TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,-50)
+	TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,-70)
+	TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,-90)
+	TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,-110)
+	TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,-130)
+	TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,-150)
+	TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,170)
+	TNT1 A 0 A_CustomMissile("ThamuzShitFloor",50,0,0)
+	THLO AAAA 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_UnsetInvulnerable
+	TNT1 A 0 Radius_Quake(10,8,0,24,0)
+	THLO B 7 Bright
+	THLO B 5 Bright
+	THLO B 2 Bright
+	THLO B 10 Bright
+	TNT1 A 0 A_Jump(128,"Railgun","BFG15K","DTBFG10K")
+	Goto See
 	Railgun:
-		TNT1 A 0 A_PlaySound("weapons/rgcharge")
+	TNT1 A 0 A_PlaySound("weapons/rgcharge")
         THLD EE 10 A_FaceTarget
-		THLD E 10 A_FaceTarget
-		TNT1 A 0 A_PlaySound("weapons/dtrailf")
-		THLD F 0 A_CustomMissile("DarkAnnihilatorRail",54,-22,0)
-		THLD F 0 A_CustomMissile("DTRailCore",54,-22,0)
-		THLD F 0 A_CustomMissile("DTRailCore",54,22,0)
+	THLD E 10 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/dtrailf")
+	THLD F 0 A_CustomMissile("DarkAnnihilatorRail",54,-22,0)
+	THLD F 0 A_CustomMissile("DTRailCore",54,-22,0)
+	THLD F 0 A_CustomMissile("DTRailCore",54,22,0)
         THLD F 10 Bright A_CustomMissile("DarkAnnihilatorRail",54,22,0)
-		THLD E 15
-		TNT1 A 0 A_UnSetShootable
-		THLD EEEE 0 A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		THLD EEEEEEEEEEE 1 A_FadeOut(0.1,0)
-	    THLD EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 0 A_Wander
-		THLD E 20
+	THLD E 15
+	TNT1 A 0 A_UnSetShootable
+	THLD EEEE 0 A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	THLD EEEEEEEEEEE 1 A_FadeOut(0.1,0)
+	THLD EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 0 A_Wander
+	THLD E 20
         THLD E 1 A_PlayWeaponSound("boss/teleport")
-		THLD EEEE 0 A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-	    THLD EEEEEEEEEEE 1 A_FadeIn(0.1)	
-		TNT1 A 0 A_SetShootable
-		THLD E 10 Bright A_FaceTarget
-		TNT1 A 0 A_PlaySound("weapons/dtrailf")
-		THLD F 0 A_CustomMissile("DarkAnnihilatorRail",54,-22,0)
-		THLD F 0 A_CustomMissile("DTRailCore",54,-22,0)
-		THLD F 0 A_CustomMissile("DTRailCore",54,22,0)
+	THLD EEEE 0 A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	THLD EEEEEEEEEEE 1 A_FadeIn(0.1)	
+	TNT1 A 0 A_SetShootable
+	THLD E 10 Bright A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/dtrailf")
+	THLD F 0 A_CustomMissile("DarkAnnihilatorRail",54,-22,0)
+	THLD F 0 A_CustomMissile("DTRailCore",54,-22,0)
+	THLD F 0 A_CustomMissile("DTRailCore",54,22,0)
         THLD F 10 Bright A_CustomMissile("DarkAnnihilatorRail",54,22,0)
-		TNT1 A 0 A_Jump(128,"BFG15K","BFG10K","DTBFG10K")
-		Goto See
+	TNT1 A 0 A_Jump(128,"BFG15K","BFG10K","DTBFG10K")
+	Goto See
 	BFG15K:
-	    TNT1 A 0 A_PlaySound("weapons/charge15k")
-	    THLD E 18 A_FaceTarget
-	    THLD E 6 A_FaceTarget
-		THLD F 0 A_CustomMissile("Thamuz15K",54,-22,Random(-4, 4))
-		THLD F 4 Bright A_CustomMissile("Thamuz15K",54,22,Random(-4, 4))
-		THLD E 4 A_FaceTarget
-		THLD F 0 A_CustomMissile("Thamuz15K",54,-22,Random(-4, 4))
-		THLD F 4 Bright A_CustomMissile("Thamuz15K",54,22,Random(-4, 4))
-		THLD E 4 A_FaceTarget
-		THLD F 0 A_CustomMissile("Thamuz15K",54,-22,Random(-4, 4))
-		THLD F 4 Bright A_CustomMissile("Thamuz15K",54,22,Random(-4, 4))
-		THLD E 4 A_FaceTarget
-		THLD F 0 A_CustomMissile("Thamuz15K",54,-22,Random(-4, 4))
-		THLD F 4 Bright A_CustomMissile("Thamuz15K",54,22,Random(-4, 4))
-		THLD E 4 A_FaceTarget
-		THLD F 0 A_CustomMissile("Thamuz15K",54,-22,Random(-4, 4))
-		THLD F 4 Bright A_CustomMissile("Thamuz15K",54,22,Random(-4, 4))
-		THLD E 4 A_FaceTarget
-		THLD F 0 A_CustomMissile("Thamuz15K",54,-22,Random(-4, 4))
-		THLD F 4 Bright A_CustomMissile("Thamuz15K",54,22,Random(-4, 4))
-		THLD E 20 A_PlaySound("weapons/bfg15kcooldown",CHAN_AUTO)
-		TNT1 A 0 A_Jump(36,"BFGCombo")
-		TNT1 A 0 A_Jump(87,"DTBFG10K")
-		Goto See
+	TNT1 A 0 A_PlaySound("weapons/charge15k")
+	THLD E 18 A_FaceTarget
+	THLD E 6 A_FaceTarget
+	THLD F 0 A_CustomMissile("Thamuz15K",54,-22,Random(-4, 4))
+	THLD F 4 Bright A_CustomMissile("Thamuz15K",54,22,Random(-4, 4))
+	THLD E 4 A_FaceTarget
+	THLD F 0 A_CustomMissile("Thamuz15K",54,-22,Random(-4, 4))
+	THLD F 4 Bright A_CustomMissile("Thamuz15K",54,22,Random(-4, 4))
+	THLD E 4 A_FaceTarget
+	THLD F 0 A_CustomMissile("Thamuz15K",54,-22,Random(-4, 4))
+	THLD F 4 Bright A_CustomMissile("Thamuz15K",54,22,Random(-4, 4))
+	THLD E 4 A_FaceTarget
+	THLD F 0 A_CustomMissile("Thamuz15K",54,-22,Random(-4, 4))
+	THLD F 4 Bright A_CustomMissile("Thamuz15K",54,22,Random(-4, 4))
+	THLD E 4 A_FaceTarget
+	THLD F 0 A_CustomMissile("Thamuz15K",54,-22,Random(-4, 4))
+	THLD F 4 Bright A_CustomMissile("Thamuz15K",54,22,Random(-4, 4))
+	THLD E 4 A_FaceTarget
+	THLD F 0 A_CustomMissile("Thamuz15K",54,-22,Random(-4, 4))
+	THLD F 4 Bright A_CustomMissile("Thamuz15K",54,22,Random(-4, 4))
+	THLD E 20 A_PlaySound("weapons/bfg15kcooldown",CHAN_AUTO)
+	TNT1 A 0 A_Jump(36,"BFGCombo")
+	TNT1 A 0 A_Jump(87,"DTBFG10K")
+	Goto See
    BFG10K:
-		TNT1 A 0 A_PlaySound("weapons/charge15k")
-		THLD E 25 A_FaceTarget
-		TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
-		THLD F 0 A_CustomMissile("Thamuz10K",54,-22,Random(-4,4))
-		THLD F 3 Bright A_CustomMissile("Thamuz10K",54,22,Random(4, -4))
-		THLD E 4 A_FaceTarget
-		TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
-		THLD F 0 A_CustomMissile("Thamuz10K",54,-22,Random(-4,4))
-		THLD F 3 Bright A_CustomMissile("Thamuz10K",54,22,Random(4, -4))
-		THLD E 4 A_FaceTarget
-		TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
-		THLD F 0 A_CustomMissile("Thamuz10K",54,-22,Random(-4,4))
-		THLD F 3 Bright A_CustomMissile("Thamuz10K",54,22,Random(4, -4))
-		THLD E 4 A_FaceTarget
-		TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
-		THLD F 0 A_CustomMissile("Thamuz10K",54,-22,Random(-4,4))
-		THLD F 3 Bright A_CustomMissile("Thamuz10K",54,22,Random(4, -4))
-		THLD E 4 A_FaceTarget
-		TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
-		THLD F 0 A_CustomMissile("Thamuz10K",54,-22,Random(-4,4))
-		THLD F 3 Bright A_CustomMissile("Thamuz10K",54,22,Random(4, -4))
-		THLD E 4 A_FaceTarget
-		TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
-		THLD F 0 A_CustomMissile("Thamuz10K",54,-22,Random(-4,4))
-		THLD F 3 Bright A_CustomMissile("Thamuz10K",54,22,Random(4, -4))
-		THLD E 4 A_FaceTarget
-		TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
-		THLD F 0 A_CustomMissile("Thamuz10K",54,-22,Random(-4,4))
-		THLD F 3 Bright A_CustomMissile("Thamuz10K",54,22,Random(4, -4))
-		THLD E 4 A_FaceTarget
-		TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
-		THLD F 0 A_CustomMissile("Thamuz10K",54,-22,Random(-4,4))
-		THLD F 3 Bright A_CustomMissile("Thamuz10K",54,22,Random(4, -4))  
-		THLD E 25 A_PlaySound("weapons/bfg15kcooldown",CHAN_AUTO)
-		TNT1 A 0 A_Jump(36,"BFGCombo")
-		TNT1 A 0 A_Jump(128,"DTBFG10K")
-		Goto See	
+	TNT1 A 0 A_PlaySound("weapons/charge15k")
+	THLD E 25 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	THLD F 0 A_CustomMissile("Thamuz10K",54,-22,Random(-4,4))
+	THLD F 3 Bright A_CustomMissile("Thamuz10K",54,22,Random(4, -4))
+	THLD E 4 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	THLD F 0 A_CustomMissile("Thamuz10K",54,-22,Random(-4,4))
+	THLD F 3 Bright A_CustomMissile("Thamuz10K",54,22,Random(4, -4))
+	THLD E 4 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	THLD F 0 A_CustomMissile("Thamuz10K",54,-22,Random(-4,4))
+	THLD F 3 Bright A_CustomMissile("Thamuz10K",54,22,Random(4, -4))
+	THLD E 4 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	THLD F 0 A_CustomMissile("Thamuz10K",54,-22,Random(-4,4))
+	THLD F 3 Bright A_CustomMissile("Thamuz10K",54,22,Random(4, -4))
+	THLD E 4 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	THLD F 0 A_CustomMissile("Thamuz10K",54,-22,Random(-4,4))
+	THLD F 3 Bright A_CustomMissile("Thamuz10K",54,22,Random(4, -4))
+	THLD E 4 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	THLD F 0 A_CustomMissile("Thamuz10K",54,-22,Random(-4,4))
+	THLD F 3 Bright A_CustomMissile("Thamuz10K",54,22,Random(4, -4))
+	THLD E 4 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	THLD F 0 A_CustomMissile("Thamuz10K",54,-22,Random(-4,4))
+	THLD F 3 Bright A_CustomMissile("Thamuz10K",54,22,Random(4, -4))
+	THLD E 4 A_FaceTarget
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	THLD F 0 A_CustomMissile("Thamuz10K",54,-22,Random(-4,4))
+	THLD F 3 Bright A_CustomMissile("Thamuz10K",54,22,Random(4, -4))  
+	THLD E 25 A_PlaySound("weapons/bfg15kcooldown",CHAN_AUTO)
+	TNT1 A 0 A_Jump(36,"BFGCombo")
+	TNT1 A 0 A_Jump(128,"DTBFG10K")
+	Goto See	
 	DTBFG10K:
-		TNT1 A 0 A_Jump(50,"SuperSeeker")
-		TNT1 A 0 A_PlaySound("Cardinal/9k")
-		THLD E 4 A_FaceTarget
-		THLD E 4 A_FaceTarget
-		THLD E 4 A_FaceTarget
-		THLD E 4 A_FaceTarget
-		THLD E 4 A_FaceTarget
-		THLD F 4 Bright A_FaceTarget 
-		THLD F 4 Bright A_FaceTarget	  
-		THLD F 0 A_CustomMissile("ThamuzDTBFG10KBall",54,-22,0)
-		THLD F 4 Bright A_CustomMissile("ThamuzDTBFG10KBall",54,22,0)
-		THLD FE 4 Bright A_FaceTarget
-		THLD E 4 A_FaceTarget
-		Goto See
+	TNT1 A 0 A_Jump(50,"SuperSeeker")
+	TNT1 A 0 A_PlaySound("Cardinal/9k")
+	THLD E 4 A_FaceTarget
+	THLD E 4 A_FaceTarget
+	THLD E 4 A_FaceTarget
+	THLD E 4 A_FaceTarget
+	THLD E 4 A_FaceTarget
+	THLD F 4 Bright A_FaceTarget 
+	THLD F 4 Bright A_FaceTarget	  
+	THLD F 0 A_CustomMissile("ThamuzDTBFG10KBall",54,-22,0)
+	THLD F 4 Bright A_CustomMissile("ThamuzDTBFG10KBall",54,22,0)
+	THLD FE 4 Bright A_FaceTarget
+	THLD E 4 A_FaceTarget
+	Goto See
 	SuperSeeker:
-		TNT1 A 0 A_PlaySound("Cardinal/9k")
-		THLD E 4 A_FaceTarget
-		THLD E 4 A_FaceTarget
-		THLD E 4 A_FaceTarget
-		THLD E 4 A_FaceTarget
-		THLD E 4 A_FaceTarget
-		THLD F 4 Bright A_FaceTarget 
-		THLD F 4 Bright A_FaceTarget
-		THLD F 0 A_CustomMissile("ThamuzBall",54,-22,0)
-		THLD F 4 Bright A_CustomMissile("ThamuzBall",54,22,0)
-		THLD FE 4 Bright A_FaceTarget
-		THLD E 4 A_FaceTarget
-		Goto See
+	TNT1 A 0 A_PlaySound("Cardinal/9k")
+	THLD E 4 A_FaceTarget
+	THLD E 4 A_FaceTarget
+	THLD E 4 A_FaceTarget
+	THLD E 4 A_FaceTarget
+	THLD E 4 A_FaceTarget
+	THLD F 4 Bright A_FaceTarget 
+	THLD F 4 Bright A_FaceTarget
+	THLD F 0 A_CustomMissile("ThamuzBall",54,-22,0)
+	THLD F 4 Bright A_CustomMissile("ThamuzBall",54,22,0)
+	THLD FE 4 Bright A_FaceTarget
+	THLD E 4 A_FaceTarget
+	Goto See
 	BFGCombo:
- 		THLD E 0 Bright A_PlaySoundEx("darkannih/see","Voice")
+ 	THLD E 0 Bright A_PlaySoundEx("darkannih/see","Voice")
         THLD E 10 A_FaceTarget
-		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)		
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)		
-	    THLD E 0 A_PlayWeaponSOund("BFG/charge")	
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)	
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)		
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)	
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)		
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)	
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)	
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)	
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		TNT1 A 0 A_FaceTarget
-		THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		TNT1 A 0 A_FaceTarget
-		THLD F 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
-		TNT1 A 0 A_FaceTarget
-		THLD F 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)			
-		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-		TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
-		THLD F 0 A_CustomMissile("Thamuz10K",54,-22,Random(-4,4))	
-		THLD F 3 Bright A_CustomMissile("Thamuz10K",54,22,Random(-4,4))	
-		THLD E 2 Bright A_FaceTarget
-		THLD F 0 A_CustomMissile("Thamuz15K",54,-22,Random(-4,4))	
-		THLD F 3 Bright A_CustomMissile("Thamuz15K",54,22,Random(-4,4))		
-		THLD E 2 Bright A_FaceTarget
-		THLD F 0 A_CustomMissile("Thamuz15K",54,-22,Random(-4,4))	
-		THLD F 3 Bright A_CustomMissile("Thamuz15K",54,22,Random(-4,4))	
-		THLD E 2 Bright A_FaceTarget
-		THLD F 0 A_CustomMissile("ThamuzDTBFG10KBall",54,-22,Random(-7,7))	
-		THLD F 3 Bright A_CustomMissile("ThamuzDTBFG10KBall",54,22,Random(-7,7))
-		THLD E 2 Bright A_FaceTarget		
-		THLD F 0 A_CustomMissile("Thamuz15K",54,-22,Random(-4,4))	
-		THLD F 3 Bright A_CustomMissile("Thamuz15K",54,22,Random(-4,4))	
-		TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
-		THLD F 0 A_CustomMissile("Thamuz10K",54,-22,Random(-4,4))	
-		THLD F 3 Bright A_CustomMissile("Thamuz10K",54,22,Random(-4,4))
-		THLD E 2 Bright A_FaceTarget
-		THLD F 0 A_CustomMissile("DarkAnnihilatorRail",54,-22,0)
-		THLD F 0 A_CustomMissile("DTRailCore",54,-22,0)
-		THLD F 0 A_CustomMissile("DTRailCore",54,22,0)
+	TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)	
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)	
+	THLD E 0 A_PlayWeaponSOund("BFG/charge")	
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)	
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)	
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)	
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)	
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)	
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)	
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)	
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	THLD E 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	THLD F 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+	THLD F 3 Bright A_SpawnItem("DarkAnniFlameSpawner",0,0,0,0)		
+	TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	THLD F 0 A_CustomMissile("Thamuz10K",54,-22,Random(-4,4))	
+	THLD F 3 Bright A_CustomMissile("Thamuz10K",54,22,Random(-4,4))	
+	THLD E 2 Bright A_FaceTarget
+	THLD F 0 A_CustomMissile("Thamuz15K",54,-22,Random(-4,4))	
+	THLD F 3 Bright A_CustomMissile("Thamuz15K",54,22,Random(-4,4))	
+	THLD E 2 Bright A_FaceTarget
+	THLD F 0 A_CustomMissile("Thamuz15K",54,-22,Random(-4,4))	
+	THLD F 3 Bright A_CustomMissile("Thamuz15K",54,22,Random(-4,4))	
+	THLD E 2 Bright A_FaceTarget
+	THLD F 0 A_CustomMissile("ThamuzDTBFG10KBall",54,-22,Random(-7,7))	
+	THLD F 3 Bright A_CustomMissile("ThamuzDTBFG10KBall",54,22,Random(-7,7))
+	THLD E 2 Bright A_FaceTarget	
+	THLD F 0 A_CustomMissile("Thamuz15K",54,-22,Random(-4,4))	
+	THLD F 3 Bright A_CustomMissile("Thamuz15K",54,22,Random(-4,4))	
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	THLD F 0 A_CustomMissile("Thamuz10K",54,-22,Random(-4,4))	
+	THLD F 3 Bright A_CustomMissile("Thamuz10K",54,22,Random(-4,4))
+	THLD E 2 Bright A_FaceTarget
+	THLD F 0 A_CustomMissile("DarkAnnihilatorRail",54,-22,0)
+	THLD F 0 A_CustomMissile("DTRailCore",54,-22,0)
+	THLD F 0 A_CustomMissile("DTRailCore",54,22,0)
         THLD F 3 Bright A_CustomMissile("DarkAnnihilatorRail",54,22,0)	
-		THLD E 2 Bright A_FaceTarget
-		THLD F 0 A_CustomMissile("Thamuz15K",54,-22,Random(-4,4))	
-		THLD F 3 Bright A_CustomMissile("Thamuz15K",54,22,Random(-4,4))	
-		THLD E 2 Bright A_FaceTarget
-		THLD F 0 A_CustomMissile("Thamuz15K",54,-22,Random(-4,4))	
-		THLD F 3 Bright A_CustomMissile("Thamuz15K",54,22,Random(-4,4))	
-		TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
-		THLD F 0 A_CustomMissile("Thamuz10K",54,-22,Random(-4,4))	
-		THLD F 3 Bright A_CustomMissile("Thamuz10K",54,22,Random(-4,4))
-		THLD E 2 Bright A_FaceTarget
-		THLD F 0 A_CustomMissile("ThamuzBall",54,-22,Random(-4,4))	
-		THLD F 3 Bright A_CustomMissile("ThamuzBall",54,22,Random(-4,4))	
-		THLD E 15 Bright A_FaceTarget
-		Goto See
+	THLD E 2 Bright A_FaceTarget
+	THLD F 0 A_CustomMissile("Thamuz15K",54,-22,Random(-4,4))	
+	THLD F 3 Bright A_CustomMissile("Thamuz15K",54,22,Random(-4,4))	
+	THLD E 2 Bright A_FaceTarget
+	THLD F 0 A_CustomMissile("Thamuz15K",54,-22,Random(-4,4))	
+	THLD F 3 Bright A_CustomMissile("Thamuz15K",54,22,Random(-4,4))	
+	TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+	THLD F 0 A_CustomMissile("Thamuz10K",54,-22,Random(-4,4))	
+	THLD F 3 Bright A_CustomMissile("Thamuz10K",54,22,Random(-4,4))
+	THLD E 2 Bright A_FaceTarget
+	THLD F 0 A_CustomMissile("ThamuzBall",54,-22,Random(-4,4))	
+	THLD F 3 Bright A_CustomMissile("ThamuzBall",54,22,Random(-4,4))	
+	THLD E 15 Bright A_FaceTarget
+	Goto See
 	Pain:
-		TNT1 A 0 A_Jump(100,"PainMissile")
+	TNT1 A 0 A_Jump(100,"PainMissile")
         THLD G 8 A_Pain
         Goto See
 	PainMissile:
-		THLD G 8 A_Pain
+	THLD G 8 A_Pain
         Goto Missile
 	Death:
-		THLD G 10 A_Scream
-		THLD H 10 A_NoBlocking
-		TNT1 AA 0 A_SpawnItemEx("GreenGibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
-		TNT1 AAA 0 A_CustomMissile("BigGreenBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+	THLD G 10 A_Scream
+	THLD H 10 A_NoBlocking
+	TNT1 AA 0 A_SpawnItemEx("GreenGibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+	TNT1 AAA 0 A_CustomMissile("BigGreenBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
         THLD IIIII 2 Bright A_CustomMissile("Kaboom5", random(20,80), random(20,-20), random(0,360), 2, random(0,360))
-		TNT1 AA 0 A_SpawnItemEx("GreenGibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
-		TNT1 AAA 0 A_CustomMissile("BigGreenBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+	TNT1 AA 0 A_SpawnItemEx("GreenGibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+	TNT1 AAA 0 A_CustomMissile("BigGreenBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
         THLD JJJJJ 2 Bright A_CustomMissile("Kaboom5", random(20,80), random(20,-20), random(0,360), 2, random(0,360))
-		TNT1 AA 0 A_SpawnItemEx("GreenGibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
-		TNT1 AAA 0 A_CustomMissile("BigGreenBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))		
+	TNT1 AA 0 A_SpawnItemEx("GreenGibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+	TNT1 AAA 0 A_CustomMissile("BigGreenBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))	
         THLD KKKKK 2 Bright A_CustomMissile("Kaboom5", random(20,80), random(20,-20), random(0,360), 2, random(0,360))
-		TNT1 AA 0 A_SpawnItemEx("GreenGibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)		
-		TNT1 AAA 0 A_CustomMissile("BigGreenBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+	TNT1 AA 0 A_SpawnItemEx("GreenGibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)	
+	TNT1 AAA 0 A_CustomMissile("BigGreenBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
         THLD LLLLL 1 Bright A_CustomMissile("Kaboom5", random(20,80), random(20,-20), random(0,360), 2, random(0,360))
-		TNT1 AA 0 A_SpawnItemEx("GreenGibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
-		TNT1 AAA 0 A_CustomMissile("BigGreenBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+	TNT1 AA 0 A_SpawnItemEx("GreenGibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+	TNT1 AAA 0 A_CustomMissile("BigGreenBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
         THLD MMMMM 1 Bright A_CustomMissile("Kaboom5", random(20,80), random(20,-20), random(0,360), 2, random(0,360))
-		TNT1 AAAA 0 A_SpawnItemEx("GreenGibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
-		TNT1 AAAAAA 0 A_CustomMissile("BigGreenBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
-		TNT1 AAAAAAAA 0 A_CustomMissile("SmokeFX3", Random(20,80), 0, random(0,360), 2, random(0,360))	
+	TNT1 AAAA 0 A_SpawnItemEx("GreenGibbedGenerator",Random(10,-10),Random(10,-10),Random(20,60),0,0,0,0,128,0)
+	TNT1 AAAAAA 0 A_CustomMissile("BigGreenBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+	TNT1 AAAAAAAA 0 A_CustomMissile("SmokeFX3", Random(20,80), 0, random(0,360), 2, random(0,360))	
         THLD NO 5
-		TNT1 A 0 A_BossDeath
+	TNT1 A 0 A_BossDeath
         THLD P -1 A_KillMaster
-        Stop		
+        Stop	
         }
 }
 

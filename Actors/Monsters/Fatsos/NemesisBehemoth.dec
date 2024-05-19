@@ -42,6 +42,7 @@ Actor NemesisBehemoth : LegendaryBehemoth 28026
   var int user_skullshots;
   var int user_deathtimer;
   var int user_deathtimeractive;
+  var int user_fading;
   States
   {
   Spawn:
@@ -100,14 +101,14 @@ Actor NemesisBehemoth : LegendaryBehemoth 28026
 	TNT1 A 0 A_Jump(75,"See")
 	Loop   
   Teleport:
-	NEMB A 1 A_UnSetShootable
+	NEMB A 1 ACS_NamedExecuteWithResult("ttk_fader",10,3)
 	TNT1 A 0 A_SetUserVar("user_effect_type",0)
-	NEMB AAAAAAAAAA 1  A_FadeOut(0.1,0)
+	NEMB A 0 A_Settics(user_fading)
 	NEMB AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
 	NEMB A 1 A_PlayWeaponSound("boss/teleport")
 	TNT1 A 0 A_Recoil(0.1)
-	NEMB AAAAAAAAAA 1 A_FadeIn(0.1)
-	NEMB A 1 A_SetShootable
+	NEMB A 0 A_Settics(user_fading)
+	NEMB A 1 
 	Goto See	
   Missile:
 	TNT1 A 0 A_SetShootable

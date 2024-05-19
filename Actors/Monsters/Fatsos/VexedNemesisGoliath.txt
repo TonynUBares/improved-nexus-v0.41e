@@ -98,15 +98,15 @@ ACTOR VexedNemesisGoliath : NemesisBehemoth 29014 //At least he doesn't heal con
 	TNT1 A 0 A_Jump(75,"See")
 	Loop   
   Teleport:
-	VEMB A 1 A_UnSetShootable
+	VEMB A 1 ACS_NamedExecuteWithResult("ttk_fader",10,3)
 	TNT1 AAAA 0 A_SpawnItemEx("NemesisHellionSmokeSpawner",random(-24,24),random(-24,24),0)
-	VEMB AAAAAAAAAA 1  A_FadeOut(0.1,0)
+	VEMB A 0 A_Settics(user_fading)
 	VEMB AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
 	VEMB AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
 	VEMB A 1 A_PlayWeaponSound("boss/teleport")
 	TNT1 AAAA 0 A_SpawnItemEx("NemesisHellionSmokeSpawner",random(-24,24),random(-24,24),0)
-	VEMB AAAAAAAAAA 1 A_FadeIn(0.1)
-	VEMB A 1 A_SetShootable
+	VEMB A 0 A_Settics(user_fading)
+	VEMB A 1
 	Goto See	
   Missile:
 	TNT1 A 0 A_SetShootable

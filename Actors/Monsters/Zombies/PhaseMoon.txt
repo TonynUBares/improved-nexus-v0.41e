@@ -1,77 +1,78 @@
 ACTOR PhaseMoon 23452
 {
-	Health 1200
-	Radius 20
-	Height 56
-	Speed 12
-	Mass 100
-	PainChance 20
-	PainChance "ZombieDemonTech", 0
-	DamageFactor 0.7
-	DamageFactor "LegendaryZombie", 0.0
-	DamageFactor "LACGrenade", 0.0
-	DamageFactor "GeneralTracer", 0.0
-	DamageFactor "ZombieCannon", 0.0
-	DamageFactor "ZombieRocket", 0.0
-	DamageFactor "Hell", 0.0
-	DamageFactor "EMGEx", 0.0
-	Damagefactor "RedZombieDemonTech", 0
-	DamageFactor "RedZDemonTechProjectile", 0.0
-	Damagefactor "ZombieRocket", 0
-	DamageFactor "RST", 0.0
-	DamageFactor "SoulToxic", 0.0
-	DamageFactor "BeheComet", 0.0
-	DamageFactor "FatFlamer", 0.0
-	Damagefactor "HTZombie", 0.0
-	DamageFactor "MiniRocket", 0.0
-	DamageFactor "ZombieCannon", 0.0
-	Damagefactor "ZExplosiveBullets", 0.0
-	Damagefactor "ZGrenade", 0.0
-	BloodColor "cf 00 b0"
-	Species "EliteZombies"
-	DropItem "NewShell" 256
-	DropItem "NewShellBox", 128
-	DropItem "HandGrenadeAmmo" 230 2
-	DropItem "MineAmmo" 240 2
-	DropItem "MineAmmo" 120 2
-	DropItem "Backpack" 200 1
-	DropItem "Armorplate" 240 1
-	DropItem "ArmorBooster" 240 3
-	DropItem "ArmorCharge" 240 5
-	DropItem "PortableMedCellPack" 100 1
-    DropItem "PortableMedCell", 200 1
-	DropItem "Portablemedkit" 240 1
-	DropItem "StimKit" 240 3
-	DropItem "HealthFlask" 240 5
-	DropItem "PhaseArmor" 120 1
-	DropItem "PhaseSphere" 100 1
-	DropItem "MarineSquadBeacon" 64 1
-	DropItem "SphereOfPower" 200
-	MONSTER 
-	+BOSS
-	+BOSSDEATH
-	+FLOORCLIP
-	+MISSILEMORE
-	+MISSILEEVENMORE
-	+QUICKTORETALIATE
-	+NOICEDEATH
-	+NODROPOFF
-	+DONTGIB
-	+NOTARGET
-	+NORADIUSDMG
-	+FORCERADIUSDMG
-	+NOFEAR
-	AttackSound ""
-	SeeSound "PhaseMoon/sight"
-	PainSound "PhaseMoon/pain"
-	DeathSound "PhaseMoon/death"
-	ActiveSound "PhaseMoon/active"
-	Obituary "%o was annihilated by Phase Moon's chaotic judgment."
-	Tag "$NEPhMoon"
-	var int user_attack;
-	var int user_lowlag;
-	states
-	{
+ Health 1200
+ Radius 20
+ Height 56
+ Speed 12
+ Mass 100
+ PainChance 20
+ PainChance "ZombieDemonTech", 0
+ DamageFactor 0.7
+ DamageFactor "LegendaryZombie", 0.0
+ DamageFactor "LACGrenade", 0.0
+ DamageFactor "GeneralTracer", 0.0
+ DamageFactor "ZombieCannon", 0.0
+ DamageFactor "ZombieRocket", 0.0
+ DamageFactor "Hell", 0.0
+ DamageFactor "EMGEx", 0.0
+ Damagefactor "RedZombieDemonTech", 0
+ DamageFactor "RedZDemonTechProjectile", 0.0
+ Damagefactor "ZombieRocket", 0
+ DamageFactor "RST", 0.0
+ DamageFactor "SoulToxic", 0.0
+ DamageFactor "BeheComet", 0.0
+ DamageFactor "FatFlamer", 0.0
+ Damagefactor "HTZombie", 0.0
+ DamageFactor "MiniRocket", 0.0
+ DamageFactor "ZombieCannon", 0.0
+ Damagefactor "ZExplosiveBullets", 0.0
+ Damagefactor "ZGrenade", 0.0
+ BloodColor "cf 00 b0"
+ Species "EliteZombies"
+ DropItem "NewShell" 256
+ DropItem "NewShellBox", 128
+ DropItem "HandGrenadeAmmo" 230 2
+ DropItem "MineAmmo" 240 2
+ DropItem "MineAmmo" 120 2
+ DropItem "Backpack" 200 1
+ DropItem "Armorplate" 240 1
+ DropItem "ArmorBooster" 240 3
+ DropItem "ArmorCharge" 240 5
+ DropItem "PortableMedCellPack" 100 1
+ DropItem "PortableMedCell", 200 1
+ DropItem "Portablemedkit" 240 1
+ DropItem "StimKit" 240 3
+ DropItem "HealthFlask" 240 5
+ DropItem "PhaseArmor" 120 1
+ DropItem "PhaseSphere" 100 1
+ DropItem "MarineSquadBeacon" 64 1
+ DropItem "SphereOfPower" 200
+ MONSTER 
+ +BOSS
+ +BOSSDEATH
+ +FLOORCLIP
+ +MISSILEMORE
+ +MISSILEEVENMORE
+ +QUICKTORETALIATE
+ +NOICEDEATH
+ +NODROPOFF
+ +DONTGIB
+ +NOTARGET
+ +NORADIUSDMG
+ +FORCERADIUSDMG
+ +NOFEAR
+ AttackSound ""
+ SeeSound "PhaseMoon/sight"
+ PainSound "PhaseMoon/pain"
+ DeathSound "PhaseMoon/death"
+ ActiveSound "PhaseMoon/active"
+ Obituary "%o was annihilated by Phase Moon's chaotic judgment."
+ Tag "$NEPhMoon"
+ var int user_attack;
+ var int user_lowlag;
+ var int user_fading;
+ States
+ {
   Spawn:
 	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
 	Goto Idle
@@ -274,14 +275,14 @@ ACTOR PhaseMoon 23452
     PHMO D 2 A_FaceTarget		
     Goto See
   Teleport:
-	PHMO A 1 A_UnSetShootable
-	PHMO AAAAAAAAAA 1 A_FadeOut(0.1,0)
+	PHMO A 1 ACS_NamedExecuteWithResult("ttk_fader",10,3)
+	PHMO A 0 A_Settics(user_fading)
 	PHMO A 2
 	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
 	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
 	PHMO A 1 A_PlayWeaponSound("boss/teleport")
-	PHMO AAAAAAAAAA 1 A_FadeIn(0.1)
-	PHMO A 1 A_SetShootable
+	PHMO A 0 A_Settics(user_fading)
+	PHMO A 1 
 	Goto See
   Pain:
 	TNT1 A 0 A_Jump(98,"PainMissile")

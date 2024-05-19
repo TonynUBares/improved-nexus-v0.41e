@@ -1,146 +1,147 @@
 ACTOR HellFireCardinal 
 {
-  Monster
-  BloodColor "ff 50 00"
-  +BRIGHT
-   +MISSILEMORE
-   +MISSILEEVENMORE
-   +QUICKTORETALIATE
-   +FLOAT
-   +NOGRAVITY	
-   -FLOORCLIP
-   +BOSS
-   +BOSSDEATH
-   +NOICEDEATH
-   +DONTHARMSPECIES
-   +FireResist
-   +NORADIUSDMG
-   +NOEXTREMEDEATH
-   +NOTIMEFREEZE
-   +CANTSEEK
-   +NOFEAR
-   +DONTSPLASH
-   +LOOKALLAROUND
-   +NOTELEFRAG
-   +DONTGIB
-   +DONTMORPH
-   +NoDropOff
-   +DONTRIP
-  SeeSound "HFCardinal/Sight"
-  PainSound "Cardinal/Pain"
-  ActiveSound "Cardinal/Active"
-  DeathSound "HFCardinal/Death"
-  Health 18999
-  Scale 1.2
-  Radius 45
-  Height 110
-  Speed 16
-  Mass 0x7FFFFFFF
-  FloatSpeed 12
-  Obituary "The HellFire Cardinal turned %o into a disgusting BBQ."
-  PainChance 8
-  Species "Cybers"
-  PainChance "BFG9500Ball", 256
-  PainChance "PlayerDevBall", 100
-  PainChance "BFG10K", 100
-  PainChance "PDTBFG", 100
-  PainChance "Legendary", 100 // 100
-  PainChance "LegendaryPlayer", 100 // 100
-  PainChance "LegendaryGuru", 256
-  PainChance "LegendaryGuruPlayer", 256
-  PainChance "PlayerDBFG2", 256
-  PainChance "PlayerDBFG210K", 256
-  PainChance "PlayerDBFG10K2", 256
-  PainChance "DBFG210K", 256
-  PainChance "DBFG2Splash", 256
-  PainChance "DBFG2", 256
-  PainChance "DBFG", 256
-  PainChance "PlayerDBFG", 256
-  PainChance "DBFG10K2", 256
-  DamageFactor "PlayerFireSword", 0.0
-  DamageFactor "PlayerDTRG", 0.2
-  DamageFactor "DTRailgun", 0.2
-  DamageFactor "PDTPuff", 0.2
-  DamageFactor "RailG", 0.2
-  DamageFactor "PlayerBHole", 0.25
-  DamageFactor "PDTBFG", 0.03
-  DamageFactor "PDTBFGTracer", 0.03
-  DamageFactor "Cyber10K", 0.0
-  DamageFactor "Legendary", 0.0
-  DamageFactor "LegendaryPlayer", 0.0
-  DamageFactor "LegendaryGuru", 0.0
-  DamageFactor "LegendaryGuruPlayer", 0.0
-  DamageFactor "LegendaryPlayer", 0.0
-  DamageFactor "BFGSplash", 0.0
-  DamageFactor "BFGSpray", 0.0
-  DamageFactor "PlayerDevBall", 0.020
-  DamageFactor "PlayerDevBall2", 0.020
-  DamageFactor "PlayerDTBFGRailgunSlug", 0.0
-  DamageFactor "PlayerDevTracer", 0.0
-  DamageFactor "UltimateLegendary", 0.0
-  DamageFactor "Extreme", 0.0
-  DamageFactor "PyroShot", 0.0
-  DamageFactor "PlayerPyro", 0.0
-  DamageFactor "PDTPuff", 0.0
-  DamageFactor "FreezerBurn", 0.0
-  DamageFactor "SuperWeapon", 0.0
-  DamageFactor "Fire", 0.0
-  DamageFactor "Crush", 0.0
-  DamageFactor "Suicide", 0.0
-  DamageFactor "Telefrag", 0.0
-  DamageFactor "Massacre", 0.0
-  DamageFactor "Ice", 0.0
-  DamageFactor "Melee", 0.0
-  DamageFactor "DBFG10K", 0.5
-  DamageFactor "PlayerDBFG10K", 0.5
-  DamageFactor "PlayerDBFG2", 0.5
-  DamageFactor "PlayerDBFG210K", 0.5
-  DamageFactor "PlayerDBFG", 0.5
-  DamageFactor "DBFG", 0.5
-  DamageFactor "DBFG2", 0.0
-  DamageFactor "DBFG10K2", 0.0
-  DamageFactor "DBFGSplash2", 0.0
-  DamageFactor "Normal", 0.9
-  DamageFactor "PlayerNemesisPlasma", 0.2
-  DamageFactor "Explosion", 0.1
-  //No infight
-  DamageFactor "DemolisherEx", 0.0
-  DamageFactor "FlamingBatshitBurglers", 0.0
-  DamageFactor "DarkDemoEx", 0.0
-  DamageFactor "CerChainguns", 0.0
-  DamageFactor "CerEnergyBall", 0.0
-  DamageFactor "LegMind", 0.0
-  DamageFactor "BeheComet", 0.0
-  DamageFactor "NobleCOmet", 0.0
-  DamageFactor "CacoComet", 0.0
-  DamageFactor "CadaverRocket", 0.0
-  DamageFactor "HellComet", 0.0
-  DamageFactor "Legendary1", 0.0
-  DamageFactor "T3rm", 0.0
-  DamageFactor "Terminator", 0.0
-  DamageFactor "", 0.0
-  DamageFactor "Ice", 0.0
-  DamageFactor "Moloch", 0.0
-  DamageFactor "AbyssalSatyr", 0.0
-  DamageFactor "SatanGuard", 0.0
-  DamageFactor "Hell", 0.0
-  DamageFactor "C0mm4nder", 0.0
-  DamageFactor "UpBFGSplash", 0.3
-  DamageFactor "Baby15K", 0.0
-  DamageFactor "RST", 0.0
-  DamageFactor "MinotaurDamage", 0.0
-  DamageFactor 0.6 //0.25
-  DropItem "BossLifeEssence" 204 25
-  DropItem "BossArmorBonusMax" 204 1
-  MinMissileChance 160
-  var int user_music;
-  var int user_fireballs;
-  var int user_hf10k;
-  var int user_railgun;
-  var int user_fusionnuke;
-  var int user_rage;
-  var int user_plasma;
-  var int user_lowlag;
+ Monster
+ BloodColor "ff 50 00"
+ +BRIGHT
+ +MISSILEMORE
+ +MISSILEEVENMORE
+ +QUICKTORETALIATE
+ +FLOAT
+ +NOGRAVITY	
+ -FLOORCLIP
+ +BOSS
+ +BOSSDEATH
+ +NOICEDEATH
+ +DONTHARMSPECIES
+ +FireResist
+ +NORADIUSDMG
+ +NOEXTREMEDEATH
+ +NOTIMEFREEZE
+ +CANTSEEK
+ +NOFEAR
+ +DONTSPLASH
+ +LOOKALLAROUND
+ +NOTELEFRAG
+ +DONTGIB
+ +DONTMORPH
+ +NoDropOff
+ +DONTRIP
+ SeeSound "HFCardinal/Sight"
+ PainSound "Cardinal/Pain"
+ ActiveSound "Cardinal/Active"
+ DeathSound "HFCardinal/Death"
+ Health 18999
+ Scale 1.2
+ Radius 45
+ Height 110
+ Speed 16
+ Mass 0x7FFFFFFF
+ FloatSpeed 12
+ Obituary "The HellFire Cardinal turned %o into a disgusting BBQ."
+ PainChance 8
+ Species "Cybers"
+ PainChance "BFG9500Ball", 256
+ PainChance "PlayerDevBall", 100
+ PainChance "BFG10K", 100
+ PainChance "PDTBFG", 100
+ PainChance "Legendary", 100 // 100
+ PainChance "LegendaryPlayer", 100 // 100
+ PainChance "LegendaryGuru", 256
+ PainChance "LegendaryGuruPlayer", 256
+ PainChance "PlayerDBFG2", 256
+ PainChance "PlayerDBFG210K", 256
+ PainChance "PlayerDBFG10K2", 256
+ PainChance "DBFG210K", 256
+ PainChance "DBFG2Splash", 256
+ PainChance "DBFG2", 256
+ PainChance "DBFG", 256
+ PainChance "PlayerDBFG", 256
+ PainChance "DBFG10K2", 256
+ DamageFactor "PlayerFireSword", 0.0
+ DamageFactor "PlayerDTRG", 0.2
+ DamageFactor "DTRailgun", 0.2
+ DamageFactor "PDTPuff", 0.2
+ DamageFactor "RailG", 0.2
+ DamageFactor "PlayerBHole", 0.25
+ DamageFactor "PDTBFG", 0.03
+ DamageFactor "PDTBFGTracer", 0.03
+ DamageFactor "Cyber10K", 0.0
+ DamageFactor "Legendary", 0.0
+ DamageFactor "LegendaryPlayer", 0.0
+ DamageFactor "LegendaryGuru", 0.0
+ DamageFactor "LegendaryGuruPlayer", 0.0
+ DamageFactor "LegendaryPlayer", 0.0
+ DamageFactor "BFGSplash", 0.0
+ DamageFactor "BFGSpray", 0.0
+ DamageFactor "PlayerDevBall", 0.020
+ DamageFactor "PlayerDevBall2", 0.020
+ DamageFactor "PlayerDTBFGRailgunSlug", 0.0
+ DamageFactor "PlayerDevTracer", 0.0
+ DamageFactor "UltimateLegendary", 0.0
+ DamageFactor "Extreme", 0.0
+ DamageFactor "PyroShot", 0.0
+ DamageFactor "PlayerPyro", 0.0
+ DamageFactor "PDTPuff", 0.0
+ DamageFactor "FreezerBurn", 0.0
+ DamageFactor "SuperWeapon", 0.0
+ DamageFactor "Fire", 0.0
+ DamageFactor "Crush", 0.0
+ DamageFactor "Suicide", 0.0
+ DamageFactor "Telefrag", 0.0
+ DamageFactor "Massacre", 0.0
+ DamageFactor "Ice", 0.0
+ DamageFactor "Melee", 0.0
+ DamageFactor "DBFG10K", 0.5
+ DamageFactor "PlayerDBFG10K", 0.5
+ DamageFactor "PlayerDBFG2", 0.5
+ DamageFactor "PlayerDBFG210K", 0.5
+ DamageFactor "PlayerDBFG", 0.5
+ DamageFactor "DBFG", 0.5
+ DamageFactor "DBFG2", 0.0
+ DamageFactor "DBFG10K2", 0.0
+ DamageFactor "DBFGSplash2", 0.0
+ DamageFactor "Normal", 0.9
+ DamageFactor "PlayerNemesisPlasma", 0.2
+ DamageFactor "Explosion", 0.1
+ //No infight
+ DamageFactor "DemolisherEx", 0.0
+ DamageFactor "FlamingBatshitBurglers", 0.0
+ DamageFactor "DarkDemoEx", 0.0
+ DamageFactor "CerChainguns", 0.0
+ DamageFactor "CerEnergyBall", 0.0
+ DamageFactor "LegMind", 0.0
+ DamageFactor "BeheComet", 0.0
+ DamageFactor "NobleCOmet", 0.0
+ DamageFactor "CacoComet", 0.0
+ DamageFactor "CadaverRocket", 0.0
+ DamageFactor "HellComet", 0.0
+ DamageFactor "Legendary1", 0.0
+ DamageFactor "T3rm", 0.0
+ DamageFactor "Terminator", 0.0
+ DamageFactor "", 0.0
+ DamageFactor "Ice", 0.0
+ DamageFactor "Moloch", 0.0
+ DamageFactor "AbyssalSatyr", 0.0
+ DamageFactor "SatanGuard", 0.0
+ DamageFactor "Hell", 0.0
+ DamageFactor "C0mm4nder", 0.0
+ DamageFactor "UpBFGSplash", 0.3
+ DamageFactor "Baby15K", 0.0
+ DamageFactor "RST", 0.0
+ DamageFactor "MinotaurDamage", 0.0
+ DamageFactor 0.6 //0.25
+ DropItem "BossLifeEssence" 204 25
+ DropItem "BossArmorBonusMax" 204 1
+ MinMissileChance 160
+ var int user_music;
+ var int user_fireballs;
+ var int user_hf10k;
+ var int user_railgun;
+ var int user_fusionnuke;
+ var int user_rage;
+ var int user_plasma;
+ var int user_lowlag;
+ var int user_fading;
   Tag "$NEHellfCardi"
   States
   {
@@ -236,17 +237,16 @@ ACTOR HellFireCardinal
 	TNT1 A 0 A_Jump(75,"See","HFTeleport")	
 	goto see
   HFTeleport:
-    TNT1 A 0 A_UnSetShootable
+    TNT1 A 1 ACS_NamedExecuteWithResult("ttk_fader",10,3)
 	TNT1 A 0 Bright A_SpawnItem("CardinalFireSpawner",0,0,0,0)
     TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("HFireSpawner",random(-64,64),random(-64,64),random(0,64),0,0,0,0,32)
-    HFCD EEEEEEEEEEE 1 Bright A_FadeOut(0.1,0)
+    HFCD E 0 A_Settics(user_fading)
     TNT1 A 0 A_ChangeVelocity(0, 0, 0, CVF_REPLACE)
     TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Chase(0, 0, CHF_NIGHTMAREFAST)
     TNT1 A 1 A_PlayWeaponSound("boss/teleport")
     TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("HFireSpawner",random(-64,64),random(-64,64),random(0,64),0,0,0,0,32)
-	HFCD EEEEEEEEEEE 1 A_FadeIn(0.1)
+	HFCD E 0 A_Settics(user_fading)
     TNT1 A 0 A_FaceTarget
-    TNT1 A 0 A_SetShootable
 	TNT1 A 0 A_SetTranslucent(1)
 	Goto Rockets
   HFTeleport2:
@@ -2148,16 +2148,16 @@ States
 	  TNT1 A 0 A_SpawnItem("HFCyberFlameSpawner",0,0,0,0)
 	  TNT1 A 0 A_SpawnItemEx("HellFireCardinalGhostD",0,0,0,0,0,0,0,128)  
       goto HFTeleport
-     HFTeleport:
-      TNT1 A 0 A_UnSetShootable
+  HFTeleport:
+      TNT1 A 1 ACS_NamedExecuteWithResult("ttk_fader",10,3)
 	  TNT1 A 0 Bright A_SpawnItem("CardinalFireSpawner",0,0,0,0)
       TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("HFireSpawner",random(-64,64),random(-64,64),random(0,64),0,0,0,0,32)
-      HFCD EEEEEEEEEEE 1 Bright A_FadeOut(0.1,0)
+      HFCD E 0 A_Settics(user_fading)
       TNT1 A 0 A_ChangeVelocity(0, 0, 0, CVF_REPLACE)
       TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Chase(0, 0, CHF_NIGHTMAREFAST)
       TNT1 A 1 A_PlayWeaponSound("boss/teleport")
       TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("HFireSpawner",random(-64,64),random(-64,64),random(0,64),0,0,0,0,32)
-	  HFCD EEEEEEEEEEE 1 A_FadeIn(0.1)
+	  HFCD E 0 A_Settics(user_fading)
       TNT1 A 0 A_FaceTarget
       TNT1 A 0 A_SetShootable
 	  TNT1 A 0 A_SetTranslucent(1)

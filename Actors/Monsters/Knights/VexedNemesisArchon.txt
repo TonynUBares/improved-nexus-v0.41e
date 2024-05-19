@@ -108,16 +108,16 @@ ACTOR VexedNemesisArchon : NemesisHellKnight
 	TNT1 A 0 A_Jump(75,"See")
 	Loop
   Teleport:
-	VNBL P 1 A_UnSetShootable
+	VNBL P 1 ACS_NamedExecuteWithResult("ttk_fader",10,3)
 	TNT1 AAAA 0 A_SpawnItem("TrueNemesisHellionSmokeSpawner",0,0,0,0)
-	VNBL PPPPPPPPPP 1 A_FadeOut(0.1,0)
+	VNBL P 0 A_Settics(user_fading)
 	VNBL P 2
 	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
 	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
 	VNBL P 1 A_PlayWeaponSound("boss/teleport")
 	TNT1 AAAA 0 A_SpawnItem("TrueNemesisHellionSmokeSpawner",0,0,0,0)
-	VNBL PPPPPPPPPP 1 A_FadeIn(0.1)
-	VNBL P 1 A_SetShootable
+	VNBL P 0 A_Settics(user_fading)
+	VNBL P 1 
 	TNT1 A 0 A_Jump(64,"See")
 	TNT1 A 0 A_JumpIfTargetInLOS("Missile")
 	Goto See	

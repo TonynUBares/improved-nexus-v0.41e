@@ -87,6 +87,7 @@ ACTOR NemHellsmith : LegendaryCyberdemon 31999
  Obituary "%o Got Gored, Smashed, Hit and Destroyed by the Nemesis Hellsmith!"
  var int user_rage;
  var int user_missile;
+ var int user_fading;
  States
  {	
   Spawn:
@@ -129,27 +130,24 @@ ACTOR NemHellsmith : LegendaryCyberdemon 31999
 	Loop  
   Teleport:
 	TNT1 A 0 A_JumpIf(user_rage == 1,"TeleportRage")
-	TNT1 A 0 A_SetInvulnerable
-	NHTH A 1 Bright A_UnSetShootable
-	NHTH AAAAAAAAAA 1 Bright A_FadeOut(0.1,0)
+	NHTH A 1 Bright ACS_NamedExecuteWithResult("ttk_fader",10,3)
+	NHTH A 0 A_Settics(user_fading)
 	TNT1 A 2 Bright
 	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
 	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
 	TNT1 A 1 Bright A_PlaySound("boss/teleport",6)
-	NHTH AAAAAAAAAA 1 Bright A_FadeIn(0.1)
-	TNT1 A 0 A_UnSetInvulnerable
-	NHTH A 1 Bright A_SetShootable
+	NHTH A 0 A_Settics(user_fading)
+	NHTH A 1 Bright
 	Goto See
   TeleportRage:
-	NHTH A 1 Bright A_UnSetShootable
-	NHTH AAAAA 1 Bright A_FadeOut(0.2,0)
+	NHTH A 1 Bright ACS_NamedExecuteWithResult("ttk_fader",5,3)
+	NHTH A 0 A_Settics(user_fading)
 	TNT1 A 2 Bright
 	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
 	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
 	TNT1 A 1 Bright A_PlaySound("boss/teleport",6)
-	NHTH AAAAA 1 Bright A_FadeIn(0.2)
-	TNT1 A 0 A_UnSetInvulnerable
-	NHTH A 1 Bright A_SetShootable
+	NHTH A 0 A_Settics(user_fading)
+	NHTH A 1 Bright
 	Goto See
   StartRage:
 	TNT1 A 0 A_SetInvulnerable
