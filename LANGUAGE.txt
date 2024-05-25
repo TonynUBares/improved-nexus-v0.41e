@@ -16,6 +16,23 @@ NXOptO011 = "\cuStart with 250/250 health and armor.";
 
 NXOptO02 = "\cfDisable Welder self damage";
 
+NXOptO03 = "\cfKazumi nuke effect choker";
+NXOptO031 = "\cuSuppress some Kazumi nuke effects.";
+
+
+NXOptO040 = "\cf---CDI Marines Settings---";
+NXOptO04 = "\cfRegroup Nearby Marines";
+NXOptO041 = "\cuAll your available marines";
+NXOptO042 = "\cuwill regroup near your position.";
+
+NXOptO05 = "\cfAuto-Supply Beacons";
+NXOptO051 = "\cuAllow the UAC to send you marine beacons.";
+
+NXOptO06 = "\cfAuto-Regroup Marines";
+NXOptO061 = "\cuAllow your idling marines to rejoin your position.";
+
+NexFestiveOpt = "\cf---Festive Settings---";
+
 NexmasOpt = "\cfXmas Presents";
 Nexmas0 = "\cuEnemies can drop Xmas presents.";
 Nexmas1 = "\cuOnly works with progressive spawner set to Chaos";
@@ -23,23 +40,8 @@ Nexmas2 = "\cuSet it to \cgOverride\cu to make it work with";
 Nexmas3 = "\cuany progressive spawner option";
 Nexmas4 = "\cgWarning: it can break progression!";
 
-NXOptO030 = "\cf---CDI Marines Settings---";
-NXOptO03 = "\cfRegroup Nearby Marines";
-NXOptO031 = "\cuAll your available marines";
-NXOptO032 = "\cuwill regroup near your position.";
-
-NXOptO04 = "\cfAuto-Supply Beacons";
-NXOptO041 = "\cuAllow the UAC to send you marine beacons.";
-
-NXOptO05 = "\cfAuto-Regroup Marines";
-NXOptO051 = "\cuAllow your idling marines to rejoin your position.";
-
-NXOptO06 = "\cfKazumi nuke effect chocker";
-NXOptO061 = "\cuSuppress some Kazumi nuke effects.";
-
 NXOptO07 = "\cfApril Fools mode";
 NXOptO071 = "\cuAllow some very op and very unfair actors to spawn in game.";
-
 
 NXMonstersEFGLunaticNuclearMode = "\cfEFG Lunatic nuclear mode";
 NXMonO011 = "\cuGives the EFG Lunatic a big nuke attack,";
