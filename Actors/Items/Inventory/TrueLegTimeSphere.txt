@@ -5,7 +5,6 @@ Actor TrueLegTimeFreezeSphere : CustomInventory 26351
  Inventory.PickupSound "legtime/pickup"
  Inventory.UseSound "truelegtime/use"
  Inventory.Icon "TLTFZ0"
- Inventory.MaxAmount 1
  +INVBAR
  +INVENTORY.BIGPOWERUP
  +NOTIMEFREEZE
@@ -13,7 +12,7 @@ Actor TrueLegTimeFreezeSphere : CustomInventory 26351
  States
  {	
   Spawn:
-	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,6,19)
+	TLTF A 0 NoDelay ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,6,19)
   SpawnLoop:
 	TLTF ABCDE 10 Bright
 	Loop

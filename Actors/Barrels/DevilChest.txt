@@ -7,7 +7,7 @@ ACTOR DevilChest: ComplexChest
  States
  {
   Spawn:
-	TNT1 A 0 Nodelay ACS_NamedExecuteAlways("ttkCrateIcon",0)
+	DVBX A 0 Nodelay ACS_NamedExecuteAlways("ttkCrateIcon",0)
   SpawnLoop:
 	DVBX A 1
 	Loop

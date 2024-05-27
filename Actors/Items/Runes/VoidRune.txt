@@ -54,15 +54,12 @@ ACTOR VoidFlame
  States
  {
   Spawn:
-	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
-	TNT1 A 1 
-	TNT1 A 0 A_Jump(256,1,2,3,4)
-	TNT1 AAA 1 
-	TNT1 A 0 
+	TNT1 A 1 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
+	TNT1 A 0 A_SetTics(Random(0,3))
 	PMKE ABCDEFGHIJKL 2 Bright A_FadeOut(0.1,1)
 	Wait
   Vanilla:
-	TNT1 A 0
+	TNT1 A 1
 	Stop
  }
 }

@@ -19,7 +19,7 @@ ACTOR PlayingCard
  States
  {
   Spawn:
-	TNT1 A 0
+	PCRD A 0
 	PCRD A -1
 	Stop
   Death:

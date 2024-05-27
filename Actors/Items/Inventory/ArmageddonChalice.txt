@@ -1,8 +1,6 @@
 ACTOR ArmageddonChalice : CustomInventory
 {
  Scale 1.0
- Inventory.Amount 1
- Inventory.MaxAmount 1
  Inventory.PickupSound "pickups/dchalice"
  Inventory.UseSound "dchalice/use"
  Inventory.PickupMessage "Chalice Of Armageddon"

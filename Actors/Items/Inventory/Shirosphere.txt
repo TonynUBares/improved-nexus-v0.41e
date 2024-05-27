@@ -1,7 +1,5 @@
 ACTOR Shirosphere : CustomInventory
 {
- Inventory.Amount 1
- Inventory.MaxAmount 1
  Renderstyle Add
  +INVENTORY.BIGPOWERUP
  -INVENTORY.UNDROPPABLE //HDAN - dropable item
@@ -28,8 +26,6 @@ ACTOR Shirosphere : CustomInventory
 
 ACTOR NemesisShirosphere : CustomInventory
 {
- Inventory.Amount 1
- Inventory.MaxAmount 1
  Renderstyle Add
  +INVENTORY.BIGPOWERUP
  -INVENTORY.UNDROPPABLE //HDAN - dropable item

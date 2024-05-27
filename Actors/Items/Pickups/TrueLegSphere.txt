@@ -10,7 +10,7 @@ Actor TrueLegendarySphere : LegendarySphere 26836
  States
  {
    Spawn:
-	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,6,19)
+	TSPH A 0 NoDelay ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,6,19)
    SpawnLoop:
 	TNT1 A 0 A_PlaySound("enragedlegsphere/idle",6,5.0)
 	TSPH ABCDCB 10 Bright

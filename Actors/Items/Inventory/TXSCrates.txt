@@ -2,8 +2,6 @@ Actor CratesParent : CustomInventory
 {
  Scale 1.2
  Inventory.PickupSound "RandomCrate/pickup"
- Inventory.Amount 1
- Inventory.MaxAmount 1
  +INVENTORY.INVBAR
  +INVENTORY.BIGPOWERUP
  +FLOORCLIP
@@ -31,7 +29,7 @@ ACTOR WeaponCrate : CratesParent
  States
  {
   Spawn:
- 	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("TTKGetCVar",55,2) != 0,"Remove")
+ 	WPC1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("TTKGetCVar",55,2) != 0,"Remove")
 	WPC1 A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,124)
 	Goto Spawnloop
   Use:
@@ -49,7 +47,7 @@ ACTOR HealthCrate : CratesParent
  States
  {
   Spawn:
- 	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("TTKGetCVar",55,2) != 0,"Remove")
+ 	HLCT A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("TTKGetCVar",55,2) != 0,"Remove")
 	HLCT A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,4,125)
 	Goto Spawnloop
   Use:
@@ -66,7 +64,7 @@ ACTOR UtilityCrate : CratesParent
  States
  {
   Spawn:
- 	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("TTKGetCVar",55,2) != 0,"Remove")
+ 	UYCT A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("TTKGetCVar",55,2) != 0,"Remove")
 	UYCT A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,125)
 	Goto Spawnloop
   Use:
@@ -84,7 +82,7 @@ ACTOR SuperCrate : CratesParent
  States
  {
   Spawn:
- 	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("TTKGetCVar",55,2) != 0,"Remove")
+ 	SHCT A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("TTKGetCVar",55,2) != 0,"Remove")
 	TNT1 A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,3,4)
 	TNT1 A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,3,126)
 	TNT1 A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,127,128)
@@ -151,7 +149,7 @@ Actor SuperCrateActiveParent
 	SHCT ABCDEFGHIJKABCDEFGHIJK 3 Bright
 	SHCT ABCDEFGHIJKABCDEFGHIJK 2 Bright
 	SHCT ABCDEFGHIJKABCDEFGHIJKABCDEFGHIJK 1 Bright
-	SHCT A 1 A_Jump(256,"Death")
+	SHCT A 5 A_Jump(256,"Death")
 	Wait
   DeathCont:
 	TNT1 AAA 0 A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,128)  

@@ -113,3 +113,14 @@ script "ttkShinki" (void)
  }
 }
 ```
+
+10)
+	TNT1 A 0 A_Jump(256,1,2,3,4)
+	TNT1 AAA 1 
+	TNT1 A 0 
+	PMKE ABCDE
+
+Another useless thing. It can be summarized as
+
+	TNT1 A 0 A_SetTics(Random(0,3)) 
+	PMKE ABCDE

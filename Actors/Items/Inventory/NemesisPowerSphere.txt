@@ -4,7 +4,6 @@ Actor NemesisPowerSphere : CustomInventory
   Inventory.PickupSound "legpowersphere/take"
   Inventory.UseSound "legpowersphere/use"
   Inventory.Icon "SENEL0"
-  Inventory.MaxAmount 1
   +DONTGIB
   +INVBAR
   +INVENTORY.BIGPOWERUP
@@ -14,127 +13,125 @@ Actor NemesisPowerSphere : CustomInventory
   States
   {
   Spawn:
-	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,117)
+	SENE A 0 NoDelay ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,117)
   SpawnLoop:
 	SENE EFGHEFGHEFGHEFGH 6 Bright 
 	SENE EFGHEFGH 4 Bright  
 	Loop
   Use:
-    TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ItemChecks") == 1,"Nope")
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ItemChecks") == 1,"Nope")
 	TNT1 A 0 A_RailWait
 	TNT1 A 1 A_GiveInventory("NemesisPowerSphereCooldown",1)
 	TNT1 A 0 ACS_NamedExecuteAlways("NemesisPowerItem")
 	TNT1 A 1
-    Stop
+	Stop
   Nope:
 	TNT1 A 0 ACS_NamedExecuteAlways("NexusRegenMessage")
 	TNT1 A 1
 	Fail
-  }
+ }
 }
 
 Actor NemesisPowerSphereCooldown : PowerDamage
 {
-DamageFactor "notarealdamagetype", 1.0
-Powerup.duration -60
+ DamageFactor "notarealdamagetype", 1.0
+ Powerup.duration -60
 }
-
-
 
 Actor NemesisPowerSpeed : PowerupGiver
 {
-  Inventory.MaxAmount 0
-  Powerup.Color Black 0.20
-  Powerup.Duration -60
-  Powerup.Type Speed
-  +INVENTORY.AUTOACTIVATE
-  +INVENTORY.ALWAYSPICKUP
-  States
-  {
+ Inventory.MaxAmount 0
+ Powerup.Color Black 0.20
+ Powerup.Duration -60
+ Powerup.Type Speed
+ +INVENTORY.AUTOACTIVATE
+ +INVENTORY.ALWAYSPICKUP
+ States
+ {
   Spawn:
-    ROWL A 1 Bright
-    Loop
+	ROWL A 1 Bright
+	Loop
   }
 }
 
 Actor NemesisPowerFrightener : PowerupGiver
 {
-  Inventory.MaxAmount 0
-  Powerup.Duration -60
-  Powerup.Type Frightener
-  +INVENTORY.AUTOACTIVATE
-  +INVENTORY.ALWAYSPICKUP
-  States
-  {
+ Inventory.MaxAmount 0
+ Powerup.Duration -60
+ Powerup.Type Frightener
+ +INVENTORY.AUTOACTIVATE
+ +INVENTORY.ALWAYSPICKUP
+ States
+ {
   Spawn:
-    ROWL A 1 Bright
-    Loop
-  }
+	ROWL A 1 Bright
+	Loop
+ }
 }
 
 Actor NemesisPowerDoubleFiringSpeed : PowerupGiver
 {
-  Inventory.MaxAmount 0
-  Powerup.Duration -60
-  Powerup.Type LegDoubleFiringSpeed
-  +INVENTORY.AUTOACTIVATE
-  +INVENTORY.ALWAYSPICKUP
-  +INVENTORY.ADDITIVETIME
-  States
-  {
+ Inventory.MaxAmount 0
+ Powerup.Duration -60
+ Powerup.Type LegDoubleFiringSpeed
+ +INVENTORY.AUTOACTIVATE
+ +INVENTORY.ALWAYSPICKUP
+ +INVENTORY.ADDITIVETIME
+ States
+ {
   Spawn:
-    ROWL A 1 Bright
-    Loop
-  }
+	ROWL A 1 Bright
+	Loop
+ }
 }
 
 Actor NemesisPowerDrain : PowerupGiver
 {
-  Inventory.MaxAmount 0
-  Powerup.Duration -60
-  Powerup.Type Drain
-  +INVENTORY.AUTOACTIVATE
-  +INVENTORY.ALWAYSPICKUP
-  States
-  {
+ Inventory.MaxAmount 0
+ Powerup.Duration -60
+ Powerup.Type Drain
+ +INVENTORY.AUTOACTIVATE
+ +INVENTORY.ALWAYSPICKUP
+ States
+ {
   Spawn:
-    ROWL A 1 Bright
-    Loop
-  }
+	ROWL A 1 Bright
+	Loop
+ }
 }
 
 ACTOR NNull : ArmorBonus
 {
-Armor.SavePercent 0
-Armor.SaveAmount 0
-Armor.MaxSaveAmount 0
-Inventory.Icon "ARM2B0"
+ Armor.SavePercent 0
+ Armor.SaveAmount 0
+ Armor.MaxSaveAmount 0
+ Inventory.Icon "ARM2B0"
 }
 
 Actor NemesisPowerReflection : PowerReflection
 {
-  Inventory.MaxAmount 0
-  Powerup.Duration -60
-  +INVENTORY.AUTOACTIVATE
-  +INVENTORY.ALWAYSPICKUP
-  States
-  {
+ Inventory.MaxAmount 0
+ Powerup.Duration -60
+ +INVENTORY.AUTOACTIVATE
+ +INVENTORY.ALWAYSPICKUP
+ States
+ {
   Spawn:
-    ROWL A 1 Bright
-    Loop
-  }
+	ROWL A 1 Bright
+	Loop
+ }
 }
 
 ACTOR SemiNemDemonAmmo : NLDemonAmmo
 {
-Inventory.Amount 1
-Inventory.MaxAmount 250
-Ammo.BackpackMaxAmount 500
+ Inventory.Amount 1
+ Inventory.MaxAmount 250
+ Ammo.BackpackMaxAmount 500
 }
 
 ACTOR SemiNemShell : NemesisShell
 {
-Inventory.Amount 1
-Inventory.MaxAmount 250
-Ammo.BackpackMaxAmount 500
+ Inventory.Amount 1
+ Inventory.MaxAmount 250
+ Ammo.BackpackMaxAmount 500
 }

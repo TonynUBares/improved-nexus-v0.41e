@@ -6,7 +6,7 @@ ACTOR UnmakerChest: ComplexChest
   States
   {
   Spawn:
-	TNT1 A 0 Nodelay ACS_NamedExecuteAlways("ttkCrateIcon",0)
+	UNBX A 0 Nodelay ACS_NamedExecuteAlways("ttkCrateIcon",0)
   SpawnLoop:
 	UNBX A 1
 	Loop

@@ -3,8 +3,6 @@ ACTOR VoidCore : NemesisSphere
  Alpha 0.8
  Scale 1.0
  Renderstyle Add
- Inventory.Amount 1
- Inventory.MaxAmount 1
  Inventory.Icon "BLKHO0"
  Inventory.PickupSound "VoidCore/pickup"
  Inventory.PickupMessage "$NEVCorePickup"
@@ -19,7 +17,7 @@ ACTOR VoidCore : NemesisSphere
  States
  {
   Spawn:
-	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,121,122)
+	BLKH A 0 NoDelay ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,121,122)
   SpawnLoop:
 	TNT1 A 0 A_PlaySound("VoidCore/Idle",7,1.0,True)
 	BLKH A 12
@@ -57,7 +55,7 @@ Actor VoidCoreActive : ExplosiveBarrel
  States
  {
   Spawn:
-	TNT1 A 0 NoDelay A_PlaySound("VoidCore/Idle2",6,5.0,True)
+	BLKH A 0 NoDelay A_PlaySound("VoidCore/Idle2",6,5.0,True)
 	TNT1 AA 0 A_CustomMissile ("VHellionSmokeSpawner", -20, 0, random(0,-360), 2, random(0,360)) 
 	BLKH BCD 1 Bright A_SpawnItem("VoidSphereSight",0,38)
 	TNT1 A 0 A_Jump(20,"CrackSound")

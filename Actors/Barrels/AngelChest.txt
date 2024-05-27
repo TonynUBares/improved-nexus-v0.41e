@@ -7,7 +7,7 @@ ACTOR AngelChest: ComplexChest
  States
  {
   Spawn:
-	TNT1 A 0 Nodelay ACS_NamedExecuteAlways("ttkCrateIcon",0)
+	AGBX A 0 Nodelay ACS_NamedExecuteAlways("ttkCrateIcon",0)
   SpawnLoop:
 	AGBX A 1
 	Loop
@@ -143,7 +143,7 @@ ACTOR AngelChest: ComplexChest
 
 ACTOR AngelChestElectric : MainyuSentientElectric
 {
--THRUACTORS
-Tag "Lightning Vessel"
-Obituary "%o died from the Angel Chest's worst outcome."
+ -THRUACTORS
+ Tag "Lightning Vessel"
+ Obituary "%o died from the Angel Chest's worst outcome."
 }

@@ -5,7 +5,6 @@ Actor SentryBoxParent : CustomInventory
  +INVENTORY.HUBPOWER
  +INVENTORY.PERSISTENTPOWER
  +INVENTORY.BIGPOWERUP
- Inventory.Amount 1
  Inventory.MaxAmount 4
  Inventory.InterHubAmount 4
  var int user_TurretLoop;

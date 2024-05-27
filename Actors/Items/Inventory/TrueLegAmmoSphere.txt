@@ -4,7 +4,6 @@ Actor TrueLegAmmoSphere : CustomInventory 26837
  Inventory.PickupSound "legammo/pickup"
  Inventory.UseSound "truelegammosphere/use"
  Inventory.Icon "TLASZ0"
- Inventory.MaxAmount 1
  +INVBAR
  +INVENTORY.BIGPOWERUP
  +NOTIMEFREEZE
@@ -12,7 +11,7 @@ Actor TrueLegAmmoSphere : CustomInventory 26837
  States
  { 	
   Spawn:
-	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,6,19)
+	TLAS A 0 NoDelay ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,6,19)
   SpawnLoop:
 	TLAS ABCD 10 Bright 
 	Loop

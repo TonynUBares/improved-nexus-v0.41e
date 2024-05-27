@@ -9,7 +9,7 @@ ACTOR HackroidArmor : CustomInventory
  States
  {
   Spawn:
-	TNT1 A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckMods",5) == 1 || ACS_NamedExecuteWithResult("ArmorFlags") == 1,"HoldAndDestroy")
+	HAMR A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("CheckMods",5) == 1 || ACS_NamedExecuteWithResult("ArmorFlags") == 1,"HoldAndDestroy")
 	TNT1 A 0 A_PlaySound("UnknownArmor/idle",CHAN_ITEM,1.0,True)
 	TNT1 A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,102,103)
   SpawnLoop:
@@ -73,7 +73,7 @@ Actor HackroidSphere : LegendarySphere
  States
  {
   Spawn:
-	TNT1 A 0
+	HSPH A 0
 	TNT1 A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,103,104)
   SpawnLoop:
 	HSPH ABCDCB 12 Bright 
@@ -94,7 +94,7 @@ ACTOR HackroidHyperSphere : LegendaryUltraSphere
  States
  {
   Spawn:
-	TNT1 A 0
+	HLUS A 0
 	TNT1 A 0 A_PlaySound("UnknownHyperSphere/idle",CHAN_ITEM,1.0,True)
 	TNT1 A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,103,105)
   SpawnLoop:

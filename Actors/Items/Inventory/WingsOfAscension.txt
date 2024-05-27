@@ -5,8 +5,6 @@ Actor WingsOfAscension : CustomInventory 30384
  +INVENTORY.PICKUPFLASH
  Inventory.RespawnTics 4230
  Inventory.Icon "ARTISOAX"
- Inventory.Amount 1
- Inventory.MaxAmount 1
  Inventory.PickupSound "WingsOfAscension/Pickup"
  Inventory.UseSound "WingsOfAscension/Use"
  Inventory.PickupMessage "You found the Wings Of Ascension, AIRTIME!"
@@ -14,7 +12,7 @@ Actor WingsOfAscension : CustomInventory 30384
  States
  {
   Spawn:
-	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,123)
+	WOAX A 0 NoDelay ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,123)
   SpawnLoop:
 	WOAX ABCB 5 BRIGHT
 	Loop

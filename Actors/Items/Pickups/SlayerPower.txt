@@ -1,208 +1,137 @@
 actor ClusterfuckSlayerPower : CustomInventory
 {
-  Inventory.PickupMessage "\c[w2]CLUSTERFUCK \c[s3]SLAYER\c-"
-  Inventory.Amount 1
-  Inventory.PickupSound "legendary/defense"
-  Renderstyle Add
-  +INVENTORY.AUTOACTIVATE
-  +INVENTORY.FANCYPICKUPSOUND
-  +INVENTORY.ALWAYSPICKUP
-  +INVENTORY.HUBPOWER
-  +INVENTORY.BIGPOWERUP
-  -FLOAT
-  +DONTGIB
-  XScale 0.24
-  YScale 0.20
-  var int user_music;
-  States
-  {
- Spawn:
-  TNT1 A 0
-  TNT1 A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,30)
-  CFSY A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,112,113)
-  Goto SpawnLoop
- SpawnLoop:
-  "####" A 0 A_PlaySound("Extreme/idle",CHAN_ITEM,1.0,True)
-  "####" A 6 Bright
-  Loop
- Use:
-  TNT1 A 0 A_GiveInventory("PowerStrength")
-  TNT1 A 0 A_GiveInventory("NemesisUltraSphereQuiet")
-  TNT1 A 1 A_GiveInventory("CFSPInvulnerability")
-  TNT1 A 0 A_GiveInventory("CFSPQuadDamage")
-  TNT1 A 0 A_GiveInventory("CFSPBlur")
-  TNT1 A 0 A_GiveInventory("CFSPSpeed")
-  TNT1 A 0 A_GiveInventory("CFSPJump")
-  TNT1 A 0 A_GiveInventory("CFSPAmmo")
-  TNT1 A 0 A_JumpIfInventory("AgilityRuneRage",1,2)
-  TNT1 A 0 A_GiveInventory("CFSPFirepower")
-  TNT1 A 0 
-  Stop
+ Inventory.PickupMessage "\c[w2]CLUSTERFUCK \c[s3]SLAYER\c-"
+ Inventory.Amount 1
+ Inventory.PickupSound "legendary/defense"
+ Renderstyle Add
+ +INVENTORY.AUTOACTIVATE
+ +INVENTORY.FANCYPICKUPSOUND
+ +INVENTORY.ALWAYSPICKUP
+ +INVENTORY.HUBPOWER
+ +INVENTORY.BIGPOWERUP
+ -FLOAT
+ +DONTGIB
+ XScale 0.24
+ YScale 0.20
+ var int user_music;
+ States
+ {
+  Spawn:
+	CFSY A 0
+	TNT1 A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,30)
+	CFSY A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,112,113)
+	Goto SpawnLoop
+  SpawnLoop:
+	"####" A 0 A_PlaySound("Extreme/idle",CHAN_ITEM,1.0,True)
+	"####" A 6 Bright
+	Loop
+  Use:
+	TNT1 A 0 A_GiveInventory("PowerStrength")
+	TNT1 A 0 A_GiveInventory("NemesisUltraSphereQuiet")
+	TNT1 A 1 A_GiveInventory("CFSPInvulnerability")
+	TNT1 A 0 A_GiveInventory("CFSPQuadDamage")
+	TNT1 A 0 A_GiveInventory("CFSPBlur")
+	TNT1 A 0 A_GiveInventory("CFSPSpeed")
+	TNT1 A 0 A_GiveInventory("CFSPJump")
+	TNT1 A 0 A_GiveInventory("CFSPAmmo")
+	TNT1 A 0 A_JumpIfInventory("AgilityRuneRage",1,2)
+	TNT1 A 0 A_GiveInventory("CFSPFirepower")
+	TNT1 A 0 
+	Stop
  }
 }
 
 actor CFSPQuadDamage : PowerDamage 
 { 
-   DamageFactor "Normal", 4.0
-   inventory.icon "TNT1A0"
-   powerup.duration -60
-  +INVENTORY.AUTOACTIVATE
-  +INVENTORY.FANCYPICKUPSOUND
-  +INVENTORY.ALWAYSPICKUP
+ DamageFactor "Normal", 4.0
+ inventory.icon "TNT1A0"
+ powerup.duration -60
+ +INVENTORY.AUTOACTIVATE
+ +INVENTORY.FANCYPICKUPSOUND
+ +INVENTORY.ALWAYSPICKUP
 } 
 
 ACTOR CFSPInvulnerability : InvulnerabilitySphere
 {
-  Powerup.Color InverseMap
-  Powerup.Type "Invulnerable"
-  Powerup.Mode Reflective
-  Powerup.Duration -60
-  +INVENTORY.AUTOACTIVATE
-  +INVENTORY.FANCYPICKUPSOUND
-  +INVENTORY.ALWAYSPICKUP
+ Powerup.Color InverseMap
+ Powerup.Type "Invulnerable"
+ Powerup.Mode Reflective
+ Powerup.Duration -60
+ +INVENTORY.AUTOACTIVATE
+ +INVENTORY.FANCYPICKUPSOUND
+ +INVENTORY.ALWAYSPICKUP
 }
 
 ACTOR CFSPBlur : BlurSphere
 {
-  Powerup.Type "Invisibility"
-  Powerup.Duration -1
-  +INVENTORY.AUTOACTIVATE
-  +INVENTORY.FANCYPICKUPSOUND
-  +INVENTORY.ALWAYSPICKUP
+ Powerup.Type "Invisibility"
+ Powerup.Duration -1
+ +INVENTORY.AUTOACTIVATE
+ +INVENTORY.FANCYPICKUPSOUND
+ +INVENTORY.ALWAYSPICKUP
 }
 
-ACTOR CFSPSpeed : PowerupGiver
+Actor NexusSlayerPowerup : PowerUpGiver
 {
-//powerup.color None 0.0
-powerup.type Speed
-powerup.duration -60
-+INVENTORY.AUTOACTIVATE
-+INVENTORY.FANCYPICKUPSOUND
-+INVENTORY.ALWAYSPICKUP
+ powerup.type Speed
+ powerup.duration -60
+ +INVENTORY.AUTOACTIVATE
+ +INVENTORY.FANCYPICKUPSOUND
+ +INVENTORY.ALWAYSPICKUP
 }
 
-ACTOR CFSPJump : PowerupGiver
+ACTOR CFSPSpeed : NexusSlayerPowerup {}
+
+ACTOR CFSPJump : NexusSlayerPowerup {Powerup.type HighJump}
+
+ACTOR CFSPFirepower : NexusSlayerPowerup {Powerup.type PowerDoubleFiringSpeed}
+
+ACTOR CFSPAmmo : NexusSlayerPowerup {Powerup.type InfiniteAmmo}
+
+
+Actor DoomSlayerPower : ClusterfuckSlayerPower
 {
-//powerup.color None 0.0
-powerup.type HighJump
-powerup.duration -60
-+INVENTORY.AUTOACTIVATE
-+INVENTORY.FANCYPICKUPSOUND
-+INVENTORY.ALWAYSPICKUP
+ Inventory.PickupMessage "\c[w8]DOOM \c[o5]SLAYER\c-"
+ States
+ {
+  Spawn:
+	SLYR A 0 NoDelay ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,10,36)
+	SLYR A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,37,114)
+	Goto SpawnLoop
+  Use:
+	TNT1 A 0 A_GiveInventory("PowerStrength")
+	TNT1 A 0 A_GiveInventory("HellfireUltraSphere")
+	TNT1 A 0 A_GiveInventory("DoomSlayerInvulnerability")
+	TNT1 A 0 A_GiveInventory("DoomSlayerQuadDamage")
+	TNT1 A 0 A_GiveInventory("DoomSlayerBlur")
+	TNT1 A 0 A_GiveInventory("DoomSlayerSpeed")
+	TNT1 A 0 A_GiveInventory("DoomSlayerJump")
+	TNT1 A 0 A_GiveInventory("DoomSlayerAmmo")
+	TNT1 A 0 A_JumpIfInventory("AgilityRuneRage",1,2)
+	TNT1 A 0 A_GiveInventory("DoomSlayerFirepower")
+	TNT1 A 0
+	stop
+ }
 }
 
-ACTOR CFSPFirepower : PowerupGiver
+actor DoomSlayerQuadDamage : CFSPQuadDamage {Powerup.duration -30} 
+
+ACTOR DoomSlayerInvulnerability : CFSPInvulnerability
 {
-//powerup.color None 0.0
-powerup.type PowerDoubleFiringSpeed
-powerup.duration -60
-+INVENTORY.AUTOACTIVATE
-+INVENTORY.FANCYPICKUPSOUND
-+INVENTORY.ALWAYSPICKUP
+ Powerup.Color RedMap
+ Powerup.Duration -30
 }
 
-ACTOR CFSPAmmo : PowerupGiver
+ACTOR DoomSlayerBlur : CFSPBlur {}
+
+ACTOR DoomSlayerSpeed : NexusSlayerPowerup
 {
-//powerup.color None 0.0
-powerup.type InfiniteAmmo
-powerup.duration -60
-+INVENTORY.AUTOACTIVATE
-+INVENTORY.FANCYPICKUPSOUND
-+INVENTORY.ALWAYSPICKUP
+ Powerup.type Speed
+ powerup.duration -30
 }
 
+ACTOR DoomSlayerJump : DoomSlayerSpeed {Powerup.type HighJump}
 
-actor DoomSlayerPower : ClusterfuckSlayerPower
-{
-  Inventory.PickupMessage "\c[w8]DOOM \c[o5]SLAYER\c-"
-  States
-  {
- Spawn:
-  TNT1 A 0 NoDelay ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,10,36)
-  SLYR A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,37,114)
-  Goto SpawnLoop
- Use:
-  TNT1 A 0 A_GiveInventory("PowerStrength")
-  TNT1 A 0 A_GiveInventory("HellfireUltraSphere")
-  TNT1 A 0 A_GiveInventory("DoomSlayerInvulnerability")
-  TNT1 A 0 A_GiveInventory("DoomSlayerQuadDamage")
-  TNT1 A 0 A_GiveInventory("DoomSlayerBlur")
-  TNT1 A 0 A_GiveInventory("DoomSlayerSpeed")
-  TNT1 A 0 A_GiveInventory("DoomSlayerJump")
-  TNT1 A 1 A_GiveInventory("DoomSlayerAmmo")
-  TNT1 A 0 A_JumpIfInventory("AgilityRuneRage",1,2)
-  TNT1 A 0 A_GiveInventory("DoomSlayerFirepower")
-  TNT1 A 0
-  stop
-  }
-}
+ACTOR DoomSlayerFirepower : DoomSlayerSpeed {Powerup.type PowerDoubleFiringSpeed}
 
-actor DoomSlayerQuadDamage : PowerDamage 
-{ 
-   DamageFactor "Normal", 4.0
-   inventory.icon "TNT1A0"
-   powerup.duration -30
-  +INVENTORY.AUTOACTIVATE
-  +INVENTORY.FANCYPICKUPSOUND
-  +INVENTORY.ALWAYSPICKUP
-} 
-
-ACTOR DoomSlayerInvulnerability : InvulnerabilitySphere
-{
-  Powerup.Color RedMap
-  Powerup.Type "Invulnerable"
-  Powerup.Mode Reflective
-  Powerup.Duration -30
-  +INVENTORY.AUTOACTIVATE
-  +INVENTORY.FANCYPICKUPSOUND
-  +INVENTORY.ALWAYSPICKUP
-}
-
-ACTOR DoomSlayerBlur : BlurSphere
-{
-  Powerup.Type "Invisibility"
-  Powerup.Duration -1
-  +INVENTORY.AUTOACTIVATE
-  +INVENTORY.FANCYPICKUPSOUND
-  +INVENTORY.ALWAYSPICKUP
-}
-
-ACTOR DoomSlayerSpeed : PowerupGiver
-{
-//powerup.color None 0.0
-powerup.type Speed
-powerup.duration -30
-+INVENTORY.AUTOACTIVATE
-+INVENTORY.FANCYPICKUPSOUND
-+INVENTORY.ALWAYSPICKUP
-}
-
-ACTOR DoomSlayerJump : PowerupGiver
-{
-//powerup.color None 0.0
-powerup.type HighJump
-powerup.duration -30
-+INVENTORY.AUTOACTIVATE
-+INVENTORY.FANCYPICKUPSOUND
-+INVENTORY.ALWAYSPICKUP
-}
-
-ACTOR DoomSlayerFirepower : PowerupGiver
-{
-//powerup.color None 0.0
-powerup.type PowerDoubleFiringSpeed
-powerup.duration -30
-+INVENTORY.AUTOACTIVATE
-+INVENTORY.FANCYPICKUPSOUND
-+INVENTORY.ALWAYSPICKUP
-}
-
-ACTOR DoomSlayerAmmo : PowerupGiver
-{
-//powerup.color None, 0.0
-powerup.type InfiniteAmmo
-powerup.duration -30
-+INVENTORY.AUTOACTIVATE
-+INVENTORY.FANCYPICKUPSOUND
-+INVENTORY.ALWAYSPICKUP
-}
+ACTOR DoomSlayerAmmo : DoomSlayerSpeed {Powerup.type InfiniteAmmo}

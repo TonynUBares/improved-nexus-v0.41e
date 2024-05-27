@@ -10,8 +10,7 @@ Actor HellfireLifeEssence : NewHealthBonus
  States
  {
   Spawn:
-	HHBZ A 0
-	TNT1 A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,4)
+	HHBZ A 0 NoDelay ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,4)
   SpawnLoop:
 	HHBZ ABC 4
 	Loop
@@ -36,7 +35,7 @@ Actor HellfireArmorBonus : ComplexArmorBonus
  States
  {
   Spawn:
-	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,4)
+	HABZ A 0 NoDelay ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,4)
   SpawnLoop:
 	HABZ CDEF 4 Bright
 	Loop
@@ -55,8 +54,7 @@ Actor HellfireArmorBonusMax : CustomInventory
  States
  {
   Spawn:
-	HABZ A 0
-	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ArmorFlags") == 1,"HoldAndDestroy")
+	HABZ A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("ArmorFlags") == 1,"HoldAndDestroy")
 	TNT1 A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,4)
   SpawnLoop:
 	HABZ CDEF 4 Bright
@@ -82,8 +80,7 @@ Actor EnragedLegendaryLifeEssence : NewHealthBonus
  States
  {
   Spawn:
-	BEXF A 0
-	TNT1 A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,54)
+	BEXF A 0 NoDelay ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,54)
   SpawnLoop:
 	BEXF ABCD 3 Bright
 	Loop
@@ -109,7 +106,7 @@ Actor EnragedLegendaryArmorBonus : ComplexArmorBonus
   States
   {
   Spawn:
-	TNT1 A 0
+	TNT1 A 1
 	Stop
   }
 }
@@ -125,8 +122,7 @@ ACTOR EnragedLegendaryArmorBonusMax : CustomInventory
  States
  {
   Spawn:
-	BXXF A 0
-	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ArmorFlags") == 1,"HoldAndDestroy")
+	BXXF A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("ArmorFlags") == 1,"HoldAndDestroy")
 	TNT1 A 0 ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,55)
   SpawnLoop:
 	BXXF ABCDEFGHIJKJIHGFEDCB 2 Bright

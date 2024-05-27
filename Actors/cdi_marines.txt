@@ -50,7 +50,7 @@ Actor UACBaseMarine
  States
  {
   Spawn:
-	TNT1 A 1
+	"####" A 1
 	Stop
   See:
 	"####" A 0 A_JumpIfTargetInLOS("Strafing")
@@ -72,7 +72,7 @@ Actor UACBaseMarine
 	"####" CCDD 3 A_GiveInventory("AIPatroling",1)
 	Loop
   Missile:
-	TNT1 A 1
+	"####" A 1
 	Stop
   Strafing:
 	"####" A 0 A_SpawnItem("FootStep",0,0,0,0)
@@ -97,11 +97,11 @@ Actor UACBaseMarine
 	Wait
   FragGrenade:
 	PLA1 E 1 A_JumpIfCloser(1000,2)
-	TNT1 A 0 A_Jump(256,"Missile")
+	PLA1 A 0 A_Jump(256,"Missile")
 	PLA1 E 0 A_JumpIfCloser(280,"LandMine")
 	PLA1 E 6 A_GiveInventory("AIStrafing",1)
 	PLA1 EEE 4 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	PLA1 A 0 A_GiveInventory("AIStrafing",1)
 	PLA1 E 6 A_CustomMissile("MThrownGrenade",32,0,0,2,10)
 	PLA1 E 1 A_Jump(256,"See")
 	Wait
@@ -111,14 +111,14 @@ Actor UACBaseMarine
 	PLA1 E 0 A_Jump(127,"SpringMine")
 	PLA1 E 3 A_GiveInventory("AIStrafing",1)
 	PLA1 EE 4 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	PLA1 A 0 A_GiveInventory("AIStrafing",1)
 	PLA1 E 6 A_CustomMissile("MarineThrownMine",32,0,0,2,10)
 	PLA1 E 1 A_Jump(256,"See")
 	Wait
   SpringMine:
 	PLA1 E 3 A_GiveInventory("AIStrafing",1)
 	PLA1 EE 4 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	PLA1 A 0 A_GiveInventory("AIStrafing",1)
 	PLA1 E 6 A_CustomMissile("MarineSpringMineSet",32,0,0,2,10)
 	PLA1 E 1 A_Jump(256,"See")
 	Wait
@@ -299,7 +299,7 @@ Actor MarineLiveMineBomb
  States
  {
   Spawn:
-	TNT1 A 0
+	TNT1 A 1
 	TNT1 A 0 A_Explode(186,162)
 	Stop
  }
@@ -368,7 +368,7 @@ Actor MarineSpringMineActive
  States
  {
   Spawn:
-	TNT1 A 0
+	SPMN A 0
 	TNT1 A 0 A_RearrangePointers(AAPTR_NULL, AAPTR_TARGET, AAPTR_NULL)
 	TNT1 A 0 A_PlaySound("SMNSET1")
 	SPMN A 20
@@ -401,7 +401,7 @@ Actor MarineSpringMineActiveBomb : MarineLiveMineBomb
 States
 {
   Spawn:
-	TNT1 A 0
+	TNT1 A 1
 	TNT1 A 0 A_Explode(Random(350,400),200,0,1,100)
     Stop
   }
@@ -429,29 +429,29 @@ Actor UACGuyAR : UACBaseMarine
 	PLAY A 10 A_Look
 	Goto Idle
   Missile:
-	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine")
-	TNT1 A 0 A_JumpIfCloser(750,"Close")
+	"####" A 0 A_Jump(65,"FragGrenade","LandMine")
+	"####" A 0 A_JumpIfCloser(750,"Close")
   Far:
 	PLAY EE 5 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" A 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	PLAY F 2 Bright A_CustomBulletAttack(15.4,0,1,5,"MarineBulletPuff")
 	PLAY E 2 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" A 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	PLAY F 2 Bright A_CustomBulletAttack(15.4,0,1,5,"MarineBulletPuff")
 	PLAY E 2 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" A 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	PLAY F 2 Bright A_CustomBulletAttack(15.4,0,1,5,"MarineBulletPuff")
-	TNT1 A 0 A_Jump(16,"See")
-	TNT1 A 0 A_CPosRefire
+	"####" A 0 A_Jump(16,"See")
+	"####" A 0 A_CPosRefire
 	PLAY EE 5 A_GiveInventory("AIStrafing",1)
 	Goto Far+2
   Close:
 	PLAY EE 5 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	PLAY F 2 Bright A_CustomBulletAttack(22.5,0,1,random(1,5)*3,"MarineBulletPuff")
-	TNT1 A 0 A_Jump(16,"See")
-	TNT1 A 0 A_CPosRefire
+	"####" A 0 A_Jump(16,"See")
+	"####" A 0 A_CPosRefire
 	PLAY E 3 A_GiveInventory("AIStrafing",1)
 	Goto Close+2
   Pain:
@@ -479,37 +479,37 @@ Actor UACGuyMachinegun : UACBaseMarine
  {
   Spawn:
 	PSMG A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
-	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	"####" A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
 	PSMG A 10 A_Look
 	Goto Idle
   Missile:
-	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine")
-	TNT1 A 0 A_JumpIfCloser(750,"Close")
+	"####" A 0 A_Jump(65,"FragGrenade","LandMine")
+	"####" A 0 A_JumpIfCloser(750,"Close")
   Far:
 	MGMR EE 5 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" A 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	MGMR F 2 Bright A_CustomBulletAttack(6,4,1,Random(1,5)*3,"MarineBulletPuff")
 	MGMR E 2 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" A 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	MGMR F 2 Bright A_CustomBulletAttack(6,4,1,Random(1,5)*3,"MarineBulletPuff")
 	MGMR E 2 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" A 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	MGMR F 2 Bright A_CustomBulletAttack(6,4,1,Random(1,5)*3,"MarineBulletPuff")
 	MGMR E 2 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" A 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	MGMR F 2 Bright A_CustomBulletAttack(6,4,1,Random(1,5)*3,"MarineBulletPuff")
 	MGMR E 2 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_Jump(16,"See")
-	TNT1 A 0 A_CPosRefire
+	"####" A 0 A_Jump(16,"See")
+	"####" A 0 A_CPosRefire
 	MGMR E 5 A_GiveInventory("AIStrafing",1)
 	Goto Far+2
   Close:
 	MGMR EE 5 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	MGMR F 2 Bright A_CustomBulletAttack(11,8,1,random(1,5)*3,"MarineBulletPuff")
-	TNT1 A 0 A_Jump(16,"See")
-	TNT1 A 0 A_CPosRefire
+	"####" A 0 A_Jump(16,"See")
+	"####" A 0 A_CPosRefire
 	MGMR E 3 A_GiveInventory("AIStrafing",1)
 	Goto Close+2
   Pain:
@@ -537,18 +537,18 @@ Actor UACGuyMP40 : UACBaseMarine
  {
   Spawn:
 	PSMG A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
-	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	"####" A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
 	PSMG A 10 A_Look
 	Goto Idle
   Missile:
-	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine")
+	"####" A 0 A_Jump(65,"FragGrenade","LandMine")
   Normal:
 	PSMG EE 5 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	PSMG F 2 Bright A_CustomBulletAttack(11,8,1,random(3,7)*3,"MarineBulletPuff")
-	TNT1 A 0 A_Jump(16,"See")
-	TNT1 A 0 A_CPosRefire
+	"####" A 0 A_Jump(16,"See")
+	"####" A 0 A_CPosRefire
 	PSMG E 3 A_GiveInventory("AIStrafing",1)
 	Goto Normal+2
   Pain:
@@ -577,30 +577,30 @@ Actor UACGuyPistols : UACBaseMarine
  {
   Spawn:
 	DU3L A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
-	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	"####" A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
 	DU3L A 10 A_Look
 	Goto Idle
   Missile:
-	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine")
+	"####" A 0 A_Jump(65,"FragGrenade","LandMine")
   Normal:
 	DU3L EE 5 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
-	TNT1 AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
+	"####" AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	DU3L F 4 Bright A_CustomBulletAttack(22.5,0,2,random(1,5)*3,"MarineBulletPuff")
 	DU3L E 3 A_GiveInventory("AIStrafing",2)
-	TNT1 AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	DU3L F 4 Bright A_CustomBulletAttack(22.5,0,2,random(1,5)*3,"MarineBulletPuff")
 	DU3L E 3 A_GiveInventory("AIStrafing",2)
-	TNT1 AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	DU3L F 4 Bright A_CustomBulletAttack(22.5,0,2,random(1,5)*3,"MarineBulletPuff")
 	DU3L E 3 A_GiveInventory("AIStrafing",2)
-	TNT1 AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	DU3L F 4 Bright A_CustomBulletAttack(22.5,0,2,random(1,5)*3,"MarineBulletPuff")
 	DU3L E 3 A_GiveInventory("AIStrafing",2)
-	TNT1 AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	DU3L F 4 Bright A_CustomBulletAttack(22.5,0,2,random(1,5)*3,"MarineBulletPuff")
 	DU3L E 3 A_GiveInventory("AIStrafing",2)
-	TNT1 AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	DU3L F 4 Bright A_CustomBulletAttack(22.5,0,2,random(1,5)*3,"MarineBulletPuff")
 	DU3L E 3 A_GiveInventory("AIStrafing",1)
 	Goto See
@@ -629,18 +629,18 @@ Actor UACGuyASG : UACBaseMarine
  {
   Spawn:
 	PASG A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
-	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	"####" A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
 	PASG A 10 A_Look
 	Goto Idle
   Missile:
 	PASG E 0 A_Jump(65,"FragGrenade","LandMine")
 	PASG EE 5 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_SpawnItemEx("ShellCasing", -8, 7, 30, 4, 0, (0.1)*Random(30, 40), Random(-80, -90), 128)
-	TNT1 AAAA 0 A_CustomMissile("MonsterTracer2",Random(28,34),0,Random(6,-6),0)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_SpawnItemEx("ShellCasing", -8, 7, 30, 4, 0, (0.1)*Random(30, 40), Random(-80, -90), 128)
+	"####" AAAA 0 A_CustomMissile("MonsterTracer2",Random(28,34),0,Random(6,-6),0)
 	PASG F 4 Bright A_CustomBulletAttack(22.5,0,5,Random(1,4)*3,"MarineBulletPuff")
-	TNT1 A 0 A_Jump(40,"Pause")
-	TNT1 A 0 A_CPosRefire
+	"####" A 0 A_Jump(40,"Pause")
+	"####" A 0 A_CPosRefire
 	PASG EE 4 A_GiveInventory("AIStrafing",1)
 	Goto Missile+3
   Pause:
@@ -671,43 +671,43 @@ Actor UACGuySSG : UACBaseMarine
  {
   Spawn:
 	PLA9 A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
-	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	"####" A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
 	PLA9 A 10 A_Look
 	Goto Idle
   Missile:
-	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine")
-	TNT1 A 0 A_JumpIfCloser(275,"Double")
+	"####" A 0 A_Jump(65,"FragGrenade","LandMine")
+	"####" A 0 A_JumpIfCloser(275,"Double")
   Normal:
 	PLA9 EE 4 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_PlaySound("weapons/ssgsingleshot")
-	TNT1 AAAA 0 A_CustomMissile("MonsterTracer2",Random(28,34),0,Random(6,-6),0)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_PlaySound("weapons/ssgsingleshot")
+	"####" AAAA 0 A_CustomMissile("MonsterTracer2",Random(28,34),0,Random(6,-6),0)
 	PLA9 F 4 Bright A_CustomBulletAttack(22.5,0,3,Random(1,5)*3,"MarineBulletPuff")
 	PLA9 EE 4 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_PlaySound("weapons/ssgsingleshot")
-	TNT1 AAAA 0  A_CustomMissile("MonsterTracer2",Random(28,34),0,Random(6,-6),0)
+	"####" A 0 A_PlaySound("weapons/ssgsingleshot")
+	"####" AAAA 0  A_CustomMissile("MonsterTracer2",Random(28,34),0,Random(6,-6),0)
 	PLA9 F 4 Bright A_CustomBulletAttack(22.5,0,3,Random(1,5)*3,"MarineBulletPuff")
 	PLA9 EE 4 A_GiveInventory("AIStrafing",1)
 	Goto Reload
   Double:
 	PLA9 EEE 5 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_PlaySound("weapons/sshotf")
-	TNT1 AAAAAAAA 0 Bright A_CustomMissile("MonsterTracer2",Random(28,34),0,Random(6,-6),0)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_PlaySound("weapons/sshotf")
+	"####" AAAAAAAA 0 Bright A_CustomMissile("MonsterTracer2",Random(28,34),0,Random(6,-6),0)
 	PLA9 F 5 Bright A_CustomBulletAttack(13.8,9.6,10,Random(1,4)*3,"MarineBulletPuff")
 	PLA9 EEE 5 A_GiveInventory("AIStrafing",1)
 	Goto Reload
   Reload:
 	PLA9 E 3 A_GiveInventory("AIStrafing",2)
 	PLA9 E 6 A_PlaySound("weapons/sawedopen")
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_SpawnItemEx("ShellCasing", -8, 6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_SpawnItemEx("ShellCasing", -8, 6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	PLA9 E 1 A_SpawnItemEx("ShellCasing", -10, 6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	PLA9 E 6 A_PlaySound("weapons/shellslide")
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
 	PLA9 E 6 A_PlaySound("weapons/sawedclose")
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_Jump(40,"See")
+	"####" A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_Jump(40,"See")
 	PLA9 E 6 A_CPosRefire
 	Goto Missile
   Pain:
@@ -735,39 +735,39 @@ Actor UACGuyQSG : UACBaseMarine
  {
   Spawn:
 	PQST A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
-	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	"####" A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
 	PQST A 10 A_Look
 	Goto Idle
   Missile:
-	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine")
-	TNT1 A 0 A_JumpIfCloser(325,"Quad")
+	"####" A 0 A_Jump(65,"FragGrenade","LandMine")
+	"####" A 0 A_JumpIfCloser(325,"Quad")
   Normal:
 	PQST EEE 5 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_PlaySound("weapons/qsgdoublefire")
-	TNT1 AAAAAA 0 A_CustomMissile("MonsterTracer2",Random(28,34),0,Random(6,-6),0)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_PlaySound("weapons/qsgdoublefire")
+	"####" AAAAAA 0 A_CustomMissile("MonsterTracer2",Random(28,34),0,Random(6,-6),0)
 	PQST F 5 Bright A_CustomBulletAttack(13.8,9.6,10,Random(1,4)*3,"MarineBulletPuff")
 	PQST EE 4 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_PlaySound("weapons/qsgdoublefire")
-	TNT1 AAAAAA 0 A_CustomMissile("MonsterTracer2",Random(28,34),0,Random(6,-6),0)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_PlaySound("weapons/qsgdoublefire")
+	"####" AAAAAA 0 A_CustomMissile("MonsterTracer2",Random(28,34),0,Random(6,-6),0)
 	PQST F 5 Bright A_CustomBulletAttack(13.8,9.6,10,Random(1,4)*3,"MarineBulletPuff")
 	PQST EEE 5 A_GiveInventory("AIStrafing",1)
 	Goto Reload
   Quad:
 	PQST EEE 5 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_PlaySound("weapons/qsgfire")
-	TNT1 AAAAAAAAAAAA 0 Bright A_CustomMissile("MonsterTracer2",Random(28,34),0,Random(6,-6),0)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_PlaySound("weapons/qsgfire")
+	"####" AAAAAAAAAAAA 0 Bright A_CustomMissile("MonsterTracer2",Random(28,34),0,Random(6,-6),0)
 	PQST F 5 Bright A_CustomBulletAttack(15.4,10.6,24,Random(1,4)*3,"MarineBulletPuff")
 	PQST EEEEE 5 A_GiveInventory("AIStrafing",1)
 	Goto Reload
   Reload:
-	TNT1 A 0 A_PlaySound("weapons/qsgopen")
+	"####" A 0 A_PlaySound("weapons/qsgopen")
 	PQST EEE 5 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_SpawnItemEx("ShellCasing", -8, 6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" A 0 A_SpawnItemEx("ShellCasing", -8, 6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	PQST E 1 A_SpawnItemEx("ShellCasing", -10, 6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
-	TNT1 A 0 A_SpawnItemEx("ShellCasing", -8, 6, 38, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" A 0 A_SpawnItemEx("ShellCasing", -8, 6, 38, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	PQST E 2 A_SpawnItemEx("ShellCasing", -10, 6, 38, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	PQST E 0 A_PlaySound("weapons/qsgshellslide")
 	PQST EE 3 A_GiveInventory("AIStrafing",1)
@@ -775,10 +775,10 @@ Actor UACGuyQSG : UACBaseMarine
 	PQST E 0 A_PlaySound("weapons/qsgshellslide")
 	PQST EEEE 3 A_GiveInventory("AIStrafing",1)
 	PQST EE 4 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
 	PQST E 5 A_PlaySound("weapons/qsgclose")
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_Jump(40,"See")
+	"####" A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_Jump(40,"See")
 	PQST E 5 A_CPosRefire
 	Goto Missile
   Pain:
@@ -806,46 +806,46 @@ ACTOR UACGuyHSG : UACBaseMarine
  {
   Spawn:
 	PHET A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
-	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	"####" A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
 	PHET A 10 A_Look
 	Goto Idle
   Missile:
-	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine")
-	TNT1 A 0 A_JumpIfCloser(325,"Hexa")
+	"####" A 0 A_Jump(65,"FragGrenade","LandMine")
+	"####" A 0 A_JumpIfCloser(325,"Hexa")
   Normal:
 	PHET EEE 5 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_PlaySound("weapons/qsgdoublefire")
-	TNT1 AAAAAA 0 A_CustomMissile("MonsterTracer2",Random(28,34),0,Random(6,-6),0)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_PlaySound("weapons/qsgdoublefire")
+	"####" AAAAAA 0 A_CustomMissile("MonsterTracer2",Random(28,34),0,Random(6,-6),0)
 	PHET F 5 Bright A_CustomBulletAttack(13.8,9.6,10,Random(1,4)*3,"MarineBulletPuff")
 	PHET EE 4 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_PlaySound("weapons/qsgdoublefire")
-	TNT1 AAAAAA 0 A_CustomMissile("MonsterTracer2",Random(28,34),0,Random(6,-6),0)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_PlaySound("weapons/qsgdoublefire")
+	"####" AAAAAA 0 A_CustomMissile("MonsterTracer2",Random(28,34),0,Random(6,-6),0)
 	PHET F 5 Bright A_CustomBulletAttack(13.8,9.6,10,Random(1,4)*3,"MarineBulletPuff")
 	PHET EE 4 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_PlaySound("weapons/qsgdoublefire")
-	TNT1 AAAAAA 0 A_CustomMissile("MonsterTracer2",Random(28,34),0,Random(6,-6),0)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_PlaySound("weapons/qsgdoublefire")
+	"####" AAAAAA 0 A_CustomMissile("MonsterTracer2",Random(28,34),0,Random(6,-6),0)
 	PHET F 5 Bright A_CustomBulletAttack(13.8,9.6,10,Random(1,4)*3,"MarineBulletPuff")
 	PHET EEE 5 A_GiveInventory("AIStrafing",1)
 	Goto Reload
   Hexa:
 	PHET EEE 5 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_PlaySound("weapons/qsgfire")
-	TNT1 AAAAAAAAAAAA 0 A_CustomMissile("MonsterTracer2",Random(28,34),0,Random(6,-6),0)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_PlaySound("weapons/qsgfire")
+	"####" AAAAAAAAAAAA 0 A_CustomMissile("MonsterTracer2",Random(28,34),0,Random(6,-6),0)
 	PHET F 5 Bright A_CustomBulletAttack(15.4,10.6,78,Random(1,4)*3,"MarineBulletPuff")
 	PHET EEEEE 5 A_GiveInventory("AIStrafing",1)
 	Goto Reload
   Reload:
-	TNT1 A 0 A_PlaySound("weapons/qsgopen")
+	"####" A 0 A_PlaySound("weapons/qsgopen")
 	PHET EEE 5 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_SpawnItemEx("ShellCasing", -8, 6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" A 0 A_SpawnItemEx("ShellCasing", -8, 6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	PHET E 1 A_SpawnItemEx("ShellCasing", -10, 6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
-	TNT1 A 0 A_SpawnItemEx("ShellCasing", -8, 6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" A 0 A_SpawnItemEx("ShellCasing", -8, 6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	PHET E 1 A_SpawnItemEx("ShellCasing", -10, 6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
-	TNT1 A 0 A_SpawnItemEx("ShellCasing", -8, 6, 38, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" A 0 A_SpawnItemEx("ShellCasing", -8, 6, 38, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	PHET E 1 A_SpawnItemEx("ShellCasing", -10, 6, 38, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	PHET E 0 A_PlaySound("weapons/qsgshellslide")
 	PHET EE 3 A_GiveInventory("AIStrafing",1)
@@ -856,10 +856,10 @@ ACTOR UACGuyHSG : UACBaseMarine
 	PHET E 0 A_PlaySound("weapons/qsgshellslide")
 	PHET EEEE 3 A_GiveInventory("AIStrafing",1)
 	PHET EE 4 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
 	PHET E 5 A_PlaySound("weapons/qsgclose")
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_Jump(40,"See")
+	"####" A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_Jump(40,"See")
 	PHET E 5 A_CPosRefire
 	Goto Missile
   Pain:
@@ -888,11 +888,11 @@ Actor UACGuyRapidShotgun : UACBaseMarine
  {
   Spawn:
 	PSUC A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
-	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	"####" A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
 	PSUC A 10 A_Look
 	Goto Idle
   Missile:
-	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine")
+	"####" A 0 A_Jump(65,"FragGrenade","LandMine")
 	PSUC EE 5 A_GiveInventory("AIStrafing",1)
 	//PLRP A 0 A_PlaySound("HeavyChaingun/Loop",CHAN_WEAPON,1.0,1)
 	PSUC AAAA 0 A_CustomMissile("MonsterTracer2",random(28,34),0,random(-6,6),CMF_OFFSETPITCH,frandom(-3.0,3.0))
@@ -908,8 +908,8 @@ Actor UACGuyRapidShotgun : UACBaseMarine
 	PSUC E 0 A_GiveInventory("AIStrafing",1)
 	PSUC A 0 A_CustomBulletAttack(22.5,18.3,4,random(1,5)*3,"MarineBulletPuff",2048,CBAF_NORANDOM)
 	PSUC F 4 Bright A_CustomBulletAttack(0,0,1,random(1,5)*3,"MarineBulletPuff",8192,CBAF_NORANDOM)
-	TNT1 A 0 A_Jump(7,"See")
-	TNT1 A 0 A_CPosRefire
+	"####" A 0 A_Jump(7,"See")
+	"####" A 0 A_CPosRefire
 	Goto Missile+3
   Pain:
 	PSUC G 3 A_GiveInventory("AIStrafing",1)
@@ -937,21 +937,21 @@ Actor UACGuyExplosiveShotgun : UACBaseMarine
  {
   Spawn:
 	PL32 A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
-	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	"####" A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
 	PL32 A 10 A_Look
 	Goto Idle
   Missile:
 	PL32 E 0 A_Jump(65,"FragGrenade","LandMine")
 	PL32 EE 5 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_PlaySound("weapons/ExplosiveSG/fire",7)
-	TNT1 AAAAAA 0 A_CustomMissile("MExplosiveTracer",Random(30,34),0,Random(15,-15),0)
+	"####" A 0 A_PlaySound("weapons/ExplosiveSG/fire",7)
+	"####" AAAAAA 0 A_CustomMissile("MExplosiveTracer",Random(30,34),0,Random(15,-15),0)
 	PL32 F 5 Bright A_CustomBulletAttack(18,6,6,Random(5,7),"MarineBulletPuff")
 	PL32 EE 5 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_PlaySound("weapons/ExplosiveSG/pump",7)
+	"####" A 0 A_PlaySound("weapons/ExplosiveSG/pump",7)
 	PL32 EE 4 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_SpawnItemEx("OrangeShellCasing", -8, 0, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
-	TNT1 A 0 A_Jump(40,"Pause")
-	TNT1 A 0 A_CPosRefire
+	"####" A 0 A_SpawnItemEx("OrangeShellCasing", -8, 0, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" A 0 A_Jump(40,"Pause")
+	"####" A 0 A_CPosRefire
 	PL32 EE 4 A_GiveInventory("AIStrafing",1)
 	Goto Missile+3
   Pause:
@@ -982,44 +982,44 @@ Actor UACGuyExpSSG : UACBaseMarine
  {
   Spawn:
 	PNLG A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
-	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	"####" A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
 	PNLG A 10 A_Look
 	Goto Idle
   Missile:
-	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine")
-	TNT1 A 0 A_JumpIfCloser(275,"Double")
+	"####" A 0 A_Jump(65,"FragGrenade","LandMine")
+	"####" A 0 A_JumpIfCloser(275,"Double")
   Normal:
 	PNLG EE 4 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_PlaySound("ExpSSG/Fire2")
-	TNT1 AAAAA 0 A_CustomMissile("MExplosiveTracer",Random(26,29),0,Random(5,-5),0)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_PlaySound("ExpSSG/Fire2")
+	"####" AAAAA 0 A_CustomMissile("MExplosiveTracer",Random(26,29),0,Random(5,-5),0)
 	PNLG F 4 Bright A_CustomBulletAttack(13.8,5.7,5,Random(1,5)*3,"MarineBulletPuff")
 	PNLG EE 4 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_PlaySound("ExpSSG/Fire2")
-	TNT1 AAAAA 0 A_CustomMissile("MExplosiveTracer",Random(26,29),0,Random(5,-5),0)
+	"####" A 0 A_PlaySound("ExpSSG/Fire2")
+	"####" AAAAA 0 A_CustomMissile("MExplosiveTracer",Random(26,29),0,Random(5,-5),0)
 	PNLG F 4 Bright A_CustomBulletAttack(13.8,5.7,5,Random(1,5)*3,"MarineBulletPuff")
 	PNLG EE 4 A_GiveInventory("AIStrafing",1)
 	Goto Reload
   Double:
 	PNLG EEE 5 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_PlaySound("ExpSSG/Fire")
-	TNT1 AAAAAAAAAA 0 A_CustomMissile("MExplosiveTracer",Random(26,29),0,Random(8,-8),0)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_PlaySound("ExpSSG/Fire")
+	"####" AAAAAAAAAA 0 A_CustomMissile("MExplosiveTracer",Random(26,29),0,Random(8,-8),0)
 	PNLG F 5 Bright A_CustomBulletAttack(17.8,9.6,10,Random(1,4)*3,"MarineBulletPuff")
 	PNLG EEE 5 A_GiveInventory("AIStrafing",1)
 	Goto Reload
   Reload:
 	PNLG EE 3 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
 	PNLG E 6 A_PlaySound("weapons/sawedopen")
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_SpawnItemEx("OrangeShellCasing", -8, 6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_SpawnItemEx("OrangeShellCasing", -8, 6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	PNLG E 1 A_SpawnItemEx("OrangeShellCasing", -10, 6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	PNLG E 6 A_PlaySound("weapons/shellslide")
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
 	PNLG E 6 A_PlaySound("weapons/sawedclose")
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_Jump(40,"See")
+	"####" A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_Jump(40,"See")
 	PNLG E 6 A_CPosRefire
 	Goto Missile
   Pain:
@@ -1047,17 +1047,17 @@ ACTOR UACGuySniper : UACBaseMarine
  {
   Spawn:
 	PSNP A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
-	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	"####" A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
 	PSNP A 10 A_Look
 	Goto Idle
   Missile:
-	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine")
+	"####" A 0 A_Jump(65,"FragGrenade","LandMine")
 	PSNP EE 4 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
 	PSNP F 0 A_SpawnItemEx("RifleCasing",30,3,25,Random(2,4),Random(3,6),Random(3,6),0)
 	PSNP F 3 Bright A_CustomBulletAttack(1,1,1,125,"MarineBulletPuff")
 	PSNP EEEE 4 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_Jump(40,"See")
+	"####" A 0 A_Jump(40,"See")
 	PSNP E 6 A_CPosRefire
 	Goto Missile+1
   Pain:
@@ -1085,22 +1085,22 @@ Actor UACGuyChaingun : UACBaseMarine
  {
   Spawn:
 	PLR4 A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
-	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	"####" A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
 	PLR4 A 10 A_Look
 	Goto Idle
   Missile:
-	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine")
+	"####" A 0 A_Jump(65,"FragGrenade","LandMine")
 	PLR4 EE 5 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_CustomMissile("MonsterTracer",Random(30,34),0,Random(5,-5),0)
-	TNT1 A 0 A_SpawnItemEx("RifleCasing", 12, -6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_CustomMissile("MonsterTracer",Random(30,34),0,Random(5,-5),0)
+	"####" A 0 A_SpawnItemEx("RifleCasing", 12, -6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	PLR4 E 3 Bright A_CustomBulletAttack(22.5,0,1,random(1,5)*3,"MarineBulletPuff")
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_CustomMissile("MonsterTracer",Random(30,34),0,Random(5,-5),0)
-	TNT1 A 0 A_SpawnItemEx("RifleCasing", 12, -6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_CustomMissile("MonsterTracer",Random(30,34),0,Random(5,-5),0)
+	"####" A 0 A_SpawnItemEx("RifleCasing", 12, -6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	PLR4 F 4 Bright A_CustomBulletAttack(22.5,0,1,random(1,5)*3,"MarineBulletPuff")
-	TNT1 A 0 A_Jump(7,"See")
-	TNT1 A 0 A_CPosRefire
+	"####" A 0 A_Jump(7,"See")
+	"####" A 0 A_CPosRefire
 	Goto Missile+3
   Pain:
 	PLR4 G 3 A_GiveInventory("AIStrafing",1)
@@ -1127,25 +1127,25 @@ Actor UACGuyMinigun : UACBaseMarine
  {
   Spawn:
 	PL42 A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
-	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	"####" A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
 	PL42 A 10 A_Look
 	Goto Idle
   Missile:
-	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine")
-	TNT1 A 0 A_PlaySound("weapons/mgunspinstart")
+	"####" A 0 A_Jump(65,"FragGrenade","LandMine")
+	"####" A 0 A_PlaySound("weapons/mgunspinstart")
 	PL42 EE 5 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_PlaySoundEx("weapons/mgunspin","Voice")
-	TNT1 A 0 A_CustomMissile("MonsterTracer",Random(30,34),0,Random(5,-5),0)
-	TNT1 A 0 A_SpawnItemEx("RifleCasing", 12, 6, 28, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_PlaySoundEx("weapons/mgunspin","Voice")
+	"####" A 0 A_CustomMissile("MonsterTracer",Random(30,34),0,Random(5,-5),0)
+	"####" A 0 A_SpawnItemEx("RifleCasing", 12, 6, 28, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	PL42 E 2 Bright A_CustomBulletAttack(22.5,0,1,random(1,5)*3,"MarineBulletPuff")
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_CustomMissile("MonsterTracer",Random(30,34),0,Random(5,-5),0)
-	TNT1 A 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_CustomMissile("MonsterTracer",Random(30,34),0,Random(5,-5),0)
+	"####" A 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	PL42 F 3 Bright A_CustomBulletAttack(22.5,0,1,random(1,5)*3,"MarineBulletPuff")
-	TNT1 A 0 A_StopSoundEx("Voice")
-	TNT1 A 0 A_Jump(4,"See")
-	TNT1 A 0 A_CPosRefire
+	"####" A 0 A_StopSoundEx("Voice")
+	"####" A 0 A_Jump(4,"See")
+	"####" A 0 A_CPosRefire
 	Goto Missile+4
   Pain:
 	PL42 G 3 A_GiveInventory("AIStrafing",1)
@@ -1173,25 +1173,25 @@ Actor UACGuyExpMinigun : UACBaseMarine
  {
   Spawn:
 	XPMS A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
-	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	"####" A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
 	XPMS A 10 A_Look
 	Goto Idle
   Missile:
-	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine")
-	TNT1 A 0 A_PlaySound("weapons/expmgunspinstart")
+	"####" A 0 A_Jump(65,"FragGrenade","LandMine")
+	"####" A 0 A_PlaySound("weapons/expmgunspinstart")
 	XPMS EEE 5 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_PlaySoundEx("weapons/expmgunspin","Voice")
-	TNT1 A 0 A_PlaySound("sentient/fire")
+	"####" A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_PlaySoundEx("weapons/expmgunspin","Voice")
+	"####" A 0 A_PlaySound("sentient/fire")
 	XPMS E 4 Bright A_CustomMissile("MExplosiveTracer",Random(30,34),0,Random(5,-5),0)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_SpawnItemEx("OrangeShellCasing", 12, 6, 28, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
-	TNT1 A 0 A_PlaySound("sentient/fire")
+	"####" A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_SpawnItemEx("OrangeShellCasing", 12, 6, 28, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" A 0 A_PlaySound("sentient/fire")
 	XPMS F 4 Bright A_CustomMissile("MExplosiveTracer",Random(30,34),0,Random(5,-5),0)
-	TNT1 A 0 A_SpawnItemEx("OrangeShellCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
-	TNT1 A 0 A_StopSoundEx("Weapon")
-	TNT1 A 0 A_Jump(4,"See")
-	TNT1 A 0 A_CPosRefire
+	"####" A 0 A_SpawnItemEx("OrangeShellCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" A 0 A_StopSoundEx("Weapon")
+	"####" A 0 A_Jump(4,"See")
+	"####" A 0 A_CPosRefire
 	Goto Missile+5
   Pain:
 	XPMS G 3 A_GiveInventory("AIStrafing",1)
@@ -1225,18 +1225,18 @@ Actor UACGuyRocket : UACBaseMarine
  {
   Spawn:
 	PLA5 A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
-	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	"####" A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
 	PLA5 A 10 A_Look
 	Goto Idle
   Missile:
 	PLA5 EEE 4 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
 	PLA5 F 3 Bright A_CustomMissile("MRocket",30,0,random(-2,2))
 	PLA5 F 3 Bright A_GiveInventory("AIStrafing",1)
 	PLA5 E 0 A_PlaySound("rocket/drumspin")
 	PLA5 EEE 5 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_Jump(48,"See")
-	TNT1 A 0 A_CPosRefire
+	"####" A 0 A_Jump(48,"See")
+	"####" A 0 A_CPosRefire
 	Goto Missile+4
   Pain:
 	PLA5 G 3 A_GiveInventory("AIStrafing",1)
@@ -1270,18 +1270,18 @@ Actor UACGuyHRL : UACBaseMarine
  {
   Spawn:
 	PHRL A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
-	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	"####" A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
 	PHRL A 10 A_Look
 	Goto Idle
   Missile:
 	PHRL EEE 4 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
 	PHRL F 0 A_CustomMissile("MHomRocket",30,6,0)
 	PHRL F 3 Bright A_CustomMissile("MHomRocket",30,-6,0)
 	PHRL F 3 Bright A_GiveInventory("AIStrafing",1)
 	PHRL EEEE 5 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_Jump(48,"See")
-	TNT1 A 0 A_CPosRefire
+	"####" A 0 A_Jump(48,"See")
+	"####" A 0 A_CPosRefire
 	Goto Missile+4
   Pain:
 	PHRL G 3 A_GiveInventory("AIStrafing",1)
@@ -1363,16 +1363,16 @@ Actor UACGuyMRL : UACBaseMarine
  {
   Spawn:
 	PBAZ A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
-	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	"####" A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
 	PBAZ A 10 A_Look
 	Goto Idle
   Missile:
-	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine")
+	"####" A 0 A_Jump(65,"FragGrenade","LandMine")
 	PBAZ EE 5 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",2)
+	"####" A 0 A_GiveInventory("AIStrafing",2)
 	PBAZ F 5 Bright A_CustomMissile("MMiniRocket",40,10,random(-2,2),CMF_TRACKOWNER)
-	TNT1 A 0 A_Jump(8,"See")
-	TNT1 A 0 A_CPosRefire
+	"####" A 0 A_Jump(8,"See")
+	"####" A 0 A_CPosRefire
 	Goto Missile+2
   Pain:
 	PBAZ G 3 A_GiveInventory("AIStrafing",1)
@@ -1432,18 +1432,18 @@ Actor UACGuyGuardian : UACBaseMarine
  {
   Spawn:
 	PR3V A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
-	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	"####" A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
 	PR3V A 10 A_Look
 	Goto Idle
   Missile:
 	PR3V EEE 4 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
 	PR3V F 0 A_CustomMissile("MGuardianTracer",42,-9,0)
 	PR3V F 3 Bright A_CustomMissile("MGuardianTracer",42,9,0)
 	PR3V F 3 Bright A_GiveInventory("AIStrafing",1)
 	PR3V EE 5 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_Jump(48,"See")
-	TNT1 A 0 A_CPosRefire
+	"####" A 0 A_Jump(48,"See")
+	"####" A 0 A_CPosRefire
 	Goto Missile+4
   Pain:
 	PR3V G 3 A_GiveInventory("AIStrafing",1)
@@ -1488,33 +1488,33 @@ Actor UACGuyBehemoth : UACBaseMarine
  {
   Spawn:
 	PUNM A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
-	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	"####" A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
 	PUNM A 10 A_Look
 	Goto Idle
   Missile:
-	TNT1 A 0 A_Jump(64,"Homing")
+	"####" A 0 A_Jump(64,"Homing")
   Normal:
 	PUNM EEE 4 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
 	PUNM F 0 A_PlayWeaponSound("cannon/fire")
 	PUNM F 0 A_CustomMissile("BehemothCometPlayer",30,0,-2)
 	PUNM F 0 A_CustomMissile("BehemothCometPlayer",30,0,2)
 	PUNM F 0 A_CustomMissile("BehemothCometPlayer",30,0,0)
 	PUNM FFF 5 Bright A_GiveInventory("AIStrafing",1)
 	PUNM EEE 5 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_Jump(48,"See","See","Homing")
-	TNT1 A 0 A_CPosRefire
+	"####" A 0 A_Jump(48,"See","See","Homing")
+	"####" A 0 A_CPosRefire
 	Goto Normal+4
  	Homing:
 	PUNM EEE 4 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
 	PUNM F 0 A_PlayWeaponSound("cannon/fire")
 	PUNM F 0 A_CustomMissile("BehemothSeekingCometPlayer",30,0,-10)
 	PUNM F 0 A_CustomMissile("BehemothSeekingCometPlayer",30,0,10)
 	PUNM FFF 5 Bright A_GiveInventory("AIStrafing",1)
 	PUNM EEE 5 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_Jump(48,"See","See","Normal")
-	TNT1 A 0 A_CPosRefire
+	"####" A 0 A_Jump(48,"See","See","Normal")
+	"####" A 0 A_CPosRefire
 	Goto Homing+4
   Pain:
 	PUNM G 3 A_GiveInventory("AIStrafing",1)
@@ -1542,18 +1542,18 @@ Actor UACGuyPlasma : UACBaseMarine
  {
   Spawn:
 	PLA6 A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
-	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	"####" A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
 	PLA6 A 10 A_Look
 	Goto Idle
   Missile:
-	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine")
+	"####" A 0 A_Jump(65,"FragGrenade","LandMine")
 	PLA6 EE 5 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
 	PLA6 F 2 Bright A_CustomMissile("NewPlasmaBall",32,0,0)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
 	PLA6 F 3 Bright A_CustomMissile("NewPlasmaBall",32,0,0)
-	TNT1 A 0 A_Jump(16,"See")
-	TNT1 A 0 A_CPosRefire
+	"####" A 0 A_Jump(16,"See")
+	"####" A 0 A_CPosRefire
 	Goto Missile+3
   Pain:
 	PLA6 G 3 A_GiveInventory("AIStrafing",1)
@@ -1581,25 +1581,25 @@ Actor UACGuyPlasmaRepeater : UACBaseMarine
  {
   Spawn:
 	PREP A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
-	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	"####" A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
 	PREP A 10 A_Look
 	Goto Idle
   Missile:
-	TNT1 A 0 A_ChangeFlag(NOPAIN,1)
-	TNT1 A 0 A_GiveInventory("RepeaterZombieFiring",1)
-	TNT1 A 0 A_PlaySound("PlasmaRepeater/Spin",7)
+	"####" A 0 A_ChangeFlag(NOPAIN,1)
+	"####" A 0 A_GiveInventory("RepeaterZombieFiring",1)
+	"####" A 0 A_PlaySound("PlasmaRepeater/Spin",7)
 	PREP EEEEEEEEEE 3 A_GiveInventory("AIStrafing",1)
   Normal:
 	PREP F 1 Bright A_CustomMissile("MarineRepeaterPlasma",32,0,random(-8,8))
 	PREP F 1 A_FaceTarget
 	PREP F 1 Bright A_CustomMissile("MarineRepeaterPlasma",32,0,random(-8,8))
 	PREP F 1 A_FaceTarget
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_Monsterrefire(36,"See")
+	"####" A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_Monsterrefire(36,"See")
 	Loop
   SpinDown:
-	TNT1 A 0 A_PlaySound("PlasmaRepeater/Down",7)
-	TNT1 A 0 A_TakeInventory("RepeaterZombieFiring",1)
+	"####" A 0 A_PlaySound("PlasmaRepeater/Down",7)
+	"####" A 0 A_TakeInventory("RepeaterZombieFiring",1)
 	PREP EEEEEE 3 A_GiveInventory("AIStrafing",1)
 	Goto See
   Pain:
@@ -1635,18 +1635,18 @@ Actor UACGuyFreezer : UACBaseMarine
  {
   Spawn:
 	PION A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
-	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	"####" A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
 	PION A 10 A_Look
 	Goto Idle
   Missile:
-	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine")
+	"####" A 0 A_Jump(65,"FragGrenade","LandMine")
 	PION EE 5 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
 	PION F 0 A_PlayWeaponSound("weapons/iceshot")
 	PION F 3 Bright A_CustomMissile("NewFreezeBlast",30,4,0)
 	PION E 3 Bright A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_Jump(10,"See")
-	TNT1 A 0 A_CPosRefire
+	"####" A 0 A_Jump(10,"See")
+	"####" A 0 A_CPosRefire
 	Goto Missile+3
   Pain:
 	PION G 3 A_GiveInventory("AIStrafing",1)
@@ -1674,19 +1674,19 @@ Actor UACGuyRailgun : UACBaseMarine
  {
   Spawn:
 	SRPL A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
-	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	"####" A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
 	SRPL A 10 A_Look
 	Goto Idle
   Missile:
-	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine")
+	"####" A 0 A_Jump(65,"FragGrenade","LandMine")
 	SRPL EEE 6 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_PlaySound("railgunner/chargedshot")
-	TNT1 A 0 A_CustomMissile("RailgunImpact",30)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_PlaySound("railgunner/chargedshot")
+	"####" A 0 A_CustomMissile("RailgunImpact",30)
 	SRPL F 5 Bright A_CustomRailgun(250,0,"00 85 FF","None",1,1,0,"MarineRailPuff")
 	SRPL EEEEEEEEEE 5 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_Jump(48,"See")
-	TNT1 A 0 A_CPosRefire
+	"####" A 0 A_Jump(48,"See")
+	"####" A 0 A_CPosRefire
 	Goto Missile+4
   Pain:
 	SRPL G 3 A_GiveInventory("AIStrafing",1)
@@ -1714,20 +1714,20 @@ Actor UACGuyExplosiveRailgun : UACBaseMarine
  {
   Spawn:
 	PSTN A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
-	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	"####" A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
 	PSTN A 10 A_Look
 	Goto Idle
   Missile:
-	TNT1 A 0 //A_Jump(65,"FragGrenade","LandMine")
+	"####" A 0 //A_Jump(65,"FragGrenade","LandMine")
 	PSTN EEE 6 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_PlaySound("ExplosiveRailgun/Fire")
-	TNT1 A 0 A_CustomMissile("MarineExplosiveRailgunImpact",30)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_PlaySound("ExplosiveRailgun/Fire")
+	"####" A 0 A_CustomMissile("MarineExplosiveRailgunImpact",30)
 	//PSTN F 5 Bright A_CustomRailgun(250,0,"None","None",1,1,0,"MarineRailPuff")
 	PSTN F 5 Bright A_CustomRailgun(50,20,"None","None",RGF_SILENT,1,0,"MarineRailPuff",0,0,0,0,40,0,"ExplosiveRailgunTrail")
 	PSTN EEEEEEEEEE 5 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_Jump(48,"See")
-	TNT1 A 0 A_CPosRefire
+	"####" A 0 A_Jump(48,"See")
+	"####" A 0 A_CPosRefire
 	Goto Missile+4
   Pain:
 	PSTN G 3 A_GiveInventory("AIStrafing",1)
@@ -1773,19 +1773,19 @@ Actor UACGuyDTRifle : UACBaseMarine
  {
   Spawn:
 	PRAI A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
-	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	"####" A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
 	PRAI A 10 A_Look
 	Goto Idle
   Missile:
-	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine")
+	"####" A 0 A_Jump(65,"FragGrenade","LandMine")
 	PRAI EE 5 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
 	PRAI E 3 Bright A_FaceTarget
 	PRAI F 0 A_PlayWeaponSound("weapons/demontechfire")
 	PRAI F 3 Bright A_CustomMissile("MDTProj",32,0,random(-3,3))
-	TNT1 A 0 A_StopSoundEx("Voice")
-	TNT1 A 0 A_Jump(6,"See")
-	TNT1 A 0 A_CPosRefire
+	"####" A 0 A_StopSoundEx("Voice")
+	"####" A 0 A_Jump(6,"See")
+	"####" A 0 A_CPosRefire
 	Goto Missile+3
   Pain:
 	PRAI G 3 A_GiveInventory("AIStrafing",1)
@@ -1815,18 +1815,18 @@ Actor UACGuyDTRailgun : UACBaseMarine
  {
   Spawn:
 	PDTR A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
-	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	"####" A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
 	PDTR A 10 A_Look
 	Goto Idle
   Missile:
-	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine")
+	"####" A 0 A_Jump(65,"FragGrenade","LandMine")
 	PDTR EEE 6 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_CustomMissile("DTRail")
+	"####" A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_CustomMissile("DTRail")
 	PDTR F 5 Bright A_CustomRailgun(450,0,"00 85 FF","None",0,1,0,"MarineRailPuffGreen",0,0,0,0,35.0,0.0,"DTRailCoreTrail")
 	PDTR EEEEEEEEEE 5 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_Jump(48,"See")
-	TNT1 A 0 A_CPosRefire
+	"####" A 0 A_Jump(48,"See")
+	"####" A 0 A_CPosRefire
 	Goto Missile+4
   Pain:
 	PDTR G 3 A_GiveInventory("AIStrafing",1)
@@ -1854,48 +1854,48 @@ Actor UACGuyDTShotgun : UACBaseMarine
  {
   Spawn:
 	P2TS A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
-	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	"####" A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
 	P2TS A 10 A_Look
 	Goto Idle
   Missile:
 	P2TS E 0 //A_Jump(65,"FragGrenade","LandMine")
 	P2TS EEE 5 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_JumpIfCloser(350,"BurstShot")
+	"####" A 0 A_JumpIfCloser(350,"BurstShot")
   Spread:
-	TNT1 A 0 A_FaceTarget
-	TNT1 A 0 A_PlaySound("Weapons/ErasusFire",CHAN_WEAPON)
-	TNT1 AAAAAAAAA 0 A_CustomMissile("RedDemonTechTracer",Random(28,34),0,Random(5,-5),CMF_TRACKOWNER)
-	TNT1 A 0 A_CustomMissile("MarineRedZDemonTechProjectile",28,0,0,CMF_TRACKOWNER)
-	TNT1 A 0 A_CustomMissile("MarineRedZDemonTechProjectile",28,0,2,CMF_TRACKOWNER)
-	TNT1 A 0 A_CustomMissile("MarineRedZDemonTechProjectile",28,0,-2,CMF_TRACKOWNER)
-	TNT1 A 0 A_CustomMissile("MarineRedZDemonTechProjectile",28,0,3,CMF_TRACKOWNER)
-	TNT1 A 0 A_CustomMissile("MarineRedZDemonTechProjectile",28,0,-3,CMF_TRACKOWNER)
-	TNT1 A 0 A_CustomMissile("MarineRedZDemonTechProjectile",28,0,4,CMF_TRACKOWNER)
-	TNT1 A 0 A_CustomMissile("MarineRedZDemonTechProjectile",28,0,-4,CMF_TRACKOWNER)
-	TNT1 A 0 A_CustomMissile("MarineRedZDemonTechProjectile",28,0,5,CMF_TRACKOWNER)
-	TNT1 A 0 A_CustomMissile("MarineRedZDemonTechProjectile",28,0,-5,CMF_TRACKOWNER)
+	"####" A 0 A_FaceTarget
+	"####" A 0 A_PlaySound("Weapons/ErasusFire",CHAN_WEAPON)
+	"####" AAAAAAAAA 0 A_CustomMissile("RedDemonTechTracer",Random(28,34),0,Random(5,-5),CMF_TRACKOWNER)
+	"####" A 0 A_CustomMissile("MarineRedZDemonTechProjectile",28,0,0,CMF_TRACKOWNER)
+	"####" A 0 A_CustomMissile("MarineRedZDemonTechProjectile",28,0,2,CMF_TRACKOWNER)
+	"####" A 0 A_CustomMissile("MarineRedZDemonTechProjectile",28,0,-2,CMF_TRACKOWNER)
+	"####" A 0 A_CustomMissile("MarineRedZDemonTechProjectile",28,0,3,CMF_TRACKOWNER)
+	"####" A 0 A_CustomMissile("MarineRedZDemonTechProjectile",28,0,-3,CMF_TRACKOWNER)
+	"####" A 0 A_CustomMissile("MarineRedZDemonTechProjectile",28,0,4,CMF_TRACKOWNER)
+	"####" A 0 A_CustomMissile("MarineRedZDemonTechProjectile",28,0,-4,CMF_TRACKOWNER)
+	"####" A 0 A_CustomMissile("MarineRedZDemonTechProjectile",28,0,5,CMF_TRACKOWNER)
+	"####" A 0 A_CustomMissile("MarineRedZDemonTechProjectile",28,0,-5,CMF_TRACKOWNER)
 	P2TS F 5 Bright A_GiveInventory("AIStrafing",1)
 	P2TS EE 5 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_PlaySound("Weapons/ErasusPump")
+	"####" A 0 A_PlaySound("Weapons/ErasusPump")
 	P2TS EE 4 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_SpawnItemEx("ShellCasing",-8,0,30,Random(2,6),0,Random(1,3),Random(-80,-90),SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+	"####" A 0 A_SpawnItemEx("ShellCasing",-8,0,30,Random(2,6),0,Random(1,3),Random(-80,-90),SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
 	P2TS EE 4 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_Jump(40,"Pause")
-	TNT1 A 0 A_CPosRefire
+	"####" A 0 A_Jump(40,"Pause")
+	"####" A 0 A_CPosRefire
 	Goto Missile+4
   BurstShot:
-	TNT1 A 0 A_FaceTarget
-	TNT1 A 0 A_PlaySound("Weapons/ErasusFire",CHAN_WEAPON)
-	TNT1 AAAAAAAA 0 A_CustomMissile("RedDemonTechTracer",Random(28,34),0,Random(6,-6),CMF_TRACKOWNER)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_FaceTarget
+	"####" A 0 A_PlaySound("Weapons/ErasusFire",CHAN_WEAPON)
+	"####" AAAAAAAA 0 A_CustomMissile("RedDemonTechTracer",Random(28,34),0,Random(6,-6),CMF_TRACKOWNER)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
 	P2TS F 5 Bright A_CustomBulletAttack(15.4,10.6,24,Random(1,4)*3,"MarineDemonShotgunPuff")
 	P2TS EE 5 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_PlaySound("Weapons/ErasusPump")
+	"####" A 0 A_PlaySound("Weapons/ErasusPump")
 	P2TS EE 4 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_SpawnItemEx("ShellCasing",-8,0,30,Random(2,6),0,Random(1,3),Random(-80,-90),SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
+	"####" A 0 A_SpawnItemEx("ShellCasing",-8,0,30,Random(2,6),0,Random(1,3),Random(-80,-90),SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
 	P2TS EE 4 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_Jump(40,"Pause")
-	TNT1 A 0 A_CPosRefire
+	"####" A 0 A_Jump(40,"Pause")
+	"####" A 0 A_CPosRefire
 	Goto Missile+4
 	Pause:
 	P2TS EEEE 5 A_GiveInventory("AIStrafing",1)
@@ -1981,7 +1981,7 @@ Actor UACGuyMiner : UACBaseMarine
  {
   Spawn:
 	PMNE A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
-	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	"####" A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
 	PMNE A 10 A_Look
 	Goto Idle
   Missile:
@@ -1993,10 +1993,10 @@ Actor UACGuyMiner : UACBaseMarine
 	PLA1 E 0 A_JumpIfCloser(280,"LandMine")
 	PLA1 E 6 A_GiveInventory("AIStrafing",1)
 	PLA1 EEE 4 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
 	PLA1 E 6 A_CustomMissile("MThrownGrenade",32,0,0,2,10)
-	TNT1 A 0 A_Jump(80,"See")
-	TNT1 A 0 A_CPosRefire
+	"####" A 0 A_Jump(80,"See")
+	"####" A 0 A_CPosRefire
 	PLA1 E 1
 	Goto Missile+1
   LandMine:
@@ -2005,19 +2005,19 @@ Actor UACGuyMiner : UACBaseMarine
 	PMNE E 0 A_Jump(127,"SpringMine")
 	PMNE E 3 A_GiveInventory("AIStrafing",1)
 	PMNE EE 4 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
 	PMNE E 6 A_CustomMissile("MinerThrownMine",32,0,0,2,10)
-	TNT1 A 0 A_Jump(80,"See")
-	TNT1 A 0 A_CPosRefire
+	"####" A 0 A_Jump(80,"See")
+	"####" A 0 A_CPosRefire
 	PMNE E 1
 	Goto Missile+1
   SpringMine:
 	PMNE E 3 A_GiveInventory("AIStrafing",1)
 	PMNE EE 4 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
 	PMNE E 6 A_CustomMissile("MarineSpringMineSet",32,0,0,2,10)
-	TNT1 A 0 A_Jump(80,"See")
-	TNT1 A 0 A_CPosRefire
+	"####" A 0 A_Jump(80,"See")
+	"####" A 0 A_CPosRefire
 	PMNE E 1
 	Goto Missile+1
   Pain:
@@ -2053,63 +2053,63 @@ Actor UACGuyDBFG : UACHeavyMarine
  {
   Spawn:
 	PBDB A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
-	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	"####" A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
 	PBDB A 0 ACS_NamedExecuteAlways("SpawnEffects",0)
-	TNT1 A 0 A_SetUserVar("user_effect_delay",2)
-	TNT1 A 0 A_SetUserVar("user_effect_quantity",1)
-	TNT1 A 0 A_SetUserVar("user_effect_type",103)
+	"####" A 0 A_SetUserVar("user_effect_delay",2)
+	"####" A 0 A_SetUserVar("user_effect_quantity",1)
+	"####" A 0 A_SetUserVar("user_effect_type",103)
 	PBDB A 10 A_Look
 	Goto Idle
   See:
-	TNT1 A 0 A_JumpIf(user_protection == 1,3)
-	TNT1 A 0 A_SetUserVar("user_protection",1)
+	"####" A 0 A_JumpIf(user_protection == 1,3)
+	"####" A 0 A_SetUserVar("user_protection",1)
 	PBDB A 0 A_JumpIfTargetInLOS("Strafing")
-	TNT1 A 0 A_ChangeFlag(NOPAIN,FALSE)
+	"####" A 0 A_ChangeFlag(NOPAIN,FALSE)
 	PBDB AABB 3 A_Chase
-	TNT1 A 0 A_Jump(16,"GiveUp")
-	TNT1 A 0 A_Jump(6,"MineField")
-	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	"####" A 0 A_Jump(16,"GiveUp")
+	"####" A 0 A_Jump(6,"MineField")
+	"####" A 0 A_SpawnItem("FootStep",0,0,0,0)
 	PBDB CCDD 3 A_Chase
-	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	"####" A 0 A_SpawnItem("FootStep",0,0,0,0)
 	Loop
  Idle:
 	PBDB A 0 A_Jump(48,"Find")
 	PBDB A 0 A_SpawnItem("FootStep",0,0,0,0)
-	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	"####" A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
 	PBDB AABB 3 A_GiveInventory("AIPatroling",1)
-	TNT1 A 0 A_Jump(6,"MineField")
+	"####" A 0 A_Jump(6,"MineField")
 	PBDB C 0 A_SpawnItem("FootStep",0,0,0,0)
-	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	"####" A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
 	PBDB CCDD 3 A_GiveInventory("AIPatroling",1)
 	Loop
   Missile:
-	//TNT1 A 0 A_Jump(65,"FragGrenade","LandMine")
-	TNT1 A 0 A_Jump(55,"DBFG")
+	//"####" A 0 A_Jump(65,"FragGrenade","LandMine")
+	"####" A 0 A_Jump(55,"DBFG")
   Normal:
-	TNT1 A 0 A_ChangeFlag(NOPAIN,TRUE)
-	TNT1 A 0 A_PlayWeaponSound("Weapons/dbfgcharge2")
+	"####" A 0 A_ChangeFlag(NOPAIN,TRUE)
+	"####" A 0 A_PlayWeaponSound("Weapons/dbfgcharge2")
 	PBDB EEEEE 5 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_PlaySound("Weapons/dbfgfire2")
+	"####" A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_PlaySound("Weapons/dbfgfire2")
 	PBDB F 3 Bright A_CustomMissile("MarineT3DBFG10kShot",30,0,random(-4,4))
 	PBDB EE 3 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_PlaySound("Weapons/dbfgfire2")
+	"####" A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_PlaySound("Weapons/dbfgfire2")
 	PBDB F 3 Bright A_CustomMissile("MarineT3DBFG10kShot",30,0,random(-4,4))
 	PBDB EE 3 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_Jump(48,"Cooling","DBFG")
-	TNT1 A 0 A_MonsterRefire(40,"Cooling")
+	"####" A 0 A_Jump(48,"Cooling","DBFG")
+	"####" A 0 A_MonsterRefire(40,"Cooling")
 	Goto Normal+7
   Cooling:
 	PBDB E 0 A_PlaySound("Weapons/dbfgcooldown2")
 	PBDB EEEEEEE 5 A_GiveInventory("AIStrafing",1)
 	Goto See
   DBFG:
-	TNT1 A 0 A_ChangeFlag(NOPAIN,TRUE)
-	TNT1 A 0 A_PlaySound("Weapons/dbfgcharge")
+	"####" A 0 A_ChangeFlag(NOPAIN,TRUE)
+	"####" A 0 A_PlaySound("Weapons/dbfgcharge")
 	PBDB EEEEEEEEEEEEEEEEEEEEEEE 5 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_PlaySound("Weapons/dbfgfire",CHAN_AUTO)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_PlaySound("Weapons/dbfgfire",CHAN_AUTO)
 	PBDB F 8 Bright A_CustomMissile("MarineT3DBFGBall",32,0,0)
 	PBDB EEEEE 5 A_GiveInventory("AIStrafing",1)
 	Goto See
@@ -2173,26 +2173,26 @@ Actor UACGuyMedic : UACBaseMarine
  {
   Spawn:
 	PM3D A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
-	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	"####" A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
 	PM3D A 10 A_Look
 	Goto Idle
   See:
 	PM3D A 0 A_JumpIfTargetInLOS("Strafing")
 	PM3D AABB 3 A_Chase
-	TNT1 A 0 A_Jump(16,"GiveUp")
-	TNT1 A 0 A_Jump(60,"Healing")
-	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	"####" A 0 A_Jump(16,"GiveUp")
+	"####" A 0 A_Jump(60,"Healing")
+	"####" A 0 A_SpawnItem("FootStep",0,0,0,0)
 	PM3D CCDD 3 A_Chase
-	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	"####" A 0 A_SpawnItem("FootStep",0,0,0,0)
 	Loop
  Idle:
 	PM3D A 0 A_Jump(48,"Find")
 	PM3D A 0 A_SpawnItem("FootStep",0,0,0,0)
-	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	"####" A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
 	PM3D AABB 3 A_GiveInventory("AIPatroling",1)
-	TNT1 A 0 A_Jump(58,"Healing")
+	"####" A 0 A_Jump(58,"Healing")
 	PM3D C 0 A_SpawnItem("FootStep",0,0,0,0)
-	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	"####" A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
 	PM3D CCDD 3 A_GiveInventory("AIPatroling",1)
 	Loop
   Healing:
@@ -2200,26 +2200,26 @@ Actor UACGuyMedic : UACBaseMarine
 	PM3D E 12 A_RadiusGive("MarineHealingItem",512,RGF_GIVESELF|RGF_MONSTERS|RGF_PLAYERS,1)
 	Goto See
   Missile:
-	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine","FightHealing")
+	"####" A 0 A_Jump(65,"FragGrenade","LandMine","FightHealing")
   Normal:
 	PM3D EE 5 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
-	TNT1 AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
+	"####" AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	PM3D F 4 Bright A_CustomBulletAttack(22.5,0,1,random(1,5)*3,"MarineBulletPuff")
 	PM3D E 3 A_GiveInventory("AIStrafing",2)
-	TNT1 AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	PM3D F 4 Bright A_CustomBulletAttack(22.5,0,1,random(1,5)*3,"MarineBulletPuff")
 	PM3D E 3 A_GiveInventory("AIStrafing",2)
-	TNT1 AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	PM3D F 4 Bright A_CustomBulletAttack(22.5,0,1,random(1,5)*3,"MarineBulletPuff")
 	PM3D E 3 A_GiveInventory("AIStrafing",2)
-	TNT1 AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	PM3D F 4 Bright A_CustomBulletAttack(22.5,0,1,random(1,5)*3,"MarineBulletPuff")
 	PM3D E 3 A_GiveInventory("AIStrafing",2)
-	TNT1 AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	PM3D F 4 Bright A_CustomBulletAttack(22.5,0,1,random(1,5)*3,"MarineBulletPuff")
 	PM3D E 3 A_GiveInventory("AIStrafing",2)
-	TNT1 AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	PM3D F 4 Bright A_CustomBulletAttack(22.5,0,1,random(1,5)*3,"MarineBulletPuff")
 	PM3D E 3 A_GiveInventory("AIStrafing",1)
 	Goto See
@@ -2234,7 +2234,7 @@ Actor UACGuyMedic : UACBaseMarine
 	PM3D E 0 A_JumpIfCloser(280,"Missile")
 	PM3D E 6 A_GiveInventory("AIStrafing",1)
 	PM3D EEE 4 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
 	PM3D E 6 A_CustomMissile("MThrownGrenade",32,0,0,2,10)
 	PM3D E 1
 	Goto See
@@ -2244,14 +2244,14 @@ Actor UACGuyMedic : UACBaseMarine
 	PM3D E 0 A_Jump(127,"SpringMine")
 	PM3D E 3 A_GiveInventory("AIStrafing",1)
 	PM3D EE 4 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
 	PM3D E 6 A_CustomMissile("MarineThrownMine",32,0,0,2,10)
 	PM3D E 1
 	Goto See
   SpringMine:
 	PM3D E 3 A_GiveInventory("AIStrafing",1)
 	PM3D EE 4 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
 	PM3D E 6 A_CustomMissile("MarineSpringMineSet",32,0,0,2,10)
 	PM3D E 1
 	Goto See
@@ -2306,26 +2306,26 @@ Actor UACGuyDispenser : UACBaseMarine
  {
   Spawn:
 	PB4K A 0 NoDelay ACS_NamedExecuteAlways("Marine Healing Script",0)
-	TNT1 A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
+	"####" A 0 ACS_NamedExecuteAlways("Check For Master Player Calling Help",0)
 	PB4K A 10 A_Look
 	Goto Idle
   See:
 	PB4K A 0 A_JumpIfTargetInLOS("Strafing")
 	PB4K AABB 3 A_Chase
-	TNT1 A 0 A_Jump(16,"GiveUp")
-	TNT1 A 0 A_Jump(60,"Healing")
-	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	"####" A 0 A_Jump(16,"GiveUp")
+	"####" A 0 A_Jump(60,"Healing")
+	"####" A 0 A_SpawnItem("FootStep",0,0,0,0)
 	PB4K CCDD 3 A_Chase
-	TNT1 A 0 A_SpawnItem("FootStep",0,0,0,0)
+	"####" A 0 A_SpawnItem("FootStep",0,0,0,0)
 	Loop
   Idle:
 	PB4K A 0 A_Jump(48,"Find")
 	PB4K A 0 A_SpawnItem("FootStep",0,0,0,0)
-	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	"####" A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
 	PB4K AABB 3 A_GiveInventory("AIPatroling",1)
-	TNT1 A 0 A_Jump(58,"Healing")
+	"####" A 0 A_Jump(58,"Healing")
 	PB4K C 0 A_SpawnItem("FootStep",0,0,0,0)
-	TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
+	"####" A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND)
 	PB4K CCDD 3 A_GiveInventory("AIPatroling",1)
 	Loop
   Healing:
@@ -2333,26 +2333,26 @@ Actor UACGuyDispenser : UACBaseMarine
 	PB4K E 12 A_RadiusGive("MarineAmmoItem",512,RGF_PLAYERS,1)
 	Goto See
   Missile:
-	TNT1 A 0 A_Jump(65,"FragGrenade","LandMine","FightHealing")
+	"####" A 0 A_Jump(65,"FragGrenade","LandMine","FightHealing")
   Normal:
 	PB4K EE 5 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
-	TNT1 AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
+	"####" AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	PB4K F 4 Bright A_CustomBulletAttack(22.5,0,1,random(1,5)*3,"MarineBulletPuff")
 	PB4K E 3 A_GiveInventory("AIStrafing",2)
-	TNT1 AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	PB4K F 4 Bright A_CustomBulletAttack(22.5,0,1,random(1,5)*3,"MarineBulletPuff")
 	PB4K E 3 A_GiveInventory("AIStrafing",2)
-	TNT1 AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	PB4K F 4 Bright A_CustomBulletAttack(22.5,0,1,random(1,5)*3,"MarineBulletPuff")
 	PB4K E 3 A_GiveInventory("AIStrafing",2)
-	TNT1 AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	PB4K F 4 Bright A_CustomBulletAttack(22.5,0,1,random(1,5)*3,"MarineBulletPuff")
 	PB4K E 3 A_GiveInventory("AIStrafing",2)
-	TNT1 AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	PB4K F 4 Bright A_CustomBulletAttack(22.5,0,1,random(1,5)*3,"MarineBulletPuff")
 	PB4K E 3 A_GiveInventory("AIStrafing",2)
-	TNT1 AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+	"####" AA 0 A_SpawnItemEx("RifleCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
 	PB4K F 4 Bright A_CustomBulletAttack(22.5,0,1,random(1,5)*3,"MarineBulletPuff")
 	PB4K E 3 A_GiveInventory("AIStrafing",1)
 	Goto See
@@ -2367,7 +2367,7 @@ Actor UACGuyDispenser : UACBaseMarine
 	PB4K E 0 A_JumpIfCloser(280,"Missile")
 	PB4K E 6 A_GiveInventory("AIStrafing",1)
 	PB4K EEE 4 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
 	PB4K E 6 A_CustomMissile("MThrownGrenade",32,0,0,2,10)
 	PB4K E 1
 	Goto See
@@ -2377,14 +2377,14 @@ Actor UACGuyDispenser : UACBaseMarine
 	PB4K E 0 A_Jump(127,"SpringMine")
 	PB4K E 3 A_GiveInventory("AIStrafing",1)
 	PB4K EE 4 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
 	PB4K E 6 A_CustomMissile("MarineThrownMine",32,0,0,2,10)
 	PB4K E 1
 	Goto See
   SpringMine:
 	PB4K E 3 A_GiveInventory("AIStrafing",1)
 	PB4K EE 4 A_GiveInventory("AIStrafing",1)
-	TNT1 A 0 A_GiveInventory("AIStrafing",1)
+	"####" A 0 A_GiveInventory("AIStrafing",1)
 	PB4K E 6 A_CustomMissile("MarineSpringMineSet",32,0,0,2,10)
 	PB4K E 1
 	Goto See

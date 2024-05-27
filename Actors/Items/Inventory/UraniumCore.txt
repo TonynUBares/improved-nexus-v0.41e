@@ -3,8 +3,6 @@ ACTOR UraniumCore : NemesisSphere
  Alpha 0.8
  Scale 1.0
  Renderstyle Add
- Inventory.Amount 1
- Inventory.MaxAmount 1
  Inventory.Icon "URCOB0"
  Inventory.PickupSound "UraniumCore/Pickup"
  Inventory.PickupMessage "$NEUCorePickup"
@@ -61,7 +59,7 @@ Actor UraniumCoreActive : ExplosiveBarrel
  States
  {
   Spawn:
-	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,118,119)
+	URCO A 0 NoDelay ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,118,119)
   SpawnLoop:
 	TNT1 A 0 A_PlaySound("UraniumCore/Idle3",6,5.0,True)
 	URCO AAAAA 5 Bright A_Jump(20,"CrackSound")

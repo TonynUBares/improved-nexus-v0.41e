@@ -17,7 +17,7 @@ ACTOR VengefulNemesisArmor : BlueArmor
  States
  {
   Spawn:
-	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,115)
+	VARM A 0 NoDelay ACS_NamedExecuteAlways("SpawnEffectsOnItem",0,115)
   SpawnLoop:
 	VARM ABCDEFFEDCBA 6 Bright 
 	Loop
