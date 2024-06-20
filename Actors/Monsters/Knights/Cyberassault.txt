@@ -19,9 +19,9 @@ ACTOR Cyberassault 28124
   DropItem "BossArmorBonusMax" 200 1
   DropItem "NewCellPack" 128
   DropItem "BulletBox" 128 200
-  DropItem "Minigun " 200
-  DropItem "Railgun " 150
-  DropItem "Grenade Launcher" 100
+  DropItem "CFMinigun" 200
+  DropItem "CFRailgun" 150
+  DropItem "GrenadeLauncher" 100
   Tag "$NECybAssault"
   +MISSILEMORE
   +MISSILEEVENMORE

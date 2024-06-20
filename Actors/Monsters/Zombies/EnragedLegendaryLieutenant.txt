@@ -11,7 +11,7 @@ Actor EnragedLegendaryLieutenant : EnragedLegendaryAssaultCaptain
   DropItem "EnragedLegendaryShellBox" 130
   DropItem "EnragedLegendaryPowerShard" 30 1
   DropItem "EnragedLegendaryArmor" 92 1
-  DropItem "LegAmmoSphere" 95 1
+  DropItem "LegendaryAmmoSphere" 95 1
   DropItem "HandGrenadeAmmo" 237 2
   DropItem "MineAmmo" 242 2
   DropItem "Backpack" 202 1

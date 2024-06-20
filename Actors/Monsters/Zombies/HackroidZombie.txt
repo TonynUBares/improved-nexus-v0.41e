@@ -13,7 +13,7 @@ DropItem "LegendaryBossArmorBonusMax" 256
 DropItem "LegendaryBossLifeEssence" 256
 DropItem "LegendaryBossArmorBonusMax" 256
 DropItem "EnragedLegendaryArmor" 200
-DropItem "LegAmmoSphere" 256 1
+DropItem "LegendaryAmmoSphere" 256 1
 DropItem "HandGrenadeAmmo" 235 2
 DropItem "MineAmmo" 235 2
 DropItem "Backpack" 256 1

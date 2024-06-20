@@ -22,14 +22,14 @@ PainChance 20
 +NOFEAR
 BloodColor "Blue"
 DropItem "LegendaryArmor" 110 1
-DropItem "LegAmmoSphere" 117 1
+DropItem "LegendaryAmmoSphere" 117 1
 DropItem "HandGrenadeAmmo" 237 2
 DropItem "MineAmmo" 237 2
 DropItem "Backpack" 200 1
 DropItem "Armorplate" 207 1
 DropItem "Portablemedkit" 212 1
 DropItem "LegendaryRune" 50 1
-DropItem "Legendary BFG 10K" 180 1
+DropItem "LegendaryBFG10K" 180 1
 DropItem "LegendaryPowerShard" 100 1
 DropItem "Beacon" 128 1
 DropItem "Beacon" 128 1

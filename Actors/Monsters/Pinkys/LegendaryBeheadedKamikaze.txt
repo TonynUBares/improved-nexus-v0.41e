@@ -47,7 +47,7 @@ DamageFactor "ZombieCannon", 0.0
 DamageFactor "ZombieRocket", 0.0
 DamageFactor "Hell", 0.0
 DamageFactor "EMGEx", 0.0
-DropItem "LegAmmoSphere", 93
+DropItem "LegendaryAmmoSphere", 93
 DropItem "LegendarySphere", 64
 DropItem "LegendaryRune" 64
 DropItem "Legendary C4" 70 1

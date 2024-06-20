@@ -45,7 +45,7 @@ Actor NexusLegendarySphere : LegendarySphere Replaces LegendarySphere
 }
 
 
-Actor NexusLegTimeFreezeSphere : LegTimeFreezeSphere Replaces LegTimeFreezeSphere
+Actor NexusLegTimeFreezeSphere : LegendaryTimeFreezeSphere Replaces LegendaryTimeFreezeSphere
 {
 States
  {

@@ -39,9 +39,9 @@ DropItem "MineAmmo" 100 1
 DropItem "NewShell" 256 8
 DropItem "DemonAmmo" 162 80
 DropItem "BackPack" 70 1
-DropItem "Quad Barrel Shotgun" 80 1
-DropItem "Demon Tech Rifle" 80 1
-DropItem "Rocket Launcher" 80 1
+DropItem "QuadBarrelShotgun" 80 1
+DropItem "DemonTechRifle" 80 1
+DropItem "RocketLauncher" 80 1
 DropItem "MarineSquadBeacon" 20 1
 AttackSound ""
 SeeSound "deathassassin/sight"

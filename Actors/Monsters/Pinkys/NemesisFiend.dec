@@ -34,7 +34,7 @@ Actor NemesisFiend : LegendaryFiend 28025
   DropItem "LegendaryPowerSphere" 100 1
   DropItem "NLDemonAmmoBoxPickup" 200 
   DropItem "NLDemonAmmoPickup" 256
-  DropItem "LegTimeFreezeSphere" 100
+  DropItem "LegendaryTimeFreezeSphere" 100
   DropItem "EnragedLegendaryPowerShard" 65 1
   DropItem "NemesisRifleGiver" 40 1
   SeeSound "NemesisFiend/Sight"

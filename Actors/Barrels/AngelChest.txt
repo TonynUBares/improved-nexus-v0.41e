@@ -45,7 +45,7 @@ ACTOR AngelChest: ComplexChest
 	TNT1 A 0 A_PlaySound("AngelChest/Luck",7)
 	TNT1 AAAAAAAAA 0 A_SpawnItemEx("NemesisAmmoSpawner",0,0,2,random(1,8),0,10,random(0,360),0,0)
 	TNT1 AAA 0 A_SpawnItemEx("NemesisBoxSpawner",0,0,2,random(1,8),0,10,random(0,360),0,0)
-	TNT1 A 0 A_SpawnItemEx("Nemesis Rifle",0,0,2,random(1,8),0,10,random(0,360),0,100)
+	TNT1 A 0 A_SpawnItemEx("NemesisRifle",0,0,2,random(1,8),0,10,random(0,360),0,100)
 	Goto DeathLoop
   Items:
 	TNT1 A 0 A_Jump(128,"Item2","Item4")

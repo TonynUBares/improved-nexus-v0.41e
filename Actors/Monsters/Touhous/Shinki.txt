@@ -415,10 +415,10 @@ ACTOR UndeadMakaiSlut : MakaiSlut
  DropItem "SkullOfPower", 64
  DropItem "RingOfRegeneration", 64
  DropItem "OccultSpellbook", 200
- DropItem "LegTimeFreezeSphere", 128, 3
+ DropItem "LegendaryTimeFreezeSphere", 128, 3
  DropItem "EnragedLegendaryPowerShard", 35, 1
  DropItem "NemesisArmor", 128, 1
- DropItem "LegAmmoSphere", 88, 3
+ DropItem "LegendaryAmmoSphere", 88, 3
  dropitem "Nemesis", 16, 1
  Obituary "%o's soul was sent to the darkness by the undead resurrection of Shinki."
  tag "\c[u2]The Resurrected One, \c[u9]Undead Shinki\c-"

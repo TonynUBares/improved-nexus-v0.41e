@@ -63,8 +63,8 @@ DamageFactor "LACGrenade", 0.0
 DamageFactor "LSSGGrenade", 0.0
 DamageFactor "LegendaryZombie", 0.0
 DropItem "NemesisSphere", 90
-DropItem "LegAmmoSphere", 100, 1
-DropItem "LegAmmoSphere", 100, 1
+DropItem "LegendaryAmmoSphere", 100, 1
+DropItem "LegendaryAmmoSphere", 100, 1
 DropItem "SpringMine", 100, 1
 DropItem "SpringMine", 100, 1
 DropItem "SpringMine", 100, 1

@@ -94,7 +94,7 @@ ACTOR Hibachi
  DropItem "DemonicChalice" 256
  DropItem "SkullOfPower" 256
  DropItem "TrueLegendaryRune" 64 1
- Dropitem "Legendary BFG" 255
+ Dropitem "LegendaryBFG" 255
  Dropitem "LDemonAmmoBox" 255
  Dropitem "Truelegendarybfgupgrade" 128
  Dropitem "TrueLegendaryUltraSphere" 128
@@ -107,7 +107,6 @@ ACTOR Hibachi
  DropItem "BossLifeEssence", 256
  DropItem "LegendaryPowerSphere" 96
  Dropitem "LegendaryPowerShard" 96
- //dropitem "LegendaryRune" 256
  DropItem "RingOfRegeneration" 128
  Obituary "%o: Holy shit I found this batshit insane True LEG girl that killed me!"
  tag "$NEHibachi"

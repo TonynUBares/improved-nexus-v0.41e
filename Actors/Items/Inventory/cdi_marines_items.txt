@@ -7,7 +7,7 @@ Actor PlayerCallingMinions : Inventory
 	Stop
  }
 }
-Actor Map_SpawnCount : Inventory{Inventory.MaxAmount 9999}
+
 Actor MarineTeleportDelay : Powerup
 {
  Inventory.MaxAmount 1

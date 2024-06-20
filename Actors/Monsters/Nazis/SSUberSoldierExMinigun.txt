@@ -28,7 +28,7 @@ actor SSUberSoldierExMinigun 21924
   DropItem "MineAmmo", 200, 1
   DropItem "AmmoPack", 150
   DropItem "ExtraArmor" 256 1
-  DropItem "Explosive Minigun", 256
+  DropItem "ExplosiveMinigun", 256
   DropItem "BulletBox", 200, 50
   DropItem "BulletBox", 200, 50
   DropItem "BulletMag", 256, 8

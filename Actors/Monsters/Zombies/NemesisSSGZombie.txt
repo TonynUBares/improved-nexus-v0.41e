@@ -20,7 +20,7 @@ DropItem "NemesisArmorBonus32", 256
 DropItem "StimKit", 222, 3
 DropItem "HealthFlask", 227, 5
 DropItem "Armorplate", 212, 1
-DropItem "LegAmmoSphere", 95, 3
+DropItem "LegendaryAmmoSphere", 95, 3
 DropItem "Portablemedkit", 217, 1
 DropItem "NemesisRuneSpawnerTier1", 70, 1
 DropItem "NemesisPowerShard", 35, 1
@@ -29,7 +29,7 @@ DropItem "MineAmmo", 242, 2
 DropItem "ModdedBackPack", 202, 1
 DropItem "NemesisShell", 256
 DropItem "NemesisShellBox", 130
-DropItem "Nemesis Sawed-Off Shotgun", 128, 1
+DropItem "NemesisSawed-OffShotgunGiver", 128, 1
 Tag "$NENemSSGShot"
 SeeSound "Nemssgzomb/sight"
 PainSound "Nemssgzomb/pain"

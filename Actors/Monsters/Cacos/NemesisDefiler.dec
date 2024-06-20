@@ -15,6 +15,7 @@ Actor NemesisDefiler : LegendaryRedeemer 28018
   DamageFactor "RailG", 0.3
   DamageFactor "PlayerPyro", 0.1
   DamageFactor "Ice", 0.25
+  DamageFactor "PlayerIce", 0.25
   DamageFactor "Lightning", 0.5
   DamageFactor "NemesisBall", 0.2
   DamageFactor "Legendary", 0.0
@@ -23,28 +24,26 @@ Actor NemesisDefiler : LegendaryRedeemer 28018
   DamageFactor "LegendaryGuru", 0.0
   DamageFactor "LegendaryGuruPlayer", 0.0
   DamageFactor "Superweapon", 0.0
-  DropItem "NemesisHealthBonusMax", 256, 32
+  DropItem "NemesisHealthBonusMax", 256
   DropItem "NemesisArmorBonus32", 256
-  DropItem "NemesisHealthBonusMax", 256, 32
+  DropItem "NemesisHealthBonusMax", 256
   DropItem "NemesisArmorBonus32", 256
-  DropItem "NemesisSphere", 100, 1
-  DropItem "LegendaryRuneSpawner", 96, 1
+  DropItem "NemesisSphere", 100
   DropItem "NLDemonAmmoPickup", 256
   DropItem "NLDemonAmmoBoxPickup", 256
-  DropItem "NemesisRifleGiver", 200, 1
+  //DropItem "NemesisRifleGiver", 200
   SeeSound "NemesisDefiler/Sight"
   ActiveSound "NemesisDefiler/Active"
   PainSound "NemesisDefiler/Pain"
   DeathSound "NemesisDefiler/Death"
-  Obituary "%o was eradicated by the Nemesis Defiler."
+  Obituary "$CFNemesisDefilerObit"
   var int user_missile;
-  var int user_deathtimer;
-  var int user_deathtimeractive;
   Tag "$CFNemDef"
   States
   {
   Spawn:
     NMDF A 0
+	TNT1 A 0 A_GiveInventory("VileStaffResistance",3)
 	TNT1 A 0 ACS_NamedExecuteAlways("WimpyMode",0,2)
 	TNT1 A 0 ACS_NamedExecuteAlways("ModifyMonster",0,2,4)
   Idle:
@@ -58,9 +57,6 @@ Actor NemesisDefiler : LegendaryRedeemer 28018
 	Loop
   MoreSee:
 	TNT1 A 0 A_SetUserVar("user_lowlag",1)
-	TNT1 A 0 A_JumpIf(user_deathtimeractive == 1,3)
-	TNT1 A 0 ACS_NamedExecuteAlways("NemesisDeathTimerForVexed",0)
-	TNT1 A 0 A_SetUserVar("user_deathtimeractive",1)
     TNT1 A 0 A_JumpIf(user_music == 1,3)
     TNT1 A 0 ACS_NamedExecuteAlways("CFMusic",0,743)
 	TNT1 A 0 A_SetUserVar("user_music",1)
@@ -102,12 +98,12 @@ Actor NemesisDefiler : LegendaryRedeemer 28018
   Teleport:
     NMDF A 1 A_UnSetShootable
 	TNT1 AAA 0 A_SpawnItemEx("NDefilerSmokeSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
-	NMDF AAAAAAAAAAA 1 A_FadeOut(0.1,0)
-	NMDF AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	NMDF AAAAAAAAAA 1 A_FadeOut(0.1,0)
+	NMDF AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
     NMDF A 1 A_PlayWeaponSound("boss/teleport")
 	TNT1 A 0 A_Recoil(0.1)
 	TNT1 AAA 0 A_SpawnItemEx("NDefilerSmokeSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
-	NMDF AAAAAAAAAAA 1 A_FadeIn(0.1)
+	NMDF AAAAAAAAAA 1 A_FadeIn(0.1)
     NMDF A 1 A_SetShootable
     Goto See		
   Trap:
@@ -120,6 +116,7 @@ Actor NemesisDefiler : LegendaryRedeemer 28018
 	TNT1 A 0 A_PlaySound("reedemer/trap")
     NMDF D 5 Bright A_SpawnItemEx("NemesisDefilerTrap",45,0,16,15)
     Goto See
+  Melee:
   Missile:
     TNT1 A 0 A_SetShootable
     TNT1 A 0 A_SetTranslucent(1)
@@ -141,42 +138,22 @@ Actor NemesisDefiler : LegendaryRedeemer 28018
 	Goto See
   LightningBall:
 	TNT1 A 0 A_PlaySound("NemesisDefiler/Attack2",7)
+	TNT1 A 0 A_SetUserVar("user_loop",0)
+  LightningBallLoop:
 	TNT1 A 0 A_SpawnItemEx("NDefilerLightingFX",41,0,43)
 	TNT1 A 0 A_SpawnItemEx("NDefilerWhiteSmokeSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
 	NMDF E 4 Bright A_FaceTarget
-	TNT1 A 0 A_SpawnItemEx("NDefilerLightingFX",41,0,43)
-	TNT1 A 0 A_SpawnItemEx("NDefilerWhiteSmokeSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
-	NMDF E 4 Bright A_FaceTarget
-	TNT1 A 0 A_SpawnItemEx("NDefilerLightingFX",41,0,43)
-	TNT1 A 0 A_SpawnItemEx("NDefilerWhiteSmokeSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
-	NMDF E 4 Bright A_FaceTarget
-	TNT1 A 0 A_SpawnItemEx("NDefilerLightingFX",41,0,43)
-	TNT1 A 0 A_SpawnItemEx("NDefilerWhiteSmokeSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
-	NMDF E 4 Bright A_FaceTarget
-	TNT1 A 0 A_SpawnItemEx("NDefilerLightingFX",41,0,43)
-	TNT1 A 0 A_SpawnItemEx("NDefilerWhiteSmokeSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
-	NMDF E 4 Bright A_FaceTarget
-	TNT1 A 0 A_SpawnItemEx("NDefilerLightingFX",41,0,43)
-	TNT1 A 0 A_SpawnItemEx("NDefilerWhiteSmokeSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
-	NMDF E 4 Bright A_FaceTarget
+	TNT1 A 0 A_SetUserVar("user_loop",user_loop+1)
+	TNT1 A 0 A_JumpIf(user_loop == 6,1)
+	Loop	
+	TNT1 A 0 A_SetUserVar("user_loop",0)
+  LightningBallLoop2:
 	TNT1 A 0 A_SpawnItemEx("NDefilerLightingFX",41,0,43)
 	TNT1 A 0 A_SpawnItemEx("NDefilerWhiteSmokeSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
 	NMDF F 4 Bright A_FaceTarget
-	TNT1 A 0 A_SpawnItemEx("NDefilerLightingFX",41,0,43)
-	TNT1 A 0 A_SpawnItemEx("NDefilerWhiteSmokeSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
-	NMDF F 4 Bright A_FaceTarget
-	TNT1 A 0 A_SpawnItemEx("NDefilerLightingFX",41,0,43)
-	TNT1 A 0 A_SpawnItemEx("NDefilerWhiteSmokeSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
-	NMDF F 4 Bright A_FaceTarget
-	TNT1 A 0 A_SpawnItemEx("NDefilerLightingFX",41,0,43)
-	TNT1 A 0 A_SpawnItemEx("NDefilerWhiteSmokeSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
-	NMDF F 4 Bright A_FaceTarget
-	TNT1 A 0 A_SpawnItemEx("NDefilerLightingFX",41,0,43)
-	TNT1 A 0 A_SpawnItemEx("NDefilerWhiteSmokeSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
-	NMDF F 4 Bright A_FaceTarget
-	TNT1 A 0 A_SpawnItemEx("NDefilerLightingFX",41,0,43)
-	TNT1 A 0 A_SpawnItemEx("NDefilerWhiteSmokeSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
-	NMDF F 4 Bright A_FaceTarget
+	TNT1 A 0 A_SetUserVar("user_loop",user_loop+1)
+	TNT1 A 0 A_JumpIf(user_loop == 6,1)
+	Loop	
 	TNT1 A 0 A_SpawnItemEx("NDefilerWhiteSmokeSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
     NMDF F 30 Bright A_CustomMissile("DefilerLightningProj",41)
 	Goto See
@@ -287,7 +264,6 @@ Actor NemesisDefiler : LegendaryRedeemer 28018
   Comets.Suicide:
 	TNT1 A 0 A_PlaySound("NemesisDefiler/Attack1",7)
 	NMDF BC 5 Bright A_FaceTarget
-	TNT1 A 0 A_FaceTarget
 	NMDF DDDDDD 2 Bright A_CustomMissile("NemesisDefilerComet",25,0,frandom(-4,4),CMF_OFFSETPITCH,frandom(-2,2))
 	TNT1 A 0 A_FaceTarget
 	NMDF DDDDDD 2 Bright A_CustomMissile("NemesisDefilerComet",25,0,frandom(-4,4),CMF_OFFSETPITCH,frandom(-2,2))
@@ -400,7 +376,7 @@ Actor NemesisDefiler : LegendaryRedeemer 28018
 	TNT1 A 0 A_ChangeFlag("NODAMAGE",0)
 	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("GetCVar",12) == 1,4)
 	TNT1 A 0 ACS_NamedExecuteWithResult("VexCheck")
-	TNT1 A 0 A_JumpIf(user_deathtimer <= 10,"VexedSpawn")	
+	TNT1 A 0 A_JumpIf(user_deathtimer <= 10,"VexedSpawn")
     NMDF I 5 Bright A_Scream
 	TNT1 A 0 A_PlaySound("BFlan/LightningExp",0)
 	TNT1 A 0 A_SpawnItemEx("DefilerLightningExplode",frandom(0,20),0,frandom(20,50),frandom(2,6),0,frandom(-4,4),frandom(0,360))
@@ -409,6 +385,8 @@ Actor NemesisDefiler : LegendaryRedeemer 28018
 	TNT1 A 0 A_SpawnItemEx("NemesisGibbedGenerator",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
     TNT1 A 0 A_NoBlocking
 	TNT1 A 0 A_KillChildren
+	TNT1 A 0 ACS_NamedExecuteAlways("LegendaryRunes",0,37)
+	TNT1 A 0 A_DropItem("NemesisDust",random(3,5),256)
 	TNT1 A 0 A_PlaySound("BFlan/LightningExp",0)
 	TNT1 A 0 A_SpawnItemEx("DefilerLightningExplode",frandom(0,20),0,frandom(20,50),frandom(2,6),0,frandom(-4,4),frandom(0,360))
     NMDF MMNNOOPP 2 Bright A_SpawnItemEx("WhiteNemesisKaboom",frandom(-32,32),frandom(-40,40),frandom(16,48),frandom(-4,4),frandom(-4,4),frandom(0,4),0,SXF_TRANSFERPOINTERS)
@@ -450,6 +428,8 @@ Actor DefilerBouncyBall : CacodemonBall
 {
   Damage (Random(20,40))
   Speed 40
+  Species "Cacodemon"
+  DamageType "Nemesis"
   Scale 0.5
   Alpha 1.0
   SeeSound "HSphere/Tele"
@@ -496,6 +476,8 @@ Actor DefilerHellStaffBall : DBishHornRodFX
 {
   Speed 30
   Damage (Random(40,80))
+  Species "Cacodemon"
+  DamageType "Nemesis"
   +NOTIMEFREEZE
   States
   {
@@ -504,7 +486,6 @@ Actor DefilerHellStaffBall : DBishHornRodFX
 	TNT1 A 0 A_SeekerMissile(15,30)
 	Loop
   Death:
-	TNT1 A 0
 	TNT1 AAAAAAAAA 0 A_SpawnItemEx("NemesisWhiteHellStaffParticle",0,0,0,frandom(-4,4),frandom(-4,4),frandom(-4,4),random(0,360))
 	CLBA D 1 Bright A_FadeOut(0.2)
 	Goto Death+1
@@ -515,38 +496,42 @@ Actor NemesisWhiteHellStaffParticle : WhiteHellStaffParticle { +NOTIMEFREEZE +NO
 
 Actor DefilerBFGBall : NemesisCyberBFG9500Ball
 {
-  Obituary "%o was eradicated by the Nemesis Defiler."
-  Damagetype "CacoComet"
+  Damage (Random(200,500))
+  Obituary "$CFDefilerBFGBallObit"
+  Species "Cacodemon"
+  DamageType "Nemesis"
   States
   {
   Death:
-	TNT1 A 0
-	TNT1 A 0 A_SpawnItemEx("NemesisBFGShockwave", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 A 0 A_SpawnItemEx("NemesisBFGShockwave", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE)
     TNT1 AAAAAA 0 A_CustomMissile("WhiteNemesisKaboomNoSound", 0, 0, frandom(0,360), CMF_AIMDIRECTION, frandom(0,360))
-    NFE3 AB 4 Bright A_SpawnItemEx("NemesisWhiteParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
-    NFE3 C 4 Bright A_BFGSpray("DefilerSpray")
+    NFE3 AB 4 Bright A_SpawnItemEx("NemesisWhiteParticleSpawner", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE)
+    NFE3 C 4 Bright A_BFGSpray("DefilerSpray",20,20)
     NFE3 DEF 4 Bright
     Stop    
   }
 }
 
-Actor DefilerSpray : NemesisSpray { Damagetype "CacoComet" }
+Actor DefilerSpray : NemesisSpray { Species "Cacodemon" DamageType "Nemesis" }
 
 Actor DefilerNemesisLaser : NemesisImpLaser
 {
   Damage (Random(10,30))
-  Missiletype "DefilerNemesisLaserTrail"
-  Damagetype "CacoComet"
+  MissileType "DefilerNemesisLaserTrail"
+  Species "Cacodemon"
+  DamageType "Nemesis"
 }
 
-Actor DefilerNemesisLaserTrail : NemesisImpLaserTrail { Damagetype "CacoComet" }
+Actor DefilerNemesisLaserTrail : NemesisImpLaserTrail { Species "Cacodemon" DamageType "Nemesis" }
 
-Actor NemesisDefilerComet : NemesisHKComet { Damagetype "CacoComet" }
+Actor NemesisDefilerComet : NemesisHKComet { Species "Cacodemon" DamageType "Nemesis" }
 
 Actor DefilerSuicideBomb : LegSuicideBomb
 {
-States
-{
+  Species "Cacodemon"
+  DamageType "Nemesis"
+  States
+  {
   Spawn:
 	TNT1 A 0 
 	TNT1 A 0 A_PlaySound("NemesisExile/Explosion2",2)
@@ -561,9 +546,10 @@ States
 
 Actor DefilerLightningProj : BFlanLightningProj
 {
-  Damage (Random(200,300))
-  Missiletype "DefilerLightningTrailSpawner"
-  Damagetype "CacoComet"
+  Damage (Random(150,250))
+  MissileType "DefilerLightningTrailSpawner"
+  Species "Cacodemon"
+  DamageType "Nemesis"
   +NOTIMEFREEZE
   States
   {
@@ -576,7 +562,7 @@ Actor DefilerLightningProj : BFlanLightningProj
 	TNT1 AAAAAAAAA 0 A_CustomMissile("WhiteNemesisKaboomNoSound",frandom(15,35),0,frandom(0,360),CMF_AIMDIRECTION,frandom(0,360))
 	TNT1 A 0 A_SpawnItem("DefilerLightningExplode",0,-10)
 	TNT1 A 0 Radius_Quake(20,8,0,12,0)
-	NFE3 AB 4 Bright A_Explode(350,300)
+	NFE3 AB 4 Bright A_Explode(300,256)
 	NFE3 CCCCCDDDDDEEEEEFFFFF 1 Bright A_SpawnItemEx("DefilerStormBoltSpawner",frandom(-256,256),frandom(-256,256),0,0,0,0,0,SXF_NOCHECKPOSITION,64)
 	Stop
   }
@@ -727,7 +713,9 @@ Actor DefilerStormBoltSpawner : LegRedStormBoltSpawner
 
 Actor DefilerStormBolt : LegRedStormBolt
 {
-  Damage 8
+  Species "Cacodemon"
+  DamageType "Nemesis"
+  Damage (Random(25,50)) //8
   States
   {
    Spawn:
@@ -834,7 +822,7 @@ Actor NDefilerWhiteSmokeSpawner : LegendaryRedParticleSpawner
 
 Actor NDefilerKamikazeSmokeSpawner : LHellionSmokeSpawner
 {
-+NOINTERACTION
+  +NOINTERACTION
   +NOBLOCKMAP
 States
   {
@@ -871,16 +859,16 @@ Actor NDefilerCrystalSmokeSpawner : LegendaryRedParticleSpawner
 
 Actor NemesisDefilerGhost
 {
-Scale 1.15
-Alpha 0.7
-Renderstyle Translucent
-+CLIENTSIDEONLY
-+NOTIMEFREEZE
-+NOINTERACTION
-+NOBLOCKMAP
-States
-{
-Spawn:
+  Scale 1.15
+  Alpha 0.7
+  Renderstyle Translucent
+  +CLIENTSIDEONLY
+  +NOTIMEFREEZE
+  +NOINTERACTION
+  +NOBLOCKMAP
+  States
+  {
+  Spawn:
     TNT1 A 0
 	TNT1 A 0 A_CheckSight("Vanilla")
 	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CheckVanilla") == 1, "Vanilla")
@@ -922,13 +910,15 @@ Actor NemesisDefilerTrap
   SeeSound "reedemer/trap"
   BloodColor "Black"
   Species "Redeemer"
-  DamageType "CacoComet"
+  Species "Cacodemon"
+  DamageType "Nemesis"
   DamageFactor "CacoComet", 0.0
-  Obituary "%o was blown away by the Nemesis Defiler's sentient charges."
-  Renderstyle Add
+  DamageFactor "Nemesis", 0.0
+  Obituary "$CFNemesisDefilerTrapObit"
+  RenderStyle Add
   var int user_delay;
-  Tag "\c[v9]Nemesis Charge\c-"
-  States 
+  Tag "$CFNemesisDefilerTrap"
+  States
   { 
   Spawn:
 	TNT1 A 0 NoDelay A_SpawnItemEx("NemesisDefilerTrapForm",0,0,0,0,0,0,0,SXF_SETMASTER)
@@ -957,7 +947,6 @@ Actor NemesisDefilerTrap
 	TNT1 A 2 A_Die
 	Goto Death    
   Death:
-	TNT1 A 0
 	TNT1 A 0 A_RemoveChildren(1)
 	TNT1 A 0 A_PlaySound("BFlan/LightningExp",1)
 	TNT1 AAAAAA 0 A_SpawnItemEx("NemesisWhiteParticleSpawner", 0, 0, frandom(15,35), 0, 0, 0, 0, SXF_CLIENTSIDE)  

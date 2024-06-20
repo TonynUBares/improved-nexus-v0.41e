@@ -405,7 +405,7 @@ ACTOR HellfrostCyberdemon : Cyberdemon
   Death:
 	KYBR G 10 A_Scream
 	KYBR H 10 A_Fall
-	TNT1 A 0 A_SpawnItemEx("Freezer Rifle",0,0,8,random(0,8),random(0,8),2,random(0,360),0,128)
+	TNT1 A 0 A_SpawnItemEx("FreezerRifle",0,0,8,random(0,8),random(0,8),2,random(0,360),0,128)
 	TNT1 AA 0 A_SpawnItemEx("BlueGibbedGenerator",random(10,-10),random(10,-10),random(20,60),0,0,0,0,128,0)
 	TNT1 AAA 0 A_CustomMissile("BigBlueBloodCloud",random(10,80),0,random(0,360),2,random(0,360))
 	KYBR IIIII 2 Bright A_CustomMissile("BlueKaboom",random(20,80),random(20,-20),random(0,360),2,random(0,360))

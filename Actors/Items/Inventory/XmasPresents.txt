@@ -641,7 +641,7 @@ DropItem "HellfireUltraSphere", 256, 1
 ACTOR NormalPresentWeaponSpawner : RandomSpawner
 {
 +DROPPED
-DropItem "Chainsaw ", 256, 100
+DropItem "CFChainsaw", 256, 100
 DropItem "CombatShotgunGiver", 256, 100
 DropItem "DoubleBarrelShotgunGiver", 256, 100
 DropItem "AssaultRifleGiver", 256, 100
@@ -687,7 +687,7 @@ DropItem "WeaponShuffleSphere", 256, 11
 DropItem "RapidRocketlauncherGiver", 256, 10
 DropItem "DesiccationRodGiver", 256, 10
 DropItem "PlasmaShotgunGiver", 256, 10
-DropItem "Demon Tech Railgun", 256, 10
+DropItem "DemonTechRailgun", 256, 10
 DropItem "ExplosiveRailgun", 256, 10
 DropItem "RapidShotgunGiver", 256, 8
 DropItem "DemonTechShotgunGiver", 256, 8
@@ -701,7 +701,7 @@ DropItem "PyroCannonGiver", 256, 2
 DropItem "StingrayGiver", 256, 1
 DropItem "BLGGiver", 256, 1
 DropItem "BFG2704Giver", 256, 1
-DropItem "BlackHole Generator", 256, 1
+DropItem "BlackHoleGenerator", 256, 1
 DropItem "VilestaffGiver", 256, 1
 DropItem "ArmageddonCannonGiver", 256, 1
 }
@@ -777,10 +777,10 @@ ACTOR LegendaryPresentItemSpawner : RandomSpawner
 {
 +DROPPED
 DropItem "LegendaryPowerSphere", 256, 30
-DropItem "LegTimeFreezeSphere", 256, 28
-DropItem "LegAmmoSphere", 256, 27
+DropItem "LegendaryTimeFreezeSphere", 256, 28
+DropItem "LegendaryAmmoSphere", 256, 27
 DropItem "LegendaryInvisibilitySphere", 256, 25
-DropItem "LegDemonRune", 256, 22
+DropItem "LegendaryDemonRune", 256, 22
 DropItem "LegendaryPowerShard", 256, 22
 DropItem "LegendaryRandomSphere", 256, 20
 DropItem "RingOfRegenerationHalf", 256, 17
@@ -862,7 +862,7 @@ DropItem "LegendaryLieutenant", 256, 93
 DropItem "LegendaryRevolverZombie", 256, 92 //DJB
 DropItem "LegendaryStealthTrooper", 256, 90
 DropItem "LegendaryCommando", 256, 85
-DropItem "LegChainsawZombie", 256, 83 //DJB
+DropItem "LegendaryChainsawZombie", 256, 83 //DJB
 DropItem "LegendaryGeneral", 256, 79
 DropItem "LegendaryImp", 256, 77
 DropItem "LegendaryPhaseImp", 256, 75

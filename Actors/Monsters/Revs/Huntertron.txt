@@ -15,7 +15,7 @@ DamageFactor "CadaverRocket", 0.0
 BloodColor "Red"
 Obituary "The Huntertron hunted down %o."
 Hitobituary "%o was assassinated by a Huntertron."
-DropItem "Railgun " 128 1
+DropItem "CFRailgun" 128 1
 DropItem "ExplosiveRailgun" 64
 DropItem "BossLifeEssence" 128 25
 DropItem "BossArmorBonusMax" 128 1

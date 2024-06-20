@@ -701,7 +701,7 @@ GENERATOR SSMissile RocketScorch
 GENERATOR ExosMissile RocketScorch
 GENERATOR PyroRocket RocketScorch
 GENERATOR ExosMiniRocket RocketScorch
-GENERATOR "Improved Minigun" BulletChip
+GENERATOR ImprovedMinigun BulletChip
 GENERATOR ExosBulletPuff BulletChip
 GENERATOR DeathKnight10K BFG15KLightning
 GENERATOR DeathKnight15k BFG9500LightningSmall

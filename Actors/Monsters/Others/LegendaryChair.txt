@@ -38,7 +38,7 @@ ACTOR LegendaryChair 13712
  PainChance "PlayerDBFG2", 256
  PainChance "DBFG2", 256
  PainChance "PlayerDBFG10K2", 256
- DropItem "LegAmmoSphere" 64 1
+ DropItem "LegendaryAmmoSphere" 64 1
  DropItem "LegendarySphere" 128 1
  DropItem "LDemonAmmoBox" 256 
  DropItem "BossLifeEssence" 256 

@@ -13,12 +13,14 @@ Actor NemesisBabySentient : LegendaryBabySentient 28017
   DamageFactor "Lightning", 0.5
   DamageFactor "NemesisBall", 0.2
   DamageFactor "Ice", 0.25
+  DamageFactor "PlayerIce", 0.25
   DamageFactor "Legendary", 0.0
   DamageFactor "PlayerLegendary", 0.0
   DamageFactor "LegendaryPlayer", 0.2
   DamageFactor "LegendaryGuru", 0.0
   DamageFactor "LegendaryGuruPlayer", 0.0
   DamageFactor "Superweapon", 0.0
+  DamageFactor "Nemesis", 0.0
   PainChance 45 
   PainChance "Explosion", 128
   Speed 24
@@ -28,34 +30,32 @@ Actor NemesisBabySentient : LegendaryBabySentient 28017
   ActiveSound "NemesisBabySentient/Active"
   BloodColor "Black"
   +BRIGHT
-  DropItem "NemesisHealthBonusMax" 256 32
+  DropItem "NemesisHealthBonusMax" 256
   DropItem "NemesisArmorBonus32" 256
-  DropItem "NemesisHealthBonusMax" 256 32
+  DropItem "NemesisHealthBonusMax" 256
   DropItem "NemesisArmorBonus32" 256
-  DropItem "NemesisSphere" 60 1
-  DropItem "LegendaryRuneSpawner" 96
+  DropItem "NemesisSphere" 60
   DropItem "NLDemonAmmoPickup" 256
   DropItem "NLDemonAmmoBoxPickup" 256
   DropItem "NemesisShellPickup" 256
   DropItem "BulletBoxPickup" 256
   DropItem "ExplosiveMinigunGiver" 256
-  DropItem "NemesisRifleGiver" 100
-  DropItem "NemesisPlasmaticCannonGiver" 100
-  DropItem "NemesisAssaultShotgunGiver" 100
-  DropItem "NemesisSawed-OffShotgunGiver" 100
-  DropItem "LegAmmoSphere" 88 1
-  Obituary "%o couldn't outsmart the Nemesis Baby Sentient."
+  //DropItem "NemesisRifleGiver" 100
+  //DropItem "NemesisPlasmaticCannonGiver" 100
+  //DropItem "NemesisAssaultShotgunGiver" 100
+  //DropItem "NemesisSawed-OffShotgunGiver" 100
+  DropItem "LegendaryAmmoSphere" 88 1
+  Obituary "$CFNemesisBabySentientObit"
   Tag "$CFNemBS"
   var int user_missile;
   var int user_turning;
   var int user_sentrybombs;
   var int user_turrets;
-  var int user_deathtimer;
-  var int user_deathtimeractive;
   States
   {
   Spawn:
     NBBS A 0
+	TNT1 A 0 A_GiveInventory("VileStaffResistance",3)
 	TNT1 A 0 ACS_NamedExecuteAlways("WimpyMode",0,2)
 	TNT1 A 0 A_JumpIf(user_script == 1,3)
 	TNT1 A 0 ACS_NamedExecuteAlways("SpawnFireOnActor",0,27)
@@ -77,9 +77,6 @@ Actor NemesisBabySentient : LegendaryBabySentient 28017
 	Loop
   MoreSee:
 	TNT1 A 0 A_SetUserVar("user_lowlag",1)
-	TNT1 A 0 A_JumpIf(user_deathtimeractive == 1,3)
-	TNT1 A 0 ACS_NamedExecuteAlways("NemesisDeathTimerForVexed",0)
-	TNT1 A 0 A_SetUserVar("user_deathtimeractive",1)
     TNT1 A 0 A_JumpIf(user_music == 1,3)
     TNT1 A 0 ACS_NamedExecuteAlways("CFMusic",0,742)
 	TNT1 A 0 A_SetUserVar("user_music",1)
@@ -117,7 +114,7 @@ Actor NemesisBabySentient : LegendaryBabySentient 28017
 	NBBS A 1 A_UnSetShootable
 	NBBS AAAA 0 A_SpawnItemEx("NemesisHellionSmokeSpawner",frandom(-24,24),frandom(-24,24),0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
 	NBBS AAAAAAAAAA 1 A_FadeOut(0.1,0)
-	NBBS AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+	NBBS AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
 	NBBS A 1 A_PlayWeaponSound("boss/teleport")
 	TNT1 A 0 A_Recoil(0.1)
 	NBBS AAAA 0 A_SpawnItemEx("NemesisHellionSmokeSpawner",frandom(-24,24),frandom(-24,24),0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
@@ -385,7 +382,8 @@ Actor NemesisBabySentient : LegendaryBabySentient 28017
 	TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 	Goto See	
   CombatDrone:
-    TNT1 A 0 A_JumpIf(user_drone >= 4,"SentryBombs")
+    TNT1 A 0 A_CheckFlag("FRIENDLY","See")
+	TNT1 A 0 A_JumpIf(user_drone >= 4,"SentryBombs")
 	TNT1 A 0 A_ChangeFlag("NOPAIN",1)
     NBBS MMMMMMMMMMMMMMM 2 A_SpawnItemEx("NemesisSoulFlameSpawner",frandom(-24,24),frandom(-24,24),-30,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
 	TNT1 A 0 A_SetUserVar("user_drone",user_drone+1)
@@ -415,10 +413,12 @@ Actor NemesisBabySentient : LegendaryBabySentient 28017
 	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("GetCVar",12) == 1,4)
 	TNT1 A 0 ACS_NamedExecuteWithResult("VexCheck")
 	TNT1 A 0 A_JumpIf(user_deathtimer <= 10,"VexedSpawn")
-    NBBS A 20
+    NBBS A 20 
 	TNT1 A 0 A_Scream
 	TNT1 A 0 A_KillChildren
     NBBS E 10 A_Fall
+	TNT1 A 0 ACS_NamedExecuteAlways("LegendaryRunes",0,37)
+	TNT1 A 0 A_DropItem("NemesisDust",random(2,5),256)
 	TNT1 AAA 0 A_SpawnItemEx("NemesisGibbedGenerator")
 	NBBS FFFFFFFFF 2 A_CustomMissile("WhiteNemesisKaboom",frandom(20,40),frandom(-10,10),frandom(0,360),CMF_AIMDIRECTION,frandom(0,360))
 	TNT1 AAAA 0 A_CustomMissile("LegendarySmokeFX2", frandom(20,40), 0, frandom(0,360), CMF_AIMDIRECTION, frandom(0,360))
@@ -456,23 +456,23 @@ Actor NemesisBabySentient : LegendaryBabySentient 28017
 	}
 }
 
-Actor NemesisBabySentientCannonProj : NemesisNobleCannonProj { DamageType "Baby15K" }
-Actor NemesisBabySentientLaser : NemesisRevCannonLaser { Damagetype "Baby15K" }
-Actor NemesisBabySentientMiniLaser : NemesisRevMiniLaser { Damagetype "Baby15K" +MTHRUSPECIES }
-Actor NemesisBabySentientPlasma : NemesisSentientPlasma { DamageType "Baby15K" }
+Actor NemesisBabySentientCannonProj : NemesisNobleCannonProj { DamageType "Nemesis" }
+Actor NemesisBabySentientLaser : NemesisRevCannonLaser { DamageType "Nemesis" }
+Actor NemesisBabySentientMiniLaser : NemesisRevMiniLaser { DamageType "Nemesis" +MTHRUSPECIES }
+Actor NemesisBabySentientPlasma : NemesisSentientPlasma { DamageType "Nemesis" }
 Actor NemesisBabySentientRail : NemesisNobleRailLaser
 {
   Damage (Random(30,50))
-  Missiletype "NemesisBabySentientRailTrail"
-  Damagetype "Baby15K"
+  MissileType "NemesisBabySentientRailTrail"
+  DamageType "Nemesis"
 }
-Actor NemesisBabySentientRailTrail : NemesisImpLaserTrail { DamageType "Baby15K" }
+Actor NemesisBabySentientRailTrail : NemesisImpLaserTrail { DamageType "Nemesis" }
 
 
 Actor NemesisBabyBFGBall : NemesisCyberBFG9500Ball
 {
-  Obituary "%o couldn't outsmart the Nemesis Baby Sentient."
-  Damagetype "Baby15K"
+  Obituary "$CFNemesisBabyBFGBallObit"
+  DamageType "Nemesis"
   States
   {
   Death:
@@ -480,23 +480,23 @@ Actor NemesisBabyBFGBall : NemesisCyberBFG9500Ball
 	TNT1 A 0 A_SpawnItemEx("NemesisBFGShockwave", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE)
     TNT1 AAAAAA 0 A_CustomMissile("WhiteNemesisKaboomNoSound", 0, 0, frandom(0,360), CMF_AIMDIRECTION, frandom(0,360))
     NFE3 AB 4 Bright A_SpawnItemEx("NemesisWhiteParticleSpawner", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE)
-    NFE3 C 4 Bright A_BFGSpray("NemesisBabySpray")
+    NFE3 C 4 Bright A_BFGSpray("NemesisBabySpray",20,20)
     NFE3 DEF 4 Bright
     Stop    
     }
 }
 
-Actor NemesisBabySpray : NemesisSpray { Damagetype "Baby15K" }
+Actor NemesisBabySpray : NemesisSpray { DamageType "Nemesis" }
 
 Actor NemesisBabySentientBrainwave : NemesisSentientBrainwave
 {
   Speed 50
-  Damage 20
+  Damage (Random(75,100)) //20
   BounceCount 3
   +BOUNCEONWALLS
   +BOUNCEONFLOORS
-  DamageType "Baby15K"
-  Obituary "%o couldn't outsmart the Nemesis Baby Sentient."
+  DamageType "Nemesis"
+  Obituary "$CFNemesisBabySentientBrainwaveObit"
   Scale 0.7
   States
   {
@@ -519,9 +519,9 @@ Actor NemesisBabySentientBrainwave : NemesisSentientBrainwave
 
 Actor NemesisBabySentientWave : NemesisSentientWave
 {   
-  Obituary "%o couldn't outsmart the Nemesis Baby Sentient."
-  DamageType "Baby15K"
-  RenderStyle ADD
+  Obituary "$CFNemesisBabySentientWaveObit"
+  DamageType "Nemesis"
+  RenderStyle Add
   Alpha 0.5
   Scale 0.6
   Species "BabySpiders"
@@ -578,13 +578,14 @@ Actor NemesisSentryBomb
   -COUNTKILL
   -SOLID
   Species "BabySpiders"
-  DamageType "Baby15K"
+  DamageType "Nemesis"
   DamageFactor "Baby15K", 0.0
+  DamageFactor "Nemesis", 0.0
   DamageFactor "Legendary", 0.0
   DamageFactor "PlayerLegendary", 0.0
   DamageFactor "PlayerNemesisPlasma", 0.0
   DamageFactor "PlayerNemesisBFG", 0.0
-  Obituary "%o was shattered by the Nemesis Baby Sentient's sentry bombs."
+  Obituary "$CFNemesisSentryBombObit"
   var int user_delay;
   Tag "\c[v9]Nemesis Sentry Bomb\c-"
   States 
@@ -593,18 +594,19 @@ Actor NemesisSentryBomb
 	TNT1 A 0 NoDelay A_PlaySound("legbabysentient/trap")
 	NBR6 A 20
 	NBR6 A 1 A_Stop
+  SpawnLoop:
 	TNT1 A 0 A_JumpIf(user_delay >= 260,"Suicide")
 	TNT1 A 0 A_SetUserVar("user_delay",user_delay+1)
 	TNT1 A 0 A_Wander
 	NBR6 A 1 A_Look
-	Goto Spawn+3
+	Loop
   See:
 	TNT1 A 0 A_PlaySound("legbabysentient/trap")
 	NBR6 AAAAAAAAAA 1 A_Chase
 	Goto Missile
   ClearTarget:
 	NBR6 A 1 Bright A_ClearTarget
-	Goto Spawn+3
+	Goto SpawnLoop
   Missile:
 	TNT1 A 0
 	TNT1 A 0 A_JumpIfTargetInLos(1)
@@ -641,7 +643,7 @@ Actor NemesisCombatDroneSpawner : NemesisSentryBombSpawner
   {
    Spawn:
 	TNT1 A 0
-	TNT1 A random(0,10)
+	TNT1 A Random(0,10)
     TNT1 A 0 A_SpawnItemEx("TeleportFog")
     TNT1 A 1 A_SpawnItemEx("NemesisCombatDrone",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS)
 	Stop	
@@ -655,7 +657,7 @@ Actor NemesisCombatDrone
   Radius 20
   Height 50
   Scale 0.75
-  Painchance 40
+  PainChance 40
   +NOBLOOD
   +DONTFALL
   +NOGRAVITY
@@ -668,7 +670,7 @@ Actor NemesisCombatDrone
   -COUNTKILL
   Monster
   Species "BabySpiders"
-  DamageType "Baby15K"
+  DamageType "Nemesis"
   SeeSound "NemesisSentinel/Sight"
   ActiveSound "NemesisSentinel/Active"
   PainSound "NemesisSentinel/Pain"
@@ -677,7 +679,7 @@ Actor NemesisCombatDrone
   DamageFactor "Legendary", 0.0
   DamageFactor "PlayerNemesisPlasma", 0.0
   DamageFactor "PlayerNemesisBFG", 0.0
-  Obituary "%o was targeted by the Nemesis Baby Sentient's Combat Drone."
+  Obituary "$CFNemesisCombatDroneObit"
   var int user_missile;
   Tag "\c[v9]Nemesis Combat Drone\c-"
   States
@@ -714,7 +716,7 @@ Actor NemesisCombatDroneBall
   Height 5
   Projectile
   Speed 40
-  Damage 6
+  Damage (Random(20,30)) //6
   +RANDOMIZE
   +NOTIMEFREEZE
   +MTHRUSPECIES
@@ -747,7 +749,7 @@ Actor NemesisCombatDroneBallTrail
   +CLIENTSIDEONLY
   +NOTIMEFREEZE
   Scale 1
-  Renderstyle ADD
+  Renderstyle Add
   Alpha 0.6
   States
   {   
@@ -786,7 +788,7 @@ Actor NemesisContriver : NemesisCombatDrone
   ActiveSound "NemesisContriver/Active"
   PainSound "NemesisContriver/Pain"
   DeathSound "NemesisContriver/Death"
-  Obituary "%o was seeked and destroyed by the Nemesis Baby Sentient's Contriver."
+  Obituary "$CFNemesisContriverObit"
   Tag "\c[v9]Nemesis Contriver\c-"
   States
   {

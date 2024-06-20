@@ -32,9 +32,9 @@ ACTOR VexedNemesisFiend : NemesisFiend
   DropItem "NemesisPowerSphere" 100 1
   DropItem "NLDemonAmmoBox" 200 
   DropItem "NLDemonAmmo" 256
-  DropItem "LegTimeFreezeSphere" 100
+  DropItem "LegendaryTimeFreezeSphere" 100
   DropItem "NemesisPowerShard" 65 1
-  DropItem "Nemesis Rifle" 40 1
+  DropItem "NemesisRifle" 40 1
   SeeSound "NemesisFiend/Sight"
   ActiveSound "NemesisFiend/Active"
   PainSound "NemesisFiend/Pain"

@@ -9,7 +9,7 @@ actor BabyMastermind : Arachnotron 23402
   Scale 1.2
   painchance 80
   BloodColor "Red"
-  DropItem "Minigun " 256 1
+  DropItem "CFMinigun" 256 1
   DropItem "LifeEssence" 140
   DropItem "ArmorBonusMax" 140
   SeeSound "minidemo/sight"

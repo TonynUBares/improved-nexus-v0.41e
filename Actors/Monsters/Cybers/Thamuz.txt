@@ -34,11 +34,11 @@ DropItem "BossLifeEssence" 200 25
 DropItem "BossArmorBonusMax" 200 1
 DropItem "NewCell" 256 20
 DropItem "NewCellPack" 250
-DropItem "BFG10K " 192 1
-DropItem "Demon Tech BFG10K" 178 1
+DropItem "CFBFG10K" 192 1
+DropItem "DemonTechBFG10K" 178 1
 DropItem "DemonicChalice" 120 1
 DropItem "MissileBox" 128 20
-DropItem "Demon Tech Railgun" 81 1
+DropItem "DemonTechRailgun" 81 1
 Obituary "%o fell before Thamuz."
 SeeSound "Thamuz/Sight"
 ActiveSound "Thamuz/Active"

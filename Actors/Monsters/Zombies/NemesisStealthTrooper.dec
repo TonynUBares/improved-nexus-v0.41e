@@ -11,7 +11,7 @@ Actor NemesisStealthTrooper : LegendaryStealthTrooper 28011
   DropItem "NemesisHealthBonusMax", 256, 32
   DropItem "NemesisArmorBonus32", 256
   DropItem "EnragedLegendaryArmor", 85, 1
-  DropItem "LegAmmoSphere", 60, 1
+  DropItem "LegendaryAmmoSphere", 60, 1
   DropItem "PartialKakuhou", 100, 3
   DropItem "EnragedLegendaryPowerShard", 50, 1
   DropItem "HandGrenadeAmmo", 235, 2

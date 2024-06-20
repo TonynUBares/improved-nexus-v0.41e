@@ -382,6 +382,6 @@ ACTOR DTBFG10KTracerBEraserSpider : DTBFG10KTracer
 Actor "BabyEraserSpiderRandomDrops" : RandomSpawner
 {
   DropItem "BFG9500" 128 1
-  DropItem "Demon Tech BFG10K" 87 1
-  DropItem "Demon Tech Devastator" 56 1
+  DropItem "DemonTechBFG10K" 87 1
+  DropItem "DemonTechDevastator" 56 1
 }

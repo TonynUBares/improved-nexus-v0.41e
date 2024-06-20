@@ -50,8 +50,8 @@ Actor NemesisSentient : SacrosanctOverseer 28013
   DropItem "NemesisHealthBonusMax", 256, 64
   DropItem "NemesisArmorBonus64", 256
   DropItem "NemesisUltraSphere" 215
-  DropItem "LegAmmoSphere", 128, 1
-  DropItem "LegDemonRune", 80, 1
+  DropItem "LegendaryAmmoSphere", 128, 1
+  DropItem "LegendaryDemonRune", 80, 1
   DropItem "LegendaryRuneSpawner", 96, 1
   DropItem "LegendaryRuneSpawner", 96, 1
   DropItem "DemonicChaliceGiver", 128

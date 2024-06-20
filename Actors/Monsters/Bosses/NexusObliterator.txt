@@ -83,10 +83,10 @@ ACTOR NexusObliterator 29316
  DropItem "BossLifeEssence" 256 25
  DropItem "BossArmorBonusMax" 256 1
  DropItem "DemonAmmoBox" 256 200
- DropItem "Explosive Minigun" 256 1
- DropItem "Demon Tech Devastator" 256 1
- DropItem "Demon Tech Shotgun" 256 1
- DropItem "BFG10K " 256 1
+ DropItem "ExplosiveMinigun" 256 1
+ DropItem "DemonTechDevastator" 256 1
+ DropItem "DemonTechShotgun" 256 1
+ DropItem "CFBFG10K" 256 1
  //DropItem "ExplosiveDemonTechRifle" 64 1
  DropItem "HellfireUltrasphere" 256 1
  DropItem "HellfireArmor" 256 1

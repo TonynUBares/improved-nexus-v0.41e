@@ -26,7 +26,7 @@ DropItem "ArmorCharge", 60, 2
 DropItem "HandGrenadeAmmo", 60, 1
 DropItem "MineAmmo", 50, 1
 DropItem "Missile", 180, 5
-DropItem "M79 Gas Grenade Launcher" 80
+DropItem "M79GasGrenadeLauncher" 80
 DropItem "MarineBeacon" 20 1
 SeeSound "superzombie/sight"
 PainSound "superzombie/pain"

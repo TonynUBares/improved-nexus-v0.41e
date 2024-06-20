@@ -412,7 +412,7 @@ Actor UACGuyAR : UACBaseMarine
  AttackSound "weapons/assaultrifle"
  Tag "$DrUACGuyAR"
  Translation "112:127=80:111"
- DropItem "Assault Rifle" 256 1
+ DropItem "AssaultRifle" 256 1
  DropItem "BulletBox" 256 100
  DropItem "PortableMedkit" 200 1
  DropItem "ArmorPlate" 200 1
@@ -466,7 +466,7 @@ Actor UACGuyMachinegun : UACBaseMarine
  AttackSound "SpecOpsZombie/Machinegun"
  Tag "$DrUACGuyMachinegun"
  Translation "112:127=80:111"
- DropItem "Assault Rifle" 256 1
+ DropItem "AssaultRifle" 256 1
  DropItem "BulletBox" 256 100
  DropItem "PortableMedkit" 200 1
  DropItem "ArmorPlate" 200 1
@@ -616,7 +616,7 @@ Actor UACGuyASG : UACBaseMarine
  AttackSound "AShotgun/Fire"
  Tag "$DrUACGuyASG"
  Translation "112:127=80:111"
- DropItem "Assault Shotgun" 256 1
+ DropItem "AssaultShotgun" 256 1
  DropItem "NewShellBox" 256 40
  DropItem "PortableMedkit" 200 1
  DropItem "ArmorPlate" 200 1
@@ -658,7 +658,7 @@ Actor UACGuySSG : UACBaseMarine
  AttackSound ""
  Tag "$DrUACGuySSG"
  Translation "112:127=80:111"
- DropItem "Double Barrel Shotgun" 256 1
+ DropItem "DoubleBarrelShotgun" 256 1
  DropItem "NewShellBox" 256 40
  DropItem "PortableMedkit" 200 1
  DropItem "ArmorPlate" 200 1
@@ -722,7 +722,7 @@ Actor UACGuyQSG : UACBaseMarine
  AttackSound ""
  Tag "$DrUACGuyQSG"
  Translation "112:127=80:111"
- DropItem "Quad Barrel Shotgun" 256 1
+ DropItem "QuadBarrelShotgun" 256 1
  DropItem "NewShellBox" 256 40
  DropItem "PortableMedkit" 200 1
  DropItem "ArmorPlate" 200 1
@@ -924,7 +924,7 @@ Actor UACGuyExplosiveShotgun : UACBaseMarine
  Tag "$DrUACGuyExplosiveShotgun"
  Translation "112:127=5:8"
  DropItem "ModdedBackpack" 128 1
- DropItem "Explosive Shotgun" 128 1
+ DropItem "ExplosiveShotgun" 128 1
  DropItem "NewShellBox" 256 100
  DropItem "PortableMedkit" 200 1
  DropItem "ArmorPlate" 200 1
@@ -1114,7 +1114,7 @@ Actor UACGuyMinigun : UACBaseMarine
  AttackSound "weapons/minigunfire"
  Tag "$DrUACGuyMinigun"
  Translation "112:127=80:111"
- DropItem "Minigun " 256 1
+ DropItem "CFMinigun" 256 1
  DropItem "BulletBox" 256 100
  DropItem "PortableMedkit" 200 1
  DropItem "ArmorPlate" 200 1
@@ -1160,7 +1160,7 @@ Actor UACGuyExpMinigun : UACBaseMarine
  Tag "$DrUACGuyExpMinigun"
  Translation "112:127=5:8"
  DropItem "ModdedBackpack" 128 1
- DropItem "Explosive Minigun" 128 1
+ DropItem "ExplosiveMinigun" 128 1
  DropItem "BulletBox" 256 100
  DropItem "PortableMedkit" 200 1
  DropItem "ArmorPlate" 200 1
@@ -1212,7 +1212,7 @@ Actor UACGuyRocket : UACBaseMarine
  Tag "$DrUACGuyRocket"
  Translation "112:127=176:191"
  DropItem "ModdedBackpack" 128 1
- DropItem "Rocket Launcher" 128 1
+ DropItem "RocketLauncher" 128 1
  DropItem "MissileBox" 256 20
  DropItem "PortableMedkit" 200 1
  DropItem "ArmorPlate" 200 1
@@ -1529,7 +1529,7 @@ Actor UACGuyPlasma : UACBaseMarine
  Tag "$DrUACGuyPlasma"
  Translation "112:127=240:247"
  DropItem "ModdedBackpack" 128 1
- DropItem "Plasma Rifle" 128 1
+ DropItem "PlasmaRifle" 128 1
  DropItem "NewCellPack" 256 200
  DropItem "PortableMedkit" 200 1
  DropItem "ArmorPlate" 200 1
@@ -1622,7 +1622,7 @@ Actor UACGuyFreezer : UACBaseMarine
  Tag "$DrUACGuyFreezer"
  Translation "112:127=240:247"
  DropItem "ModdedBackpack" 128 1
- DropItem "Freezer Rifle" 128 1
+ DropItem "FreezerRifle" 128 1
  DropItem "NewCellPack" 256 200
  DropItem "PortableMedkit" 200 1
  DropItem "ArmorPlate" 200 1
@@ -1661,7 +1661,7 @@ Actor UACGuyRailgun : UACBaseMarine
  Tag "$DrUACGuyRailgun"
  Translation "112:127=240:247"
  DropItem "ModdedBackpack" 128 1
- DropItem "Railgun " 128 1
+ DropItem "CFRailgun" 128 1
  DropItem "NewCellPack" 256 200
  DropItem "PortableMedkit" 200 1
  DropItem "ArmorPlate" 200 1
@@ -1760,7 +1760,7 @@ Actor UACGuyDTRifle : UACBaseMarine
  Tag "$DrUACGuyDTRifle"
  Translation "112:127=%[0.00,0.00,0.00]:[0.00,0.5,0.00]"
  DropItem "ModdedBackpack" 128 1
- DropItem "Demon Tech Rifle" 128 1
+ DropItem "DemonTechRifle" 128 1
  DropItem "DemonAmmoBox" 256 200
  DropItem "PortableMedkit" 200 1
  DropItem "ArmorPlate" 200 1
@@ -1802,7 +1802,7 @@ Actor UACGuyDTRailgun : UACBaseMarine
  Tag "$DrUACGuyDTRailgun"
  Translation "112:127=%[0.00,0.00,0.00]:[0.00,0.5,0.00]"
  DropItem "ModdedBackpack" 128 1
- DropItem "Demon Tech Railgun" 128 1
+ DropItem "DemonTechRailgun" 128 1
  DropItem "DemonAmmoBox" 256 200
  DropItem "PortableMedkit" 200 1
  DropItem "ArmorPlate" 200 1
@@ -1841,7 +1841,7 @@ Actor UACGuyDTShotgun : UACBaseMarine
  Tag "$DrUACGuyDTShotgun"
  Translation "112:127=168:191"
  DropItem "ModdedBackpack" 128 1
- DropItem "Demon Tech Shotgun" 128 1
+ DropItem "DemonTechShotgun" 128 1
  DropItem "DemonAmmoBox" 256 200
  DropItem "PortableMedkit" 200 1
  DropItem "ArmorPlate" 200 1

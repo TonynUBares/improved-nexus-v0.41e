@@ -14,7 +14,7 @@ ACTOR HackroidAssaultCaptain : LegendaryAssaultCaptain
  DropItem "HackroidASGGiver" 140 1
  DropItem "HCKShell" 200 4
  DropItem "HCKShellBox" 200
- DropItem "LegAmmoSphere" 256 1
+ DropItem "LegendaryAmmoSphere" 256 1
  DropItem "EnragedLegendaryArmor" 200
  DropItem "HandGrenadeAmmo" 235 2
  DropItem "MineAmmo" 240 2

@@ -42,10 +42,10 @@ DropItem "BackPack" 122 1
 DropItem "NewShellBox" 70 1
 DropItem "MissileBox" 80 6
 DropItem "DemonAmmoBox" 60 200
-DropItem "Double Barrel Shotgun" 100 1
-DropItem "Demon Tech Rifle" 80 1
-DropItem "Rocket Launcher" 80 1
-DropItem "Grenade Launcher" 80 1
+DropItem "DoubleBarrelShotgun" 100 1
+DropItem "DemonTechRifle" 80 1
+DropItem "RocketLauncher" 80 1
+DropItem "GrenadeLauncher" 80 1
 AttackSound ""
 SeeSound "HellClone/sight"
 PainSound "HellClone/pain"
@@ -319,7 +319,7 @@ DropItem "BulletMag" 200 10
 DropItem "BackPack" 122 1
 DropItem "BulletBox" 128
 DropItem "CellPack", 200, 100
-DropItem "Explosive Minigun" 120 1
+DropItem "ExplosiveMinigun" 120 1
 DropItem "AntimatterRepeater" 75 1
 Tag "\c[i7]Hell\c[a2]Clone\c-"
 States
@@ -442,7 +442,7 @@ DropItem "NewCell" 200 50
 DropItem "BackPack" 122 1
 DropItem "CellPack" 128 100
 DropItem "CellPack", 200 100
-DropItem "BFG10K " 100 1
+DropItem "CFBFG10K" 100 1
 DropItem "BFG9500" 100 1
 Tag "\c[z1]BFG \c[i7]Hell\c[a2]Clone\c-"
 States

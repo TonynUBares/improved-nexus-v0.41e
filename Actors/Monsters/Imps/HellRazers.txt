@@ -17,7 +17,7 @@ ACTOR HellRazer 21541
 	DropItem "LifeEssence" 125
 	DropItem "ArmorBonusMax" 125
 	DropItem "DemonAmmo" 160
-	DropItem "Demon Tech Rifle" 100 1
+	DropItem "DemonTechRifle" 100 1
 	Obituary "%o was disintegrated by a Hell Razer."
 	Species "Imps"
 	Tag "$NEHellRaz"

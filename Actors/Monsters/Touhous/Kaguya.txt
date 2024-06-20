@@ -289,14 +289,14 @@ actor LegendaryKaguya : KaguyaHouraisan
  DropItem "LDemonAmmoBox" 200 
  DropItem "LDemonAmmo" 250 
  DropItem "LDemonAmmo" 250 
- dropitem "Legendary Revolver", 48
- dropitem "Legendary Assault Shotgun", 48
+ dropitem "LegendaryRevolver", 48
+ dropitem "LegendaryAssaultShotgun", 48
  dropitem "LegendaryCoachgun", 48
- dropitem "Legendary Light Machine Gun", 48
- dropitem "Legendary Plasmatic Cannon", 48
- dropitem "Legendary Plasmatic Rifle", 48
- dropitem "Legendary BFG 10K", 48
- dropitem "Legendary BFG", 24
+ dropitem "LegendaryLightMachineGun", 48
+ dropitem "LegendaryPlasmaticCannon", 48
+ dropitem "LegendaryPlasmaticRifle", 48
+ dropitem "LegendaryBFG10K", 48
+ dropitem "LegendaryBFG", 24
  dropitem "LegendaryBossLifeEssence", 256
  dropitem "LegendaryLifeEssence", 256
  dropitem "LegendaryBossArmorBonusMax", 256

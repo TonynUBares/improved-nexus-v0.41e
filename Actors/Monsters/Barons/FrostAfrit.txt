@@ -14,7 +14,7 @@ DamageFactor "FreezerBurn", 0.0
 DropItem "BossLifeEssence" 128
 DropItem "BossArmorBonusMax" 128
 DropItem "NewCellPack" 250
-DropItem "Freezer Rifle" 100 1
+DropItem "FreezerRifle" 100 1
 DropItem "ArmorSphere", 20
 Meleedamage 24
 PainSound "monsters/baronpain"

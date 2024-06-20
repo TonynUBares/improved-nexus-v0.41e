@@ -26,8 +26,8 @@ Actor Paladin 23612
     DropItem "BossArmorBonusMax" 200 1
     DropItem "NewCellPack" 128
     DropItem "DemonAmmoBox" 128 200
-    DropItem "Railgun " 100
-    DropItem "Grenade Launcher" 100
+    DropItem "CFRailgun" 100
+    DropItem "GrenadeLauncher" 100
 	DropItem "HomingRocketLauncher" 50
 	Tag "$NEPalad"
 	var int user_shield;

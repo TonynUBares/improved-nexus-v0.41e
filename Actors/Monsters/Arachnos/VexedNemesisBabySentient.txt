@@ -37,13 +37,13 @@ ACTOR VexedNemesisBabySentient : NemesisBabySentient 29015 //Aim for the exit
   DropItem "NLDemonAmmoBox" 256
   DropItem "NemesisShell" 256
   DropItem "BulletBox" 256
-  DropItem "Explosive Minigun" 256
-  DropItem "Nemesis Rifle" 200
-  DropItem "Nemesis Plasmatic Cannon" 200
-  DropItem "Nemesis Assault Shotgun" 200
-  DropItem "Nemesis Sawed-Off Shotgun" 200
+  DropItem "ExplosiveMinigun" 256
+  DropItem "NemesisRifle" 200
+  DropItem "NemesisPlasmaticCannon" 200
+  DropItem "NemesisAssaultShotgun" 200
+  DropItem "NemesisSawed-OffShotgun" 200
   DropItem "WingsOfAscension", 128, 1
-  DropItem "LegAmmoSphere" 200 1
+  DropItem "LegendaryAmmoSphere" 200 1
   Obituary "%o was no match for The Vexed Nemesis Baby Sentient's speed of light."
   Tag "$NEVexBSent"
  var int user_fading;

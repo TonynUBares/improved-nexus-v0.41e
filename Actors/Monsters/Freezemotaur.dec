@@ -30,7 +30,7 @@ ACTOR Freezemotaur 30200
     +NODAMAGETHRUST
     +NOTIMEFREEZE
 	+LOOKALLAROUND
-	DropItem "Freezer Rifle", 255
+	DropItem "FreezerRifle", 255
 	DropItem "FreezerBFG", 255
 	DropItem "VitalityRune", 255
 	DropItem "NewCellPack", 255

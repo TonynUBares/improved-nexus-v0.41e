@@ -19,8 +19,8 @@ ACTOR DarkHellRazer 21543
 	DropItem "DemonAmmo" 160
 	DropItem "NewCell" 256
 	DropItem "NewCellPack" 128
-	DropItem "Demon Tech Rifle" 100 1
-	DropItem "Railgun " 60 1
+	DropItem "DemonTechRifle" 100 1
+	DropItem "CFRailgun" 60 1
 	SeeSound "DarkHellRazer/Sight"
 	PainSound "DarkHellRazer/Pain"
 	DeathSound "DarkHellRazer/Death"

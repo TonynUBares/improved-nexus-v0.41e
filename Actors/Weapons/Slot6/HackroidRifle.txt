@@ -48,7 +48,7 @@ Actor HackroidRifleGiverCheck : Inventory { Inventory.Amount 1 Inventory.MaxAmou
 
 
 
-ACTOR "HackroidRifle" : "Legendary Plasmatic Rifle"
+ACTOR HackroidRifle : LegendaryPlasmaticRifle
 {
  Weapon.AmmoType "HCKMagazine"   
  Weapon.AmmoType2 "HCKAmmo"

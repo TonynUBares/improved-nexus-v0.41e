@@ -73,8 +73,8 @@ ACTOR CorruptedLegendaryCardinal
  PainChance "PlayerDBFG", 0
  PainChance "DBFG10K2", 0
  BloodColor "33 66 99"
- DropItem "LegAmmoSphere", 128, 5
- DropItem "LegDemonRune", 80, 1
+ DropItem "LegendaryAmmoSphere", 128, 5
+ DropItem "LegendaryDemonRune", 80, 1
  DropItem "DemonicChalice", 256, 2
  DropItem "SkullOfPower", 256, 2
  DropItem "BossLifeEssence", 192
@@ -88,8 +88,8 @@ ACTOR CorruptedLegendaryCardinal
  Dropitem "DCell", 256, 10
  Dropitem "DCell", 256, 10
  Dropitem "DCell", 256, 10
- DropItem "LegAmmoSphere", 128, 5
- DropItem "LegDemonRune", 80, 1
+ DropItem "LegendaryAmmoSphere", 128, 5
+ DropItem "LegendaryDemonRune", 80, 1
  DropItem "TrueLegendaryRune", 64, 1
  DropItem "BLG", 255
  DropItem "MarineDBFGBeacon", 128, 1

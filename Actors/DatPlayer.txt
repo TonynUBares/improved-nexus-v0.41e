@@ -96,7 +96,7 @@ ACTOR ComplexNexusPlayer : CFDoomPlayer
  Player.DisplayName "Doom Guy"
  Player.CrouchSprite "PLYC"
  Player.StartItem "Handgun"
- Player.StartItem "Plasma Handgun"
+ Player.StartItem "PlasmaHandgun"
  Player.StartItem "DemonTechPistol"
  Player.StartItem "PistolMagazine" 16
  Player.StartItem "BulletMag" 60

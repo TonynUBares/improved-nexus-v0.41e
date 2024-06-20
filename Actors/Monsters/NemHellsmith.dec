@@ -42,8 +42,8 @@ ACTOR NemHellsmith : LegendaryCyberdemon 31999
  DropItem "NemesisArmorBonus64", 256
  DropItem "NemesisHealthBonusMax", 256, 64
  DropItem "NemesisArmorBonus64", 256
- DropItem "LegAmmoSphere", 128, 5
- DropItem "LegDemonRune", 80, 1
+ DropItem "LegendaryAmmoSphere", 128, 5
+ DropItem "LegendaryDemonRune", 80, 1
  DropItem "LegendaryRune", 256, 1
  DropItem "NemesisRuneSpawnerTier4", 256, 1
  DropItem "DemonicChalice", 256, 2
@@ -53,11 +53,11 @@ ACTOR NemHellsmith : LegendaryCyberdemon 31999
  DropItem "Terminator", 70, 1
  DropItem "NemesisShell", 256
  DropItem "NemesisShellBox", 130
- DropItem "Nemesis Rifle", 200
+ DropItem "NemesisRifle", 200
  DropItem "BlurSphere", 256
- DropItem "Nemesis Plasmatic Cannon", 200
- DropItem "Nemesis Assault Shotgun", 200
- DropItem "Nemesis Sawed-Off Shotgun", 200
+ DropItem "NemesisPlasmaticCannon", 200
+ DropItem "NemesisAssaultShotgun", 200
+ DropItem "NemesisSawed-OffShotgun", 200
  DropItem "SalvationSphere", 256
  DropItem "FuelCore" 256 1
  DropItem "FuelCore" 256 1

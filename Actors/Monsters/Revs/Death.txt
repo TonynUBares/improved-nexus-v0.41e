@@ -22,7 +22,7 @@ Actor DeathRev 27567
   DropItem "BulletBox" 128
   DropItem "CellPack", 128, 100
   DropItem "BackPack" 120
-  DropItem "Explosive Minigun" 180
+  DropItem "ExplosiveMinigun" 180
   DropItem "ExplosiveSSG" 80
   SeeSound "Death/sight"
   PainSound "Death/pain"

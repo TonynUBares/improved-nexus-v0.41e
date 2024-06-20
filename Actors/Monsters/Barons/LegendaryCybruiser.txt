@@ -62,9 +62,9 @@ ACTOR LegendaryCybruiser 26582
  DropItem "LDemonAmmo" 256
  DropItem "BossLifeEssence" 256
  DropItem "BossArmorBonusMax" 256
- DropItem "Legendary Plasmatic Cannon" 128 
- DropItem "Legendary Assault Shotgun" 128
- DropItem "Legendary BFG 10K" 64
+ DropItem "LegendaryPlasmaticCannon" 128 
+ DropItem "LegendaryAssaultShotgun" 128
+ DropItem "LegendaryBFG10K" 64
  DropItem "LegendaryShell" 256 4
  DropItem "LegendaryShellBox" 128
  var int user_missile;

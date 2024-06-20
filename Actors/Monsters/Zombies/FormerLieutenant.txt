@@ -13,7 +13,7 @@ DropItem "HandGrenadeAmmo" 200 1
 DropItem "MineAmmo" 200 1
 DropItem "Backpack" 100 1
 DropItem "NewShell" 256 16
-DropItem "Quad Barrel Shotgun" 256 1
+DropItem "QuadBarrelShotgun" 256 1
 DropItem "MarineBeacon" 25 1
 MONSTER 
 +FLOORCLIP

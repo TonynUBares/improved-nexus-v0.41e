@@ -33,7 +33,7 @@ ACTOR VexedNemesisGoliath : NemesisBehemoth 29014 //At least he doesn't heal con
   DropItem "NemesisRuneSpawnerTier3", 128, 1
   DropItem "NLDemonAmmo", 256
   DropItem "NLDemonAmmoBox", 256
-  DropItem "Nemesis Plasmatic Cannon" 175 1
+  DropItem "NemesisPlasmaticCannon" 175 1
   DropItem "NemesisPowerSphere" 120
   Obituary "The Vexed Nemesis Goliath divulged %o's fate."
   Tag "$NEVexFatso"

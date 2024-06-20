@@ -6,8 +6,8 @@ ACTOR Infected : Guardian
   DropItem "BossLifeEssence" 200 25
   DropItem "BossArmorBonusMax" 200 1
   DropItem "DemonAmmoBox" 128 200
-  DropItem "Railgun " 50
-  DropItem "Rocket Launcher" 50
+  DropItem "CFRailgun" 50
+  DropItem "RocketLauncher" 50
   DropItem "BackPack" 75
   SeeSound "heavynant/sight"
   PainSound "heavynant/pain"

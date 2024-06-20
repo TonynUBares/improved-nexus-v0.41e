@@ -37,12 +37,11 @@ DropItem "DemonAmmo" 256 60
 DropItem "DemonAmmoBox" 200
 DropItem "NewCell" 256 20
 DropItem "NewCellPack" 250
-//DropItem "BFG15K" 192 1 //DJB
-DropItem "BFG10K " 178 1
-DropItem "Demon Tech BFG10K" 178 1
+DropItem "CFBFG10K" 178 1
+DropItem "DemonTechBFG10K" 178 1
 DropItem "DemonicChalice" 120 1
 DropItem "MissileBox" 128 20
-DropItem "Demon Tech Railgun" 128 1
+DropItem "DemonTechRailgun" 128 1
 DropItem "DoomsphereDust" 32 1
 Obituary "%o kneeled before the Thamuz Lord."
 SeeSound "Thamuz/Active"

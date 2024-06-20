@@ -18,7 +18,7 @@ actor Rockebus : Fatso 25617
   DropItem "MissileBox" 200
   DropItem "Missile" 256
   DropItem "Missile" 256
-  DropItem "Rocket Launcher" 100 1
+  DropItem "RocketLauncher" 100 1
   DropItem "HomingRocketLauncher" 100 1
   MONSTER
   +FLOORCLIP

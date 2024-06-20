@@ -1,5 +1,7 @@
 #include "Actors/Items/SFX/iNexusSFX.dec"
 
+Actor HumanishStep2 : FootStep2 { Deathsound "humanish/step" }
+
 //NemesisHellsmith
 #INCLUDE "Actors/Weapons/NemUnmaker.dec"
 #INCLUDE "Actors/Weapons/Slot8/Stingray.dec"

@@ -52,11 +52,11 @@ ACTOR VexedNemesisSentient : NemesisSentient 29017 //Big pain comes from big pac
   DropItem "NemesisHealthBonusMax", 256, 64
   DropItem "NemesisArmorBonus64", 256
   DropItem "NemesisSphere" 215
-  DropItem "LegAmmoSphere", 128, 1
-  DropItem "LegAmmoSphere", 128, 1
-  DropItem "LegAmmoSphere", 128, 1
-  DropItem "LegDemonRune", 200, 1
-  DropItem "LegDemonRune", 200, 1
+  DropItem "LegendaryAmmoSphere", 128, 1
+  DropItem "LegendaryAmmoSphere", 128, 1
+  DropItem "LegendaryAmmoSphere", 128, 1
+  DropItem "LegendaryDemonRune", 200, 1
+  DropItem "LegendaryDemonRune", 200, 1
   DropItem "NemesisRuneSpawnerTier4", 256, 1
   DropItem "NemesisRuneSpawnerTier4", 256, 1
   DropItem "NemesisRuneSpawnerTier4", 256, 1
@@ -68,12 +68,12 @@ ACTOR VexedNemesisSentient : NemesisSentient 29017 //Big pain comes from big pac
   DropItem "NLDemonAmmoBox", 256
   DropItem "NemesisShell", 256
   DropItem "NemesisShellBox", 130
-  DropItem "Nemesis Rifle", 200
-  DropItem "Nemesis Plasmatic Cannon", 200
-  DropItem "Nemesis Assault Shotgun", 200
-  DropItem "Nemesis Sawed-Off Shotgun", 200
+  DropItem "NemesisRifle", 200
+  DropItem "NemesisPlasmaticCannon", 200
+  DropItem "NemesisAssaultShotgun", 200
+  DropItem "NemesisSawed-OffShotgunGiver", 200
   DropItem "NemesisUnmaker", 100
-  DropItem "Nemesis BFG", 256
+  DropItem "NemesisBFG", 256
   DropItem "TrueLegendaryRune", 64, 1
   SeeSound "VexedNemesisSentient/Sight"
   PainSound "NemesisSentient/Pain"

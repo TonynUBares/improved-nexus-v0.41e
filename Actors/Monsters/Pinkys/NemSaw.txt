@@ -58,7 +58,7 @@ DropItem "NemesisSphere", 100, 1
 DropItem "NemesisRuneSpawnerTier2", 128, 1
 DropItem "NLDemonAmmo", 256
 DropItem "NLDemonAmmoBox", 256
-DropItem "Nemesis Rifle", 200, 1
+DropItem "NemesisRifle", 200, 1
 DropItem "NemesisPowerShard", 256, 1
 SeeSound "NemesisChainsawZombie/Sight" 
 ActiveSound "NemesisChainZomb/Active"
@@ -672,7 +672,7 @@ DropItem "NemesisHealthBonusMax", 256, 32
 DropItem "NemesisArmorBonus32", 256
 DropItem "NemesisHealthBonusMax", 256, 32
 DropItem "NemesisArmorBonus32", 256
-DropItem "LegAmmoSphere", 200, 3
+DropItem "LegendaryAmmoSphere", 200, 3
 DropItem "HandGrenadeAmmo", 256, 2
 DropItem "MineAmmo", 256, 2
 DropItem "Backpack", 256, 1
@@ -681,7 +681,7 @@ DropItem "Portablemedkit", 210, 1
 DropItem "NemesisShellBox", 200 
 DropItem "NemesisShell", 256 
 DropItem "NemesisRuneSpawnerTier2", 200, 1
-DropItem "Nemesis Assault Shotgun", 200, 1
+DropItem "NemesisAssaultShotgun", 200, 1
 DropItem "NemesisPowerShard", 256, 1
 PainSound "NemesisStealthTrooper/death"
 DeathSound "NemesisStealthTrooper/death"

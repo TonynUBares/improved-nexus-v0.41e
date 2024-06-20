@@ -14,7 +14,7 @@ ACTOR ArachhunterMKII : Arachnotron 23401
   DropItem "BossArmorBonusMax" 200 1
   DropItem "NewCellPack" 140
   DamageFactor "Baby15K", 0.0
-  DropItem "Explosive Shotgun" 200
+  DropItem "ExplosiveShotgun" 200
   DropItem "ExplosiveRailgun" 64
   Species "BabySpiders"
   +MISSILEMORE

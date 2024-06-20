@@ -29,7 +29,7 @@ ACTOR VexedNemesisArchon : NemesisHellKnight
   DropItem "NemesisRuneSpawnerTier2", 128, 1
   DropItem "NLDemonAmmo", 256
   DropItem "NLDemonAmmoBox", 256
-  DropItem "Nemesis Rifle", 200, 1
+  DropItem "NemesisRifle", 200, 1
   SeeSound "VexedArchon/sight"
   PainSound "VexedArchon/pain"
   DeathSound "VexedArchon/death"

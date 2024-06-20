@@ -85,13 +85,13 @@ ACTOR EnragedLegendaryCyberdemon
   DropItem "ILDemonAmmo" 256
   DropItem "ILDemonAmmoBox" 256
   DropItem "ILDemonAmmo" 256
-  DropItem "Legendary BFG" 256 1
+  DropItem "LegendaryBFG" 256 1
   DropItem "LegendaryBossLifeEssence" 250 
   DropItem "LegendaryBossArmorBonusMax" 250 
   DropItem "DemonicChalice" 200
-  DropItem "Enraged Legendary Plasmatic Rifle" 200 1
-  DropItem "LegAmmoSphere" 128 1
-  DropItem "LegDemonRune" 80 1
+  DropItem "EnragedLegendaryPlasmaticRifle" 200 1
+  DropItem "LegendaryAmmoSphere" 128 1
+  DropItem "LegendaryDemonRune" 80 1
   DropItem "EnragedLegendaryASG" 200 1
   DropItem "EnragedLegendaryCoachgun" 200
   +QUICKTORETALIATE

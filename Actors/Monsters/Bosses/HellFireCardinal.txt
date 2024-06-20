@@ -1738,7 +1738,7 @@ FusionNuke:
 	TNT1 A 0 A_SpawnItemEx("Fuelcore",0,0,64,random(1,8),0,2,random(0,360),0,0)
 	TNT1 A 0 A_SpawnItemEx("Fuelcore",0,0,64,random(1,8),0,2,random(0,360),0,0)
 	TNT1 A 0 A_SpawnItemEx("ScrollOfHellfire",0,0,64,random(1,8),0,2,random(0,360),0,0)
-	TNT1 A 0 A_SpawnItemEx("Demon Tech Shotgun",0,0,64,random(0,8),0,2,random(1,360),0,0)
+	TNT1 A 0 A_SpawnItemEx("DemonTechShotgun",0,0,64,random(0,8),0,2,random(1,360),0,0)
 	TNT1 A 0 A_SpawnItemEx("PyroCannon",0,0,64,random(1,8),0,2,random(0,360),0,0)
 	TNT1 A 0 A_SpawnItemEx("Stingray",0,0,64,random(1,8),0,2,random(0,360),0,0)
 	TNT1 A 0 A_SpawnItemEx("HellfireUltrasphere",0,0,64,random(1,8),0,2,random(0,360),0,64)

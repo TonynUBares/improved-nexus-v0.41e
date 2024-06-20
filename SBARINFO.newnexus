@@ -21,7 +21,7 @@ StatusBar FullScreen, FullScreenOffsets
 {  
  InInventory Not NemesisCutscene
  {
-  DrawMugshot 5, AnimatedGodMode, XDeathFace, 82, -45; //-50;
+  DrawMugshot 5, AnimatedGodMode, XDeathFace, 82, -50;
    
   InInventory Not LegendarySalvationSphereToken, 1 || SalvationSphereToken, 1
   {
@@ -118,7 +118,7 @@ StatusBar FullScreen, FullScreenOffsets
     {
 	DrawImage "SEWPA0", -80, -53;
     }
-  IsSelected "Chainsaw "
+  IsSelected "CFChainsaw"
     {
 	DrawImage "SEWPA0", -80, -53;
   InInventory Not "LegChainsawUpgrade" {DrawImage "CSAWB0", -30, -6, CenterBottom;}
@@ -207,7 +207,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 3, INDEXFONT, Red, Ammo BulletMag, -16, -59;
 	DrawNumber 3, INDEXFONT, Green, Ammo BulletMag, WhenNotZero, -16, -59;
     }
-  IsSelected "Plasma Handgun"
+  IsSelected "PlasmaHandgun"
     {
 	DrawImage "SEWPA0", -72, -53;
   InInventory Not "PlasmaHandgunFiringMode",3
@@ -255,7 +255,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 4, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
 	DrawNumber 4, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
     }
-  IsSelected ".357 Revolver"
+  IsSelected ".357Revolver"
     {
 	DrawImage "SEWPA0", -72, -53;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
@@ -267,7 +267,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 3, INDEXFONT, Red, Ammo BulletMag, -16, -59;
 	DrawNumber 3, INDEXFONT, Green, Ammo BulletMag, WhenNotZero, -16, -59;
     }
-  IsSelected "Legendary Revolver"
+  IsSelected "LegendaryRevolver"
     {
 	DrawImage "SEWPA0", -72, -53;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
@@ -279,8 +279,40 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 3, INDEXFONT, Red, Ammo LegendaryLMGBulletMag, -16, -94;
 	DrawNumber 3, INDEXFONT, Green, Ammo LegendaryLMGBulletMag, WhenNotZero, -16, -94;
     }
+	IsSelected "EnragedLegendaryRevolver"
+    {
+    DrawImage "SEWPA0", -72, -53;
+    DrawImage AmmoIcon2, -16, -25, CenterBottom;
+    DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
+    DrawNumber 3, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -41, 0, Red, 2, Green, 5;
+	DrawImage AmmoIcon1, -16, -6, CenterBottom;
+    DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo1, DrawShadow, -27, -22, 0;
+    DrawNumber 2, HUDFONT_DOOM, Gold, Ammo1, WhenNotZero, DrawShadow, -27, -22, 0, Red, 2, Green, 6;
+	DrawNumber 3, INDEXFONT, Red, Ammo ELegendaryLMGBulletMag, -16, -143;
+	DrawNumber 3, INDEXFONT, Green, Ammo ELegendaryLMGBulletMag, WhenNotZero, -16, -143;
+    }
+	IsSelected "ttkAkimbo"
+    {
+    DrawImage "SEWPA0", -72, -53;
+    DrawImage "LBLPA0", -86, -25, CenterBottom;
+    DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo LegendaryLMGBulletMag, DrawShadow, -97, -41, 0;
+    DrawNumber 3, HUDFONT_DOOM, Gold, Ammo LegendaryLMGBulletMag, WhenNotZero, DrawShadow, -97, -41, 0, Red, 2, Green, 5;
+	DrawImage AmmoIcon1, -86, -6, CenterBottom;
+    DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo1, DrawShadow, -97, -22, 0;
+    DrawNumber 2, HUDFONT_DOOM, Gold, Ammo1, WhenNotZero, DrawShadow, -97, -22, 0, Red, 2, Green, 6;
+	DrawImage "IBLPA0", -16, -25, CenterBottom;
+    DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo ELegendaryLMGBulletMag, DrawShadow, -27, -41, 0;
+    DrawNumber 3, HUDFONT_DOOM, Gold, Ammo ELegendaryLMGBulletMag, WhenNotZero, DrawShadow, -27, -41, 0, Red, 2, Green, 5;
+	DrawImage AmmoIcon2, -16, -6, CenterBottom;
+    DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -22, 0;
+    DrawNumber 2, HUDFONT_DOOM, Gold, Ammo2, WhenNotZero, DrawShadow, -27, -22, 0, Red, 2, Green, 6;
+	DrawNumber 3, INDEXFONT, Red, Ammo LegendaryLMGBulletMag, -16, -94;
+	DrawNumber 3, INDEXFONT, Green, Ammo LegendaryLMGBulletMag, WhenNotZero, -16, -94;
+	DrawNumber 3, INDEXFONT, Red, Ammo ELegendaryLMGBulletMag, -16, -143;
+	DrawNumber 3, INDEXFONT, Green, Ammo ELegendaryLMGBulletMag, WhenNotZero, -16, -143;
+    }
 //SLOT 3
-  IsSelected "Combat Shotgun"
+  IsSelected "CombatShotgun"
     {
 	DrawImage "SEWPA0", -64, -53;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
@@ -292,7 +324,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 3, INDEXFONT, Red, Ammo NewShell, -16, -66;
 	DrawNumber 3, INDEXFONT, Green, Ammo NewShell, WhenNotZero, -16, -66;
     }
-  IsSelected "Assault Shotgun"
+  IsSelected "AssaultShotgun"
     {
 	DrawImage "SEWPA0", -64, -53;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
@@ -304,7 +336,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 3, INDEXFONT, Red, Ammo NewShell, -16, -66;
 	DrawNumber 3, INDEXFONT, Green, Ammo NewShell, WhenNotZero, -16, -66;
     }
-  IsSelected "Double Barrel Shotgun"
+  IsSelected "DoubleBarrelShotgun"
     {
 	DrawImage "SEWPA0", -64, -53;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
@@ -316,7 +348,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 3, INDEXFONT, Red, Ammo NewShell, -16, -66;
 	DrawNumber 3, INDEXFONT, Green, Ammo NewShell, WhenNotZero, -16, -66;
     }
-  IsSelected "Quad Barrel Shotgun"
+  IsSelected "QuadBarrelShotgun"
     {
 	DrawImage "SEWPA0", -64, -53;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
@@ -351,7 +383,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 3, INDEXFONT, Red, Ammo NewCell, -16, -80;
 	DrawNumber 3, INDEXFONT, Green, Ammo NewCell, WhenNotZero, -16, -80;
     }
-  IsSelected "Explosive Shotgun"
+  IsSelected "ExplosiveShotgun"
     {
 	DrawImage "SEWPA0", -64, -53;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
@@ -410,7 +442,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 3, INDEXFONT, Red, Ammo NewShell, -16, -66;
 	DrawNumber 3, INDEXFONT, Green, Ammo NewShell, WhenNotZero, -16, -66;
     }
-  IsSelected "Demon Tech Shotgun"
+  IsSelected "DemonTechShotgun"
 	{
 	DrawImage "SEWPA0", -64, -53;
 	DrawImage "ERAGA0", -34, -4, CenterBottom;
@@ -420,7 +452,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 4, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
 	DrawNumber 4, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
 	}
-  IsSelected "Legendary Assault Shotgun"
+  IsSelected "LegendaryAssaultShotgun"
     {
 	DrawImage "SEWPA0", -64, -53;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
@@ -480,7 +512,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 3, INDEXFONT, Red, Ammo EnragedLegendaryShell, -49, -101;
 	DrawNumber 3, INDEXFONT, Green,  Ammo EnragedLegendaryShell, WhenNotZero, -49, -101;
     }
-  IsSelected "Nemesis Assault Shotgun"
+  IsSelected "NemesisAssaultShotgun"
     {
 	DrawImage "SEWPA0", -64, -53;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
@@ -492,7 +524,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 3, INDEXFONT, Red, Ammo NemesisShell, -49, -115;
 	DrawNumber 3, INDEXFONT, Green,  Ammo NemesisShell, WhenNotZero, -49, -115;
     }
-  IsSelected "Nemesis Sawed-Off Shotgun"
+  IsSelected "NemesisSawed-OffShotgun"
     {
 	DrawImage "SEWPA0", -64, -53;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
@@ -519,7 +551,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawImage "HKDIST00", -59, -73, None, 9, 20,forcescale;
     }
 // SLOT 4
-  IsSelected "Assault Rifle"
+  IsSelected "AssaultRifle"
     {
 	DrawImage "SEWPA0", -56, -53;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
@@ -543,7 +575,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 3, INDEXFONT, Red, Ammo BulletMag, -16, -59;
 	DrawNumber 3, INDEXFONT, Green, Ammo BulletMag, WhenNotZero, -16, -59;
     }
-  IsSelected "Minigun "
+  IsSelected "CFMinigun"
     {
 	DrawImage "SEWPA0", -56, -53;
 	DrawImage "MNGNX0", -27, -1, CenterBottom;
@@ -563,7 +595,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 3, INDEXFONT, Red, Ammo BulletMag, -16, -59;
 	DrawNumber 3, INDEXFONT, Green, Ammo BulletMag, WhenNotZero, -16, -59;
     }
-  IsSelected "Explosive Minigun"
+  IsSelected "ExplosiveMinigun"
     {
 	DrawImage "SEWPA0", -56, -53;
 	DrawImage "CHNHA0", -30, -2, CenterBottom;
@@ -583,7 +615,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 3, INDEXFONT, Red, Ammo BulletMag, -16, -59;
 	DrawNumber 3, INDEXFONT, Green, Ammo BulletMag, WhenNotZero, -16, -59;
     }
-  IsSelected "Improved Minigun"
+  IsSelected "ImprovedMinigun"
     {
 	DrawImage "SEWPA0", -56, -53;
 	DrawImage "IMMHA0", -35, -2, CenterBottom;
@@ -593,7 +625,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 3, INDEXFONT, Red, Ammo BulletMag, -16, -59;
 	DrawNumber 3, INDEXFONT, Green, Ammo BulletMag, WhenNotZero, -16, -59;
     }
-  IsSelected "Legendary Light Machine Gun"
+  IsSelected "LegendaryLightMachineGun"
     {
 	DrawImage "SEWPA0", -56, -53;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
@@ -605,7 +637,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 3, INDEXFONT, Red, Ammo LegendaryLMGBulletMag, -16, -94;
 	DrawNumber 3, INDEXFONT, Green, Ammo LegendaryLMGBulletMag, WhenNotZero, -16, -94;
     }
-  IsSelected "Enraged Legendary Light Machine Gun"
+  IsSelected "EnragedLegendaryLightMachineGun"
     {
 	DrawImage "SEWPA0", -56, -53;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
@@ -618,7 +650,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 3, INDEXFONT, Green, Ammo ELegendaryLMGBulletMag, WhenNotZero, -49, -94;
     }
 //SLOT 5
-  IsSelected "Rocket Launcher"
+  IsSelected "RocketLauncher"
     {
 	DrawImage "SEWPA0", -48, -53;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
@@ -630,7 +662,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 3, INDEXFONT, Red, Ammo Missile, -16, -73;
 	DrawNumber 3, INDEXFONT, Green, Ammo Missile, WhenNotZero, -16, -73;
     }
-  IsSelected "Grenade Launcher"
+  IsSelected "GrenadeLauncher"
     {
 	DrawImage "SEWPA0", -48, -53;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
@@ -642,7 +674,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 3, INDEXFONT, Red, Ammo Missile, -16, -73;
 	DrawNumber 3, INDEXFONT, Green, Ammo Missile, WhenNotZero, -16, -73;
     }
-  IsSelected "M79 Gas Grenade Launcher"
+  IsSelected "M79GasGrenadeLauncher"
     {
 	DrawImage "SEWPA0", -48, -53;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
@@ -742,7 +774,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 3, INDEXFONT, Red, Ammo LDemonAmmo, -16, -108;
 	DrawNumber 3, INDEXFONT, Green, Ammo LDemonAmmo, WhenNotZero, -16, -108;
 	}
-  IsSelected "Legendary Plasmatic Cannon"
+  IsSelected "LegendaryPlasmaticCannon"
     {
 	DrawImage "SEWPA0", -48, -53;
 	DrawImage "LEGXA0", -25, -6, CenterBottom;
@@ -762,7 +794,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 3, INDEXFONT, Red, Ammo ILDemonAmmo, -49, -108;
 	DrawNumber 3, INDEXFONT, Green, Ammo ILDemonAmmo, WhenNotZero, -49, -108;
     }
-  IsSelected "Nemesis Plasmatic Cannon"
+  IsSelected "NemesisPlasmaticCannon"
     {
 	DrawImage "SEWPA0", -48, -53;
 	DrawImage "NEMDA0", -25, -6, CenterBottom;
@@ -773,7 +805,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 3, INDEXFONT, Green, Ammo NLDemonAmmo, WhenNotZero, -49, -122;
     }
 //SLOT 6
-  IsSelected "Plasma Rifle"
+  IsSelected "CFPlasmaRifle"
     {
 	DrawImage "SEWPA0", -40, -53;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
@@ -785,7 +817,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 4, INDEXFONT, Red, Ammo NewCell, -16, -80;
 	DrawNumber 4, INDEXFONT, Green, Ammo NewCell, WhenNotZero, -16, -80;
     }	
-  IsSelected "Freezer Rifle"
+  IsSelected "FreezerRifle"
 	{
 	DrawImage "SEWPA0", -40, -53;
 	DrawImage "RIPGA0", -36, -4, CenterBottom;
@@ -825,7 +857,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 4, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
 	DrawNumber 4, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
 	}
-  IsSelected "Railgun "
+  IsSelected "CFRailgun"
     {
 	DrawImage "SEWPA0", -40, -53;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
@@ -837,7 +869,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 3, INDEXFONT, Red, Ammo NewCell, -16, -80;
 	DrawNumber 3, INDEXFONT, Green, Ammo NewCell, WhenNotZero, -16, -80;
     }
-  IsSelected "Demon Tech Railgun","PoweredDemonTechRailgun"
+  IsSelected "DemonTechRailgun","PoweredDemonTechRailgun"
     {
 	DrawImage "SEWPA0", -40, -53;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
@@ -884,7 +916,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 4, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
 	DrawNumber 4, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
 	}
-  IsSelected "Legendary Railgun"
+  IsSelected "LegendaryRailgun"
     {
 	DrawImage "SEWPA0", -40, -53;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
@@ -906,7 +938,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 3, INDEXFONT, Red, Ammo CFMana, -16, -122;
 	DrawNumber 3, INDEXFONT, Green, Ammo CFMana, WhenNotZero , -16, -122;
 	}
-  IsSelected "Demon Tech Ballista"
+  IsSelected "DemonTechBallista"
     {
 	DrawImage "SEWPA0", -40, -53;
 	DrawImage "DTBIB0", -30, -2, CenterBottom, 19, 25;
@@ -916,7 +948,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 4, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
 	DrawNumber 4, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
     }
-  IsSelected "Demon Tech Rifle","Powered Demon Tech Rifle"
+  IsSelected "DemonTechRifle","PoweredDemonTechRifle"
     {
 	DrawImage "SEWPA0", -40, -53;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
@@ -928,7 +960,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 4, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
 	DrawNumber 4, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
     }
-  IsSelected "Legendary Plasmatic Rifle"
+  IsSelected "LegendaryPlasmaticRifle"
     {
 	DrawImage "SEWPA0", -40, -53;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
@@ -940,7 +972,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 3, INDEXFONT, Red, Ammo LDemonAmmo, -16, -108;
 	DrawNumber 3, INDEXFONT, Green, Ammo LDemonAmmo, WhenNotZero, -16, -108;
     }
-  IsSelected "Enraged Legendary Plasmatic Rifle"
+  IsSelected "EnragedLegendaryPlasmaticRifle"
     {
 	DrawImage "SEWPA0", -40, -53;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
@@ -952,7 +984,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 3, INDEXFONT, Red, Ammo ILDemonAmmo, -49, -108;
 	DrawNumber 3, INDEXFONT, Green, Ammo ILDemonAmmo, WhenNotZero, -49, -108;
     }
-  IsSelected "Nemesis Rifle"
+  IsSelected "NemesisRifle"
     {
 	DrawImage "SEWPA0", -40, -53;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
@@ -999,7 +1031,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 4, INDEXFONT, Red, Ammo NewCell, -16, -80;
 	DrawNumber 4, INDEXFONT, Green, Ammo NewCell, WhenNotZero, -16, -80;
     }
-  IsSelected "BFG10K ", "PoweredBFG10k"
+  IsSelected "CFBFG10K", "PoweredBFG10k"
     {
 	DrawImage "SEWPA0", -32, -53;
   InInventory "BFG15KUpgrade"
@@ -1038,7 +1070,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 3, INDEXFONT, Red, Ammo DCell, -16, -129;
 	DrawNumber 3, INDEXFONT, Green, Ammo DCell, WhenNotZero, -16, -129;
     }
-  IsSelected "Demon Tech BFG10K","PoweredDemonTechBFG10K"
+  IsSelected "DemonTechBFG10K","PoweredDemonTechBFG10K"
     {
 	DrawImage "SEWPA0", -32, -53;
 	DrawImage "BFUGA0", -32, -1, CenterBottom;
@@ -1048,7 +1080,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 4, INDEXFONT, Red, Ammo DemonAmmo, -16, -87;
 	DrawNumber 4, INDEXFONT, Green, Ammo DemonAmmo, WhenNotZero, -16, -87;
     }
-  IsSelected "Demon Tech Devastator"
+  IsSelected "DemonTechDevastator"
     {
 	DrawImage "SEWPA0", -32, -53;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
@@ -1089,7 +1121,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 3, INDEXFONT, Red, Ammo DCell, -16, -129;
 	DrawNumber 3, INDEXFONT, Green, Ammo DCell, WhenNotZero, -16, -129;
     }
-  IsSelected "Legendary BFG 10K"
+  IsSelected "LegendaryBFG10K"
     {
 	DrawImage "SEWPA0", -32, -53;
 	DrawImage "LB10A0", -32, -1, CenterBottom;
@@ -1099,7 +1131,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 3, INDEXFONT, Red, Ammo LDemonAmmo, -16, -108;
 	DrawNumber 3, INDEXFONT, Green, Ammo LDemonAmmo, WhenNotZero, -16, -108;
     }
-  IsSelected "Legendary BFG"
+  IsSelected "LegendaryBFG"
     {
 	DrawImage "SEWPA0", -32, -53;
 	DrawImage "GRMHA0", -32, -1, CenterBottom;
@@ -1119,7 +1151,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 3, INDEXFONT, Red, Ammo LDemonAmmo, -16, -108;
 	DrawNumber 3, INDEXFONT, Green, Ammo LDemonAmmo, WhenNotZero, -16, -108;
 	}
-  IsSelected "Nemesis BFG"
+  IsSelected "NemesisBFG"
     {
 	DrawImage "SEWPA0", -32, -53;
 	DrawImage "NMBHA0", -34, -2, CenterBottom;
@@ -1180,7 +1212,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 3, INDEXFONT, Red, Ammo Gas, -16, -115;
 	DrawNumber 3, INDEXFONT, Green, Ammo Gas, WhenNotZero, -16, -115;
 	}
-  IsSelected "Blackhole Generator"
+  IsSelected "BlackholeGenerator"
 	{
 	DrawImage "SEWPA0", -24, -53;
 	DrawImage "DCANA0", -32, -1, CenterBottom;
@@ -1742,7 +1774,7 @@ StatusBar normal, forcescaled
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo ProxMines, 565, 356;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo FuelCore, 565, 366;
     }
-  IsSelected "Chainsaw "
+  IsSelected "CFChainsaw"
     {
 	InInventory "LegChainsawUpgrade"
 	{
@@ -1774,7 +1806,7 @@ StatusBar normal, forcescaled
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
 	DrawNumber 2, NEWFONT, Gold, Ammo1, WhenNotZero, 110, 330, 0, Red, 4, Green, 9;
     }
-  IsSelected "Plasma Handgun"
+  IsSelected "PlasmaHandgun"
     {
 	DrawImage "SEWBB0", 211, 323;
 	InInventory Not "PlasmaHandgunFiringMode",3
@@ -1794,13 +1826,13 @@ StatusBar normal, forcescaled
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
 	DrawNumber 2, NEWFONT, Gold, Ammo1, WhenNotZero, 110, 330, 0, Red, 4, Green, 9;
     }
-  IsSelected ".357 Revolver"
+  IsSelected ".357Revolver"
     {
 	DrawImage "SEWBB0", 211, 323;
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
 	DrawNumber 2, NEWFONT, Gold, Ammo1, WhenNotZero, 110, 330, 0, Red, 2, Green, 6;
     }
-  IsSelected "Legendary Revolver"
+  IsSelected "LegendaryRevolver"
     {
 	DrawImage "SEWBB0", 211, 323;
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
@@ -1812,6 +1844,31 @@ StatusBar normal, forcescaled
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo LegendaryFusionCell, 565, 356;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo TrueLegendaryCell, 565, 366;
     }
+	IsSelected "EnragedLegendaryRevolver"
+    {
+    DrawImage "SEWBB0", -211, 323;
+	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
+    DrawNumber 3, NEWFONT, Gold, Ammo1, WhenNotZero, 110, 330, 0, Red, 2, Green, 6;
+	DrawImage "ELCSTBAR", 39, 322, None, 912, 53,forcescale;
+    DrawNumber 3, NEWFONT3, CR_BLUE, Ammo ELegendaryLMGBulletMag, 565, 326;
+    DrawNumber 3, NEWFONT3, CR_BLUE, Ammo EnragedLegendaryShell, 565, 336;
+    DrawNumber 3, NEWFONT3, CR_BLUE, Ammo ILDemonAmmo, 565, 346;
+    }
+	IsSelected "ttkAkimbo"
+    {
+    DrawImage "SEWBB0", 211, 323;
+	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 63, 330, 0;
+	DrawNumber 3, NEWFONT, DarkGrey, Ammo2, 110, 330, 0;
+    DrawNumber 3, NEWFONT, Gold, Ammo1, WhenNotZero, 63, 330, 0, Red, 2, Green, 6;
+	DrawNumber 3, NEWFONT, Gold, Ammo1, WhenNotZero, 63, 330, 0, Red, 2, Green, 6;
+	DrawImage "STTSLSH", 63, 330, none, 25, 28, forcescale;
+	DrawNumber 3, NEWFONT, Gold, Ammo2, WhenNotZero, 110, 330, 0, Red, 2, Green, 6;
+	DrawNumber 3, NEWFONT, Gold, Ammo2, WhenNotZero, 110, 330, 0, Red, 2, Green, 6;
+	DrawImage "LGCSTBAR", 39, 322, None, 912, 53,forcescale;
+    DrawNumber 3, NEWFONT3, CR_BLUE, Ammo LegendaryLMGBulletMag, 565, 326;
+    DrawNumber 3, NEWFONT3, CR_BLUE, Ammo LegendaryShell, 565, 336;
+    DrawNumber 3, NEWFONT3, CR_BLUE, Ammo LDemonAmmo, 565, 346;
+    }
     /*IsSelected "Enforcer"
     {
 	DrawImage "SEWBB0", 211, 323;
@@ -1819,25 +1876,25 @@ StatusBar normal, forcescaled
 	DrawNumber 2, NEWFONT, Gold, Ammo1, WhenNotZero, 110, 330, 0, Red, 4, Green, 9;
     }*/
 //SLOT 3	
-  IsSelected "Combat Shotgun"
+  IsSelected "CombatShotgun"
 	{
 	DrawImage "SEWBB0", 231, 323;
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
 	DrawNumber 2, NEWFONT, Gold, Ammo1, WhenNotZero, 110, 330, 0, Red, 2, Green, 6;
     }
-  IsSelected "Assault Shotgun"
+  IsSelected "AssaultShotgun"
     {
 	DrawImage "SEWBB0", 231, 323;
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
 	DrawNumber 2, NEWFONT, Gold, Ammo1, WhenNotZero, 110, 330, 0, Red, 2, Green, 6;
     }
-  IsSelected "Double Barrel Shotgun"
+  IsSelected "DoubleBarrelShotgun"
     {
 	DrawImage "SEWBB0", 231, 323;
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
 	DrawNumber 2, NEWFONT, Gold, Ammo1, WhenNotZero, 110, 330, 0, Red, 1, Green, 2;
     }
-  IsSelected "Quad Barrel Shotgun"
+  IsSelected "QuadBarrelShotgun"
     {
 	DrawImage "SEWBB0", 231, 323;
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
@@ -1855,7 +1912,7 @@ StatusBar normal, forcescaled
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
 	DrawNumber 3, NEWFONT, Gold, Ammo1, WhenNotZero, 110, 330, 0, Red, 10, Green, 21;
     }
-  IsSelected "Explosive Shotgun"
+  IsSelected "ExplosiveShotgun"
     {
 	DrawImage "SEWBB0", 231, 323;
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
@@ -1879,13 +1936,13 @@ StatusBar normal, forcescaled
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
 	DrawNumber 3, NEWFONT, Gold, Ammo1, WhenNotZero, 110, 330, 0, Red, 1, Green, 2;
     }
-  IsSelected "Demon Tech Shotgun"
+  IsSelected "DemonTechShotgun"
     {
 	DrawImage "SEWBB0", 231, 323;
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
 	DrawNumber 3, NEWFONT, Gold, Ammo1, WhenNotZero, 110, 330, 0, Red, 30, Green, 61;
     }	
-  IsSelected "Legendary Assault Shotgun"
+  IsSelected "LegendaryAssaultShotgun"
     {
 	DrawImage "SEWBB0", 231, 323;
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
@@ -1941,7 +1998,7 @@ StatusBar normal, forcescaled
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo EnragedLegendaryShell, 565, 336;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo ILDemonAmmo, 565, 346;
     }
-  IsSelected "Nemesis Assault Shotgun"
+  IsSelected "NemesisAssaultShotgun"
     {
 	DrawImage "SEWBB0", 231, 323;
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
@@ -1953,7 +2010,7 @@ StatusBar normal, forcescaled
 	DrawImage "HKDIST00", 554, 356, None, 10, 40,forcescale;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo NuclearRocket, 565, 366;
     }
-  IsSelected "Nemesis Sawed-Off Shotgun"
+  IsSelected "NemesisSawed-OffShotgun"
     {
 	DrawImage "SEWBB0", 231, 323;
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
@@ -1978,7 +2035,7 @@ StatusBar normal, forcescaled
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo NuclearRocket, 565, 366;
     }
 //SLOT 4
-  IsSelected "Assault Rifle"
+  IsSelected "AssaultRifle"
     {
 	DrawImage "SEWBB0", 251, 323;
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
@@ -1990,7 +2047,7 @@ StatusBar normal, forcescaled
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
 	DrawNumber 2, NEWFONT, Gold, Ammo1, WhenNotZero, 110, 330, 0, Red, 10, Green, 21;
     }
-  IsSelected "Minigun "
+  IsSelected "CFMinigun"
     {
 	DrawImage "SEWBB0", 251, 323;
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
@@ -2002,7 +2059,7 @@ StatusBar normal, forcescaled
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
 	DrawNumber 3, NEWFONT, Gold, Ammo1, WhenNotZero, 110, 330, 0, Red, 25, Green, 51;
     }
-  IsSelected "Explosive Minigun"
+  IsSelected "ExplosiveMinigun"
     {
     //DrawImage "SEWPA0", -48, -53;
 	DrawImage "SEWBB0", 251, 323;
@@ -2015,7 +2072,7 @@ StatusBar normal, forcescaled
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
 	DrawNumber 3, NEWFONT, Gold, Ammo1, WhenNotZero, 110, 330, 0, Red, 25, Green, 51;
     }
-  IsSelected "Improved Minigun"
+  IsSelected "ImprovedMinigun"
     {
 	DrawImage "SEWBB0", 251, 323;
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 331, 0;
@@ -2029,7 +2086,7 @@ StatusBar normal, forcescaled
 	DrawNumber 3, NEWFONT, Gold, Ammo1, WhenNotZero, 110, 330, 0, Red, 21, Green, 51;
     }*/
        
-  IsSelected "Legendary Light Machine Gun"
+  IsSelected "LegendaryLightMachineGun"
     {
 	DrawImage "SEWBB0", 251, 323;
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
@@ -2041,7 +2098,7 @@ StatusBar normal, forcescaled
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo LegendaryFusionCell, 565, 356;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo TrueLegendaryCell, 565, 366;
     }
-  IsSelected "Enraged Legendary Light Machine Gun"
+  IsSelected "EnragedLegendaryLightMachineGun"
     {
 	DrawImage "SEWBB0", 251, 323;
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
@@ -2052,19 +2109,19 @@ StatusBar normal, forcescaled
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo ILDemonAmmo, 565, 346;
     } 
 //SLOT 5
-  IsSelected "Rocket Launcher"
+  IsSelected "RocketLauncher"
     {
 	DrawImage "SEWBB0", 211, 340;
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
 	DrawNumber 2, NEWFONT, Gold, Ammo1, WhenNotZero, 110, 330, 0, Red, 2, Green, 5;
     }
-  IsSelected "Grenade Launcher"
+  IsSelected "GrenadeLauncher"
     {
 	DrawImage "SEWBB0", 211, 340;
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
 	DrawNumber 2, NEWFONT, Gold, Ammo1, WhenNotZero, 110, 330, 0, Red, 2, Green, 5;
     }
-  IsSelected "M79 Gas Grenade Launcher"
+  IsSelected "M79GasGrenadeLauncher"
     {
 	DrawImage "SEWBB0", 211, 340;
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
@@ -2142,7 +2199,7 @@ StatusBar normal, forcescaled
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo LegendaryFusionCell, 565, 356;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo TrueLegendaryCell, 565, 366;
     }
-  IsSelected "Legendary Plasmatic Cannon"
+  IsSelected "LegendaryPlasmaticCannon"
     {
 	DrawImage "SEWBB0", 211, 340;
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
@@ -2164,7 +2221,7 @@ StatusBar normal, forcescaled
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo EnragedLegendaryShell, 565, 336;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo ILDemonAmmo, 565, 346;
     }
-  IsSelected "Nemesis Plasmatic Cannon"
+  IsSelected "NemesisPlasmaticCannon"
     {
 	DrawImage "SEWBB0", 211, 340;
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
@@ -2177,13 +2234,13 @@ StatusBar normal, forcescaled
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo NuclearRocket, 565, 366;
     }
 //SLOT 6
-  IsSelected "Plasma Rifle"
+  IsSelected "CFPlasmaRifle"
     {
 	DrawImage "SEWBB0", 231, 340;
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
 	DrawNumber 2, NEWFONT, Gold, Ammo1, WhenNotZero, 110, 330, 0, Red, 10, Green, 21;
     }
-  IsSelected "Freezer Rifle"
+  IsSelected "FreezerRifle"
     {
 	DrawImage "SEWBB0", 231, 340;
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
@@ -2195,7 +2252,7 @@ StatusBar normal, forcescaled
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
 	DrawNumber 3, NEWFONT, Gold, Ammo1, WhenNotZero, 110, 330, 0, Red, 40, Green, 81;
     }
-  IsSelected "Demon Tech Ballista"
+  IsSelected "DemonTechBallista"
     {
 	DrawImage "SEWBB0", 231, 340;
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
@@ -2213,13 +2270,13 @@ StatusBar normal, forcescaled
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
 	DrawNumber 3, NEWFONT, Gold, Ammo1, WhenNotZero, 110, 330, 0, Red, 40, Green, 81;
     }
-  IsSelected "Railgun "
+  IsSelected "CFRailgun"
     {
 	DrawImage "SEWBB0", 231, 340;
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
 	DrawNumber 2, NEWFONT, Gold, Ammo1, WhenNotZero, 110, 330, 0, Red, 10, Green, 21;
     }
-  IsSelected "Demon Tech Railgun", "PoweredDemonTechRailgun"
+  IsSelected "DemonTechRailgun", "PoweredDemonTechRailgun"
     {
 	DrawImage "SEWBB0", 231, 340;
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
@@ -2243,7 +2300,7 @@ StatusBar normal, forcescaled
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
 	DrawNumber 3, NEWFONT, Gold, Ammo1, WhenNotZero, 110, 330, 0, Red, 10, Green, 21;
     }
-  IsSelected "Legendary Railgun"
+  IsSelected "LegendaryRailgun"
     {
 	DrawImage "SEWBB0", 231, 340;
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
@@ -2267,13 +2324,13 @@ StatusBar normal, forcescaled
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo ProxMines, 565, 356;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo FuelCore, 565, 366;
     }
-  IsSelected "Demon Tech Rifle", "Powered Demon Tech Rifle"
+  IsSelected "DemonTechRifle", "PoweredDemonTechRifle"
     {
 	DrawImage "SEWBB0", 231, 340;
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
 	DrawNumber 3, NEWFONT, Gold, Ammo1, WhenNotZero, 110, 330, 0, Red, 10, Green, 21;
     }
-  IsSelected "Legendary Plasmatic Rifle"
+  IsSelected "LegendaryPlasmaticRifle"
     {
 	DrawImage "SEWBB0", 231, 340;
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
@@ -2285,7 +2342,7 @@ StatusBar normal, forcescaled
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo LegendaryFusionCell, 565, 356;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo TrueLegendaryCell, 565, 366;
     }
-  IsSelected "Enraged Legendary Plasmatic Rifle"
+  IsSelected "EnragedLegendaryPlasmaticRifle"
     {
 	DrawImage "SEWBB0", 231, 340;
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
@@ -2295,7 +2352,7 @@ StatusBar normal, forcescaled
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo EnragedLegendaryShell, 565, 336;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo ILDemonAmmo, 565, 346;
     }
-  IsSelected "Nemesis Rifle"
+  IsSelected "NemesisRifle"
     {
 	DrawImage "SEWBB0", 231, 340;
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
@@ -2332,7 +2389,7 @@ StatusBar normal, forcescaled
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
 	DrawNumber 3, NEWFONT, Gold, Ammo1, WhenNotZero, 110, 330, 0, Red, 40, Green, 81;
     }
-  IsSelected "BFG10K ", "PoweredBFG10k"
+  IsSelected "CFBFG10K", "PoweredBFG10k"
     {
 	DrawImage "SEWBB0", 251, 340;
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
@@ -2356,13 +2413,13 @@ StatusBar normal, forcescaled
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo ProxMines, 565, 356;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo FuelCore, 565, 366;
     }
-  IsSelected "Demon Tech BFG10K", "PoweredDemonTechBFG10k"
+  IsSelected "DemonTechBFG10K", "PoweredDemonTechBFG10k"
     {
 	DrawImage "SEWBB0", 251, 340;
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
 	DrawNumber 3, NEWFONT, Gold, Ammo1, WhenNotZero, 110, 330, 0, Red, 100, Green, 201;
     }
-  IsSelected "Demon Tech Devastator"
+  IsSelected "DemonTechDevastator"
     {
 	DrawImage "SEWBB0", 251, 340;
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
@@ -2398,7 +2455,7 @@ StatusBar normal, forcescaled
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo ProxMines, 565, 356;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo FuelCore, 565, 366;
     }
-  IsSelected "Legendary BFG"
+  IsSelected "LegendaryBFG"
     {
 	DrawImage "SEWBB0", 251, 340;
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
@@ -2410,7 +2467,7 @@ StatusBar normal, forcescaled
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo LegendaryFusionCell, 565, 356;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo TrueLegendaryCell, 565, 366;
     }
-  IsSelected "Legendary BFG 10K"
+  IsSelected "LegendaryBFG10K"
 	{
 	DrawImage "SEWBB0", 251, 340;
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
@@ -2434,7 +2491,7 @@ StatusBar normal, forcescaled
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo LegendaryFusionCell, 565, 356;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo TrueLegendaryCell, 565, 366;
     }
-  IsSelected "Nemesis BFG"
+  IsSelected "NemesisBFG"
     {
 	DrawImage "SEWBB0", 251, 340;
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
@@ -2480,7 +2537,7 @@ StatusBar normal, forcescaled
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo ProxMines, 565, 356;
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo FuelCore, 565, 366;
     }
-  IsSelected "Blackhole Generator"
+  IsSelected "BlackholeGenerator"
     {
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
 	DrawNumber 3, NEWFONT, Gold, Ammo1, WhenNotZero, 110, 330, 0, Red, 30, Green, 61;

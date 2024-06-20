@@ -30,7 +30,7 @@ Actor VexedNemesisRedeemer : NemesisDefiler
   DropItem "NemesisRuneSpawnerTier2", 128, 1
   DropItem "NLDemonAmmo", 256
   DropItem "NLDemonAmmoBox", 256
-  DropItem "Nemesis Rifle", 256, 1
+  DropItem "NemesisRifle", 256, 1
   SeeSound "NemesisDefiler/Sight"
   ActiveSound "NemesisDefiler/Active"
   PainSound "NemesisDefiler/Pain"

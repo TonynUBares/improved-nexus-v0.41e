@@ -20,7 +20,7 @@ ACTOR VexedNemesisStealthTrooper : NemesisStealthTrooper
   DropItem "NemesisArmorBonus32", 256
   DropItem "NemesisHealthBonusMax", 256, 32
   DropItem "NemesisArmorBonus32", 256
-  DropItem "LegAmmoSphere", 60, 1
+  DropItem "LegendaryAmmoSphere", 60, 1
   DropItem "NemesisPowerShard", 150, 1
   DropItem "HandGrenadeAmmo", 235, 6
   DropItem "MineAmmo", 235, 2
@@ -32,9 +32,9 @@ ACTOR VexedNemesisStealthTrooper : NemesisStealthTrooper
   DropItem "NemesisShellBox", 256
   DropItem "NemesisShell", 256 
   DropItem "NemesisRuneSpawnerTier1", 120, 1
-  DropItem "Nemesis Rifle", 256
-  DropItem "Nemesis Sawed-Off Shotgun", 256
-  DropItem "Nemesis Plasmatic Cannon" 256 1
+  DropItem "NemesisRifle", 256
+  DropItem "NemesisSawed-OffShotgunGiver", 256
+  DropItem "NemesisPlasmaticCannon" 256 1
   PainChance "Explosion", 128
   PainChance "PlayerDTRG", 128
   PainChance "DTRailgun", 128

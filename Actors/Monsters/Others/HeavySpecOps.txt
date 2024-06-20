@@ -18,7 +18,7 @@ Actor HeavySpecOpsRailgunner 23111
   Obituary "%o was seared by a Heavy Spec Ops Zombie."
   Tag "$NEHSpecOpsR"
   Decal RailScorch
-  DropItem "Railgun " 15
+  DropItem "CFRailgun" 15
   DropItem "PortableMedkit" 100
   DropItem "PortableMedCell", 60
   DropItem "ArmorPlate" 120
@@ -231,7 +231,7 @@ Actor HeavySpecOpsShotgunner 23112
   Obituary "%o was gunned down by a Heavy Spec Ops Zombie."
   Tag "\cmHeavy \cuSpec \crOps \csShotgunner\c-"
   Decal BulletChip
-  DropItem "Combat Shotgun" 256 1
+  DropItem "CombatShotgun" 256 1
   DropItem "PortableMedkit" 100
   DropItem "PortableMedCell", 60
   DropItem "ArmorPlate" 120
@@ -492,7 +492,7 @@ Actor HeavySpecOpsMachinegunner 23113
   Obituary "%o was gunned down by a Heavy Spec Ops Zombie."
   Tag "\cmHeavy \cuSpec \crOps \csMachinegunner\c-"
   Decal BulletChip
-  DropItem "Assault Rifle" 256 1
+  DropItem "AssaultRifle" 256 1
   DropItem "PortableMedkit" 100
   DropItem "PortableMedCell", 60
   DropItem "ArmorPlate" 120
