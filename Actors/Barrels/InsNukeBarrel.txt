@@ -1,4 +1,4 @@
-ACTOR InstantNukeBarrel : ExplosiveBarrel
+ACTOR InstantNukeBarrel : ttkDeadlyBarrel
 {
  DeathSound "PBlack/Blast"
  Obituary "%o was totally vaporized by a Nuke."
@@ -11,11 +11,6 @@ ACTOR InstantNukeBarrel : ExplosiveBarrel
   SpawnLoop:
 	GEXP A 35
 	Loop
-  Remove:
-	TNT1 A 1
-	TNT1 A 0 A_SpawnItemEx("LegendaryBarrelSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
-	TNT1 A 0
-	Stop
   Death:
 	TNT1 A 0 A_Scream
 	TNT1 A 0 A_Explode(150, 240)

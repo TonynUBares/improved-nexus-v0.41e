@@ -11,7 +11,7 @@ ACTOR BlueOilBarrel : ModdedExplosiveBarrel
  States
  {
   Spawn:
-	OILB A 6
+	OILB A 35
 	Loop
   Death:
 	OILB A 5 Bright
@@ -36,7 +36,7 @@ ACTOR BlueOilBarrel : ModdedExplosiveBarrel
 Actor PoweredFlamethrowerShot : BasePoweredFireSpawner
 {
  Damage (random(100,120))
- Species "HEMBoss"
+ Species "CFBoss"
  Damagetype ""
  Damagetype "Fire"
  Obituary "%o was set ablaze by a powered combustible barrel of oil."
@@ -58,7 +58,7 @@ Actor PoweredFlamethrowerShot : BasePoweredFireSpawner
 
 Actor OilBarrelPoweredWelderFlare : BasePoweredFireFlare
 {
- Species "HEMBoss"
+ Species "CFBoss"
  Damagetype ""
  Damagetype "Fire"
  Obituary "%o fell in the little flares from %k's Powered Pyro Welder."

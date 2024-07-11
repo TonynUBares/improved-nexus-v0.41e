@@ -35,7 +35,7 @@ Actor BlackHoleBarrelExplosion
   Spawn:
   Death:
 	TNT1 AAA 0 Bright A_StopSound(5)
-	TNT1 A 0 Bright A_SpawnItemEx("PBlackHoleSpawn",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER,0)
+	TNT1 A 0 Bright A_SpawnItemEx("BarrelBlackHoleSpawn",0,0,0,0,0,0,0,SXF_SETMASTER,0)
 	TNT1 A 1 Bright A_SpawnItemEx("PBlackHoleSpawnDark",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,0)
 	Stop 
  }

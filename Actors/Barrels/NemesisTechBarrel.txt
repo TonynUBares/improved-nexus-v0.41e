@@ -1,4 +1,4 @@
-ACTOR NemesisTechBarrel : ModdedExplosiveBarrel
+ACTOR NemesisTechBarrel : ttkDeadlyBarrel
 {
  Scale 1.2
  -FORCERADIUSDMG
@@ -21,11 +21,6 @@ ACTOR NemesisTechBarrel : ModdedExplosiveBarrel
   SpawnLoop:
 	NTBB A 6 Bright A_SpawnItem("NemesisHellionSmokeSpawner",0,0,0,0)
 	Loop
-  Remove:
-	TNT1 A 1
-	TNT1 A 0 A_SpawnItemEx("LegendaryBarrelSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
-	TNT1 A 0
-	Stop
   Death:
 	TNT1 A 0 A_StopSound(CHAN_VOICE)
 	NTBB A 2 Bright A_SpawnItemEx("NemesisHellionSmokeSpawner",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)		
@@ -37,16 +32,36 @@ ACTOR NemesisTechBarrel : ModdedExplosiveBarrel
 	NTBB B -1
 	Stop
   LastChance:
-	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("NoVexedBoys") == 1,"LegendarySoul")
-	TNT1 A 0 A_SpawnItem("TrueNemesisHellionSmokeSpawner",0,0,0,0)
-	NTBB B 5
-	TNT1 A 0 A_SpawnItem("TrueNemesisHellionSmokeSpawner",0,0,0,0)
-	NTBB B 5
-	TNT1 A 0 A_SpawnItem("TrueNemesisHellionSmokeSpawner",0,0,0,0)
-	NTBB B 5
-	TNT1 A 0 A_SpawnItem("TrueNemesisHellionSmokeSpawner",0,0,0,0)
-	NTBB B 5
-	TNT1 A 0 A_SpawnItem("TrueNemesisHellionSmokeSpawner",0,0,0,0)
+	TNT1 A 0 ACS_NamedExecuteWithResult("VexCheck",0,10)
+	NTBB B 5 A_SpawnItem("TrueNemesisHellionSmokeSpawner",0,0,0,0)
+	NTBB B 5 A_SpawnItem("TrueNemesisHellionSmokeSpawner",0,0,0,0)
+	NTBB B 5 A_SpawnItem("TrueNemesisHellionSmokeSpawner",0,0,0,0)
+	NTBB B 5 A_SpawnItem("TrueNemesisHellionSmokeSpawner",0,0,0,0)
+	NTBB B 180
+	TNT1 A 0 A_PlaySoundEx("brain/spit","Voice",0,2)
+	NTBB BBBBBBBBBBBBBBBBB 2 Bright A_GiveInventory("NemesisSoulEvent",1)
+	NTBB BBBBBBBBBBBBBBBBB 2 Bright A_GiveInventory("NemesisSoulEvent",1)
+	NTBB BBBBBBBBBBBBBBBBB 2 Bright A_GiveInventory("NemesisSoulEvent",1)
+	NTBB BBBBBBBBBBBBBBBBB 2 Bright A_GiveInventory("NemesisSoulEvent",1)
+	NTBB BBBBBBBBBBBBBBBBB 2 Bright A_GiveInventory("NemesisSoulEvent",1)
+	NTBB BBBBBBBBBBBBBBBBB 2 Bright A_GiveInventory("NemesisSoulEvent",1)
+	NTBB BBBBBBBBBBBBBBBBB 2 Bright A_GiveInventory("NemesisSoulEvent",1)
+	NTBB BBBBBBBBBBBBBBBBB 2 Bright A_GiveInventory("NemesisSoulEvent",1)
+	NTBB BBBBBBBBBBBBBBBBB 2 Bright A_GiveInventory("NemesisSoulEvent",1)
+	NTBB BBBBBBBBBBBBBBBBB 2 Bright A_GiveInventory("NemesisSoulEvent",1)
+	NTBB BBBBBBBBBBBBBBBBB 2 Bright A_GiveInventory("NemesisSoulEvent",1)
+	NTBB BBBBBBBBBBBBBBBBB 2 Bright A_GiveInventory("NemesisSoulEvent",1)
+	NTBB BBBBBBBBBBBBBBBBB 2 Bright A_GiveInventory("NemesisSoulEvent",1)
+	NTBB BBBBBBBBBBBBBBBBB 2 Bright A_GiveInventory("NemesisSoulEvent",1)
+	NTBB BBBBBBBBBBBBBBBBB 2 Bright A_GiveInventory("NemesisSoulEvent",1)
+	TNT1 A 0 A_SpawnItemEx("NemesisSoul",0,0,16,0,0,0,0,32)
+	TNT1 A 0 A_SpawnItemEx("TeleportFog",0,0,16,0,0,0,0,32)
+	Stop
+  VexedSpawn:
+	NTBB B 5 A_SpawnItem("TrueNemesisHellionSmokeSpawner",0,0,0,0)
+	NTBB B 5 A_SpawnItem("TrueNemesisHellionSmokeSpawner",0,0,0,0)
+	NTBB B 5 A_SpawnItem("TrueNemesisHellionSmokeSpawner",0,0,0,0)
+	NTBB B 5 A_SpawnItem("TrueNemesisHellionSmokeSpawner",0,0,0,0)
 	NTBB B 180
 	TNT1 A 0 A_PlaySoundEx("brain/spit","Voice",0,2)
 	NTBB BBBBBBBBBBBBBBBBB 2 Bright A_GiveInventory("NemesisSoulEvent",1)
@@ -71,37 +86,6 @@ ACTOR NemesisTechBarrel : ModdedExplosiveBarrel
 	TNT1 A 0 A_SpawnItemEx("NemesisLightning")
 	NTBB BBBBBBBBBBBB 2 Bright A_SpawnItemEx("VexedNemesisFlameSpawner")
 	TNT1 A 0 A_SpawnItemEx("VexedNemesisTechBarrel",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
-	Stop
-  LegendarySoul:
-	TNT1 A 0 A_SpawnItem("TrueNemesisHellionSmokeSpawner",0,0,0,0)
-	NTBB B 5
-	TNT1 A 0 A_SpawnItem("TrueNemesisHellionSmokeSpawner",0,0,0,0)
-	NTBB B 5
-	TNT1 A 0 A_SpawnItem("TrueNemesisHellionSmokeSpawner",0,0,0,0)
-	NTBB B 5
-	TNT1 A 0 A_SpawnItem("TrueNemesisHellionSmokeSpawner",0,0,0,0)
-	NTBB B 5
-	TNT1 A 0 A_SpawnItem("TrueNemesisHellionSmokeSpawner",0,0,0,0)
-	NTBB B 180
-	TNT1 A 0 A_PlaySoundEx("brain/spit","Voice",0,2)
-	NTBB BBBBBBBBBBBBBBBBB 2 Bright A_GiveInventory("NemesisSoulEvent",1)
-	NTBB BBBBBBBBBBBBBBBBB 2 Bright A_GiveInventory("NemesisSoulEvent",1)
-	NTBB BBBBBBBBBBBBBBBBB 2 Bright A_GiveInventory("NemesisSoulEvent",1)
-	NTBB BBBBBBBBBBBBBBBBB 2 Bright A_GiveInventory("NemesisSoulEvent",1)
-	NTBB BBBBBBBBBBBBBBBBB 2 Bright A_GiveInventory("NemesisSoulEvent",1)
-	NTBB BBBBBBBBBBBBBBBBB 2 Bright A_GiveInventory("NemesisSoulEvent",1)
-	NTBB BBBBBBBBBBBBBBBBB 2 Bright A_GiveInventory("NemesisSoulEvent",1)
-	NTBB BBBBBBBBBBBBBBBBB 2 Bright A_GiveInventory("NemesisSoulEvent",1)
-	NTBB BBBBBBBBBBBBBBBBB 2 Bright A_GiveInventory("NemesisSoulEvent",1)
-	NTBB BBBBBBBBBBBBBBBBB 2 Bright A_GiveInventory("NemesisSoulEvent",1)
-	NTBB BBBBBBBBBBBBBBBBB 2 Bright A_GiveInventory("NemesisSoulEvent",1)
-	NTBB BBBBBBBBBBBBBBBBB 2 Bright A_GiveInventory("NemesisSoulEvent",1)
-	NTBB BBBBBBBBBBBBBBBBB 2 Bright A_GiveInventory("NemesisSoulEvent",1)
-	NTBB BBBBBBBBBBBBBBBBB 2 Bright A_GiveInventory("NemesisSoulEvent",1)
-	NTBB BBBBBBBBBBBBBBBBB 2 Bright A_GiveInventory("NemesisSoulEvent",1)
-	TNT1 A 0 A_SpawnItemEx("NemesisSoul",0,0,16,0,0,0,0,32)
-	TNT1 A 0 A_SpawnItemEx("TeleportFog",0,0,16,0,0,0,0,32)
-	TNT1 A 0
 	Stop
  }
 }

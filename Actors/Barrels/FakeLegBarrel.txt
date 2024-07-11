@@ -1,4 +1,4 @@
-ACTOR LegendaryBarrelFake : ExplosiveBarrel
+ACTOR LegendaryBarrelFake : ModdedExplosiveBarrel
 {
  Scale 1.2
  DamageType "Legendary"
@@ -8,16 +8,8 @@ ACTOR LegendaryBarrelFake : ExplosiveBarrel
  States
  {
   Spawn:
-	LB4R A 0
-	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("RawAnger") == 0,"Remove")
-  Spawnloop:
 	LB4R AB 8 Bright A_SpawnItemEx("LHellionSmokeSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,64)
 	Loop
-  Remove:
-	TNT1 A 1
-	TNT1 A 0 A_SpawnItemEx("ExplosiveBarrel",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
-	TNT1 A 0
-	Stop
   Death:
 	TNT1 A 1 A_StopSound
 	TNT1 A 0 A_UnSetSolid
@@ -40,7 +32,7 @@ ACTOR LegendaryBarrelFake : ExplosiveBarrel
  }
 }
 
-ACTOR EnragedLegendaryBarrelFake : ExplosiveBarrel
+ACTOR EnragedLegendaryBarrelFake : ModdedExplosiveBarrel
 {
  Scale 1.2
  DamageType "Legendary"
@@ -50,18 +42,9 @@ ACTOR EnragedLegendaryBarrelFake : ExplosiveBarrel
  States
  {
   Spawn:
-	EB4R A 0
-	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("RawAnger") == 0,"Remove")
-  Spawnloop:
 	EB4R AB 8 Bright A_SpawnItemEx("EnragedHellionSmokeSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,64)
 	Loop
-  Remove:
-	TNT1 A 1
-	TNT1 A 0 A_SpawnItemEx("ExplosiveBarrel",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
-	TNT1 A 0
-	Stop
   Death:
-	TNT1 A 0
 	TNT1 A 1 Bright A_StopSound
 	TNT1 A 0 A_UnSetSolid
 	TNT1 A 0 A_UnSetShootable
