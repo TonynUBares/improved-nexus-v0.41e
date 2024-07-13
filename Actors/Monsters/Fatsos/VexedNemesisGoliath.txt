@@ -41,6 +41,7 @@ ACTOR VexedNemesisGoliath : NemesisBehemoth 29014 //At least he doesn't heal con
   +FLOAT
   +NOGRAVITY
   -FLOORCLIP
+  var int user_fading;
   States
   {
   Spawn:

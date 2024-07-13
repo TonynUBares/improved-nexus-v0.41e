@@ -43,6 +43,7 @@ ACTOR VexedNemesisFiend : NemesisFiend
   Obituary "Not a single piece of %o was left after getting completely devoured by the Vexed Nemesis Archfiend."
   HitObituary "Not a single piece of %o was left after getting completely devoured by the Vexed Nemesis Archfiend"
   Tag "$NEVexFiend"
+  var int user_fading;
   States
   {
   Spawn:

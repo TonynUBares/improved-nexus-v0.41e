@@ -40,6 +40,7 @@ ACTOR VexedNemesisArchon : NemesisHellKnight
   +BRIGHT
   //var int user_delay;
   var int user_aurascript;
+  var int user_fading;
   States
   {
   Spawn:
