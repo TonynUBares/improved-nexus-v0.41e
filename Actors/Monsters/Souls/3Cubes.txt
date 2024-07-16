@@ -37,7 +37,7 @@ Actor GuardianCube 20102
   States 
   { 
   Spawn: 
-	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
+	CUBE A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
 	Goto Idle
   Idle:
     CUBE ABC 4 A_Look 
@@ -141,7 +141,7 @@ Actor DTGuardianCube : GuardianCube
   States 
   { 
   Spawn: 
-	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
+	DTCB A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
 	Goto Idle
   Idle:
     DTCB ABC 4 A_Look 
@@ -197,7 +197,7 @@ Actor PhaseGuardianCube : GuardianCube 20104
   States 
   { 
   Spawn: 
-	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
+	PHCB A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
 	Goto Idle
   Idle:
     PHCB ABC 4 A_Look 

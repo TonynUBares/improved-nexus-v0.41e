@@ -1,6 +1,6 @@
 ACTOR NemHellsmith : LegendaryCyberdemon 31999
 {
- Tag "\c[v9]Nemesis Hellsmith\c-"
+ Tag "$NENemHSmith"
  BloodColor "Black"
  Health 16666
  Speed 40

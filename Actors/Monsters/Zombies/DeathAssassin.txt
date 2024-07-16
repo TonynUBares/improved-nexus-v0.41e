@@ -53,9 +53,9 @@ Obituary "%o was defeated by a Death Assassin."
 Tag "$NEDeathAss"
 var int user_lowlag;
 States
-	{
-	Spawn:
-	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
+ {
+  Spawn:
+	DASA A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
 	Goto Idle
   Idle:
 		DASA A 10 A_Look

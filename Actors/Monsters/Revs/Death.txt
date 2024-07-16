@@ -1,37 +1,37 @@
 Actor DeathRev 27567
 {
-  Health 1300
-  Radius 20
-  Height 56
-  Mass 500
-  Speed 10
-  Scale 0.9
-  PainChance 40
-  Species "Skeletons"
-  DamageFactor "CadaverRocket", 0.0
-  Damagefactor "Shadow", 0.0
-  Monster
-  +FLOORCLIP
-  +MISSILEMORE
-  +MISSILEEVENMORE
-  +DONTHURTSPECIES
-  +QUICKTORETALIATE
-  DropItem "BossLifeEssence" 200
-  DropItem "BossArmorBonusMax" 200
-  DropItem "NewShell" 128 16
-  DropItem "BulletBox" 128
-  DropItem "CellPack", 128, 100
-  DropItem "BackPack" 120
-  DropItem "ExplosiveMinigun" 180
-  DropItem "ExplosiveSSG" 80
-  SeeSound "Death/sight"
-  PainSound "Death/pain"
-  DeathSound "Death/death"
-  ActiveSound "Death/active"
-  Obituary "%o became Death's new victim."
-  Tag "$NEDeathRev"
-	States
-	{
+ Health 1300
+ Radius 20
+ Height 56
+ Mass 500
+ Speed 10
+ Scale 0.9
+ PainChance 40
+ Species "Skeletons"
+ DamageFactor "CadaverRocket", 0.0
+ Damagefactor "Shadow", 0.0
+ Monster
+ +FLOORCLIP
+ +MISSILEMORE
+ +MISSILEEVENMORE
+ +DONTHURTSPECIES
+ +QUICKTORETALIATE
+ DropItem "BossLifeEssence" 200
+ DropItem "BossArmorBonusMax" 200
+ DropItem "NewShell" 128 16
+ DropItem "BulletBox" 128
+ DropItem "CellPack", 128, 100
+ DropItem "BackPack" 120
+ DropItem "ExplosiveMinigun" 180
+ DropItem "ExplosiveSSG" 80
+ SeeSound "Death/sight"
+ PainSound "Death/pain"
+ DeathSound "Death/death"
+ ActiveSound "Death/active"
+ Obituary "%o became Death's new victim."
+ Tag "$NEDeathRev"
+ States
+ {
   Spawn:
 	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
 	Goto Idle

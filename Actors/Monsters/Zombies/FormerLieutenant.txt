@@ -30,7 +30,7 @@ Tag "$NEFormLieu"
 States
 {
 Spawn:
-	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
+	CNSG A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
 	Goto Idle
   Idle:
     CNSG A 10 A_Look

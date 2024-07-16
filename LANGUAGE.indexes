@@ -1,0 +1,131 @@
+[enu default]
+
+CFIndexArachhunterMKII = "0418";
+CFIndexArachhunter = "0419";
+CFIndexBabyEraserMastermind = "0420";
+CFIndexBabyMastermind = "0421";
+CFIndexShotgunSpider = "0422";
+CFIndexVexedNemesisBabySentient = "0423";
+
+CFIndexBFGServant = "0424";
+CFIndexFrostAfrit = "0425";
+CFIndexHellspawn = "0426";
+CFIndexLegendaryCybruiser = "0427";
+
+CFIndexCorruptedLegendaryCardinal = "0428";
+CFIndexEvaccanniaDOOM = "0429";
+CFIndexHellFireCardinal = "0430";
+CFIndexHellsMinister = "0431";
+CFIndexMaephisto = "0432";
+CFIndexNexusObliterator = "0433";
+
+CFIndexAbbandine = "0434";
+CFIndexCacolanternComplex = "0435";
+CFIndexBabyCaco = "0436";
+CFIndexBabyCacoCounter = "0437";
+CFIndexCaconite = "0438";
+CFIndexRedeemerCommander = "0439";
+CFIndexTechDrone = "0440";
+CFIndexVexedNemesisRedeemer = "0441";
+
+CFIndexThamuz = "0442";
+CFIndexThamuzLord = "0443";
+CFIndexEnragedLegendaryCyberdemon = "0444";
+CFIndexFrostdemon = "0445";
+
+CFIndexCacobus = "0446";
+CFIndexRockebus = "0447";
+CFIndexSuperCacobus = "0448";
+CFIndexVexedNemesisGoliath = "0449";
+
+CFIndexAnubian = "0450";
+CFIndexDAImp = "0451";
+CFIndexDarkHellRazer = "0452";
+CFIndexDrone = "0453";
+CFIndexHellRazer = "0454";
+CFIndexSaboteur = "0455";
+
+CFIndexCyberassault = "0456";
+CFIndexPaladin = "0457";
+CFIndexVexedNemesisArchon = "0458";
+
+CFIndexVexedNemesisSentient = "0459";
+
+CFIndexTrueHitler = "0460";
+CFIndexCyberhund = "0461";
+CFIndexDarko = "0462";
+CFIndexIncubusKaiser = "0463";
+CFIndexPanzGrosse = "0464";
+CFIndexSSDualRocketMan = "0465";
+CFIndexSSUberSoldierExMinigun = "0466";
+
+CFIndexHeavySpecOpsRailgunner = "0467";
+CFIndexHellClone = "0468";
+CFIndexHellClone2 = "0469";
+CFIndexHellClone3 = "0470";
+CFIndexHellClone4 = "0471";
+CFIndexLegendaryChair = "0472";
+CFIndexMiniLegendaryCardinal = "0473";
+//No Santa
+
+CFIndexGrossElemental = "0474";
+CFIndexTorturedSoul = "0475";
+CFIndexCarrier = "0476";
+CFIndexLukewarmElemental = "0477";
+
+CFIndexVexedNemesisFiend = "0478";
+CFIndexLegendaryBeheadedKamikaze = "0479";
+CFIndexLoperComplex = "0480";
+CFIndexNemesisChainsawZombie = "0481";
+CFIndexVexedNemesisChainsawZombie = "0482";
+
+CFIndexDeathRev = "0483";
+CFIndexHuntertron = "0484";
+CFIndexInfected = "0485";
+CFIndexNightmareFamine = "0486";
+CFIndexNightmarePestilence = "0487";
+CFIndexToxicRevenant = "0488";
+
+CFIndexPyroSoulEnemy = "0489";
+CFIndexCryoSoulEnemy = "0490";
+CFIndexAtomicSoul = "0491";
+CFIndexGuardianCube = "0492";
+CFIndexDTGuardianCube = "0493";
+CFIndexPhaseGuardianCube = "0494";
+
+CFIndexUtsuho = "0495";
+CFIndexHibachi = "0496";
+CFIndexKaguyaHouraisan = "0497";
+CFIndexSanaeKochiya = "0498";
+CFIndexMakaiSlut = "0499";
+CFIndexUndeadMakaiSlut = "0500";
+//no sin genjitsu cmon
+
+CFIndexHackroidZombie = "0501";
+CFIndexHackroidAssaultCaptain = "0502";
+CFIndexHellStormGeneral = "0503";
+CFIndexLegendaryGeneral = "0504";
+CFIndexM79Zombie = "0505";
+CFIndexMarineSlayer = "0506";
+CFIndexNemesisSuperShotgunZombie = "0507";
+CFIndexPhaseMoon = "0508";
+CFIndexPhaseShotgunCommando = "0509";
+CFIndexPyroZombie = "0510";
+CFIndexTechErasusZombie = "0511";
+CFIndexTRCZombie = "0512";
+CFIndexVexedNemesisStealthTrooper = "0513";
+CFIndexCyborgShotgunner = "0514";
+CFIndexDeathAssassin = "0515";
+CFIndexEFGLunatic = "0516";
+CFIndexEnragedLegendaryLieutenant = "0517";
+CFIndexFlakCannonZombie = "0518";
+CFIndexFormerLieutenant = "0519";
+
+CFIndexSupremotaur = "0520";
+CFIndexApprentice = "0521";
+CFIndexfakeApprentice = "0522";
+CFIndexfakeFreezemotaur = "0523";
+CFIndexFakeSupremotaur = "0524";
+CFIndexFreezemotaur = "0525";
+CFIndexHellsmith = "0526";
+CFIndexNemHellsmith = "0527";

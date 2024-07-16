@@ -421,7 +421,7 @@ ACTOR UndeadMakaiSlut : MakaiSlut
  DropItem "LegendaryAmmoSphere", 88, 3
  dropitem "Nemesis", 16, 1
  Obituary "%o's soul was sent to the darkness by the undead resurrection of Shinki."
- tag "\c[u2]The Resurrected One, \c[u9]Undead Shinki\c-"
+ Tag "$NEUnMakai"
  seesound ""
  var int user_fading;
  States

@@ -1,102 +1,102 @@
 ACTOR Freezemotaur 30200
 { 
-	Tag "\c[N0]Frozen Apprentice\c-"
-	Health 6000
-	Radius 40 
-	Height 110 
-	Mass 1000 
-	Speed 35 
-	PainChance 20 
-	MONSTER
+ Tag "$NEFrMotaur"
+ Health 6000
+ Radius 40 
+ Height 110 
+ Mass 1000 
+ Speed 35 
+ PainChance 20 
+ MONSTER
  Obituary "%o Was frozen By the Frozen Apprentice."
  HitObituary "%o got crushed by the Frozen Apprentice." 
-	species "Cybers"
-    +NOFEAR
-    +BOSS
-    +DEFLECT
-    +FIRERESIST
-    +NORADIUSDMG
-    +BOSSDEATH
-    +DONTBLAST
-    +DONTMORPH
-    +DONTRIP
-    +FLOORCLIP
-    +FASTMELEE
-    +MISSILEMORE
-    +MISSILEEVENMORE
-    +QUICKTORETALIATE
-    +DONTHURTSPECIES
-    +DONTHARMSPECIES
-    +NODAMAGETHRUST
-    +NOTIMEFREEZE
-	+LOOKALLAROUND
-	DropItem "FreezerRifle", 255
-	DropItem "FreezerBFG", 255
-	DropItem "VitalityRune", 255
-	DropItem "NewCellPack", 255
-	DropItem "NewCellPack", 192
-	DropItem "BossLifeEssence", 256, 150
-    DropItem "CFBossArmorBonusMax50", 256
-    DropItem "DemonAmmoBox", 196, 200
-    DropItem "DemonicChalice", 90, 1
-    DropItem "SkullOfPower", 90, 1
-    DropItem "LegendaryRandomSphere", 180
-    DropItem "ArmorSphere", 96
-	DropItem "FuelCore" 256 1
-	DropItem "FuelCore" 256 1
-	Damage 0
-	MeleeRange 86
-    Damagefactor "Acid", 0.01
-    Damagefactor "Fire", 0.1
-    Damagefactor "Electric", 0.01
-    Damagefactor "Disintegrate", 0.001
-    DamageFactor "BFG9500Ball", 0.5
-    DamageFactor "BFGSplash", 0.5
-    Damagefactor "Poison", 0.0
-    Damagefactor "PoisonCloud", 0.0
-    Damagefactor "Explosion", 0.3
-    Damagefactor "Mine", 0.3
-    DamageFactor "Extreme", 0.0
-    DamageFactor "Player", 0.01
-    DamageFactor "PDTPuff", 0.0
-    DamageFactor "PyroShot", 0.001
-    DamageFactor "PlayerPyro", 0.01
-    DamageFactor "PDTBFG", 0.03
-    DamageFactor "PDTBFGTracer", 0.03
-    DamageFactor "Players", 0.02
-    DamageFactor "PlayerDevBall", 0.02
-    DamageFactor "PlayerDevBall2", 0.02
-    DamageFactor "PlayerDevTracer", 0.02
-    DamageFactor "PlayerBHole", 0.025
-    DamageFactor "DBFG2", 0.0
-    DamageFactor "DBFG10K2", 0.0
-    DamageFactor "DBFGSplash2", 0.0
-    DamageFactor "PlayerDBFG2", 0.65
-    DamageFactor "PlayerDBFG10K2", 0.65
-    DamageFactor "PlayerDBFGSplash2", 0.65
-    DamageFactor "Legendary", 0.2
-    DamageFactor "LegendaryPlayer", 0.015
-    DamageFactor "PlayerHellfire", 0.1
-    DamageFactor "SuperWeapon", 0.0
-    DamageFactor "LegendaryGuruPlayer", 0.015
-    DamageFactor "Ice", 0.0
-    DamageFactor 0.3
-	DamageFactor "MinotaurDamage", 0.0
-	DamageType "MinotaurDamage"
-	SeeSound "Freezemotaur/See"
-	PainSound "monster/smithp" 
-	DeathSound "monster/smithd" 
-	ActiveSound "monster/smitha"
-	MeleeSound "monster/hamhit"
-  var int user_lowlag;
-	States 
-	{    
-	Spawn: 
-	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
+ species "Cybers"
+ +NOFEAR
+ +BOSS
+ +DEFLECT
+ +FIRERESIST
+ +NORADIUSDMG
+ +BOSSDEATH
+ +DONTBLAST
+ +DONTMORPH
+ +DONTRIP
+ +FLOORCLIP
+ +FASTMELEE
+ +MISSILEMORE
+ +MISSILEEVENMORE
+ +QUICKTORETALIATE
+ +DONTHURTSPECIES
+ +DONTHARMSPECIES
+ +NODAMAGETHRUST
+ +NOTIMEFREEZE
+ +LOOKALLAROUND
+ DropItem "FreezerRifle", 255
+ DropItem "FreezerBFG", 255
+ DropItem "VitalityRune", 255
+ DropItem "NewCellPack", 255
+ DropItem "NewCellPack", 192
+ DropItem "BossLifeEssence", 256, 150
+ DropItem "CFBossArmorBonusMax50", 256
+ DropItem "DemonAmmoBox", 196, 200
+ DropItem "DemonicChalice", 90, 1
+ DropItem "SkullOfPower", 90, 1
+ DropItem "LegendaryRandomSphere", 180
+ DropItem "ArmorSphere", 96
+ DropItem "FuelCore" 256 1
+ DropItem "FuelCore" 256 1
+ Damage 0
+ MeleeRange 86
+ Damagefactor "Acid", 0.01
+ Damagefactor "Fire", 0.1
+ Damagefactor "Electric", 0.01
+ Damagefactor "Disintegrate", 0.001
+ DamageFactor "BFG9500Ball", 0.5
+ DamageFactor "BFGSplash", 0.5
+ Damagefactor "Poison", 0.0
+ Damagefactor "PoisonCloud", 0.0
+ Damagefactor "Explosion", 0.3
+ Damagefactor "Mine", 0.3
+ DamageFactor "Extreme", 0.0
+ DamageFactor "Player", 0.01
+ DamageFactor "PDTPuff", 0.0
+ DamageFactor "PyroShot", 0.001
+ DamageFactor "PlayerPyro", 0.01
+ DamageFactor "PDTBFG", 0.03
+ DamageFactor "PDTBFGTracer", 0.03
+ DamageFactor "Players", 0.02
+ DamageFactor "PlayerDevBall", 0.02
+ DamageFactor "PlayerDevBall2", 0.02
+ DamageFactor "PlayerDevTracer", 0.02
+ DamageFactor "PlayerBHole", 0.025
+ DamageFactor "DBFG2", 0.0
+ DamageFactor "DBFG10K2", 0.0
+ DamageFactor "DBFGSplash2", 0.0
+ DamageFactor "PlayerDBFG2", 0.65
+ DamageFactor "PlayerDBFG10K2", 0.65
+ DamageFactor "PlayerDBFGSplash2", 0.65
+ DamageFactor "Legendary", 0.2
+ DamageFactor "LegendaryPlayer", 0.015
+ DamageFactor "PlayerHellfire", 0.1
+ DamageFactor "SuperWeapon", 0.0
+ DamageFactor "LegendaryGuruPlayer", 0.015
+ DamageFactor "Ice", 0.0
+ DamageFactor 0.3
+ DamageFactor "MinotaurDamage", 0.0
+ DamageType "MinotaurDamage"
+ SeeSound "Freezemotaur/See"
+ PainSound "monster/smithp" 
+ DeathSound "monster/smithd" 
+ ActiveSound "monster/smitha"
+ MeleeSound "monster/hamhit"
+ var int user_lowlag;
+ States 
+ {    
+  Spawn: 
+	FREZ A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
 	Goto Idle
  Idle:
-		FREZ AB 10 A_Look
-		Loop
+	FREZ AB 10 A_Look
+	Loop
   See:
 	TNT1 A 0 A_JumpIf(user_lowlag == 1,"MoreSee")
 	TNT1 A 0 A_JumpIfTargetInLOS("MoreSee",0,0,0,0)

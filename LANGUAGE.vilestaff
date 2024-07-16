@@ -1,0 +1,264 @@
+[enu default]
+
+VileStaff0418 = "ArachhunterMKII";
+VileStaff0419 = "Arachhunter";
+VileStaff0420 = "BabyEraserMastermind";
+VileStaff0421 = "BabyMastermind";
+VileStaff0422 = "ShotgunSpider";
+VileStaff0423 = "VexedNemesisBabySentient";
+
+VileStaff0424 = "BFGServant";
+VileStaff0425 = "FrostAfrit";
+VileStaff0426 = "Hellspawn";
+VileStaff0427 = "LegendaryCybruiser";
+
+VileStaff0428 = "CorruptedLegendaryCardinal";
+VileStaff0429 = "EvaccanniaDOOM";
+VileStaff0430 = "HellFireCardinal";
+VileStaff0431 = "HellsMinister";
+VileStaff0432 = "Maephisto";
+VileStaff0433 = "NexusObliterator";
+
+VileStaff0434 = "Abbandine";
+VileStaff0435 = "CacolanternComplex";
+VileStaff0436 = "BabyCaco";
+VileStaff0437 = "BabyCacoCounter";
+VileStaff0438 = "Caconite";
+VileStaff0439 = "RedeemerCommander";
+VileStaff0440 = "TechDrone";
+VileStaff0441 = "VexedNemesisRedeemer";
+
+VileStaff0442 = "Thamuz";
+VileStaff0443 = "ThamuzLord";
+VileStaff0444 = "EnragedLegendaryCyberdemon";
+VileStaff0445 = "Frostdemon";
+
+VileStaff0446 = "Cacobus";
+VileStaff0447 = "Rockebus";
+VileStaff0448 = "SuperCacobus";
+VileStaff0449 = "VexedNemesisGoliath";
+		  
+VileStaff0450 = "Anubian";
+VileStaff0451 = "DAImp";
+VileStaff0452 = "DarkHellRazer";
+VileStaff0453 = "Drone";
+VileStaff0454 = "HellRazer";
+VileStaff0455 = "Saboteur";
+
+VileStaff0456 = "Cyberassault";
+VileStaff0457 = "Paladin";
+VileStaff0458 = "VexedNemesisArchon";
+
+VileStaff0459 = "VexedNemesisSentient";
+
+VileStaff0460 = "TrueHitler";
+VileStaff0461 = "Cyberhund";
+VileStaff0462 = "Darko";
+VileStaff0463 = "IncubusKaiser";
+VileStaff0464 = "PanzGrosse";
+VileStaff0465 = "SSDualRocketMan";
+VileStaff0466 = "SSUberSoldierExMinigun";
+
+VileStaff0467 = "HeavySpecOpsRailgunner";
+VileStaff0468 = "HellClone";
+VileStaff0469 = "HellClone2";
+VileStaff0470 = "HellClone3";
+VileStaff0471 = "HellClone4";
+VileStaff0472 = "LegendaryChair";
+VileStaff0473 = "MiniLegendaryCardinal";
+//No Santa
+
+VileStaff0474 = "GrossElemental";
+VileStaff0475 = "TorturedSoul";
+VileStaff0476 = "Carrier";
+VileStaff0477 = "LukewarmElemental";
+
+VileStaff0478 = "VexedNemesisFiend";
+VileStaff0479 = "LegendaryBeheadedKamikaze";
+VileStaff0480 = "LoperComplex";
+VileStaff0481 = "NemesisChainsawZombie";
+VileStaff0482 = "VexedNemesisChainsawZombie";
+
+VileStaff0483 = "DeathRev";
+VileStaff0484 = "Huntertron";
+VileStaff0485 = "Infected";
+VileStaff0486 = "NightmareFamine";
+VileStaff0487 = "NightmarePestilence";
+VileStaff0488 = "ToxicRevenant";
+
+VileStaff0489 = "PyroSoulEnemy";
+VileStaff0490 = "CryoSoulEnemy";
+VileStaff0491 = "AtomicSoul";
+VileStaff0492 = "GuardianCube";
+VileStaff0493 = "DTGuardianCube";
+VileStaff0494 = "PhaseGuardianCube";
+
+VileStaff0495 = "Utsuho";
+VileStaff0496 = "Hibachi";
+VileStaff0497 = "KaguyaHouraisan";
+VileStaff0498 = "SanaeKochiya";
+VileStaff0499 = "MakaiSlut";
+VileStaff0500 = "UndeadMakaiSlut";
+//no sin genjitsu cmon
+
+VileStaff0501 = "HackroidZombie";
+VileStaff0502 = "HackroidAssaultCaptain";
+VileStaff0503 = "HellStormGeneral";
+VileStaff0504 = "LegendaryGeneral";
+VileStaff0505 = "M79Zombie";
+VileStaff0506 = "MarineSlayer";
+VileStaff0507 = "NemesisSuperShotgunZombie";
+VileStaff0508 = "PhaseMoon";
+VileStaff0509 = "PhaseShotgunCommando";
+VileStaff0510 = "PyroZombie";
+VileStaff0511 = "TechErasusZombie";
+VileStaff0512 = "TRCZombie";
+VileStaff0513 = "VexedNemesisStealthTrooper";
+VileStaff0514 = "CyborgShotgunner";
+VileStaff0515 = "DeathAssassin";
+VileStaff0516 = "EFGLunatic";
+VileStaff0517 = "EnragedLegendaryLieutenant";
+VileStaff0518 = "FlakCannonZombie";
+VileStaff0519 = "FormerLieutenant";
+
+VileStaff0520 = "Supremotaur";
+VileStaff0521 = "Apprentice";
+VileStaff0522 = "fakeApprentice";
+VileStaff0523 = "fakeFreezemotaur";
+VileStaff0524 = "FakeSupremotaur";
+VileStaff0525 = "Freezemotaur";
+VileStaff0526 = "Hellsmith";
+VileStaff0527 = "NemHellsmith";
+
+
+///////// Prefix==VileStaff1   Content==Sprite,Tag
+
+VileStaff1418 = "AHHUA0,NEArachhMKii";
+VileStaff1419 = "AHHNA0,NEArachh";
+VileStaff1420 = "DVSPA0,NEBabyEMMind";
+VileStaff1421 = "BMTRaA0,NEBabyMMind";
+VileStaff1422 = "RSSRA0,NEShotSpid";
+VileStaff1423 = "VBBSA0,NEVexBSent";
+
+VileStaff1424 = "MBFGA0,NEBFGServ";
+VileStaff1425 = "FFRTA0,NEFrAfrit";
+VileStaff1426 = "HSWNA0,NEHellSpawn";
+VileStaff1427 = "LCBRA0,NELegCybr";
+
+VileStaff1428 = "CLCAA0,NECorrLegCard";
+VileStaff1429 = "EVDMA0,NEEvacc";
+VileStaff1430 = "HFCDA0,NEHellfCardi";
+VileStaff1431 = "L0HSA0,NEHellMini";
+VileStaff1432 = "MMDRA0,NEMaep";
+VileStaff1433 = "OBARA0,NEOblit";
+
+VileStaff1434 = "CACAA0,NEAbbandine";
+VileStaff1435 = "HDE2A0,NECacolant";
+VileStaff1436 = "CACBA0,NEBabyCaco";
+VileStaff1437 = "CACBA0,NEBabyCaco2";
+VileStaff1438 = "CALMA0,NECaconite";
+VileStaff1439 = "RDMPA0,NERedeemComm";
+VileStaff1440 = "DEDRA0,NETechDrone";
+VileStaff1441 = "VMDFA0,NEVedDefi";
+
+VileStaff1442 = "THMZA0,NEThamuz";
+VileStaff1443 = "THLDA0,NEThamuzLord";
+VileStaff1444 = "ECYBA0,NEEnrCyber";
+VileStaff1445 = "FRDEA0,NEFrostDem";
+
+VileStaff1446 = "ZFATC0,NECacobus";
+VileStaff1447 = "RFATC0,NERockebus";
+VileStaff1448 = "ZF4TC0,NESCacobus";
+VileStaff1449 = "VEMBA0,NEVexFatso";
+		  
+VileStaff1450 = "ANUIA0,NEAnubi";
+VileStaff1451 = "KIMPA0,NEDaimp";
+VileStaff1452 = "DRHRA0,NEDHellRaz";
+VileStaff1453 = "TRO8A0,NEDrone";
+VileStaff1454 = "HRZRA0,NEHellRaz";
+VileStaff1455 = "SAIMA0,NESabot";
+
+VileStaff1456 = "CYASA0,NECybAssault";
+VileStaff1457 = "HPALA0,NEPalad";
+VileStaff1458 = "VNBLA0,NEVexArchon";
+
+VileStaff1459 = "VLSNA0,NEVexSent";
+
+VileStaff1460 = "DOLFA0,NETrueHitler";
+VileStaff1461 = "DG03A0,NECybHund";
+VileStaff1462 = "DAROA0,NEDarko";
+VileStaff1463 = "EHMFA0,NEIncKaiser";
+VileStaff1464 = "PANZA0,NEPanzG";
+VileStaff1465 = "GOERA0,NESSDualRock";
+VileStaff1466 = "EMSSA0,ESSExpMini";
+
+VileStaff1467 = "AZ1HA0,NEHSpecOpsR";
+VileStaff1468 = "PRAIA0,NEHellClone";
+VileStaff1469 = "PLA9A0,NEHellClone";
+VileStaff1470 = "XPMSA0,NEHellClone";
+VileStaff1471 = "PB10A0,NEHellClone4";
+VileStaff1472 = "CHAIR0,NELegChair";
+VileStaff1473 = "LARDA0,NEMiniLegCard";
+//No Santa
+
+VileStaff1474 = "DFLYA0,NEGrossElem";
+VileStaff1475 = "TORTA0,NETortSoul";
+VileStaff1476 = "CARRA0,NECarrier";
+VileStaff1477 = "RAHOA0,NELukewarm";
+
+VileStaff1478 = "VFNDA0,NEVexFiend";
+VileStaff1479 = "LKAM0,NELegBehKami";
+VileStaff1480 = "LMLON0,NELoperC";
+VileStaff1481 = "NCSZA0,NENemChain";
+VileStaff1482 = "VCSZA0,NEVexChain";
+
+VileStaff1483 = "DATHA0,NEDeathRev";
+VileStaff1484 = "HUTRA0,NEHuntert";
+VileStaff1485 = "SK3LA0,NEInfected";
+VileStaff1486 = "EFMVA0,NENightFamine";
+VileStaff1487 = "NSEVB0,NENightPest";
+VileStaff1488 = "TXRVA0,NEToxRev";
+
+VileStaff1489 = "PYSOA0,NEPyroSoul";
+VileStaff1490 = "CRSOA0,NECryoSoul";
+VileStaff1491 = "ATSOA0,NEAtomicSoul";
+VileStaff1492 = "CUBEA0,NEGuardCube";
+VileStaff1493 = "DTCBA0,NEDTGuardCube";
+VileStaff1494 = "PHCBA0,NEPhGuardCube";
+
+VileStaff1495 = "UNXUA0,NEUtsuho";
+VileStaff1496 = "KF0IA0,NEHibachi";
+VileStaff1497 = "KAGIA0,NEKaguya";
+VileStaff1498 = "SANAA0,NESanae";
+VileStaff1499 = "MYSTA0,NEMakai";
+VileStaff1500 = "MYS3A0,NEUnMakai";
+//no sin genjitsu cmon
+
+VileStaff1501 = "HPOSA0,NEHackZomb";
+VileStaff1502 = "HASGA0,NEHackShot";
+VileStaff1503 = "HS10A0,NEHSGeneral";
+VileStaff1504 = "LEGEA0,NELegGeneral";
+VileStaff1505 = "M79ZA0,NEM79Zomb";
+VileStaff1506 = "EXTRA0,NEMarineSl";
+VileStaff1507 = "NZSGA0,NENemSSGShot";
+VileStaff1508 = "PHMOA0,NEPhMoon";
+VileStaff1509 = "PSGCA0,NEPhShotg";
+VileStaff1510 = "FLMZA0,NEPyroZomb";
+VileStaff1511 = "TERZA0,NEErasusZomb";
+VileStaff1512 = "TRCZA0,NETRCZomb";
+VileStaff1513 = "VMSTA0,NEVexTroop";
+VileStaff1514 = "CYSMA0,NECyShotg";
+VileStaff1515 = "DASAA0,NEDeathAss";
+VileStaff1516 = "EFGKA0,NEEFGZomb";
+VileStaff1517 = "ESSZA0,NEEnrLieu";
+VileStaff1518 = "HZOMA0,NEFlakZomb";
+VileStaff1519 = "CNSGA0,NEFormLieu";
+
+VileStaff1520 = "SMT3A0,NESuprem";
+VileStaff1521 = "SMT1A0,NEAppren";
+VileStaff1522 = "SMT1A0,NEFakeAppren";
+VileStaff1523 = "FREZA0,NEFakeFrMotaur";
+VileStaff1524 = "SMT3A0,NEFakeSuprem";
+VileStaff1525 = "FREZA0,NEFrMotaur";
+VileStaff1526 = "BSMTA0,NEHSmith";
+VileStaff1527 = "NHTHA0,NENemHSmith";

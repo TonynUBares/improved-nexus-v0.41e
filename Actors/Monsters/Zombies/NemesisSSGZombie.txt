@@ -40,7 +40,7 @@ var int user_fading;
 States
 {
 Spawn:
-    TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
+    NZSG A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
     NZSG A 10 Bright A_Look
 	TNT1 A 0 A_SpawnItemEx("NemesisHellionSmokeSpawner")
 	NZSI A 10 Bright A_Look

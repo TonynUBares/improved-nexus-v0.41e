@@ -207,7 +207,7 @@ DropItem "BackPack" 122 1
 DropItem "NewShellBox" 120
 DropItem "Hexa-Shotgun" 100 1
 DropItem "ExplosiveSSG" 75 1
-Tag "\c[i7]Hell\c[a2]Clone\c-"
+Tag "$NEHellClone"
 States
 	{
 	Spawn:
@@ -321,7 +321,7 @@ DropItem "BulletBox" 128
 DropItem "CellPack", 200, 100
 DropItem "ExplosiveMinigun" 120 1
 DropItem "AntimatterRepeater" 75 1
-Tag "\c[i7]Hell\c[a2]Clone\c-"
+Tag "$NEHellClone"
 States
 	{
 	Spawn:
@@ -444,7 +444,7 @@ DropItem "CellPack" 128 100
 DropItem "CellPack", 200 100
 DropItem "CFBFG10K" 100 1
 DropItem "BFG9500" 100 1
-Tag "\c[z1]BFG \c[i7]Hell\c[a2]Clone\c-"
+Tag "$NEHellClone4"
 States
 	{
 	Spawn:

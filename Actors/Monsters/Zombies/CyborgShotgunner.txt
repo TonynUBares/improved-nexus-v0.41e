@@ -53,7 +53,7 @@ Tag "$NECyShotg"
 States
 {
  Spawn:
-	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
+	CYSM A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
 	Goto Idle
   Idle:
 	CYSM AA 10 A_Look

@@ -70,7 +70,7 @@ var int user_fading;
  States
  {
   Spawn:
-	HASG A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("GetCVar",57) == 0, "Remove")
+	HPOS A 0 NoDelay A_JumpIf(ACS_NamedExecuteWithResult("GetCVar",57) == 0, "Remove")
 	TNT1 A 0 ACS_NamedExecuteAlways("WimpyMode",0,2)
 	TNT1 A 0 ACS_NamedExecuteAlways("ModifyMonster",0,2)
 	TNT1 A 0 ACS_NamedExecuteAlways("SpawnEffects",0)

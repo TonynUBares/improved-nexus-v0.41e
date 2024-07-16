@@ -31,7 +31,7 @@ Tag "$NEHSGeneral"
 States
 {
 Spawn:
-	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
+	HS10 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
 	Goto Idle
   Idle:
 	HS10 AZ 10 A_Look

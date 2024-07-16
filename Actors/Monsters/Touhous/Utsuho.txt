@@ -80,7 +80,7 @@ ACTOR Utsuho : GenericBoss
 	TNT1 A 0 ACS_NamedExecuteAlways("WimpyMode",0,2)
 	TNT1 A 0 ACS_NamedExecuteAlways("ModifyMonster",0,2)
   Idle:
-    UNXU AABBCCDDEEFFGGHHIIJJKKLLMM 2 A_Look
+    UNXU ABCDEFGHIJKLM 4 A_Look
     Loop
   BegoneThot:
 	TNT1 A 1

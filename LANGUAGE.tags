@@ -79,6 +79,7 @@ NECusSchabbs = "Dr. Schabbs";
 NEMiniLegCard = "\c[z3]Mini Legendary Cardinal\c-";
 NELegChair = "\c[z3]Legendary... Chair\c-";
 NEHellClone = "\c[i7]Hell\c[a2]Clone\c-";
+NEHellClone4 = "\c[z1]BFG \c[i7]Hell\c[a2]Clone\c-";
 NEHSpecOpsR = "\cmHeavy \cuSpec \crOps \csRailgunner\c-";
 
 //Pain Elementals
@@ -116,6 +117,7 @@ NEHibachi = "\c[l5]Hibachi!!\c-";
 NEUtsuho = "\c[g5]Utsuho\c-";
 NESinGenj3 = "\c[t7]s\c[n6]i\c[j8]n\c[c6]-\c[k5]g\c[e6]e\c[d3]n\c[v0]j\c[a4]i\c[g2]tsu\c-";
 NEMakai = "\cgThe Goddess of Makai, \c[l3]Shinki\c-";
+NEUnMakai = "\c[u2]The Resurrected One, \c[u9]Undead Shinki\c-";
 NESanae = "\c[m4]Sanae \c[m5]Kochiya\c-";
 
 //Zombies
@@ -139,6 +141,15 @@ NEMarineSl = "\c[o6]Marine Slayer\c-";
 NEM79Zomb = "\cqM79 Zombie\c-";
 NELegGeneral = "\c[z3]Legendary General\c-";
 
+//Extra
+NENemHSmith = "\c[v9]Nemesis Hellsmith\c-";
+NEHSmith = "\c[G2]Hellsmith\c-";
+NEAppren = "\c[D1]Apprentice\c-";
+NEFrMotaur = "\c[N0]Frozen Apprentice\c-";
+NESuprem = "\c[A6]Super Apprentice\c-";
+NEFakeAppren = "\c[J6]Fake \c[D1]Apprentice\c-";
+NEFakeFrMotaur = "\c[J6]Fake \c[N0]Frozen Apprentice\c-";
+NEFakeSuprem = "\c[J6]Fake \c[A6]Super Apprentice\c-";
 
 
 //Items

@@ -22,7 +22,7 @@ ACTOR ArachhunterMKII : Arachnotron 23401
   +QUICKTORETALIATE
   +AMBUSH
   Obituary "%o was targeted and hunted down by a Arachhunter MK II."
-  Tag "NEArachhMKii"
+  Tag "$NEArachhMKii"
   States
   {
   Spawn:

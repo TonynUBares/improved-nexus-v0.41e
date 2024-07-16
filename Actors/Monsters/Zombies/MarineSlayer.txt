@@ -47,7 +47,7 @@ Tag "$NEMarineSl"
 States
   {
   Spawn:
-	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
+	EXTR A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
 	Goto Idle
   Idle:
 	EXTR A 10 A_Look
