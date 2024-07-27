@@ -1,4 +1,4 @@
-Fixes up to version 0.41b:
+Fixes up to version 0.42:
 
 - Phase armor using the same sprite names of a Baron (fixed on CF's side)
 - Fixed(?) DBFG marines dealing tonnes of dmg (DamageType was "Players")
@@ -9,3 +9,5 @@ Fixes up to version 0.41b:
 - Fixed (hopefully once and for all) the wrong invbar sprites of Gaturra's beacons
 - Fixed NightmareFamine corpse staying solid after real death
 - Fixed doubles items when using give all
+- Fixed Abbandine missing XDeath and XRaise
+- Fixed DarkVile's DarkThunderBolt and ThunderRunner getting stuck and not dying

@@ -1,24 +1,24 @@
 ACTOR Abbandine : BabyCaco
 {
-	Obituary "%o tried to play with an Abbandine."
-	HitObituary "%o was eaten by an Abbandine."
-	Health 250
-	Speed 10
-	PainSound "Abbandine/pain"
-	DeathSound "Abbandine/death"
-	BloodColor "Red"
-    Tag "$NEAbbandine"
-	DropItem "LifeEssence" 80
-    DropItem "ArmorBonusMax" 80
-	-COUNTKILL
-	States
-	{
-	Spawn:
+ Obituary "%o tried to play with an Abbandine."
+ HitObituary "%o was eaten by an Abbandine."
+ Health 250
+ Speed 10
+ PainSound "Abbandine/pain"
+ DeathSound "Abbandine/death"
+ BloodColor "Red"
+ Tag "$NEAbbandine"
+ DropItem "LifeEssence" 80
+ DropItem "ArmorBonusMax" 80
+ -COUNTKILL
+ States
+ {
+  Spawn:
 	TNT1 A 0 NoDelay ACS_NamedExecuteAlways("ModifyMonster",0,1)
 	Goto Idle
   Idle:
-		CACA A 10 A_Look
-		Loop
+	CACA A 10 A_Look
+	Loop
   See:
 	TNT1 A 0 A_JumpIf(user_lowlag == 1,"MoreSee")
 	TNT1 A 0 A_JumpIfTargetInLOS("MoreSee",0,0,0,0)
@@ -26,45 +26,47 @@ ACTOR Abbandine : BabyCaco
 	Loop
   MoreSee:
 	TNT1 A 0 A_SetUserVar("user_lowlag",1)
-		CACA A 3 A_Chase
-		TNT1 A 0 A_Jump(6,"Evade")	
+	CACA A 3 A_Chase
+	TNT1 A 0 A_Jump(6,"Evade")	
         Loop
-	Evade:
-		TNT1 A 0 A_Jump(128,7)
-		TNT1 A 0 ThrustThing(Angle*256/360+64,14,0,0)
-		CACA AAAA 3 A_Chase
-		TNT1 A 0 A_Stop
-		Goto See
-		TNT1 A 0 ThrustThing(Angle*256/360+192,14,0,0)		 
-		CACA AAAA 3 A_Chase
-		TNT1 A 0 A_Stop		 
-		Goto See
-	Missile:
-		CACA AB 5 A_FaceTarget
-		CACA C 5 Bright A_CustomComboAttack("ABBall",17,random(1,8)*3)
-		Goto See
-	Melee:
+  Evade:
+	TNT1 A 0 A_Jump(128,7)
+	TNT1 A 0 ThrustThing(Angle*256/360+64,14,0,0)
+	CACA AAAA 3 A_Chase
+	TNT1 A 0 A_Stop
+	Goto See
+	TNT1 A 0 ThrustThing(Angle*256/360+192,14,0,0)		 
+	CACA AAAA 3 A_Chase
+	TNT1 A 0 A_Stop		 
+	Goto See
+  Missile:
+	CACA AB 5 A_FaceTarget
+	CACA C 5 Bright A_CustomComboAttack("ABBall",17,random(1,8)*3)
+	Goto See
+  Melee:
         CACA AB 3 A_FaceTarget
         CACA C 3 A_MeleeAttack
-		CACA BA 3 A_FaceTarget
+	CACA BA 3 A_FaceTarget
         Goto See
-	Pain:
-		CACA D 3
-		CACA D 3 A_Pain
-		CACA E 6
-		Goto See
-	Death:
-		CACA F 7
-		CACA G 7 A_Scream
-		CACA H 6
-		CACA I 5
-		CACA J 4 A_NoBlocking
-		CACA K 3
-		CACA L -1 A_SetFloorClip
-		Stop
-	Raise:
-		CACA L 8 A_UnSetFloorClip
-		CACA KJIHGF 8
-		Goto See
-	}
+  Pain:
+	CACA D 3
+	CACA D 3 A_Pain
+	CACA E 6
+	Goto See
+  XDeath:
+  Death:
+	CACA F 7
+	CACA G 7 A_Scream
+	CACA H 6
+	CACA I 5
+	CACA J 4 A_NoBlocking
+	CACA K 3
+	CACA L -1 A_SetFloorClip
+	Stop
+  XRaise:
+  Raise:
+	CACA L 8 A_UnSetFloorClip
+	CACA KJIHGF 8
+	Goto See
+ }
 }

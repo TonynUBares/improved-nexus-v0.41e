@@ -52,8 +52,9 @@ iNexus-v0.x
 - Rework(ing)ed Hackroid Weapons:
    They hack the system and don't consume ammo anymore
    They hack the HUD and the statusbar and show TV-static-like in place of the ammo
+   The Rifle has now a secret AltFire with some Hakromagic
 - Reworked Beacons to make full use of Gaturra's sprites
    They now show their "loading" bar that fills to 100% when they are ready to spawn more stuff
    They will play the beep/alarm sound when ready, not when you step on them and they are not ready
 - Converted all chests into switchable decorations (press use to open them)
-
+- Added all the entries for the VileStaff (it was painful)

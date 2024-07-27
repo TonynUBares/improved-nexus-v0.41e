@@ -650,7 +650,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawNumber 3, INDEXFONT, Green, Ammo ELegendaryLMGBulletMag, WhenNotZero, -49, -94;
     }
 //SLOT 5
-  IsSelected "RocketLauncher"
+  IsSelected "CFRocketLauncher"
     {
 	DrawImage "SEWPA0", -48, -53;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
@@ -2109,7 +2109,7 @@ StatusBar normal, forcescaled
 	DrawNumber 3, NEWFONT3, CR_BLUE, Ammo ILDemonAmmo, 565, 346;
     } 
 //SLOT 5
-  IsSelected "RocketLauncher"
+  IsSelected "CFRocketLauncher"
     {
 	DrawImage "SEWBB0", 211, 340;
 	DrawNumber 3, NEWFONT, DarkGrey, Ammo1, 110, 330, 0;
