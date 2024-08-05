@@ -51,3 +51,23 @@ Actor ttkGiveAll: CustomInventory
 	Stop
  }
 }
+
+Actor ttkFader: CustomInventory
+{
+ States
+ {
+  Pickup:
+	TNT1 A 0 A_ChangeFlag("SHOOTABLE",false)
+	TNT1 A 0 A_ChangeFlag("UNSHOOTABLE",true)
+ }
+}
+
+Actor ttkAntiFader: CustomInventory
+{
+ States
+ {
+  Pickup:
+	TNT1 A 0 A_ChangeFlag("SHOOTABLE",true)
+	TNT1 A 0 A_ChangeFlag("UNSHOOTABLE",false)
+ }
+}
