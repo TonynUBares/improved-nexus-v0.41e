@@ -58,3 +58,4 @@ iNexus-v0.x
    They will play the beep/alarm sound when ready, not when you step on them and they are not ready
 - Converted all chests into switchable decorations (press use to open them)
 - Added all the entries for the VileStaff (it was painful)
+- Reworked the Occult SpellBook menu

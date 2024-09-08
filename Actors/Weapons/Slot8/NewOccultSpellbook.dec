@@ -9,7 +9,7 @@ Actor OccultDelay : Inventory
  }
 }
 
-Actor OccultChoice1 : Inventory { Inventory.MaxAmount 1 }
+Actor OccultChoice1 : Inventory {}
 Actor OccultChoice2 : OccultChoice1 {}
 Actor OccultChoice3 : OccultChoice1 {}
 Actor OccultChoice4 : OccultChoice1 {}
@@ -339,9 +339,9 @@ Actor OccultSpellbook : Weapon 17601
   AltFire2:
 	"####" A 1 A_JumpIfInventory("OccultChoice1",1,"ToLasers")
 	"####" A 1 A_JumpIfInventory("OccultChoice2",1,"Zoom")
-	"####" A 1 A_JumpIfInventory("OccultChoice3",1,"Reload")
-	"####" A 1 A_JumpIfInventory("OccultChoice4",1,"ToSlicer")
-	"####" A 1 A_JumpIfInventory("OccultChoice5",1,"ToSummoner")
+	"####" A 1 A_JumpIfInventory("OccultChoice3",1,"ToSummoner")
+	"####" A 1 A_JumpIfInventory("OccultChoice4",1,"Reload")
+	"####" A 1 A_JumpIfInventory("OccultChoice5",1,"ToSlicer")
 	"####" A 1 A_JumpIf(ACS_NamedExecuteWithResult("OccultEscape")==1,"Escape")
 	Loop
   Escape:
@@ -382,7 +382,7 @@ Actor OccultSpellbook : Weapon 17601
 	Goto Ready2
   Reload:
 	"####" A 1 A_WeaponReady(WRF_NOFIRE|WRF_DISABLESWITCH)
-	"####" A 1 A_TakeInventory("OccultChoice3",1)
+	"####" A 1 A_TakeInventory("OccultChoice4",1)
 	"####" A 0 A_JumpIfInventory("OccultChaosLightningToken2",1,"Ready3")
 	"####" A 0 A_JumpIfInventory("OccultChaosLightningToken",1,2)
 	"####" A 0 A_Print("You don't have the Chaos Lightning upgrade yet!",0,"CFCONFONT")
@@ -398,7 +398,7 @@ Actor OccultSpellbook : Weapon 17601
 	Goto Ready3
   ToSlicer:
 	"####" A 1 A_WeaponReady(WRF_NOFIRE|WRF_DISABLESWITCH)
-	"####" A 0 A_TakeInventory("OccultChoice4",1)
+	"####" A 0 A_TakeInventory("OccultChoice5",1)
 	"####" A 0 A_JumpIfInventory("OccultSlicerToken2",1,"SlicerSwitch")
 	"####" A 0 A_TakeInventory("HandGrenadeAction",1)
 	"####" A 0 A_JumpIfInventory("OccultSlicerToken",1,2)
@@ -418,7 +418,7 @@ Actor OccultSpellbook : Weapon 17601
 	Goto Ready4
   ToSummoner:
 	"####" A 1 A_WeaponReady(WRF_NOFIRE|WRF_DISABLESWITCH)
-	"####" A 0 A_TakeInventory("OccultChoice5",1)
+	"####" A 0 A_TakeInventory("OccultChoice3",1)
 	"####" A 0 A_JumpIfInventory("SummonerToken2",1,"SummonerSwitch")
 	"####" A 0 A_TakeInventory("MineAction",1)
 	"####" A 0 A_JumpIfInventory("SummonerToken",1,2)
@@ -816,18 +816,18 @@ ACTOR VileCache : Inventory
  -inventory.invbar
 }
 
-Actor OccultCanUpgrade : Inventory { Inventory.MaxAmount 1 }
-Actor OccultLaserToken : Inventory { Inventory.MaxAmount 1 }
-Actor OccultLasersToken2 : Inventory { Inventory.MaxAmount 1 }
-Actor OccultDarkMatterToken : Inventory { Inventory.MaxAmount 1 }
-Actor OccultDarkMatterToken2 : Inventory { Inventory.MaxAmount 1 }
-Actor OccultChaosLightningToken : Inventory { Inventory.MaxAmount 1 }
-Actor OccultChaosLightningToken2 : Inventory { Inventory.MaxAmount 1 }
-Actor OccultSlicerToken : Inventory { Inventory.MaxAmount 1 }
-Actor OccultSlicerToken2 : Inventory { Inventory.MaxAmount 1 }
-ACTOR SlicerUpgraded : Inventory {Inventory.MaxAmount 1}
-ACTOR SlicerUpgradeToken : Inventory {Inventory.MaxAmount 1}
-ACTOR SummonerUpgraded : Inventory {Inventory.MaxAmount 1}
-ACTOR SummonerUpgradeToken : Inventory {Inventory.MaxAmount 1}
-Actor SummonerToken : Inventory { Inventory.MaxAmount 1 }
-Actor SummonerToken2 : Inventory { Inventory.MaxAmount 1 }
+Actor OccultCanUpgrade : Inventory {}
+Actor OccultLaserToken : Inventory {}
+Actor OccultLasersToken2 : Inventory {}
+Actor OccultDarkMatterToken : Inventory {}
+Actor OccultDarkMatterToken2 : Inventory {}
+Actor OccultChaosLightningToken : Inventory {}
+Actor OccultChaosLightningToken2 : Inventory {}
+Actor OccultSlicerToken : Inventory {}
+Actor OccultSlicerToken2 : Inventory {}
+ACTOR SlicerUpgraded : Inventory {}
+ACTOR SlicerUpgradeToken : Inventory {}
+ACTOR SummonerUpgraded : Inventory {}
+ACTOR SummonerUpgradeToken : Inventory {}
+Actor SummonerToken : Inventory {}
+Actor SummonerToken2 : Inventory {}

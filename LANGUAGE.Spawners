@@ -567,7 +567,7 @@ WolfensteinSSBoss9 = "IncubusKaiser";			WolfensteinSSBoss9Chance = 8;
 //For weapons the tables they must add up to 300.
 ChainsawCount =  5;
 Chainsaw0 = "";					Chainsaw0Chance = 0;
-Chainsaw1 = "Chainsaw ";				Chainsaw1Chance = 141;
+Chainsaw1 = "ChainsawGiver";				Chainsaw1Chance = 141;
 Chainsaw2 = "DesiccationRodSpawnerGiver";	Chainsaw2Chance = 65;
 Chainsaw3 = "FlameSwordSpawnerGiver";		Chainsaw3Chance = 18;
 Chainsaw4 = "DemonTechAxe";			Chainsaw4Chance = 76;
