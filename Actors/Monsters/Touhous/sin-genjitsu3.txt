@@ -129,7 +129,6 @@ ACTOR singenjitsu3 : GenericBoss
 	Loop
   MoreSee:
 	TNT1 A 0 A_SetUserVar("user_lowlag",1)
-    	TNT1 A 0
 	TNT1 A 0 A_PlaySound("singenjitsu/ambient",5,3.0,1)
   SeeLoop:
 	TNT1 A 0 A_Jump(2,"GiveAway")
