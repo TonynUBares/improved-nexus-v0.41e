@@ -24,14 +24,15 @@ If you DON'T provide with any credits, you will not be permitted to use the mod'
 !PLEASE NOTE THIS AS WELL! [TonynUBares]
 
 1) A recommendation is not an obligation :D.
-2) I kept every credit that originally were in the Nexus file. No content has been stolen: I didn't make any of the
-content in this mod and I'm not saying otherwise. All I did is clearly described in the CREDITS file.
+2) I kept every credit that originally were in the Nexus file. No content has been stolen: I didn't make 
+(almost) any of the content in this mod and I'm not saying otherwise. All I did is clearly described in the 
+CREDITS file.
 3) I DID NOT DO ANYTHING DIFFERENT THAT WHAT WAS DONE FOR NEXUS 1.95: INCLUDING ALL THE FILES MENTIONED 
 ABOVE (NONE OF THEM OWNED BY THE PEOPLE THAT COOPERATED FOR NEXUS). If people aren't willing to understand this,
 then they should stop talking shit about me, stop being childish af and stop talking like if I'm a nazi that is
 doing a "war" and propaganda against them.
 4) Clusterfuck 4.1 is obsolete. The owners abandoned it and people who like playing it should be glad that others
-kept it alive, fixing bugs, fixing problems that made online servers crash and leak RAM and adding new features.
+kept it alive fixing bugs, fixing problems that made online servers crash and leak RAM and adding new features.
 
 
 

@@ -144,16 +144,12 @@ Script "UtilityCrateUse" (void)
 //New UtilityCrateUse
 Script "UtilityCrateUse" (void)
 {
- int x = GetActorX(0); int y = GetActorY(0); int z = GetActorZ(0);
- int angle = (GetActorAngle(0))>>8;
- int randomchance = Random(1,170);
  delay(1);
-
  PlaySound(0,"UtilyCrate/use");
 	
- if (randomchance <= 100)
+ if(Random(1,170) <= 100)
   {
-   SpawnForced("UtilyCrateGot", x, y, z, 0, angle);
+   DropItem(0,"UtilyCrateGot");
    Print(s:"Utily Crate Activated!");
   }
 

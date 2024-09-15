@@ -18,22 +18,33 @@ Script "SGActiveScript" (void)
  int x,currhealth,newhealth,multiplier,newDF,currDF;
  currhealth = 7000;
  currDF = 1.0;
+ multiplier = 7000.0;
 
- while(FixedDiv(currhealth<<16,currDF) > (100<<16)) 
+ while(multiplier>>16 > 100)
   {
    if(ClassifyActor(0) & ACTOR_DEAD) {break;}
    currhealth = GetActorProperty(0,APROP_Health);
    currDF = GetActorProperty(0,APROP_DamageFactor);
-   newhealth = random(100,32200);
+   newhealth = random(100,32767)*random(1,20);
+
+   //integer multiples of 65536 would be equal to 0 when converted to fixed and cause division by 0
+   //32768<<16 exceeds the 32 bits limit (2<<31), becoming a -32768<<16 (thus generating negative DFs)
+   //integers that are odd multiples of 32768 will generate negative fixed points
+   // if( (newhealth/32768) && (newhealth/32768)%2 )
+   
+   if(!(newhealth % 65536)) {newhealth = 10000*(newhealth/65536);}
+
    multiplier = FixedDiv(currhealth<<16,currDF);
+   if(multiplier<0) {multiplier = -multiplier;}
+
    newDF = FixedDiv(newhealth<<16,multiplier);
+   if(newDF<0) {newDF = -newDF;}
+
    SetActorProperty(0,APROP_DamageFactor,newDF);
    SetActorProperty(0,APROP_Health,newhealth);
    SetActorProperty(0,APROP_NameTag,sgname[random(0,7)]);
    Delay(35*2);
   }
-}
 
-/* If you want the newhealth to exceed 1<<15 (aka 32768), be sure to add a condition like this after calculating newDF to avoid surprises
-if(!(newhealth/32768) && (newhealth/32768)%2) {newDF = -newDF;}
-and find a way to avoid divisions by 0*/
+ SetActorProperty(0,APROP_NameTag,StrParam(s:sgname[0],s:"\cg  [FINISH HER!]"));
+}

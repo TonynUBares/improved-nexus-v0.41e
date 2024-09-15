@@ -15,7 +15,7 @@ way way way way way better and avoid recursive checks every time you need them.
 the nth replacement of every single fucking actor. LegendaryZombie5 doesn't help anyone and, as you can see,
  is not needed.
 
-4) Before replacing a system or a script that you don't understand how to work with, try to ask to whom made it. 
+4) Before replacing a system or a script that you don't understand how to work with, try to ask to who made it. 
 There's a decent chance you will get tips and hints and have enough help to work with it.
 
 5) Stop using numbered scripts and use only named scripts, possibly with hard-to-clone names. Numbered scripts
@@ -46,11 +46,11 @@ ACTOR VoidCoreItem : CustomInventory
 {
 ....
 States
-	  {
-      Use:
-	    TNT1 A 1 A_SpawnItemEx("VoidCoreActive",0,0,16,8,0,4,0)
-	    Stop
-      }
+{
+  Use:
+	TNT1 A 1 A_SpawnItemEx("VoidCoreActive",0,0,16,8,0,4,0)
+	Stop
+ }
 }
 
 ^ This is completely useless.

@@ -2273,11 +2273,30 @@ Actor MarineHealingItem : AIStrafing
  }
 }
 
+Actor MarineHealingEffectSpawner
+{
+ +NOGRAVITY
+ +CLIENTSIDEONLY
+ +NOTIMEFREEZE
+ +NOBLOCKMAP
+ +NOINTERACTION
+ var float user_r;
+ var float user_h;
+ States
+ {
+  Spawn:
+	TNT1 A 2 A_SpawnItemEx("MarineHealingEffect",frandom(-user_r,user_r),frandom(-user_r,user_r),frandom(0,user_h),0,0,frandom(0.75,2.25),0,SXF_CLIENTSIDE)
+	Loop
+ }
+}
+
 Actor MarineHealingEffect
 {
  +NOGRAVITY
  +CLIENTSIDEONLY
  +NOTIMEFREEZE
+ +NOBLOCKMAP
+ +NOINTERACTION
  Renderstyle Add
  Alpha 1.0
  Scale 0.15

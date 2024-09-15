@@ -167,25 +167,29 @@ int WeaponCrateStuff[17] = {1,1,0,1,0,0,2,2,0,1,3,0,4,0,3,10,1};
  
 Script "WeaponCrateUse" (void)
 {
- int x = GetActorX(0); int y = GetActorY(0); int z = GetActorZ(0);
- int angle = (GetActorAngle(0))>>8;
  int randomchance = Random(0,16); int t;
+ int wnum = WeaponCrateStuff[randomchance];
  delay(1);
 
- while(t < WeaponCrateStuff[randomchance])
+ while(t < wnum)
   {
-   SpawnForced("WeaponCrateGot",x,y,z,0,angle);
+   DropItem(0,"WeaponCrateGot");
    t++;
   }
 
-  if(randomchance == 15) {PlaySound(0,"jackpot/other"); Print(s:"JACKPOT!!!");}
+ if(randomchance == 15) {PlaySound(0,"jackpot/other"); Print(s:"JACKPOT!!!");}
 
-  else
+ else
+  {
+   str message,message2;
+   if(!wnum) {message = "It's empty. Better luck next time.";}
+   else
    {
-    str message = StrParam(s:"You got", i:WeaponCrateStuff[randomchance]);
-    PlaySound(0,"WeaponCrate/use");
-    if(WeaponCrateStuff[randomchance] == 0) {Print(s:"It's empty. Better luck next time.");}
-    else if(WeaponCrateStuff[randomchance] == 1) {Print(s:StrParam(s:message, s:"weapon!"));}
-    else {Print(s:StrParam(s:message, s:"weapons!"));}
+    message2 = (wnum > 1) ? " weapons!" : " weapon!";
+    message = StrParam(s:"You got ", i:wnum,s:message2);
    }
+
+   PlaySound(0,"WeaponCrate/use");
+   Print(s:message);
+  }
 }
