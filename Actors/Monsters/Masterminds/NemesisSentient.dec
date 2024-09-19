@@ -101,11 +101,15 @@ Actor NemesisSentient : SacrosanctOverseer 28013
 	TNT1 A 0 A_SetUserVar("user_script",1)
 	TNT1 A 0 A_SetUserVar("user_script_type",21)
 	TNT1 A 0 ACS_NamedExecuteAlways("ModifyMonster",0,2,4)
+	TNT1 A 0 ACS_NamedExecuteAlways("SpawnEffects",0)
   SpawnLoop:
 	TNT1 A 0 A_Playsound("NemesisSentient/Loop",7,1,1)
 	NSNT AB 4 Bright A_Look
 	Loop
   Idle:
+	TNT1 A 0 A_SetUserVar("user_effect_type",22)
+	TNT1 A 0 A_SetUserVar("user_effect_delay",3)
+	TNT1 A 0 A_SetUserVar("user_effect_quantity",3)
 	TNT1 A 0 A_JumpIfInventory("MarineKilled",1,"Taunt")
   Idle2:
 	TNT1 A 0 A_Look
