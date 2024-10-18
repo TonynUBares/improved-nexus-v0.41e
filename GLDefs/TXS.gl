@@ -2062,11 +2062,6 @@ Object AmmoSphere
 Frame AMS2 { Light HemAmmoSphereLight }
 }
 
-Object BerserkSphere2
-{
-Frame BERS { Light UnbelieveSphere1 }
-}
-
 Object ElusiveSphere
 {
 Frame VISN { Light ModdedMegaSphere1 }

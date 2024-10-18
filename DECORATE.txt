@@ -193,7 +193,6 @@ Inventory.MaxAmount 255
 
 //Items
 
-#include "Actors/Items/Edits/TXSEdits.txt"
 #include "Actors/Items/Runes/VoidRune.txt"
 #include "Actors/Items/Runes/SkulltagRunes.dec"
 

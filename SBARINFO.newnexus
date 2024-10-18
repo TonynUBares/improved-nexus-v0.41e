@@ -998,6 +998,11 @@ StatusBar FullScreen, FullScreenOffsets
     }
   IsSelected "HackroidRifle"
     {
+	InInventory Not HackroidToken, 1000
+	{DrawBar "HACKBARB","HACKBARA",HackroidToken,vertical,interpolate(10),-75, -41;}
+	else
+	{DrawImage "HACKBARC", -75, -41;}
+	
 	DrawImage "SEWPA0", -40, -53;
 	DrawImage AmmoIcon2, -16, -25, CenterBottom;
 	//DrawNumber 3, HUDFONT_DOOM, DarkGrey, Ammo2, DrawShadow, -27, -41, 0;
@@ -1381,7 +1386,7 @@ StatusBar FullScreen, FullScreenOffsets
 	DrawSwitchableImage YellowCard && YellowSkull, "", "STKEYS1", "STKEYS4", "STKEYS7", -14, 13;
 	DrawSwitchableImage RedCard && RedSkull, "", "STKEYS2", "STKEYS5", "STKEYS8", -14, 22;
    
-	DrawSelectedInventory INDEXFONT, -102, -32, -70, -12, White;
+	DrawSelectedInventory INDEXFONT, -182, -32, -150, -12, White;
 
    
   InInventory LegendaryRuneToken, 1 { DrawImage "LGRNA0", 8, -40, CenterBottom, 13, 11; }

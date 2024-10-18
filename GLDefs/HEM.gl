@@ -3475,7 +3475,7 @@ Frame ARS3B { Light HemBlackArmorSphere }
 Frame ARS3C { Light HemBlackArmorSphere }
 }
 
-//Berserk Sphere
+/*//Berserk Sphere
 PULSELIGHT BerserkSphere
 {
 Color 0.8 0.0 0.0
@@ -3499,7 +3499,7 @@ Frame BERSA { Light BerserkSphere }
 Frame BERSB { Light BerserkSphere }
 Frame BERSC { Light BerserkSphere2 }
 Frame BERSD { Light BerserkSphere2 }
-}
+}*/
 //Elusive Sphere
 PULSELIGHT ElusiveSphere
 {

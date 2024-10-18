@@ -90,6 +90,9 @@ Actor NemesisSentient : SacrosanctOverseer 28013
   var int user_sky;
   var int user_deathtimer;
   var int user_deathtimeractive;
+  var int user_effect_type;
+  var int user_effect_delay;
+  var int user_effect_quantity;
   States
   {
   Spawn:

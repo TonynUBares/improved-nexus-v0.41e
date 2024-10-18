@@ -63,7 +63,6 @@ ACTOR KaguyaHouraisan
 	KAGI H 10 A_LookEX(LOF_FULLVOLSEESOUND,0,0,0,360,"See")
 	Loop
   BegoneThot:
-	TNT1 A 1
 	TNT1 A 0 A_SpawnItemEx("explosivebarrel",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 	TNT1 A 0 A_ChangeFlag("COUNTKILL", FALSE)
 	TNT1 A 0
@@ -322,7 +321,6 @@ actor LegendaryKaguya : KaguyaHouraisan
 	KALI H 10 A_LookEX(LOF_FULLVOLSEESOUND,0,0,0,360,"See")
 	Loop
   Remove:
-	TNT1 A 1
 	TNT1 A 0 A_SpawnItemEx("Demon",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 	TNT1 A 0 A_ChangeFlag("COUNTKILL", FALSE)
 	TNT1 A 0

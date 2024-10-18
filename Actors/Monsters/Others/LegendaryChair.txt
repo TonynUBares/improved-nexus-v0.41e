@@ -85,12 +85,11 @@ ACTOR LegendaryChair 13712
 	TNT1 A 0 A_SpawnItemEx("LHellionSmokeSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,64)
 	Loop
   Remove:
-	TNT1 A 1
 	TNT1 A 0 A_SpawnItemEx("LegendaryBarrelSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 	TNT1 A 0
 	Stop
   See:
-	CHAI R 1
+	CHAI R 3
 	TNT1 A 0 A_SpawnItemEx("LHellionSmokeSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,64)
 	loop
   Pain:

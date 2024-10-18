@@ -174,7 +174,6 @@ ACTOR HellFireCardinal
     HFCD B 2 Bright A_Look
     Loop
   Remove:
-	TNT1 A 1
 	TNT1 A 0 A_SpawnItemEx("Cyberdemon",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 	TNT1 A 0 A_ChangeFlag("COUNTKILL", FALSE)
 	TNT1 A 0

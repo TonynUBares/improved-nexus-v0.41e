@@ -77,7 +77,6 @@ States
 		LKAM A 10 Bright A_Look
 		Loop
 	Remove:
-		TNT1 A 1
 		TNT1 A 0 A_SpawnItemEx("Demon",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_ChangeFlag("COUNTKILL", FALSE)
 		Stop

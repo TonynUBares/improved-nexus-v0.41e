@@ -19,6 +19,7 @@ ACTOR ShuffleSphere : CustomInventory
 	Loop
  Remove:
 	TNT1 A 0 A_SpawnItemEx("CFBlurSphereSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	TNT1 A 0
 	Stop
  Pickup:
 	TNT1 A 1 A_SpawnItemEx ("ShuffleSpawner")

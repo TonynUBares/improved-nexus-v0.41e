@@ -53,6 +53,7 @@ iNexus-v0.x
    They hack the system and don't consume ammo anymore
    They hack the HUD and the statusbar and show TV-static-like in place of the ammo
    The Rifle has now a secret AltFire with some Hakromagic
+     A bar indicator was added to show when the AltFire becomes available
 - Reworked Beacons to make full use of Gaturra's sprites
    They now show their "loading" bar that fills to 100% when they are ready to spawn more stuff
    They will play the beep/alarm sound when ready, not when you step on them and they are not ready

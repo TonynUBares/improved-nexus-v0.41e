@@ -83,7 +83,6 @@ ACTOR Utsuho : GenericBoss
     UNXU ABCDEFGHIJKLM 4 A_Look
     Loop
   BegoneThot:
-	TNT1 A 1
 	TNT1 A 0 A_SpawnItemEx("Cyberdemon",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 	TNT1 A 0 A_ChangeFlag("COUNTKILL", FALSE)
 	TNT1 A 0

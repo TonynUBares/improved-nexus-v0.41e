@@ -1136,16 +1136,6 @@ Object MarineT3DBFG10kShot
   Frame BG3XE0 { Light DBFG10KSHOT_X3 }
 }
 
-OBJECT NexusLegendarySphere
-{
-Frame LSPH { Light LegendarySphere1 }	
-}
-
-OBJECT NexusLegTimeFreezeSphere
-{
-Frame TTIM { Light LegendarySphere1 }	
-}
-
 //Vexed Nemesis Sentient
 OBJECT VexedNemesisSentient
 {
