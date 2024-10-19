@@ -5,6 +5,7 @@ ACTOR HellFireBarrel : ModdedExplosiveBarrel
  DamageFactor "PyroShot", 0.0
  DamageFactor "PlayerPyro", 0.0
  DamageFactor "Ice", 0.0
+ DamageFactor "PlayerIce", 0.0
  DamageFactor "FreezerBurn", 0.0
  DeathSound "Weapons/PCnnEx"
  Obituary "%o got melted for touching a Hellfire Barrel."

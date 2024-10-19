@@ -28,6 +28,7 @@ Actor Maephisto 29019 //One heated microwave
  DamageFactor "PlayerDTBFGRailgunSlug", 0.0
  DamageFactor "PlayerDevTracer", 0.0
  DamageFactor "Ice", 0.5
+DamageFactor "PlayerIce", 0.5
  DamageFactor "Explosion", 0.1
  DamageFactor 0.8 //0.55
  MaxStepHeight 32

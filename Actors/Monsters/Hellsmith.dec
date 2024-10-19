@@ -75,6 +75,7 @@ ACTOR Hellsmith 30109
  DamageFactor "PlayerDTBFGRailgunSlug", 0.020
  DamageFactor "PlayerDevTracer", 0.020
  DamageFactor "Ice", 0.0
+ DamageFactor "PlayerIce", 0.0
  DamageFactor "FreezerBurn", 0.0
  DamageFactor "Railg", 0.5
  DamageFactor "Baby15K", 0.0

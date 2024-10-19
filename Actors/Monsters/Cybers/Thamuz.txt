@@ -26,6 +26,7 @@ DamageFactor "PlayerDevBall", 0.4
 DamageFactor "PlayerDevBall2", 0.4
 DamageFactor "PlayerDevTracer", 0.4
 DamageFactor "Ice", 0.2
+DamageFactor "PlayerIce", 0.2
 DamageFactor "FreezerBurn", 0.2
 DamageFactor "PlayerDTRG", 0.4
 DamageFactor "Legendary", 0.5

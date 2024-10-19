@@ -26,6 +26,7 @@ ACTOR singenjitsu3 : GenericBoss
   DamageFactor "Crush", 0.1
   DamageFactor "Acid", 0.05
   DamageFactor "Ice", 0.0
+  DamageFactor "PlayerIce", 0.0
   DamageFactor "Fire", 0.0
   DamageFactor "Poison", 0.0
   DamageFactor "PoisonCloud", 0.0

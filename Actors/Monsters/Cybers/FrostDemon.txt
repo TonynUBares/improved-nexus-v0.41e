@@ -21,6 +21,7 @@ ACTOR Frostdemon 28131
   DamageFactor "PlayerFireSword", 0.0
   DamageFactor "BeheComet", 0.0
   DamageFactor "Ice", 0.0
+DamageFactor "PlayerIce", 0.0
   DamageFactor "FreezerBurn", 0.0
   DamageFactor 0.65
   DamageFactor "BFGSplash", 0.25
@@ -209,6 +210,7 @@ FRS2 ABC 1 BRIGHT A_SpawnItemEx("FrostIceWaveTrail",0,0,0,0,0,0,0,128,0)
 FRS2 A 0 A_SeekerMissile(14,0)
 Goto Spawn+1
 Death:
+	TNT1 A 0 A_RadiusGive("MonsterSlow",32,RGF_PLAYERS,1)
 FRS2 A 0 A_Explode(32,64,0)
 FRS2 A 0 A_SpawnItem("FrostIceWaveExplode")
 FRS2 ABC 4
@@ -232,21 +234,22 @@ Spawn:
 
 ACTOR FrostIceWaveExplode
 {
-+DONTHURTSPECIES
-+NoGravity
-+FloorHugger
-Species "Cybers"
-DamageType "HFCyber"
-DamageType "Ice"
-Speed 0
-Scale 1.25
-States
-{
-Spawn:
-FRS3 A 0 A_Explode
-FRS3 ABCDE 3 BRIGHT
-Stop
-}
+ +DONTHURTSPECIES
+ +NoGravity
+ +FloorHugger
+ Species "Cybers"
+ DamageType "HFCyber"
+ DamageType "Ice"
+ Speed 0
+ Scale 1.25
+ States
+ {
+  Spawn:
+	FRS3 A 0 A_Explode
+	TNT1 A 0 A_RadiusGive("MonsterSlow",32,RGF_PLAYERS,1)
+	FRS3 ABCDE 3 BRIGHT
+	Stop
+ }
 }
 
 ACTOR FrostBall
@@ -279,6 +282,7 @@ ACTOR FrostBall
 		TNT1 A 0 A_SeekerMissile(0,2)
 		Loop
 	Death:
+	TNT1 A 0 A_RadiusGive("MonsterSlow",32,RGF_PLAYERS,1)
 		TNT1 A 0 A_Explode(160, 192)//Damage, Radius
 		TNT1 A 0 A_SpawnItemEx("LCABaseScorch", 0, 0, 0, 0, 0, 0, Random(0,359))
         TNT1 AAAAAA 0 A_CustomMissile ("BlueParticleSpawner", 0, 0, random (0, 360), 2, random (0, 180))
@@ -387,7 +391,7 @@ ACTOR StayIce
      States
      {
      Spawn:
-          NULL A 8 A_Wander
+          TNT1 A 8 A_Wander
           ICPL A 3 Bright
 	      ICPL B 3 Bright A_Wander
 	      ICPL C 3 Bright A_Wander
@@ -416,21 +420,21 @@ ACTOR IceGlyphLineSpawner1
 	  TNT1 EF 2 Bright
       loop
 	Death:
-	       NULL A 0 A_SpawnItemEx("StayIce",0,0,0,4,0,0,0,128)
-		   NULL A 0 A_SpawnItemEx("StayIce",0,0,0,-4,0,0,0,128)
-		   NULL A 0 A_SpawnItemEx("StayIce",0,0,0,0,4,0,0,128)
-		   NULL A 0 A_SpawnItemEx("StayIce",0,0,0,0,-4,0,0,128)
-		   NULL A 0 A_PlaySound("Glyph/Start")
-		   NULL A 0 A_PlaySound("Glyph/Start")
-		   NULL A 0 A_PlaySound("Glyph/Start")
-		   NULL A 0 A_PlaySound("Glyph/Start")
-		   NULL A 0 A_PlaySound("Glyph/Start")
-		   NULL A 35
-	       NULL A 0 A_CustomMissile("IceGlyphLine10",0,0,0,2)
-           NULL A 0 A_CustomMissile("IceGlyphLine20",0,0,135,2)
-		   NULL A 0 A_CustomMissile("IceGlyphLine30",0,0,-135,2)
-		   NULL A 0 A_SpawnItem("IceLargeGlyphExplosion",0,0,0)
-		   NULL A 0 A_CustomMissile("SpiralIce1",10,5,15,2,0)
+	       TNT1 A 0 A_SpawnItemEx("StayIce",0,0,0,4,0,0,0,128)
+		   TNT1 A 0 A_SpawnItemEx("StayIce",0,0,0,-4,0,0,0,128)
+		   TNT1 A 0 A_SpawnItemEx("StayIce",0,0,0,0,4,0,0,128)
+		   TNT1 A 0 A_SpawnItemEx("StayIce",0,0,0,0,-4,0,0,128)
+		   TNT1 A 0 A_PlaySound("Glyph/Start")
+		   TNT1 A 0 A_PlaySound("Glyph/Start")
+		   TNT1 A 0 A_PlaySound("Glyph/Start")
+		   TNT1 A 0 A_PlaySound("Glyph/Start")
+		   TNT1 A 0 A_PlaySound("Glyph/Start")
+		   TNT1 A 35
+	       TNT1 A 0 A_CustomMissile("IceGlyphLine10",0,0,0,2)
+           TNT1 A 0 A_CustomMissile("IceGlyphLine20",0,0,135,2)
+		   TNT1 A 0 A_CustomMissile("IceGlyphLine30",0,0,-135,2)
+		   TNT1 A 0 A_SpawnItem("IceLargeGlyphExplosion",0,0,0)
+		   TNT1 A 0 A_CustomMissile("SpiralIce1",10,5,15,2,0)
 		stop
 	}
 }
@@ -452,7 +456,7 @@ ACTOR IceGlyphLine10
 	{
 	Spawn:
            NULL EEEEEEEEEEEEEEEE 1 A_SpawnItemEx("StayIce",0,0,0,0,0,0,0,128)
-           NULL A 0 A_CustomMissile("IceGlyphLine40",0,0,-135,2)
+           TNT1 A 0 A_CustomMissile("IceGlyphLine40",0,0,-135,2)
 	   stop
 	}
 }
@@ -473,7 +477,7 @@ ACTOR IceGlyphLine40
 	{
 	Spawn:
            NULL EEEEEEEEEEEEEEEE 1 A_SpawnItemEx("StayIce",0,0,0,0,0,0,0,128)
-		   NULL A 1 A_SpawnItem("IceGlyphExplosion",0,0,0)
+		   TNT1 A 1 A_SpawnItem("IceGlyphExplosion",0,0,0)
 	   stop
 	}
 }
@@ -494,7 +498,7 @@ ACTOR IceGlyphLine30
 	{
 	Spawn:
            NULL EEEEEEEEEEEEEEEE 1 A_SpawnItemEx("StayIce",0,0,0,0,0,0,0,128)
-           NULL A 0 A_CustomMissile("IceGlyphLine60",0,0,-135,2)
+           TNT1 A 0 A_CustomMissile("IceGlyphLine60",0,0,-135,2)
 	   stop
 	}
 }
@@ -515,7 +519,7 @@ ACTOR IceGlyphLine60
 	{
 	Spawn:
            NULL EEEEEEEEEEEEEEEE 1 A_SpawnItemEx("StayIce",0,0,0,0,0,0,0,128)
-		   NULL A 1 A_SpawnItem("IceGlyphExplosion",0,0,0)
+		   TNT1 A 1 A_SpawnItem("IceGlyphExplosion",0,0,0)
 	   stop
 	}
 }
@@ -536,7 +540,7 @@ ACTOR IceGlyphLine20
 	{
 	Spawn:
            NULL EEEEEEEEEEEEEEEE 1 A_SpawnItemEx("StayIce",0,0,0,0,0,0,0,128)
-           NULL A 0 A_CustomMissile("IceGlyphLine50",0,0,-135,2)
+           TNT1 A 0 A_CustomMissile("IceGlyphLine50",0,0,-135,2)
 	   stop
 	}
 }
@@ -557,7 +561,7 @@ ACTOR IceGlyphLine50
 	{
 	Spawn:
            NULL EEEEEEEEEEEEEEEE 1 A_SpawnItemEx("StayIce",0,0,0,0,0,0,0,128)
-		   NULL A 1 A_SpawnItem("IceGlyphExplosion",0,0,0)
+		   TNT1 A 1 A_SpawnItem("IceGlyphExplosion",0,0,0)
 	   stop
 	}
 }
@@ -575,6 +579,7 @@ ACTOR IceGlyphExplosion
     {
     Spawn:
         NKXP B 1 BRIGHT
+	TNT1 A 0 A_RadiusGive("MonsterSlow",32,RGF_PLAYERS,1)
         NKXP B 1 BRIGHT A_PlaySound("pyro/explosion")
         NKXP C 1 BRIGHT
         NKXP D 1 BRIGHT A_Explode(50,128,0)
@@ -598,6 +603,7 @@ ACTOR IceLargeGlyphExplosion
     {
     Spawn:
 	    NKXP B 1 BRIGHT
+	TNT1 A 0 A_RadiusGive("MonsterSlow",32,RGF_PLAYERS,1)
         NKXP B 1 BRIGHT A_PlaySound("pyro/explosion")
         NKXP C 1 BRIGHT 
         NKXP D 1 BRIGHT A_Explode(100,256,0)
@@ -632,7 +638,8 @@ actor SpiralIce1
   states
   {
   Spawn:
-    NULL A 1
+    TNT1 A 1
+	TNT1 A 0 A_RadiusGive("MonsterSlow",32,RGF_PLAYERS,1)
     FRS6 A 1 bright A_PlaySound("pyro/explosion")
 	FRS6 B 1 A_SpawnItemEx("SpiralIce2",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 2 bright A_Explode(15,50,0)
@@ -663,7 +670,8 @@ actor SpiralIce2
   states
   {
   Spawn:
-  NULL A 1
+  TNT1 A 1
+	TNT1 A 0 A_RadiusGive("MonsterSlow",32,RGF_PLAYERS,1)
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce3",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 2 bright A_Explode(15,50,0)
@@ -694,7 +702,8 @@ actor SpiralIce3
   states
   {
   Spawn:
-  NULL A 1
+  TNT1 A 1
+	TNT1 A 0 A_RadiusGive("MonsterSlow",32,RGF_PLAYERS,1)
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce4",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 2 bright A_Explode(15,50,0)
@@ -724,7 +733,8 @@ actor SpiralIce4
   states
   {
   Spawn:
-  NULL A 1
+  TNT1 A 1
+	TNT1 A 0 A_RadiusGive("MonsterSlow",32,RGF_PLAYERS,1)
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce5",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -754,7 +764,8 @@ actor SpiralIce5
   states
   {
   Spawn:
-  NULL A 1
+  TNT1 A 1
+	TNT1 A 0 A_RadiusGive("MonsterSlow",32,RGF_PLAYERS,1)
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce6",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -784,7 +795,8 @@ actor SpiralIce6
   states
   {
   Spawn:
-  NULL A 1
+  TNT1 A 1
+	TNT1 A 0 A_RadiusGive("MonsterSlow",32,RGF_PLAYERS,1)
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce7",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -814,7 +826,8 @@ actor SpiralIce7
   states
   {
   Spawn:
-  NULL A 1
+  TNT1 A 1
+	TNT1 A 0 A_RadiusGive("MonsterSlow",32,RGF_PLAYERS,1)
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce8",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -844,7 +857,8 @@ actor SpiralIce8
   states
   {
   Spawn:
-  NULL A 1
+  TNT1 A 1
+	TNT1 A 0 A_RadiusGive("MonsterSlow",32,RGF_PLAYERS,1)
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce9",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -874,7 +888,7 @@ actor SpiralIce9
   states
   {
   Spawn:
-  NULL A 1
+  TNT1 A 1
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce10",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -904,7 +918,7 @@ actor SpiralIce10
   states
   {
   Spawn:
-    NULL A 1
+    TNT1 A 1
     FRS6 AB 1 bright A_PlaySound("pyro/explosion")
 	FRS6 B 1 A_SpawnItemEx("SpiralIce11",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -935,7 +949,7 @@ actor SpiralIce11
   states
   {
   Spawn:
-    NULL A 1
+    TNT1 A 1
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce12",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -966,7 +980,7 @@ actor SpiralIce12
   states
   {
   Spawn:
-    NULL A 1
+    TNT1 A 1
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce13",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -997,7 +1011,7 @@ actor SpiralIce13
   states
   {
   Spawn:
-    NULL A 1
+    TNT1 A 1
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce14",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -1028,7 +1042,7 @@ actor SpiralIce14
   states
   {
   Spawn:
-    NULL A 1
+    TNT1 A 1
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce15",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -1059,7 +1073,7 @@ actor SpiralIce15
   states
   {
   Spawn:
-    NULL A 1
+    TNT1 A 1
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce16",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -1090,7 +1104,7 @@ actor SpiralIce16
   states
   {
   Spawn:
-    NULL A 1
+    TNT1 A 1
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce17",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -1121,7 +1135,7 @@ actor SpiralIce17
   states
   {
   Spawn:
-    NULL A 1
+    TNT1 A 1
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce18",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -1152,7 +1166,7 @@ actor SpiralIce18
   states
   {
   Spawn:
-    NULL A 1
+    TNT1 A 1
     FRS6 AB 1 bright A_PlaySound("pyro/explosion")
 	FRS6 B 1 A_SpawnItemEx("SpiralIce19",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -1183,7 +1197,7 @@ actor SpiralIce19
   states
   {
   Spawn:
-    NULL A 1
+    TNT1 A 1
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce20",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -1213,7 +1227,7 @@ actor SpiralIce20
   states
   {
   Spawn:
-    NULL A 1
+    TNT1 A 1
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce21",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -1243,7 +1257,7 @@ actor SpiralIce21
   states
   {
   Spawn:
-    NULL A 1
+    TNT1 A 1
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce22",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -1273,7 +1287,7 @@ actor SpiralIce22
   states
   {
   Spawn:
-    NULL A 1
+    TNT1 A 1
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce23",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -1303,7 +1317,7 @@ actor SpiralIce23
   states
   {
   Spawn:
-    NULL A 1
+    TNT1 A 1
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce24",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -1333,7 +1347,7 @@ actor SpiralIce24
   states
   {
   Spawn:
-    NULL A 1
+    TNT1 A 1
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce25",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -1363,7 +1377,7 @@ actor SpiralIce25
   states
   {
   Spawn:
-    NULL A 1
+    TNT1 A 1
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce26",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -1393,7 +1407,7 @@ actor SpiralIce26
   states
   {
   Spawn:
-    NULL A 1
+    TNT1 A 1
     FRS6 AB 1 bright A_PlaySound("pyro/explosion")
 	FRS6 B 1 A_SpawnItemEx("SpiralIce27",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -1423,7 +1437,7 @@ actor SpiralIce27
   states
   {
   Spawn:
-    NULL A 1
+    TNT1 A 1
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce28",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -1453,7 +1467,7 @@ actor SpiralIce28
   states
   {
   Spawn:
-    NULL A 1
+    TNT1 A 1
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce29",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -1483,7 +1497,7 @@ actor SpiralIce29
   states
   {
   Spawn:
-    NULL A 1
+    TNT1 A 1
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce30",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -1513,7 +1527,7 @@ actor SpiralIce30
   states
   {
   Spawn:
-    NULL A 1
+    TNT1 A 1
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce31",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -1543,7 +1557,7 @@ actor SpiralIce31
   states
   {
   Spawn:
-    NULL A 1
+    TNT1 A 1
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce32",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -1573,7 +1587,7 @@ actor SpiralIce32
   states
   {
   Spawn:
-    NULL A 1
+    TNT1 A 1
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce33",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -1603,7 +1617,7 @@ actor SpiralIce33
   states
   {
   Spawn:
-    NULL A 1
+    TNT1 A 1
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce34",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -1633,7 +1647,7 @@ actor SpiralIce34
   states
   {
   Spawn:
-    NULL A 1
+    TNT1 A 1
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce35",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -1663,7 +1677,7 @@ actor SpiralIce35
   states
   {
   Spawn:
-    NULL A 1
+    TNT1 A 1
     FRS6 AB 1 bright A_PlaySound("pyro/explosion")
 	FRS6 B 1 A_SpawnItemEx("SpiralIce36",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -1693,7 +1707,7 @@ actor SpiralIce36
   states
   {
   Spawn:
-    NULL A 1
+    TNT1 A 1
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce37",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -1723,7 +1737,7 @@ actor SpiralIce37
   states
   {
   Spawn:
-    NULL A 1
+    TNT1 A 1
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce38",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -1753,7 +1767,7 @@ actor SpiralIce38
   states
   {
   Spawn:
-    NULL A 1
+    TNT1 A 1
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce39",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -1783,7 +1797,7 @@ actor SpiralIce39
   states
   {
   Spawn:
-    NULL A 1
+    TNT1 A 1
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce40",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -1813,7 +1827,7 @@ actor SpiralIce40
   states
   {
   Spawn:
-    NULL A 1
+    TNT1 A 1
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce41",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -1843,7 +1857,7 @@ actor SpiralIce41
   states
   {
   Spawn:
-    NULL A 1
+    TNT1 A 1
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce42",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -1873,7 +1887,7 @@ actor SpiralIce42
   states
   {
   Spawn:
-    NULL A 1
+    TNT1 A 1
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce43",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -1903,7 +1917,7 @@ actor SpiralIce43
   states
   {
   Spawn:
-    NULL A 1
+    TNT1 A 1
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce44",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -1933,7 +1947,7 @@ actor SpiralIce44
   states
   {
   Spawn:
-    NULL A 1
+    TNT1 A 1
     FRS6 AB 1 bright A_PlaySound("pyro/explosion")
 	FRS6 B 1 A_SpawnItemEx("SpiralIce45",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -1963,7 +1977,7 @@ actor SpiralIce45
   states
   {
   Spawn:
-    NULL A 1
+    TNT1 A 1
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce46",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -1993,7 +2007,7 @@ actor SpiralIce46
   states
   {
   Spawn:
-    NULL A 1
+    TNT1 A 1
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce47",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -2023,7 +2037,7 @@ actor SpiralIce47
   states
   {
   Spawn:
-    NULL A 1
+    TNT1 A 1
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce48",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -2053,7 +2067,7 @@ actor SpiralIce48
   states
   {
   Spawn:
-    NULL A 1
+    TNT1 A 1
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce49",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -2083,7 +2097,7 @@ actor SpiralIce49
   states
   {
   Spawn:
-    NULL A 1
+    TNT1 A 1
     FRS6 AB 1 bright
 	FRS6 B 1 A_SpawnItemEx("SpiralIce50",5,5,5,0,0,0,15,128)
 	FRS6 CDEFGHIJKLM 1 bright A_Explode(15,50,0)
@@ -2113,7 +2127,7 @@ actor SpiralIce50
   states
   {
   Spawn:
-    NULL A 1 A_PlaySound("pyro/explosion")
+    TNT1 A 1 A_PlaySound("pyro/explosion")
     FRS6 ABCDEFGHIJKLM 1 bright 
 	FRS6 ABCDEFGHIJKLMNOP 1 bright
     stop

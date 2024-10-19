@@ -10,6 +10,7 @@ Bloodcolor "Blue"
 Mass 1000
 DamageFactor "NobleComet", 0.0
 DamageFactor "Ice", 0.0
+DamageFactor "PlayerIce", 0.0
 DamageFactor "FreezerBurn", 0.0
 DropItem "BossLifeEssence" 128
 DropItem "BossArmorBonusMax" 128
@@ -317,6 +318,7 @@ States
 	FX05 C 1 Bright	
 	Loop
   Death:
+	TNT1 A 0 A_RadiusGive("MonsterSlow",32,RGF_PLAYERS,1)
 	TNT1 AAA 0 A_CustomMissile("Bluekaboom4",0,0,random(0,360),2,random(0,360))
 	TNT1 AAA 0 A_CustomMissile("SmokeFX4",0,0,random(0,360),2,random(0,360))	
 	SHEX G 0 A_Explode(32,102,0)
@@ -350,7 +352,7 @@ States
 	ISHR AB 2 Bright
 	Loop
   Death:
-	TNT1 A 0
+	TNT1 A 0 A_RadiusGive("MonsterSlow",32,RGF_PLAYERS,1)
 	TNT1 AAA 0 A_CustomMissile("Kaboom6", 0, 0, random(0,360), 2, random(0,360))
 	TNT1 AAAA 0 A_SpawnItemEx("IceDebris",0,0,0,Random(4,-4),Random(4,-4),Random(4,8),0,128)
 	TNT1 AAA 0 A_CustomMissile("Kaboom6", 0, 0, random(0,360), 2, random(0,360))
@@ -376,6 +378,7 @@ States
 	ICBL D 1 Bright A_SpawnItemEx("FRZRBehBallTrail",0,0,0,0,0,0,0,128)
 	Loop
   Death:
+	TNT1 A 0 A_RadiusGive("MonsterSlow",32,RGF_PLAYERS,1)
 	ICBL A 0 A_Explode(32,104,0)
 	ICBL A 0 A_PlaySound("icefurry")
 	TNT1 AAAA 0 A_SpawnItemEx("BlueParticleSpawner",0,0,0,0,0,0,0,128)
@@ -387,16 +390,16 @@ States
 
 Actor FRZAfritFlameShot : FlameShot
 {
-Species "Nobles"
-DamageType "NobleComet"
-DamageType "Ice"
-+THRUSPECIES
-States
-{
-Death:
-		TNT1 A 0
-		stop
-	}
+ Species "Nobles"
+ DamageType "NobleComet"
+ DamageType "Ice"
+ +THRUSPECIES
+ States
+ {
+  Death:
+	TNT1 A 1 A_RadiusGive("MonsterSlow",32,RGF_PLAYERS,1)
+	stop
+ }
 }
 
 ACTOR FreezedAfritTracer
@@ -433,6 +436,7 @@ ACTOR FreezedAfritTracer
     TNT1 A 1 Bright A_SpawnItemEx("FreezedATracerPuff", 0, 0, 0, 0, 0, 0, 0, 128)	
     Loop
   Death:
+	TNT1 A 0 A_RadiusGive("MonsterSlow",32,RGF_PLAYERS,1)
     TNT1 A 0 A_SpawnItemEx("BlueParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
     FFRA K 4 Bright
 	TNT1 AAA 0 A_CustomMissile("Kaboom9", 0, 0, random(0,360), 2, random(0,360))

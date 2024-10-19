@@ -32,6 +32,7 @@ ACTOR EnragedLegendaryCyberdemon
   DamageFactor "LegMind", 0.0
   DamageFactor "SuperWeapon", 0.0
   DamageFactor "Ice", 0.0
+DamageFactor "PlayerIce", 0.0
   DamageFactor "FreezerBurn", 0.0
   DamageFactor "Crush", 0.1
   DamageFactor "Player", 0.015

@@ -35,6 +35,7 @@ ACTOR HellsMinister 29020 //Judgment Day
  DamageFactor "PlayerDTBFGRailgunSlug", 0.0
  DamageFactor "PlayerDevTracer", 0.0
  DamageFactor "Ice", 0.5
+DamageFactor "PlayerIce", 0.5
  DamageFactor "Explosion", 0.1
  DamageFactor "PlayerNemesisPlasma", 0.1
  DamageFactor 0.7 //0.35

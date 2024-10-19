@@ -11,6 +11,7 @@ DamageFactor "WeakenerBall", 0.0
 Damagefactor "Souls", 0.0
 DamageFactor "SoulToxic", 0.0
 DamageFactor "Ice", 0.0
+DamageFactor "PlayerIce", 0.0
 DamageFactor "BombBreath", 0.0
 Damagefactor "EleSouls", 0.0
 Monster

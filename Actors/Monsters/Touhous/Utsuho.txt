@@ -38,6 +38,7 @@ ACTOR Utsuho : GenericBoss
   DamageFactor "PlayerPyro", 0.0
   DamageFactor "PDTPuff", 0.3 // Don't tell anyone
   DamageFactor "Ice", 0.0
+  DamageFactor "PlayerIce", 0.0
   DamageFactor "FreezerBurn", 0.0
   DamageFactor "SuperWeapon", 0.0
   DamageFactor "DemolisherEx", 0.0

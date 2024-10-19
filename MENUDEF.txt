@@ -16,6 +16,35 @@ ListMenu "MainMenu"
 	Position 1, 1
 }
 
+ListMenu "ExtraInfo"
+{
+ 	TextItem "$MainCredits",  "h",   "ReadThisMenu"
+	TextItem "$D64Stuff",  "a",  "D64MenuStuff"
+	TextItem "Hackroid mechanics",   "","HackMenus"
+}
+
+ListMenu "HackMenus"
+{
+	TextItem "Hackroid Rifle",  "",   "HackMenu10"
+//	TextItem "Hackroid ASG",  "",   "HackMenu20"
+}
+
+ListMenu "HackMenu10"
+{
+	Selector "TNT1A0",0,0
+	TextItem "",  "",   "HackMenu11"
+
+	StaticPatch 0, 0, "HACKMEN1"
+}
+
+ListMenu "HackMenu11"
+{
+	Selector "TNT1A0",0,0
+	TextItem "",  "",   "MainMenu"
+
+	StaticPatch 0, 0, "HACKMEN2"
+}
+
 OptionMenu "OptionsCF"
 {
 	Title "$ModOptions"

@@ -90,6 +90,7 @@ ACTOR HellFireCardinal
  DamageFactor "Telefrag", 0.0
  DamageFactor "Massacre", 0.0
  DamageFactor "Ice", 0.0
+ DamageFactor "PlayerIce", 0.0
  DamageFactor "Melee", 0.0
  DamageFactor "DBFG10K", 0.5
  DamageFactor "PlayerDBFG10K", 0.5
@@ -118,8 +119,6 @@ ACTOR HellFireCardinal
  DamageFactor "Legendary1", 0.0
  DamageFactor "T3rm", 0.0
  DamageFactor "Terminator", 0.0
- DamageFactor "", 0.0
- DamageFactor "Ice", 0.0
  DamageFactor "Moloch", 0.0
  DamageFactor "AbyssalSatyr", 0.0
  DamageFactor "SatanGuard", 0.0
@@ -2030,6 +2029,7 @@ ACTOR FakeHFCardi : HellFireCardinal
   DamageFactor "BFGSpray", 0.0
   DamageFactor "Railg", 0.5
   DamageFactor "Ice", 0.0
+ DamageFactor "PlayerIce", 0.0
   DamageFactor "FreezerBurn", 0.0
   DamageFactor "DBFG10K", 0
   DamageFactor "PlayerDBFG10K", 0

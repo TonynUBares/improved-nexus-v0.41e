@@ -47,6 +47,7 @@ ACTOR NexusObliterator 29316
  DamageFactor "LegendaryGuru", 0.0
  DamageFactor "LegMind", 0.0
  DamageFactor "Ice", 0.0
+DamageFactor "PlayerIce", 0.0
  DamageFactor "Fire", 0.0
  DamageFactor "C0mm4nder", 0.0
  DamageFactor "PlayerBHole", 0.0

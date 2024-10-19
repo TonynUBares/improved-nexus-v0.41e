@@ -12,6 +12,7 @@ Species "EleSouls"
 Damagefactor "Souls", 0.0
 DamageFactor "SoulToxic", 0.0
 DamageFactor "Ice", 0.0
+  DamageFactor "PlayerIce", 0.0
 DamageFactor "BombBreath", 0.0
 Damagefactor "EleSouls", 0.0
 AttackSound "monster/psoattack"
@@ -248,6 +249,7 @@ Species "EleSouls"
 Damagefactor "Souls", 0.0
 DamageFactor "SoulToxic", 0.0
 DamageFactor "Ice", 0.0
+  DamageFactor "PlayerIce", 0.0
 DamageFactor "BombBreath", 0.0
 Damagefactor "EleSouls", 0.0
 AttackSound "monster/psoattack"
@@ -433,6 +435,7 @@ Spawn:
     Loop
 Death:
 	TNT1 A 0 A_Die
+	TNT1 A 0 A_RadiusGive("MonsterSlow",32,RGF_PLAYERS,1)
 Explode:
 	TNT1 A 0 A_ChangeFlag(NOBLOCKMAP,1)
 	TNT1 A 0 A_Explode

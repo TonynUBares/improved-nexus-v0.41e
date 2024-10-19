@@ -77,6 +77,7 @@ ACTOR HellfrostCyberdemon : Cyberdemon
  DamageFactor 0.45
  //No Infighting
  DamageFactor "Ice", 0.0
+ DamageFactor "PlayerIce", 0.0
  DamageFactor "SatanGuard", 0.0
  DamageFactor "AbyssalSatyr", 0.0
  Damagefactor "Moloch", 0.0
@@ -470,7 +471,7 @@ States
 	BFS9 AB 2 Bright A_SpawnItemEx("BFGTrailParticleBlue",Random(-8,8),Random(-8,8),Random(-8,8),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,0)
 	Loop
 	Death:
-	TNT1 A 0 Bright
+	TNT1 A 0 A_RadiusGive("MonsterSlow",32,RGF_PLAYERS,1)
 	TNT1 A 0 Bright A_SpawnItemEx("BlueBFGShockwave",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE)
 	TNT1 A 0 Bright A_SpawnItemEx("BlueParticleSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE)
 	TNT1 AAA 0 Bright A_CustomMissile("BlueKaboom3",0,0,random(0,360),CMF_AIMDIRECTION,random(0,360))
@@ -718,6 +719,7 @@ DamageFactor "AbyssalSatyr", 0.0
 Damagefactor "Moloch", 0.0
 DamageFactor "Cyber10K", 0.0
 DamageFactor "Ice", 0.0
+DamageFactor "PlayerIce", 0.0
 DropItem ""
 DropItem "LifeEssence", 64
 DropItem "ArmorBonusMax", 64
@@ -746,6 +748,7 @@ DamageFactor "AbyssalSatyr", 0.0
 Damagefactor "Moloch", 0.0
 DamageFactor "Cyber10K", 0.0
 DamageFactor "Ice", 0.0
+DamageFactor "PlayerIce", 0.0
 DropItem ""
 DropItem "LifeEssence", 64
 DropItem "ArmorBonusMax", 64
@@ -787,6 +790,7 @@ DamageFactor "AbyssalSatyr", 0.0
 Damagefactor "Moloch", 0.0
 DamageFactor "Cyber10K", 0.0
 DamageFactor "Ice", 0.0
+DamageFactor "PlayerIce", 0.0
 DropItem ""
 DropItem "BossLifeEssence", 64
 DropItem "BossArmorBonusMax", 64
