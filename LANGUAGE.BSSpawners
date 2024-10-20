@@ -53,7 +53,7 @@ BSShotgunGuy7 = "Formerlieutenant"; BSShotgunGuy7Chance = 10;
 BSShotgunGuy8 = "HomingRocketZombie"; BSShotgunGuy8Chance = 8;
 BSShotgunGuy9 = "HeavySpecOpsShotgunner"; BSShotgunGuy9Chance = 8;
 BSShotgunGuy10 = "ExplosiveShotgunZombie"; BSShotgunGuy10Chance = 7;
-BSShotgunGuy11 = "Hexa-ShotgunZombie"; BSShotgunGuy11Chance = 7;
+BSShotgunGuy11 = "HexaShotgunZombie"; BSShotgunGuy11Chance = 7;
 BSShotgunGuy12 = "EraserZombie"; BSShotgunGuy12Chance = 7;
 BSShotgunGuy13 = "PyroZombie"; BSShotgunGuy13Chance = 7;
 BSShotgunGuy14 = "ShotgunCommando"; BSShotgunGuy14Chance = 7;
@@ -80,7 +80,7 @@ BSShotgunGuy32 = "NemesisSuperShotgunZombie"; BSShotgunGuy32Chance = 1;
 BSShotgunGuy33 = "HackroidAssaultCaptain"; BSShotgunGuy33Chance = 1;
 
 
-BSChaingunGuyCount = 23; BSChaingunGuyTotal = 313;
+BSChaingunGuyCount = 23; BSChaingunGuyTotal = 314;
 BSChaingunGuyCut = 1; BSChaingunGuyT = 112;
 BSChaingunGuy0 = ""; BSChaingunGuy0Chance = 0;
 BSChaingunGuy1 = "AssaultRifleZombie"; BSChaingunGuy1Chance = 112;
@@ -106,7 +106,7 @@ BSChaingunGuy20 = "CorruptedGeneral"; BSChaingunGuy20Chance = 2;
 BSChaingunGuy21 = "HellClone3"; BSChaingunGuy21Chance = 2;
 BSChaingunGuy22 = "HellClone4"; BSChaingunGuy22Chance = 1;
 
-BSChaingunGuyBossCount = 9;
+BSChaingunGuyBossCount = 10;
 BSChaingunGuy23 = "LegendaryStealthTrooper"; BSChaingunGuy23Chance = 1;
 BSChaingunGuy24 = "LegendaryCommando"; BSChaingunGuy24Chance = 1;
 BSChaingunGuy25 = "LegendaryGeneral"; BSChaingunGuy25Chance = 1;
@@ -116,6 +116,7 @@ BSChaingunGuy28 = "GeneralRoasterock"; BSChaingunGuy28Chance = 1;
 BSChaingunGuy29 = "CFLegendaryDoomguy"; BSChaingunGuy29Chance = 1;
 BSChaingunGuy30 = "NemesisCommando"; BSChaingunGuy30Chance = 1;
 BSChaingunGuy31 = "NemesisStealthTrooper"; BSChaingunGuy31Chance = 1;
+BSChaingunGuy32 = "SuppressedBroly"; BSChaingunGuy32Chance = 1;
 
 
 
@@ -181,7 +182,7 @@ BSDemon9 = "LoperComplex"; BSDemon9Chance = 2;
 
 BSDemonBossCount = 9;
 BSDemon10 = "LegendaryFiend"; BSDemon10Chance = 1;
-BSDemon11 = "LegChainsawZombie"; BSDemon11Chance = 1;
+BSDemon11 = "LegendaryChainsawZombie"; BSDemon11Chance = 1;
 BSDemon12 = "LegendarySuicideBomber"; BSDemon12Chance = 1;
 BSDemon13 = "LegendaryBeheadedKamikaze"; BSDemon13Chance = 1;
 BSDemon14 = "EnragedLegendaryFiend"; BSDemon14Chance = 1;
