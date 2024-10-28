@@ -92,7 +92,7 @@ States
 	TNT1 A 0
 	TNT1 A 0 A_SetUserVar("user_missile",0)
 	TNT1 A 0 A_JumpIf(user_rage == 1,"RageMissile")
-	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("GetCVar",50) == 0,3)
+	TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("GetCVar",50) == 0,"Normal")
 	TNT1 A 0 A_JumpIf(user_nuke == 1,2)
 	TNT1 A 0 A_Jump(7,"BigNuke")
 	TNT1 A 0 A_Jump(36,"FusionNuke")
@@ -285,7 +285,7 @@ States
 	TNT1 A 0 HealThing(45)
 	TNT1 A 0 A_PlaySound("pmed/use",0,1.0,0)
 	GoTo See
-	Pain:
+  Pain:
 	TNT1 A 0
 	TNT1 A 0 A_JumpIf(user_cooldown > 0,3)
 	TNT1 A 0 A_JumpIf(user_rage == 1,2)
@@ -295,19 +295,19 @@ States
 	EFGK G 2
 	TNT1 A 0 A_Jump(20,"Heal")
 	Goto see
-	PainMissile: 
+  PainMissile: 
         EFGK G 3 Bright
         EFGK G 0 A_Pain
 	EFGK G 3 Bright
         Goto Missile
-	TriggerRage:
+  TriggerRage:
 	TNT1 A 0 A_Changeflag(NOPAIN,1)
 	EFGK G 1 A_Pain
 	TNT1 A 0 A_PlaySound("efgzombie/protection",CHAN_BODY,1,0,0.5)
 	EFGK G 6 ACS_NamedExecuteAlways("LunaticRage",0)
 	TNT1 A 0 A_Changeflag(NOPAIN,0)
 	Goto SeeRage
-	Death:
+  Death:
 	TNT1 A 0 A_StopSound(6)
 	EFGK H 5
 	EFGK I 5 A_Scream
@@ -317,7 +317,7 @@ States
 	TNT1 A 0 A_SpawnItem("BodyCrash",0,0,0,0)
 	EFGK M 63000 CanRaise
 	Stop
-	XDeath:
+  XDeath:
 	TNT1 A 0 A_StopSound(6)
 	TNT1 A 0
 	TNT1 A 0 A_SpawnItemEx("GibbedGenerator",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
@@ -338,7 +338,7 @@ States
 	EFGK VUTSRQPO 5
 	EFGK N 5 A_TakeInventory("XDeathCheck",1)
 	Goto See
-	}
+ }
 }
 
 ACTOR EFGZombieRocket : EFGRocket
@@ -435,28 +435,36 @@ States
 
 Actor EFGZombieShieldSphere : CustomInventory
 {
--COUNTITEM
-+NOTIMEFREEZE
-+INVENTORY.QUIET
-+INVENTORY.ALWAYSPICKUP
-+INVENTORY.AUTOACTIVATE
-Inventory.Amount 1
-Inventory.MaxAmount 0
-Inventory.PickupSound "Gateway/Hell"
-States
-	{
-	Spawn:
-	TNT1 A -1
-	Loop
-	Pickup:
-	TNT1 A 1
-	TNT1 A 0 A_JumpIfInventory("SuperShieldSphereCooldown",1,"Nope")
-	TNT1 A 0 A_GiveInVentory("SuperShieldSphereCooldown")
-	TNT1 A 0 A_GiveInVentory("SuperShieldSphereGiver")
-	TNT1 A 1 ACS_NamedExecuteAlways("CF_ShieldSphereFX",0,2)
+ +NOTIMEFREEZE
+ Inventory.PickupSound "Gateway/Hell"
+ States
+ {
+  Pickup:
+	TNT1 A 0 A_JumpIfInventory("SuperShieldSphereCooldown",1,"Null")
+	TNT1 A 0 A_Railwait
+	TNT1 A 0 A_GiveInventory("SuperShieldSphereCooldown")
+	TNT1 A 0 A_GiveInventory("SuperShieldSphereGiver")
+	TNT1 A 0 ACS_NamedExecuteAlways("CF_ShieldSphereFX",0,2)
 	Stop
-	Nope:
-	TNT1 A 1
-	Fail
-	}
+ }
+}
+
+Actor NE_ShieldReflective: CustomInventory
+{
+ States
+ {
+  Pickup:
+	TNT1 A 0 A_ChangeFlag(REFLECTIVE,1)
+	Stop
+ }
+}
+
+Actor NE_ShieldReflectiveDone : CustomInventory
+{
+ States
+ {
+  Pickup:
+	TNT1 A 0 A_ChangeFlag(REFLECTIVE,0)
+	Stop
+ }
 }

@@ -59,6 +59,7 @@ Actor ttkFader: CustomInventory
   Pickup:
 	TNT1 A 0 A_ChangeFlag("SHOOTABLE",false)
 	TNT1 A 0 A_ChangeFlag("NONSHOOTABLE",true)
+	Stop
  }
 }
 
@@ -69,6 +70,7 @@ Actor ttkAntiFader: CustomInventory
   Pickup:
 	TNT1 A 0 A_ChangeFlag("SHOOTABLE",true)
 	TNT1 A 0 A_ChangeFlag("NONSHOOTABLE",false)
+	Stop
  }
 }
 
@@ -85,14 +87,21 @@ Actor ttkHackroStunner: CustomInventory
  }
 }
 
-Actor ttkHackropain: CustomInventory
+Actor ttkHackroNopain: CustomInventory
 {
  States
  {
   Pickup:
 	TNT1 A 0 A_ChangeFlag("NOPAIN",true)
 	Stop
-  Use:
+ }
+}
+
+Actor ttkHackropain: CustomInventory
+{
+ States
+ {
+  Pickup:
 	TNT1 A 0 A_ChangeFlag("NOPAIN",false)
 	Stop
  }
